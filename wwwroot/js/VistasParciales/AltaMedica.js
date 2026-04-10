@@ -82,7 +82,7 @@
 
         //$('#txtFechaAlta').val(fechaP);        
 
-        $('#txtFechaAlta, #txtFechaIntervencionQuirurgicaAlta').datepicker({
+        $('#txtFechaAlta, #txtFechaIntervencionQuirurgicaAlta, #txtFechaInicioDescansoMedico, #txtFechaFinDescansoMedico').datepicker({
             todayHighlight: true,
             autoclose: true,
             orientation: "bottom"
@@ -114,7 +114,7 @@
         $.mask.definitions['c'] = '[0123456789]';
         $.mask.definitions['d'] = '[0123456789]';
 
-        $('#txtFechaAlta, #txtFechaIntervencionQuirurgicaAlta').mask("Dd/Mm/abcd");
+        $('#txtFechaAlta, #txtFechaIntervencionQuirurgicaAlta, #txtFechaInicioDescansoMedico, #txtFechaFinDescansoMedico').mask("Dd/Mm/abcd");
 
     },
 
@@ -323,6 +323,10 @@
             $('.chzn-select').chosen().trigger("chosen:updated");
         });
 
+        $('#chk_descansoMedico').on('change', function () {
+            AltaMedica.ToggleControlesDescansoMedico($(this).is(':checked'));
+        });
+
         $('#btnGuardarAltaMedica').on('click', async function () {
             Cargando(1);
             const alta = await AltaMedica.GuardarAltaMedica();
@@ -417,6 +421,16 @@
         //});
 
 
+    },
+
+    ToggleControlesDescansoMedico(mostrar) {
+        if (mostrar) {
+            $('#rowDescansoMedico').show();
+        } else {
+            $('#rowDescansoMedico').hide();
+            $('#txtFechaInicioDescansoMedico').val('');
+            $('#txtFechaFinDescansoMedico').val('');
+        }
     },
 
     HabilitarReferencia() {
@@ -950,6 +964,8 @@
         $("#txtCipPacienteEmer").val(objrowTb.titularCIP);
         $("#txtCipTitularPacienteEmer").val(objrowTb.titularNombre);
         $("#txtObservacionAltaMedica").val(objrowTb.observacionAltaMedica);
+        $('#chk_descansoMedico').prop('checked', false);
+        AltaMedica.ToggleControlesDescansoMedico(false);
         //RMOREANO 28032026
 
         let diagIngreso = AltaMedica.SeleccionarDiagnosticos(Variables.IdAtencion, 2)
@@ -978,6 +994,14 @@
             $('#cboMedicoIntervencionQuirurgicaAlta').val(resp.idMedicoIntervencionQuirurgica);
             $('#cboGrupoGoAlta').val(resp.idGrupoGo);
 
+            const tieneDescansoMedico = resp.tieneDescansoMedico === true || resp.tieneDescansoMedico === 1 || resp.tieneDescansoMedico === '1';
+            $('#chk_descansoMedico').prop('checked', tieneDescansoMedico);
+            AltaMedica.ToggleControlesDescansoMedico(tieneDescansoMedico);
+            if (tieneDescansoMedico) {
+                $('#txtFechaInicioDescansoMedico').datepicker('setDate', FormatearFecha(resp.fechaInicioDescansoMedico));
+                $('#txtFechaFinDescansoMedico').datepicker('setDate', FormatearFecha(resp.fechaFinDescansoMedico));
+            }
+
             if (isEmpty(resp.codeEpicrisis)) {
                 AltaMedica.codeEpicrisis = '';
                 $("#btnEpicrisis").hide();
@@ -999,6 +1023,8 @@
             AltaMedica.codeEpicrisis = '';
             $("#btnEpicrisis").hide();
             $("#btnEliminarAltaMedica").hide();
+            $('#chk_descansoMedico').prop('checked', false);
+            AltaMedica.ToggleControlesDescansoMedico(false);
         }
 
         if (AltaMedica.idMedicoSesion > 0) {
@@ -1121,7 +1147,10 @@
         formData.append('idMedicoEgreso', $("#cboMedicoAlta").val());
         formData.append('ObservacionAltaMedica', $("#txtObservacionAltaMedica").val());
         formData.append('conExoneracion', $("#chk_exoneracion").prop("checked") ? 1 : 0);
-
+        formData.append('conDescansoMedico', $("#chk_descansoMedico").prop("checked") ? 1 : 0);
+        formData.append('TieneDescansoMedico', $("#chk_descansoMedico").prop("checked"));
+        formData.append('FechaInicioDescansoMedico', $("#txtFechaInicioDescansoMedico").val());
+        formData.append('FechaFinDescansoMedico', $("#txtFechaFinDescansoMedico").val());
 
 
         /////////////////INFECCION INTRAHOSPITALARIA///////////////////////
@@ -1305,6 +1334,29 @@
                 });
                 $("#txtFechaAlta").focus();
                 alerta2('info', '', 'La Fecha de la Alta Médica no es valida.');
+                return false;
+            }
+        }
+
+        if ($('#chk_descansoMedico').is(':checked')) {
+            if ($('#txtFechaInicioDescansoMedico').val() == '' || $('#txtFechaFinDescansoMedico').val() == '') {
+                $('.nav-tabs a[href="#dxEgreso-tab"]').tab('show');
+                alerta2('info', '', 'Ingrese la fecha de inicio y fin del descanso médico.');
+                return false;
+            }
+
+            const fechaInicioDescanso = moment(ConvertirFormatoFecha($('#txtFechaInicioDescansoMedico').val()));
+            const fechaFinDescanso = moment(ConvertirFormatoFecha($('#txtFechaFinDescansoMedico').val()));
+
+            if (!fechaInicioDescanso.isValid() || !fechaFinDescanso.isValid()) {
+                $('.nav-tabs a[href="#dxEgreso-tab"]').tab('show');
+                alerta2('info', '', 'Las fechas de descanso médico no son válidas.');
+                return false;
+            }
+
+            if (fechaFinDescanso.diff(fechaInicioDescanso, 'days') < 0) {
+                $('.nav-tabs a[href="#dxEgreso-tab"]').tab('show');
+                alerta2('info', '', 'La fecha fin del descanso médico no puede ser menor a la fecha inicio.');
                 return false;
             }
         }

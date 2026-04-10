@@ -1,0 +1,61 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Papeleta de Descanso Médico</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #222; }
+        .documento { padding: 10px 25px; }
+        .titulo { text-align: center; font-size: 46px; font-weight: 700; letter-spacing: 1px; margin: 30px 0; }
+        .fila { margin: 16px 0; line-height: 1.5; }
+        .linea { border-bottom: 1px dotted #222; display: inline-block; min-width: 220px; padding: 0 6px; }
+        .firma { margin-top: 90px; text-align: right; }
+        .firma .linea { min-width: 280px; }
+        .pie { margin-top: 80px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="documento">
+        <div style="text-align:right;font-size:15px;">SS – 135 (MOD. NOV. 2003)</div>
+        <div class="titulo">PAPELETA DE DESCANSO MÉDICO</div>
+
+        <div class="fila">
+            EL <span class="linea">@ViewBag.Grado</span>
+            <span class="linea" style="min-width:430px;">@ViewBag.Paciente</span>
+            CIP: <span class="linea" style="min-width:180px;">@ViewBag.Cip</span>
+        </div>
+
+        <div class="fila">
+            de la Dotación de: <span class="linea" style="min-width:640px;">@ViewBag.Dependencia</span>
+        </div>
+
+        <div class="fila">
+            tiene DESCANSO MÉDICO por: <span class="linea" style="min-width:120px;">@ViewBag.TotalHorasDescanso</span> Hrs.
+        </div>
+
+        <div class="fila">
+            en su UNIDAD / DEPENDENCIA / DOMICILIO, que se inicia el
+            <span class="linea" style="min-width:220px;">@ViewBag.FechaInicioDescanso</span>
+            y termina el
+            <span class="linea" style="min-width:220px;">@ViewBag.FechaFinDescanso</span>
+        </div>
+
+        <div class="fila" style="margin-top:45px; text-align:center;">FECHA, <span class="linea" style="min-width:180px;">@ViewBag.FechaTexto</span></div>
+
+        <div class="firma">
+            <div class="linea">&nbsp;</div>
+            <div>El Médico Tratante</div>
+            <div>Sello y Firma</div>
+        </div>
+
+        <div class="pie">
+            <div>Original: &nbsp; Paciente</div>
+            <div>Copia:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Archivo</div>
+        </div>
+    </div>
+</body>
+</html>
