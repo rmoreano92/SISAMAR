@@ -1,0 +1,584 @@
+﻿<div class="row mt-1">
+    <div class="col-lg-4">
+        <label for="cboCondicionIngreso" class="form-control-label">Tipo de paciente </label>
+        <div class="input-group">
+            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboCondicionIngreso">
+                <option value="0">-- Seleccionar --</option>
+                <option value="1">Gestante</option>
+                <option value="2">Puérpera</option>
+                <option value="3">Ginecológica</option>
+                @* <option value="4">Aborto</option> *@
+                @* <option value="5">Otra</option> *@
+                <option value="6">Otro no obstétrico- no ginecológico</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <label for="txtEdadGestacional" class="form-control-label">Edad Gestacional Final: </label>
+        <div class="row">
+            <div class="col-lg-3">
+                <label for="txtEdadGestacionalSemanas" class="form-control-label">Semanas </label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm bloquear" id="txtEdadGestacionalSemanas" placeholder="" autocomplete="off">
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <label for="txtEdadGestacionalDias" class="form-control-label">Dias </label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm bloquear" id="txtEdadGestacionalDias" placeholder="" autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <label for="cboTipoParto" class="form-control-label">Tipo de parto </label>
+        <div class="input-group">
+            <select class="chzn-select" data-placeholder="Seleccionar una opcion" data-placeholder="Seleccionar una opcion" id="cboTipoParto">
+                <option value="0">-- Seleccionar --</option>
+                <option value="5">No corresponde</option>
+                <option value="1">Vaginal -eutócico</option>
+                <option value="2">Cesárea</option>
+                <option value="3">Vaginal convertido a cesárea</option>
+                <option value="4">Vaginal complicado</option>
+                <option value="5">Vaginal complicado</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <label for="cboCondicionProducto" class="form-control-label">Condición de producto al nacer </label>
+        <div class="input-group">
+            <select class="chzn-select" data-placeholder="Seleccionar una opcion" data-placeholder="Seleccionar una opcion" id="cboCondicionProducto">
+                <option value="0">-- Seleccionar --</option>
+                <option value="4">No corresponde</option>
+                <option value="1">Vivo</option>
+                <option value="2">Óbito (muerto)</option>
+                <option value="3">Aborto</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-1">
+    <div class="col-lg-4">
+        <label for="txtTiempoEnfermedad" class="form-control-label">Tiempo de Enfermedad: </label>
+        <div class="row">
+            <div class="col-lg-3">
+                <label for="txtTiempoEnfermedadDias" class="form-control-label">Dias </label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm bloquear" id="txtTiempoEnfermedadDias" placeholder="" autocomplete="off">
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <label for="txtTiempoEnfermedadHoras" class="form-control-label">Horas </label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm bloquear" id="txtTiempoEnfermedadHoras" placeholder="" autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <label for="txtSofaPreUCI" class="form-control-label">SOFA Pre-UCI </label>
+        <div class="input-group">
+            <input type="text" class="form-control form-control-sm bloquear" id="txtSofaPreUCI" placeholder="" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <label for="cboPrioridadIngresoUCI" class="form-control-label">Prioridad de Ingreso a UCI </label>
+        <div class="input-group">
+            <select class="chzn-select" data-placeholder="Seleccionar una opcion" data-placeholder="Seleccionar una opcion" id="cboPrioridadIngresoUCI">
+                <option value="0">-- Seleccionar --</option>
+                <option value="1">I</option>
+                <option value="2">II</option>
+                <option value="3">III</option>
+                <option value="4">IV</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-1">
+
+    <div class="col-lg-12">
+        <label for="cboCausaMotivo" class="form-control-label" style="color: #0069ea"><b>CAUSA/MOTIVO  INGRESO A SCIM</b></label>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="cboTranstornoHipertenEmbarazo" class="form-control-label">Transtorno Hipertensivo del Embarazo</label>
+                <div class="input-group">
+                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboTranstornoHipertenEmbarazo">
+                        <option value="0">-- Seleccionar --</option>
+                        <option value="1">Preeclampsia</option>
+                        <option value="2">Preeclampsia severa</option>
+                        <option value="3">Preeclampsia severa Y sindrome hellp </option>
+                        <option value="4">Preeclampsia y eclampsia</option>
+                        <option value="5">Hipertensión crónica preexistente</option>
+                        <option value="6">Hipertensión gestacional</option>
+                        <option value="7">Hellp + Eclampsia</option>
+                        <option value="8">hellp + hgae</option>
+                        <option value="9">HTA cronica + pes sobreagregada</option>
+                        <option value="99">Otro</option>
+                    </select>
+                </div>
+
+                <div class="input-group mt-1" style="display: none;">
+                    <input type="text" class="form-control form-control-sm bloquear" id="txtOtroTranstornoHipertenEmbarazo" placeholder="" autocomplete="off" style="background: palegoldenrod;">
+                </div>
+            </div>
+
+
+            <div class="col-lg-4">
+                <label for="cboMotivoHemorragicas" class="form-control-label">Hemorrágicas</label>
+                <div class="input-group">
+                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMotivoHemorragicas">
+                        <option value="0">-- Seleccionar --</option>
+                        <option value="1">Hemorragia I Mitad embarazo</option>
+                        <option value="2">Hemorragia II mitad del embarazo</option>
+                        <option value="3">Hemorragia postparto</option>
+                        <option value="4">Hemorragia ginecológica anormal</option>
+                        @*<option>Hemorrágica I trimestre</option>
+                        <option>hemorragia II trimestre</option>
+                        <option>Hemorragia III trimestre</option>*@
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="cboMotivoInfeccioso" class="form-control-label">Infecciosas</label>
+                <div class="input-group">
+                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMotivoInfeccioso">
+                        <option value="0">-- Seleccionar --</option>
+                        <option value="1">Infeccion local</option>
+                        <option value="2">Sepsis</option>
+                        <option value="3">Shock septico</option>
+                        <option value="4">Covid-19</option>
+                        <option value="99">Otros</option>
+                        @*<option>Infeccion local</option>
+                        <option>Sepsis</option>
+                        <option>Covid-19</option>
+                        <option value="99">Otro</option>*@
+                    </select>
+                </div>
+
+                <div class="input-group mt-1" style="display: none;">
+                    <input type="text" class="form-control form-control-sm bloquear" id="txtOtroMotivoInfeccioso" placeholder="" autocomplete="off" style="background: palegoldenrod;">
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label for="cboMotivoGastroEnterico" class="form-control-label">Gastro-entérico</label>
+                <div class="input-group">
+                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMotivoGastroEnterico">
+                        <option value="0">-- Seleccionar --</option>
+                        <option value="1">Hiperémesis gravídica</option>
+                        <option value="2">Enfermedades Hepáticas</option>
+                        <option value="3">Enfermedad Gastrointestinal</option>
+                        <option value="99">Otros</option>
+                        @*<option value="0">-- Seleccionar --</option>
+                        <option value="0">Hiperémesis gravídica</option>
+                        <option value="0">Hepatica</option>
+                        <option value="0">Colestasis gestacional</option>
+                        <option value="0">Hígado graso</option>
+                        <option value="99">Otros</option>*@
+                    </select>
+                </div>
+
+                <div class="input-group mt-1" style="display: none;">
+                    <input type="text" class="form-control form-control-sm bloquear" id="txtOtroMotivoGastroEnterico" placeholder="" autocomplete="off" style="background: palegoldenrod;">
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label for="cboMotivoRespiratorio" class="form-control-label">Respiratorio</label>
+                <div class="input-group">
+                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMotivoRespiratorio">
+                        <option value="0">-- Seleccionar --</option>
+                        <option value="1">Insuficiencia respiratoria I</option>
+                        <option value="2">Insuficiencia respiratoria II</option>
+                        <option value="3">Insuficiencia respiratoria III</option>
+                        <option value="4">Insuficiencia respiratoria IV</option>
+                        <option value="99">Otros</option>
+                    </select>
+                </div>
+
+                <div class="input-group mt-1" style="display: none;">
+                    <input type="text" class="form-control form-control-sm bloquear" id="txtOtroMotivoRespiratorio" placeholder="" autocomplete="off" style="background: palegoldenrod;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="cboMotivoEndocrinoMetabolico" class="form-control-label">Endocrino - metabólico</label>
+                <div class="input-group">
+                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMotivoEndocrinoMetabolico">
+                        <option value="0">-- Seleccionar --</option>
+                        <option value="1">Enf. tiroideas</option>
+                        <option value="2">Diabetes</option>
+                        <option value="99">Otros</option>
+                        @*<option>Enf. tiroideas</option>
+                        <option>Diabetes</option>
+                        <option value="99">Otros</option>*@
+                    </select>
+                </div>
+
+                <div class="input-group mt-1" style="display: none;">
+                    <input type="text" class="form-control form-control-sm bloquear" id="txtOtroMotivoEndocrinoMetabolico" placeholder="" autocomplete="off" style="background: palegoldenrod;">
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label for="cboMotivoCardiovascular" class="form-control-label">Cardiovascular</label>
+                <div class="input-group">
+                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMotivoCardiovascular">
+                        <option value="0">-- Seleccionar --</option>
+                        <option value="1">Alteraciones de ritmo cardiaco</option>
+                        <option value="2">Valvulopatias</option>
+                        <option value="3">Insuficiencia cardiaca</option>
+                        <option value="4">Miocardiopatia</option>
+                        <option value="99">Otros</option>
+                    </select>
+                </div>
+
+                <div class="input-group mt-1" style="display: none;">
+                    <input type="text" class="form-control form-control-sm bloquear" id="txtOtroMotivoCardiovascular" placeholder="" autocomplete="off" style="background: palegoldenrod;">
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label for="cboMotivoCirugiaIntrauterina" class="form-control-label">Cirugía Intrauterina</label>
+                <div class="input-group">
+                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMotivoCirugiaIntrauterina">
+                        <option value="0">-- Seleccionar --</option>
+                        <option value="1">Con complicaciones</option>
+                        <option value="2">Sin complicaciones</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="cboMotivoQuirurgicas" class="form-control-label">Quirúrgicas</label>
+                <div class="input-group">
+                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMotivoQuirurgicas">
+                        <option value="0">-- Seleccionar --</option>
+                        <option value="1">Complicaciones post quirúrgicas</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label for="cboMotivoTraumatismo" class="form-control-label">Traumatismo</label>
+                <div class="input-group">
+                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMotivoTraumatismo">
+                        <option value="0">-- Seleccionar --</option>
+                        <option value="1">Si</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-1">
+    <div class="col-lg-12">
+        <div class="card m-t-5 bg-orange" style="padding-bottom: 0px;">
+            <div class="card-header bg-white">Signos y Síntomas</div>
+
+            <div class="card-block m-t-5 custom-form" style="padding-bottom: 0px;">
+                <div class="row pb-1">
+                    <div class="col-lg-12">
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoCefaleaHolocraneana">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Cefalea holocraneana</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoCefaleaFocalizada">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Cefalea focalizada</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoEscotomas">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Escotomas</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoTinitus">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Tinitus</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoVisionBorrosa">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Visión borrosa</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoDesorientacionDelirio">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Desorientación o delirio</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoConvulsiones">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Convulsiones</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoDisnea">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Disnea</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoNauseaVomito">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Náuseas y Vómitos</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoEpigastralgia">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Epigastralgia</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoDolorHipocondrioDerecho">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Dolor hipocondrio derecho</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoDolorAbdominal">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Dolor abdominal difuso</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoContraccionesAnormales">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Contracciones anormales</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoEdema">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Edema</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoOrinaEspumosa">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Orina espumosa</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoAlteracionesUrinarias">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Alteraciones urinarias</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoPerdidaLiquidoAmniotico">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Perdida de líquido amniótico</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoSangradoVaginal">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Sangrado vaginal</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoOtroDolorFocalizado">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Otro Dolor localizado</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoDolorGeneralizado">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Dolor Generalizado</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoFiebre">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Fiebre</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="col-lg-3">
+                            <div class="check__toggle mt-04">
+                                <label class="toggle">
+                                    <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMotivoOtrosSignosYSintomas">
+                                    <span class="toggle__label mr-2">
+                                        <span class="toggle__text">Otro</span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" autocomplete="off" class="form-control form-control-sm bloquear" id="txtMotivoOtrosSignosYSintomas" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-1">
+    <div class="col-lg-12">
+        <label for="txtRelatoCronologico" class="form-control-label">Relato Cronológico</label>
+        <div class="form-group">
+            <textarea class="form-control" id="txtRelatoCronologico" rows="5"></textarea>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿@{
+    Layout = null;
+}
+<html>
+<body>
+    <div class="row mx-auto mb-3">
+        <div class="col-12">
+            <div class="card shadow-lg bg-body rounded mx-auto mt-3" style="max-width: 300px;text-align: center;margin: auto;margin-top: 50px;">
+                <div class="card-body">
+                    <h2>Finalizando Servicio de Firma Digital</h2>
+                    <img src="~/images/imagen-firmado.jpg" class="" style="max-width: 150px; text-align: center;" alt="Finalizando Servicio Firma Digital">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/AdmiRE/js/components.js"></script>
+    <script>
+        function refrescarTablaEnVentana(win) {
+            try {
+                if (!win || win.closed) return false;
+                const btn = win.document.getElementById('btnBuscarAtenciones');
+                if (btn) {
+                    btn.click();
+                    return true;
+                }
+            } catch (e) {
+                console.log(e);
+            }
+            return false;
+        }
+
+        function cerrarModalFirmaEnVentana(win) {
+            try {
+                if (!win || win.closed || !win.document) return false;
+
+                const iframe = win.document.getElementById('ifmFirmaDigital');
+                if (iframe) {
+                    iframe.setAttribute('src', '');
+                    iframe.innerHTML = '';
+                }
+
+                if (win.$ && typeof win.$ === 'function') {
+                    const modal = win.$('#modalFirmaDigital');
+                    if (modal.length) {
+                        modal.modal('hide');
+                    }
+                }
+
+                const modalNode = win.document.getElementById('modalFirmaDigital');
+                if (modalNode) {
+                    modalNode.classList.remove('show');
+                    modalNode.style.display = 'none';
+                    modalNode.setAttribute('aria-hidden', 'true');
+                }
+
+                const backdrops = win.document.querySelectorAll('.modal-backdrop');
+                backdrops.forEach((bd) => bd.remove());
+                win.document.body.classList.remove('modal-open');
+                win.document.body.style.removeProperty('padding-right');
+
+                return true;
+            } catch (e) {
+                console.log(e);
+                return false;
+            }
+        }
+
+        $(document).ready(() => {
+            const targets = [];
+            if (window.parent && window.parent !== window) targets.push(window.parent);
+            if (window.opener) targets.push(window.opener);
+
+            for (let i = 0; i < targets.length; i++) {
+                refrescarTablaEnVentana(targets[i]);
+                cerrarModalFirmaEnVentana(targets[i]);
+            }
+
+            setTimeout(() => {
+                try { window.close(); } catch (e) { console.log(e); }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

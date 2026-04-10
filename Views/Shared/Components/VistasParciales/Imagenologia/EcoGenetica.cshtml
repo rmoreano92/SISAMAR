@@ -1,0 +1,715 @@
+﻿<div class="row">
+    <div class="col-md-12 mb-1">
+        <div class="card bg-lightindigo">
+            <div class="card-block">
+
+                <div class="row mb-1">
+                    <div class="col-lg-6 col-xl-5">
+                        <div class="row">
+                            <div class="col-lg-4" style="max-width: 150px;">
+                                <div class="form-group m-0">
+                                    <label for="txtFechaFUR" class="d-block text-truncate">FUR</label>
+                                    <div class="input-group form-group input-group-sm m-0">
+                                        <input type="text" class="form-control form_val_popup_dp3 campoRes" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFUR" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4" style="max-width: 150px;">
+                                <div class="form-group m-0">
+                                    <label for="txtFechaFPP" class="d-block text-truncate">FPP</label>
+                                    <div class="input-group form-group input-group-sm m-0">
+                                        <input type="text" class="form-control form_val_popup_dp3 campoRes" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFPP" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group m-0">
+                                    <label for="txtEdadGestacional">Edad Gestacional</label>
+                                    <input id="txtEdadGestacional" class="form-control form-control-sm campoRes" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xl-12 mb-1">
+                        <ul class="nav nav-tabs jerarquiaA" id="Fetos-tab" role="tablist" style="border-color: #87a0bd !important;">
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom active" id="fetoUno-tab-link" data-toggle="tab" href="#fetoUno-tab" role="tab" aria-controls="home" aria-selected="true" style="padding: 0.4em .8em !important;border-color: #87a0bd !important;">
+                                    FETO 1
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" id="fetoDos-tab-link" data-toggle="tab" href="#fetoDos-tab" role="tab" aria-controls="home" aria-selected="false" style="padding: 0.4em .8em !important;border-color: #87a0bd !important;">
+                                    FETO 2
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" id="fetoTres-tab-link" data-toggle="tab" href="#fetoTres-tab" role="tab" aria-controls="home" aria-selected="false" style="padding: 0.4em .8em !important;border-color: #87a0bd !important;">
+                                    FETO 3
+                                </a>
+                            </li>
+
+                            <li class="nav-item d-flex" style="float: right;">
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbFeto" class="radioButtonStyleInput campoRes" id="rdbFeto1" value="1" checked>
+                                    <span class="radioButtonStyleSpan">Único</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbFeto" class="radioButtonStyleInput campoRes" id="rdbFeto2" value="2">
+                                    <span class="radioButtonStyleSpan">Doble</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbFeto" class="radioButtonStyleInput campoRes" id="rdbFeto3" value="3">
+                                    <span class="radioButtonStyleSpan">Triple</span>
+                                </label>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content p-1 border" style="background: #f2f8ff;border-color: #87a0bd !important;">
+                            <div class="tab-pane fade active in" id="fetoUno-tab" role="tabpanel" aria-labelledby="fetoUno-tab-link">
+                                <div class="row">
+                                    <div class="col-xl-8">
+                                        <div class="card bg-green mb-1">
+                                            <div class="card-header bg-white">Biometria</div>
+                                            <div class="card-block p-1">                                                                                               
+                                                <div class="row">
+                                                    <div class="col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtDbpFeto1">DBP</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtDbpFeto1">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtCcFeto1">CC</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtCcFeto1">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtCaFeto1">CA</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtCaFeto1">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtLfFeto1">LF</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtLfFeto1">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtLcnFeto1">LCN</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtLcnFeto1">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtPesoFeto1">Peso</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtPesoFeto1">
+                                                                <span class="input-group-addon">g.</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtPercFeto1">Perc</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtPercFeto1">
+                                                                <span class="input-group-addon">%</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtFcfFeto1">Fcf</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtFcfFeto1">
+                                                                <span class="input-group-addon">lat/min</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-3">                                                        
+                                                        <div class="form-group m-0">
+                                                            <label for="cboCordonFeto1">Cordon</label>
+                                                            <select id="cboCordonFeto1" class="chzn-select w-100 cboCordonFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboPlacentaFeto1">Placenta</label>
+                                                            <select id="cboPlacentaFeto1" class="chzn-select w-100 cboPlacentaFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboGradoFeto1">Grado</label>
+                                                            <select id="cboGradoFeto1" class="chzn-select w-100 cboGradoFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtIlaFeto1">ILA</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtIlaFeto1">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-3">                                                        
+                                                        <div class="form-group m-0">
+                                                            <label for="cboLiquidoFeto1">Liquido</label>
+                                                            <select id="cboLiquidoFeto1" class="chzn-select w-100 cboLiquidoFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtPozoFeto1">Pozo</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtPozoFeto1">
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtVisualizFeto1">Visualiz</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtVisualizFeto1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-4">
+                                        <div class="card bg-green mb-1">
+                                            <div class="card-header bg-white">Marcadores</div>
+                                            <div class="card-block p-1">
+                                                <div class="row">                                                    
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtTnFeto1">TN</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control campoRes" id="txtTnFeto1">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtIpDvFeto1">IP DV</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control campoRes" id="txtIpDvFeto1">
+                                                                <span class="input-group-addon">lat/min</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboOndaDvFeto1">Onda DV</label>
+                                                            <select id="cboOndaDvFeto1" class="chzn-select w-100 cboMarcadores campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>                                                        
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboTricuspideFeto1">Tricuspide</label>
+                                                            <select id="cboTricuspideFeto1" class="chzn-select w-100 cboMarcadores campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboHuesoNasalFeto1">Hueso Nasal</label>
+                                                            <select id="cboHuesoNasalFeto1" class="chzn-select w-100 cboMarcadores campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtOtroFeto1">Otro</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtOtroFeto1">
+                                                        </div>                                                        
+                                                    </div>
+
+                                                    
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="fetoDos-tab" role="tabpanel" aria-labelledby="fetoDos-tab-link">
+                                <div class="row">
+                                    <div class="col-xl-8">
+                                        <div class="card bg-green mb-1">
+                                            <div class="card-header bg-white">Biometria</div>
+                                            <div class="card-block p-1">
+                                                <div class="row">
+                                                    <div class="col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtDbpFeto2">DBP</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtDbpFeto2">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtCcFeto2">CC</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtCcFeto2">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtCaFeto2">CA</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtCaFeto2">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtLfFeto2">LF</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtLfFeto2">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtLcnFeto2">LCN</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtLcnFeto2">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtPesoFeto2">Peso</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtPesoFeto2">
+                                                                <span class="input-group-addon">g.</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtPercFeto2">Perc</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtPercFeto2">
+                                                                <span class="input-group-addon">%</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtFcfFeto2">Fcf</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtFcfFeto2">
+                                                                <span class="input-group-addon">lat/min</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboCordonFeto2">Cordon</label>
+                                                            <select id="cboCordonFeto2" class="chzn-select w-100 cboCordonFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboPlacentaFeto2">Placenta</label>
+                                                            <select id="cboPlacentaFeto2" class="chzn-select w-100 cboPlacentaFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboGradoFeto2">Grado</label>
+                                                            <select id="cboGradoFeto2" class="chzn-select w-100 cboGradoFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtIlaFeto2">ILA</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtIlaFeto2">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboLiquidoFeto2">Liquido</label>
+                                                            <select id="cboLiquidoFeto2" class="chzn-select w-100 cboLiquidoFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtPozoFeto2">Pozo</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtPozoFeto2">
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtVisualizFeto2">Visualiz</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtVisualizFeto2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-4">
+                                        <div class="card bg-green mb-1">
+                                            <div class="card-header bg-white">Marcadores</div>
+                                            <div class="card-block p-1">
+                                                <div class="row">
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtTnFeto2">TN</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control campoRes" id="txtTnFeto2">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtIpDvFeto2">IP DV</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control campoRes" id="txtIpDvFeto2">
+                                                                <span class="input-group-addon">lat/min</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboOndaDvFeto2">Onda DV</label>
+                                                            <select id="cboOndaDvFeto2" class="chzn-select w-100 cboMarcadores campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboTricuspideFeto2">Tricuspide</label>
+                                                            <select id="cboTricuspideFeto2" class="chzn-select w-100 cboMarcadores campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboHuesoNasalFeto2">Hueso Nasal</label>
+                                                            <select id="cboHuesoNasalFeto2" class="chzn-select w-100 cboMarcadores campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtOtroFeto2">Otro</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtOtroFeto2">
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="fetoTres-tab" role="tabpanel" aria-labelledby="fetoTres-tab-link">
+                                <div class="row">
+                                    <div class="col-xl-8">
+                                        <div class="card bg-green mb-1">
+                                            <div class="card-header bg-white">Biometria</div>
+                                            <div class="card-block p-1">
+                                                <div class="row">
+                                                    <div class="col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtDbpFeto3">DBP</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtDbpFeto3">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtCcFeto3">CC</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtCcFeto3">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtCaFeto3">CA</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtCaFeto3">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtLfFeto3">LF</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtLfFeto3">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtLcnFeto3">LCN</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtLcnFeto3">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtPesoFeto3">Peso</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtPesoFeto3">
+                                                                <span class="input-group-addon">g.</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtPercFeto3">Perc</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtPercFeto3">
+                                                                <span class="input-group-addon">%</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtFcfFeto3">Fcf</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control field campoRes" id="txtFcfFeto3">
+                                                                <span class="input-group-addon">lat/min</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboCordonFeto3">Cordon</label>
+                                                            <select id="cboCordonFeto3" class="chzn-select w-100 cboCordonFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboPlacentaFeto3">Placenta</label>
+                                                            <select id="cboPlacentaFeto3" class="chzn-select w-100 cboPlacentaFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboGradoFeto3">Grado</label>
+                                                            <select id="cboGradoFeto3" class="chzn-select w-100 cboGradoFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtIlaFeto3">ILA</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtIlaFeto3">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboLiquidoFeto3">Liquido</label>
+                                                            <select id="cboLiquidoFeto3" class="chzn-select w-100 cboLiquidoFeto campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtPozoFeto3">Pozo</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtPozoFeto3">
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtVisualizFeto3">Visualiz</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtVisualizFeto3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-4">
+                                        <div class="card bg-green mb-1">
+                                            <div class="card-header bg-white">Marcadores</div>
+                                            <div class="card-block p-1">
+                                                <div class="row">
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtTnFeto3">TN</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control campoRes" id="txtTnFeto3">
+                                                                @*<span class="input-group-addon">mm.</span>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtIpDvFeto3">IP DV</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control campoRes" id="txtIpDvFeto3">
+                                                                <span class="input-group-addon">lat/min</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboOndaDvFeto3">Onda DV</label>
+                                                            <select id="cboOndaDvFeto3" class="chzn-select w-100 cboMarcadores campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboTricuspideFeto3">Tricuspide</label>
+                                                            <select id="cboTricuspideFeto3" class="chzn-select w-100 cboMarcadores campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="cboHuesoNasalFeto3">Hueso Nasal</label>
+                                                            <select id="cboHuesoNasalFeto3" class="chzn-select w-100 cboMarcadores campoRes" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                        <div class="form-group m-0">
+                                                            <label for="txtOtroFeto3">Otro</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm campoRes" id="txtOtroFeto3">
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-12">
+
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card bg-orange mb-1">
+                                    <div class="card-block p-1">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <label for="cboAnatomia">Anatomía</label>
+                                                    <select id="cboAnatomia" class="chzn-select w-100 campoRes" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group m-0">
+                                                    <textarea style="overflow:scroll;" class="form-control campoRes" id="txtAnatomia" rows="4"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card bg-red mb-1">
+                                    <div class="card-header bg-white">Doppler Uterinas y Presión Arterial(PA) Materna</div>
+                                    <div class="card-block p-1">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-12">
+                                                <div class="card bg-orange mb-1">
+                                                    <div class="card-header bg-white">A. Uterinas</div>
+                                                    <div class="card-block">
+                                                        <div class="row">
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtAuterinaDerecha">Derecha</label>
+                                                                    <input id="txtAuterinaDerecha" class="form-control  form-control-sm campoRes">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtAuterinaIzquierda">Izquierda</label>
+                                                                    <input id="txtAuterinaIzquierda" class="form-control  form-control-sm campoRes">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtAuterinaIpMedio">IP Medio</label>
+                                                                    <input id="txtAuterinaIpMedio" class="form-control  form-control-sm campoRes">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtAuterinaPerc">Perc</label>
+                                                                    <input id="txtAuterinaPerc" class="form-control  form-control-sm campoRes">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtAuterinaMom">MoM</label>
+                                                                    <input id="txtAuterinaMom" class="form-control  form-control-sm campoRes">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-12">
+                                                <div class="card bg-orange">
+                                                    <div class="card-header bg-white">P.A. Materna</div>
+                                                    <div class="card-block">
+                                                        <div class="row">
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtPaMaternaSd">SD</label>
+                                                                    <input id="txtPaMaternaSd" class="form-control  form-control-sm campoRes">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtPaMaternaDd">DD</label>
+                                                                    <input id="txtPaMaternaDd" class="form-control  form-control-sm campoRes">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtPaMaternaSi">SI</label>
+                                                                    <input id="txtPaMaternaSi" class="form-control  form-control-sm campoRes">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtPaMaternaDi">DI</label>
+                                                                    <input id="txtPaMaternaDi" class="form-control  form-control-sm campoRes">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtPaMaternaPam">PAM</label>
+                                                                    <input id="txtPaMaternaPam" class="form-control  form-control-sm campoRes">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-6 col-md-4 col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtCervixUterino">Cervix Uterino</label>
+                                                    <input id="txtCervixUterino" class="form-control  form-control-sm campoRes">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card bg-yellow">
+                                    <div class="card-block p-1">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResObservacion" class="form-control-label font-weight-bold">OBSERVACIÓN</label>
+                                                    <textarea style="overflow:scroll;" class="form-control campoRes" id="txtResObservacion" rows="6"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResConclusion" class="form-control-label font-weight-bold">CONCLUSIÓN</label>
+                                                    <textarea style="overflow:scroll;" class="form-control campoRes" id="txtResConclusion" rows="6"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResSugerencia" class="form-control-label font-weight-bold">SUGERENCIA</label>
+                                                    <textarea style="overflow:scroll;" class="form-control campoRes" id="txtResSugerencia" rows="6"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

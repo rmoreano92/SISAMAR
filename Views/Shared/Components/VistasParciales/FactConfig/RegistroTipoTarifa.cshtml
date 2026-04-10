@@ -1,0 +1,94 @@
+﻿@using System.Data
+<div class="modal fade" id="modalRegistroTipoTarifa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Tipo de Tarifa</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12 mb-1">
+                        <div class="card bg-blue">
+                            @* <div class="card-header bg-white">Datos Generales</div> *@
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtCodigoTipoTarifa" class="d-block text-truncate">Código</label>
+                                            <input id="txtCodigoTipoTarifa" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtNombreTipoTarifa" class="d-block text-truncate">Nombre</label>
+                                            <input id="txtNombreTipoTarifa" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="check__toggle" style="margin-top: 30px;">
+                                            <label class="toggle">
+                                                <input class="toggle__input writing" type="checkbox" id="chkEsFarmaciaTipoTarifa">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Es FARMACIA</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>                                    
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-12">
+
+                        <div class="card bg-green mb-1">
+                            <div class="card-header bg-white">Procedimientos Asignados</div>
+                            <div class="card-block p-1">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <table id="tblProcedimientosTiposTarifa" class="table table-sm table-content-sm table-bordered table-striped w-100 m-0 mt-2" style="cursor: default;">
+                                            <thead style="color: white; background: #007368;">
+                                                <tr>
+                                                    <th>CPT</th>
+                                                    <th>Procedimiento</th>
+                                                    <th>Selección</th>
+                                                    <th hidden></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-12 d-none">
+                        <div class="check__toggle">
+                            <label class="toggle">
+                                <input class="toggle__input writing" type="checkbox" id="chkTodosNinguno">
+                                <span class="toggle__label mr-2">
+                                    <span class="toggle__text">Todos / Ninguno</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarTipoTarifa">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCancelarTipoTarifa">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

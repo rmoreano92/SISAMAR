@@ -1,0 +1,187 @@
+﻿@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+}
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-th"></i>
+                Mantenimiento de Solicitud de Citas
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Consulta Externa
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">Citas</a>
+                </li>
+                <li class="breadcrumb-item active">Mantenimiento de Solicitud de Citas</li>
+            </ol>
+        </div>
+    </div>
+</header>
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <i class="fa fa-table"></i> Lista de Solicitud de Citas &nbsp;   &nbsp; <button class="btn btn-primary layout_btn_prevent" onclick="ListarSolicitud();" id="btnCambiarGrafico">Actualizar</button>&nbsp;
+                        @{ if (@ViewBag.Agregar)
+                            {
+                                <button class="btn btn-primary layout_btn_prevent" onclick="ListarSolicitud();" id="btnCambiarGrafico">Agregar</button>
+                            }
+                            if (@ViewBag.Modificar)
+                            {
+                                <button class="btn btn-outline-secondary layout_btn_prevent" onclick="ListarSolicitud();" id="btnCambiarGrafico">Modificar</button>
+                            }
+                            if (@ViewBag.Eliminar)
+                            {
+                                <button class="btn btn-danger layout_btn_prevent" onclick="ListarSolicitud();" id="btnCambiarGrafico">Eliminar</button>
+                            }
+                            if (@ViewBag.Consultar)
+                            {
+                                <button class="btn btn-warning layout_btn_prevent" onclick="ListarSolicitud();" id="btnCambiarGrafico">Consultar</button>
+                            }
+                        }
+                    </div>
+                    <div class="card-block p-t-5">
+                        <table id="lstSolicitud" class="table table-striped table-bordered table-hover" data-source="/SolicitudCitas/ListaSolicitudCitas?area=ConsultaExterna">
+                            <thead style="color: white;background: #3e6184;">
+                                <tr>
+                                    <th data-columna="nroHistoria" valign="middle" align="center">N°.Historia</th>
+                                    <th data-columna="Paciente" valign="middle" align="center">Paciente</th>
+                                    <th data-columna="Telefono" valign="middle" align="center">Telefono</th>
+                                    <th data-columna="Servicio" valign="middle" align="center">Consultorio</th>
+                                    <th data-columna="Fec.Cita" valign="middle" align="center">Fecha Cita</th>
+                                    <th data-columna="Doctor" valign="middle" align="center">Doctor</th>
+                                    <th data-columna="Estado" valign="middle" align="center">Estado</th>
+                                    <th data-columna="Plan" valign="middle" align="center">Plan</th>
+                                    <th data-columna="Operaciones" valign="middle" align="center">Operaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.outer -->
+<!-- Modal -->
+<!--- responsive model -->
+<div class="modal fade in display_none" id="modalSolicitud" tabindex="-1" role="dialog" aria-hidden="false">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title text-white" id="titulo">Registro de Solicitud.</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="formSolicitud">
+                    <div class="row">
+                        <input hidden="hidden" id="idCuenta" name="idCuenta" type="text" class="form-control">
+                        <input hidden="hidden" id="idSolicitud" name="idSolicitud" type="text" class="form-control">
+                        <input hidden="hidden" id="idPaciente" name="idPaciente" type="text" class="form-control">
+                        <div class="col-md-3">
+                            <h4>Nro Historia:</h4>
+                            <p>
+                                <input id="txtNroHistoria" type="text" disabled class="form-control">
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Paciente:</h4>
+                            <p>
+                                <input id="txtPaciente" type="text" disabled class="form-control">
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Telefono:</h4>
+                            <p>
+                                <input id="txtTelefono" type="text" disabled class="form-control">
+                            </p>
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Consultorio:</h4>
+                            <p>
+                                <input id="txtServicio" type="text" disabled class="form-control">
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Fecha Cita:</h4>
+                            <p>
+                                <input id="txtFechaCita" type="text" disabled class="form-control">
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Medico:</h4>
+                            <p>
+                                <input id="txtMedico" name="txtMedico" readonly type="text" class="form-control">
+                            </p>
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Estado:</h4>
+                            <p>
+                                <select class="hide_search" id="cboEstado"></select>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Nro Cuenta:</h4>
+                            <p>
+                                <input id="txtNroCuenta" name="txtNroCuenta" type="text" class="form-control">
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Comentario:</h4>
+                            <p>
+                                <textarea id="txtComentario" type="text" class="form-control" rows="3"></textarea>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="Guardar();">Guardar</button>
+                        <button type="button" onclick="cerrarModal();" class="btn btn-secondary">Cancelar</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- END modal-->
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src=@Href("~/js/SolicitudCitas.js")></script>
+}

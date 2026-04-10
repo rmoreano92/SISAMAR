@@ -1,0 +1,104 @@
+﻿@section Css
+{
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/context-menu.css" />
+}
+
+<div class="p-2">
+    <div class="head">
+        <h4 class="ml-1 my-1">Usuarios</h4>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="txtSearchDni">Nro DNI</label>
+                        <input type="text" class="form-control form-control-sm search" id="txtSearchDni"autocomplete="off" required>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="txtSearchApPaterno">Ap. Paterno</label>
+                        <input type="text" class="form-control form-control-sm search" id="txtSearchApPaterno" autocomplete="off" required>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="txtSearchApMaterno">Ap. Materno</label>
+                        <input type="text" class="form-control form-control-sm search" id="txtSearchApMaterno" autocomplete="off" required>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="txtSearchNombres">Nombres</label>
+                        <input type="text" class="form-control form-control-sm search" id="txtSearchNombres" autocomplete="off" required>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div style="margin-top: 30px;">
+                        <button type="button" class="btn btn-sm btn-primary px-2 mr-2" id="btnIniciarBusquedaEmpleado">Buscar</button>
+                        <button type="button" class="btn btn-sm btn-secondary px-2" id="btnLimpiarBusquedaEmpleado">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-lg-6">
+            @{
+                if (@ViewBag.Agregar)
+                {
+                    <button class="btn btn-success layout_btn_prevent" id="btnAgregarEmpleado">Agregar</button>
+                }
+                if (@ViewBag.Modificar)
+                {
+                    <button class="btn btn-info layout_btn_prevent" id="btnModificarEmpleado">Modificar</button>
+                }
+                if (@ViewBag.Eliminar)
+                {
+                    <button class="btn btn-danger layout_btn_prevent" id="btnEliminarEmpleado">Eliminar</button>
+                }
+                if (@ViewBag.Consultar)
+                {
+                    <button class="btn btn-warning layout_btn_prevent" id="btnConsultarEmpleado">Consultar</button>
+                }
+            }
+        </div>
+    </div>
+
+    <table id="tblEmpleado" width="100%" class="table table-sm table-bordered table-content-sm mt-1">
+        <thead style="color: white;background: #3e6184;">
+            <tr>
+                <th style="width:10%">Dni</th>
+                <th style="width:20%">Ap. Paterno</th>
+                <th style="width:20%">Ap. Materno</th>
+                <th style="width:20%">Nombres</th>
+                <th style="width:15%">Tipo Empleado</th>
+                <th style="width:15%">Condición Trabajo</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</div>
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/Seguridad/EmpleadoRegistro.cshtml" />
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+
+    <script type="text/javascript" src=@Href("~/js/Seguridad/Empleados.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script>
+}
+
+

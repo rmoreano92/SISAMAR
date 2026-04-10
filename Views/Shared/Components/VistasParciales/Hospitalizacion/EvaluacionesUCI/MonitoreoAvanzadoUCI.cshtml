@@ -1,0 +1,1075 @@
+﻿<style>
+    #cboParametroMonitoreoHemodinamico_chosen {
+        max-width: 180px;
+    }
+</style>
+
+
+<div class="card bg-blue mb-2">
+    <div class="card-block m-t-5">
+        <div class="row">
+
+            <div class="col-lg-6 mt-1">
+
+                <div class="row">
+
+                    <div class="col-lg-4">
+                        <label for="txtFechaMonitoreoAvanzado" class="form-control-label">Fecha</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 bloquear" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaMonitoreoAvanzado">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar "></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label for="txtHoraMonitoreoAvanzado" class="font-weight-bold text-info">Hora</label>
+                        <div class="form-group m-0">
+                            <div class="d-flex">
+                                <div style="max-width:80px;">
+                                    <input type="text" name="txtHoraMonitoreoAvanzado" id="txtHoraMonitoreoAvanzado" onblur="valida_hora(value)" class="form-control form-control-sm" placeholder="" autocomplete="off">
+                                </div>
+                                <div class="ml-1 mr-1">
+                                    <label class="m-0 text-info">24 Horas</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<ul class="nav nav-tabs" role="tablist">
+
+    <li class="nav-item">
+        <a class="nav-link active" href="#monitoreoSoporteVentilatorio-tab" data-toggle="tab" role="tab" id="monitoreoSoporteVentilatorio-tab-link" aria-controls="home" aria-selected="true" aria-expanded="true">Monitoreo soporte ventilatorio</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#hemodinamico-tab" data-toggle="tab" role="tab" id="hemodinamico-tab-link" aria-controls="home" aria-selected="true" aria-expanded="true">Monitoreo hemodinámico</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#neurologico-tab" data-toggle="tab" role="tab" id="neurologico-tab-link" aria-controls="home" aria-selected="true" aria-expanded="true">Monitoreo neurólogico avanzado</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#ultrasonografia-tab" data-toggle="tab" role="tab" id="ultrasonografia-tab-link" aria-controls="home" aria-selected="true" aria-expanded="true">Monitoreo por ultrasonografía</a>
+    </li>
+
+</ul>
+
+<div class="card">
+    <div class="card-block">
+
+        <div id="clothing-nav-content-monitoreo" class="tab-content">
+
+            <div role="tabpanel" class="tab-pane fade show in active" id="monitoreoSoporteVentilatorio-tab" aria-labelledby="monitoreoSoporteVentilatorio-tab-link" aria-expanded="true">
+                <div class="row mt-1">
+                    <div class="col-lg-7">
+                        <div class="card m-t-5 bg-blue">
+                            <div class="card-header bg-white">
+                                Ventilador mecánico
+                            </div>
+
+                            <div class="card-block pb-0">
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="cboNombreEquipoSoporteVentilatorio">Ventilador</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select" id="cboNombreEquipoSoporteVentilatorio">
+                                                <option value="0">--Seleccionar--</option>
+                                                <option value="250197">Monitoreo de soporte ventilatorio invasivo/día</option>
+                                                <option value="250198">Monitoreo de soporte ventilatorio no invasivo/día</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="txtVmMarca" class="form-control-label">Ventilador mecánico marca</label>
+                                        <div class="form-group m-0 campo">
+                                            <div class="input-group">
+                                                <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtVmMarca">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <label for="txtCantidadSoporteVentilatorio">Cantidad</label>
+                                        <div class="input-group">
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtCantidadSoporteVentilatorio">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label for="cboModoVentConvencional"><b>Modo ventilatorio</b></label>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label for="txtFechaInicioVm" class="form-control-label">Fecha inicio de VM</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 bloquear" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioVm">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar "></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtFechaUltimoVm" class="form-control-label">Fecha fin de VM</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 bloquear" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaUltimoVm">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar "></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="cboModoVentConvencional">Convencional</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select" id="cboModoVentConvencional">
+                                                <option value="0">Ninguna</option>
+                                                <option value="1">PC</option>
+                                                <option value="2">VC</option>
+                                                <option value="3">SIM-V</option>
+                                                <option value="4">SIMV-P</option>
+                                                <option value="5">SPONT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtModoVentNoConvencional" class="form-control-label">No convencional</label>
+                                        <div class="form-group m-0 campo">
+                                            <div class="input-group">
+                                                <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtModoVentNoConvencional">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-12 text-right mt-1">
+                                        <button id="btnAgregarMonitoreoSoporteVentilatorio" type="button" class="btn btn-sm btn-labeled btn-success">
+                                            <span class="btn-label">
+                                                <i class="fa fa-plus" style="text-align:center;"></i>
+                                            </span>
+                                            Agregar
+                                        </button>
+                                        <button id="btnQuitarMonitoreoSoporteVentilatorio" type="button" class="btn btn-sm btn-labeled btn-danger">
+                                            <span class="btn-label">
+                                                <i class="fa fa-trash" style="text-align:center;"></i>
+                                            </span>
+                                            Quitar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <table id="tblMonitoreoSoporteVentilatorio" width="100%" class="table table-sm table-bordered">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th style="width:40%">Descripcion</th>
+                                                    @*<th style="width:40%">Hallazgos</th>*@
+                                                    <th style="width:10%">Cantidad</th>
+                                                    <th style="width:10%">Precio</th>
+                                                    <th style="width:10%">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="card m-t-5 bg-blue">
+                            <div class="card-header bg-white">
+                                Parametros
+
+                                <button id="btnAgregarParametrosSoporteVentilatorio" class="btn btn-info">Guardar</button>
+                            </div>
+
+                            <div class="card-block pb-0">
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <table id="tblParametrosSoporteVentilatorio" width="100%" class="table table-sm table-bordered">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th style="width:70%">Parametro</th>
+                                                    <th style="width:30%">Valor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-lg-12">
+                        <div class="card bg-blue mt-1">
+                            <div class="card-header bg-white">
+                                MANIOBRAS
+                            </div>
+
+                            <div class="card-block">
+                                <div class="row mt-1">
+                                    <div class="col-lg-4">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <label for="txtPeepMaxSinReclutamientoMa" class="form-control-label">PEEP max sin reclutamiento </label>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group m-0 campo">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtPeepMaxSinReclutamientoMa">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-3">
+                                        <div class="check__toggle">
+                                            <label class="toggle">
+                                                <input class="toggle__input bloquear" type="checkbox" id="chkPronacionMa">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">PRONACION</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <label for="txtHrsPreProMa" class="form-control-label">Horas  PRE PRONACION </label>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group m-0 campo">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtHrsPreProMa">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <label for="txtNCicloPronoMa" class="form-control-label">N CICLO PRONO </label>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group m-0 campo">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtNCicloPronoMa">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-3">
+                                        <div class="check__toggle">
+                                            <label class="toggle">
+                                                <input class="toggle__input bloquear" type="checkbox" id="chkReclutamientoMa">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">RECLUTAMIENTO</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <label for="txtPEEPMaxReclutamientoMa" class="form-control-label">PEEP MAX C/reclutamiento </label>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group m-0 campo">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtPEEPMaxReclutamientoMa">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="check__toggle">
+                                            <label class="toggle">
+                                                <input class="toggle__input bloquear" type="checkbox" id="chkTitulacionPEEPMa">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">TITULACION DE PEEP</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="hemodinamico-tab" aria-labelledby="hemodinamico-tab-link" aria-expanded="true">
+
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="card m-t-5 bg-blue">
+                            <div class="card-header bg-white">
+                                Monitoreo hemodinamico
+                            </div>
+
+                            <div class="card-block pb-0">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label for="cboNombreEquipoHemodinamico">Nombre equipo</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select" id="cboNombreEquipoHemodinamico">
+                                                <option value="0">--Seleccionar--</option>
+                                                <option value="1">CARDIO Q</option>
+                                                <option value="2">CATETER AP</option>
+                                                <option value="3">PICCO</option>
+                                                <option value="4">ESCCO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="cboTipoMonitoreoHemodinamico">Tipo de monitoreo</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select" id="cboTipoMonitoreoHemodinamico">
+                                                <option value="0">--Seleccionar--</option>
+                                                <option value="1">Invasivo</option>
+                                                <option value="2">Semi invasivo</option>
+                                                <option value="3">No invasivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <label for="txtCantidadEquipoHemodinamico">Cantidad</label>
+                                        <div class="input-group">
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtCantidadEquipoHemodinamico">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 d-flex align-items-end" style="height: 50px;">
+                                        <button id="btnAgregarMonitoreoHemodinamico" type="button" class="btn btn-sm btn-labeled btn-success">
+                                            <span class="btn-label">
+                                                <i class="fa fa-plus" style="text-align:center;"></i>
+                                            </span>
+                                            Agregar
+                                        </button>
+                                        <button id="btnQuitarMonitoreoHemodinamico" type="button" class="btn btn-sm btn-labeled btn-danger">
+                                            <span class="btn-label">
+                                                <i class="fa fa-trash" style="text-align:center;"></i>
+                                            </span>
+                                            Quitar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-lg-12">
+                                        <table id="tblMonitoreoHemodinamico" width="100%" class="table table-sm table-bordered">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th style="width:35%">Nombre equipo</th>
+                                                    <th style="width:35%">Tipo de monitoreo</th>
+                                                    <th style="width:10%">Cantidad</th>
+                                                    <th style="width:10%">Precio</th>
+                                                    <th style="width:10%">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="card m-t-5 bg-blue">
+                            <div class="card-header bg-white">
+                                Parametros
+
+                                <button id="btnAgregarParametrosMonitoreoHemodinamico" type="button" class="btn btn-sm btn-labeled btn-success">
+                                    <span class="btn-label">
+                                        <i class="fa fa-plus" style="text-align:center;"></i>
+                                    </span>
+                                    Agregar
+                                </button>
+                            </div>
+
+                            <div class="card-block pb-0">
+                                <div class="row mt-2">
+                                    <div class="col-lg-12">
+                                        <table id="tblParametrosMonitoreoHemodinamico" width="100%" class="table table-sm table-bordered">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th style="width:70%">Parametro</th>
+                                                    <th style="width:30%">Valor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                @*<div class="row mt-1">
+                <div class="col-lg-4">
+                <label for="cboNroDosisVacunaCovid">Nombre equipo</label>
+                <div class="input-group">
+                <select class="chzn-select" id="cboNroDosisVacunaCovid">
+                <option value="0">Ninguna</option>
+                <option value="1">CARDIO Q</option>
+                <option value="2">CATETER AP</option>
+                <option value="3">PICCO</option>
+                </select>
+                </div>
+                </div>
+
+                <div class="col-lg-4">
+                <label for="cboNroDosisVacunaCovid">Tipo de monitoreo</label>
+                <div class="input-group">
+                <select class="chzn-select" id="cboNroDosisVacunaCovid">
+                <option value="0">Ninguna</option>
+                <option value="1">Invasivo</option>
+                <option value="2">Semi invasivo</option>
+                <option value="3">No invasivo</option>
+                </select>
+                </div>
+                </div>
+                </div>
+
+                <div class="row mt-1">
+                <div class="col-lg-12">
+                <div class="card bg-blue mt-1">
+                <div class="card-header bg-white">
+                Parametros
+                </div>
+
+                <div class="card-block">
+                <div class="row mt-1">
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtGCMa" class="form-control-label">Gasto cardiaco </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="form-group m-0 campo">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtGCMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtVPMa" class="form-control-label">Velocidad Pico </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="form-group m-0 campo">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtVPMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtVSMa" class="form-control-label">Velocidad sistólica </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="form-group m-0 campo">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtVSMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtTFCMa" class="form-control-label">Tasa de flujo corregido  </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="form-group m-0 campo">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtTFCMA">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                <div class="row mt-1">
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtICMa" class="form-control-label">Índice cardiaco </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="form-group m-0 campo">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtICMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtRVPMa" class="form-control-label">Resistencia vascular periférica </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="form-group m-0 campo">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtRVPMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtPVCMa" class="form-control-label">Presión venosa central </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="form-group m-0 campo">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtPVCMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtIRVPMa" class="form-control-label">Resistencia vascular periférica Indexado </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="form-group m-0 campo">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtIRVPMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                <div class="row mt-1">
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtDO2Ma" class="form-control-label">Entrega de o2  </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="form-group m-0 campo">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtDO2Ma">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtVPPMa" class="form-control-label">Variabilidad de presión de pulso </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="form-group m-0 campo">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtVPPMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtVVSMa" class="form-control-label">Variabilidad de volumen sistólico </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtVVSMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtAceleracionMediaMa" class="form-control-label">Aceleración media </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtAceleracionMediaMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                <div class="row mt-1">
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtElastanciaDinamicaMa" class="form-control-label">Elastancia dinámica </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtElastanciaDinamicaMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtElastanciaArterialMa" class="form-control-label">Elastancia arterial </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtElastanciaArterialMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtPAPMa" class="form-control-label">Presión arteria pulmonar </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtPAPMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtPOAPMa" class="form-control-label">Presión oclusión arteria pulmonar </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtPOAPMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                <div class="row mt-1">
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtAguaPulmonarExtravascularaMa" class="form-control-label">Agua pulmonar extravascular </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtAguaPulmonarExtravascularaMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-3">
+                <div class="row">
+                <div class="col-lg-8">
+                <label for="txtOtrosParametrosMa" class="form-control-label">Otros parámetros </label>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtOtrosParametrosMa">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>*@
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="neurologico-tab" aria-labelledby="neurologico-tab-link" aria-expanded="true">
+
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="card m-t-5 bg-blue">
+                            <div class="card-header bg-white">
+                                Monitoreo neurológico
+                            </div>
+
+                            <div class="card-block pb-0">
+
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <label for="cboNombreEquipoNeurologico">Item</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select" id="cboNombreEquipoNeurologico">
+                                                <option value="0">--Seleccionar--</option>
+                                                <option value="1">Monitor de Conox</option>
+                                                <option value="2">Monitor de presión intracraneana</option>
+                                                <option value="3">Electroencefalografía</option>
+                                                <option value="4">Monitor PTIO2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="cboTipoMonitoreoNeurologico">Tipo de monitoreo</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select" id="cboTipoMonitoreoNeurologico">
+                                                <option value="0">--Seleccionar--</option>
+                                                <option value="1">Invasivo</option>
+                                                <option value="2">No invasivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <label for="txtCantidadNeurologico">Cantidad</label>
+                                        <div class="input-group">
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtCantidadNeurologico">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-12 text-right mt-1">
+                                        <button id="btnAgregarMonitoreoNeurologico" type="button" class="btn btn-sm btn-labeled btn-success">
+                                            <span class="btn-label">
+                                                <i class="fa fa-plus" style="text-align:center;"></i>
+                                            </span>
+                                            Agregar
+                                        </button>
+                                        <button id="btnQuitarMonitoreoNeurologico" type="button" class="btn btn-sm btn-labeled btn-danger">
+                                            <span class="btn-label">
+                                                <i class="fa fa-trash" style="text-align:center;"></i>
+                                            </span>
+                                            Quitar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <table id="tblMonitoreoNeurologico" width="100%" class="table table-sm table-bordered">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th style="width:40%">Descripcion</th>
+                                                    @*<th style="width:40%">Hallazgos</th>*@
+                                                    <th style="width:10%">Cantidad</th>
+                                                    <th style="width:10%">Precio</th>
+                                                    <th style="width:10%">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="card m-t-5 bg-blue">
+                            <div class="card-header bg-white">
+                                Parametros
+
+                                <button id="btnAgregarParametrosNeurologico" type="button" class="btn btn-sm btn-labeled btn-success">
+                                    <span class="btn-label">
+                                        <i class="fa fa-plus" style="text-align:center;"></i>
+                                    </span>
+                                    Agregar
+                                </button>
+                            </div>
+
+                            <div class="card-block pb-0">
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <table id="tblParametrosNeurologico" width="100%" class="table table-sm table-bordered">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th style="width:70%">Parametro</th>
+                                                    <th style="width:30%">Valor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="row">
+                    <div class="col-lg-6">
+                        <label for="cboTipoMonitoreoNeurologico" class="form-control-label">Tipo monitoreo</label>
+                        <div class="input-group">
+                            <select class="chzn-select" id="cboTipoMonitoreoNeurologico">
+                                <option value="0">Ninguna</option>
+                                <option value="1">Monitor de Conox</option>
+                                <option value="2">Monitor de presión intracraneana</option>
+                                <option value="3">Electroencefalografía</option>
+                                <option value="4">Monitor PTIO2</option>
+                                <option value="5">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="txtOtroMonitoreoNeurologico" class="form-control-label">Otro Monitoreo</label>
+                        <div class="input-group">
+                            <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero " id="txtOtroMonitoreoNeurologico">
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="row mt-1">
+                    <div class="col-lg-6">
+                        <label for="txtEcocardiografiaNeurologico" class="form-control-label">ECOCARDIOGRAFIA</label>
+                        <div class="form-group">
+                            <textarea class="form-control" id="txtEcocardiografiaNeurologico" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="txtCardiotocografoNeurologico" class="form-control-label">CARDIOTOCOGRAFO</label>
+                        <div class="form-group">
+                            <textarea class="form-control" id="txtCardiotocografoNeurologico" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-lg-6">
+                        <label for="txtEcoObstetricaNeurologico" class="form-control-label">ECOGRAFIA OBSTETRICA</label>
+                        <div class="form-group">
+                            <textarea class="form-control" id="txtEcoObstetricaNeurologico" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="txtEcoRegionalNeurologico" class="form-control-label">ECOGRAFIA REGIONAL</label>
+                        <div class="form-group">
+                            <textarea class="form-control" id="txtEcoRegionalNeurologico" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>*@
+
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="ultrasonografia-tab" aria-labelledby="ultrasonografia-tab-link" aria-expanded="true">
+
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="card m-t-5 bg-blue">
+                            <div class="card-header bg-white">
+                                Monitoreo de ultrasonografía por regiones
+                            </div>
+
+                            <div class="card-block pb-0">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <label for="cboDescripcionUltrasonografia">Item</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select" id="cboDescripcionUltrasonografia">
+                                                <option value="0">--Seleccionar--</option>
+                                                <option value="9332001">Cerebral: duplex transcraneal, doppler transcraneal</option>
+                                                <option value="2">Transocular Diametro de vaina de  nervio optico</option>
+                                                <option value="3">Vía aérea</option>
+                                                <option value="4">Cardiaco trans torácico</option>
+                                                <option value="5">Cardiaco trans esofágico</option>
+                                                <option value="6">pulmonar</option>
+                                                <option value="7">abdominal</option>
+                                                <option value="8">diafragmático</option>
+                                                <option value="9">ginecológico</option>
+                                                <option value="10">obstétrico</option>
+                                                <option value="11">partes blandas</option>
+                                                <option value="12">vasos arteriales y venosos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtCantidadUltrasonografia">Cantidad</label>
+                                        <div class="input-group">
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtCantidadUltrasonografia">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <label for="txtDescripcionHallazgosUltrasonografia">Descripción de hallazgos</label>
+                                        <div class="input-group input-group-sm">
+                                            <textarea class="form-control" id="txtDescripcionHallazgosUltrasonografia" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-12 text-right mt-1">
+                                        <button id="btnAgregarMonitoreoUltrasonografia" type="button" class="btn btn-sm btn-labeled btn-success">
+                                            <span class="btn-label">
+                                                <i class="fa fa-plus" style="text-align:center;"></i>
+                                            </span>
+                                            Agregar
+                                        </button>
+                                        <button id="btnQuitarMonitoreoUltrasonografia" type="button" class="btn btn-sm btn-labeled btn-danger">
+                                            <span class="btn-label">
+                                                <i class="fa fa-trash" style="text-align:center;"></i>
+                                            </span>
+                                            Quitar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <table id="tblMonitoreoUltrasonografia" width="100%" class="table table-sm table-bordered">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th style="width:40%">Descripcion</th>
+                                                    @*<th style="width:40%">Hallazgos</th>*@
+                                                    <th style="width:10%">Cantidad</th>
+                                                    <th style="width:10%">Precio</th>
+                                                    <th style="width:10%">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="card m-t-5 bg-blue">
+                            <div class="card-header bg-white">
+                                Parametros
+
+                                <button id="btnAgregarParametrosUltrasonografia" type="button" class="btn btn-sm btn-labeled btn-success">
+                                    <span class="btn-label">
+                                        <i class="fa fa-plus" style="text-align:center;"></i>
+                                    </span>
+                                    Agregar
+                                </button>
+                            </div>
+
+                            <div class="card-block pb-0">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label for="txtVisualizarDescripcionHallazgosUltrasonografia">Descripción de hallazgos</label>
+                                        <div class="input-group input-group-sm">
+                                            <textarea class="form-control" id="txtVisualizarDescripcionHallazgosUltrasonografia" rows="2" disabled></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <table id="tblParametrosUltrasonografia" width="100%" class="table table-sm table-bordered">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th style="width:70%">Parametro</th>
+                                                    <th style="width:30%">Valor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

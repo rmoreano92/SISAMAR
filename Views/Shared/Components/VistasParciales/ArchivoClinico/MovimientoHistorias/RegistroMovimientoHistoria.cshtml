@@ -1,0 +1,390 @@
+﻿@using System.Data
+<div class="modal fade" id="modalRegistroMovimientoHistoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Movimiento Historia Clínica</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 mb-1">
+                        <div class="card bg-teal">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroHistoriaPaciente" class="form-label d-block text-truncate font-weight-bold">N° Historia</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" class="form-control solo-numero writing reading searchHistoria" id="txtNroHistoriaPaciente" autocomplete="off">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-info" type="button" id="btnBuscarDatosPacienteNroHistoria"><i class="fa fa-search"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroDocumentoPaciente" class="form-label d-block text-truncate font-weight-bold">N° Documento</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" class="form-control solo-numero writing reading searchDocumento" id="txtNroDocumentoPaciente" autocomplete="off">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-info" type="button" id="btnBuscarDatosPacienteNroDocumento"><i class="fa fa-search"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtNombrePaciente" class="form-label d-block text-truncate font-weight-bold">Paciente</label>
+                                            <input id="txtNombrePaciente" autocomplete="off" placeholder="" class="form-control form-control-sm writing reading" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboMotivoMovHc">Motivo</label>
+                                            <select id="cboMotivoMovHc" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow motivo in ViewBag.Motivos.Rows)
+                                                {
+                                                    <option value="@motivo["IdMotivo"]">@motivo["Descripcion"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>      
+                                    <div class="col-xl-4" id="frmServicioOrigen">
+                                        <div class="form-group m-0">
+                                            <label for="cboServicioOrigenMovHc">Servicio Origen</label>
+                                            <select id="cboServicioOrigenMovHc" class="chzn-select-deselect reading" disabled data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4" id="frmServicioDestino">
+                                        <div class="form-group m-0">
+                                            <label for="cboServicioDestinoMovHc">Servicio Destino</label>
+                                            <select id="cboServicioDestinoMovHc" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboResponsableSalidaMovHc">Responsable Salida</label>
+                                            <select id="cboResponsableSalidaMovHc" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboResponsableTransporteMovHc">Resposanble Transporte</label>
+                                            <select id="cboResponsableTransporteMovHc" class="chzn-select-deselect writing" disabled data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboResponsableRecepcionMovHc">Responsable Recepción</label>
+                                            <select id="cboResponsableRecepcionMovHc" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">                                    
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaMovHc">Fecha</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtFechaMovHc" type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha reading" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" disabled>
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtHoraMovHc" class="form-control-label">Hora</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtHoraMovHc" type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskHora reading" disabled>
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-timer"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="form-group m-0">
+                                            <label for="txtObservacionMovHc" class="form-control-label">Observación</label>
+                                            <input id="txtObservacionMovHc" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                                
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarRegistroMovimientoHistoria">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCancelarRegistroMovimientoHistoria">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* <div class="modal fade" id="modalRegistroMovimientoHistoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Movimiento Historia Clínica</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 mb-1">
+                        <div class="card bg-teal">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-4" style="max-width: 390px;">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroHistoria" class="form-label d-block text-truncate font-weight-bold">N° Historia</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" class="form-control solo-numero" id="txtNroHistoria" autocomplete="off">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-info" type="button" id="btnBuscarDatosPacienteNroHistoria"><i class="fa fa-search"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroDocumentoPaciente" class="form-label d-block text-truncate font-weight-bold">N° Documento</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" class="form-control solo-numero camposRegistro bloquear" id="txtNroDocumentoPaciente" autocomplete="off">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-info camposRegistro" type="button" id="btnBuscarDatosPacienteNroDocumento"><i class="fa fa-search"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-8">
+                                        <div class="row">
+                                            <div class="col-xl-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNombrePaciente" class="form-label d-block text-truncate font-weight-bold">Paciente</label>
+                                                    <input id="txtNombrePaciente" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboMotivoMovHc">Motivo</label>
+                                            <select id="cboMotivoMovHc" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow motivo in ViewBag.Motivos.Rows)
+                                                {
+                                                    <option value="@motivo["IdMotivo"]">@motivo["Descripcion"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="d-flex" style="margin-top: 21px;">
+                                            <label class="radioButtonStyleLabel mr-1">
+                                                <input type="radio" name="rdbDevolucionMovHc" class="radioButtonStyleInput writing" id="rdbDevolucionPorHistoriaMovHc" value="1">
+                                                <span class="radioButtonStyleSpan">Devolver por HC</span>
+                                            </label>
+                                            <label class="radioButtonStyleLabel">
+                                                <input type="radio" name="rdbDevolucionMovHc" class="radioButtonStyleInput writing" id="rdbDevolucionPorServicioMovHc" value="2">
+                                                <span class="radioButtonStyleSpan">Devolver por Servicio</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">                                    
+                                    <div class="col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboServicioOrigenMovHc">Servicio Origen</label>
+                                            <select id="cboServicioOrigenMovHc" class="chzn-select-deselect reading" disabled data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboServicioDestinoMovHc">Servicio Destino</label>
+                                            <select id="cboServicioDestinoMovHc" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="cboTurnosMovHc">Turnos</label>
+                                            <select id="cboTurnosMovHc" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                <option value="1">07:00 - 12:59 = Mañana</option>
+                                                <option value="2">13:00 - 23:59 = Tarde</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="cboTipoFechaMovHc">Tipo Fecha</label>
+                                            <select id="cboTipoFechaMovHc" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                <option value="1">F.Solicitud</option>
+                                                <option value="2">F.Requerimiento</option>
+                                                <option value="3">F.Movimiento</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="cboCondicionMovHc">Condición</label>
+                                            <select id="cboCondicionMovHc" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                <option value="1">&#60;=Ninguno&#62;</option>
+                                                <option value="2">=</option>
+                                                <option value="3">&#62;=</option>
+                                                <option value="4">&#60;=</option>
+                                                <option value="5">Entre</option>                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaInicioMovHc">Fecha</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtFechaInicioMovHc" type="text" autocomplete="off" class="form-control form_val_popup_dp3 writing" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaFinMovHc">Hasta</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtFechaFinMovHc" type="text" autocomplete="off" class="form-control form_val_popup_dp3 writing" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="check__toggle" style="margin-top: 30px;">
+                                            <label class="toggle">
+                                                <input class="toggle__input writing" type="checkbox" id="chkSoloServiciosSolicitudMovHc">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Solo servicios con solicitud</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                
+
+                <div class="row">
+                    
+
+                    <div class="col-xl-12">
+
+                        <div class="card bg-green mb-1">
+                            <div class="card-header bg-white">Generación de Comprobantes</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <table id="tblGeneracionComprobantes" class="table table-sm table-content-sm table-bordered table-striped w-100 m-0 mt-2" style="cursor: default;">
+                                            <thead style="color: white; background: #007368;">
+                                                <tr>
+                                                    <th>Tipo Comprobante</th>
+                                                    <th>Nro Serie</th>
+                                                    <th>Nro Documento</th>
+                                                    <th>Nro Documento Inicial</th>
+                                                    <th>Nro Documento Final</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarRegistroMovimientoHistoria">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCancelarRegistroMovimientoHistoria">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div> *@
+@* 
+<script>
+    var tiposFinanciamientoBI = @Html.Raw(Json.Serialize(ViewBag.TiposFinanciamientoSoloIngresaPrecios.Rows));
+</script> *@
+
+
+

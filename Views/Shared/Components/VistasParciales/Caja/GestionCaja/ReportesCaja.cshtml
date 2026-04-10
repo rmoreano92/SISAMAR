@@ -1,0 +1,387 @@
+﻿@using System.Data
+
+<div class="modal fade" id="modalReporteConsolidadoVentas" tabindex="-1" role="dialog" aria-labelledby="mmodalReporteConsolidadoVentasLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Consolidado de Ventas</h5>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-block ">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group form-group-sm m-0">
+                                            <label for="txtRptFechaInicioConsolidadoVentas">Fecha Inicio</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtRptFechaInicioConsolidadoVentas" type="text" class="form-control form_val_popup_dp3 txtFechaRpt" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group form-group-sm m-0">
+                                            <label for="txtRptHoraInicioConsolidadoVentas">Hora Inicio</label>
+                                            <input id="txtRptHoraInicioConsolidadoVentas" type="text" class="form-control form-control-sm txtHoraRpt" placeholder="__:__">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group form-group-sm m-0">
+                                            <label for="txtRptFechaFinConsolidadoVentas">Fecha Fin</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtRptFechaFinConsolidadoVentas" type="text" class="form-control form_val_popup_dp3 txtFechaRpt" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group form-group-sm m-0">
+                                            <label for="txtRptHoraFinConsolidadoVentas">Hora Fin</label>
+                                            <input id="txtRptHoraFinConsolidadoVentas" type="text" class="form-control form-control-sm txtHoraRpt" placeholder="__:__">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="row mb-1">
+                    <div class="col-xl-6">
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboRptCajaConsolidadoVentas">Caja</label>
+                            <select id="cboRptCajaConsolidadoVentas" class="chzn-select" data-placeholder="Seleccione una opción">
+                                <option value=""></option>
+                                @foreach (var item in @ViewBag.ListaCajas.Tables[0].Rows)
+                                {
+                                    <option value="@item["idCaja"]"> @item["descripcion"]  </option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboRptTurnoConsolidadoVentas">Turno</label>
+                            <select id="cboRptTurnoConsolidadoVentas" class="chzn-select" data-placeholder="Seleccione una opción">
+                                <option value=""></option>
+                                @foreach (var item in @ViewBag.ListaTurnos.Tables[0].Rows)
+                                {
+                                    <option value="@item["idTurno"]"> @item["descripcion"]  </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboRptCajeroConsolidadoVentas">Cajero</label>
+                            <select id="cboRptCajeroConsolidadoVentas" class="chzn-select" data-placeholder="Seleccione una opción">
+                                <option value=""></option>
+                                @foreach (var item in @ViewBag.ListaCajeros.Tables[0].Rows)
+                                {
+                                    <option value="@item["idEmpleado"]"> @item["dCajero"]  </option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboRptComprobanteConsolidadoVentas">Comprobante</label>
+                            <select id="cboRptComprobanteConsolidadoVentas" class="chzn-select" data-placeholder="Seleccione una opción">
+                                <option value="0">Todos</option>
+                                @foreach (DataRow tipoComprobante in ViewBag.ListaTiposComprobantes.Rows)
+                                {
+                                    <option value="@tipoComprobante["IdTipoComprobante"]">@tipoComprobante["Descripcion"]</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+                                          
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-block p-1">
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbRptTipoReporteConsolidadoVentas" class="radioButtonStyleInput" value="1">
+                                    <span class="radioButtonStyleSpan">Detalle por Items</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbRptTipoReporteConsolidadoVentas" class="radioButtonStyleInput" value="2">
+                                    <span class="radioButtonStyleSpan">Detalle por Documento</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbRptTipoReporteConsolidadoVentas" class="radioButtonStyleInput" value="3">
+                                    <span class="radioButtonStyleSpan">Por CPT</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-block p-1">
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbRptTipoConsumoConsolidadoVentas" class="radioButtonStyleInput" value="1">
+                                    <span class="radioButtonStyleSpan">Farmacia</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbRptTipoConsumoConsolidadoVentas" class="radioButtonStyleInput" value="2">
+                                    <span class="radioButtonStyleSpan">Servicios</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbRptTipoConsumoConsolidadoVentas" class="radioButtonStyleInput" value="3">
+                                    <span class="radioButtonStyleSpan">Ambos</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="check__toggle d-none">
+                    <label class="toggle">
+                        <input class="toggle__input" type="checkbox" id="chkRptEnExcelConsumoConsolidadoVentas">
+                        <span class="toggle__label mr-2">
+                            <span class="toggle__text d-block text-truncate">En EXCEL</span>
+                        </span>
+                    </label>
+                </div>
+                                
+            </div>
+            <div class="modal-footer">                
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnGenerarReporteConsolidadoVentas">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+                <button type="button" class="btn btn-secondary" id="btnCerrarReporteConsolidadoVentas">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalReporteResumenPorPartida" tabindex="-1" role="dialog" aria-labelledby="mmodalReporteResumenPorPartidaLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Resumen por Partida</h5>
+            </div>
+            <div class="modal-body">
+                <div class="card ">
+                    <div class="card-block ">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group form-group-sm m-0">
+                                            <label for="txtRptFechaInicioResumenPorPartida" class="d-block text-truncate">Fecha Inicio</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtRptFechaInicioResumenPorPartida" type="text" class="form-control form_val_popup_dp3 txtFechaRpt" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group form-group-sm m-0">
+                                            <label for="txtRptHoraInicioResumenPorPartida" class="d-block text-truncate">Hora Inicio</label>
+                                            <input id="txtRptHoraInicioResumenPorPartida" type="text" class="form-control form-control-sm txtHoraRpt" placeholder="__:__">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group form-group-sm m-0">
+                                            <label for="txtRptFechaFinResumenPorPartida" class="d-block text-truncate">Fecha Fin</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtRptFechaFinResumenPorPartida" type="text" class="form-control form_val_popup_dp3 txtFechaRpt" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group form-group-sm m-0">
+                                            <label for="txtRptHoraFinResumenPorPartida" class="d-block text-truncate">Hora Fin</label>
+                                            <input id="txtRptHoraFinResumenPorPartida" type="text" class="form-control form-control-sm txtHoraRpt" placeholder="__:__">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboRptCajaResumenPorPartida">Caja</label>
+                            <select id="cboRptCajaResumenPorPartida" class="chzn-select" data-placeholder="Seleccione una opción">
+                                <option value=""></option>
+                                @foreach (var item in @ViewBag.ListaCajas.Tables[0].Rows)
+                                {
+                                    <option value="@item["idCaja"]"> @item["descripcion"]  </option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboRptCajeroResumenPorPartida">Cajero</label>
+                            <select id="cboRptCajeroResumenPorPartida" class="chzn-select" data-placeholder="Seleccione una opción">
+                                <option value=""></option>
+                                @foreach (var item in @ViewBag.ListaCajeros.Tables[0].Rows)
+                                {
+                                    <option value="@item["idEmpleado"]"> @item["dCajero"]  </option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="check__toggle" style="margin-top: 10px;">
+                            <label class="toggle">
+                                <input class="toggle__input" type="checkbox" id="chkRptSoloPartidaMayorCeroResumenPorPartida">
+                                <span class="toggle__label mr-2">
+                                    <span class="toggle__text d-block text-truncate">Solo partidas totalizadas mayor a 0 (cero)</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="check__toggle" style="margin-top: 10px;">
+                            <label class="toggle">
+                                <input class="toggle__input" type="checkbox" id="chkRptIncluyeNotasCreditoResumenPorPartida">
+                                <span class="toggle__label mr-2">
+                                    <span class="toggle__text d-block text-truncate">Incluye columna NOTA DE CREDITO</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <hr />
+
+                        <div class="check__toggle d-none">
+                            <label class="toggle">
+                                <input class="toggle__input" type="checkbox" id="chkRptEnExcelResumenPorPartida">
+                                <span class="toggle__label mr-2">
+                                    <span class="toggle__text d-block text-truncate">En EXCEL</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>                    
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnGenerarReporteResumenPorPartida">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+                <button type="button" class="btn btn-secondary" id="btnCerrarReporteResumenPorPartida">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalReporteConsolidadoRecaudacion" tabindex="-1" role="dialog" aria-labelledby="modalReporteConsolidadoRecaudacionLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Consolidado de Recaudación</h5>
+            </div>
+            <div class="modal-body">
+                <div class="card ">
+                    <div class="card-block ">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtRptFechaInicioConsolidadoRecaudacion" class="d-block text-truncate">Fecha Inicio</label>
+                                    <div class="input-group input-group-sm">
+                                        <input id="txtRptFechaInicioConsolidadoRecaudacion" type="text" class="form-control form_val_popup_dp3 txtFechaRpt" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtRptFechaFinConsolidadoRecaudacion" class="d-block text-truncate">Fecha Fin</label>
+                                    <div class="input-group input-group-sm">
+                                        <input id="txtRptFechaFinConsolidadoRecaudacion" type="text" class="form-control form_val_popup_dp3 txtFechaRpt" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-1">
+                    <div class="col-xl-12 mb-1">
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboRptCajeroConsolidadoRecaudacion">Cajero</label>
+                            <select id="cboRptCajeroConsolidadoRecaudacion" class="chzn-select" data-placeholder="Seleccione una opción">
+                                <option value=""></option>
+                                @foreach (var item in @ViewBag.ListaCajeros.Tables[0].Rows)
+                                {
+                                    <option value="@item["idEmpleado"]"> @item["dCajero"]  </option>
+                                }
+                            </select>
+                        </div>                        
+                    </div>
+
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-block p-1">
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbRptTipoConsumoConsolidadoRecaudacion" class="radioButtonStyleInput" value="1">
+                                    <span class="radioButtonStyleSpan w-100">Farmacia</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbRptTipoConsumoConsolidadoRecaudacion" class="radioButtonStyleInput" value="2">
+                                    <span class="radioButtonStyleSpan w-100">Servicios</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbRptTipoConsumoConsolidadoRecaudacion" class="radioButtonStyleInput" value="0">
+                                    <span class="radioButtonStyleSpan w-100">Ambos</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="check__toggle">
+                    <label class="toggle">
+                        <input class="toggle__input" type="checkbox" id="chkRptEnExcelConsolidadoRecaudacion">
+                        <span class="toggle__label mr-2">
+                            <span class="toggle__text d-block text-truncate">En EXCEL</span>
+                        </span>
+                    </label>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnGenerarReporteConsolidadoRecaudacion">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+                <button type="button" class="btn btn-secondary" id="btnCerrarReporteConsolidadoRecaudacion">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

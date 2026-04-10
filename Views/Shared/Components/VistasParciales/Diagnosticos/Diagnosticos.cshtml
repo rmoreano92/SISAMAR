@@ -1,0 +1,84 @@
+﻿<div id="PanelDiagnostico">
+
+    <input hidden="hidden" id="idGrupoDiagnostico" name="idGrupoDiagnostico" type="text" class="form-control" value="@ViewBag.Vista">
+    <div class="card bg-teal">
+        <div class="card-header bg-white" id="TituloCardDiagnostico">Diagnósticos</div>
+        <div class="card-block custom-form pt-1">
+            <div class="row OpcionesDiagnosticos">
+                <div class="col-md-3" style="max-width: 200px;">
+                    <div class="form-group">
+                        <div class="d-flex">
+                            <input id="txtCodigoDiag" type="text" class="form-control form-control-sm m-auto" autocomplete="off">
+                            <input id="hdnIdDiagnostico" type="hidden" class="form-control">
+                            <button type="button" class="btn btn-sm btn-outline-primary layout_btn_prevent ml-1" onclick="BusquedaDiagnosticos.AbrirModalBusqueda();">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <input id="txtDescripcionDiag" type="text" class="form-control form-control-sm m-auto" readonly>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row mb-1">
+                        <div class="col-lg-3" style="max-width: 300px;">
+                            <div class="fomr-group">
+                                <label class="font-weight-bold">Tipo de Diagnóstico</label>
+                                <select class="hide_search" id="cboTipoDiagnostico" name="cboTipoDiagnostico">
+                                    <option value="-1">---Seleccione tipo diagnostico---</option>
+                                    @foreach (var item in @ViewBag.TiposDiagnosticos)
+                                    {
+                                        <option value="@item.IdSubclasificacionDx"> @item.Descripcion  </option>
+                                    }
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-4">
+                            <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;" onclick="Diagnosticos.AgregarDiagnostico();">
+                                <span class="btn-label">
+                                    <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                </span>
+                                Agregar
+                            </button>
+                            <button id="btnQuitarDiagnostico" type="button" class="btn btn-sm btn-labeled btn-danger mt-2" style="width: 100px;" onclick="Diagnosticos.QuitarDiagnostico();">
+                                <span class="btn-label">
+                                    <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                </span>
+                                Quitar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="lstDiagnosticos" class="table table-sm table-bordered table-content-sm" width="100%">
+                        <thead style="color: white;background: #51717a;">
+                            <tr>
+                                <th style="width: 0%;" data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                                <th style="width: 0%;" data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                                <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Código</th>
+                                <th style="width: 80%;" data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                                <th style="width: 0%;" data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                                <th style="width: 0%;" data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                                <th style="width: 0%;" data-columna="idTipoDiagnostico" valign="middle" align="center">idTipoDiagnostico</th>
+                                <th style="width: 10%;" data-columna="TipoDiagnostico" valign="middle" align="center">TipoDiagnostico</th>
+                                <th style="width: 10%;" data-columna="Intrahospitalario" valign="middle" align="center">IntraHospitalario</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

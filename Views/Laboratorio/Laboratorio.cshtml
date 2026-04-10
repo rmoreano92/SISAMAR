@@ -1,0 +1,506 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+
+@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+   <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+    <!--Page level styles-->
+}
+
+@using CapaEntidades
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa-solid @ViewBag.Icono mr-1"></i>
+                @ViewBag.Modulo @*- @ViewBag.Area*@
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Modulo</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<input hidden="hidden" id="hdIdProducto" type="text" class="form-control">
+<div class="row m-0">
+    <div class="col-sm-12 mb-1">
+        <div class="card">
+            <div class="card-block pb-1">
+                <div class="row">
+                    <div class=" col-xl-12 col-xxl-5">
+                        <div class="row">
+
+                            <div class="col-md-3 col-xl-2 col-xxl-3">
+                                <div class="form-group m-0">
+                                    <label for="txtBusqNroMovimiento" class="">N° Movim.</label>
+                                    <input type="text" class="form-control form-control-sm solo-numero search" id="txtBusqNroMovimiento" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xl-2 col-xxl-3">
+                                <div class="form-group m-0">
+                                    <label for="txtBusqNroCuenta" class="">N° Cuenta</label>
+                                    <input type="text" class="form-control form-control-sm solo-numero search" id="txtBusqNroCuenta" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-xl-2 col-xxl-3">
+                                <div class="form-group m-0">
+                                    <label for="txtBusqNroHistoria" class="">N° Historia</label>
+                                    <input type="text" class="form-control form-control-sm solo-numero search" id="txtBusqNroHistoria" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-xl-3 col-xxl-3">
+                                <div class="form-group m-0">
+                                    <label for="txtBusqNombres" class="">Nombres</label>
+                                    <input type="text" class="form-control form-control-sm search" id="txtBusqNombres" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div id="PuntoCarga" hidden>@ViewBag.PuntoCarga</div>
+                            <div id="ResposanbleTipoEstudio" hidden>@ViewBag.ResponsableTipoEstudio</div>
+
+                        </div>
+                    </div>
+                    <div class=" col-xl-12 col-xxl-7">
+                        <div class="row">
+                            <div class="col-md-3 col-xl-2 col-xxl-2" @* style="max-width: 260px;" *@>
+                                <div class="row">
+                                    <div class="col-md-12 col-xl-12 col-xxl-12">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusqFechaInicio" class="">Fecha Inicio</label>
+                                            <div class="input-group form-group input-group-sm m-0">
+                                                <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtBusqFechaInicio" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-xl-5 col-xxl-5 d-none">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusqHoraInicio" class="">Hora Inicio</label>
+                                            <input type="text" class="form-control form-control-sm search" id="txtBusqHoraInicio" placeholder="__:__" value="07:00">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xl-2 col-xxl-2" @* style="max-width: 260px;" *@>
+                                <div class="row">
+                                    <div class="col-md-12 col-xl-12 col-xxl-12">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusqFechaFin" class="">Fecha Fin</label>
+                                            <div class="input-group form-group input-group-sm m-0">
+                                                <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtBusqFechaFin" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5 col-xl-5 col-xxl-5 d-none" style="max-width: 150px">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusqHoraFin" class="">Hora Fin</label>
+                                            <input type="text" class="form-control form-control-sm search" id="txtBusqHoraFin" placeholder="__:__" value="19:00">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @* <div class="col-md-2 col-xl-2 col-xxl-2 d-flex align-items-end" style="height: 55px;">
+                                <div>
+                                    <button id="btnListarOrdenesLaboratorio" type="button" class="btn btn-sm btn-primary" style="width: 50px;"><i class="fa-solid fa-search"></i></button>
+                                    <button id="btnLimpiarBusqueda" type="button" class="btn btn-sm btn-secondary" style="width: 50px;transform: rotate(180deg);"><i class="fa-solid fa-brush"></i></button>
+                                </div>
+                            </div> *@
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-xxl-8">
+                        <div class="row">
+                            <div class="col-md-3 col-xl-3 col-xxl-3">
+                                <div class="form-group m-0">
+                                    <label for="cboBusqTipoServicio" class="">Tipo Servicio</label>
+                                    <select id="cboBusqTipoServicio" class="chzn-select w-100" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xl-3 col-xxl-3">
+                                <div class="form-group m-0">
+                                    <label for="cboBusqGrupoExamen" class="">Grupo Examen</label>
+                                    <select id="cboBusqGrupoExamen" class="chzn-select w-100" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xl-3 col-xxl-3">
+                                <div class="form-group m-0">
+                                    <label for="cboBusqRealizaExamen" class="">Realiza Examen</label>
+                                    <select id="cboBusqRealizaExamen" class="chzn-select w-100" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xl-3 col-xxl-3 d-flex align-items-end" style="height: 55px;">
+                                <div>
+                                    <button id="btnListarOrdenesLaboratorioTamizaje" type="button" class="btn btn-sm btn-success" style="width: 50px;"><i class="fa-solid fa-search"></i></button>
+                                    <button id="btnListarOrdenesLaboratorio" type="button" class="btn btn-sm btn-primary" style="width: 50px;"><i class="fa-solid fa-search"></i></button>
+                                    <button id="btnLimpiarBusqueda" type="button" class="btn btn-sm btn-secondary" style="width: 50px;transform: rotate(180deg);"><i class="fa-solid fa-brush"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 mb-1">
+        <div class="row">
+            <div class="col-lg-6 mb-1">
+                @{
+                    if (@ViewBag.Agregar)
+                    {
+                        <button class="btn btn-success layout_btn_prevent" id="btnAgregarMovimiento">Agregar</button>
+                    }
+                    if (@ViewBag.Modificar)
+                    {
+                        <button class="btn btn-info layout_btn_prevent" id="btnModificarMovimiento">Modificar</button>
+                    }
+                    if (@ViewBag.Consultar)
+                    {
+                        <button class="btn btn-warning layout_btn_prevent" id="btnConsultarMovimiento">Consultar</button>
+                    }
+                    if (@ViewBag.Eliminar)
+                    {
+                        <button class="btn btn-danger layout_btn_prevent" id="btnEliminarMovimiento">Eliminar</button>
+                    }
+
+                }
+            </div>
+            <div class="col-lg-6 mb-1">
+                <div class="text-sm-right">
+                    <div>
+                        <button class="btn btn-success layout_btn_prevent mr-1" id="btnReporteAnatomiaPatologica"><i class="fa-light fa-file-excel mr-1"></i>Reporte</button>
+                        <button class="btn btn-info layout_btn_prevent" id="btnFirmaMovimiento"><i class="fa-light fa-signature mr-1"></i>Firmar Movimiento</button>
+                        <button class="btn btn-info layout_btn_prevent" id="btnFirmaLote"><i class="fa-light fa-signature mr-1"></i>Firmar Lote</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="col-sm-12" style="margin-top: -20px;">
+        <div class="card bg-blue" style="border-color: #9ec9ec;">
+            <div class="card-header bg-white">
+                <div class="d-flex">
+                    <div id="">Listado de Ordenes</div>
+                </div>
+            </div>
+            <div class="card-block pt-1">
+                <div class="row">
+
+                    <div class="col-lg-12" style="margin-top: -10px;">
+                        <table id="tblListadoOrdenes" width="100%" class="table table-sm table-bordered table-striped table-content-sm">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th valign="middle">N° Movimiento</th>
+                                    <th valign="middle">N° Cuenta</th>
+                                    <th valign="middle">N° H.C.</th>
+                                    <th valign="middle">Paciente</th>
+                                    <th valign="middle">Estado Orden</th>
+                                    <th valign="middle">F. Registro</th>
+                                    <th valign="middle">Ordena Prueba</th>
+                                    <th valign="middle">Fecha Nacimiento</th>
+                                    <th valign="middle">Sexo</th>
+                                </tr>
+                            </thead>
+                            <tbody style="cursor: pointer;"></tbody>
+                        </table>
+                    </div>
+
+                    
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card bg-green" style="border-color: #9ec9ec;">
+                            <div class="card-header bg-white">
+                                <div>
+                                    <div style="float: left;">Detalle de la Orden</div>
+
+                                    <div style="float: right;">
+                                        <button class="btn btn-sm btn-indigo layout_btn_prevent" id="btnImprimirTodosResultados"><i class="fa-sharp fa-solid fa-print"></i></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-block pt-1">
+                                <div class="row">
+                                    @* <div class="col-md-12">
+                                        <button class="btn btn-warning btn-sm layout_btn_prevent" id="btnConsultarResultadoLab" style="width:100px;"><i class="fa fa-eye" style="width: 20px; text-align:center;"></i> Consultar</button>
+                                    </div> *@
+                                    <div class="col-md-12">
+                                        @{                                            
+                                            if (@ViewBag.Modificar)
+                                            {
+                                                <button class="btn btn-sm btn-info layout_btn_prevent" id="btnModificarResultadoLab">Modificar</button>
+                                            }
+                                            if (@ViewBag.Consultar)
+                                            {
+                                                <button class="btn btn-sm btn-warning layout_btn_prevent" id="btnConsultarResultadoLab">Consultar</button>
+                                            }
+                                            if (@ViewBag.Eliminar)
+                                            {
+                                                <button class="btn btn-sm btn-danger layout_btn_prevent" id="btnEliminarResultadoLab">Eliminar</button>
+                                            }
+
+                                        }
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <table id="tblListadoOrdenesDetalle" width="100%" class="table table-sm table-bordered table-striped table-content-sm">
+                                            <thead style="color: white; background: #434343;">
+                                                <tr>
+                                                    <th valign="middle">Grupo</th>
+                                                    <th valign="middle">Codigo</th>
+                                                    <th valign="middle">Prueba</th>
+                                                    <th valign="middle">Realiza Examen</th>
+                                                    <th valign="middle">Cantidad</th>
+                                                    <th valign="middle">Precio</th>
+                                                    <th valign="middle">Total</th>
+                                                    <th valign="middle">Tipo de Muestra</th>
+                                                    <th valign="middle">Esado del estudio</th>
+                                                    <th valign="middle">Resultado</th>
+                                                    <!--<th valign="middle">Dx</th>-->
+                                                    @* <th valign="middle">ObsReceta</th> *@
+                                                    <th valign="middle">Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="cursor: pointer;"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+@* 
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    
+
+                    <div class="card-block pt-1">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                
+                            </div>
+
+                            <div class="col-md-12 mt-2">
+                                
+                            </div>
+
+
+                            <div class="col-md-12 mt-2 d-none">
+                                <div class="card bg-green" style="border-color: #9ec9ec;">
+                                    <div class="card-header bg-white">
+                                        <div class="d-flex">
+                                            <div id="">Resultados Examenes</div>
+                                            <div style="">
+                                                <button type="button" class="btn btn-sm btn-primary" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnGenerarTodosOrdenesPatologia">Generar PDFs</button>&nbsp;&nbsp;
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-block pt-1">
+                                        <div class="row">
+
+                                            <div class="col-lg-12">
+                                                <table id="tblResultadosPatologiaClinica" width="100%" class="table table-sm table-bordered table-content-md">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th valign="middle">N° Cuenta</th>
+                                                            <th valign="middle">N° Orden</th>
+                                                            <th valign="middle">N° Movimiento</th>
+                                                            <th valign="middle">Codigo</th>
+                                                            <th valign="middle">Nombre</th>
+                                                            <th valign="middle">Fecha Recepción</th>
+                                                            <th valign="middle">Fecha Resultado</th>
+                                                            <th valign="middle">Informe</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="cursor: pointer;"></tbody>
+                                                </table>
+                                            </div>                                            
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+<partial name="~/Views/Shared/Components/VistasParciales/Laboratorio/RegistroMovimientoLab.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Laboratorio/RegistroResultadoLab.cshtml" />
+
+<partial name="~/Views/Shared/Components/VistasParciales/VisorResultadosLabImg.cshtml" />
+
+<partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaCuentasPacientes.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaRecetasPacientes.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Laboratorio/ReporteAnatomiaPatologica.cshtml" />
+
+
+<div data-backdrop="static" style="overflow-y: scroll; background-color: rgba(0, 0, 0, 0.46);" data-keyboard="false" class="modal fade" id="modalCodigosApDisponibles" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-deep-pink">
+                <span class="text-white" style="font-size: 1.28rem;font-weight: 500;letter-spacing: 0.5px;">Códigos AP Disponibles</span>
+            </div>
+
+            <div class="modal-body">
+                <table id="tblLabCodigosApDisponibles" width="100%" class="table table-sm table-bordered table-content-sm">
+                    <thead style="color: white; background: #434343;">
+                        <tr>
+                            <th valign="middle">Movimiento</th>
+                            <th valign="middle">Año</th>
+                            <th valign="middle">Tipo</th>
+                            <th valign="middle">Numeración</th>
+                        </tr>
+                    </thead>
+                    <tbody style="cursor: pointer;"></tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnCargarCodigoAp" type="button" class="btn btn-pink" style="width: 100px;"><i class="fa-solid fa-check-double"></i> Cargar</button>
+                <button id="btnCancelarCodigoAp" type="button" class="btn btn-secondary" style="width: 100px;">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .form-control-label {
+        margin-top: 5px !important;
+    }
+
+    .max-w-150 {
+        max-width: 150px !important;
+    }
+
+    .max-w-250 {
+        max-width: 250px !important;
+    }
+
+    .max-w-350 {
+        max-width: 350px !important;
+    }
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+    .chosen-disabled .chosen-single {
+        background: #eceeef !important;
+        border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    #tblFormatoResultadosLab_wrapper .dataTables_scrollBody {
+        height: 25vh;
+    }
+</style>
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    @*<script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>*@
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment-with-locales.js"></script>
+    @*<script type="text/javascript" src="~/AdmiRE/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script src="~/AdmiRE/js/date.format.js"></script>*@
+
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Comun/BusquedaCuentasPacientes.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Comun/BusquedaRecetasPacientes.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/FactConfig/ConfiguracionResultadosLab.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Laboratorio/Laboratorio.js?v=" + version)></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+    
+
+    
+
+    @*<script type="text/javascript" src=@Href("~/js/Comun/Variables.js")></script>*@
+
+    @*<script type="text/javascript" src="~/AdmiRE/vendors/sortable/js/Sortable.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/slimscroll/js/jquery.slimscroll.min.js"></script>*@
+
+}

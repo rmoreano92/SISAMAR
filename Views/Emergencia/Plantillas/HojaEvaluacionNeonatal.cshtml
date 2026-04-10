@@ -1,0 +1,983 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hoja de Evaluación</title>
+    @*<link type="text/css" rel="stylesheet" href="~/AdmiRE/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/util.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/select2/css/select2.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/scroller.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/colReorder.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/dataTables.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" />*@
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">*@
+    <style>
+        /*=====================CSS=======================*/
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 9px;
+            color: black !important;
+            font-family: helvetica;
+            letter-spacing: 0.4px;
+            line-height: 9px;
+        }
+
+        hr {
+            margin: 1rem 0;
+            color: inherit;
+            background-color: currentColor;
+            border: 0;
+            opacity: .25
+        }
+
+        .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            margin-bottom: .5rem;
+            font-weight: 500;
+            line-height: 1.2
+        }
+
+        .h1,h1 {
+            font-size: calc(1.375rem + 1.5vw)
+        }
+
+        .h2,h2 {
+            font-size: calc(1.325rem + .9vw)
+        }
+
+        .h3,h3 {
+            font-size: calc(1.3rem + .6vw)
+        }
+
+        .h4,h4 {
+            font-size: calc(1.275rem + .3vw)
+        }
+
+        .h5,h5 {
+            font-size: 1.25rem
+        }
+
+        .h6,h6 {
+            font-size: 1rem
+        }
+
+        .small, small {
+            font-size: .6rem;
+        }
+
+        .bg-secondary {            
+            background-color: #ebeced !important
+        }
+
+        .text-secondary {            
+            color: #ebeced !important
+        }
+
+        .row {
+            display: flex !important;
+            flex-wrap: wrap;
+        }
+
+        .col-1 {
+            flex: 0 0 auto;
+            width: 8.33333333%
+        }
+
+        .col-2 {
+            flex: 0 0 auto;
+            width: 16.66666667%
+        }
+
+        .col-3 {
+            flex: 0 0 auto;
+            width: 25%
+        }
+
+        .col-4 {
+            flex: 0 0 auto;
+            width: 33.33333333%
+        }
+
+        .col-5 {
+            flex: 0 0 auto;
+            width: 41.66666667%
+        }
+
+        .col-6 {
+            flex: 0 0 auto;
+            width: 50%
+        }
+
+        .col-7 {
+            flex: 0 0 auto;
+            width: 58.33333333%
+        }
+
+        .col-8 {
+            flex: 0 0 auto;
+            width: 66.66666667%
+        }
+
+        .col-9 {
+            flex: 0 0 auto;
+            width: 75%
+        }
+
+        .col-10 {
+            flex: 0 0 auto;
+            width: 83.33333333%
+        }
+
+        .col-11 {
+            flex: 0 0 auto;
+            width: 91.66666667%
+        }
+
+        .col-12 {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+
+        .d-flex {
+            display: flex !important;
+        }
+
+        .position-absolute {
+            position: absolute;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .border {
+            border: 1px solid #dee2e6 !important
+        }
+
+        .border-0 {
+            border: 0 !important
+        }
+
+        .border-top {
+            border-top: 1px solid #dee2e6 !important
+        }
+
+        .border-top-0 {
+            border-top: 0 !important
+        }
+
+        .border-end {
+            border-right: 1px solid #dee2e6 !important
+        }
+
+        .border-end-0 {
+            border-right: 0 !important
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #dee2e6 !important
+        }
+
+        .border-bottom-0 {
+            border-bottom: 0 !important
+        }
+
+        .border-start {
+            border-left: 1px solid #dee2e6 !important
+        }
+
+        .border-start-0 {
+            border-left: 0 !important
+        }
+
+        .border-secondary {
+            border-color: #6c757d !important
+        }
+
+        .w-100 {
+            width: 100% !important;
+        }
+
+        .m-0 {
+            margin: 0 !important
+        }
+
+        .m-1 {
+            margin: .25rem !important
+        }
+
+        .m-2 {
+            margin: .5rem !important
+        }
+
+        .m-3 {
+            margin: 1rem !important
+        }
+
+        .m-4 {
+            margin: 1.5rem !important
+        }
+
+        .m-5 {
+            margin: 3rem !important
+        }
+
+        .m-auto {
+            margin: auto !important
+        }
+
+        .mx-0 {
+            margin-right: 0 !important;
+            margin-left: 0 !important
+        }
+
+        .mx-1 {
+            margin-right: .25rem !important;
+            margin-left: .25rem !important
+        }
+
+        .mx-2 {
+            margin-right: .5rem !important;
+            margin-left: .5rem !important
+        }
+
+        .mx-3 {
+            margin-right: 1rem !important;
+            margin-left: 1rem !important
+        }
+
+        .mx-4 {
+            margin-right: 1.5rem !important;
+            margin-left: 1.5rem !important
+        }
+
+        .mx-5 {
+            margin-right: 3rem !important;
+            margin-left: 3rem !important
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important
+        }
+
+        .my-0 {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important
+        }
+
+        .my-1 {
+            margin-top: .25rem !important;
+            margin-bottom: .25rem !important
+        }
+
+        .my-2 {
+            margin-top: .5rem !important;
+            margin-bottom: .5rem !important
+        }
+
+        .my-3 {
+            margin-top: 1rem !important;
+            margin-bottom: 1rem !important
+        }
+
+        .my-4 {
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.5rem !important
+        }
+
+        .my-5 {
+            margin-top: 3rem !important;
+            margin-bottom: 3rem !important
+        }
+
+        .my-auto {
+            margin-top: auto !important;
+            margin-bottom: auto !important
+        }
+
+        .mt-0 {
+            margin-top: 0 !important
+        }
+
+        .mt-1 {
+            margin-top: .25rem !important
+        }
+
+        .mt-2 {
+            margin-top: .5rem !important
+        }
+
+        .mt-3 {
+            margin-top: 1rem !important
+        }
+
+        .mt-4 {
+            margin-top: 1.5rem !important
+        }
+
+        .mt-5 {
+            margin-top: 3rem !important
+        }
+
+        .mt-auto {
+            margin-top: auto !important
+        }
+
+        .me-0 {
+            margin-right: 0 !important
+        }
+
+        .me-1 {
+            margin-right: .25rem !important
+        }
+
+        .me-2 {
+            margin-right: .5rem !important
+        }
+
+        .me-3 {
+            margin-right: 1rem !important
+        }
+
+        .me-4 {
+            margin-right: 1.5rem !important
+        }
+
+        .me-5 {
+            margin-right: 3rem !important
+        }
+
+        .me-auto {
+            margin-right: auto !important
+        }
+
+        .mb-0 {
+            margin-bottom: 0 !important
+        }
+
+        .mb-1 {
+            margin-bottom: .25rem !important
+        }
+
+        .mb-2 {
+            margin-bottom: .5rem !important
+        }
+
+        .mb-3 {
+            margin-bottom: 1rem !important
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem !important
+        }
+
+        .mb-5 {
+            margin-bottom: 3rem !important
+        }
+
+        .mb-auto {
+            margin-bottom: auto !important
+        }
+
+        .ms-0 {
+            margin-left: 0 !important
+        }
+
+        .ms-1 {
+            margin-left: .25rem !important
+        }
+
+        .ms-2 {
+            margin-left: .5rem !important
+        }
+
+        .ms-3 {
+            margin-left: 1rem !important
+        }
+
+        .ms-4 {
+            margin-left: 1.5rem !important
+        }
+
+        .ms-5 {
+            margin-left: 3rem !important
+        }
+
+        .ms-auto {
+            margin-left: auto !important
+        }
+
+        .p-0 {
+            padding: 0 !important
+        }
+
+        .p-1 {
+            padding: .25rem !important
+        }
+
+        .p-2 {
+            padding: .5rem !important
+        }
+
+        .p-3 {
+            padding: 1rem !important
+        }
+
+        .p-4 {
+            padding: 1.5rem !important
+        }
+
+        .p-5 {
+            padding: 3rem !important
+        }
+
+        .px-0 {
+            padding-right: 0 !important;
+            padding-left: 0 !important
+        }
+
+        .px-1 {
+            padding-right: .25rem !important;
+            padding-left: .25rem !important
+        }
+
+        .px-2 {
+            padding-right: .5rem !important;
+            padding-left: .5rem !important
+        }
+
+        .px-3 {
+            padding-right: 1rem !important;
+            padding-left: 1rem !important
+        }
+
+        .px-4 {
+            padding-right: 1.5rem !important;
+            padding-left: 1.5rem !important
+        }
+
+        .px-5 {
+            padding-right: 3rem !important;
+            padding-left: 3rem !important
+        }
+
+        .py-0 {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important
+        }
+
+        .py-1 {
+            padding-top: .25rem !important;
+            padding-bottom: .25rem !important
+        }
+
+        .py-2 {
+            padding-top: .5rem !important;
+            padding-bottom: .5rem !important
+        }
+
+        .py-3 {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important
+        }
+
+        .py-4 {
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important
+        }
+
+        .py-5 {
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important
+        }
+
+        .pt-0 {
+            padding-top: 0 !important
+        }
+
+        .pt-1 {
+            padding-top: .25rem !important
+        }
+
+        .pt-2 {
+            padding-top: .5rem !important
+        }
+
+        .pt-3 {
+            padding-top: 1rem !important
+        }
+
+        .pt-4 {
+            padding-top: 1.5rem !important
+        }
+
+        .pt-5 {
+            padding-top: 3rem !important
+        }
+
+        .pe-0 {
+            padding-right: 0 !important
+        }
+
+        .pe-1 {
+            padding-right: .25rem !important
+        }
+
+        .pe-2 {
+            padding-right: .5rem !important
+        }
+
+        .pe-3 {
+            padding-right: 1rem !important
+        }
+
+        .pe-4 {
+            padding-right: 1.5rem !important
+        }
+
+        .pe-5 {
+            padding-right: 3rem !important
+        }
+
+        .pb-0 {
+            padding-bottom: 0 !important
+        }
+
+        .pb-1 {
+            padding-bottom: .25rem !important
+        }
+
+        .pb-2 {
+            padding-bottom: .5rem !important
+        }
+
+        .pb-3 {
+            padding-bottom: 1rem !important
+        }
+
+        .pb-4 {
+            padding-bottom: 1.5rem !important
+        }
+
+        .pb-5 {
+            padding-bottom: 3rem !important
+        }
+
+        .ps-0 {
+            padding-left: 0 !important
+        }
+
+        .ps-1 {
+            padding-left: .25rem !important
+        }
+
+        .ps-2 {
+            padding-left: .5rem !important
+        }
+
+        .ps-3 {
+            padding-left: 1rem !important
+        }
+
+        .ps-4 {
+            padding-left: 1.5rem !important
+        }
+
+        .ps-5 {
+            padding-left: 3rem !important
+        }
+
+        .my-2 {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem !important;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem !important;
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .table-bordered {
+            border: solid 1px #4c4c4c !important;
+        }
+
+        .table-bordered td, .table-bordered th {
+            border: solid 1px #4c4c4c !important;
+            padding: 3px 5px !important;
+
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            vertical-align: top;
+            border-color: #dee2e6;
+            caption-side: bottom;
+            border-collapse: collapse;
+        }
+
+                        
+
+        button, input, optgroup, select, textarea {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit
+        }
+
+        .align-baseline {
+            vertical-align: baseline !important
+        }
+
+        .align-top {
+            vertical-align: top !important
+        }
+
+        .align-middle {
+            vertical-align: middle !important
+        }
+
+        .align-bottom {
+            vertical-align: bottom !important
+        }
+
+        .white-space{
+            white-space: pre-line;
+            line-height: 12px !important;
+        }
+        /*===============================================*/
+        
+        .item {
+            display: flex;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-box {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #535353;
+            margin-right: 5px;
+        }
+
+        .item-cabecera {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            text-align: center;
+        }
+
+        .item-label {
+            height: 15px;
+            vertical-align: middle;
+        }
+
+        .item.Si .item-Si {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .item.Si .item-Si::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        .item.No .item-No {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .item.No .item-No::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        .Si .item-Si {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .Si .item-Si::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        .No .item-No {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .No .item-No::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        #cajaTitulo {
+            width: 55%;
+            border: 1px solid black;
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            font-size: 11px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 5px 5px #8d8d8d;
+            margin-bottom: 20px;
+            line-height: 10px;
+        }
+
+        .subtitulo {
+            writing-mode: vertical-lr;
+            /*-webkit-writing-mode: vertical-lr;
+            -ms-writing-mode: vertical-lr;
+            filter: flipH() flipV();*/
+            margin: 0 auto;            
+        }
+
+        textarea {
+            resize: none !important;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            line-height: 14px !important;
+        }
+
+
+        .qr-code {
+            position: absolute;
+            width: 75px;
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+
+<body style="background: white; width:793px; height:1145px;position:relative; /*border: 1px solid red;*/" class="pt-2 m-0">
+@*<body style="background: white; width:793px; height:1122px;position:relative; /*border: 1px solid red;*/" class="pt-2">*@
+
+    <div id="cajaTitulo">
+        <p style="" class="fw-bold m-0">HOJA DE RE-EVALUACIÓN DE EMERGENCIA NEONATAL N° @ViewBag.NroEvaluacion</p>
+        <small class="fw-bold" style="color:lightgray">FN-004</small>
+    </div>
+
+    @if (ViewBag.CodigoQR != null)
+    {
+        <img class="qr-code" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.CodigoQR))" />
+    }
+
+    @*<h6 style="" id="cajaTitulo">HOJA DE RE-EVALUACIÓN DE EMERGENCIA NEONATAL N° @ViewBag.NroEvaluacion</h6>*@
+
+    @*<div class="d-flex" style="margin-bottom: 3px;">
+
+    </div>*@
+
+    <div class="d-flex mb-1">
+        <table class="table table-bordered border-secondary m-0 me-2" style="width: 150px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-center fw-bold p-0" style="width:60px;">FECHA</th>
+                    <td class="border-secondary text-center p-0">@ViewBag.FechaEvaluacion</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-secondary m-0" style="width: 150px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-center fw-bold p-0" style="width:60px;">HORA</th>
+                    <td class="border-secondary text-center p-0">@ViewBag.HoraEvaluacion</td>
+                </tr>
+            </tbody>
+        </table>
+
+        @*<div class="ms-auto" style="font-size: 9px;">
+                Impreso por: @ViewBag.Usuario - @ViewBag.FechaImpresion
+            </div>*@
+    </div>
+
+
+    @*==================================RESUMEN HISTORIA CLINICA======================================*@
+    @*<table class="table table-bordered border-secondary">
+            <tbody>
+                <tr>
+                    <th scope="row" class="border-secondary text-left align-middle table-active">ANAMNESIS</th>
+                </tr>
+            </tbody>
+        </table>*@
+
+    @*<table  class="table table-bordered border-secondary">
+            <tbody>
+                <tr style="height: 50px">
+                    <th scope="row" style="width: 50px;" class="border-secondary text-center align-middle subtitulo">MOTIVO</th>
+                    <td class="border-secondary align-top">---</td>
+                </tr>
+            </tbody>
+        </table>*@
+
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0 col-4 bg-secondary">DIAGNÓSTICO</th>
+            </tr>
+            <tr>
+                <td class="border-secondary align-top" style="height: 70px">
+                    @{
+                        int index = 1;
+                    }
+                    @foreach (System.Data.DataRow row in ViewBag.DxEvaluacion.Rows)
+                    {
+                        <span style="font-weight: bold;">DX @index</span>
+                        <span>@row["codigoCIE10"] - @row["descripcion"] <b>(@row["tipoDiagnostico"])</b></span>
+                        <br />
+                        index++;
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0 col-4 bg-secondary">EVALUACIÓN/IMPRESIÓN DIAGNOSTICA</th>
+            </tr>
+            <tr>
+                <td class="border-secondary align-top">
+                    <div class="white-space">@ViewBag.ImpresionDiagnostica</div>
+                    @*<textarea id="impresionDiagnostica" class="w-100" style="height: 70px">@ViewBag.ImpresionDiagnostica</textarea>*@
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0 col-4 bg-secondary">PLAN DE TRABAJO</th>
+            </tr>
+            <tr>
+                <td class="border-secondary align-top">
+                    <div class="white-space">@ViewBag.PlanTrabajo</div>
+                    @*<textarea id="planTrabajo" class="w-100" style="height: 70px">@ViewBag.PlanTrabajo</textarea>   *@                 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary">
+        <tbody>
+            <tr>
+                <th scope="row" class="border-secondary table-active text-center p-0 col-8 bg-secondary">TRATAMIENTO</th>
+                @*<th scope="row" class="border-secondary table-active text-center p-0 col-4">DESTINO</th>*@
+            </tr>
+            <tr>
+                <td class="border-secondary align-top">
+                    <div class="white-space">@ViewBag.Tratamiento</div>
+                    @*<textarea id="planTratamiento" class="w-100" style="height: 70px">@ViewBag.Tratamiento</textarea>*@
+                </td>
+                @*<td class="border-secondary align-top"></td>*@
+            </tr>
+        </tbody>
+    </table>
+
+    <div class=" ms-auto mt-3 pt-5 mb-2" style="width: 250px;">
+        <div class="border-top border-secondary text-center p-1">
+            @ViewBag.Medico
+        </div>
+    </div>
+
+
+    <table class="table table-bordered border-secondary m-0">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">NOMBRES Y APELLIDOS</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">SERVICIO</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">CAMA</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">HISTORIA</th>
+            </tr>
+            <tr>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.Paciente
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.Servicio
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    0
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.NroHistoriaClinica
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="line-height: 10px;font-size: 9px;text-align: justify;" class="mt-2">
+        Esta es una copia auténtica imprimible de un documento electrónico almacenado en <b class="">INSTITUTO NACIONAL MATERNO PERINATAL</b>,
+        aplicando lo dispuesto por el <b class="">Art. 25 de D.S. 070-2013-PCM</b> y la Tercera Disposición Complementaria Final del <b class="">D.S. 026-2016-PCM</b>.
+        Su autenticidad e integridad pueden ser contrastadas a través de la siguiente dirección web: <b class="">https://mgp.gob.pe/verifica</b>
+    </div>
+
+
+    @*<script src="/AdmiRE/js/jquery.min.js"></script>*@
+    @*<script src="/BootstrapV5.1.3/bootstrap.bundle.min.js"></script>*@
+    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>*@
+    <script type="text/javascript">
+        //$(document).ready(function () {            
+        //    $("#impresionDiagnostica").height($("#impresionDiagnostica")[0].scrollHeight);
+        //    $("#planTrabajo").height($("#planTrabajo")[0].scrollHeight);
+        //    $("#planTratamiento").height($("#planTratamiento")[0].scrollHeight);            
+        //});
+
+
+        //window.onload = function() {
+        //    const impresionDiagnostica = document.getElementById("impresionDiagnostica");
+        //    const planTrabajo = document.getElementById("planTrabajo");
+        //    const planTratamiento = document.getElementById("planTratamiento");
+        //    impresionDiagnostica.style.height = impresionDiagnostica.scrollHeight + "px";
+        //    planTrabajo.style.height = planTrabajo.scrollHeight + "px";
+        //    planTratamiento.style.height = planTratamiento.scrollHeight + "px";
+        //}
+        
+    </script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,146 @@
+﻿<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalPacientesBusqueda" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-sm table-bordered" id="tblPacientesBusqueda" width="100%" style="font-size: 12px;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th width="30%">Apellidos </th>
+                                    <th width="8%">Nro.Historia</th>
+                                    <th width="8%">FechaNac.</th>
+                                    <th width="12%">Ult.Tipo</th>
+                                    <th width="18%">Ult.Serv.Ing.</th>
+                                    <th width="8%">Ult. F. Ing.</th>
+                                    <th width="8%">Ult. F. Egr.</th>
+                                    <th width="8%">E Historia</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalBusquedaPaciente" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <b>Busqueda</b>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtNrohistoriaBusqPaciente" class="form-control-label">N° Historia</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtNrohistoriaBusqPaciente">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtNroDocumentoBusqPaciente" class="form-control-label">N° Documento</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtNroDocumentoBusqPaciente">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtApellidoPaternoBusqPaciente" class="form-control-label">Ape. Paterno (Madre)</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtApellidoPaternoBusqPaciente">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtApellidoMaternoBusqPaciente" class="form-control-label">Ape. Materno (Madre)</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtApellidoMaternoBusqPaciente">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtPrimerNombreBusqPaciente" class="form-control-label">1er Nombre (Madre)</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtPrimerNombreBusqPaciente">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtNumDocMadreBusqPaciente" class="form-control-label">N° Documento (Madre)</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtNumDocMadreBusqPaciente">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 d-flex align-items-end" style="height: 55px;">
+                                <div>
+                                    <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarPacientesNeo">Buscar</button>
+                                    <button class="btn btn-default btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiarBuscarPacientesNeo">Limpiar</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr />
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <table class="table table-sm table-bordered" id="tblBusquedaPaciente" width="100%" style="font-size: 12px;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th width="10%">N° Historia</th>
+                                    <th width="10%">Tipo Doc</th>
+                                    <th width="10%">N° Doc</th>
+                                    <th width="15%">Apellido Paterno</th>
+                                    <th width="15%">Apellido Materno</th>
+                                    <th width="20%">Nombres</th>
+                                    <th width="10%">F. Nacimiento</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

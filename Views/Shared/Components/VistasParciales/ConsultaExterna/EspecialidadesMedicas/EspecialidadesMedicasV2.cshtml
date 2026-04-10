@@ -1,0 +1,88 @@
+﻿<input id="TipoModulo" type="text" value="@ViewBag.TipoModulo" disabled hidden />
+<div class="row" id="divClasificacionPaciente">
+    <div class="col-md-12" style="display: none;">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group campo">
+                    <label for="cboClasisifcacion"  class="form-control-label">Clasificacion de Paciente prueba</label>
+                    <div class="input-group">
+                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboClasisifcacion"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="cboDestino" class="form-control-label">Controles MGP</label>
+                    <div class="input-group">
+                        <input id="txtControles" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="txtEdadGestacional" class="form-control-label">Edad Gestacional</label>
+                    <div class="input-group">
+                        <input id="txtEdadGestacional" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="txtGestas" class="form-control-label">Nro. Gestas</label>
+                    <div class="input-group">
+                        <input id="txtGestas" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+
+<div class="row" id="divTipoAtencion">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group campo">
+                    <label for="cboClasificacionTipoAtencion" class="form-control-label">Tipo Atención</label>
+                    <div class="input-group">
+                        <select class="chzn-select" id="cboClasificacionTipoAtencion">
+                            <option value="0">Seleccione una opción</option>
+                            <option value="1">Atención integral - control emocional</option>
+                            <option value="2">Atención psicológica por infertilidad</option>
+                            <option value="3">Atención psicológica del Niño de Alto Riesgo (NAR)</option>
+                            <option value="4">Evaluación de desarrollo infantil del NAR</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contenedorEspecialidades" class="campo">
+    <partial name="~/Views/Shared/Components/VistasParciales/ConsultaExterna/EspecialidadesMedicas/Entrevista.cshtml" />
+</div>
+
+@*<script type="text/javascript" src=@Href("~/js/ConsultaExterna/AtencionMedicaV2.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Anestesiologia.js")></script>
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV2.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos.js")></script>*@
+
+@*<script>
+        $(document).ready(() => {
+            AtencionMedica.ParcialEvents()
+            AtencionMedica.ListaTiposConsulta()
+            AtencionMedica.TiposClasificacionPaciente()
+
+            Anestesiologia.Iniciar()
+            if (AtencionMedica.permisoClasiPaciente == '0') { // jdelgado para el control de versiones
+                $('#divClasificacionPaciente').hide()
+            } else {
+                $('#divClasificacionPaciente').show()
+            }
+        })
+    </script>*@

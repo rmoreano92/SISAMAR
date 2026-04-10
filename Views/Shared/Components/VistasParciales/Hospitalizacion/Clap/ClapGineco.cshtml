@@ -1,0 +1,245 @@
+<div data-backdrop="static" style="overflow-y: scroll; background-color: rgba(0, 0, 0, 0.46);" data-keyboard="false" class="modal fade" id="modalClap" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-light-green">
+                <div class="rounded-pill bg-secondary" style="width: 180px;">
+                    <i class="fa fa-hands-heart fa-lg mx-1"></i>
+                    <span class="text-white" style="font-size: 1.28rem;font-weight: 500;letter-spacing: 0.5px;">CLAP/EIDSIP</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row mb-1">
+                    <div class="col-md-12">
+                        <div class="card bg-blue" style="padding-bottom: 0px;">
+                            <div class="card-header bg-white">Datos del Paciente</div>
+                            <div class="card-block custom-form" style="padding-bottom: 0px;">
+                                <div class="row pb-1">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="txtNroCuentaClap">N° Cuenta</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNroCuentaClap" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="txtHistoriaClap">Historia</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtHistoriaClap" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="txtPacienteNombreClap">Nombres</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtPacienteNombreClap" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="txtNroDocumentoClap">N° Documento</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control form-control-sm m-r-5" id="txtTipoDocumentoClap" placeholder="" autocomplete="off" disabled="">
+                                                <input type="text" class="form-control form-control-sm m-l-5" id="txtNroDocumentoClap" placeholder="" autocomplete="off" disabled="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <ul class="nav nav-tabs jerarquiaA" id="AltaMed-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom active" id="motivoAtencionClap-tab-link" data-toggle="tab" href="#motivoAtencionClap-tab" role="tab" aria-controls="home" aria-selected="true" @*aria-expanded="true"*@>MOTIVO DE ATENCIÓN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom" id="antecedentesClap-tab-link" data-toggle="tab" href="#antecedentesClap-tab" role="tab" aria-controls="home" aria-selected="false" @*aria-expanded="false"*@>ANTECEDENTES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom" id="gestacionActualClap-tab-link" data-toggle="tab" href="#gestacionActualClap-tab" role="tab" aria-controls="home" aria-selected="false" @*aria-expanded="false"*@>GESTACION ACTUAL/CPN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom" id="examenFisicoClap-tab-link" data-toggle="tab" href="#examenFisicoClap-tab" role="tab" aria-controls="home" aria-selected="false" @*aria-expanded="false"*@>EXAMEN FÍSICO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom" id="examenGinecologicoClap-tab-link" data-toggle="tab" href="#examenGinecologicoClap-tab" role="tab" aria-controls="home" aria-selected="false" @*aria-expanded="false"*@>EXAMEN GINECOLÓGICO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom" id="examenObstetricoClap-tab-link" data-toggle="tab" href="#examenObstetricoClap-tab" role="tab" aria-controls="home" aria-selected="false" @*aria-expanded="false"*@>EXAMEN OBSTÉTRICO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom" id="diagnosticosClap-tab-link" data-toggle="tab" href="#diagnosticosClap-tab" role="tab" aria-controls="home" aria-selected="false" @*aria-expanded="false"*@>DIAGNÓSTICOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom" id="trabajoPartoClap-tab-link" data-toggle="tab" href="#trabajoPartoClap-tab" role="tab" aria-controls="home" aria-selected="false" @*aria-expanded="false"*@>TRABAJO DE PARTO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom" id="procedimientosClap-tab-link" data-toggle="tab" href="#procedimientosClap-tab" role="tab" aria-controls="home" aria-selected="false" @*aria-expanded="false"*@>PROCEDIMIENTOS</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content pt-1" id="AltaMedTabContent">
+                    <div class="tab-pane fade active in" id="motivoAtencionClap-tab" role="tabpanel" aria-labelledby="motivoAtencionClap-tab-link" @*aria-expanded="true"*@>
+                        <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/EvaluacionGinecoObstetra/EvaGinecoObsHospMotivoAtencion.cshtml" />
+                    </div>
+
+                    <div class="tab-pane fade" id="antecedentesClap-tab" role="tabpanel" aria-labelledby="antecedentesClap-tab-link" @*aria-expanded="true"*@>
+                        <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/EvaluacionGinecoObstetra/EvaGinecoObsHospAntecedentes.cshtml" />
+                    </div>
+
+                    <div class="tab-pane fade" id="gestacionActualClap-tab" role="tabpanel" aria-labelledby="gestacionActualClap-tab-link" @*aria-expanded="true"*@>
+                        <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/EvaluacionGinecoObstetra/EvaGinecoObsHospGestacionActual.cshtml" />
+                    </div>
+
+                    <div class="tab-pane fade" id="examenFisicoClap-tab" role="tabpanel" aria-labelledby="examenFisicoClap-tab-link" @*aria-expanded="true"*@>
+                        <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/EvaluacionGinecoObstetra/EvaGinecoObsHospExamenFisico.cshtml" />
+                    </div>
+
+                    <div class="tab-pane fade" id="examenGinecologicoClap-tab" role="tabpanel" aria-labelledby="examenGinecologicoClap-tab-link" @*aria-expanded="true"*@>
+                        <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/EvaluacionGinecoObstetra/EvaGinecoObsHospExamenGinecologico.cshtml" />
+                    </div>
+
+                    <div class="tab-pane fade" id="examenObstetricoClap-tab" role="tabpanel" aria-labelledby="examenObstetricoClap-tab-link" @*aria-expanded="true"*@>
+                        <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/EvaluacionGinecoObstetra/EvaGinecoObsHospExamenObstetrico.cshtml" />
+
+                        <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/EvaluacionGinecoObstetra/EvaGinecoObsHospExamenTactoVaginal.cshtml" />
+                    </div>
+
+                    <div class="tab-pane fade" id="diagnosticosClap-tab" role="tabpanel" aria-labelledby="diagnosticosClap-tab-link" @*aria-expanded="true"*@>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card mb-1 mt-1">
+                                    <div class="card-block" style="background-color: #fffbca;">
+
+                                        <div class="row">
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="txtIafaPlanHosp">IAFA-PLAN</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtIafaPlanHosp" disabled="disabled">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="txtRiesgoSocialHosp">Riesgo Social</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtRiesgoSocialHosp" disabled="disabled">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="txtMedicoIngresoHosp">Médico Ingreso</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtMedicoIngresoHosp" disabled="disabled">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group custom-controls-stacked mr-2">
+                                                    <span>Tiene I.Qx</span>
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbTieneIQxHospSi" name="rdbTieneIQxHosp" value="1">
+                                                        <label for="rdbTieneIQxHospSi" class="pl-2 pr-2">Si</label>
+                                                        <input type="radio" id="rdbTieneIQxHospNo" name="rdbTieneIQxHosp" value="0" checked="checked">
+                                                        <label for="rdbTieneIQxHospNo" class="pl-2 pr-2 mr-auto">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="d-flex">
+                                                    <div class="form-group">
+                                                        <label for="txtFechaIQxHosp" class="form-control-label">Fecha I.Qx</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIQxHosp">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="cboMetodoPlanificacionHosp">Método PP.FF</label>
+                                                    <select id="cboMetodoPlanificacionHosp" class="chzn-select">
+                                                        <option value="1">Espontáneo</option>
+                                                        <option value="2">Inducido</option>
+                                                        <option value="3">Cesárea / Cesár. Elec.</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 mt-1">
+                                <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/DiagnosticosClap.cshtml" />
+                            </div>
+
+                            <div class="col-lg-12 mt-1">
+                                <div class="card bg-teal">
+                                    <div class="card-header bg-white" id="TituloCardDiagnostico">Estancia Hospitalaria</div>
+                                    <div class="card-block custom-form pt-1">
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table id="tblEstanciaHosp" class="table table-sm table-bordered table-content-sm" width="100%">
+                                                    <thead style="color: white;background: #51717a;">
+                                                        <tr>
+                                                            <th style="width:10%">Fecha Ingreso</th>
+                                                            <th style="width:30%">Nombre Servicio</th>
+                                                            <th style="width:10%">Cama</th>
+                                                            <th style="width:30%">Medico Ingreso</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="trabajoPartoClap-tab" role="tabpanel" aria-labelledby="trabajoPartoClap-tab-link">
+                        <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/EvaluacionGinecoObstetra/EvaGinecoObsHospTrabajoParto.cshtml" />
+                    </div>
+
+                    <div class="tab-pane fade" id="procedimientosClap-tab" role="tabpanel" aria-labelledby="procedimientosClap-tab-link">
+                        <div class="row mt-1">
+                            <div class="col-md-12">
+                                <partial name="~/Views/Shared/Components/VistasParciales/Procedimientos/ProcedimientosCpt.cshtml" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer mt-2">
+                <button id="btnGuardarClap" type="button" class="btn btn-info btn-lg mb-1 pl-3 pr-3" style="max-width: 140px;">Guardar</button>
+                <button id="btnCerrarClap" type="button" class="btn btn-secondary btn-lg mb-1 ml-2 pl-3 pr-3" style="max-width: 140px;">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

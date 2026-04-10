@@ -1,0 +1,126 @@
+﻿<div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalTransferenciasConfirmacion" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" @* style="max-width:450px" *@>
+            <div class="modal-header bg-deep-purple">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Recepción de Pacientes</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card bg-blue mb-1">
+                    <div class="card-header bg-white">Datos del Paciente</div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group m-0">
+                                    <label for="txtNroCuentaRecepcion">N° Cuenta</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNroCuentaRecepcion" placeholder="" autocomplete="off" disabled="">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group m-0">
+                                    <label for="txtHistoriaRecepcion">Historia</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtHistoriaRecepcion" placeholder="" autocomplete="off" disabled="">
+                                </div>
+                            </div>    
+                            <div class="col-md-4">
+                                <div class="form-group m-0">
+                                    <label for="txtPacienteNombreRecepcion">Nombres</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtPacienteNombreRecepcion" placeholder="" autocomplete="off" disabled="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group m-0">
+                                    <label for="txtNroDocumentoRecepcion">N° Documento</label>
+                                    <div class="d-flex">
+                                        <input type="text" class="form-control form-control-sm m-r-5" id="txtTipoDocumentoRecepcion" placeholder="" autocomplete="off" disabled="">
+                                        <input type="text" class="form-control form-control-sm m-l-5" id="txtNroDocumentoRecepcion" placeholder="" autocomplete="off" disabled="">
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-2" >
+                    <div class="card-header">Servicio Actual</div>
+                    <div class="card-block bg-blue">
+                        <div class="row" id="EstanciaServicioActual">
+                            <div class="col-md-4">
+                                <div class="form-group m-0">
+                                    <label for="cboServicioActualTransferencia" class="form-control-label">Servicio actual</label>
+                                    <select class="chzn-select w-100" id="cboServicioActualTransferencia" data-placeholder="Seleccione una opción" disabled></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="CamasActual">
+                                <div class="form-group m-0">
+                                    <label for="cboCamaActualTransferencia" class="form-control-label">Cama actual</label>
+                                    <select class="chzn-select w-100" id="cboCamaActualTransferencia" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="BtnCamaActual">
+                                <div class="d-flex align-items-end" style="height: 55px;">
+                                    <button id="btnGuardarCamaActualTransferencia" target="_blank" class="btn btn-sm btn-success mr-1" style="width: 105px;">Cambiar Cama</button>
+                                    <button id="btnCerrarCamaActualTransferencia" target="_blank" class="btn btn-sm btn-secondary" style="width: 105px;">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="EstanciaServicioPorRecepcionar">
+                            <div class="col-md-8" style="font-size: 17px;">
+                                <div> Debe confirmar que el paciente <strong style="font-weight: 900;text-decoration: underline;">Llegó al Servicio Transferido</strong>.</div>                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="cboServicioEsperaTransferencia" class="form-control-label">Servicio por recepcionar</label>
+                                            <select class="chzn-select w-100" id="cboServicioEsperaTransferencia" data-placeholder="Seleccione una opción" disabled></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" id="CamasEspera">
+                                        <div class="form-group m-0">
+                                            <label for="cboCamaEsperaTransferencia" class="form-control-label">Cama por recepcionar</label>
+                                            <select class="chzn-select w-100" id="cboCamaEsperaTransferencia" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 pt-1" id="BtnCamaEspera">
+                                <div>¿Esta seguro de confirmar la llegada?</div>
+                                <div class="d-flex align-items-end" style="height: 55px;">
+                                    <button id="btnGuardarTransferenciasConfirmacion" target="_blank" class="btn btn-lg btn-info mr-1" style="width: 105px;">Sí Llegó</button>
+                                    <button id="btnCerrarTransferenciasConfirmacion" target="_blank" class="btn btn-lg btn-secondary" style="width: 105px;">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                @* <div class="card">                    
+                    <div class="card-block bg-blue">
+                        <div class="row">
+                            <div class="col-md-12 text-sm-center" style="font-size: 17px;">
+                                <div>
+                                    Debe confirmar que el paciente <strong style="font-weight: 900;text-decoration: underline;"></br>
+                                    Llegó al Servicio Transferido</strong>.                                    
+                                </div>
+                                <hr />
+                                <div>¿Esta seguro de confirmar la llegada?</div>
+                            </div>
+                            
+                            <div class="col-md-12" id="">
+                                <div class="form-group m-0">
+                                    <label for="cboCamaEsperaTransferencia" class="form-control-label font-weight-bold" style="font-size: 16px;">Cama Nro:</label>
+                                    <select class="chzn-select w-100" id="cboCamaEsperaTransferencia" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div> *@
+                
+            </div>
+            @* <div class="modal-footer text-sm-center">
+                <button id="btnGuardarTransferenciasConfirmacion" target="_blank" class="btn btn-lg btn-primary mr-1" style="width: 105px;">Sí Llegó</button>
+                <button id="btnCerrarTransferenciasConfirmacion" target="_blank" class="btn btn-lg btn-secondary" style="width: 105px;">Cancelar</button>
+            </div> *@
+        </div>
+    </div>
+</div>

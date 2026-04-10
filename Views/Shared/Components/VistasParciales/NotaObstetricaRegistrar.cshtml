@@ -1,0 +1,1518 @@
+﻿<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalNotaIngreso" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Registro de Nota Obstetrica</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="card  m-t-5 bg-blue" style="padding-bottom: 0px;">
+                    <div class="card-header bg-white">Datos del Paciente</div>
+                    <div class="card-block m-t-5 custom-form pb-1" style="padding-bottom: 0px;">
+
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label for="txtHc" class="form-control-label">Historia Clinica</label>
+                                <div class="form-group">
+                                    <input id="txtHc" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <label for="txtNroCuenta">Nro. Cuenta</label>
+                                <div class="form-group">
+                                    <input id="txtNroCuenta" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                    <label for="txtDatosPaciente" class="form-control-label">Datos Paciente</label>
+                                <div class="form-group">
+                                    <input id="txtDatosPaciente" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+
+                             <div class="col-lg-2">
+                                    <label for="txtServicioOrg" class="form-control-label">Servicio Origen</label>
+                                <div class="form-group">
+                                    <input id="txtServicioOrg" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                    <label for="txtServicioActual" class="form-control-label">Servicio Actual</label>
+                                <div class="form-group">
+                                    <input id="txtServicioActual" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+                           @* <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="cboServicioOrg">Servicio Origen</label>
+                                    <select class="chzn-select" id="cboServicioOrg"></select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="cboServicioActual">Servicio Actual</label>
+                                    <select class="chzn-select" id="cboServicioActual"></select>
+                                </div>
+                            </div>*@
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label for="txtNroCama" class="form-control-label">Nro. Cama</label>
+                                <div class="form-group">
+                                    <input id="txtNroCama" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <label for="txtFechaIng" class="form-control-label">Fecha Ingreso</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIng" disabled>
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <label for="txtFechaReg" class="form-control-label">Fecha Registro</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaReg" disabled>
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <label for="txtCantidadN">Cantidad de Notas</label>
+                                <div class="form-group">
+                                    <input id="txtCantidadN" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <form>
+                                    <fieldset class="m-0 pr-1 pl-1 pb-1">
+                                        <legend class="mb-0">Historial Notas Obstetricas</legend>
+                                        <table id="tblHistorialNotasObsetricia" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                                            <thead style="color: white;">
+                                                @*<tr style="background-color: #434343;">
+                                                <th colspan="2">EVALUACIONES</th>
+                                                </tr>*@
+                                                <tr style="background-color: #434343;">
+                                                    <th style="width:30% !important; text-align:center;">N° Nota Obs.</th>
+                                                    <th style="width:70% !important;">Fecha de Registro</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+
+                                        <div class="row mt-1" id="divFirma">
+                                            <div class="col-xs-4">
+                                                <button style="width:100%" type="button" class="btn btn-sm btn-success ImprimirEvalNeoEmerConF"><i class="fa fa-print"></i></button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <a id="FirmarEvalNeo" style="width:100%" href="" class="btn btn-sm btn-danger"><i class="fa fa-pencil"></i></a>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button style="width:100%" type="button" class="btn btn-sm btn-warning ImprimirEvalNeoEmerSinF"><i class="fa fa-eye"></i></button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-lg-12">
+                                <button style="width:100%" class="btn btn-success layout_btn_prevent" id="btnNuevoRegistro" onclick=""><i style="width: 20px; text-align:center;" class="fa-solid fa-file-plus"></i> NUEVA EVALUACIÓN</button>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <button style="width:100%" class="btn btn-primary layout_btn_prevent" id="btnSeguimiento"><i style="width: 20px; text-align:center;" class="fa fa-wheelchair-move"></i> SEGUIMIENTO DE PACIENTE</button>
+                            </div>
+                        </div>
+
+                        @*<div class="row">
+                        <div class="col-lg-12">
+                        <table id="tblEvaluaciones" class="table table-bordered table-sm" style="">
+                        <thead style="color: white; background: #3e6184;">
+                        <tr>
+                        <th style="width: 40%">Nro. Nota</th>
+                        <th style="width: 60%">Fecha Reg.</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                        </table>
+                        </div>
+                        </div>
+                        <div class="row" id="divFirma">
+
+                        <div class="col-lg-4">
+                        <button style="width:100%" class="btn btn-danger layout_btn_prevent" id="btnGeneraGineObstetra"><i class="fa fa-pencil"></i></button>
+                        </div>
+                        <div class="col-lg-4">
+                        <button style="width:100%" class="btn btn-success layout_btn_prevent" id="btnDescargaGineObstetra"><i class="fa fa-print"></i></button>
+                        </div>
+                        <div class="col-lg-4">
+                        <button style="width:100%" class="btn btn-warning layout_btn_prevent" id="btnImprimeInformeSF"><i class="fa fa-eye"></i></button>
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="col-lg-12">
+                        <label for="" id="lblNroAtencion" style="font-size: x-large;" class="form-control-label titulo"></label>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-lg-12">
+                        <button style="width:100%" class="btn btn-success layout_btn_prevent" id="btnNuevoRegistro">NUEVO REGISTRO</button>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-lg-12">
+                        <button style="width:100%" class="btn btn-warning layout_btn_prevent" id="btnSeguimiento">SEGUIMIENTO DE PACIENTE</button>
+                        </div>
+                        </div>*@
+
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card mt-1 pt-1">
+
+                            <div class="card-block">
+                                <div class="row">
+                                    @*<div class="col-lg-2">
+
+                                    <div class="form-group">
+                                    <label for="txtProfesionalSalud" class="form-control-label">...</label>
+                                    <div class="input-group">
+
+                                    <button style="width:100%" class="btn btn-info layout_btn_prevent" id="btnBuscaProfesional"><i class="fa fa-search"></i></button>
+
+                                    </div>
+                                    </div>
+
+                                    </div>*@
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label for="cboProfesionalSalud">Profesional de Salud</label>
+                                            <select class="chzn-select" id="cboProfesionalSalud"></select>
+                                            @*<div class="input-group">
+                                            <input id="txtProfesionalSalud" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                            </div>*@
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="txtCondicionIngreso" class="form-control-label">Condición de Ingreso</label>
+                                            <div class="input-group">
+                                                <textarea class="form-control" id="txtCondicionIngreso" rows="2"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="casilla custom-form mt-1">
+                                            <h5>Edad Gestacional</h5>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="txtEdadGestacionalSemanas">Semanas</label>
+                                                        <input id="txtEdadGestacionalSemanas" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="txtEdadGestacionalDias">Dias</label>
+                                                        <input id="txtEdadGestacionalDias" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="check__toggle p-t-5">
+                                                        <label class="toggle">
+                                                            <input class="toggle__input campo" type="checkbox" id="chkAU">
+                                                            <span class="toggle__label mr-2">
+                                                                <span class="toggle__text">A.U.</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="check__toggle p-t-5">
+                                                        <label class="toggle">
+                                                            <input class="toggle__input campo" type="checkbox" id="chkFUR">
+                                                            <span class="toggle__label mr-2">
+                                                                <span class="toggle__text">FUR</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="check__toggle p-t-5">
+                                                        <label class="toggle">
+                                                            <input class="toggle__input campo" type="checkbox" id="chkECO">
+                                                            <span class="toggle__label mr-2">
+                                                                <span class="toggle__text">ECO</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                @*<div class="row">
+                                <div class="col-lg-12">
+
+                                <div class="form-group">
+                                <label for="txtCondicionIngreso" class="form-control-label">Condición de Ingreso</label>
+                                <div class="input-group">
+
+                                <textarea class="form-control" id="txtCondicionIngreso" rows="3"></textarea>
+
+                                </div>
+                                </div>
+
+                                </div>
+
+                                </div>*@
+                                @*<div class="row">
+                                <div class="col-lg-2">
+
+                                <div class="form-group">
+                                <br>
+                                <div class="input-group">
+                                <label for="txtEdadGestacional" class="form-control-label">Edad Gestacional</label>
+
+                                </div>
+                                </div>
+
+                                </div>
+                                <div class="col-lg-2">
+                                <div class="form-group">
+                                <label for="txtEdadGestacionalSemanas" class="form-control-label">Semanas</label>
+                                <div class="input-group">
+
+                                <input id="txtEdadGestacionalSemanas" autocomplete="off" placeholder="" class="form-control form-control-sm">
+
+                                </div>
+                                </div>
+                                </div>
+                                <div class="col-lg-2">
+                                <div class="form-group">
+                                <label for="txtEdadGestacionalDias" class="form-control-label">Dias</label>
+                                <div class="input-group">
+
+                                <input id="txtEdadGestacionalDias" autocomplete="off" placeholder="" class="form-control form-control-sm">
+
+                                </div>
+                                </div>
+                                </div>
+                                <div class="col-lg-2">
+                                <div class="form-group">
+                                <label for="txtEdadGestacionalDias" class="form-control-label">.</label>
+                                <div class="input-group">
+
+                                <label><input id="chkFUR" class="checkbox-inout" type="checkbox"><span> FUR</span></label>
+
+                                </div>
+                                </div>
+                                </div>
+                                <div class="col-lg-2">
+                                <div class="form-group">
+                                <label for="txtEdadGestacionalDias" class="form-control-label">.</label>
+                                <div class="input-group">
+
+                                <label><input id="chkFUE" class="checkbox-inout" type="checkbox"><span> FUE</span></label>
+
+                                </div>
+                                </div>
+                                </div>
+                                </div>*@
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card m-t-10">
+                                            <div class="card">
+                                                <ul id="clothing-nav" class="nav nav-tabs" role="tablist">
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" id="diagnosticos-tab-link" data-toggle="tab" href="#diagnosticos-tab" role="tab" aria-controls="home" aria-selected="true" aria-expanded="true">Impresión Diagnóstica</a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#signosVitales" role="tab" id="signosVitales-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Signos Vitales</a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#examenTactoVaginal" role="tab" id="examenTactoVaginal-tab" data-toggle="tab" aria-controls="hats">Tacto Vaginal</a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#trabajoParto" role="tab" id="trabajoParto-tab" data-toggle="tab" aria-controls="hats">Trabajo de Parto</a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#procedimientos" role="tab" id="procedimientos-tab" data-toggle="tab" aria-controls="hats">Procedimientos</a>
+                                                    </li>
+
+                                                </ul>
+                                                <div class="card-block">
+                                                    <div id="clothing-nav-content" class="tab-content fade in active">
+                                                        <div class="tab-pane fade show active in" id="diagnosticos-tab" role="tabpanel" aria-labelledby="diagnosticos-tab-link" aria-expanded="true">
+                                                            <div class="row mt-1">
+                                                                <div class="col-md-12">
+                                                                    <div class="card m-t-5">
+                                                                        <div class="card-block pt-1">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="cboHemorragiaIP">Causas de Hemorragia Intra/Post Parto</label>
+                                                                                        <select class="chzn-select" id="cboHemorragiaIP"></select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="cboTipoPreEclampsia">Tipo de Pre-Eclampsia</label>
+                                                                                        <select class="chzn-select" id="cboTipoPreEclampsia"></select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="cboInfeccionPresentada">Infecciones Presentadas</label>
+                                                                                        <select class="chzn-select" id="cboInfeccionPresentada"></select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mt-1">
+                                                                <div class="col-md-12">
+                                                                    @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Diagnosticos.cshtml")*@
+                                                                    @*<partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/DiagnosticosLab.cshtml" />*@
+                                                                </div>
+
+                                                                <div class="col-md-12 mt-1">
+                                                                    <div class="form-group">
+                                                                        <b><label for="txtImpresionDiagnostica" class="form-control-label">Evaluación/Impresión diagnóstica</label></b>
+                                                                        <div class="input-group">
+                                                                            <textarea class="form-control entrada" id="txtImpresionDiagnostica" rows="5"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div role="tabpanel" class="pt-1 tab-pane fade" id="signosVitales" aria-labelledby="signosVitales-tab">
+
+                                                            <div class="row mb-1">
+                                                                <div class="col-md-12">
+                                                                    <partial name="~/Views/Shared/Components/VistasParciales/Triaje.cshtml" />
+                                                                    @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Triaje.cshtml")*@
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="card  m-t-5 bg-pink" style="padding-bottom: 0px;">
+                                                                        <div class="card-header bg-white">Funciones Biológicas</div>
+                                                                        <div class="card-block m-t-5 custom-form pb-1" style="padding-bottom: 0px;">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="txtApetito">Apetito</label>
+                                                                                        <input id="txtApetito" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="txtSed">Sed</label>
+                                                                                        <input id="txtSed" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="txtOrina" class="form-control-label">Orina</label>
+                                                                                        <input id="txtOrina" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="txtDiposiciones" class="form-control-label">Deposiciones</label>
+                                                                                        <input id="txtDiposiciones" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="txtSuenio">Sueño</label>
+                                                                                        <input id="txtSuenio" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                            @*<div class="row">
+                                                            <div class="col-md-12">
+                                                            <div class="card m-t-5">
+                                                            <div class="card-block">
+                                                            <h5 class="m-t-5 titulo">Funciones Biológicas</h5>
+                                                            <div class="row">
+                                                            <div class="col-md-1">
+                                                            <label for="txtApetito" class="form-control-label">Apetito</label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                            <div class="form-group">
+
+                                                            <div class="input-group">
+
+                                                            <input id="txtApetito" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+
+                                                            </div>
+                                                            </div>
+
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                            <label for="txtOrina" class="form-control-label">Orina</label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                            <div class="form-group">
+
+                                                            <div class="input-group">
+
+                                                            <input id="txtOrina" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+
+                                                            </div>
+                                                            </div>
+
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                            <label for="txtSuenio" class="form-control-label">Sueño</label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                            <div class="form-group">
+
+                                                            <div class="input-group">
+
+                                                            <input id="txtSuenio" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+
+                                                            </div>
+                                                            </div>
+
+                                                            </div>
+
+                                                            </div>
+
+                                                            <div class="row">
+                                                            <div class="col-md-1">
+                                                            <label for="txtSed" class="form-control-label">Sed</label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                            <div class="form-group">
+
+                                                            <div class="input-group">
+
+                                                            <input id="txtSed" autocomplete="off" placeholder="" class="form-control form-control-sm">
+
+                                                            </div>
+                                                            </div>
+
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                            <label for="txtDiposiciones" class="form-control-label">Deposiciones</label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                            <div class="form-group">
+
+                                                            <div class="input-group">
+
+                                                            <input id="txtDiposiciones" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+
+                                                            </div>
+                                                            </div>
+
+                                                            </div>
+
+
+                                                            </div>
+
+                                                            </div>
+                                                            </div>
+                                                            </div>
+
+                                                            </div>*@
+
+                                                        </div>
+
+                                                        @*================================EXAMEN TACTO VAGINAL===========================================*@
+                                                        <div id="examenTactoVaginal" class="tab-pane fade PanelCabeceraEmer campo" aria-labelledby="examenTactoVaginal-tab">
+                                                            <div class="row mt-1">
+
+                                                                <div class="col-md-12">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="d-flex">
+                                                                                <div class="font-weight-bold" style="width:100px;">Tacto Vaginal</div>
+                                                                                <div class="form-group custom-controls-stacked">
+                                                                                    <div class="switch-field">
+                                                                                        <input type="radio" id="rdbTactovaginalSi" name="rdbTactoVaginal" class="rdbTactoVaginal" value="1">
+                                                                                        <label for="rdbTactovaginalSi" class="pl-2 pr-2">Si</label>
+                                                                                        <input type="radio" id="rdbTactovaginalNO" name="rdbTactoVaginal" class="rdbTactoVaginal" value="0">
+                                                                                        <label for="rdbTactovaginalNO" class="pl-2 pr-2 mr-auto">Diferido</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="col-md-12">
+                                                                            <div class="card bg-orange mb-1 frmTactoVaginal">
+                                                                                <div class="card-block pb-0">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-6">
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="txtDilatacion" class="">Dilatación</label>
+                                                                                                        <div class="d-flex">
+                                                                                                            <div class="input-group mr-1" style="max-width: 60%;">
+                                                                                                                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtDilatacion">
+                                                                                                            </div>
+                                                                                                            <span>cm</span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-md-6">
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="txtIncorporacion" class="">Incorporación</label>
+                                                                                                        <div class="d-flex">
+                                                                                                            <div class="input-group mr-1" style="max-width: 60%;">
+                                                                                                                <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtIncorporacion">
+                                                                                                            </div>
+                                                                                                            <span>%</span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-md-6">
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="txtAltPresen" class="m-0">Alt. Present.  </label>
+                                                                                                        <div class="input-group" style="max-width: 60%;">
+                                                                                                            <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtAltPresen">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-md-6">
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="txtVarPresen" class="m-0">Varied. Presen.</label>
+                                                                                                        <div class="input-group" style="max-width: 60%;">
+                                                                                                            <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtVarPresen">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-12">
+                                                                            <div class="card bg-orange mb-1 frmTactoVaginal">
+                                                                                <div class="card-block pt-1 pb-0">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="d-flex">
+                                                                                                        <div class="" style="width:150px;">Membra. Rotas</div>
+                                                                                                        <div class="form-group custom-controls-stacked">
+                                                                                                            <div class="switch-field">
+                                                                                                                <input type="radio" id="rdbMembranaRotaSi" name="rdbMembranaRota" class="rdbMembranaRota" value="1">
+                                                                                                                <label for="rdbMembranaRotaSi" class="pl-2 pr-2">Si</label>
+                                                                                                                <input type="radio" id="rdbMembranaRotaNO" name="rdbMembranaRota" class="rdbMembranaRota" value="0">
+                                                                                                                <label for="rdbMembranaRotaNO" class="pl-2 pr-2 mr-auto">No</label>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="d-flex">
+                                                                                                        <div class="" style="width:150px;">Procubito</div>
+                                                                                                        <div class="form-group custom-controls-stacked">
+                                                                                                            <div class="switch-field">
+                                                                                                                <input type="radio" id="rdbProcubitoSi" name="rdbProcubito" value="1">
+                                                                                                                <label for="rdbProcubitoSi" class="pl-2 pr-2">Si</label>
+                                                                                                                <input type="radio" id="rdbProcubitoNO" name="rdbProcubito" value="0">
+                                                                                                                <label for="rdbProcubitoNO" class="pl-2 pr-2 mr-auto">No</label>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="d-flex">
+                                                                                                        <div class="" style="width:150px;">Prolapso</div>
+                                                                                                        <div class="form-group custom-controls-stacked">
+                                                                                                            <div class="switch-field">
+                                                                                                                <input type="radio" id="rdbProlapsoSi" name="rdbProlapso" value="1">
+                                                                                                                <label for="rdbProlapsoSi" class="pl-2 pr-2">Si</label>
+                                                                                                                <input type="radio" id="rdbProlapsoNO" name="rdbProlapso" value="0">
+                                                                                                                <label for="rdbProlapsoNO" class="pl-2 pr-2 mr-auto">No</label>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="d-flex">
+                                                                                                        <div class="" style="width:150px;">Sangrado V.</div>
+                                                                                                        <div class="form-group custom-controls-stacked">
+                                                                                                            <div class="switch-field">
+                                                                                                                <input type="radio" id="rdbSangradoVaginalSi" name="rdbSangradoVaginal" value="SI">
+                                                                                                                <label for="rdbSangradoVaginalSi" class="pl-2 pr-2">Si</label>
+                                                                                                                <input type="radio" id="rdbSangradoVaginalNO" name="rdbSangradoVaginal" value="NO">
+                                                                                                                <label for="rdbSangradoVaginalNO" class="pl-2 pr-2 mr-auto">No</label>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="card bg-orange mb-1 frmLiquidoAmniotico">
+                                                                                                <div class="card-header bg-white">Liquido Amniótico</div>
+                                                                                                <div class="card-block py-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-12">
+                                                                                                            <div class="form-group custom-controls-stacked">
+                                                                                                                <div class="row">
+                                                                                                                    <div class="col-lg-12">
+                                                                                                                        <label class="custom-control custom-radio">
+                                                                                                                            <input type="radio" name="rdbLiquidoAmniotico" id="rdbLiqAmnClaro" class="custom-control-input" value="1">
+                                                                                                                            <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                                                                            <span class="custom-control-description text-default">Claro</span>
+                                                                                                                        </label>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <div class="row">
+                                                                                                                    <div class="col-lg-12">
+                                                                                                                        <label class="custom-control custom-radio">
+                                                                                                                            <input type="radio" name="rdbLiquidoAmniotico" id="rdbLiqAmnMeconial" class="custom-control-input" value="2">
+                                                                                                                            <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                                                                            <span class="custom-control-description text-default">Meconial</span>
+                                                                                                                        </label>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <div class="row">
+                                                                                                                    <div class="col-lg-12">
+                                                                                                                        <label class="custom-control custom-radio">
+                                                                                                                            <input type="radio" name="rdbLiquidoAmniotico" id="rdbLiqAmnSangui" class="custom-control-input" value="3">
+                                                                                                                            <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                                                                            <span class="custom-control-description text-default">Sanguinolento</span>
+                                                                                                                        </label>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-12">
+                                                                                                            <div class="d-flex">
+                                                                                                                <div class="" style="width:90px;">Mal Olor</div>
+                                                                                                                <div class="form-group custom-controls-stacked">
+                                                                                                                    <div class="switch-field">
+                                                                                                                        <input type="radio" id="rdbMalOlorSI" name="rdbMalOlor" value="1">
+                                                                                                                        <label for="rdbMalOlorSI" class="pl-2 pr-2">Si</label>
+                                                                                                                        <input type="radio" id="rdbMalOlorNO" name="rdbMalOlor" value="0">
+                                                                                                                        <label for="rdbMalOlorNO" class="pl-2 pr-2 mr-auto">No</label>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+
+                                                                @*   <div class="col-md-6">
+                                                                <div class="row">
+                                                                <div class="col-md-12">
+                                                                <div class="card bg-orange mb-1">
+                                                                <div class="card-header bg-white">Pelvimetria</div>
+                                                                <div class="card-block pt-1 pb-0">
+                                                                <div class="row">
+                                                                <div class="col-lg-12">
+                                                                <div class="d-flex">
+                                                                <div class="" style="width:90px;">Superior</div>
+                                                                <div class="form-group custom-controls-stacked">
+                                                                <div class="switch-field">
+                                                                <input type="radio" id="rdbPelvSuperiorSi" name="rdbPelvSuperior" value="1">
+                                                                <label for="rdbPelvSuperiorSi" class="pl-2 pr-2">Adecuada</label>
+                                                                <input type="radio" id="rdbPelvSuperiorNO" name="rdbPelvSuperior" value="0">
+                                                                <label for="rdbPelvSuperiorNO" class="pl-2 pr-2 mr-auto">Contraida</label>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                <div class="d-flex">
+                                                                <div class="" style="width:90px;">Medio</div>
+                                                                <div class="form-group custom-controls-stacked">
+                                                                <div class="switch-field">
+                                                                <input type="radio" id="rdbPelvMedioSi" name="rdbPelvMedio" value="1">
+                                                                <label for="rdbPelvMedioSi" class="pl-2 pr-2">Adecuada</label>
+                                                                <input type="radio" id="rdbPelvMedioNO" name="rdbPelvMedio" value="0">
+                                                                <label for="rdbPelvMedioNO" class="pl-2 pr-2 mr-auto">Contraida</label>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                <div class="d-flex">
+                                                                <div class="" style="width:90px;">Inferior</div>
+                                                                <div class="form-group custom-controls-stacked">
+                                                                <div class="switch-field">
+                                                                <input type="radio" id="rdbPelvInferiorSi" name="rdbPelvInferior" value="1">
+                                                                <label for="rdbPelvInferiorSi" class="pl-2 pr-2">Adecuada</label>
+                                                                <input type="radio" id="rdbPelvInferiorNO" name="rdbPelvInferior" value="0">
+                                                                <label for="rdbPelvInferiorNO" class="pl-2 pr-2 mr-auto">Contraida</label>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+
+                                                                </div>
+
+                                                                <div class="row">
+                                                                <div class="col-lg-12">
+                                                                <div class="">Pelvis Ginecoide</div>
+                                                                <div class="form-group custom-controls-stacked">
+                                                                <div class="switch-field">
+                                                                <input type="radio" id="rdbPelvisGinecoideSi" name="rdbPelvisGinecoide" value="1">
+                                                                <label for="rdbPelvisGinecoideSi" class="pl-2 pr-2">Si</label>
+                                                                <input type="radio" id="rdbPelvisGinecoideNO" name="rdbPelvisGinecoide" value="0">
+                                                                <label for="rdbPelvisGinecoideNO" class="pl-2 pr-2 mr-auto">No</label>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                <div class="col-lg-12">
+                                                                <div class="row">
+                                                                <div class="col-md-12">Compatibilidad Feto-Pelvica</div>
+                                                                <div class="col-lg-4">
+                                                                <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbCompFetoPelvica" id="rdbCompFetoPelvicaSI" class="custom-control-input" value="1">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">Si</span>
+                                                                </label>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbCompFetoPelvica" id="rdbCompFetoPelvicaNO" class="custom-control-input" value="2">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">No</span>
+                                                                </label>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbCompFetoPelvica" id="rdbCompFetoPelvicaDuda" class="custom-control-input" value="3">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">Dudosa</span>
+                                                                </label>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                <label for="txtPelvisGinecoide">Describir</label>
+                                                                <textarea class="form-control" id="txtPelvisGinecoide" rows="3"></textarea>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+
+                                                                </div>
+                                                                </div>
+                                                                </div>
+
+
+                                                                </div>
+                                                                </div>*@
+
+
+
+
+
+
+
+
+
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div role="tabpanel" class="pt-1 tab-pane fade" id="trabajoParto" aria-labelledby="trabajoParto-tab">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <div class="casilla custom-form mt-1">
+                                                                        <h5>Detalle de Partograma</h5>
+                                                                        <div class="d-flex justify-content-start">
+                                                                            <div>
+                                                                                <div class="switch-field">
+                                                                                    <input type="radio" id="rdbPatoGramaSI" name="rdbPatoGrama" class="rdbPatoGrama default">
+                                                                                    <label for="rdbPatoGramaSI" class="pl-3 pr-3">Si</label>
+                                                                                    <input type="radio" id="rdbPatoGramaNo" name="rdbPatoGrama" class="rdbPatoGrama">
+                                                                                    <label for="rdbPatoGramaNo" class="pl-3 pr-3 mr-auto">No</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="ml-1 w-100"><input type="text" class="form-control form-control-sm" id="txtPartograma" autocomplete="off"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <div class="casilla custom-form mt-1">
+                                                                        <h5>Semana Inicio</h5>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <label for="txtTrabajoPartoSemanas">Semanas</label>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <input id="txtTrabajoPartoSemanas" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="col-md-6">
+                                                                                    <label for="txtTrabajoPartoDias">Dias</label>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <input id="txtTrabajoPartoDias" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label for="cboCorticoidesAntenales">Corticoides de Antenales</label>
+                                                                        <select class="chzn-select" id="cboCorticoidesAntenales"></select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label for="cboFaseTrabajoParto">Fase del Trabajo de Parto</label>
+                                                                        <select class="chzn-select" id="cboFaseTrabajoParto"></select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label for="cboPosicionParto">Posición del parto</label>
+                                                                        <select class="chzn-select" id="cboPosicionParto"></select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label for="cboTipoParto">Tipo de Parto</label>
+                                                                        <select class="chzn-select" id="cboTipoParto"></select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label for="txtHoraMinuto">Horas : Minutos</label>
+                                                                        <input type="text" class="form-control form-control-sm" id="txtHoraMinuto" placeholder="" autocomplete="off">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label style="width: 100%;">Perdida de liquido</label>
+                                                                        <div class="switch-field">
+                                                                            <input type="radio" id="rdbPerdidaLiquidoSI" name="rdbPerdidaLiquido" class="rdbPerdidaLiquido default">
+                                                                            <label for="rdbPerdidaLiquidoSI" class="pl-3 pr-3">Si</label>
+                                                                            <input type="radio" id="rdbPerdidaLiquidoNo" name="rdbPerdidaLiquido" class="rdbPerdidaLiquido">
+                                                                            <label for="rdbPerdidaLiquidoNo" class="pl-3 pr-3 mr-auto">No</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label style="width: 100%;">Sangrado Vaginal Activo</label>
+                                                                        <div class="switch-field">
+                                                                            <input type="radio" id="rdbSangradoVagActivoSI" name="rdbSangradoVagActivo" class="rdbSangradoVagActivo default">
+                                                                            <label for="rdbSangradoVagActivoSI" class="pl-3 pr-3">Si</label>
+                                                                            <input type="radio" id="rdbSangradoVagActivoNo" name="rdbSangradoVagActivo" class="rdbSangradoVagActivo">
+                                                                            <label for="rdbSangradoVagActivoNo" class="pl-3 pr-3 mr-auto">No</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                               
+                                                            </div>
+
+
+                                                            @*<div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label style="width: 100%;"></label>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                    <div class="row">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-3">
+                                                                        <div class="row">
+                                                                        <div class="col-md-4">
+                                                                        <label for="txtTrabajoPartoSemanas">Semana Inicio</label>
+                                                                        </div>
+
+                                                                        <div class="col-md-4">
+                                                                        <label for="txtTrabajoPartoSemanas">Semanas</label>
+                                                                        <div class="form-group">
+                                                                        <input id="txtTrabajoPartoSemanas" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                                        </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-4">
+                                                                        <label for="txtTrabajoPartoDias">Dias</label>
+                                                                        <div class="form-group">
+                                                                        <input id="txtTrabajoPartoDias" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div><div class="col-md-2">
+
+                                                                            <div class="form-group">
+                                                                                <label for="cboFaseTrabajoParto">Forma de Parto</label>
+                                                                                <select class="chzn-select" id="cboFaseTrabajoParto"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                    </div>
+                                                                </div>*@
+
+
+                                                                @* <div class="row">
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                        <div class="casilla custom-form mt-1">
+                                                                        <h5>Semana Inicio</h5>
+                                                                        <div class="row">
+                                                                        <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                        <label for="txtTrabajoPartoSemanas">Semanas</label>
+                                                                        <input id="txtTrabajoPartoSemanas" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                                        </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                        <label for="txtTrabajoPartoDias">Dias</label>
+                                                                        <input id="txtTrabajoPartoDias" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="cboTipoParto">Tipo de Parto</label>
+                                                                                <select class="chzn-select" id="cboTipoParto"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="cboCorticoidesAntenales">Inicio de Parto</label>
+                                                                                <select class="chzn-select" id="cboCorticoidesAntenales"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="cboCorticoidesAntenales">Present. Situación</label>
+                                                                                <select class="chzn-select" id="cboCorticoidesAntenales"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label style="width: 100%;">Rotura Membranas Anteparto</label>
+                                                                                <div class="switch-field">
+                                                                                    <input type="radio" id="rdbPatoGramaSI" name="rdbPatoGrama" class="rdbPatoGrama default">
+                                                                                    <label for="rdbPatoGramaSI" class="pl-3 pr-3">Si</label>
+                                                                                    <input type="radio" id="rdbPatoGramaNo" name="rdbPatoGrama" class="rdbPatoGrama">
+                                                                                    <label for="rdbPatoGramaNo" class="pl-3 pr-3 mr-auto">No</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">Tiempo RMA</label>
+                                                                                <div class="d-flex">
+                                                                                    <input type="text" class="form-control form-control-sm" id="txtEdadAnio" placeholder="" autocomplete="off">
+                                                                                    <span style="margin: 0 2px;font-weight: bold;">|</span>
+                                                                                    <input type="text" class="form-control form-control-sm" id="txtEdadMes" placeholder="" autocomplete="off">
+                                                                                    <span style="margin: 0 2px;font-weight: bold;">|</span>
+                                                                                    <input type="text" class="form-control form-control-sm" id="txtEdadDia" placeholder="" autocomplete="off">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="cboCorticoidesAntenales">Acompañante TDP</label>
+                                                                                <select class="chzn-select" id="cboCorticoidesAntenales"></select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        </div>
+                                                                </div>*@
+
+                                                            @*<div class="col-md-6">
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6">
+                                                                        <div class="casilla custom-form mt-1">
+                                                                        <h5>Edad Gestacional al Parto</h5>
+                                                                        <div class="row">
+                                                                        <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                        <label for="txtTrabajoPartoSemanas">Semanas</label>
+                                                                        <input id="txtTrabajoPartoSemanas" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                                        </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                        <label for="txtTrabajoPartoDias">Dias</label>
+                                                                        <input id="txtTrabajoPartoDias" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label style="width: 100%;">Tamaño Fetal Acorde</label>
+                                                                                <div class="switch-field">
+                                                                                    <input type="radio" id="rdbPatoGramaSI" name="rdbPatoGrama" class="rdbPatoGrama default">
+                                                                                    <label for="rdbPatoGramaSI" class="pl-3 pr-3">Si</label>
+                                                                                    <input type="radio" id="rdbPatoGramaNo" name="rdbPatoGrama" class="rdbPatoGrama">
+                                                                                    <label for="rdbPatoGramaNo" class="pl-3 pr-3 mr-auto">No</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                        </div>
+
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label style="width: 100%; color:white;">_</label>
+                                                                                <div class="switch-field">
+                                                                                    <input type="radio" id="rdbObitoNo" name="rdbObito" class="rdbObito campo">
+                                                                                    <label for="rdbObitoNo" class="pl-3 pr-3">&lt; 37 sem.</label>
+                                                                                    <input type="radio" id="rdbObitoSiMenor" name="rdbObito" class="rdbObito campo">
+                                                                                    <label for="rdbObitoSiMenor" class="pl-3 pr-3">&gt; 18 hrs.</label>
+                                                                                    <input type="radio" id="rdbObitoSiMayor" name="rdbObito" class="rdbObito campo">
+                                                                                    <label for="rdbObitoSiMayor" class="pl-2 pr-2">Temp &gt; 38 °C</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="cboCorticoidesAntenales">Acompañante P (Parto)</label>
+                                                                                <select class="chzn-select" id="cboCorticoidesAntenales"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                    *@
+
+
+                                                                <!--<div class="col-md-12">
+                                                                    <div class="card m-t-5">
+                                                                        <div class="card-block">-->
+                                                                @*<div class="row">
+                                                                <div class="col-md-3">
+                                                                <label for="txtSed" class="form-control-label">Detalle de partograma</label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                <div class="row">
+                                                                <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbPatoGrama" id="rdbPatoGramaSI" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">SI</span>
+                                                                </label>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbPatoGrama" id=rdbPatoGramaNo" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                <span class="custom-control-description text-danger">NO</span>
+                                                                </label>
+                                                                </div>
+                                                                </div>
+
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                <input id="txtPartograma" autocomplete="off" placeholder="" class=" form-control">
+                                                                </div>
+
+                                                                </div>*@
+                                                                <!--<div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboCorticoidesAntenales" class="form-control-label">Corticoides de Antenales</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <select class="chzn-select" id="cboCorticoidesAntenales"></select>
+
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboCorticoidesAntenales" class="form-control-label">Sangrado Vaginal Activo</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <label class="custom-control custom-radio">
+                                                                                                <input type="radio" name="rdbSangradoVaginal" id="rdbSangradoVaginalSI" class="custom-control-input">
+                                                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                                                <span class="custom-control-description text-default">SI</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <label class="custom-control custom-radio">
+                                                                                                <input type="radio" name="rdbSangradoVaginal" id="rdbSangradoVaginalNo" class="custom-control-input">
+                                                                                                <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                                                <span class="custom-control-description text-danger">NO</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboTipoParto" class="form-control-label">Tipo de Parto</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <select class="chzn-select" id="cboTipoParto"></select>
+
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboFormaParto" class="form-control-label">Forma de Parto</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <select class="chzn-select" id="cboFormaParto"></select>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboInicioParto" class="form-control-label">Inicio del Parto</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <select class="chzn-select" id="cboInicioParto"></select>
+
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboFormaParto" class="form-control-label">Edad Gest. al Parto</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="txtEdadGestacionalSemanas" class="form-control-label">Semanas</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    <input id="txtEdadGestacionalSemanasAl" autocomplete="off" placeholder="" class="form-control">
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="txtEdadGestacionalDias" class="form-control-label">Dias</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    <input id="txtEdadGestacionalDiasAl" autocomplete="off" placeholder="" class="form-control">
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboPresentSituacion" class="form-control-label">Present. Situcaión</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <select class="chzn-select" id="cboPresentSituacion"></select>
+
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboCorticoidesAntenales" class="form-control-label">Tamaño Fetal Acorde</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <label class="custom-control custom-radio">
+                                                                                                <input type="radio" name="rdbTamañoFAc" id="rdbTamañoFAcSI" class="custom-control-input">
+                                                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                                                <span class="custom-control-description text-default">SI</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <label class="custom-control custom-radio">
+                                                                                                <input type="radio" name="rdbTamañoFAc" id="rdbTamañoFAcNo" class="custom-control-input">
+                                                                                                <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                                                <span class="custom-control-description text-danger">NO</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboPresentSituacion" class="form-control-label">Rotura Menbranas Anteparto</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <label class="custom-control custom-radio">
+                                                                                                <input type="radio" name="rdbRoturaMemb" id="rdbRoturaMembSI" class="custom-control-input">
+                                                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                                                <span class="custom-control-description text-default">SI</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <label class="custom-control custom-radio">
+                                                                                                <input type="radio" name="rdbRoturaMemb" id="rdbRoturaMembcNo" class="custom-control-input">
+                                                                                                <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                                                <span class="custom-control-description text-danger">NO</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboCorticoidesAntenales" class="form-control-label">Fecha/Hora RMA</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <input id="txtFechaRMA" autocomplete="off" placeholder="" class="form-control">
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <input id="txtHoraRMA" autocomplete="off" placeholder="" class="form-control">
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboPresentSituacion" class="form-control-label">Tiempo RMA</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <input id="txtTiempoRMA" autocomplete="off" placeholder="" class="form-control">
+
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <select class="chzn-select" id="cboTiempoRMA"></select>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboPresentSituacion" class="form-control-label">Acompañante TDP</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <select class="chzn-select" id="cboAcompañanteTDP"></select>
+
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <label for="cboPresentSituacion" class="form-control-label">Acompañante P(Parto)</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <select class="chzn-select" id="cboAcompañanteParto"></select>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>-->
+                                                            @*<div class="row">
+                                                            <div class="col-md-12">
+                                                            <div class="card  m-t-5 bg-pink" style="padding-bottom: 0px;">
+                                                            <div class="card-header bg-white">Control y Monitoreo del Parto</div>
+                                                            <div class="card-block m-t-5 custom-form pb-1" style="padding-bottom: 0px;">
+                                                            <div class="row">
+                                                            <div class="col-md-4">
+                                                            <div class="form-group">
+                                                            <label for="txtApetito">Posición de la Madre</label>
+                                                            <input id="txtApetito" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                                                            </div>
+                                                            <div class="form-group">
+                                                            <label for="txtOrina" class="form-control-label">Dilatación</label>
+                                                            <input id="txtOrina" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                                                            </div>
+                                                            <div class="form-group">
+                                                            <label for="txtSed">Meconio</label>
+                                                            <input id="txtSed" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                            </div>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                            <div class="form-group">
+                                                            <label for="txtSed">Cant/10</label>
+                                                            <input id="txtSed" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                            </div>
+                                                            <div class="form-group">
+                                                            <label for="txtDiposiciones" class="form-control-label">Altura Present</label>
+                                                            <input id="txtDiposiciones" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                                                            </div>
+                                                            <div class="form-group">
+                                                            <label for="txtSuenio">FCF/dps</label>
+                                                            <input id="txtSuenio" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                                                            </div>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                            <div class="form-group">
+                                                            <label for="txtSed">Variedad Posic.</label>
+                                                            <input id="txtSed" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                            </div>
+
+                                                            <div class="form-group text-right">
+                                                            <button class="btn btn-purple layout_btn_prevent mt-2" id="btnNuevoRegistro" onclick="">Ver Esquema</button>
+                                                            </div>
+
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                            </div>*@
+                                                        </div>
+                                                        <div role="tabpanel" class="tab-pane fade" id="procedimientos" aria-labelledby="procedimientos-tab">
+                                                            <div class="row mt-1">
+                                                                <div class="col-md-12">
+                                                                    <partial name="~/Views/Shared/Components/VistasParciales/Procedimientos/ProcedimientosCpt.cshtml" />
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                @{
+                    if (@ViewBag.Agregar == true || @ViewBag.Modificar == true)
+                    {
+                        <button id="btnguardar" class="btn  btn-info btn-lg">Guardar</button>
+                    }
+
+                }
+
+
+                <button type="button" data-dismiss="modal" class="btn btn-secondary btn-lg">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<iframe id="ifrmReporte"
+        title="Inline Frame Example"
+        width="100"
+        height="600" hidden="hidden"
+        src="">
+</iframe>

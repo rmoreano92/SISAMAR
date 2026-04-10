@@ -1,0 +1,581 @@
+﻿
+<div data-backdrop="static" style="overflow-y: scroll; background-color: rgba(0, 0, 0, 0.46);" data-keyboard="false" class="modal fade" id="modalAltaMedica" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-light-green">
+                <div class="rounded-pill bg-secondary" style="width: 180px;">
+                    <i class="fa fa-hands-heart fa-lg mx-1"></i>
+                    <span class="text-white" style="font-size: 1.28rem;font-weight: 500;letter-spacing: 0.5px;">Alta Médica</span>
+                </div>
+
+
+                @*<div style="display:inline-flex">
+                    <div id="BadgeEvaluacion" style="max-width: 280px;" class="m-auto">
+                        <div class="msc-hotline" style="background-color: #4d525c80 !important;">
+                            <div class="msc-hotline-icon bg-secondary" style="width: 40px;height: 40px;">
+                                <i class="fa fa-hands-heart"></i>
+                            </div>
+                            <div class="msc-hotline-content m-auto">
+                                <div class="msc-hotline-title">
+                                    <span id="modalLabelsuccess" class="text-white" style="font-size: 1.28rem;font-weight: 500;letter-spacing: 0.5px;">Alta Médica</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:inline-flex; margin-top:0.5rem">
+                    <span class="chip secondary" id="CuentaHeaderModalAlta" style="font-size: 14px;font-weight: normal;letter-spacing: 1px;"></span>
+                    <span class="chip secondary" id="HistoriaHeaderModalAlta" style="font-size: 14px;font-weight: normal;letter-spacing: 1px;"></span>
+                </div>
+                <div style="display:inline-flex; margin-top:0.5rem;">
+                    <span class="chip secondary" id="PacienteHeaderModalAlta" style="font-size: 14px;font-weight: normal;letter-spacing: 1px;"></span>
+                </div>*@
+            </div>
+
+            <div class="modal-body">
+                <div class="row mb-1">
+                    <div class="col-md-12">
+                        <div class="card bg-blue" style="padding-bottom: 0px;">
+                            <div class="card-header bg-white">Datos del Paciente</div>
+                            <div class="card-block custom-form" style="padding-bottom: 0px;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="txtNroCuentaAltaMedica">N° Cuenta</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNroCuentaAltaMedica" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="txtHistoriaAltaMedica">Historia</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtHistoriaAltaMedica" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="txtPacienteNombreAltaMedica">Nombres</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtPacienteNombreAltaMedica" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="txtNroDocumentoAltaMedica">N° Documento</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control form-control-sm m-r-5" id="txtTipoDocumentoAltaMedica" placeholder="" autocomplete="off" disabled="">
+                                                <input type="text" class="form-control form-control-sm m-l-5" id="txtNroDocumentoAltaMedica" placeholder="" autocomplete="off" disabled="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                         @* RMOREANO - CAMPOS FICHA EGRESO  *@
+                                <div class="row pb-1">
+                                    <div class="col-md-6 col-lg-4">
+								        <label for="txtCipPacienteEmer" class="form-label">CIP</label>
+								        <div class="input-group input-group-sm bloquear-campos">
+									        <input type="text" class="form-control bloquear-campos" id="txtCipPacienteEmer" autocomplete="off" disabled>
+								        </div>
+							        </div>
+                                     <div class="col-md-6 col-lg-4">
+								        <label for="txtCipTitularPacienteEmer" class="form-label">Titular</label>
+								        <div class="input-group input-group-sm bloquear-campos">
+									        <input type="text" class="form-control bloquear-campos" id="txtCipTitularPacienteEmer" autocomplete="off" disabled>
+								        </div>
+							        </div>
+                                </div>
+                                         @* RMOREANO - CAMPOS FICHA EGRESO  *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <ul class="nav nav-tabs jerarquiaA" id="AltaMed-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom active" id="dxEgreso-tab-link" data-toggle="tab" href="#dxEgreso-tab" role="tab" aria-controls="home" aria-selected="true" @*aria-expanded="true"*@>EGRESO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom" id="dxComplicacion-tab-link" data-toggle="tab" href="#dxComplicacion-tab" role="tab" aria-controls="home" aria-selected="false" @*aria-expanded="false"*@>COMPLICACIONES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom" id="dxNacimiento-tab-link" data-toggle="tab" href="#dxNacimiento-tab" role="tab" aria-controls="home" aria-selected="false" @*aria-expanded="false"*@>NACIMIENTOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-whitesmoke border-bottom" id="dxMortalidad-tab-link" data-toggle="tab" href="#dxMortalidad-tab" role="tab" aria-controls="home" aria-selected="false" @*aria-expanded="false"*@>MORTALIDAD</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content pt-1" id="AltaMedTabContent">
+                    <div class="tab-pane fade active in" id="dxEgreso-tab" role="tabpanel" aria-labelledby="dxEgreso-tab-link" @*aria-expanded="true"*@>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card bg-blue" style="padding-bottom: 0px;">
+                                    <div class="card-header bg-white">Egreso</div>
+                                    <div class="card-block custom-form" style="padding-bottom: 0px;">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="cboDestinoAlta">Destino</label>
+                                                    <select id="cboDestinoAlta" class="chzn-select" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="cboTipoAlta">Tipo Alta</label>
+                                                    <select id="cboTipoAlta" class="chzn-select" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group campo">
+                                                    <label for="cboCondicionAlta">Condición Alta</label>
+                                                    <select id="cboCondicionAlta" class="chzn-select" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="cboServicioAlta">Servicio Egreso</label>
+                                                    <select id="cboServicioAlta" class="chzn-select" data-placeholder="Seleccione una opción" disabled></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex">
+                                                    <div class="form-group mr-1">
+                                                        <label for="txtFechaAlta" class="form-control-label">Fecha Alta</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAlta">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="txtHoraAlta" class="form-control-label">Hora Alta</label>
+                                                        <div class="input-group">
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm" name="txtHoraAlta" id="txtHoraAlta" onblur="valida_hora(value)">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="cboMedicoAlta">Médico Alta</label>
+                                                    <select id="cboMedicoAlta" class="chzn-select" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4" hidden>
+                                                <div class="form-group">
+                                                    <label for="txtIntervencionQuirurgicaAlta" class="form-control-label">Intervención quirúrgica </label>
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" name="txtHoraAlta" id="txtIntervencionQuirurgicaAlta">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="cboOpcionIntervenciónQuirurgica">Intervención quirúrgica</label>
+                                                    <select id="cboOpcionIntervenciónQuirurgica" class="chzn-select" data-placeholder="Seleccione una opción">
+                                                        <option value="0">No</option>
+                                                        <option value="1">Si</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex">
+                                                    <div class="form-group mr-1">
+                                                        <label for="txtFechaIntervencionQuirurgicaAlta" class="form-control-label">Fecha Intervención</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIntervencionQuirurgicaAlta">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="txtHoraIntervencionQuirurgicaAlta" class="form-control-label">Hora Intervención</label>
+                                                        <div class="input-group">
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm" name="txtHoraAlta" id="txtHoraIntervencionQuirurgicaAlta" onblur="valida_hora(value)">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="cboMedicoIntervencionQuirurgicaAlta">Médico Intervención</label>
+                                                    <select id="cboMedicoIntervencionQuirurgicaAlta" class="chzn-select" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="cboGrupoGoAlta">Grupo GO</label>
+                                                    <select id="cboGrupoGoAlta" class="chzn-select" data-placeholder="Seleccione una opción">
+                                                        <option value="1">Parto</option>
+                                                        <option value="2">Cesárea</option>
+                                                        <option value="3">Aborto</option>
+                                                        <option value="4">Gestante</option>
+                                                        <option value="5">Puerperio</option>
+                                                        <option value="6">Ginecólogico</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <!--<div class="col-md-4">
+                                                <div class="form-group">
+                                                    <br/>
+                                                    <input type="checkbox" name="name" id="chk_exoneracion"/>
+                                                    <label for="chk_exoneracion">Exoneración</label>
+                                                </div>
+                                            </div>-->
+
+                                            <div class="col-md-3">
+                                                <br />
+                                                <div class="check__toggle mt-04">
+                                                    <label class="toggle">
+                                                        <input class="toggle__input campo" type="checkbox" id="chk_exoneracion">
+                                                        <span class="toggle__label mr-2">
+                                                            <span class="toggle__text">Exoneración</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                         @* RMOREANO - CAMPOS FICHA EGRESO  *@
+                                        <div class="row pb-1">
+                                            
+                                            <div class="col-md-12">
+						                        <label for="txtObservacionAltaMedica" class="form-label">Observación</label>
+						                        <div class="input-group input-group-sm">
+							                        <textarea class="form-control text-info bloquear-campos" style="font-weight: bold;" id="txtObservacionAltaMedica" rows="2"></textarea>
+						                        </div>
+					                        </div>
+                                        </div>
+                                         @* RMOREANO - CAMPOS FICHA EGRESO  *@
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mt-1" id="CardRefCon">
+                                <div class="card bg-purple" style="padding-bottom: 0px;">
+                                    <div class="card-header bg-white" id="TituloCardRefCon">Referencia / Contrareferencia Destino</div>
+                                    <div class="card-block pb-1" style="padding-bottom: 0px;">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-4 col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="ipressdestinoAlta">Cod. IPRESS</label>
+                                                            <input type="text" class="form-control form-control-sm" id="ipressdestinoAlta" placeholder="" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8 col-lg-8 col-xl-9">
+                                                        <div class="form-group m-0">
+                                                            <label for="destinoAlta">Establecimiento de Salud Destino</label>
+                                                            <input type="text" class="form-control form-control-sm" id="destinoAlta" placeholder="" disabled>
+                                                        </div>
+                                                    </div>
+                                                    @*  <div class="col-md-2 col-lg-2 col-xl-2">
+                                                    <a class="btn btn-success mt-2" id="btnEstablecimientoDestinoRef" style="display: none;"> <i class="fa fa-search-plus text-white"></i> </a>
+                                                    </div> *@
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-4 col-xl-4">
+                                                        <div class="form-group m-0">
+                                                            <label for="nroreferencia" id="LabelNroRefConInterno"></label>
+                                                            <input type="text" class="form-control form-control-sm" id="nroreferencia" placeholder="" autocomplete="off" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-lg-4 col-xl-4">
+                                                        <div class="form-group m-0">
+                                                            <label for="nrorefcon" id="LabelNroRefCon">N° RefCon</label>
+                                                            <input type="text" class="form-control form-control-sm" id="nrorefcon" placeholder="" autocomplete="off" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-lg-4 col-xl-4 d-flex align-items-end" style="height: 54px;">
+                                                        <div>
+                                                            <button id="btnRefCon" class="btn btn-outline-info" onclick="ModificarRefCon();"><i class="fa-solid fa-file-plus mr-1"></i>Referencia</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mt-1">
+                                <div class="card bg-blue" style="padding-bottom: 0px;">
+                                    <div class="card-header bg-white">Episodio Clínico</div>
+                                    <div class="card-block custom-form pb-1" style="padding-bottom: 0px;">
+                                        <div class="form-group">
+                                            <label for="cboEpisodioAlta">Episodio Histórico</label>
+                                            <select class="chzn-select" id="cboEpisodioAlta" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                        <div class="row mt-1">
+                                            <div class="col-md-3">
+                                                <div class="check__toggle mt-04">
+                                                    <label class="toggle">
+                                                        <input class="toggle__input campo" type="checkbox" id="chkNuevoAlta">
+                                                        <span class="toggle__label mr-2">
+                                                            <span class="toggle__text">Nuevo Espisodio</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="check__toggle mt-04">
+                                                    <label class="toggle">
+                                                        <input class="toggle__input campo" type="checkbox" id="chkCierreAlta">
+                                                        <span class="toggle__label mr-2">
+                                                            <span class="toggle__text">Cierre Espisodio</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3" id="CierreCicloPrenatal">
+                                                @* <hr /> *@
+                                                <div class="check__toggle mt-04">
+                                                    <label class="toggle">
+                                                        <input class="toggle__input campo" type="checkbox" id="chkCierreCicloPrenatal">
+                                                        <span class="toggle__label mr-2">
+                                                            <span class="toggle__text">Cierre de Ciclo Control Prenatal</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        @* <div class="row" id="CierreCicloPrenatal">
+                                            
+                                        </div> *@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mt-1">
+                                <div class="card bg-teal">
+                                    <div class="card-header bg-white" id="TituloCardDiagnostico">Diagnósticos Ingreso</div>
+                                    <div class="card-block custom-form pt-1">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table id="tblDiagnosticoIngresoAlta" class="table table-sm table-bordered table-content-sm" width="100%">
+                                                    <thead style="color: white;background: #51717a;">
+                                                        <tr>
+                                                            <th style="width: 0%;" data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                                                            <th style="width: 0%;" data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                                                            <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Código</th>
+                                                            <th style="width: 80%;" data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                                                            <th style="width: 0%;" data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                                                            <th style="width: 0%;" data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                                                            <th style="width: 0%;" data-columna="idTipoDiagnostico" valign="middle" align="center">idTipoDiagnostico</th>
+                                                            <th style="width: 10%;" data-columna="TipoDiagnostico" valign="middle" align="center">TipoDiagnostico</th>
+                                                            <th style="width: 10%;" data-columna="Intrahospitalario" valign="middle" align="center">IntraHospitalario</th>
+                                                            <th style="width: 10%;" data-columna="lab" valign="middle" align="center">Lab</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                           
+
+                            <div class="col-md-12 mt-1">                                
+                                <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/DiagnosticosLab.cshtml" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="dxComplicacion-tab" role="tabpanel" aria-labelledby="dxComplicacion-tab-link" @*aria-expanded="true"*@>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/Complicaciones.cshtml" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="dxNacimiento-tab" role="tabpanel" aria-labelledby="dxNacimiento-tab-link" @*aria-expanded="true"*@>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/Diagnosticos2.cshtml" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="dxMortalidad-tab" role="tabpanel" aria-labelledby="dxMortalidad-tab-link" @*aria-expanded="true"*@>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="check__toggle mt-04">
+                                    <label class="toggle">
+                                        <input class="toggle__input campo" type="checkbox" id="chkNecropsia">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Se realizó necropsia?</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-1">
+                                <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/Diagnosticos3.cshtml" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer mt-2">
+                <button id="btnEliminarAltaMedica" type="button" class="btn btn-danger btn-lg mb-1 pl-3 pr-3 mr-2" style="max-width: 170px;float:left;">Revertir Alta</button>
+                <button id="btnEpicrisis" type="button" class="btn btn-indigo btn-lg mb-1 pl-3 pr-3" style="max-width: 170px;float:left;">EPICRISIS</button>
+                <button id="btnGuardarAltaMedica" type="button" class="btn btn-info btn-lg mb-1 pl-3 pr-3" style="max-width: 140px;">Guardar</button>
+                <button id="btnCerrarAltaMedica" type="button" class="btn btn-secondary btn-lg mb-1 ml-2 pl-3 pr-3" style="max-width: 140px;">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<input type="hidden" id="NroHojaReferencia" />
+<input type="hidden" id="txtNroContraReferencia" />
+
+<partial name="~/Views/Comun/ALtaMedicaRevertir.cshtml" />
+
+<partial name="~/Views/Shared/Components/VistasParciales/ContraReferenciaRegistro.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/ReferenciaRegistro.cshtml" />
+
+
+@*<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalReceta" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Imprime Receta</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card m-t-10">
+                    <div class="card">
+                        <ul id="clothing-nav" class="nav nav-tabs" role="tablist">
+
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#farmaciaRece" role="tab" id="farmaciaRece-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Farmacia</a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#rayosRece" role="tab" id="rayosRece-tab" data-toggle="tab" aria-controls="hats">Rayos X</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#ecoObstRece" role="tab" id="ecoObstRece-tab" data-toggle="tab" aria-controls="hats">Ecografía Obstetrica</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#ecoGeneRece" role="tab" id="ecoGeneRece-tab" data-toggle="tab" aria-controls="hats">Ecografía General</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#anatoPatoRece" role="tab" id="anatoPatoRece-tab" data-toggle="tab" aria-controls="hats">Anat. Patologica</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#patoClinicaRece" role="tab" id="patoClinicaRece-tab" data-toggle="tab" aria-controls="hats">Pat. Clinica</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#bancoSangreRece" role="tab" id="bancoSangreRece-tab" data-toggle="tab" aria-controls="hats">Banco Sangre</a>
+                            </li>
+                        </ul>
+                        <div class="card-block">
+                            <div id="clothing-nav-content" class="tab-content fade in active">
+
+                                <div role="tabpanel" class="tab-pane fade in active" id="farmaciaRece" aria-labelledby="farmaciaRece-tab">
+                                    <br>
+                                    <iframe id="ifrmRecetaFarm"
+                                            title="Inline Frame Example"
+                                            width="100%"
+                                            height="600"
+                                            src=""></iframe>
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="rayosRece" aria-labelledby="rayosRece-tab">
+                                    <br>
+                                    <iframe id="ifrmRecetaRx"
+                                            title="Inline Frame Example"
+                                            width="100%"
+                                            height="600"
+                                            src=""></iframe>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="ecoObstRece" aria-labelledby="ecoObstRece-tab">
+                                    <br>
+                                    <iframe id="ifrmRecetaEcoObs"
+                                            title="Inline Frame Example"
+                                            width="100%"
+                                            height="600"
+                                            src=""></iframe>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="ecoGeneRece" aria-labelledby="ecoGeneRece-tab">
+                                    <br>
+                                    <iframe id="ifrmRecetaEcoGene"
+                                            title="Inline Frame Example"
+                                            width="100%"
+                                            height="600"
+                                            src=""></iframe>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="anatoPatoRece" aria-labelledby="anatoPatoRece-tab">
+                                    <br>
+                                    <iframe id="ifrmRecetaAnaPatolg"
+                                            title="Inline Frame Example"
+                                            width="100%"
+                                            height="600"
+                                            src=""></iframe>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="patoClinicaRece" aria-labelledby="patoClinicaRece-tab">
+                                    <br>
+                                    <iframe id="ifrmRecetaPatoClini"
+                                            title="Inline Frame Example"
+                                            width="100%"
+                                            height="600"
+                                            src=""></iframe>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="bancoSangreRece" aria-labelledby="bancoSangreRece-tab">
+                                    <br>
+                                    <iframe id="ifrmRecetaBs"
+                                            title="Inline Frame Example"
+                                            width="100%"
+                                            height="600"
+                                            src=""></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="modal-footer">
+
+                    <button id="btnCerrarRecetas" target="_blank" class="btn  btn-secondary "> Cerrar</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>*@

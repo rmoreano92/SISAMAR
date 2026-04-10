@@ -1,0 +1,1466 @@
+﻿<div class="card bg-blue mt-2">
+
+    <div class="card-header bg-white">
+        ANTECEDENTES FISIOLOGICOS
+    </div>
+
+    <div class="card-block">
+
+        <div class="row mt-1">
+
+            <div class="col-lg-2">
+                <label for="txtGrupoSanguineo" class="form-control-label">Grupo sanguíneo</label>
+                <div class="form-group m-0 campo">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtGrupoSanguineo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <label for="txtFactor" class="form-control-label">Factor</label>
+                <div class="form-group m-0 campo">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtFactor">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <label for="cboActividadFisica">Actividad física</label>
+                <div class="input-group">
+                    <select class="chzn-select" id="cboActividadFisica">
+                        <option value="0">--Seleccionar--</option>
+                        <option value="1">Alta ( 7 d/ semana)</option>
+                        <option value="2">Moderada ( 3 d/semana)</option>
+                        <option value="3">Ligera</option>
+                        <option value="4">Sedentarismo</option>
+                        <option value="5">Postración</option>
+                    </select>
+                </div>
+            </div>
+            
+            @*<div class="col-lg-2">
+            <label for="cboTipoAlimentacion">Tipo Alimentación</label>
+            <div class="input-group">
+            <select class="chzn-select" id="cboTipoAlimentacion">
+            <option value="">Carne</option>
+            <option value="">Mixta</option>
+            <option value="">Vegetariana</option>
+            <option value="">Procesados</option>
+            <option value="">Otro</option>
+            </select>
+            </div>
+            </div>*@
+        </div>
+
+        <div class="row mb-1">
+
+            @*<div class="col-xl-12 mt-1">
+                <label for="txtGestasP" class="form-control-label mb-1 titleAntecedentes">Alimentación</label>
+            </div>
+
+            <div class="col-xl-2">
+                <div class="check__toggle">
+                    <label class="toggle">
+                        <input class="toggle__input bloquear" type="checkbox" id="chkAlimentacion1">
+                        <span class="toggle__label mr-1">
+                            <span class="toggle__text">1</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-xl-2">
+                <div class="check__toggle">
+                    <label class="toggle">
+                        <input class="toggle__input bloquear" type="checkbox" id="chkAlimentacion2">
+                        <span class="toggle__label mr-2">
+                            <span class="toggle__text">2</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-xl-2">
+                <div class="check__toggle">
+                    <label class="toggle">
+                        <input class="toggle__input bloquear" type="checkbox" id="chkAlimentacion3">
+                        <span class="toggle__label mr-1">
+                            <span class="toggle__text">3</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-xl-2">
+                <div class="check__toggle">
+                    <label class="toggle">
+                        <input class="toggle__input bloquear" type="checkbox" id="chkAlimentacionMas3">
+                        <span class="toggle__label mr-2">
+                            <span class="toggle__text">mas de 3</span>
+                        </span>
+                    </label>
+                </div>
+            </div>*@
+
+
+        </div>
+
+        <div class="row mb-1">
+
+            <div class="col-xl-12 mt-1">
+                <label for="txtGestasP" class="form-control-label mb-1 titleAntecedentes">Estado Nutricional</label>
+            </div>
+
+            <div class="col-lg-2" hidden>
+                <label for="cboAlimentacion">N° comidas al día</label>
+                <div class="input-group">
+                    <select class="chzn-select" id="cboAlimentacion">
+                    <option value="0">-- Seleccionar --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">mas de 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-xl-12 mt-1" hidden>
+                <label class="form-control-label mb-1">Tipos de alimentación</label>
+            </div>
+
+            <div class="col-lg-12">
+                 <table id="tblIncrementoPeso" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                    <thead style="color: white;">
+                        <tr style="background-color: #434343;">
+                            <th style="width:50% !important; text-align:center;">ESTADO NUTRICIONAL DETERIORADO</th>
+                            <th style="width:50% !important; text-align:center;">GRAVEDAD DE LA ENFERMEDAD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label class="radioButtonStyleLabel m-0">
+                                    <input type="radio" name="rdbEstadoNutricional" class="radioButtonStyleInput camposRegistro" id="rdbEstadoNutricional0" value="0">
+                                    <span class="radioButtonStyleSpan"><b>Ausente: Puntaje 0</b></span>
+                                </label>
+                                Estado nutricional normal o IMC Pre Gestacional ≥ 20 kg/m², IMC 1er trimestre ≥ 20.6 kg/m², IMC 2do trimestre ≥ 23.6 kg/m², IMC 3er trimestre ≥ 25.6 kg/m².
+                            </td>
+
+                            <td>
+                                <label class="radioButtonStyleLabel m-0">
+                                    <input type="radio" name="rdbGravedadEnfermedad" class="radioButtonStyleInput camposRegistro" id="rdbGravedadEnfermedad0" value="0">
+                                    <span class="radioButtonStyleSpan"><b>Ausente: Puntaje 0</b></span>
+                                </label>
+                                Requerimientos nutricionales normales durante la gestación.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label class="radioButtonStyleLabel m-0">
+                                    <input type="radio" name="rdbEstadoNutricional" class="radioButtonStyleInput camposRegistro" id="rdbEstadoNutricional1" value="1">
+                                    <span class="radioButtonStyleSpan"><b>Leve: Puntaje 1</b></span>
+                                </label>
+                               Pérdida de peso > 5% en 3 meses o ingesta de alimentos por debajo del 50-75% de los requerimientos normales en la semana previa o IMC Pre Gestacional de 18.6-19.9 kg/m², IMC en el 1er trimestre de 19.6-20.5 kg/m², IMC en el 2do trimestre de 21.6-23.5 kg/m², IMC en el 3er trimestre de 23.6-25.5 kg/m².
+                            </td>
+
+                            <td>
+                                <label class="radioButtonStyleLabel m-0">
+                                    <input type="radio" name="rdbGravedadEnfermedad" class="radioButtonStyleInput camposRegistro" id="rdbGravedadEnfermedad1" value="1">
+                                    <span class="radioButtonStyleSpan"><b>Leve: Puntaje 1</b></span>
+                                </label>
+                                Infección del tracto urinario, infección respiratoria, cervicovaginitis, anemia, trombosis venosa profunda, síndrome antifosfolípido, trombocitopenia, lupus eritematoso sistémico, epilepsia, hipertensión gestacional, VIH+, diabetes gestacional, amenaza de aborto, aborto recurrente, depresión, miomatosis uterina, malformaciones uterinas, tumor benigno, hipotiroidismo, amenaza de parto pretérmino.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label class="radioButtonStyleLabel m-0">
+                                    <input type="radio" name="rdbEstadoNutricional" class="radioButtonStyleInput camposRegistro" id="rdbEstadoNutricional2" value="2">
+                                    <span class="radioButtonStyleSpan"><b>Moderado: Puntaje 2</b></span>
+                                </label>
+                               Pérdida de peso > 5% en 2 meses o ingesta de alimentos del 25-50% de los requerimientos normales en la semana anterior + condición general deteriorada o IMC Pre Gestacional 17.5-18.5 kg/m², IMC 1er trimestre 18.6-19.5 kg/m², IMC 2do trimestre 20.6-21.5 kg/m², IMC 3er trimestre 22.6-23.5 kg/m².
+                            </td>
+
+                            <td>
+                                <label class="radioButtonStyleLabel m-0">
+                                    <input type="radio" name="rdbGravedadEnfermedad" class="radioButtonStyleInput camposRegistro" id="rdbGravedadEnfermedad2" value="2">
+                                    <span class="radioButtonStyleSpan"><b>Moderado: Puntaje 2</b></span>
+                                </label>
+                                Cirugía abdominal mayor, accidente cerebrovascular, ruptura de membranas (ROM), preeclampsia, síndrome de adherencias intestinales, desprendimiento prematuro de placenta, placenta previa, restricción del crecimiento intrauterino (RCIU), oligohidramnios, prematuridad, malformaciones fetales, muerte fetal, ≥ 3 cesáreas previas, hiperestimulación ovárica, cardiopatía materna, insuficiencia renal crónica (IRC), postrasplante, SIDA.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label class="radioButtonStyleLabel m-0">
+                                    <input type="radio" name="rdbEstadoNutricional" class="radioButtonStyleInput camposRegistro" id="rdbEstadoNutricional3" value="3">
+                                    <span class="radioButtonStyleSpan"><b>Severo: Puntaje 3</b></span>
+                                </label>
+                               Pérdida de peso > 5% en 1 mes o > 15% en 3 meses o ingesta alimentaria del 0-25% de los requerimientos normales en la semana previa + estado general deteriorado o IMC pregestacional ≤ 17.4 kg/m², IMC en el 1.er trimestre ≤ 18.5 kg/m², IMC en el 2.º trimestre ≤ 20.5 kg/m², IMC en el 3.er trimestre ≤ 22.5 kg/m².
+                            </td>
+
+                            <td>
+                                <label class="radioButtonStyleLabel m-0">
+                                    <input type="radio" name="rdbGravedadEnfermedad" class="radioButtonStyleInput camposRegistro" id="rdbGravedadEnfermedad3" value="3">
+                                    <span class="radioButtonStyleSpan"><b>Severo: Puntaje 3</b></span>
+                                </label>
+                                Hipertensión arterial sistémica (SAH), cetoacidosis diabética, tromboembolismo pulmonar (PTE), insuficiencia renal aguda (AKF), placenta acreta, cesárea con histerectomía, lesión intestinal, shock hemorrágico, trauma en general, traumatismo craneoencefálico (TBI), eclampsia, síndrome de HELLP, corioamnionitis, sepsis, absceso hepático, neoplasia maligna, paciente en UCI.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            @* <div class="col-lg-12">
+                <button style="width:100%;letter-spacing: 1px;" class="btn btn-success font-weight-bold layout_btn_prevent" id="btnModalIncrementoPeso"><i style="width: 20px; text-align:center;" class="fa-solid fa-file-plus"></i> INCREMENTO DE PESO</button>
+            </div> *@
+
+             <div class="col-xl-2">
+                 <label>Resultado</label>
+                <div class="form-group m-0">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm bloquear-campos" id="txtIncrementoPeso">
+                    </div>
+                </div>
+            </div>
+
+            <div hidden>
+                <div class="col-xl-2">
+                <div class="check__toggle">
+                    <label class="toggle">
+                        <input class="toggle__input bloquear" type="checkbox" id="chkTipoAlimentacionCarnes">
+                        <span class="toggle__label mr-1">
+                            <span class="toggle__text">Carnes</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-xl-2">
+                <div class="check__toggle">
+                    <label class="toggle">
+                        <input class="toggle__input bloquear" type="checkbox" id="chkTipoAlimentacionMixta">
+                        <span class="toggle__label mr-2">
+                            <span class="toggle__text">Mixta</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-xl-2">
+                <div class="check__toggle">
+                    <label class="toggle">
+                        <input class="toggle__input bloquear" type="checkbox" id="chkTipoAlimentacionVegetariana">
+                        <span class="toggle__label mr-1">
+                            <span class="toggle__text">Vegetariana</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-xl-2">
+                <div class="check__toggle">
+                    <label class="toggle">
+                        <input class="toggle__input bloquear" type="checkbox" id="chkTipoAlimentacionProcesados">
+                        <span class="toggle__label mr-2">
+                            <span class="toggle__text">Procesados</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-xl-2">
+                <div class="check__toggle">
+                    <label class="toggle">
+                        <input class="toggle__input bloquear" type="checkbox" id="chkTipoAlimentacionOtro">
+                        <span class="toggle__label mr-2">
+                            <span class="toggle__text">Otro</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-xl-2">
+                <div class="form-group m-0">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm bloquear-campos" id="txtTipoAlimentacionOtroDescripcion">
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card bg-blue mt-1">
+
+    <div class="card-header bg-white">
+        VACUNAS
+    </div>
+
+    <div class="card-block">
+
+        <div class="row mt-1">
+            <div class="col-xl-8 mb-1">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Influenza</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbVacunaInfluenzaSi" name="rdbVacunaInfluenza" class="bloquear-campos">
+                            <label for="rdbVacunaInfluenzaSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbVacunaInfluenzaNo" name="rdbVacunaInfluenza" class="bloquear-campos">
+                            <label for="rdbVacunaInfluenzaNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtVacunaInfluenza" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 mb-1">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>DT Adulto</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbVacunaDTAdultoSi" name="rdbVacunaDTAdulto" class="bloquear-campos">
+                            <label for="rdbVacunaDTAdultoSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbVacunaDTAdultoNo" name="rdbVacunaDTAdulto" class="bloquear-campos">
+                            <label for="rdbVacunaDTAdultoNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtVacunaDTAdulto" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 mb-1">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Toxoide Tetánico</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbVacunaTexoideTetanicoSi" name="rdbVacunaTexoideTetanico" class="bloquear-campos">
+                            <label for="rdbVacunaTexoideTetanicoSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbVacunaTexoideTetanicoNo" name="rdbVacunaTexoideTetanico" class="bloquear-campos">
+                            <label for="rdbVacunaTexoideTetanicoNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtVacunaTexoideTetanico" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 mb-1">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Fiebre amarilla</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbVacunaFiebreAmarillaSi" name="rdbVacunaFiebreAmarilla" class="bloquear-campos">
+                            <label for="rdbVacunaFiebreAmarillaSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbVacunaFiebreAmarillaNo" name="rdbVacunaFiebreAmarilla" class="bloquear-campos">
+                            <label for="rdbVacunaFiebreAmarillaNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtVacunaFiebreAmarilla" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 mb-1">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Hepatitis B</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbVacunaHepatitisBSi" name="rdbVacunaHepatitisB" class="bloquear-campos">
+                            <label for="rdbVacunaHepatitisBSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbVacunaHepatitisBNo" name="rdbVacunaHepatitisB" class="bloquear-campos">
+                            <label for="rdbVacunaHepatitisBNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtVacunaHepatitisB" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 mb-1">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>BCG</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbVacunaBCGSi" name="rdbVacunaBCG" class="bloquear-campos">
+                            <label for="rdbVacunaBCGSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbVacunaBCGNo" name="rdbVacunaBCG" class="bloquear-campos">
+                            <label for="rdbVacunaBCGNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtVacunaBCG" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 mb-1">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Papilomavirus</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbVacunaPapilomavirusSi" name="rdbVacunaPapilomavirus" class="bloquear-campos">
+                            <label for="rdbVacunaPapilomavirusSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbVacunaPapilomavirusNo" name="rdbVacunaPapilomavirus" class="bloquear-campos">
+                            <label for="rdbVacunaPapilomavirusNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtVacunaPapilomavirus" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Otra</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbVacunaOtraSi" name="rdbVacunaOtra" class="bloquear-campos">
+                            <label for="rdbVacunaOtraSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbVacunaOtraNo" name="rdbVacunaOtra" class="bloquear-campos">
+                            <label for="rdbVacunaOtraNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtVacunaOtra" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="card bg-blue mt-1">
+
+    <div class="card-header bg-white">
+        VACUNA COVID
+    </div>
+
+    <div class="card-block">
+
+        <div class="row mt-1">
+
+            <div class="col-lg-3">
+                <label for="cboNroDosisVacunaCovid">Numero de Dosis</label>
+                <div class="input-group">
+                    <select class="chzn-select" id="cboNroDosisVacunaCovid">
+                        <option value="0">Ninguna</option>
+                        <option value="1">1era dosis</option>
+                        <option value="2">2da dosis</option>
+                        <option value="3">3era dosis</option>
+                        <option value="4">4ta dosis a +</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <label for="txtAnioUltimaVacunaCovid">Fecha de ultima vacuna</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control form-control-sm solo-numero" id="txtAnioUltimaVacunaCovid" autocomplete="off" disabled>
+                </div>
+            </div>
+
+            <div class="col-lg-3" hidden>
+                <label for="txtFechaUltimaVacunaCovid">Fecha de ultima vacuna</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaUltimaVacunaCovid">
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar "></i>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="card bg-blue mt-1">
+
+    <div class="card-header bg-white">
+        HÁBITOS NOCIVOS
+    </div>
+
+    <div class="card-block">
+
+        <div class="row mt-1">
+            <div class="col-xl-8 mb-1">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Bebidas alcohólicas</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbBebidasAlcoholicasHabNocSi" name="rdbBebidasAlcoholicasHabNoc" value="1" class="bloquear-campos">
+                            <label for="rdbBebidasAlcoholicasHabNocSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbBebidasAlcoholicasHabNocNo" name="rdbBebidasAlcoholicasHabNoc" value="0" class="bloquear-campos">
+                            <label for="rdbBebidasAlcoholicasHabNocNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtBebidasAlcoholicasHabNoc" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 mb-1">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Drogas</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbDrogasHabNocSi" name="rdbDrogasHabNoc" value="1" class="bloquear-campos">
+                            <label for="rdbDrogasHabNocSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbDrogasHabNocNo" name="rdbDrogasHabNoc" value="0" class="bloquear-campos">
+                            <label for="rdbDrogasHabNocNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtDrogasHabNoc" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 mb-1">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Tabaco / cigarros</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbTabacoCigarrosHabNocSi" name="rdbTabacoCigarrosHabNoc" value="1" class="bloquear-campos">
+                            <label for="rdbTabacoCigarrosHabNocSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbTabacoCigarrosHabNocNo" name="rdbTabacoCigarrosHabNoc" value="0" class="bloquear-campos">
+                            <label for="rdbTabacoCigarrosHabNocNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtTabacoCigarrosHabNoc" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Otros</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbOtrosHabNocSi" name="rdbOtrosHabNoc" value="1" class="bloquear-campos">
+                            <label for="rdbOtrosHabNocSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbOtrosHabNocNo" name="rdbOtrosHabNoc" value="0" class="bloquear-campos">
+                            <label for="rdbOtrosHabNocNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtOtrosHabNoc" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="card bg-blue mt-2">
+
+    <div class="card-header bg-white">
+        ALERGIAS
+    </div>
+
+    <div class="card-block">
+
+        <div class="row mt-1">
+            <div class="col-lg-2">
+                <span>Farmacologicas</span>
+            </div>
+            <div class="col-lg-2">
+                <div class="switch-field">
+                    <input type="radio" id="rdbFarmacologicasAlerSi" name="rdbFarmacologicasAler" class="bloquear-campos">
+                    <label for="rdbFarmacologicasAlerSi" class="pl-2 pr-2">Si</label>
+                    <input type="radio" id="rdbFarmacologicasAlerNo" name="rdbFarmacologicasAler" class="bloquear-campos">
+                    <label for="rdbFarmacologicasAlerNo" class="pl-2 pr-2 mr-auto">No</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <input type="text" class="form-control form-control-sm" id="txtFarmacologicasAler" autocomplete="off" disabled>
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-lg-2">
+                <span>Estado nutricional</span>
+            </div>
+            <div class="col-lg-2">
+                <div class="switch-field">
+                    <input type="radio" id="rdbAlimentacionAlerSi" name="rdbAlimentacionAler" class="bloquear-campos">
+                    <label for="rdbAlimentacionAlerSi" class="pl-2 pr-2">Si</label>
+                    <input type="radio" id="rdbAlimentacionAlerNo" name="rdbAlimentacionAler" class="bloquear-campos">
+                    <label for="rdbAlimentacionAlerNo" class="pl-2 pr-2 mr-auto">No</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <input type="text" class="form-control form-control-sm" id="txtAlimentacionAler" autocomplete="off" disabled>
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-lg-2">
+                <span>Otros</span>
+            </div>
+            <div class="col-lg-2">
+                <div class="switch-field">
+                    <input type="radio" id="rdbOtrosAlerSi" name="rdbOtrosAler" class="bloquear-campos">
+                    <label for="rdbOtrosAlerSi" class="pl-2 pr-2">Si</label>
+                    <input type="radio" id="rdbOtrosAlerNo" name="rdbOtrosAler" class="bloquear-campos">
+                    <label for="rdbOtrosAlerNo" class="pl-2 pr-2 mr-auto">No</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <input type="text" class="form-control form-control-sm" id="txtOtrosAler" autocomplete="off" disabled>
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-lg-2">
+                <span>Signos y Síntomas de Alergia</span>
+            </div>
+            <div class="col-lg-7">
+                <input type="text" class="form-control form-control-sm" id="txtSignosSintomasAler" autocomplete="off">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card bg-blue mt-1">
+
+    <div class="card-header bg-white">
+        RAM
+    </div>
+
+    <div class="card-block">
+
+        <div class="row mt-1">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <textarea class="form-control" id="txtRam" rows="2"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="card bg-blue mt-2">
+    <div class="card-header bg-white">
+        PATOLÓGICOS
+    </div>
+
+    <div class="card-block">
+
+        <div class="card mt-1">
+
+            <div class="card-header bg-white">
+                Enf. Infecciosa
+            </div>
+
+            <div class="card-block">
+
+                <div class="row mt-1">
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkInfecciosaNingunaPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Ninguna</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkCovid19Pat">
+                                        <span class="toggle__label mr-1">
+                                            <span class="toggle__text">COVID 19</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkVihPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">VIH</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkSifilisPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">SIFILIS</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkTuberculosisPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Tuberculosis</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkHepatitisPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">HEPATITIS</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 mt-1">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkMalariaPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">MALARIA</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkDenguePat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">DENGUE</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="check__toggle">
+                                            <label class="toggle">
+                                                <input class="toggle__input bloquear" type="checkbox" id="chkOtroInfecciosaPat">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Otro</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <div class="form-group m-0">
+                                            <div class="input-group">
+                                                <input type="text" autocomplete="off" class="form-control form-control-sm bloquear-campos" id="txtDescripcionOtroInfecciosaPat" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card mt-1">
+
+            <div class="card-header bg-white">
+                Enf. metabolica/endocrina/digestiva
+            </div>
+
+            <div class="card-block">
+
+                <div class="row mt-1">
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkMetabolicaNingunaPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Ninguna</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkObesidadPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Obesidad</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkCirrosisPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Cirrosis</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkDiabetesMellitusIPat">
+                                        <span class="toggle__label mr-1">
+                                            <span class="toggle__text">Diabetes Mellitus I</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkDiabetesMellitusIIPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Diabetes Mellitus(II)</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 mt-1">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkHipotiroidismoPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Hipotiroidismo</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkHipertiroidismoPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Hipertiroidismo</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkHigadoGrasoPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Higado graso</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="check__toggle">
+                                            <label class="toggle">
+                                                <input class="toggle__input bloquear" type="checkbox" id="chkOtroMetabolicaPat">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Otro</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <div class="form-group m-0">
+                                            <div class="input-group">
+                                                <input type="text" autocomplete="off" class="form-control form-control-sm bloquear-campos" id="txtDescripcionOtroMetabolicaPat" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card mt-1">
+
+            <div class="card-header bg-white">
+                Enfermedad Cardiorespiratoria
+            </div>
+
+            <div class="card-block">
+
+                <div class="row mt-1">
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkCardiorespiratoriaNingunaPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Ninguna</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkHiperArterialPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Hiperten. Arterial</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkAsmaPat">
+                                        <span class="toggle__label mr-1">
+                                            <span class="toggle__text">Asma</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkFibrosisPulmPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Fibrosis pulmonar</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkCardioConPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Cardiopatia congenita</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 mt-1">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkPulmObstruPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Enf. Pulmonar obstructiva crónica</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkInsuCardPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Insuficiencia cardiaca</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="check__toggle">
+                                            <label class="toggle">
+                                                <input class="toggle__input bloquear" type="checkbox" id="chkOtroCardioPat">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Otro</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <div class="form-group m-0">
+                                            <div class="input-group">
+                                                <input type="text" autocomplete="off" class="form-control form-control-sm bloquear-campos" id="txtDescripcionOtroCardioPat" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            
+            </div>
+
+        </div>
+
+        <div class="card mt-1">
+            <div class="card-header bg-white">
+                Enf. Neurológica/Musculoesquelética
+            </div>
+
+            <div class="card-block">
+
+                <div class="row mt-1">
+                
+                    <diV class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkNeurologicaNingunaPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Ninguna</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkEpilepsiaPat">
+                                        <span class="toggle__label mr-1">
+                                            <span class="toggle__text">Epilepsia</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkELAPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">ELA</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkEnfCerebrovascularPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Enf. Cerebrovascular</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkAusenciaExtremidadPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Ausencia de extremidad </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <diV class="col-lg-12 mt-1">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkEncefalopatiaHipoxicaPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Encefalopatia hipoxica /SD POST RCP</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkSdGuillanBarrePat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Sd guillan barre</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="check__toggle">
+                                            <label class="toggle">
+                                                <input class="toggle__input bloquear" type="checkbox" id="chkOtroNeuroPat">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Otro</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <div class="form-group m-0">
+                                            <div class="input-group">
+                                                <input type="text" autocomplete="off" class="form-control form-control-sm bloquear-campos" id="txtDescripcionOtroNeuroPat" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card mt-1">
+            <div class="card-header bg-white">
+                Enf. Reumática/inmunocompromiso
+            </div>
+
+            <div class="card-block">
+
+                <div class="row mt-1">
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkReumaticaNingunaPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Ninguna</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkCancerPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Cáncer</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkTrasplantePat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Trasplante</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkLupusEritematosoPat">
+                                        <span class="toggle__label mr-1">
+                                            <span class="toggle__text">Lupus Eritematoso</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkArtritisReumatoidePat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Artritis Reumatoide</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 mt-1">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input bloquear" type="checkbox" id="chkSindromeAntifosPat">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Síndrome Antifosfolipídico</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="check__toggle">
+                                            <label class="toggle">
+                                                <input class="toggle__input bloquear" type="checkbox" id="chkOtroReumaPat">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Otro</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <div class="form-group m-0">
+                                            <div class="input-group">
+                                                <input type="text" autocomplete="off" class="form-control form-control-sm bloquear-campos" id="txtDescripcionOtroReumaPat" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="card bg-blue mt-1">
+
+    <div class="card-header bg-white">
+        ANTECEDENTES QUIRÚRGICOS
+    </div>
+
+    <div class="card-block">
+
+        <div class="row mt-1">
+
+            <div class="col-xl-8">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Cirugias Previas (No ginecológicas)</span>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="switch-field">
+                            <input type="radio" id="rdbCirugiasPreviasQuirurSi" name="rdbCirugiasPreviasQuirur" value="1" class="bloquear-campos">
+                            <label for="rdbCirugiasPreviasQuirurSi" class="pl-2 pr-2">Si</label>
+                            <input type="radio" id="rdbCirugiasPreviasQuirurNo" name="rdbCirugiasPreviasQuirur" value="0" class="bloquear-campos">
+                            <label for="rdbCirugiasPreviasQuirurNo" class="pl-2 pr-2 mr-auto">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control form-control-sm" id="txtCirugiasPreviasQuirur" autocomplete="off" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4">
+                <div class="row">
+
+                    <div class="col-lg-5">
+                        <label for="txtFechaUltimaCiruQuirur" class="form-control-label mb-1">Fecha Ultima Cirugia</label>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="form-group m-0">
+                            <div class="input-group">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaUltimaCiruQuirur" disabled>
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="card bg-blue mt-1">
+
+    <div class="card-header bg-white">
+        MEDICACIÓN HABITUAL
+    </div>
+
+    <div class="card-block">
+
+        <div class="row mt-1">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <textarea class="form-control" id="txtMedicacionHabitual" rows="2"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@* <div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalIncrementoPeso" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Nota Adicional</h4>
+            </div>
+            <div class="modal-body">
+
+                <table id="tblInformeEvaluaciones" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                    <thead style="color: white;">
+                        <tr style="background-color: #434343;">
+                            <th style="width:10% !important; text-align:center;">ESTADO NUTRICIONAL DETERIORADO</th>
+                            <th style="width:30% !important; text-align:center;">GRAVEDAD DE LA ENFERMEDAD</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+
+
+                <div class="row mt-1">
+                    <div class="col-lg-12 mb-1">
+                        <label for="txtComentarioApreciacion" class="form-control-label">APRECIACION</label>
+                        <div class="form-group">
+                            <textarea class="form-control" id="txtComentarioApreciacion" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 mb-1">
+                        <label for="txtPlan" class="form-control-label">PLAN</label>
+                        <div class="form-group">
+                            <textarea class="form-control" id="txtPlan" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-1">
+
+                    <div class="col-lg-5">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="cboMedicoComentario" class="form-control-label">Medico </label>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="input-group mb-1">
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMedicoComentario"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="cboDestinoComentario" class="form-control-label">Destino</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="input-group mb-1">
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboDestinoComentario">
+                                        <option value="0">--Seleccionar--</option>
+                                        <option value="1">Permanece</option>
+                                        <option value="2">Alta de UCI</option>
+                                        <option value="3">Fallecida</option>
+                                        <option value="4">Transferencia a otro EESS</option>
+                                        <option value="5">Pasa a UCIM1</option>
+                                        <option value="6">Pasa a UCIM2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                               
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary mr-1">Cancelar</button>
+                    <button id="btnGuardarComentarioApreciacion" class="btn btn-info float-lg-right">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@

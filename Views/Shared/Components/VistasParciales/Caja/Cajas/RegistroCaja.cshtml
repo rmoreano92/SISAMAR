@@ -1,0 +1,96 @@
+﻿@using System.Data
+<div class="modal fade" id="modalRegistroCaja" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Caja</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">                    
+                    <div class="col-xl-12 mb-1">
+                        <div class="card bg-blue">
+                            @* <div class="card-header bg-white">Datos Generales</div> *@
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtCodigoCaja" class="d-block text-truncate">Código</label>
+                                            <input id="txtCodigoCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtNombreCaja" class="d-block text-truncate">Nombre Caja</label>
+                                            <input id="txtNombreCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtEquipoAutorizadoCaja" class="d-block text-truncate">Nombre Equipo Autorizado</label>
+                                            <input id="txtEquipoAutorizadoCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtImpresoraServiciosCaja" class="d-block text-truncate">Nombre Impresora Servicios</label>
+                                            <input id="txtImpresoraServiciosCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtImpresoraFarmaciaCaja" class="d-block text-truncate">Nombre Impresora Farmacia</label>
+                                            <input id="txtImpresoraFarmaciaCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-12">
+
+                        <div class="card bg-green mb-1">
+                            <div class="card-header bg-white">Generación de Comprobantes</div>
+                            <div class="card-block">                                
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <table id="tblGeneracionComprobantes" class="table table-sm table-content-sm table-bordered table-striped w-100 m-0 mt-2" style="cursor: default;">
+                                            <thead style="color: white; background: #007368;">
+                                                <tr>
+                                                    <th>Tipo Comprobante</th>
+                                                    <th>Nro Serie</th>
+                                                    <th>Nro Documento</th>
+                                                    <th>Nro Documento Inicial</th>
+                                                    <th>Nro Documento Final</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarCaja">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCancelarCaja">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* 
+<script>
+    var tiposFinanciamientoBI = @Html.Raw(Json.Serialize(ViewBag.TiposFinanciamientoSoloIngresaPrecios.Rows));
+</script> *@
+
+
+

@@ -1,0 +1,77 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/util.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/select2/css/select2.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/scroller.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/colReorder.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/dataTables.bootstrap.min.css" />
+
+    <style>
+        li {
+            font-size: 22px;
+        }
+
+        .datos {
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+
+<body style=" width:95%; white; margin-left:20px;margin-right:20px;" id="bdText">
+
+    <div class="row">
+        <table style='width: 95%'>
+            <tr>
+                <td><img src='~/images/Logo.png' style='height: 50px;' /></td>
+                <td style="text-align:center"><h5><b>@ViewBag.Titulo</b></h5></td>
+                <td style='text-align:right'><h5>@ViewBag.nroFormato</h5></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="font-size: 9px;" class="row ">
+        @Html.Raw(@ViewBag.Texto)
+    </div>
+
+</body>
+
+</html>
+<script type="text/javascript">
+    //$(document).ready(function () {
+
+    //    $('#bdText').html();
+    //});
+
+</script>
+
+<style>
+    u.dotted {
+        border-bottom: 1px dashed #999;
+        text-decoration: none;
+    }
+
+    .verticalText {
+        writing-mode: vertical-lr;
+        transform: rotate(180deg);
+    }
+/*    td {
+        vertical-align: bottom;
+        text-align: center;
+    }
+
+  td span {
+            -ms-writing-mode: tb-rl;
+            -webkit-writing-mode: vertical-lr;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            white-space: nowrap;
+        } */
+</style>

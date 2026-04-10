@@ -1,0 +1,467 @@
+﻿using CapaDatos;
+using CapaEntidades;
+using DocumentFormat.OpenXml.Bibliography;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
+using System.Threading.Tasks;
+using WebAppMaternidad.CapaDatos;
+
+namespace WebAppMaternidad.Areas.FactConfig
+{
+    public class FactConfigController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> CatalogoBienesInsumos(int idListBar)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+
+            int idUsuario;
+            idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            DalCatalogoBienesInsumos dalBi = new DalCatalogoBienesInsumos();
+            DalUtilitario dalUtilitario = new DalUtilitario();
+            //DataTable categoria, subcategoria, categoriadetalle;            
+            DalEmpleado dlEmpleado = new DalEmpleado();
+            RolesItems objRol = await dlEmpleado.DevuelveRolxItem(idUsuario, idListBar);
+            DataSet permisoActualizaCatalogo = await dalUtilitario.ValidarPermisoEmpleado(idUsuario, 306);
+
+            if (objRol == null)
+            {
+                return View("AccesoDenegado");
+            }
+            else
+            {
+                ViewBag.Agregar = objRol.Agregar;
+                ViewBag.Modificar = objRol.Modificar;
+                ViewBag.Eliminar = objRol.Eliminar;
+                ViewBag.Consultar = objRol.Consultar;
+
+                ViewBag.ActualizaCatalogo = (permisoActualizaCatalogo.Tables[0].Rows.Count > 0 ? true : false);
+
+                //DalUtilitario dlUtilitario = new DalUtilitario();
+                //List<SubclasificacionDiagnosticos> TiposDiagnosticos = new List<SubclasificacionDiagnosticos>();
+                DataSet TiposFinanciamiento = await dalBi.ListarTiposFinanciamiento();
+                DataSet TiposFinanciamientoSoloIngresaPrecios= await dalBi.ListarTiposFinanciamientoSoloIngresaPrecios();
+                DataSet CentroCosto = await dalBi.ListarCentrosCosto();
+                DataSet PartidasPresupuestales = await dalBi.ListarFactPartidasPresupuestales();
+                DataSet GrupoFarmocologico = await dalBi.ListarFactInsumosGrupoFarmacologico();
+                DataSet Paises = await dalBi.ListarPaises();
+                DataSet TipoProductosSismed = await dalBi.ListarFarmTipoProductosSismed();
+                DataSet TipoSalidaBienInsumo = await dalBi.ListarFarmTipoSalidaBienInsumo();
+
+                ViewBag.TiposFinanciamiento = TiposFinanciamiento.Tables[0];
+                ViewBag.TiposFinanciamientoSoloIngresaPrecios = TiposFinanciamientoSoloIngresaPrecios.Tables[0];
+                ViewBag.CentroCosto = CentroCosto.Tables[0];
+                ViewBag.PartidasPresupuestales = PartidasPresupuestales.Tables[0];
+                ViewBag.GrupoFarmocologico = GrupoFarmocologico.Tables[0];
+                ViewBag.Paises = Paises.Tables[0];
+                ViewBag.TipoProductosSismed = TipoProductosSismed.Tables[0];
+                ViewBag.TipoSalidaBienInsumo = TipoSalidaBienInsumo.Tables[0];
+
+            }
+            ViewBag.Area = "Fact-Config";
+            ViewBag.Modulo = "Catalogo Bienes e Insumos";
+            ViewBag.Icono = "fa-briefcase-medical";
+            //ViewBag.PuntoCarga = 13;
+
+            return View("CatalogoBienesInsumos");
+
+        }
+
+
+        public async Task<IActionResult> ConfigResultadosLaboratorio(int idListBar)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+
+            int idUsuario;
+            idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            DalConfiguracionResultadosLab dalConfiguracionResultados = new DalConfiguracionResultadosLab();
+            DalUtilitario dalUtilitario = new DalUtilitario();
+            //DataTable categoria, subcategoria, categoriadetalle;            
+            DalEmpleado dlEmpleado = new DalEmpleado();
+            RolesItems objRol = await dlEmpleado.DevuelveRolxItem(idUsuario, idListBar);
+            DataSet permisoActualizaCatalogo = await dalUtilitario.ValidarPermisoEmpleado(idUsuario, 306);
+
+            if (objRol == null)
+            {
+                return View("AccesoDenegado");
+            }
+            else
+            {
+                ViewBag.Agregar = objRol.Agregar;
+                ViewBag.Modificar = objRol.Modificar;
+                ViewBag.Eliminar = objRol.Eliminar;
+                ViewBag.Consultar = objRol.Consultar;
+
+                ViewBag.ActualizaCatalogo = (permisoActualizaCatalogo.Tables[0].Rows.Count > 0 ? true : false);
+
+                
+                DataSet FactCatalogoServiciosSubGrupo = await dalUtilitario.FactCatalogoServiciosSubGrupo();
+                DataSet GruposSeleccionarTodos = await dalConfiguracionResultados.LabGruposSeleccionarTodos();
+
+                ViewBag.FactCatalogoServiciosSubGrupo = FactCatalogoServiciosSubGrupo.Tables[0];
+                ViewBag.GruposSeleccionarTodos = GruposSeleccionarTodos.Tables[0];
+
+            }
+            ViewBag.Area = "Fact-Config";
+            ViewBag.Modulo = "Configuracion de Resultados de Laboratorio";
+            ViewBag.Icono = "fa-briefcase-medical";
+            //ViewBag.PuntoCarga = 13;
+
+            return View("ConfigResultadosLaboratorio");
+
+        }
+
+
+        public async Task<IActionResult> ConfigResultadosImagenologia(int idListBar)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+
+            int idUsuario;
+            idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            DalConfiguracionResultadosLab dalConfiguracionResultados = new DalConfiguracionResultadosLab();
+            DalUtilitario dalUtilitario = new DalUtilitario();
+            //DataTable categoria, subcategoria, categoriadetalle;            
+            DalEmpleado dlEmpleado = new DalEmpleado();
+            RolesItems objRol = await dlEmpleado.DevuelveRolxItem(idUsuario, idListBar);
+
+            if (objRol == null)
+            {
+                return View("AccesoDenegado");
+            }
+            else
+            {
+                ViewBag.Agregar = objRol.Agregar;
+                ViewBag.Modificar = objRol.Modificar;
+                ViewBag.Eliminar = objRol.Eliminar;
+                ViewBag.Consultar = objRol.Consultar;
+
+
+                DataSet FactCatalogoServiciosSubGrupo = await dalUtilitario.FactCatalogoServiciosSubGrupo();
+                DataSet GruposSeleccionarTodos = await dalConfiguracionResultados.ImgGruposSeleccionarTodos();
+
+                ViewBag.FactCatalogoServiciosSubGrupo = FactCatalogoServiciosSubGrupo.Tables[0];
+                ViewBag.GruposSeleccionarTodos = GruposSeleccionarTodos.Tables[0];
+
+            }
+            ViewBag.Area = "Fact-Config";
+            ViewBag.Modulo = "Configuracion de Resultados de Imagenologia";
+            ViewBag.Icono = "fa-briefcase-medical";
+            //ViewBag.PuntoCarga = 13;
+
+            return View("ConfigResultadosImagenologia");
+
+        }
+
+
+        public async Task<IActionResult> CentrosCosto(int idListBar)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+
+            int idUsuario;
+            idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            //DalConfiguracionResultadosLab dalConfiguracionResultados = new DalConfiguracionResultadosLab();
+            //DalUtilitario dalUtilitario = new DalUtilitario();
+            //DataTable categoria, subcategoria, categoriadetalle;            
+            DalEmpleado dlEmpleado = new DalEmpleado();
+            RolesItems objRol = await dlEmpleado.DevuelveRolxItem(idUsuario, idListBar);
+
+            if (objRol == null)
+            {
+                return View("AccesoDenegado");
+            }
+            else
+            {
+                ViewBag.Agregar = objRol.Agregar;
+                ViewBag.Modificar = objRol.Modificar;
+                ViewBag.Eliminar = objRol.Eliminar;
+                ViewBag.Consultar = objRol.Consultar;
+
+
+                //DataSet FactCatalogoServiciosSubGrupo = await dalUtilitario.FactCatalogoServiciosSubGrupo();
+                //DataSet GruposSeleccionarTodos = await dalConfiguracionResultados.ImgGruposSeleccionarTodos();
+
+                //ViewBag.FactCatalogoServiciosSubGrupo = FactCatalogoServiciosSubGrupo.Tables[0];
+                //ViewBag.GruposSeleccionarTodos = GruposSeleccionarTodos.Tables[0];
+
+            }
+            ViewBag.Area = "Fact-Config";
+            ViewBag.Modulo = "Centros de Costo";
+            ViewBag.Icono = "fa-briefcase-medical";
+            //ViewBag.PuntoCarga = 13;
+
+            return View("CentrosCosto");
+
+        }
+
+        public async Task<IActionResult> TiposTarifa(int idListBar)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+
+            int idUsuario;
+            idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            //DalConfiguracionResultadosLab dalConfiguracionResultados = new DalConfiguracionResultadosLab();
+            //DalUtilitario dalUtilitario = new DalUtilitario();
+            //DataTable categoria, subcategoria, categoriadetalle;            
+            DalEmpleado dlEmpleado = new DalEmpleado();
+            RolesItems objRol = await dlEmpleado.DevuelveRolxItem(idUsuario, idListBar);
+
+            if (objRol == null)
+            {
+                return View("AccesoDenegado");
+            }
+            else
+            {
+                ViewBag.Agregar = objRol.Agregar;
+                ViewBag.Modificar = objRol.Modificar;
+                ViewBag.Eliminar = objRol.Eliminar;
+                ViewBag.Consultar = objRol.Consultar;
+
+
+                //DataSet FactCatalogoServiciosSubGrupo = await dalUtilitario.FactCatalogoServiciosSubGrupo();
+                //DataSet GruposSeleccionarTodos = await dalConfiguracionResultados.ImgGruposSeleccionarTodos();
+
+                //ViewBag.FactCatalogoServiciosSubGrupo = FactCatalogoServiciosSubGrupo.Tables[0];
+                //ViewBag.GruposSeleccionarTodos = GruposSeleccionarTodos.Tables[0];
+
+            }
+            ViewBag.Area = "Fact-Config";
+            ViewBag.Modulo = "Tipos de Tarifa";
+            ViewBag.Icono = "fa-briefcase-medical";
+            //ViewBag.PuntoCarga = 13;
+
+            return View("TiposTarifa");
+
+        }
+
+        public async Task<IActionResult> PartidasPresupuestales(int idListBar)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+
+            int idUsuario;
+            idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            //DalConfiguracionResultadosLab dalConfiguracionResultados = new DalConfiguracionResultadosLab();
+            //DalUtilitario dalUtilitario = new DalUtilitario();
+            //DataTable categoria, subcategoria, categoriadetalle;            
+            DalEmpleado dlEmpleado = new DalEmpleado();
+            RolesItems objRol = await dlEmpleado.DevuelveRolxItem(idUsuario, idListBar);
+
+            if (objRol == null)
+            {
+                return View("AccesoDenegado");
+            }
+            else
+            {
+                ViewBag.Agregar = objRol.Agregar;
+                ViewBag.Modificar = objRol.Modificar;
+                ViewBag.Eliminar = objRol.Eliminar;
+                ViewBag.Consultar = objRol.Consultar;
+
+
+                //DataSet FactCatalogoServiciosSubGrupo = await dalUtilitario.FactCatalogoServiciosSubGrupo();
+                //DataSet GruposSeleccionarTodos = await dalConfiguracionResultados.ImgGruposSeleccionarTodos();
+
+                //ViewBag.FactCatalogoServiciosSubGrupo = FactCatalogoServiciosSubGrupo.Tables[0];
+                //ViewBag.GruposSeleccionarTodos = GruposSeleccionarTodos.Tables[0];
+
+            }
+            ViewBag.Area = "Fact-Config";
+            ViewBag.Modulo = "Partidas Presupuestales";
+            ViewBag.Icono = "fa-briefcase-medical";
+            //ViewBag.PuntoCarga = 13;
+
+            return View("PartidasPresupuestales");
+
+        }
+
+
+        public async Task<IActionResult> Paquetes(int idListBar)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+
+            int idUsuario;
+            idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            DalConfiguracionResultadosLab dalConfiguracionResultados = new DalConfiguracionResultadosLab();
+            DalPaquetes dalPaquetes = new DalPaquetes();
+            //DataTable categoria, subcategoria, categoriadetalle;            
+            DalEmpleado dlEmpleado = new DalEmpleado();
+            RolesItems objRol = await dlEmpleado.DevuelveRolxItem(idUsuario, idListBar);
+
+            if (objRol == null)
+            {
+                return View("AccesoDenegado");
+            }
+            else
+            {
+                ViewBag.Agregar = objRol.Agregar;
+                ViewBag.Modificar = objRol.Modificar;
+                ViewBag.Eliminar = objRol.Eliminar;
+                ViewBag.Consultar = objRol.Consultar;
+
+
+                DataSet RayosX = await dalPaquetes.CatalogoServiciosSeleccionarSoloConPreciosEnParticularV2(21, 0);
+                ViewBag.RayosX = RayosX.Tables[0];
+
+                DataSet Tomografia = await dalPaquetes.CatalogoServiciosSeleccionarSoloConPreciosEnParticularV2(22, 0);
+                ViewBag.Tomografia = Tomografia.Tables[0];
+
+                DataSet EcoObstetrica = await dalPaquetes.CatalogoServiciosSeleccionarSoloConPreciosEnParticularV2(23, 0);
+                ViewBag.EcoObstetrica = EcoObstetrica.Tables[0];
+
+                DataSet EcoGeneral = await dalPaquetes.CatalogoServiciosSeleccionarSoloConPreciosEnParticularV2(20, 0);
+                ViewBag.EcoGeneral = EcoGeneral.Tables[0];
+
+                DataSet PatologiaClinica = await dalPaquetes.CatalogoServiciosSeleccionarSoloConPreciosEnParticularV2(2, 0);
+                ViewBag.PatologiaClinica = PatologiaClinica.Tables[0];
+
+                DataSet CinaEnCE = await dalPaquetes.EspecialidadesSeleccionarPorFiltro("");
+                ViewBag.CinaEnCE = CinaEnCE.Tables[0];
+
+                DataSet Administrativos = await dalPaquetes.CatalogoServiciosSeleccionarSoloAdministrativos();
+                ViewBag.Administrativos = Administrativos.Tables[0];
+
+                DataSet Farmacia = await dalPaquetes.CatalogoBienesInsumosResumenSeleccionarPorFiltro("", " ORDER BY Nombre");
+                ViewBag.Farmacia = Farmacia.Tables[0];
+
+                //DataSet FactCatalogoServiciosSubGrupo = await dalUtilitario.FactCatalogoServiciosSubGrupo();
+                //DataSet GruposSeleccionarTodos = await dalConfiguracionResultados.ImgGruposSeleccionarTodos();
+
+                //ViewBag.FactCatalogoServiciosSubGrupo = FactCatalogoServiciosSubGrupo.Tables[0];
+                //ViewBag.GruposSeleccionarTodos = GruposSeleccionarTodos.Tables[0];
+
+            }
+            ViewBag.Area = "Fact-Config";
+            ViewBag.Modulo = "Paquetes";
+            ViewBag.Icono = "fa-briefcase-medical";
+            //ViewBag.PuntoCarga = 13;
+
+            return View("Paquetes");
+
+        }
+
+
+
+
+
+
+
+
+        public async Task<IActionResult> ProductoPlan(int idListBar)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+
+            int idUsuario;
+            idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            //DalConfiguracionResultadosLab dalConfiguracionResultados = new DalConfiguracionResultadosLab();
+            //DalUtilitario dalUtilitario = new DalUtilitario();
+            //DataTable categoria, subcategoria, categoriadetalle;            
+            DalEmpleado dlEmpleado = new DalEmpleado();
+            RolesItems objRol = await dlEmpleado.DevuelveRolxItem(idUsuario, idListBar);
+
+            if (objRol == null)
+            {
+                return View("AccesoDenegado");
+            }
+            else
+            {
+                ViewBag.Agregar = objRol.Agregar;
+                ViewBag.Modificar = objRol.Modificar;
+                ViewBag.Eliminar = objRol.Eliminar;
+                ViewBag.Consultar = objRol.Consultar;
+
+
+                //DataSet FactCatalogoServiciosSubGrupo = await dalUtilitario.FactCatalogoServiciosSubGrupo();
+                //DataSet GruposSeleccionarTodos = await dalConfiguracionResultados.ImgGruposSeleccionarTodos();
+
+                //ViewBag.FactCatalogoServiciosSubGrupo = FactCatalogoServiciosSubGrupo.Tables[0];
+                //ViewBag.GruposSeleccionarTodos = GruposSeleccionarTodos.Tables[0];
+
+            }
+            ViewBag.Area = "Fact-Config";
+            ViewBag.Modulo = "Producto / Plan";
+            ViewBag.Icono = "fa-briefcase-medical";
+            //ViewBag.PuntoCarga = 13;
+
+            return View("ProductoPlan");
+
+        }
+
+        public async Task<IActionResult> FuentesFinanciamiento(int idListBar)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+
+            int idUsuario;
+            idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            //DalConfiguracionResultadosLab dalConfiguracionResultados = new DalConfiguracionResultadosLab();
+            //DalUtilitario dalUtilitario = new DalUtilitario();
+            //DataTable categoria, subcategoria, categoriadetalle;            
+            DalEmpleado dlEmpleado = new DalEmpleado();
+            RolesItems objRol = await dlEmpleado.DevuelveRolxItem(idUsuario, idListBar);
+
+            if (objRol == null)
+            {
+                return View("AccesoDenegado");
+            }
+            else
+            {
+                ViewBag.Agregar = objRol.Agregar;
+                ViewBag.Modificar = objRol.Modificar;
+                ViewBag.Eliminar = objRol.Eliminar;
+                ViewBag.Consultar = objRol.Consultar;
+
+
+                //DataSet FactCatalogoServiciosSubGrupo = await dalUtilitario.FactCatalogoServiciosSubGrupo();
+                //DataSet GruposSeleccionarTodos = await dalConfiguracionResultados.ImgGruposSeleccionarTodos();
+
+                //ViewBag.FactCatalogoServiciosSubGrupo = FactCatalogoServiciosSubGrupo.Tables[0];
+                //ViewBag.GruposSeleccionarTodos = GruposSeleccionarTodos.Tables[0];
+
+            }
+            ViewBag.Area = "Fact-Config";
+            ViewBag.Modulo = "Fuente Financiamiento";
+            ViewBag.Icono = "fa-briefcase-medical";
+            //ViewBag.PuntoCarga = 13;
+
+            return View("FuentesFinanciamiento");
+
+        }
+
+
+
+
+
+
+
+    }
+}

@@ -1,0 +1,371 @@
+﻿@using System.Data
+<div class="modal fade" id="modalRegistroResultados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" style="z-index: 1050 !important;">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Resultados (cambiar segun tipo)</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="card bg-green mb-1">
+                            <div class="card-header bg-white">Datos de la Configuración</div>
+                            <div class="card-block">
+                                <div class="row mb-1">
+                                    <div class="col-xl-12">
+                                        <div class="form-group mb-0">
+                                            <label for="txtServicioCpt" class="d-block text-truncate"><b>Servicio cpt</b></label>
+                                            <div class="input-group input-group-sm d-flex">
+                                                <input id="hdIdServicioCpt" autocomplete="off" placeholder="" class="solo-decimal form-control writing" hidden>
+                                                <input id="txtServicioCpt" autocomplete="off" placeholder="" class="form-control writing" disabled>
+                                                <div class="input-group-append" style="margin-left: -2px;">
+                                                    <button class="btn btn-indigo" type="button" id="btnModalServicioCpt"><i class="fas fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboGrupoExamen">Grupo de Exámen</label>
+                                            <select id="cboGrupoExamen" class="chzn-select-deselect writing reading" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow grupo in ViewBag.GruposSeleccionarTodos.Rows)
+                                                {
+                                                    <option value="@grupo["idGrupo"]">@grupo["NombreGrupo"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12 mb-1">
+                        <table id="tblItemsProcedimiento" class="table table-sm table-content-sm table-bordered table-striped w-100 m-0" style="cursor: default;">
+                            <thead style="color: white; background: #007368;">
+                                <tr>
+                                    <th width="20%">Grupo de Items</th>
+                                    <th width="15%">Items</th>
+                                    <th width="15%">Valor si es Combo</th>
+                                    <th width="15%">Valor de Referencia</th>
+                                    <th width="5%">Orden</th>
+                                    <th width="10%">Metodo</th>
+                                    <th width="5%">Numeros</th>
+                                    <th width="5%">Texto</th>
+                                    <th width="5%">Lista</th>
+                                    <th width="5%">Check</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @* @foreach (DataRow tfsp in ViewBag.TiposFinanciamientoSoloIngresaPrecios.Rows)
+                                {
+                                    <tr>
+                                        <td>@tfsp["Descripcion"]</td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm solo-decimal tipoPrecio writing" data-tipoprecio="precioVenta" autocomplete="off" id="txtPrecioVenta_@tfsp["IdTipoFinanciamiento"]">
+                                        </td>
+                                        <td>
+                                            <div class="switch-field">
+                                                <input type="radio" id="rdbHabilitarSi_@tfsp["IdTipoFinanciamiento"]" name="rdbHabilitar_@tfsp["IdTipoFinanciamiento"]" class="rdbHabilitar rdbHabilitarSi writing">
+                                                <label for="rdbHabilitarSi_@tfsp["IdTipoFinanciamiento"]" class="px-1">Si</label>
+                                                <input type="radio" id="rdbHabilitarNo_@tfsp["IdTipoFinanciamiento"]" name="rdbHabilitar_@tfsp["IdTipoFinanciamiento"]" class="rdbHabilitar rdbHabilitarNo writing">
+                                                <label for="rdbHabilitarNo_@tfsp["IdTipoFinanciamiento"]" class="px-1">No</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                } *@
+                            </tbody>
+                        </table>
+
+                        <div id="dataTiposFinan" data-financiamiento='@Html.Raw(Json.Serialize(ViewBag.TiposFinanciamientoSoloIngresaPrecios))' class="d-none"></div>
+                    </div>
+
+
+                    <div class="col-xl-6 mb-1">
+
+                        <button class="btn btn-success layout_btn_prevent" id="btnAgregarItem">Agregar</button>
+                        <button class="btn btn-info layout_btn_prevent campo-item" id="btnGuardarItem" disabled>Guardar</button>
+                        <button class="btn btn-danger layout_btn_prevent" id="btnEliminarItem">Eliminar</button>
+                        <button class="btn btn-secondary layout_btn_prevent" id="btnCancelarItem">Cancelar</button>
+
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="card bg-green mb-1">
+                            <div class="card-header bg-white">Datos del Item</div>
+                            <div class="card-block">
+                                <div class="row mb-1">
+                                    <div class="col-xl-6">
+                                        <div class="form-group mb-0">
+                                            <label for="txtGrupoItemRegistrar" class="d-block text-truncate">Grupo de Item</label>
+                                            <div class="input-group input-group-sm d-flex">
+                                                <input id="hdIdGrupoItemRegistrar" autocomplete="off" placeholder="" class="solo-decimal form-control writing" hidden>
+                                                <input id="txtGrupoItemRegistrar" autocomplete="off" placeholder="" class="form-control writing" disabled>
+                                                <div class="input-group-append" style="margin-left: -2px;">
+                                                    <button class="btn btn-indigo campo-item" type="button" id="btnModalGrupoItem" disabled><i class="fas fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-0">
+                                            <label for="txtItemRegistrar" class="d-block text-truncate">Item</label>
+                                            <div class="input-group input-group-sm d-flex">
+                                                <input id="hdItemRegistrar" autocomplete="off" placeholder="" class="solo-decimal form-control writing" hidden>
+                                                <input id="txtItemRegistrar" autocomplete="off" placeholder="" class="form-control writing" disabled>
+                                                <div class="input-group-append" style="margin-left: -2px;">
+                                                    <button class="btn btn-indigo campo-item" type="button" id="btnModalItem" disabled><i class="fas fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group campo m-0">
+                                            <label for="cboTipoDatoRegistrar">Tipo de Dato</label>
+                                            <select id="cboTipoDatoRegistrar" class="chzn-select-deselect writing reading campo-item" data-placeholder="Seleccione una opción" disabled>
+                                                <option value=""></option>
+                                                <option value="0">Solo Números</option>
+                                                <option value="1">Texto</option>
+                                                <option value="2">Lista Desplegable</option>
+                                                <option value="3">Check</option>
+                                                @* @foreach (DataRow pais in ViewBag.Paises.Rows)
+                                                {
+                                                    <option value="@pais["IdPais"]">@pais["Nombre"]</option>
+                                                } *@
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group m-0">
+                                            <label for="txtValorReferencialRegistrar" class="d-block text-truncate">Vallor Referencial</label>
+                                            <textarea type="text" class="form-control form-control-sm writing campo-item" autocomplete="off" id="txtValorReferencialRegistrar" disabled></textarea>
+                                        </div>
+
+                                        <div class="form-group m-0">
+                                            <label for="txtOrdenResultadoRegistrar" class="d-block text-truncate">Orden del Resultado</label>
+                                            <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtOrdenResultadoRegistrar" disabled>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtMetodoRegistrar" class="d-block text-truncate">Metodo</label>
+                                            <input type="text" class="form-control form-control-sm writing campo-item" autocomplete="off" id="txtMetodoRegistrar" disabled>
+                                        </div>
+
+                                        <div class="card mt-1" style="background-color: #fbfbfb !important; display: none;" id="contOpciones" >
+                                            @* <div class="card-header bg-white">Datos del Item</div> *@
+                                            <div class="card-block">
+                                                <div class="form-group mb-1">
+                                                    <label for="txtOpcionDesplegable" class="d-block text-truncate">Opcion</label>
+                                                    <div class="input-group input-group-sm d-flex">
+                                                        <input id="txtOpcionDesplegable" autocomplete="off" placeholder="" class="form-control writing campo-item" disabled>
+                                                        <div class="input-group-append" style="margin-left: 5px;">
+                                                            <button class="btn btn-success campo-item" style="border-top-left-radius: 4px !important; border-bottom-left-radius: 4px !important;" type="button" id="btnAgregarOpcion" disabled><i class="fas fa-add"></i></button>
+                                                        </div>
+                                                        <div class="input-group-append" style="margin-left: 5px;">
+                                                            <button class="btn btn-danger campo-item" style="border-top-left-radius: 4px !important; border-bottom-left-radius: 4px !important;" type="button" id="btnEliminarOpcion" disabled><i class="fas fa-times"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <table id="tblOpcionesDesplegable" class="table table-sm table-content-sm table-bordered table-striped w-100 m-0" style="cursor: default;">
+                                                    <thead style="color: white; background: #007368;">
+                                                        <tr>
+                                                            <th width="100%">Opcion</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardar">ACEPTAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCerrarModalRegistroResultados">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalItemsGrupos" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true" data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel1">Grupos de Items de laboratorio</h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="txtCodigoItemGrupoBusq" class="d-block text-truncate">Código</label>
+                            <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtCodigoItemGrupoBusq">
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group m-0">
+                            <label for="txtNombreItemGrupoBusq" class="d-block text-truncate">Nombre de Grupo</label>
+                            <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtNombreItemGrupoBusq">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-5 d-flex align-items-end" style="height: 55px;">
+                        <button class="btn btn-sm btn-primary layout_btn_prevent mr-2" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarItemGrupo">Buscar</button>
+                        <button class="btn btn-sm btn-secondary layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiarBusqItemGrupo">Limpiar</button>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xl-12 mb-1">
+                        <table id="tblItemGrupo" class="table table-sm table-content-sm table-bordered table-striped w-100 m-0" style="cursor: default;">
+                            <thead style="color: white; background: #007368;">
+                                <tr>
+                                    <th width="20%">Codigo</th>
+                                    <th width="80%">Nombre Grupo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarBienInsumo">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCerrarModalItemsGrupo">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalItems" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel2">Items de Pruebas de laboratorio</h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="txtCodigoItemBusq" class="d-block text-truncate">Código</label>
+                            <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtCodigoItemBusq">
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group m-0">
+                            <label for="txtNombreItemBusq" class="d-block text-truncate">Nombre</label>
+                            <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtNombreItemBusq">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-5 d-flex align-items-end" style="height: 55px;">
+                        <button class="btn btn-sm btn-primary layout_btn_prevent mr-2" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarItem">Buscar</button>
+                        <button class="btn btn-sm btn-secondary layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiarBusqItem">Limpiar</button>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xl-12 mb-1">
+                        <table id="tblItem" class="table table-sm table-content-sm table-bordered table-striped w-100 m-0" style="cursor: default;">
+                            <thead style="color: white; background: #007368;">
+                                <tr>
+                                    <th width="20%">Codigo</th>
+                                    <th width="80%">Nombre</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarBienInsumo">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCerrarModalItems">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalProcedimientos" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel3">Busqueda de Servicios a Configurar</h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="txtCodigoProcedimientoBusq" class="d-block text-truncate">Código</label>
+                            <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtCodigoProcedimientoBusq">
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group m-0">
+                            <label for="txtNombreProcedimientoBusq" class="d-block text-truncate">Nombre</label>
+                            <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtNombreProcedimientoBusq">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-5 d-flex align-items-end" style="height: 55px;">
+                        <button class="btn btn-sm btn-primary layout_btn_prevent mr-2" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarProcedimiento">Buscar</button>
+                        <button class="btn btn-sm btn-secondary layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiarBusqProcedimiento">Limpiar</button>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xl-12 mb-1">
+                        <table id="tblProcedimientoBusq" class="table table-sm table-content-sm table-bordered table-striped w-100 m-0" style="cursor: default;">
+                            <thead style="color: white; background: #007368;">
+                                <tr>
+                                    <th width="10%">Codigo</th>
+                                    <th width="45%">Nombre</th>
+                                    <th width="45%">Nombre Minsa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarBienInsumo">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCerrarModalServicioCpt">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

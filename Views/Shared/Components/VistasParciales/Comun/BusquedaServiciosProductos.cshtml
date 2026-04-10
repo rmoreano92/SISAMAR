@@ -1,0 +1,159 @@
+﻿<div class="row h-100">
+    <div class="col-xl-12 pb-1 h-100">
+        <div class="card bg-light h-100">
+            <div class="card-block px-1 h-100 template_auto-1fr" style="padding-bottom: 0.5rem;">
+                <div>
+                    <div id="frameBusquedaProductos" class="row">
+                        <div class="col-xl-8">
+                            <div class="row" id="framBusquedaServiciosProductos">
+                                <div class="col-xl-2">
+                                    <div class="form-group mb-0">
+                                        <label for="txtCodigoServicioProductoBusqueda" class="form-label d-block text-truncate">Código</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtCodigoServicioProductoBusqueda" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group mb-0">
+                                        <label for="txtNombreServicioProductoBusqueda" class="form-label d-block text-truncate">Nombre</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtNombreServicioProductoBusqueda" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4">
+                                    <div class="d-flex align-items-end" style="height: 55px;">
+                                        <button id="btnAgregaServicioProducto" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;"><i class="fa fa-plus"></i>&#160;&#160; Agregar</button>
+                                        <button id="btnQuitarServicioProducto" type="button" class="btn btn-sm btn-danger" style="width: 100px;"><i class="fa fa-trash"></i>&#160;&#160; Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4">
+                            <div class="d-flex justify-content-end">
+                                @if (ViewBag.PermisoOpcionesPago > 0)
+                                {
+                                    <div class="dropdown mr-1 mt-2">
+                                        <button class="btn btn-blue-grey btn-labeled dropdown-toggle" type="button" id="reporte-caja" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="btn-label">
+                                                <i class="fa-solid fa-list"></i>
+                                            </span>
+                                            Opciones
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="reporte-caja" style="border-color: #78909c;">
+                                            <a id="btnAgregarDepositoGarantia" class="dropdown-item" href="#">Agregar Depósito de Garantía</a>
+                                            <a id="btnAgregarPagoCuenta" class="dropdown-item" href="#">Agregar Pago a Cuenta</a>
+                                            <a id="btnAgregarDevolucion" class="dropdown-item" href="#">Agregar Devolución</a>
+                                            <a id="btnOtrosIngresosAdministrativos" class="dropdown-item" href="#">Otros Ingresos Administrativos</a>
+                                            <a id="btnOtrosIngresosClinica" class="dropdown-item" href="#">Otros Ingresos CLINICA</a>
+                                            <a id="btnAgregarProcedimientos" class="dropdown-item" href="#">Agregar Procedimientos</a>
+                                            <a id="btnAgregarFarmacia" class="dropdown-item" href="#">Agregar Farmacia</a>
+                                            <a id="btnAgregarCapacitacion" class="dropdown-item" href="#">Agregar Capacitación</a>
+                                        </div>
+                                    </div>
+                                }
+
+                                <div class="d-none">
+                                    <button class="btn btn-blue-grey mt-2" id="btnMuestraPaquete" style="padding-top:0.43rem; padding-bottom: 0.43rem;"><i class="fa fa-medkit"></i>&#160;&#160; Carga Paquetes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="frameResultadosBusquedaServiciosProdutos" class="row w-100" style="position: absolute; z-index: 1000; max-width: 900px; margin-top: 5px;">
+                        <div class="col-xl-12">
+                            <div id="contServiciosProductosBusqueda" class="card mb-3 frameServiciosProductosBusqueda" style="background-color: slategrey; color: whitesmoke; border-color: darkslategrey; box-shadow: rgb(64, 64, 64) 15px 15px 10px; max-height: 35vh;">
+                                <div class="card-block p-0 px-1">
+                                    <table id="tblServiciosProductosBuscados" class="table table-sm table-content-sm table-bordered w-100" style="cursor: default;">
+                                        <thead style="color: white; background: #434343;">
+                                            <tr>
+                                                <th style="width:10%">Código</th>
+                                                <th style="width:35%">Nombre</th>
+                                                <th style="width:10%">Precio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="frameDetalleServiciosProdutos" class="mt-1">
+                    <ul class="nav nav-tabs" id="tabDetalleServiciosProductos" role="tablist" style="font-size: smaller;">
+                        <li class="nav-item m-0" role="presentation">
+                            <a href="#" class="nav-link active" id="TabDetalleServicios" data-toggle="tab" data-target="#TabPanelDetalleServicios" role="tab" aria-controls="TabPanelDetalleServicios" aria-selected="true">SERVICIOS</a>
+                        </li>
+                        <li class="nav-item m-0" role="presentation">
+                            <a href="#" class="nav-link" id="TabDetalleProductos" data-toggle="tab" data-target="#TabPanelDetalleProductos" role="tab" aria-controls="TabPanelDetalleProductos" aria-selected="false">FARMACIA</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border pt-0 px-1" id="myTabContentDetalleServiciosProductos">
+                        <table id="tblDetalleServiciosProductos" class="table table-xs table-content-sm table-bordered w-100" style="cursor: default;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th style="width:4%">Nº</th>
+                                    <th style="width:6%">Código</th>
+                                    <th style="width:49%">Nombre</th>
+                                    <th style="width:6%">Orden</th>
+                                    <th style="width:7%;">Cantidad</th>                                    
+                                    <th style="width:7%; text-align: right;">Precio</th>                                    
+                                    <th style="width:7%; text-align: right;">Subtotal</th>
+                                    <th style="width:7%; text-align: right;">Descuento</th>
+                                    <th style="width:7%; text-align: right;">Subtotal Neto</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                        <div class="row">
+                            <div class="col-xl-3">
+                                <table id="frameExoneradoServiciosProductos" class="table-content-sm" style="margin-bottom: 0.5rem;">
+                                    <tbody>
+                                        <tr>
+                                            <th width="140" class="border px-1" style="background: #e6e6e6;">EXONERADO (S/.)</th>
+                                            <td width="120" class="border"><input id="ExoneradoServiciosProductos" type="text" class="form-control form-control-sm solo-decimal text-sm-right w-100" autocomplete="off" disabled></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-xl-3">
+                                <table id="frameTotalServiciosProductos" class="table-content-sm" style="margin-bottom: 0.5rem;">
+                                    <tbody>
+                                        <tr>
+                                            <th width="100" class="border px-1" style="background: #e6e6e6;">TOTAL (S/.)</th>
+                                            <td width="120" class="border"><input id="TotalServiciosProductos" type="text" class="form-control form-control-sm solo-decimal text-sm-right w-100" autocomplete="off" disabled></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-xl-3">
+                                <table id="frameDetalleExoneradoServiciosProductos" class="table-content-sm float-sm-right" style="margin-bottom: 0.5rem;">
+                                    <tbody>
+                                        <tr>
+                                            <th width="140" class="border px-1" style="background: #e6e6e6;">EXONERADO (S/.)</th>
+                                            <td width="120" class="border"><input id="ExoneradoDetalleServiciosProductos" type="text" class="form-control form-control-sm solo-decimal text-sm-right w-100" autocomplete="off" disabled></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-xl-3">
+                                <table id="frameDetalleTotalServiciosProductos" class="table-content-sm float-sm-right" style="margin-bottom: 0.5rem;">
+                                    <tbody>
+                                        <tr>
+                                            <th width="100" class="border px-1" style="background: #e6e6e6;">TOTAL (S/.)</th>
+                                            <td width="120" class="border"><input id="TotalDetalleServiciosProductos" type="text" class="form-control form-control-sm solo-decimal text-sm-right w-100" autocomplete="off" disabled></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                
+                                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,263 @@
+﻿@using System.Data
+<div id="modalRegistroNotaDebito" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalRegistroNotaDebitoLabel">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="modalRegistroNotaDebitoLabel">Registro Nota Débito</h5>
+            </div>
+            <div class="modal-body">
+                <div id="cabeceraNotaDebito" class="row">
+                    <div class="col-md-12 mb-1">
+                        <div class="card bg-teal" style="border-color: #009688;">
+                            <div class="card-header">Nota de Débito</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="row">
+                                            <div class="col-xl-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroSerieComprobanteND" class="form-label d-block text-truncate font-weight-bold">Nº Serie</label>
+                                                    <input id="txtNroSerieComprobanteND" autocomplete="off" placeholder="" class="form-control reading" disabled style="background-color: #e9ecff; color: #3F51B5;">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroDocumentoComprobanteND" class="form-label d-block text-truncate font-weight-bold">Nº Documento</label>
+                                                    <input id="txtNroDocumentoComprobanteND" autocomplete="off" placeholder="" class="form-control reading" disabled style="background-color: #e9ecff; color: #3F51B5;">
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtEstadoComprobanteComprobanteND" class="form-label d-block text-truncate font-weight-bold">Estado</label>
+                                            <input id="txtEstadoComprobanteComprobanteND" autocomplete="off" placeholder="" class="form-control reading" disabled style="background-color: #e9ecff; color: #3F51B5;">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5" id="frmFechaEmisionNotaDebito">
+                                        <div class="row">
+                                            <div class="col-sm-6" style="max-width: 170px;">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaEmisionComprobanteND" class="form-label d-block text-truncate font-weight-bold">Fecha Emisión</label>
+                                                    <div class="input-group">
+                                                        <input id="txtFechaEmisionComprobanteND" type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha reading" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" disabled style="background-color: #e9ecff; color: #3F51B5;">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6" style="max-width: 130px;">
+                                                <div class="form-group m-0">
+                                                    <label for="txtHoraEmisionComprobanteND" class="form-label d-block text-truncate font-weight-bold">Hora Emisión</label>
+                                                    <div class="input-group">
+                                                        <input id="txtHoraEmisionComprobanteND" type="text" autocomplete="off" class="form-control maskHora reading" placeholder="__:__" disabled style="background-color: #e9ecff; color: #3F51B5;">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-timer "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Comprobante de pago afectado</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="cboTipoDocumentoComprobanteAfectadoND">Tipo Comprobante</label>
+                                            <select id="cboTipoDocumentoComprobanteAfectadoND" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow tiposcomp in ViewBag.TiposComprobantes.Rows)
+                                                {
+                                                    <option value="@tiposcomp["IdTipoComprobante"]">@tiposcomp["Descripcion"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="row">
+                                            <div class="col-xl-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroSerieComprobanteAfectadoND" class="form-label d-block text-truncate">Nº Serie</label>
+                                                    <input id="txtNroSerieComprobanteAfectadoND" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroDocumentoComprobanteAfectadoND" class="form-label d-block text-truncate">Nº Documento</label>
+                                                    <input id="txtNroDocumentoComprobanteAfectadoND" autocomplete="off" placeholder="" class="form-control form-control-sm solo-numero writing">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaComprobanteAfectadoND" class="form-label d-block text-truncate">Fecha Comprobante</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtFechaComprobanteAfectadoND" type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha writing" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-xl-3">
+                                        <div style="margin-top: 28px;">
+                                            <button class="btn btn-sm btn-secondary layout_btn_prevent" style="min-width: 70px;" id="btnLimpiarComprobanteAfectado">Limpiar</button>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Detalle de la nota de débito</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="cboTipoDocumentoND">Tipo Documento</label>
+                                            <select id="cboTipoDocumentoND" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow tiposdoc in ViewBag.TiposDocumentos.Rows)
+                                                {
+                                                    <option value="@tiposdoc["IdDocIdentidad"]">@tiposdoc["Descripcion"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label id="lblNroDocumentoND" for="txtNroDocumentoND" class="form-label d-block text-truncate">Nº Documento</label>
+                                            <input id="txtNroDocumentoND" autocomplete="off" placeholder="" class="form-control form-control-sm solo-numero writing">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label id="lblRazonSocialND" for="txtRazonSocialND" class="form-label d-block text-truncate">Razon Social/Apellidos y Nombres</label>
+                                            <input id="txtRazonSocialND" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtDireccionND" class="form-label d-block text-truncate">Dirección</label>
+                                            <input id="txtDireccionND" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="cboMotivoND">Motivo</label>
+                                            <select id="cboMotivoND" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow motivo in ViewBag.Motivos.Rows)
+                                                {
+                                                    <option value="@motivo["IdMotivo"]">@motivo["Motivo"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>                                                                        
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="form-group m-0">
+                                            <label for="txtConceptoND" class="form-label d-block text-truncate">Concepto</label>
+                                            <textarea style="overflow:scroll;" class="form-control writing" id="txtConceptoND" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Totales</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtTotalGravadoND" class="form-label d-block text-truncate font-weight-bold">GRAVADO</label>
+                                            <div class="input-group">
+                                                <input id="txtTotalGravadoND" type="text" autocomplete="off" class="form-control solo-decimal writing">
+                                                <span class="input-group-addon">S/.</span>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtTotalIgvND" class="form-label d-block text-truncate font-weight-bold">IGV</label>
+                                            <div class="input-group">
+                                                <input id="txtTotalIgvND" type="text" autocomplete="off" class="form-control solo-decimal writing">
+                                                <span class="input-group-addon">S/.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtTotalExoneradoND" class="form-label d-block text-truncate font-weight-bold">EXONERADO</label>
+                                            <div class="input-group">
+                                                <input id="txtTotalExoneradoND" type="text" autocomplete="off" class="form-control solo-decimal writing">
+                                                <span class="input-group-addon">S/.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtTotalInafectoND" class="form-label d-block text-truncate font-weight-bold">INAFECTO</label>
+                                            <div class="input-group">
+                                                <input id="txtTotalInafectoND" type="text" autocomplete="off" class="form-control solo-decimal writing">
+                                                <span class="input-group-addon">S/.</span>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-xl-2">
+                                        
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtTotalND" class="form-label d-block text-truncate font-weight-bold">TOTAL</label>
+                                            <div class="input-group">
+                                                <input id="txtTotalND" type="text" autocomplete="off" class="form-control solo-decimal writing">
+                                                <span class="input-group-addon">S/.</span>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarRegistroNotaDebito">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCancelarRegistroNotaDebito">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

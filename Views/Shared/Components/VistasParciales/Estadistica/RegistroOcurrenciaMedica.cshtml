@@ -1,0 +1,841 @@
+﻿
+<div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card bg-blue">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtFechaOcurrencia">Fecha Ocurrencia</label>
+                                <div class="input-group form-group input-group-sm  m-0">
+                                    <input type="text" class="form-control form_val_popup_dp3 search campo" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaOcurrencia" autocomplete="off">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="cboTurno">Turno</label>
+                                <select id="cboTurno" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group m-0">
+                                <label for="cboJefeGuardia">Jefe de Guardia Saliente</label>
+                                <select id="cboJefeGuardia" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group m-0">
+                                <label for="cboJefeGuardiaEntrante">Jefe de Guardia Entrante</label>
+                                <select id="cboJefeGuardiaEntrante" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtFolio">Folio</label>
+                                <input type="text" class="form-control form-control-sm solo-numero" autocomplete="off" id="txtFolio" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12 mt-1">
+            <div class="card mb-1 bg-blue">
+                <div class="card-header bg-white">Medicos de Guardía</div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group m-0">
+                                <label class="" for="cboTiposMedico">Especialidad</label>
+                                <select id="cboTiposMedico" class="chzn-select" data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group m-0">
+                                <label class="" for="cboMedicos">Médicos</label>
+                                <select id="cboMedicos" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-5">
+                            <div class="d-flex" style="margin-top: 27px;">
+                                <button class="btn btn-sm btn-success btn-opciones layout_btn_prevent mr-1" id="btnAgregarMedico"><i class="fas fa-plus"></i> Agregar</button>
+                                <button class="btn btn-sm btn-danger btn-opciones layout_btn_prevent" id="btnEliminarMedico"><i class="fas fa-trash"></i> Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mt-1">
+                        <div class="col-lg-2 col-md-3">
+                            <ul class="nav d-flex flex-column nav-tabs border" id="Medicos-TabList" role="tablist" aria-orientation="vertical">
+                                <li class="nav-item m-0">
+                                    <a class="nav-link active" id="ginecologos-tab-link" data-toggle="tab" href="#ginecologos-tab" role="tab" aria-controls="home" aria-selected="true" aria-expanded="true">Gineco-Obstetra</a>
+                                </li>
+                                <li class="nav-item m-0">
+                                    <a class="nav-link" id="neonatologos-tab-link" data-toggle="tab" href="#neonatologos-tab" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">Neonatólogo</a>
+                                </li>
+                                <li class="nav-item m-0">
+                                    <a class="nav-link" id="anestesiologos-tab-link" data-toggle="tab" href="#anestesiologos-tab" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">Anestesiólogo</a>
+                                </li>
+                                <li class="nav-item m-0">
+                                    <a class="nav-link" id="intensivistas-tab-link" data-toggle="tab" href="#intensivistas-tab" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">Intensivistas</a>
+                                </li>
+                                <li class="nav-item m-0">
+                                    <a class="nav-link" id="residentes-tab-link" data-toggle="tab" href="#residentes-tab" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">Residentes</a>
+                                </li>
+                            </ul>                            
+                        </div>
+                        <div class="col-lg-10 col-md-9">
+                            <div class="tab-content" id="Medicos-TabContent">
+                                <div class="tab-pane fade show active in" id="ginecologos-tab" role="tabpanel" aria-labelledby="ginecologos-tab-link">
+                                    <div class="h5 m-0">Medicos Gineco-Obstetras</div>
+                                    <table id="tblMedicosGinecologos" width="100%" class="table table-sm table-bordered table-content-sm" style="cursor: default;">
+                                        <thead style="color: white;background: #434343;">
+                                            <tr>
+                                                <th style="width:25%">Tipo</th>
+                                                <th style="width:75%">Médico</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="neonatologos-tab" role="tabpanel" aria-labelledby="neonatologos-tab-link">
+                                    <div class="h5 m-0">Medicos Neonatólogos</div>
+                                    <table id="tblMedicosNeonatologos" width="100%" class="table table-sm table-bordered table-content-sm" style="cursor: default;">
+                                        <thead style="color: white;background: #434343;">
+                                            <tr>
+                                                <th style="width:25%">Tipo</th>
+                                                <th style="width:75%">Médico</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="anestesiologos-tab" role="tabpanel" aria-labelledby="anestesiologos-tab-link">
+                                    <div class="h5 m-0">Medicos Anestesiólogos</div>
+                                    <table id="tblMedicosAnestesiologos" width="100%" class="table table-sm table-bordered table-content-sm" style="cursor: default;">
+                                        <thead style="color: white;background: #434343;">
+                                            <tr>
+                                                <th style="width:25%">Tipo</th>
+                                                <th style="width:75%">Médico</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="intensivistas-tab" role="tabpanel" aria-labelledby="intensivistas-tab-link">
+                                    <div class="h5 m-0">Medicos Intensivistas</div>
+                                    <table id="tblMedicosIntensivistas" width="100%" class="table table-sm table-bordered table-content-sm" style="cursor: default;">
+                                        <thead style="color: white;background: #434343;">
+                                            <tr>
+                                                <th style="width:25%">Tipo</th>
+                                                <th style="width:75%">Médico</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="residentes-tab" role="tabpanel" aria-labelledby="residentes-tab-link">
+                                    <div class="h5 m-0">Medicos Residentes</div>
+                                    <table id="tblMedicosResidentes" width="100%" class="table table-sm table-bordered table-content-sm" style="cursor: default;">
+                                        <thead style="color: white;background: #434343;">
+                                            <tr>
+                                                <th style="width:25%">Tipo</th>
+                                                <th style="width:75%">Médico</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                                                
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-1 bg-blue">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group m-0">
+                                        <label for="txtMuertesMaternas">Muertes Maternas</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtMuertesMaternas">
+                                    </div>
+                                    <div class="form-group campo m-0">
+                                        <label for="txtMuertesMaternasComentarios">Comentarios</label>
+                                        <textarea class="form-control campo" id="txtMuertesMaternasComentarios" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card mb-1 bg-blue">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group m-0">
+                                        <label for="txtEventosAdversos">Eventos Adversos</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEventosAdversos">
+                                    </div>
+                                    <div class="form-group campo m-0">
+                                        <label for="txtEventosAdversosComentarios">Comentarios</label>
+                                        <textarea class="form-control campo" id="txtEventosAdversosComentarios" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card mb-1 bg-blue">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group m-0">
+                                        <label for="txtPacienteCriticos">Pacientes Críticos</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPacienteCriticos">
+                                    </div>
+                                    <div class="form-group campo m-0">
+                                        <label for="txtPacienteCriticosComentarios">Comentarios</label>
+                                        <textarea class="form-control campo" id="txtPacienteCriticosComentarios" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-1 bg-blue">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group m-0">
+                                        <label for="txtReintervencionesQx">Reinterve. Quirurgicas</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtReintervencionesQx">
+                                    </div>
+                                    <div class="form-group campo m-0">
+                                        <label for="txtReintervencionesQxComentarios">Comentarios</label>
+                                        <textarea class="form-control campo" id="txtReintervencionesQxComentarios" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card mb-1 bg-blue">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group m-0">
+                                        <label for="txtCasosMedicoLegal">Casos Posible Implic. Médico Legal</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCasosMedicoLegal">
+                                    </div>
+                                    <div class="form-group campo m-0">
+                                        <label for="txtCasosMedicoLegalComentarios">Comentarios</label>
+                                        <textarea class="form-control campo" id="txtCasosMedicoLegalComentarios" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-1 bg-blue">
+                <div class="card-header bg-white">Emergencia</div>
+                <div class="card-block">                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form>
+                                <fieldset class="mx-0 mb-1 px-1 pb-1">
+                                    <legend class="mb-0">Atenciones</legend>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group m-0">
+                                                <label for="txtEmerAtObstetricas">Obstetricas</label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerAtObstetricas">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-0">
+                                                <label for="txtEmerAtGinecologicas">Ginecológicas</label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerAtGinecologicas">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-0">
+                                                <label for="txtEmerAtPediatricas">Pediatricas</label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerAtPediatricas">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-0">
+                                                <label for="txtEmerAtObservacion">Sala Observación</label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerAtObservacion">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-0">
+                                                <label for="txtEmerAtTraumaShock">Trauma Shock</label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerAtTraumaShock">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </form>
+                            
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtEmerEcografias">Ecografias</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerEcografias">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtEmerCesareas">Cesáreas</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerCesareas">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtEmerLaparatomias">Laparatomias</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerLaparatomias">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtEmerLaparascopias">Laparascopias</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerLaparascopias">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtEmerLegrados">Legrados</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerLegrados">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtEmerPartos">Partos</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerPartos">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtEmerTocolisis">Tocólisis</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerTocolisis">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card bg-red mt-1">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group m-0">
+                                                <label for="txtEmerCesareasPend">Cesáreas pendientes</label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerCesareasPend">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-0">
+                                                <label for="txtEmerAmeuPend">Ameu pendientes</label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerAmeuPend">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-0">
+                                                <label for="txtEmerEcografiasPend">Ecografías pendientes</label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerEcografiasPend">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-0">
+                                                <label for="txtEmerLaparascopias">Laparascopias pendientes</label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerLaparascopiasPend">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-0">
+                                                <label for="txtEmerLaparatomiasPend">Laparatomias pendientes</label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerLaparatomiasPend">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-0">
+                                                <label for="txtEmerReferidosPorLlegarPend">Referidos por llegar pendientes</label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtEmerReferidosPorLlegarPend">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-0">
+                                <label for="txtPacientesEmerComentarios">Comentarios</label>
+                                <textarea class="form-control campo" id="txtPacientesEmerComentarios" rows="3"></textarea>
+                            </div>
+
+                            @* <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group m-0">
+                                        <label for="txtNombresRn">Ingresos Obstétricos</label>
+                                        <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtNombresRn">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group m-0">
+                                        <label for="cboSexo">Ingresos Ginecológicos</label>
+                                        <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtNombresRn">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group m-0">
+                                        <label for="cboSexo">Ingresos Pediátricos</label>
+                                        <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtNombresRn">
+                                    </div>                                    
+                                </div>
+                            </div> *@
+                            @* <div class="row">
+                                
+                                <div class="col-md-4">
+                                    <div class="form-group m-0">
+                                        <label for="txtNombresRn">Procedimientos QX AMEU</label>
+                                        <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtNombresRn">
+                                    </div>
+                                </div>
+                                
+                                
+                            </div> *@
+                        </div>
+
+                        @* <div class="col-md-4">
+                            <div class="form-group m-0">
+                                <label class="font-weight-bold">Clave</label>
+                                <div class="d-flex">
+                                    <label class="custom-control custom-radio mr-2">
+                                        <input type="radio" name="rdbDips" id="rdbDipsI" class="custom-control-input">
+                                        <span class="custom-control-indicator custom_checkbox_default"></span>
+                                        <span class="custom-control-description text-default">Roja</span>
+                                    </label>
+                                    <label class="custom-control custom-radio mr-2">
+                                        <input type="radio" name="rdbDips" id="rdbDipsII" class="custom-control-input">
+                                        <span class="custom-control-indicator custom_checkbox_default"></span>
+                                        <span class="custom-control-description text-default">Azul</span>
+                                    </label>
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="rdbDips" id="rdbDipsIII" class="custom-control-input">
+                                        <span class="custom-control-indicator custom_checkbox_default"></span>
+                                        <span class="custom-control-description text-default">Amarilla</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group campo m-0">
+                                <label for="cboCondicion">Observaciones</label>
+                                <textarea class="form-control" id="txtMotivoConsultaPeri" rows="3"></textarea>
+                            </div>
+                        </div> *@
+                                               
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-1 bg-blue">
+                <div class="card-header bg-white">Centro Obstétrico</div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtCOCesareas">Cesáreas</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOCesareas">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtCOLaparatomias">Laparatomias</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOLaparatomias">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtCOLaparascopias">Laparascopias</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOLaparascopias">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtCOLegrados">Legrados</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOLegrados">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtCOPartos">Partos</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOPartos">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtCOTocolisis">Tocólisis</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOTocolisis">
+                            </div>
+                        </div>
+                        
+                        @*<div class="col-md-12">
+                            
+                            <div class="form-group m-0">
+                                <label for="txtNombresRn">C/ Analgesia</label>
+                                <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtNombresRn">
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="txtNombresRn">S/ Analgesia</label>
+                                <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtNombresRn">
+                            </div>
+                        </div>                        
+                        <div class="col-md-3">
+                            <div class="form-group m-0">
+                                <label class="font-weight-bold">Clave</label>
+                                <div class="d-flex">
+                                    <label class="custom-control custom-radio mr-2">
+                                        <input type="radio" name="rdbDips" id="rdbDipsI" class="custom-control-input">
+                                        <span class="custom-control-indicator custom_checkbox_default"></span>
+                                        <span class="custom-control-description text-default">Roja</span>
+                                    </label>
+                                    <label class="custom-control custom-radio mr-2">
+                                        <input type="radio" name="rdbDips" id="rdbDipsII" class="custom-control-input">
+                                        <span class="custom-control-indicator custom_checkbox_default"></span>
+                                        <span class="custom-control-description text-default">Azul</span>
+                                    </label>
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="rdbDips" id="rdbDipsIII" class="custom-control-input">
+                                        <span class="custom-control-indicator custom_checkbox_default"></span>
+                                        <span class="custom-control-description text-default">Amarilla</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group campo m-0">
+                                <label for="cboCondicion">Observaciones</label>
+                                <textarea class="form-control" id="txtMotivoConsultaPeri" rows="3"></textarea>
+                            </div>
+                        </div> *@
+                    </div>
+
+                    <div class="card bg-red mt-1 d-none">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtCOCesareasPend">Cesáreas pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOCesareasPend">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtCOAmeuPend">Ameu pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOAmeuPend">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtCOEcografiasPend">Ecografías pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOEcografiasPend">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtCOLaparascopiasPend">Laparascopias pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOLaparascopiasPend">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtCOLaparatomiasPend">Laparatomias pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOLaparatomiasPend">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtCOReferidosPorLlegarPend">Referidos por llegar pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtCOReferidosPorLlegarPend">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group m-0">
+                        <label for="txtPacientesCOComentarios">Comentarios</label>
+                        <textarea class="form-control campo" id="txtPacientesCOComentarios" rows="3"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-1 bg-blue">   
+                <div class="card-header bg-white">Periféricos</div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtPerCesareas">Cesáreas</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerCesareas">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtPerLaparatomias">Laparatomias</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerLaparatomias">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtPerLaparascopias">Laparascopias</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerLaparascopias">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtPerLegrados">Legrados</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerLegrados">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtPerPartos">Partos</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerPartos">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label for="txtPerTocolisis">Tocólisis</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerTocolisis">
+                            </div>
+                        </div>
+                        @* <div class="col-md-3">
+                            <div class="form-group m-0">
+                                <label for="txtNombresRn">Periféricos: Cesáreas</label>
+                                <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtNombresRn">
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="txtNombresRn">Ingresos a UCIM</label>
+                                <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtNombresRn">
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="txtNombresRn">Leg. Uterino</label>
+                                <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtNombresRn">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group m-0">
+                                <label class="font-weight-bold">Clave</label>
+                                <div class="d-flex">
+                                    <label class="custom-control custom-radio mr-2">
+                                        <input type="radio" name="rdbDips" id="rdbDipsI" class="custom-control-input">
+                                        <span class="custom-control-indicator custom_checkbox_default"></span>
+                                        <span class="custom-control-description text-default">Roja</span>
+                                    </label>
+                                    <label class="custom-control custom-radio mr-2">
+                                        <input type="radio" name="rdbDips" id="rdbDipsII" class="custom-control-input">
+                                        <span class="custom-control-indicator custom_checkbox_default"></span>
+                                        <span class="custom-control-description text-default">Azul</span>
+                                    </label>
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="rdbDips" id="rdbDipsIII" class="custom-control-input">
+                                        <span class="custom-control-indicator custom_checkbox_default"></span>
+                                        <span class="custom-control-description text-default">Amarilla</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group campo m-0">
+                                <label for="cboCondicion">Observaciones</label>
+                                <textarea class="form-control" id="txtMotivoConsultaPeri" rows="3"></textarea>
+                            </div>
+                        </div> *@
+                    </div>
+
+                    <div class="card bg-red mt-1 d-none">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtPerCesareasPend">Cesáreas pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerCesareasPend">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtPerAmeuPend">Ameu pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerAmeuPend">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtPerEcografiasPend">Ecografías pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerEcografiasPend">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtPerLaparascopiasPend">Laparascopias pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerLaparascopiasPend">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtPerLaparatomiasPend">Laparatomias pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerLaparatomiasPend">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtPerReferidosPorLlegarPend">Referidos por llegar pendientes</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPerReferidosPorLlegarPend">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group m-0">
+                        <label for="txtPacientesPerComentarios">Comentarios</label>
+                        <textarea class="form-control campo" id="txtPacientesPerComentarios" rows="3"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-1 bg-blue">
+                <div class="card-header bg-white">UCI</div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group m-0">
+                                <label for="txtPacientesUCI">Pacientes</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtPacientesUCI">
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="txtPacientesUCIComentarios">Comentarios</label>
+                                <textarea class="form-control campo" id="txtPacientesUCIComentarios" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-1 bg-blue">
+                <div class="card-block">
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            @* <div class="form-group campo m-0">
+                                <label for="cboCondicion">Defunciones</label>
+                                <textarea class="form-control" id="txtMotivoConsultaPeri" rows="3"></textarea>
+                            </div> *@
+
+                            <div class="form-group campo m-0">
+                                <label for="txtOcurrencias">Ocurrencias</label>
+                                <textarea class="form-control campo" id="txtOcurrencias" rows="9"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   
+
+    <div class="row border-top mt-1">
+        <div class="col-sm-12 pt-1 pb-1 bg-whitesmoke border-left border-right">
+            <div>
+                <button id="btnCancelarOcurrencia" type="button" class="btn btn-secondary btn-lg float-sm-right pl-3 pr-3" style="max-width: 140px">Cancelar</button>
+                <button id="btnGuardarOcurrencia" type="button" class="btn btn-primary btn-lg float-sm-right pl-3 pr-3 mr-2" style="max-width: 140px">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<style>
+    .btn-medico{
+        width: 110px;
+    }
+
+    .btn-opciones {
+        width: 90px;
+    }
+</style>
+
+
+
+

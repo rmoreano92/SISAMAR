@@ -1,0 +1,112 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+}
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-screwdriver-wrench"></i>
+                @ViewBag.Modulo
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Modulo</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row m-0">
+            <div class="col-xl-4">
+                <div class="card bg-beige">
+                    <div class="card-block p-1">
+                        <div class="list-group">
+                            @foreach (var item in ViewBag.RolHerramientas.Tables[0].Rows)
+                            {
+                                @if (Convert.ToInt32(item["Agregar"]) > 0 || Convert.ToInt32(item["Modificar"]) > 0)
+                                {
+                                    <div class="list-group-item list-group-item-action">@item["Nombre"].ToString() <button class="btn btn-brown btn-sm float-lg-right layout_btn_prevent" id="@item["Accion"].ToString()"><i class="fa @item["IconoWeb"].ToString()"></i></button></div>
+                                }                                
+                            }
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+@*=========================================================HERRAMIENTAS MODALS=======================================================================*@
+@foreach (var item in ViewBag.RolHerramientas.Tables[0].Rows)
+{
+    @if (Convert.ToInt32(item["Agregar"]) > 0 || Convert.ToInt32(item["Modificar"]) > 0)
+    {
+        @if (item["Clave"].ToString() == "ReprogramacionMedica")
+        {
+            <partial name="~/Views/Herramientas/ReprogramacionMedica.cshtml" />
+        }
+    }    
+}
+
+<partial name="~/Views/Herramientas/ReportesEstadistica.cshtml" />
+
+<partial name="~/Views/Herramientas/ExportarDatosSEM.cshtml" />
+
+<partial name="~/Views/Herramientas/ReporteEgresos.cshtml" />
+
+<partial name="~/Views/Herramientas/ReporteConstancias.cshtml" />
+
+<partial name="~/Views/Herramientas/SistemaCitasWeb.cshtml" />
+@*============================================================================================================================================*@
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    @* <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script> *@
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment-with-locales.js"></script>
+    
+    <script src="~/AdmiRE/js/date.format.js"></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Herramientas/Herramientas.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Herramientas/ReprogramacionMedica.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Herramientas/ReportesEstadistica.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Herramientas/ExportarDatos.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Herramientas/ReportesConstancias.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Herramientas/ReportesEgresos.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Herramientas/SistemaCitasWeb.js?v=" + version)></script>
+
+}

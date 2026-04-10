@@ -1,0 +1,657 @@
+﻿<div class="card">
+    <div class="card-block">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="form-group mb-0">
+                    <label for="txtNroHistoria" class="form-control-label"><b>Nro. Historia</b></label>
+                    <div class="input-group d-flex">
+                        <input id="txtNroHistoria" autocomplete="off" placeholder="" class="solo-numero form-control">
+                        <div class="input-group-append" style="margin-left: -2px;">
+                            <button class="btn btn-primary btnBuscarPaciente" type="button" id="btnBuscarPacienteHistoria"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group mb-0">
+                    <label for="txtNroDocumento" class="form-control-label"><b>Nro. DNI</b></label>
+                    <div class="input-group d-flex">
+                        <input id="txtNroDocumento" autocomplete="off" placeholder="" class="solo-numero form-control">
+                        <div class="input-group-append" style="margin-left: -2px;">
+                            <button class="btn btn-primary btnBuscarPaciente" type="button" id="btnBuscarPacienteDocumento"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group mb-0">
+                    <label for="txtNombres" class="form-control-label"><b>Nombres</b></label>
+                    <div class="input-group">
+                        <input id="txtNombres" autocomplete="off" placeholder="" class="form-control" disabled>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-2" id="tabSeguimientoGenerales">
+    <ul id="idtbGeneralSeguimiento" class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" href="#atencionesGeneralesSegui" role="tab" id="atencionesGeneralesSegui-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Atenciones</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#ordenesGeneralesSegui" role="tab" id="ordenesGeneralesSegui-tab" data-toggle="tab" aria-controls="hats">Ordenes Generales</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#resultadosGeneralesSegui" role="tab" id="resultadosGeneralesSegui-tab" data-toggle="tab" aria-controls="hats">Resultados Generales</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#resultadosFarmaciaSegui" role="tab" id="resultadosFarmaciaSegui-tab" data-toggle="tab" aria-controls="hats">Resultados Farmacia</a>
+        </li>
+    </ul>
+
+    <div class="card-block">
+        <div id="clothing-nav-content-generales" class="tab-content pt-1">
+
+            <div role="tabpanel" class="tab-pane fade in active" id="atencionesGeneralesSegui" aria-labelledby="atencionesGeneralesSegui-tab">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <table id="tblCuentas" class="table table-sm table-bordered" style="width: 100%; cursor: pointer; margin-top: 0 !important;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th style="display:none" align="center">Cuenta</th>
+                                    <th style="display:none" align="center">Fecha Ingreso</th>
+                                    <th align="center">Atenciones</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-lg-9">
+                        @*<label id="lblDatosAtencion" style="color:blue" class="form-control-label"></label>*@
+                        <div class="card" id="tabSeguimiento">
+
+                            <ul id="idtbSeguimiento" class="nav nav-tabs" role="tablist">
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#diagnosticoCons" role="tab" id="diagnosticoCons-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Dignosticos/Motivo Consulta</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#ordenesSegui" role="tab" id="ordenesSegui-tab" data-toggle="tab" aria-controls="hats">Ordenes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#resultadosSegui" role="tab" id="resultadosSegui-tab" data-toggle="tab" aria-controls="hats">Resultados</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="card-block">
+                                <div id="clothing-nav-content" class="tab-content pt-1">
+
+                                    <div role="tabpanel" class="tab-pane fade in active" id="diagnosticoCons" aria-labelledby="diagnosticoCons-tab">
+                                        <div class="row pt-1 bg-blue mb-1">
+                                            <div class="col-md-3 h5 font-weight-bold" id="lblDatosAtencionCuenta"></div>
+                                            <div class="col-md-3 h5 font-weight-bold" id="lblDatosAtencionFechaIngreso"></div>
+                                            <div class="col-md-3 h5 font-weight-bold" id="lblDatosAtencionServicio"></div>
+                                            <div class="col-md-3 h5 font-weight-bold" id="lblDatosAtencionTipoServicio"></div>
+                                        </div>
+
+                                        <div class="row" id="SeguimientoCE">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table id="tblDiagSgui" class="table table-sm table-bordered" style="margin-top: 0 !important;">
+                                                            <thead style="color: white; background: #51717a; ">
+                                                                <tr>
+                                                                    <th align="left">Diagnostico</th>
+                                                                    <th align="left">Tipo</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtMotivoConsultaSeg" class="form-control-label"><b>Motivo de la consulta</b></label>
+                                                            <div class="input-group">
+                                                                <textarea disabled class="form-control" id="txtMotivoConsultaSeg" rows="5"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtExamenClinicoSeg" class="form-control-label"><b>Exámen Clínico</b></label>
+                                                            <div class="input-group">
+                                                                <textarea disabled class="form-control" id="txtExamenClinicoSeg" rows="5"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtPlandeTrabajoSeg" class="form-control-label"><b>Plan de Trabajo</b></label>
+                                                            <div class="input-group">
+                                                                <textarea disabled class="form-control" id="txtPlandeTrabajoSeg" rows="5"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtTratamientoSeg" class="form-control-label"><b>Tratamiento</b></label>
+                                                            <div class="input-group">
+                                                                <textarea disabled class="form-control" id="txtTratamientoSeg" rows="5"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-1">
+                                                    <div class="col-md-12">
+                                                        <button id="btnVerInformeAtencionSF" target="_blank" class="btn btn-warning float-lg-left mr-1 mb-1"><i class="fa fa-eye mr-1"></i>Informe Atención</button>
+                                                        <button id="btnVerInformeAtencionCF" target="_blank" class="btn btn-success float-lg-left mr-1 mb-1"><i class="fa fa-eye mr-1"></i>Informe Atención</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" id="SeguimnientoEMER">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <form>
+                                                            <fieldset class="m-0 pr-1 pl-1 pb-1">
+                                                                <legend class="mb-0">Evaluaciones del Paciente</legend>
+                                                                <table id="tblEvaluacionesEmergenciaSegui" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                                                                    <thead style="color: white;">
+                                                                        <tr style="background-color: #434343;">
+                                                                            <th style="width:15% !important; text-align:center;">Eval.</th>
+                                                                            <th style="width:85% !important;">Médico</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </fieldset>
+                                                        </form>
+                                                        <div class="row mt-1">
+                                                            <div class="col-md-12">
+                                                                <button id="btnVerInformeEvaluacionSF" target="_blank" class="btn btn-warning float-lg-left mr-1 mb-1"><i class="fa fa-eye mr-1"></i>Informe Evaluación</button>
+                                                                <button id="btnVerInformeEvaluacionCF" target="_blank" class="btn btn-success float-lg-left mr-1 mb-1"><i class="fa fa-eye mr-1"></i>Informe Evaluación</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <table id="tblDiagEvalSgui" class="table table-sm table-bordered" style="margin-top: 0 !important;">
+                                                                    <thead style="color: white; background: #51717a; ">
+                                                                        <tr>
+                                                                            <th align="left">Diagnostico</th>
+                                                                            <th align="left">Tipo</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="txtImpresionDxEmerSeg" class="form-control-label"><b>Evaluación/Impresión Diagnóstica</b></label>
+                                                                    <div class="input-group">
+                                                                        <textarea disabled class="form-control" id="txtImpresionDxEmerSeg" rows="5"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @*<div class="col-md-6">
+                                                            <div class="form-group">
+                                                            <label for="txtExamenClinicoEmerSeg" class="form-control-label"><b>Exámen Clínico</b></label>
+                                                            <div class="input-group">
+                                                            <textarea disabled class="form-control" id="txtExamenClinicoEmerSeg" rows="5"></textarea>
+                                                            </div>
+                                                            </div>
+                                                            </div>*@
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="txtPlandeTrabajoEmerSeg" class="form-control-label"><b>Plan de Trabajo</b></label>
+                                                                    <div class="input-group">
+                                                                        <textarea disabled class="form-control" id="txtPlandeTrabajoEmerSeg" rows="5"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="txtTratamientoEmerSeg" class="form-control-label"><b>Tratamiento</b></label>
+                                                                    <div class="input-group">
+                                                                        <textarea disabled class="form-control" id="txtTratamientoEmerSeg" rows="5"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="ordenesSegui" aria-labelledby="ordenesSegui-tab">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                @*<partial name="~/Views/Shared/Components/VistasParciales/OredenesYResultados.cshtml" />*@
+                                                <div class="card bg-pink">
+                                                    @*<div class="card-header bg-white">Órdenes Médicas</div>*@
+                                                    <div class="card-block custom-form pt-1">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <button class="btn btn-warning btn-sm layout_btn_prevent" id="btnConsultarOrdenMedicaSegui" style="width:100px;"><i class="fa fa-eye" style="width: 20px; text-align:center;"></i> Consultar</button>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <table id="tblOrdenesMedicasSegui" class="table table-bordered table-sm table-content-sm">
+                                                                    <thead style="color: white;background: #3e6184;">
+                                                                        <tr>
+                                                                            <th width="8%">Nro Receta</th>
+                                                                            <th width="18%">Punto Carga</th>
+                                                                            <th width="40%">Médico</th>
+                                                                            <th width="14%">Fecha</th>
+                                                                            <th width="12%">Estado</th>
+                                                                            <th width="8%">Receta</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="resultadosSegui" aria-labelledby="resultadosSegui-tab">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                @*<partial name="~/Views/Shared/Components/VistasParciales/OredenesYResultados.cshtml" />*@
+                                                <div class="card bg-blue">
+                                                    @*<div class="card-header bg-white">Resultados</div>*@
+                                                    <div class="card-block custom-form pt-1">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+
+                                                                <ul class="nav nav-tabs" id="Eva-tab" role="tablist">
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link active" id="labSegui-res-tab-link" data-toggle="tab" href="#laboratorioSegui-res-tab" role="tab" aria-controls="laboratorioSegui" aria-selected="true" aria-expanded="true">Laboratorio</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" id="imgSegui-res-tab-link" data-toggle="tab" href="#imagenologiaSegui-res-tab" role="tab" aria-controls="iamgenologiaSegui" aria-selected="false" aria-expanded="false">Imagenología</a>
+                                                                    </li>
+                                                                </ul>
+
+                                                                <div class="tab-content pt-1" id="ResSeguiTabContent">
+                                                                    <div class="tab-pane fade show active in" id="laboratorioSegui-res-tab" role="tabpanel" aria-labelledby="lab-res-segui-tab-link" aria-expanded="true">
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <button class="btn btn-warning btn-sm layout_btn_prevent" id="btnConsultarResultadoLabSegui" style="width:100px;"><i class="fa fa-eye" style="width: 20px; text-align:center;"></i> Consultar</button>
+                                                                            </div>
+                                                                            <div class="col-md-12">
+                                                                                <table id="tblLaboratorioMovimientosSegui" class="table table-bordered table-sm table-content-sm">
+                                                                                    <thead style="color: white;background: #3e6184;">
+                                                                                        <tr>
+                                                                                            <th width="8%">Movimiento</th>
+                                                                                            <th width="12%">Punto Carga</th>
+                                                                                            <th width="27%">Exámen</th>
+                                                                                            <th width="25%">Médico Ordena</th>
+                                                                                            <th width="12%">Fecha Resultado</th>
+                                                                                            <th width="8%">Res. Ind.</th>
+                                                                                            <th width="8%">Res. Grup.</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody></tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="tab-pane fade" id="imagenologiaSegui-res-tab" role="tabpanel" aria-labelledby="img-res-segui-tab-link" aria-expanded="true">
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <button class="btn btn-warning btn-sm layout_btn_prevent" id="btnConsultarResultadoImgSegui" style="width:100px;"><i class="fa fa-eye" style="width: 20px; text-align:center;"></i> Consultar</button>
+                                                                            </div>
+                                                                            <div class="col-md-12">
+                                                                                <table id="tblImagenesMovimientosSegui" class="table table-bordered table-sm table-content-sm">
+                                                                                    <thead style="color: white;background: #3e6184;">
+                                                                                        <tr>
+                                                                                            <th width="8%">Movimiento</th>
+                                                                                            <th width="15%">Punto Carga</th>
+                                                                                            <th width="32%">Exámen</th>
+                                                                                            <th width="25%">Médico Ordena</th>
+                                                                                            <th width="12%">Fecha Resultado</th>
+                                                                                            <th width="8%">Resultado</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody></tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="ordenesGeneralesSegui" aria-labelledby="ordenesGeneralesSegui-tab">
+                <div class="row">
+                    <div class="col-md-12">
+                        @*<partial name="~/Views/Shared/Components/VistasParciales/OredenesYResultados.cshtml" />*@
+                        <div class="card bg-pink">
+                            @*<div class="card-header bg-white">Órdenes Médicas</div>*@
+                            <div class="card-block custom-form pt-1">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-warning btn-sm layout_btn_prevent" id="btnConsultarOrdenMedicaGeneralesSegui" style="width:100px;"><i class="fa fa-eye" style="width: 20px; text-align:center;"></i> Consultar</button>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <table id="tblOrdenesMedicasGeneralesSegui" class="table table-bordered table-sm table-content-sm">
+                                            <thead style="color: white;background: #3e6184;">
+                                                <tr>
+                                                    <th width="6%">Nro Cuenta</th>
+                                                    <th width="15%">Servicio</th>
+                                                    <th width="6%">Nro Receta</th>
+                                                    <th width="12%">Punto Carga</th>
+                                                    <th width="36%">Médico</th>
+                                                    <th width="10%">Fecha</th>
+                                                    <th width="9%">Estado</th>
+                                                    <th width="6%">Receta</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="resultadosGeneralesSegui" aria-labelledby="resultadosGeneralesSegui-tab">
+                <div class="row">
+                    <div class="col-md-12">
+                        @*<partial name="~/Views/Shared/Components/VistasParciales/OredenesYResultados.cshtml" />*@
+                        <div class="card bg-blue">
+                            @*<div class="card-header bg-white">Resultados</div>*@
+                            <div class="card-block custom-form pt-1">
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <ul class="nav nav-tabs" id="Eva-tab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="labGeneralesSegui-res-tab-link" data-toggle="tab" href="#laboratorioGeneralesSegui-res-tab" role="tab" aria-controls="laboratorioGeneralesSegui" aria-selected="true" aria-expanded="true">Laboratorio</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="imgGeneralesSegui-res-tab-link" data-toggle="tab" href="#imagenologiaGeneralesSegui-res-tab" role="tab" aria-controls="imagenologiaGeneralesSegui" aria-selected="false" aria-expanded="false">Imagenología</a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="tab-content pt-1" id="ResSeguiTabContent">
+                                            <div class="tab-pane fade show active in" id="laboratorioGeneralesSegui-res-tab" role="tabpanel" aria-labelledby="labGenerales-res-segui-tab-link" aria-expanded="true">
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <button class="btn btn-warning btn-sm layout_btn_prevent" id="btnConsultarResultadoLabGeneralesSegui" style="width:100px;"><i class="fa fa-eye" style="width: 20px; text-align:center;"></i> Consultar</button>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <table id="tblLaboratorioMovimientosGeneralesSegui" class="table table-bordered table-sm table-content-sm">
+                                                            <thead style="color: white;background: #3e6184;">
+                                                                <tr>
+                                                                    <th width="6%">Nro Cuenta</th>
+                                                                    <th width="15%">Servicio</th>
+                                                                    <th width="6%">Movimiento</th>
+                                                                    <th width="10%">Punto Carga</th>
+                                                                    <th width="27%">Exámen</th>
+                                                                    <th width="20%">Médico Ordena</th>
+                                                                    <th width="10%">Fecha Resultado</th>
+                                                                    <th width="6%">Res. Ind.</th>
+                                                                    <th width="6%">Res. Grup.</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane fade" id="imagenologiaGeneralesSegui-res-tab" role="tabpanel" aria-labelledby="imgGenerales-res-segui-tab-link" aria-expanded="true">
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <button class="btn btn-warning btn-sm layout_btn_prevent" id="btnConsultarResultadoImgGeneralesSegui" style="width:100px;"><i class="fa fa-eye" style="width: 20px; text-align:center;"></i> Consultar</button>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <table id="tblImagenesMovimientosGeneralesSegui" class="table table-bordered table-sm table-content-sm">
+                                                            <thead style="color: white;background: #3e6184;">
+                                                                <tr>
+                                                                    <th width="6%">Nro Cuenta</th>
+                                                                    <th width="15%">Servicio</th>
+                                                                    <th width="6%">Movimiento</th>
+                                                                    <th width="10%">Punto Carga</th>
+                                                                    <th width="27%">Exámen</th>
+                                                                    <th width="20%">Médico Ordena</th>
+                                                                    <th width="10%">Fecha Resultado</th>
+                                                                    <th width="6%">Resultado</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div role="tabpanel" class="tab-pane fade" id="resultadosFarmaciaSegui" aria-labelledby="resultadosFarmaciaSegui-tab">
+                <div class="row">
+                    <div class="col-md-12">
+                        @*<partial name="~/Views/Shared/Components/VistasParciales/OredenesYResultados.cshtml" />*@
+                        <div class="card bg-blue">
+                            @*<div class="card-header bg-white">Resultados</div>*@
+                            <div class="card-block custom-form pt-1">
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        @* <ul class="nav nav-tabs" id="Eva-tab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="labGeneralesSegui-res-tab-link" data-toggle="tab" href="#laboratorioGeneralesSegui-res-tab" role="tab" aria-controls="laboratorioGeneralesSegui" aria-selected="true" aria-expanded="true">Laboratorio</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="imgGeneralesSegui-res-tab-link" data-toggle="tab" href="#imagenologiaGeneralesSegui-res-tab" role="tab" aria-controls="imagenologiaGeneralesSegui" aria-selected="false" aria-expanded="false">Imagenología</a>
+                                            </li>
+                                        </ul> *@
+
+                                        <div class="tab-content pt-1" id="ResSeguiTabContent">
+                                            <div class="tab-pane fade show active in" id="laboratorioGeneralesSegui-res-tab" role="tabpanel" aria-labelledby="labGenerales-res-segui-tab-link" aria-expanded="true">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table id="tblFarmaciaLista" class="table table-bordered table-sm table-content-sm">
+                                                            <thead style="color: white;background: #3e6184;">
+                                                                <tr>
+
+                                                                    <th style="width: 120px;">F. Atencion</th>
+                                                                    <th style="width: 120px;">Pto. Carga</th>
+                                                                    <th style="width: 100px;">N° Dcto.</th>
+                                                                    <th style="width: 100px;">Codigo</th>
+                                                                    <th style="width: 400px;">Descripcion</th>
+                                                                    <th style="width: 80px;">Cantidad</th>
+                                                                    <th style="width: 100px;">Pr.Unit</th>
+                                                                    <th style="width: 100px;">SubTotal</th>
+                                                                    <th style="width: 100px;" class="tb-header-sis">Cant.SIS</th>
+                                                                    <th style="width: 100px;" class="tb-header-sis">Pr.SIS</th>
+                                                                    <th style="width: 100px;" class="tb-header-sis">Imp.SIS</th>
+                                                                    <th style="width: 100px;">Imp.SOAT</th>
+                                                                    <th style="width: 100px;" id="thImpExoServicios">Imp.EXO</th>
+                                                                    <th style="width: 120px;">UsuarioExo</th>
+ @*                                                                    <th style="width: 100px;">Cant.Pagar</th>
+                                                                    <th style="width: 100px;">Tot.Pagar</th>
+                                                                    <th style="width: 80px;">CantDev</th>
+                                                                    <th style="width: 100px;">Estado</th>
+                                                                    <th style="width: 120px;">Doc.Reemb</th>
+                                                                    <th style="width: 100px;">ServInter</th>
+                                                                    <th style="width: 100px;">IdOrden</th>
+                                                                    <th style="width: 150px;">N°.Comprobante</th>
+                                                                    <th style="width: 300px;">Producto/Plan</th>
+                                                                    <th style="width: 200px;">Descripcion</th>
+                                                                    <th style="width: 120px;">MovNumero</th>
+                                                                    <th style="width: 100px;">MovTipo</th>
+                                                                    <th style="width: 150px;">ServicioEstancia</th>
+                                                                    <th style="width: 120px;">IdOrdenPago</th>
+                                                                    <th style="width: 120px;">FechaDespacho</th> *@
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane fade" id="imagenologiaGeneralesSegui-res-tab" role="tabpanel" aria-labelledby="imgGenerales-res-segui-tab-link" aria-expanded="true">
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <button class="btn btn-warning btn-sm layout_btn_prevent" id="btnConsultarResultadoImgGeneralesSegui" style="width:100px;"><i class="fa fa-eye" style="width: 20px; text-align:center;"></i> Consultar</button>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <table id="tblImagenesMovimientosGeneralesSegui" class="table table-bordered table-sm table-content-sm">
+                                                            <thead style="color: white;background: #3e6184;">
+                                                                <tr>
+                                                                    <th width="6%">Nro Cuenta</th>
+                                                                    <th width="15%">Servicio</th>
+                                                                    <th width="6%">Movimiento</th>
+                                                                    <th width="10%">Punto Carga</th>
+                                                                    <th width="27%">Exámen</th>
+                                                                    <th width="20%">Médico Ordena</th>
+                                                                    <th width="10%">Fecha Resultado</th>
+                                                                    <th width="6%">Resultado</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+@*<div class="mt-2">   
+
+    <div id="clothing-nav-contentGeneral" class="tab-content  pt-1">
+
+        <div role="tabpanel" class="tab-pane fade in active" id="idtbAtencionesGeneral" aria-labelledby="idtbAtencionesGeneral-tab">
+            
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="ordenesGeneral" aria-labelledby="ordenesGeneral-tab">
+            <div class="row">
+                <div class="col-md-12">
+                    <partial name="~/Views/Shared/Components/VistasParciales/OrdenesYResultadosGenerales.cshtml" />                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>*@

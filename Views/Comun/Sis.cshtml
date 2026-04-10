@@ -1,0 +1,256 @@
+﻿@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa-solid fa-file-invoice"></i>
+                @*@ViewBag.Area*@
+                Formato FUA
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Formato Fua</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    <div class="card-block pt-1">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroCuentaBuscar" class="form-control-label">N° Cuenta</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero search" id="txtNroCuentaBuscar">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-4 col-xl-2 col-xxl-1">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroDniBuscar" class="form-control-label">Dni</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero search" id="txtNroDniBuscar">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroHistoriaBuscar" class="form-control-label">Historia</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero search" id="txtNroHistoriaBuscar">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3 col-xl-2 col-xxl-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtApPaternoBuscar" class="form-control-label">Ap. Paterno</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtApPaternoBuscar">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3 col-xl-2 col-xxl-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtApMaternoBuscar" class="form-control-label">Ap. Materno</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtApMaternoBuscar">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                                                <div class="d-flex align-items-end" style="height: 55px;">
+                                                    <button class="btn btn-sm btn-primary layout_btn_prevent" id="btnBuscarAtenciones" style="padding-left: 2rem !important; padding-right: 2rem !important;">Buscar</button>
+                                                    <button class="btn btn-sm btn-secondary layout_btn_prevent ml-1" id="btnLimpiarBusqueda" style="padding-left: 2rem !important; padding-right: 2rem !important;">Limpiar</button>                                                    
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                           <div class="col-md-12 pt-2 pb-0">
+                                @{
+                                    if (@ViewBag.Agregar)
+                                    {
+                                        @*<button class="btn btn-success layout_btn_prevent" id="btnAgregarEvaluacion" onclick="EvaluacionEmergencia.Modificar();">Agregar</button>*@
+                                    }
+                                    if (@ViewBag.Modificar)
+                                    {
+                                        <button class="btn btn-info layout_btn_prevent" id="btnModificarFua" >Modificar</button>
+                                    }
+                                    if (@ViewBag.Eliminar)
+                                    {
+                                        @*<button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtenciones">Eliminar</button>*@
+                                    }
+                                    if (@ViewBag.Consultar)
+                                    {
+                                        @*<button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtenciones" onclick="EvaluacionEmergencia.Consultar();">Consultar</button>*@
+                                    }
+                                }
+                           </div>
+
+                            <div class="col-lg-12">
+                                <table id="tblAtencion" width="100%" class="table table-sm table-bordered" style="cursor: default;">
+                                    <thead style="color: white;background: #434343;">
+                                        <tr>
+                                            <th>Cuenta</th>
+                                            <th>Ap. Paterno</th>
+                                            <th>Ap. Materno</th>
+                                            <th>Nombres</th>
+                                            <th>Historia</th>
+                                            <th>Fec. Nac.</th>
+                                            @*<th style="width:10%">Tipo Paciente</th>*@
+                                            <th>Fec. Ing.</th>
+                                            <th>Hor. Ing.</th>
+                                            <th>Servicio</th>
+                                            <th>Plan</th>
+                                            <th style="text-align:center">FUA</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Sis/FormatoFua.js")></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //REFERENCIAS.init();
+            //ESTABLECIMIENTOSSALUD.init();
+            /*$(window).resize(function () {
+                $('#cboServicioEmergenciaBuscar_chosen').attr('style', 'width:' + $('#cboServicioEmergenciaBuscar_chosen').parent().parent().width() + 'px !important');
+            });*/
+
+        });
+    </script>
+
+}
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff !important;
+            border-color: #ccc !important;
+        }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                        width: 100% !important;
+                    }*/
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+</style>
+
+

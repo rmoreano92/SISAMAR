@@ -1,0 +1,308 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+
+
+}
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-money-check-pen"></i>
+                @ViewBag.Area
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">Consumo en el Servicio</a>
+                </li>
+                <li class="breadcrumb-item active">Consumo en el servicio</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row m-0">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroCuentaLista">N° Cuenta</label>
+                                                    <input id="txtNroCuentaLista" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroHistoriaLista">N° Historia</label>
+                                                    <input id="txtNroHistoriaLista" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroOdenLista">N° Orden</label>
+                                                    <input id="txtNroOdenLista" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaIniLista">Fecha Ini.</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIniLista">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaFinLista">Fecha Fin.</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinLista">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group m-0">
+                                                    <label for="cboPuntoCarga">Punto de Carga</label>
+                                                    <select style="width:100% !important" disabled class="chzn-select" id="cboPuntoCarga"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="">Tipo de Venta</label>
+                                            <div class="d-flex ">
+                                                <div class="">
+                                                    <label class="radioButtonStyleLabel m-0">
+                                                        <input type="radio" name="rbdTipoVentaLista" class="radioButtonStyleInput" id="rbdTipoVentaDirectaLista" value="true">
+                                                        <span class="radioButtonStyleSpan w-100 py-0">Directa</span>
+                                                    </label>
+                                                    @* <label class="custom-control custom-radio">
+                                                    <input type="radio" name="rbdTipoVentaLista" id="rbdTipoVentaDirectaLista" value="true" class="custom-control-input">
+                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                    <span class="custom-control-description text-default">Directa</span>
+                                                    </label> *@
+                                                </div>
+                                                <div class="">
+                                                    <label class="radioButtonStyleLabel m-0">
+                                                        <input type="radio" name="rbdTipoVentaLista" class="radioButtonStyleInput" id="rbdTipoVentaPreVentaLista">
+                                                        <span class="radioButtonStyleSpan w-100 py-0">PreVenta</span>
+                                                    </label>
+                                                    @* <label class="custom-control custom-radio">
+                                                    <input type="radio" name="rbdTipoVentaLista" id="rbdTipoVentaPreVentaLista" class="custom-control-input">
+                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                    <span class="custom-control-description text-danger">PreVenta</span>
+                                                    </label> *@
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="col-lg-2">
+                                <br>
+                                <button class="btn btn-sm px-2 btn-primary layout_btn_prevent mr-1" id="btnBuscar">Buscar</button>
+                                <button class="btn btn-sm px-2 btn-secondary layout_btn_prevent" id="btnLimpiarCS">Limpiar</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 mt-1">
+                @{
+                    if (@ViewBag.Agregar)
+                    {
+                        <button class="btn btn-success layout_btn_prevent" id="btnAgregar">Agregar</button>
+                    }
+                    if (@ViewBag.Modificar)
+                    {
+                        <button class="btn btn-primary layout_btn_prevent" id="btnModificar">Modificar</button>
+                    }
+                    if (@ViewBag.Eliminar)
+                    {
+                        <button class="btn btn-danger layout_btn_prevent" id="btnEliminar">Eliminar</button>
+                    }
+                    if (@ViewBag.Consultar)
+                    {
+                        <button class="btn btn-warning layout_btn_prevent" id="btnConsultar">Consultar</button>
+                    }
+                }
+            </div>
+
+            <div class="col-lg-12">
+                <table id="tblConsumoServicio" class="table table-sm table-content-md table-bordered table-striped">
+                    <thead style="color: white;background: #3e6184;">
+                        <tr>
+                            <th>N°. Orden</th>
+                            <th>Fecha de Creacion</th>
+                            <th>N° Cuenta</th>
+                            <th>N°. Historia</th>
+                            <th>Apellido Paterno</th>
+                            <th>Apellido Materno</th>
+                            <th>Primer Nombre</th>
+                            <th>Estado</th>
+                            <th>Orden de Pago</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+        
+    </div>
+</div>
+
+<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroLab.cshtml" />
+@*@Html.Partial("~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistro.cshtml")*@
+
+<div class="modal fade" id="modalIntervencionEnfermeria" role="dialog" aria-hidden="false" style="background-color: #00000075; z-index: 9999" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-white" id="titulo">intervenciones de Enfermeria</h4>
+            </div>
+            <div class="modal-body p-t-5">
+                <div class="card-block p-t-5">
+                    <div class="row">
+                        <div class="col-xl-2">
+                            <label for="txtCodigoCptIntervencion" class="form-control-label">Codigo</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control" id="txtCodigoCptIntervencion" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-10">
+                            <label for="txtDescripcionIntervencion" class="form-control-label">Decripcion</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control" id="txtDescripcionIntervencion" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <label for="cboIntervencionesEnfermeria" class="form-control-label">Servicio</label>
+                            <div class="input-group">
+                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboIntervencionesEnfermeria"></select>
+                            </div>
+                        </div>
+                        <div class="col-xl-4" style="height: 50px;">
+                            <div>
+                                <button class="btn btn-primary btn-sm layout_btn_prevent mt-2" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnAgregarIntervencion">Agregar</button>
+                                <button class="btn btn-danger btn-sm layout_btn_prevent mt-2" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnEliminarIntervencion">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="tblIntervencionesEnfemeria" width="100%" class="table table-sm table-content-sm table-striped table-bordered w-100 mt-1">
+                        <thead style="color: white;background: #434343;">
+                            <tr>
+                                <th style="width:20%">id</th>
+                                <th style="width:80%">Descripcion</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                @* <button id="btnGuardarIntervenciones" type="button" class="btn btn-default">Guardar</button> *@
+                <button id="btnCerrarModalIntervencion" type="button" class="btn btn-default">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts
+            {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+    @* <script type="text/javascript" src=@Href("~/js/Facturacion/ConsumoServicio.js")></script> *@
+    <script type="text/javascript" src=@Href("~/js/Facturacion/ConsumoServicio.js?v=" + version)></script>
+    @*<script type="text/javascript" src=@Href("~/js/Facturacion/Facturacion_Lista.js")></script>*@
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+            ConsumoServicio.init();
+
+            });
+
+            </script>*@
+
+}
+
+
+
+<style>
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                                        width: 100% !important;
+                                    }*/
+
+
+    .chosen-container-single .chosen-single span {
+        margin-right: 0px !important;
+    }
+</style>

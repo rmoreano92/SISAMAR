@@ -1,0 +1,667 @@
+﻿@using System.Data
+
+
+<input type="text" name="" id="hdIdUsuario" value="@ViewBag.idUsuario" hidden>
+<div>
+    <div class="row">
+        <div class="col-xl-12 mb-1">
+            <div class="card bg-blue">
+                <div class="card-header bg-white">Datos de Paciente</div>
+                <div class="card-block">
+                    <div class="row">
+
+                        <div class="col-xl-8">
+                            <div class="row">
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtNroCuentaPaciente" class="d-block text-truncate">Nro. Cuenta</label>
+                                        <div class="input-group input-group-sm d-flex">
+                                            <input type="text" class="form-control  form-control-sm reading" id="txtNroCuentaPaciente" disabled autocomplete="off">
+                                            <div class="input-group-append" style="margin-left: -2px;">
+                                                <button class="btn btn-indigo" type="button" id="btnNroCuentaBusq"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtServicioPaciente" class="d-block text-truncate">Servicio</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtServicioPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtCondicionEstablecimientoPaciente" class="d-block text-truncate">Cond. Establecimiento</label>
+                                        <input type="text" class="form-control  form-control-sm reading" id="txtCondicionEstablecimientoPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtCondicionServicioPaciente" class="d-block text-truncate">Cond. Servicio</label>
+                                        <input type="text" class="form-control  form-control-sm reading" id="txtCondicionServicioPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtNroHistoriaPaciente" class="d-block text-truncate">Historia Clinica</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtNroHistoriaPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtTipoDocumentoPaciente" class="d-block text-truncate">Tipo Doc.</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtTipoDocumentoPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtNroDocumentoPaciente" class="d-block text-truncate">Nro. Documento</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtNroDocumentoPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtNombrePaciente" class="d-block text-truncate">Nombres</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtNombrePaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtEdadPaciente" class="d-block text-truncate">Edad</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtEdadPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtSexoPaciente" class="d-block text-truncate">Sexo</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtSexoPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtEstadoCivilPaciente" class="d-block text-truncate">Estado Civil</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtEstadoCivilPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtIdiomaPaciente" class="d-block text-truncate">Idioma</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtIdiomaPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtReligionPaciente" class="d-block text-truncate">Religion</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtReligionPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtTelefonoPaciente" class="d-block text-truncate">Telefono</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtTelefonoPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                 <div class="col-xl-2"><div class="form-group m-0">
+                                        <label for="txtFuenteFinanciamientoPaciente" class="d-block text-truncate">Plan</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtFuenteFinanciamientoPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+
+                                 <div class="col-xl-4"><div class="form-group m-0">
+                                        <label for="txtNombreMadreTutorPaciente" class="d-block text-truncate">Nombre de Madre/Padre o Tutor</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtNombreMadreTutorPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="txtLugarNacimientoPaciente" class="d-block text-truncate">Lugar Nacimiento</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtLugarNacimientoPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="form-group m-0">
+                                        <label for="txtProcedenciaPaciente" class="d-block text-truncate">Procedencia</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtProcedenciaPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4">
+                                    <div class="form-group m-0">
+                                        <label for="txtDireccionPaciente" class="d-block text-truncate">Direccion</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtDireccionPaciente" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-4">
+                                    <div class="form-group m-0">
+                                        <label for="txtDireccionActualPaciente" class="d-block text-truncate">Domicilio Actual</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtDireccionActualPaciente" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4">
+                                    <div class="form-group m-0">
+                                        <label for="txtReferenciaDireccionPaciente" class="d-block text-truncate">Referencia Domicilio</label>
+                                        <input type="text" class="form-control form-control-sm reading" id="txtReferenciaDireccionPaciente" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">                            
+                                    <button id="btnHistorialEvaluacionesRS" type="button" class="btn btn-primary mt-2"><i class="fa fi-ss-search-alt"></i> Historial</button>
+                                </div>        
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="col-xl-4">
+
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtPadrePaciente" class="d-block text-truncate">Padre</label>
+                                        <input type="text" class="form-control form-control-sm reading solo-texto" id="txtPadrePaciente" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtMadrePaciente" class="d-block text-truncate">Madre</label>
+                                        <input type="text" class="form-control form-control-sm reading solo-texto" id="txtMadrePaciente" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtTutorPaciente" class="d-block text-truncate">Tutor</label>
+                                        <input type="text" class="form-control form-control-sm reading solo-texto" id="txtTutorPaciente" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtFamiliar1Paciente" class="d-block text-truncate">Familiar 1</label>
+                                        <input type="text" class="form-control form-control-sm reading solo-texto" id="txtFamiliar1Paciente" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtTelefono1Paciente" class="d-block text-truncate">Telefono 1</label>
+                                        <input type="text" class="form-control form-control-sm reading solo-numero" id="txtTelefono1Paciente" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtFamiliar2Paciente" class="d-block text-truncate">Familiar 2</label>
+                                        <input type="text" class="form-control form-control-sm reading solo-texto" id="txtFamiliar2Paciente" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtTelefono2Paciente" class="d-block text-truncate">Telefono 2</label>
+                                        <input type="text" class="form-control form-control-sm reading solo-numero" id="txtTelefono2Paciente" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtFamiliar3Paciente" class="d-block text-truncate">Familiar 3</label>
+                                        <input type="text" class="form-control form-control-sm reading solo-texto" id="txtFamiliar3Paciente" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtTelefono3Paciente" class="d-block text-truncate">Telefono 3</label>
+                                        <input type="text" class="form-control form-control-sm reading solo-numero" id="txtTelefono3Paciente" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtFamiliar4Paciente" class="d-block text-truncate">Familiar 4</label>
+                                        <input type="text" class="form-control form-control-sm reading solo-texto" id="txtFamiliar4Paciente" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtTelefono4Paciente" class="d-block text-truncate">Telefono 4</label>
+                                        <input type="text" class="form-control form-control-sm reading solo-numero" id="txtTelefono4Paciente" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xl-6 mb-1">
+            <div class="card bg-orange">
+                @* <div class="card-header bg-white"></div> *@
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div class="form-group m-0">
+                                <label for="txtNroEvaluacionRs" class="d-block text-truncate font-weight-bold text-info">Nro. Evaluación</label>
+                                <input type="text" class="form-control form-control-sm text-info reading" id="txtNroEvaluacionRs" disabled autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3">
+                            <div class="form-group m-0">
+                                <label for="txtFechaEvaluacionRs" class="d-block text-truncate">Fecha Evaluación</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha reading" placeholder="__/__/____" data-date-format="dd/mm/yyyy" id="txtFechaEvaluacionRs" disabled>
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4">
+                            <div class="form-group m-0">
+                                <label for="cboTurnoLaboradoRs" class="d-block text-truncate">Turno Laborado</label>
+                                <select id="cboTurnoLaboradoRs" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                    <option value=""></option>
+                                    @foreach (DataRow turno in ViewBag.TurnosLaborales.Rows)
+                                    {
+                                        <option value="@turno["id"]">@turno["descripcion"]</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="form-group m-0">
+                                <label for="cboTipoPacienteRs" class="d-block text-truncate">Tipo Paciente</label>
+                                <select id="cboTipoPacienteRs" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                    <option value=""></option>
+                                    @foreach (DataRow tipoPaciente in ViewBag.TiposPaciente.Rows)
+                                    {
+                                        <option value="@tipoPaciente["IdTipoPaciente"]">@tipoPaciente["Descripcion"]</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6">
+                            <div class="form-group m-0">
+                                <label for="txtEspecificarTipoPaciente" class="d-block text-truncate">Especificar</label>
+                                <input type="text" class="form-control form-control-sm reading" id="txtEspecificarTipoPaciente" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6">
+                            <div class="form-group m-0">
+                                <label for="cboTrabajadoraSocialRs" class="d-block text-truncate">Trabajadora Social</label>
+                                <select id="cboTrabajadoraSocialRs" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                    <option value=""></option>
+                                    @foreach (DataRow turno in ViewBag.TrabajadoresSocial.Rows)
+                                    {
+                                        <option value="@turno["IdEmpleado"]">@turno["Empleado"]</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="col-xl-12">
+                            <div class="form-group m-0">
+                                <label for="cboDiagnosticoRs" class="d-block text-truncate">Diagnóstico</label>
+                                @* <select class="chzn-select-deselect writing" id="cboDiagnosticoRs" multiple data-placeholder="Busque y seleccione un diagnóstico">
+                                    <option value="">asdas</option>
+                                </select> *@
+
+                                <select id="cboDiagnosticoRs" data-placeholder="Diagnosticos" class="chosen-select writing" multiple style="width:350px;" tabindex="4"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="form-group m-0">
+                                <label for="txtObservacionRs" class="d-block text-truncate">SEGUIMIENTO SOCIAL</label>
+                                <textarea class="form-control writing" id="txtObservacionRs" rows="20"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="form-group m-0">
+                                <label for="txtTratamientoSocial" class="d-block text-truncate">INTERVENCIÓN SOCIAL / TRATAMIENTO SOCIAL</label>
+                                <textarea class="form-control writing" id="txtTratamientoSocial" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card bg-green mb-1">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="form-group m-0">
+                                        <label for="">Puntaje</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control text-info font-weight-bold reading" disabled id="txtTotalPuntajeRs" @* style="max-width: 90px;" *@>
+                                            <span class="input-group-addon">-</span>
+                                            <input type="text" autocomplete="off" class="form-control text-info font-weight-bold reading" disabled id="txtCodigoPuntajeRs">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="">Plan</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control text-info font-weight-bold reading" disabled id="txtNroPlanRs" @* style="max-width: 70px;" *@>
+                                            <span class="input-group-addon">-</span>
+                                            <input type="text" autocomplete="off" class="form-control text-info font-weight-bold reading" disabled id="txtNombrePlanRs">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5">
+                    <div class="card mb-1 bg-light">
+                        @* <div class="card-header">Receta/Orden</div> *@
+                        <div class="card-block p-0">
+
+                            @foreach (DataRow cat in ViewBag.CategoriaRs.Rows)
+                            {
+                                <ul class="nav nav-tabs flex-column tabListEvaluacion" role="tablist">
+                                    <li class="nav-item m-0 w-100">
+                                        <h6 class="nav-link text-white m-0" data-toggle="collapse" href="@("#sbRs" + cat["idRsCategoria"])">
+                                            <i style="width: 20px; text-align:center;" class="fa fa-circle-check"></i>
+                                            <span class="">@cat["descripcion"]</span>
+                                            <i class="fa-solid fa-caret-down" style="float: right;"></i>
+                                        </h6>
+                                        <div id="@("sbRs" + cat["idRsCategoria"])" class="collapse submenu">
+                                            @foreach (DataRow subcat in ViewBag.SubCategoriaRs.Rows)
+                                            {
+                                                @if (cat["idRsCategoria"].ToString() == subcat["idRsCategoria"].ToString())
+                                                {
+                                                    <a class="nav-link d-block text-truncate pl-2" href="@("#panelRs" + subcat["idRsCategoriaSub"])" data-toggle="tab" role="tab" id="@("#navRs" + subcat["idRsCategoriaSub"] + "-tab")" aria-controls="hats">@subcat["descripcion"]</a>
+                                                }
+                                            }
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                </ul>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-7">
+
+                    <div id="clothing-nav-content" class="tab-content fade in">
+
+                        @foreach (DataRow subcat in ViewBag.SubCategoriaRs.Rows)
+                        {
+                            <div role="tabpanel" class="tab-pane fade" id="@("panelRs" + subcat["idRsCategoriaSub"])" aria-labelledby="@("navRs" + subcat["idRsCategoriaSub"] + "-tab")">
+                                <div class="card mb-1">
+                                    <div class="card-header">@subcat["descripcion"]</div>
+                                    <div class="card-block p-1">
+                                        <ul class="list-group border">
+                                            @foreach (DataRow det in ViewBag.CategoriaDetalleRs.Rows)
+                                            {
+                                                @if (subcat["idRsCategoriaSub"].ToString() == det["idRsCategoriaSub"].ToString())
+                                                {
+                                                    <li class="list-group-item d-flex justify-content-between align-items-center border">
+                                                        <label class="radioButtonStyleLabel m-0 w-100">
+                                                            @if(subcat["idRsCategoriaSub"].ToString() == "811" || subcat["idRsCategoriaSub"].ToString() == "812") {
+                                                                <input type="checkbox" name="@("rdbRs" + det["idRsCategoriaSub"])" class="radioButtonStyleInput rdbPuntajeEvaluacion" id="@("rdbRs" + det["idRsCategoriaSub"] + "_" + det["numeroOrden"])" value="@det["puntaje"]" data-orden="@det["numeroOrden"]" data-subcategoria="@det["idRsCategoriaSub"]">
+
+                                                            } else {
+                                                                <input type="radio" name="@("rdbRs" + det["idRsCategoriaSub"])" class="radioButtonStyleInput rdbPuntajeEvaluacion" id="@("rdbRs" + det["idRsCategoriaSub"] + "_" + det["numeroOrden"])" value="@det["puntaje"]" data-orden="@det["numeroOrden"]" data-subcategoria="@det["idRsCategoriaSub"]">
+
+                                                            }
+                                                            
+                                                            <span class="radioButtonStyleSpan w-100">@det["descripcion"]</span>
+                                                        </label>
+                                                        <span class="chip primary">@det["puntaje"]</span>
+                                                    </li>
+                                                }
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row p-1 border" style="background: #ededed;">
+        <div class="col-lg-8">
+            <button id="btnImprimeSeguimiento" target="_blank" class="btn btn-lg  btn-light-blue  float-lg-left mr-1 mb-1"><i class="fa fa-wheelchair-move mr-1"></i>Seguimiento</button>
+        </div>
+        <div class="col-4">
+            <button id="btnCancelarEvaluacionRiesgoSocial" type="button" class="btn btn-secondary btn-lg float-sm-right pl-3 pr-3" style="max-width: 140px">Cancelar</button>
+            <button id="btnGuardarEvaluacionRiesgoSocial" type="button" class="btn btn-primary btn-lg float-sm-right pl-3 pr-3 mr-2" style="max-width: 140px">Guardar</button>
+        </div>
+    </div>
+</div>
+
+@*=========================================================MODAL EVALUACIONES RIESGO SOCIAL==================================================================*@
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalEvaluacionesRiesgoSocial" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-deep-pink">
+                <h4 class="modal-title text-white">Evaluaciones de Riesgo Social del Paciente</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">                    
+                    <div class="col-md-12 mb-1">                        
+                        <table class="table table-sm able-content-sm table-bordered table-striped" id="tblEvaluacionesRSPaciente" width="100%" style="cursor: pointer;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th>Nº Evaluación</th>
+                                    <th>Evaluador</th>
+                                    <th>F. Evaluación</th>
+                                    <th>Puntaje</th>
+                                    <th>Resultado</th>
+                                    <th>Nº Cuenta</th>  
+                                    <th>Informe</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-pink" id="btnAceptarEvaluacionesRS">Cargar Datos</button>
+                    <button type="button" class="btn btn-secondary" id="btnCerrarEvaluacionesRS">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalBusquedaPacientes" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Busqueda de Pacientes</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="card m-t-5 bg-green">
+                            <div class="card-block p-t-0">
+
+
+                                <div class="row mt-1">
+
+                                    <div class="col-lg-3">
+                                        <label for="txtDniPacienteBusqueda" class="form-control-label">DNI</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtDniPacienteBusqueda" autocomplete="off" class="form-control busquedaPaciente">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtNroHistoriaPacienteBusqueda" class="form-control-label">N° Historia</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtNroHistoriaPacienteBusqueda" autocomplete="off" class="form-control busquedaPaciente">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtApPaternoPacienteBusqueda" class="form-control-label">Ap. Paterno</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtApPaternoPacienteBusqueda" autocomplete="off" class="form-control busquedaPaciente">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtApMaternoPacienteBusqueda" class="form-control-label">Ap. Materno</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtApMaternoPacienteBusqueda" autocomplete="off" class="form-control busquedaPaciente">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtPrimerNombrePacienteBusqueda" class="form-control-label">Primer Nombre</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtPrimerNombrePacienteBusqueda" autocomplete="off" class="form-control busquedaPaciente">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 d-flex align-items-end" style="height: 50px;">
+                                        <button class="btn btn-sm btn-outline-primary layout_btn_prevent" id="btnBuscarPacientes" style="width:70px;">Buscar</button>
+                                        <button class="btn btn-sm btn-outline-secondary layout_btn_prevent" id="btnLimpiarBusquedaPacientes" style="width:70px;">Limpiar</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-lg-12">
+                        <table id="tblListaPacientesBusqueda" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th>Ap. Paterno</th>
+                                    <th>Ap. Materno</th>
+                                    <th>1er Nombre</th>
+                                    <th>2do Nombre</th>
+                                    <th>N° Historia</th>
+                                    <th>N° Documento</th>
+                                    <th>Fec. Nacimiento</th>
+                                    <th>Tipo Serv.</th>
+                                    <th>Serv. ing.</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnCerrarModalListaPacientes" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" style="overflow-y: scroll; background: #0000008c;" data-keyboard="false" class="modal fade" id="modalBusquedaCuentasPaciente" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Cuentas del Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row mt-1">
+                    <div class="col-lg-12">
+                        <table id="tblListaCuentasPacientesBusqueda" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th>N° Cuenta</th>
+                                    <th>Estado Cuenta</th>
+                                    <th>F. Ingreso</th>
+                                    <th>F. Egreso</th>
+                                    <th>H. Egreso</th>
+                                    <th>Servicio Ing.</th>
+                                    <th>Tipo Servicio</th>
+                                    <th>Edad</th>
+                                    <th>Diagnostico</th>
+                                    <th>Estado Eval.</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnCerrarModalListaCuentasPaciente" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

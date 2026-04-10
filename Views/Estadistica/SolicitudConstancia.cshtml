@@ -1,0 +1,857 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+    <!--Page level styles-->
+}
+@using CapaEntidades
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-memo-circle-check"></i>
+                @ViewBag.Titulo @*Solicitud de Constancias Recién Nacido - *@
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Solicitud de Constancias de recién Nacido</li>
+            </ol>
+        </div>
+    </div>
+    <style>
+        .customSwalBtn {
+            background-color: rgba(214,130,47,1.00);
+            border-left-color: rgba(214,130,47,1.00);
+            border-right-color: rgba(214,130,47,1.00);
+            border: 0;
+            border-radius: 3px;
+            box-shadow: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: 500;
+            margin: 30px 5px 0px 5px;
+            padding: 10px 32px;
+        }
+    </style>
+</header>
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    @*
+                    <div class="card-header bg-white">
+                        <i class="fa fa-table"></i>Solicitud de Constancias de recién nacido - @ViewBag.Area
+                        
+                        <input hidden="hidden" id="HabImpresion" value="@ViewBag.bImpresion" />
+                        <input hidden="hidden" id="HabAprobar" value="@ViewBag.bAprobacion" />
+                    </div>*@
+                    <input hidden="hidden" id="tipoPermiso" name="tipoPermiso" type="text" value="@ViewBag.tipoPermiso" />
+                    <input hidden="hidden" id="idGrupo" name="idGrupo" type="text" class="form-control" value="@ViewBag.Vista">
+                    <input hidden="hidden" id="idServicio" name="idServicio" type="text" class="form-control" value="@ViewBag.Servicio">
+                    <div class="card-block pt-1">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-block pb-0">
+                                        <div class="row mt-1">
+                                            <div class="col-md-2" style="max-width: 160px">
+                                                <label>Nro.Solicitud</label>
+                                                <input id="txtNroConstanciaFiltro" class="form-control form-control-sm solo-numero searchSolicitud">
+                                            </div>
+                                            <div class="col-md-2" style="max-width: 160px">
+                                                <label>Nro. Tramite</label>
+                                                <input id="txtNroDocumentoFiltro" type="text" required class="form-control form-control-sm searchSolicitud">
+                                            </div>
+                                            <div class="col-md-2" style="max-width: 160px">
+                                                <label>Nro.Historia</label>
+                                                <input id="txtNroHistoriaFiltro" class="form-control form-control-sm solo-numero searchSolicitud">
+                                            </div>
+                                            <div class="col-md-3" style="max-width: 150px">
+                                                <label>Fecha Reg.</label>
+                                                <div class="input-group form-group input-group-sm">
+                                                    <input type="text" class="form-control form_val_popup_dp3 searchSolicitud" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFiltro" autocomplete="off">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar "></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2" style="max-width: 160px">
+                                                <label>Estado</label>
+                                                <div class="input-group">
+                                                    <select id="cboEstadoSolicitud" type="text" class="chzn-select searchSolicitud"></select>
+                                                </div>
+                                            </div>
+                                            @*
+                                            <div class="col-md-2">
+                                                <h5>&nbsp;</h5>
+                                                <p>
+                                                    <button type="button" class="btn btn-primary" onclick="SolicitudConstanciaRn.ListarSolicitudes();">
+                                                        <i class="fa fa-search" aria-hidden="true"></i> Buscar
+                                                    </button>
+
+                                                    <button type="button" class="btn btn-default" onclick="SolicitudConstanciaRn.LimpiarFiltrosBusqueda();">limpiar</button>
+                                                </p>
+
+                                            </div>*@
+                                            <div class="col-md-3 d-flex align-items-end mb-1" style="height: 50px;">                                               
+                                                <div>
+                                                    <button type="button" class="btn btn-sm btn-primary" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="SolicitudConstanciaRn.ListarSolicitudes();" id="btnBuscarCRN">Buscar</button>&nbsp;&nbsp;
+                                                    <button type="button" class="btn btn-sm btn-default" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="SolicitudConstanciaRn.LimpiarFiltrosBusqueda();">limpiar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 pt-2 pb-0">
+                                @{
+                                    if (@ViewBag.Agregar)
+                                    {
+                                        <button class="btn btn-success layout_btn_prevent" onclick="SolicitudConstanciaRn.AgregarSolicitudConstanciaRn();" id="btnAgregarSolicitud">Agregar</button>
+                                        
+                                    }
+
+
+                                    if (@ViewBag.Modificar)
+                                    {
+                                        if (@ViewBag.bAprobacion)
+                                        {
+                                            <button class="btn btn-primary layout_btn_prevent" onclick="SolicitudConstanciaRn.AprobarSolicitud();" id="btnModificarSolicitud">Modificar</button>
+                                        }
+                                        //else
+                                        //{
+                                        //    <button class="btn btn-primary layout_btn_prevent" onclick="ModificarSolicitudConstanciaRn();" id="btnCambiarGrafico">Modificar</button>
+                                        //}
+
+                                    }
+                                    if (@ViewBag.Eliminar)
+                                    {
+                                        <button class="btn btn-danger layout_btn_prevent" onclick="SolicitudConstanciaRn.EliminarSolicitudConstanciaRn();" id="btnEliminarSolicitud">Eliminar</button>
+                                    }
+                                    if (@ViewBag.Consultar)
+                                    {
+                                        <button class="btn btn-warning layout_btn_prevent" onclick="SolicitudConstanciaRn.ConsultarConstanciaRn()" id="btnConsultarSolicitud">Consultar</button>
+                                    }
+                                }                                
+                                
+                            </div>
+
+                            <div class="col-lg-12">
+                                <table id="lstRnConstancias" class="table table-sm table-bordered table-content-sm w-100" data-source="/SolicitudConstanciasRN/BuscarSolicitudesRn?area=Estadistica">
+                                    <thead style="color: white;background: #434343;">
+                                        <tr>
+                                            <th data-columna="idSolicitud" valign="middle" align="center">N° Solicitud</th>
+                                            <th data-columna="idConstancia" valign="middle" align="center">N° Constancia</th>
+                                            <th data-columna="nroHistoria" valign="middle" align="center">N°.Historia</th>
+                                            <th data-columna="paciente" valign="middle" align="center">Paciente</th>
+                                            <th data-columna="madre" valign="middle" align="center">Madre</th>
+                                            <th data-columna="documento" valign="middle" align="center">N° Tramite</th>
+                                            <th data-columna="idEstado" valign="middle" align="center">idEstado</th>
+                                            <th data-columna="estado" valign="middle" align="center">Estado</th>
+                                            <th data-columna="fechaNacimiento" valign="middle" align="center">Fec.Nacimiento</th>
+                                            <th data-columna="fechaRegistro" valign="middle" align="center">Fecha.Registro</th>                                            
+                                            <th data-columna="fechaImpresion" valign="middle" align="center">Fecha.Impresión</th>
+                                            <th data-columna="estadoFirma" valign="middle" align="center">Firma</th>
+                                            <th data-columna="accion" valign="middle" align="center">Acción</th>
+                                            <th data-columna="accion" valign="middle" align="center">Acción</th>
+                                            <th data-columna="base" valign="middle" align="center">base</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                            @{
+                                if (@ViewBag.tipoPermiso == "1"){
+                                    <div class="text-xs-right">
+                                        <button class="btn btn-info layout_btn_prevent mt-3 mx-1" id="btnFirmaLote"><i class="fa-light fa-signature mr-1"></i>Firmar Lote</button>
+                                    </div>
+                                }
+                            }
+                            
+                            
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade in display_none" id="modalSolicitudConstanciaRn" tabindex="-1" role="dialog" aria-hidden="false" style="overflow-y: scroll;">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header bg-success" id="modalHeader">
+                <h5 class="modal-title text-white" id="titulo">Solicitud de Constancias de Nacimientos<label id="txtDatos" class="form-control-label"></label></h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-9" >              
+                        <div id="DatosSolicitud">
+                            <h3><strong class="align-bottom" id="lblNroSolicitud"></strong> </h3>
+
+                            <h4 class="mb-0">
+                                <label id="txtdescripciontramite"></label><br />
+                                <label id="txtdescripcionpaciente"></label>
+                            </h4>
+                        </div>                        
+                    </div>                    
+                </div>
+
+                <div class="row">
+                    <input hidden="hidden" id="hdnAnio" type="text" class="form-control" />
+                    <input hidden="hidden" id="hdnIdPaciente" type="text" class="form-control" />
+                    <input hidden="hidden" id="hdnNroHistoria" type="text" class="form-control" />
+                    <input hidden="hidden" id="hdnBd" type="text" class="form-control" />
+
+                    <div class="col-md-12 mb-1">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card bg-teal">
+                                    <div class="card-block py-1">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row m-0">
+                                                    <label for="txtNroAsiento" class="col-sm-6 m-0 pl-0" style="max-width:110px;">Nro Asiento</label>
+                                                    <div class="col-sm-6 pl-0">
+                                                        <input type="text" class="form-control form-control-sm" id="txtNroAsiento" disabled>
+                                                    </div>
+                                                </div>
+                                                @* <label>Nro Asiento</label>
+                                                <input id="txtNroAsiento" type="text" disabled class="form-control form-control-sm"> *@
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row m-0">
+                                                    <label for="txtNroFolio" class="col-sm-6 m-0 pl-0" style="max-width:110px;">Nro Folio</label>
+                                                    <div class="col-sm-6 pl-0">
+                                                        <input type="text" class="form-control form-control-sm" id="txtNroFolio" disabled>
+                                                    </div>
+                                                </div>
+                                                @*  <label>Nro Folio</label>
+                                                <input id="txtNroFolio" type="text" disabled class="form-control form-control-sm"> *@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-sm-right">
+                                <button id="btnBuscarPaciente" type="button" class="btn btn-success" onclick="SolicitudConstanciaRn.BuscarPaciente();">
+                                    <i class="fa-solid fa-magnifying-glass mr-1"></i> Buscar Paciente
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-1">
+                        <div class="card bg-teal">
+                            <div class="card-header bg-white">Datos de la Madre</div>
+                            <div class="card-block pb-1">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>His.Clinica</label>
+                                            <input id="txtNroHistoria" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Nombres</label>
+                                            <input id="txtNombre" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Ap.Paterno</label>
+                                            <input id="txtApPaterno" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Ap.Materno</label>
+                                            <input id="txtApMaterno" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    @* <div class="col-md-3">
+                                    <label for="cboTipoDocumento">Tipo Documento</label>
+                                    <select id="cboTipoDocumento" class="chzn-select" disabled></select>
+                                    </div> *@
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtTipoDocumento">Tipo Documento</label>
+                                            <input id="txtTipoDocumento" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Nro. Documento</label>
+                                            <input id="txtNroIdentidad" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Edad</label>
+                                            <input id="txtEdad" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Nacionalidad</label>
+                                            <input id="txtNacionalidad" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group m-0">
+                                            <label>Residencia Actual</label>
+                                            <input id="txtResidencia" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group m-0">
+                                            <label>Dirección</label>
+                                            <input id="txtDireccion" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-1">
+                        <div class="card bg-teal">
+                            <div class="card-header bg-white">Datos del Padre</div>
+                            <div class="card-block pb-1">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Nombres</label>
+                                            <input id="txtNombrePadre" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Ap.Paterno</label>
+                                            <input id="txtApPaternoPadre" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Ap.Materno</label>
+                                            <input id="txtApMaternoPadre" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-1">
+                        <div class="card bg-teal">
+                            <div class="card-header bg-white">Datos del Parto</div>
+                            <div class="card-block pb-1">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label>Edad Gest.(sem)</label>
+                                            <input id="txtEdadGestacional" type="text" class="form-control form-control-sm" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        @* <label for="cboTipoParto">Tipo Parto</label>
+                                        <select id="cboTipoParto" class="chzn-select" disabled></select> *@
+                                        <div class="form-group m-0">
+                                            <label>Tipo Parto</label>
+                                            <input id="txtTipoParto" type="text" class="form-control form-control-sm" readonly disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label>Producto</label>
+                                            <input id="txtProducto" type="text" class="form-control form-control-sm" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label>Condición</label>
+                                            <input id="txtCondicion" type="text" class="form-control form-control-sm" readonly disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-1">
+                        <div class="card bg-teal">
+                            <div class="card-header bg-white">Datos del Neonato</div>
+                            <div class="card-block pb-1">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group m-0">
+                                            <label>CNV</label>
+                                            <input id="txtCnv" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group m-0">
+                                            <label>Fecha Nac.</label>
+                                            <input id="txtFechaNac" type="text" disabled class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group m-0">
+                                            <label>Hora. Nac.</label>
+                                            <input id="txtHoraNac" type="text" class="form-control form-control-sm" readonly disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group m-0">
+                                            <label>Sexo</label>
+                                            <input id="txtSexoPac" type="text" class="form-control form-control-sm" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group m-0">
+                                            <label>Peso(gr)</label>
+                                            <input id="txtPesoPac" type="text" class="form-control form-control-sm" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group m-0">
+                                            <label>Talla(cm)</label>
+                                            <input id="txtTallaPac" type="text" class="form-control form-control-sm" readonly disabled>
+                                        </div>
+                                    </div>
+
+                                    @* <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                    <label>Nro Hijo</label>
+                                    <input id="txtNroHijo" type="text" disabled class="form-control form-control-sm">
+                                    </div>
+                                    </div> *@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="card bg-green">
+                            <div class="card-header bg-white">Datos de Solicitud</div>
+                            <div class="card-block pb-1">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Solicitante</label>
+                                            <select id="cboSolicitante" type="text" class="chzn-select" data-placeholder="Seleccione una opción"></select>
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Tipo Doc.</label>
+                                            <select id="cboTipoDoc" type="text" class="chzn-select" data-placeholder="Seleccione una opción"></select>
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Nro Documento</label>
+                                            <input id="txtDocumentoSol" type="text" class="form-control form-control-sm solo-numero" autocomplete="off">
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label>Nro Tramite</label>
+                                            <input id="txtNroTramite" type="text" class="form-control form-control-sm solo-numero" autocomplete="off">
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group m-0">
+                                            <label>Comentarios:</label>
+                                            <textarea id="txtComentario" class="form-control" autocomplete="off"> </textarea>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12" id="ComentarioAprobacion">
+                        <div class="form-group m-0">
+                            <label><strong>Comentarios de la Aprobación o Rechazo:</strong></label>
+                            <textarea id="txtComentarioAprob" class="form-control" autocomplete="off"> </textarea>
+                        </div>                        
+                    </div>
+                    
+                </div>
+                                    
+    @*
+                <div class="modal-footer">
+                    <button id="btnGuardar" type="button" class="btn btn-primary" onclick="SolicitudConstanciaRn.GuardarConstancia();">Guardar</button>
+                    <button type="button" onclick="SolicitudConstanciaRn.cerrarModal();" class="btn btn-secondary">Cancelar</button>
+                </div>*@
+                                
+            </div>
+
+            <div class="modal-footer d-flex justify-content-end pb-0">
+                <button id="btnAprobar" onclick="SolicitudConstanciaRn.RegistroAprobacion(true);" type="button" class="btn btn-success btn-lg mb-1 pl-3 pr-3"><i class="fa-solid fa-thumbs-up mr-1"></i>Aprobar</button>
+                <button id="btnRechazar" type="button" onclick="SolicitudConstanciaRn.RegistroAprobacion(false);" class="btn btn-danger btn-lg mb-1 ml-2 pl-3 pr-3"><i class="fa-solid fa-thumbs-down mr-1"></i>Rechazar</button>
+                <button id="btnGuardar" onclick="SolicitudConstanciaRn.GuardarConstancia();" type="button" class="btn btn-primary btn-lg mb-1 pl-3 pr-3" style="max-width: 140px">Aceptar</button>
+                <button type="button" onclick="SolicitudConstanciaRn.cerrarModal();" class="btn btn-secondary btn-lg mb-1 ml-2 pl-3 pr-3" style="max-width: 140px">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*=======================================================MODAL BUSQUEDA PACIENTE===========================================================================*@
+<div class="modal fade in display_none" id="modalBuscarPaciente" tabindex="-1" role="dialog" aria-hidden="false" style="overflow-y: scroll; background-color: rgba(0, 0, 0, 0.46);">
+
+    <div class="modal-dialog modal-xxl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header bg-info">
+                <h5 class="modal-title text-white" id="titulo">Buscar Paciente<label id="txtDatos" class="form-control-label"></label></h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="card-block p-t-10">
+                    <div>
+                        <ul class="nav nav-tabs" id="BusquedaPacienteTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="busquedaPacientes-tab-link" data-toggle="tab" href="#busquedaPacientes-tab" role="tab" aria-controls="home" aria-selected="true" aria-expanded="true">Pacientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="busquedaLibroNac-tab-link" data-toggle="tab" href="#busquedaLibroNac-tab" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">Libro Nacimiento</a>
+                            </li>                            
+                        </ul>
+                        <div class="tab-content" id="BusquedaPacienteTabContent">
+                            <div class="tab-pane fade show active in" id="busquedaPacientes-tab" role="tabpanel" aria-labelledby="busquedaPacientes-tab-link" aria-expanded="true">
+                                <div class="card">
+                                    <div class="card-block p-1">
+                                        <div class="row">
+                                            <div class="col-md-2" style="max-width: 160px">
+                                                <label for="txtDniNacFiltro">DNI</label>
+                                                <input id="txtDniNacFiltro" type="text" class="form-control form-control-sm solo-numero searchPaciente" min="0" autocomplete="off">
+                                            </div>
+                                            @* <div class="col-md-2" style="max-width: 160px">
+                                                <label for="txtNroHistoriaNacFiltro">Nro.Historia</label>
+                                                <input id="txtNroHistoriaNacFiltro" type="text" class="form-control form-control-sm solo-numero searchPaciente" min="0" autocomplete="off">
+                                            </div>*@
+                                            <div class="col-md-2" style="max-width: 160px">
+                                                <label for="txtAnioNacFiltro">Año Nac.</label>
+                                                <input id="txtAnioNacFiltro" type="text" class="form-control form-control-sm solo-numero searchPaciente" min="0" autocomplete="off">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="txtApPaternoNacFiltro">Ap.Paterno Madre</label>
+                                                <input id="txtApPaternoNacFiltro" type="text" class="form-control form-control-sm searchPaciente" autocomplete="off">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="txtApMaternoNacFiltro">Ap.Materno Madre</label>
+                                                <input id="txtApMaternoNacFiltro" type="text" class="form-control form-control-sm searchPaciente" autocomplete="off">
+                                            </div>
+                                            <div class="col-md-2" style="max-width: 160px">
+                                                <label for="txtDniMadreNacFiltro">DNI Madre</label>
+                                                <input id="txtDniMadreNacFiltro" type="text" class="form-control form-control-sm solo-numero searchPaciente" min="0" autocomplete="off">
+                                            </div>
+                                            <div class="col-md-2" style="max-width: 150px">
+                                                <label for="txtFechaNacFiltro">Fecha Nac.</label>
+                                                <div class="input-group form-group input-group-sm">
+                                                    <input type="text" class="form-control form_val_popup_dp3 searchPaciente" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNacFiltro" autocomplete="off">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar "></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 d-flex align-items-end" style="height: 50px;">
+                                                <button type="button" class="btn btn-sm btn-primary mr-1" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="SolicitudConstanciaRn.ListarPacientesRegistroRN();">Buscar</button>
+                                                <button type="button" class="btn btn-sm btn-secondary" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="SolicitudConstanciaRn.LimpiarFiltrosBusquedaPaciente();">limpiar</button>
+                                            </div>
+                                        </div>
+
+                                        <table id="lstPacientesRn" class="table table-sm table-bordered table-content-sm">
+                                            <thead style="color: white;background: #284057;">
+                                                <tr>
+                                                    @* <th data-columna="Idpaciente" valign="middle" align="center">IdPaciente</th> *@
+                                                    <th valign="middle" align="center">Nro Documento</th>
+                                                    <th valign="middle" align="center">Historia</th>
+                                                    <th valign="middle" align="center">Paciente</th>
+                                                    <th valign="middle" align="center">Madre</th>
+                                                    <th valign="middle" align="center">Fec.Nac.</th>
+                                                    <th valign="middle" align="center">Sexo</th>
+                                                    @*<th data-columna="bd" valign="middle" align="center">bd</th>*@
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="tab-pane fade" id="busquedaLibroNac-tab" role="tabpanel" aria-labelledby="busquedaLibroNac-tab-link" aria-expanded="true">
+                                <div class="card">
+                                    <div class="card-block p-1">
+                                        <div class="row">
+                                            <div class="col-md-2" style="max-width: 160px">
+                                                <label for="txtLibroFiltro">Nro Libro</label>
+                                                <input id="txtLibroFiltro" type="text" class="form-control form-control-sm solo-numero searchLibroNac" min="0" autocomplete="off">
+                                            </div>
+                                            <div class="col-md-2" style="max-width: 160px">
+                                                <label for="txtFolioFiltro">Nro Folio</label>
+                                                <input id="txtFolioFiltro" type="text" class="form-control form-control-sm solo-numero searchLibroNac" min="0" autocomplete="off">
+                                            </div>
+                                            <div class="col-md-2" style="max-width: 160px">
+                                                <label for="txtAnioFiltro">Año</label>
+                                                <input id="txtAnioFiltro" type="text" class="form-control form-control-sm solo-numero searchLibroNac" min="0" autocomplete="off">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="txtApPaternoMadreFiltro">Ap.Paterno Madre</label>
+                                                <input id="txtApPaternoMadreFiltro" type="text" class="form-control form-control-sm searchLibroNac" autocomplete="off">
+                                            </div>
+                                            <div class="col-md-2" style="max-width: 150px">
+                                                <label for="txtFechaNacLibroNacFiltro">Fecha Nac</label>
+                                                <div class="input-group form-group input-group-sm">
+                                                    <input type="text" class="form-control form_val_popup_dp3 searchLibroNac" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNacLibroNacFiltro" autocomplete="off">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar "></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="d-flex align-items-end" style="height: 50px;">
+                                                    <button type="button" class="btn btn-sm btn-primary mr-1" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="SolicitudConstanciaRn.ListarPacientesLibroNacimiento();">Buscar</button>
+                                                    <button type="button" class="btn btn-sm btn-secondary" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="SolicitudConstanciaRn.LimpiarFiltrosBusquedaPaciente();">limpiar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <table id="lstPacientesLibroNac" class="table table-sm table-bordered table-content-sm">
+                                            <thead style="color: white;background: #284057;">
+                                                <tr>
+                                                    <th valign="middle" align="center">Libro</th>
+                                                    <th valign="middle" align="center">Folio</th>
+                                                    <th valign="middle" align="center">Año</th>
+                                                    <th valign="middle" align="center">Mes</th>
+                                                    <th valign="middle" align="center">Nro Documento</th>
+                                                    <th valign="middle" align="center">Historia</th>
+                                                    <th valign="middle" align="center">Paciente</th>
+                                                    <th valign="middle" align="center">Madre</th>
+                                                    <th valign="middle" align="center">Fec.Nac.</th>
+                                                    <th valign="middle" align="center">Sexo</th>
+
+                                                    @*<th data-columna="bd" valign="middle" align="center">bd</th>*@
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnGuardar" type="button" class="btn btn-outline-primary" onclick="SolicitudConstanciaRn.AceptarPaciente();">
+                        <i class="fa-solid fa-user-check mr-1"></i>Agregar
+                    </button>
+                    <button type="button" onclick="SolicitudConstanciaRn.cerrarModalBuscarPaciente();" class="btn btn-secondary">Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*=======================================================MODAL BUSQUEDA LIBRO NACIMIENTO===========================================================================*@
+@*<div class="modal fade in display_none" id="modalBuscarLibroNacimiento" tabindex="-1" role="dialog" aria-hidden="false" style="overflow-y: scroll; background-color: rgba(0, 0, 0, 0.46);">
+
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header bg-info">
+                <h5 class="modal-title text-white" id="titulo">Buscar Paciente en Libro Nacimiento<label id="txtDatos" class="form-control-label"></label></h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="card-block p-t-10">
+                    <div class="row">
+                        <div class="col-md-2" style="max-width: 160px">
+                            <label for="txtDniNacFiltro">DNI</label>
+                            <input id="txtDniNacFiltro" type="text" class="form-control form-control-sm solo-numero search" min="0">
+                        </div>
+                        <div class="col-md-2" style="max-width: 160px">
+                            <label for="txtNroHistoriaNacFiltro">Nro.Historia</label>
+                            <input id="txtNroHistoriaNacFiltro" type="text" class="form-control form-control-sm solo-numero searchPaciente" min="0">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="txtApPaternoNacFiltro">Ap.Paterno</label>
+                            <input id="txtApPaternoNacFiltro" type="text" class="form-control form-control-sm searchPaciente">
+                        </div>
+                        <div class="col-md-2" style="max-width: 160px">
+                            <label for="txtDniMadreNacFiltro">DNI Madre</label>
+                            <input id="txtDniMadreNacFiltro" type="text" class="form-control form-control-sm solo-numero searchPaciente" min="0">
+                        </div>
+                        <div class="col-md-2" style="max-width: 150px">
+                            <label for="txtFechaNacFiltro">Fecha Nac</label>
+                            <div class="input-group form-group input-group-sm">
+                                <input type="text" class="form-control form_val_popup_dp3 searchPaciente" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNacFiltro" autocomplete="off">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar "></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="d-flex align-items-end" style="height: 50px;">
+                                <button type="button" class="btn btn-sm btn-primary mr-1" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="SolicitudConstanciaRn.ListarPacientesRegistroRN();">Buscar</button>
+                                <button type="button" class="btn btn-sm btn-secondary" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="SolicitudConstanciaRn.LimpiarFiltrosBusquedaPaciente();">limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="lstPacientesRn" class="table table-sm table-bordered">
+                        <thead style="color: white;background: #284057;">
+                            <tr>
+                                <th data-columna="Idpaciente" valign="middle" align="center">IdPaciente</th>
+                                <th data-columna="nroHistoriaClinica" valign="middle" align="center">N°.Historia</th>
+                                <th data-columna="paciente" valign="middle" align="center">Paciente</th>
+                                <th data-columna="fecNac" valign="middle" align="center">Fec.Nac.</th>
+                                <th data-columna="sexo" valign="middle" align="center">Sexo</th>
+                                <th data-columna="madre" valign="middle" align="center">Madre</th>                                
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnGuardar" type="button" class="btn btn-outline-primary" onclick="SolicitudConstanciaRn.AceptarPaciente();">
+                        <i class="fa-solid fa-user-check mr-1"></i>Agregar
+                    </button>
+                    <button type="button" onclick="SolicitudConstanciaRn.cerrarModalBuscarPaciente();" class="btn btn-secondary">Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>*@
+
+@* *********************************  MODAL DE APROBACION  *********************************** *@
+
+<div class="modal fade in display_none" id="modalAprobarSolicitud" tabindex="-1" role="dialog" aria-hidden="false" style="overflow-y: scroll;">
+
+    <div class="modal-dialog modal-md">
+
+        <div class="modal-content">
+            @*<div class="modal-header modal-header bg-info">
+            <h5 class="modal-title text-white" id="titulo">Buscar Paciente<label id="txtDatos" class="form-control-label"></label></h5>
+        </div>*@
+            <div class="row">
+                <div class="col-md-12" style="margin-left: -10px;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="swal2-icon swal2-question" style="display: block;">?</div>
+            <div class="row" style="text-align:center"><h2><strong>Aprobación de la solicitud N° <label id="lblNroSolicitud"></label></strong></h2></div>
+            <div class="row" style="text-align:center">
+                <div class="col-md-12" style="text-align:center">
+                    <h3><label id="txtdescripcion"></label></h3>
+                </div>
+                <div class="col-md-12" style="text-align:center">
+                    Comentario :  <input type="text" id="txtComentarioAprob" />
+                </div>
+                <hidden id="hdnIdConstanciaAprob"></hidden>
+            </div>
+            <br />
+            <div class="row" style="text-align:center">
+                <button type="button" class="btn btn-primary" style="font-size: 17px;padding: 10px 32px;" onclick="SolicitudConstanciaRn.RegistroAprobacion(true);">Aprobar</button>
+                <button type="button" class="btn btn-danger" style="font-size: 17px;padding: 10px 32px;" onclick="SolicitudConstanciaRn.RegistroAprobacion(false);">Rechazar</button>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
+
+
+<embed id="ifrmReporte"
+        title="Inline Frame Example"
+        width="100"
+        height="600" hidden="hidden"
+        src="" />
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+    .chosen-disabled .chosen-single {
+        background: #eceeef !important;
+        border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+</style>
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>    
+    <script type="text/javascript" src="~/AdmiRE/vendors/sortable/js/Sortable.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/slimscroll/js/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+
+    <script type="text/javascript" src=@Href("~/js/Estadistica/SolicitudConstanciaRn.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js?v=" + version)></script>
+
+}

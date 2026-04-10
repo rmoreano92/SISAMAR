@@ -1,0 +1,1111 @@
+﻿@section Css {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-hand-holding-medical"></i>
+                @ViewBag.Area
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">SIS</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+
+<div class="row m-0">
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+        </ul>
+        <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContent">
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block pb-1">
+                                <div class="row">
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroCuentaBusqueda" class="form-control-label">N° Cuenta</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos search" id="txtNroCuentaBusqueda">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroHistoriaBusqueda" class="form-control-label">N° Historia</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos search" id="txtNroHistoriaBusqueda">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroApellidoPaternoBusqueda" class="form-control-label">Apellido Paterno</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos search" id="txtNroApellidoPaternoBusqueda">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaAtencion" class="form-control-label">Fecha de Atención</label>
+                                            <div class="input-group input-group-sm m-0">
+                                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencion">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                                        <div>
+                                            <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarAtenciones">Buscar</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 pt-2 pb-0">
+                        @{
+                            if (@ViewBag.Agregar)
+                            {
+                                <button class="btn btn-primary layout_btn_prevent" id="btnAgregar">Agregar</button>
+                            }
+                            if (@ViewBag.Modificar)
+                            {
+                                <button class="btn btn-info layout_btn_prevent" id="btnModificarAtenciones">Modificar</button>
+                            }
+                            if (@ViewBag.Eliminar)
+                            {
+                                <button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtenciones">Eliminar</button>
+                            }
+                            if (@ViewBag.Consultar)
+                            {
+                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtenciones">Consultar</button>
+                            }
+                        }
+                    </div>
+
+                    <div class="col-md-6 d-flex align-items-end justify-content-end" style="height: 50px;">
+                        <div>
+                            <button class="btn btn-info layout_btn_prevent" id="btnAbrirModalReporteTamizaje" title="Genera Parte" data-toggle="tooltip" style="margin: 2px;"><i class="fas fa-file-alt"></i> Reporte Tamizaje Neonatal</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 pb-2">
+                        <table id="tblAtencion" width="100%" class="table table-sm table-bordered">
+                            <thead style="color: white;background: #434343;">
+                                <tr>
+                                    <th style="width:5%;">N° Cuenta</th>
+                                    <th style="width:5%">Ap. Paterno</th>
+                                    <th style="width:5%">Ap. Materno</th>
+                                    <th style="width:5%">1er Nombre</th>
+                                    <th style="width:5%">N° Historia</th>
+                                    <th style="width:5%">Fecha Nacimiento</th>
+                                    <th style="width:6%">Fecha Ing.</th>
+                                    <th style="width:7%">Hora Ing.</th>
+                                    <th style="width:5%">Servicio Actual</th>
+                                    <th style="width:5%">Tipo Numeración</th>
+                                    <th style="width:5%">Fuente</th>
+                                    <th style="width:5%">Estado Atencion</th>
+                                    <th style="width:5%">GeneraPago</th>
+                                    <th style="width:5%">FUA</th>
+                                    @*<th style="width:5%">Fuente</th>
+                                    <th style="width:8%; text-align:center">INFORME</th>
+                                    <th style="width:8%; text-align:center">RECETAS</th>
+                                    <th style="width:8%; text-align:center">PROC</th>
+                                    <th style="width:8%; text-align:center">REFCON</th>
+                                    <th style="width:8%; text-align:center">FUA</th>*@
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="col-md-12 d-flex align-items-end justify-content-end" style="height: 50px;">
+                        <div>
+                            <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaAtencion"><i class="fa-light fa-signature mr-1"></i>Firmar Atencion</button>
+                            <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaLote"><i class="fa-light fa-signature mr-1"></i>Firmar Lote</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalRegistroTamizaje" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Registro Tamizaje Neonatal</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <b>Busqueda</b>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-2" style="max-width: 180px;">
+                        <div class="form-group m-0">
+                            <label for="txtNroHistoriaBusquedaPaciente" class="form-control-label">N° Historia</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control bloquear search" id="txtNroHistoriaBusquedaPaciente">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2" style="max-width: 180px;">
+                        <div class="form-group m-0">
+                            <label for="txtApePaternoBusquedaPaciente" class="form-control-label">Apellido Paterno</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control bloquear search" id="txtApePaternoBusquedaPaciente">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2" style="max-width: 180px;">
+                        <div class="form-group m-0">
+                            <label for="txtApeMaternoBusquedaPaciente" class="form-control-label">Apellido Materno</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control bloquear search" id="txtApeMaternoBusquedaPaciente">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2" style="max-width: 180px;">
+                        <div class="form-group m-0">
+                            <label for="txtPrimerNombreBusquedaPaciente" class="form-control-label">1er Nombre</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control bloquear search" id="txtPrimerNombreBusquedaPaciente">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2" style="max-width: 180px;">
+                        <div class="form-group m-0">
+                            <label for="txtSegundoNombreBusquedaPaciente" class="form-control-label">2do Nombre</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control bloquear search" id="txtSegundoNombreBusquedaPaciente">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2" style="max-width: 180px;">
+                        <div class="form-group m-0">
+                            <label for="txtDniBusquedaPaciente" class="form-control-label">DNI</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control bloquear search" id="txtDniBusquedaPaciente">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 mb-1">
+                        <div class="form-group m-0">
+                            <label for="cboTipoAfiliacion" class="form-label">Tipo Afiliacion</label>
+                            <div class="input-group input-group-sm" style="max-width: 180px;">
+                                <select class="chzn-select bloquear" id="cboTipoAfiliacion"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 mb-1">
+                        <div class="form-group m-0">
+                            <label class="form-label">Nº de Afiliacion SIS</label>
+                            <div class="input-group input-group-sm">
+                                <input id="txtDisa" type="text" required class="form-control bloquear search" placeholder="Disa" style="width: 30%;">
+                                <input id="txtTipo" type="text" required class="form-control bloquear search" placeholder="Tipo" style="width: 20%;">
+                                <input id="txtNroAfiliacion" type="text" required class="form-control bloquear search" placeholder="Nro Afiliacion" style="width: 50%;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                        <div class="check__toggle">
+                            <label class="toggle">
+                                <input class="toggle__input bloquear" type="checkbox" id="chbBusquedaSis">
+                                <span class="toggle__label mr-1">
+                                    <span class="toggle__text">Buscar en IAFAS</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 d-flex align-items-end" style="height: 55px;">
+                        <button class="btn btn-primary btn-sm layout_btn_prevent bloquear" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarPacientes">Buscar</button>
+                        <button class="btn btn-secondary btn-sm layout_btn_prevent bloquear" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiarCampos">Limpiar</button>
+                    </div>
+                </div>
+
+                @*<div class="row">
+                <div class="col-lg-2">
+                <div class="form-group m-0">
+                <label for="txtDniBusquedaPaciente" class="form-control-label">DNI</label>
+                <div class="input-group input-group-sm">
+                <input type="text" class="form-control bloquear search" id="txtDniBusquedaPaciente">
+                </div>
+                </div>
+                </div>
+
+                <div class="col-lg-2 mb-1">
+                <div class="form-group m-0">
+                <label for="cboTipoAfiliacion" class="form-label">Tipo Afiliacion</label>
+                <div class="input-group input-group-sm" style="max-width: 180px;">
+                <select class="chzn-select bloquear" id="cboTipoAfiliacion"></select>
+                </div>
+                </div>
+                </div>
+
+                <div class="col-lg-3 mb-1">
+                <div class="form-group m-0">
+                <label class="form-label">Nº de Afiliacion SIS</label>
+                <div class="input-group input-group-sm">
+                <input id="txtDisa" type="text" required class="form-control bloquear search" placeholder="Disa" style="width: 30%;">
+                <input id="txtTipo" type="text" required class="form-control bloquear search" placeholder="Tipo" style="width: 20%;">
+                <input id="txtNroAfiliacion" type="text" required class="form-control bloquear search" placeholder="Nro Afiliacion" style="width: 50%;">
+                </div>
+                </div>
+                </div>
+
+                <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                <div class="check__toggle">
+                <label class="toggle">
+                <input class="toggle__input bloquear" type="checkbox" id="chbBusquedaSis">
+                <span class="toggle__label mr-1">
+                <span class="toggle__text">Buscar en IAFAS</span>
+                </span>
+                </label>
+                </div>
+                </div>
+
+                <div class="col-lg-3 d-flex align-items-end" style="height: 55px;">
+                <div>
+                <button class="btn btn-secondary btn-sm layout_btn_prevent bloquear" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiarCampos">Limpiar</button>
+                <button class="btn btn-primary btn-sm layout_btn_prevent bloquear" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarPacientes">Buscar</button>
+                </div>
+                </div>
+
+                </div>*@
+
+                <hr />
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                        <div class="card bg-lightindigo">
+                            <div class="card-header bg-white">Datos del Paciente</div>
+                            <div class="card-block p-t-5 custom-form">
+
+                                <div class="row">
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtNroHistoria" class="form-label">Nro Historia</label>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control" id="txtNroHistoria" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-5">
+                                                <div class="input-group input-group-sm">
+                                                    <select class="chzn-select" id="cboTipoHistoria" disabled></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtApellidoPaterno" class="form-label">Apellido Paterno</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtApellidoPaterno" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtApellidoMaterno" class="form-label">Apellido Materno</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtApellidoMaterno" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtPrimerNombre" class="form-label">Primer Nombre</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtPrimerNombre" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtSegundoNombre" class="form-label">Segundo Nombre</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtSegundoNombre" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="cboTipoSexo" class="form-label">Sexo</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <select class="chzn-select" id="cboTipoSexo" disabled></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtFechaNacimiento" class="form-label">Fecha Nacimiento</label>
+                                            </div>
+
+                                            <div class="col-lg-5">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtFechaNacimiento" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-1">
+                                                <label for="txtHoraNacimiento" class="form-label">Hora</label>
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtHoraNacimiento" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        @*<input type="text" id="hdIdEstablecimientoReferenciaOrigen" hidden="hidden" />*@
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="" class="form-label" id="lblEstabRefCon">Estab. Referencia</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control" id="txtIdReferenciaCita" disabled>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-info bloquear" type="button" id="btnOpenModalEstablecimientoReferenciaCita">Buscar</button>
+                                                    </span>
+                                                    <input type="text" class="form-control" id="txtDescripcionReferenciaCita" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="card bg-lightindigo">
+                            <div class="card-header bg-white">Atención</div>
+                            <div class="card-block p-t-5 custom-form">
+                                <div class="row">
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="cboServicioIngreso" class="form-label">Servicio Ingreso</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <select class="chzn-select bloquear" id="cboServicioIngreso"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtResponsable" class="form-label">Responsable</label>
+                                            </div>
+
+                                            <div class="col-lg-5">
+                                                <div class="form-group m-0">
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" class="form-control bloquear-campos search" id="txtResponsable" disabled>
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-info" type="button" id="btnModalMedicos">Buscar</button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="form-group m-0">
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control solo-numero" id="txtDocumentoResponsable" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    @*<div class="col-lg-12 mb-1">
+                                    <div class="row">
+                                    <div class="col-lg-4">
+                                    <label for="cboMedicoResponsable" class="form-label">Responsable</label>
+                                    </div>
+
+                                    <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                    <select class="chzn-select bloquear" id="cboMedicoResponsable"></select>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>*@
+
+
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="cboTipoAfiliacion" class="form-label">Fecha Ingreso</label>
+                                            </div>
+
+                                            <div class="col-lg-5">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control bloquear search" id="txtFechaIngreso" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-1">
+                                                <label for="cboTipoAfiliacion" class="form-label">Hora</label>
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control bloquear search" id="txtHoraIngreso">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="cboTipoAfiliacion" class="form-label">Edad Atención</label>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtEdadAtencion" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-5">
+                                                <div class="input-group input-group-sm">
+                                                    <select class="chzn-select" id="cboTipoEdadAtencion" disabled></select>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="cboFuenteFinanciamiento" class="form-label">Financiamiento/IAFA</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <select class="chzn-select bloquear" id="cboFuenteFinanciamiento"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="cboProductoPlan" class="form-label">Producto/Plan</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <select class="chzn-select bloquear" id="cboProductoPlan"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="col-lg-12">
+
+                                    <div class="row">
+
+                                    <div class="col-lg-2 d-flex align-items-end">
+                                    <div class="check__toggle">
+                                    <label class="toggle">
+                                    <input class="toggle__input bloquear" type="checkbox" id="chbObservacionTamizaje">
+                                    <span class="toggle__label mr-1">
+                                    <span class="toggle__text"></span>
+                                    </span>
+                                    </label>
+                                    </div>
+                                    </div>
+                                    <div class="col-lg-9">
+                                    <div class="form-group m-0">
+                                    <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control bloquear-campos search" id="txtObservacionTamizaje" value="Muestra de control por prematernidad">
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                    </div>*@
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtNroReferenciaOrigen" class="form-label">Ref. Origen</label>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control bloquear search" id="txtNroReferenciaOrigen">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                                <label for="txtNroReferenciaDestino" class="form-label">Ref. Dest</label>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control bloquear search" id="txtNroReferenciaDestino">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtNroCuenta" class="form-label">N° Cuenta</label>
+                                            </div>
+
+
+                                            <div class="col-lg-4">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" autocomplete="off" class="form-control solo-numero" id="txtNroCuenta" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+                <button id="btnGuardarAtencion" class="btn btn-primary"> Registrar</button>
+                <button id="btnCerrarModal" target="_blank" class="btn btn-secondary "> Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalPacientesBusqueda" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-sm table-bordered" id="tblPacientesBusqueda" width="100%" style="font-size: 12px;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th width="30%">Apellidos y Nombres</th>
+                                    <th width="8%">Nro.Historia</th>
+                                    <th width="8%">FechaNac.</th>
+                                    <th width="12%">Ult.Tipo</th>
+                                    <th width="18%">Ult.Serv.Ing.</th>
+                                    <th width="8%">Ult. F. Ing.</th>
+                                    <th width="8%">Ult. F. Egr.</th>
+                                    <th width="8%">E Historia</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalBusquedaSis" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente SIS</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered" id="tblBusquedaSis" width="100%">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th width="3%">ApPaterno</th>
+                                        <th width="3%">ApMaterno</th>
+                                        <th width="3%">PNombre</th>
+                                        <th width="3%">SNombre</th>
+                                        <th width="3%">Fnacimiento</th>
+                                        <th width="6%">cAfiliacion</th>
+                                        <th width="3%">estado</th>
+                                        <th width="3%">fBajaOK</th>
+                                        <th width="6%">DNI</th>
+                                        <th width="3%">sexo</th>
+                                        <th width="3%">distritoDomicilio</th>
+                                        <th width="3%">cDisa</th>
+                                        <th width="3%">cFormato</th>
+                                        <th width="5%">cNumero</th>
+                                        <th width="3%">AfiliacionNroIntegrante</th>
+                                        <th width="3%">codigo</th>
+                                        <th width="3%">idSiaSis</th>
+                                        <th width="3%">MotivoBaja</th>
+                                        <th width="5%">CodigoEstablAdscripcion</th>
+                                        <th width="5%">AfiliacionFecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalMedicosBusqueda" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <b>Busqueda</b>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtNCodPlanillaMedico" class="form-control-label">Cod. Planilla</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtNCodPlanillaMedico">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtApellidoPaternoMedico" class="form-control-label">Apellido Paterno</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtApellidoPaternoMedico">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtApellidoMaternoMedico" class="form-control-label">Apellido Materno</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtApellidoMaternoMedico">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtNombresMedico" class="form-control-label">Nombres</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtNombresMedico">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                                <div>
+                                    <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarMedicos">Buscar</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr />
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <table class="table table-sm table-bordered" id="tblMedicosBusqueda" width="100%" style="font-size: 12px;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th width="10%">NA</th>
+                                    <th width="10%">Cod. Planilla</th>
+                                    <th width="10%">Apellido Paterno</th>
+                                    <th width="12%">Apellido Materno</th>
+                                    <th width="18%">Nombres</th>
+                                    <th width="8%">Especialidad</th>
+                                    <th width="8%">Colegiatura</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalReporteTamizaje" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Reporte Tamizaje</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row mb-1">
+
+                    <div class="col-lg-4" ">
+                        <div class="form-group m-0">
+                            <label for="txtFechaInicio" class="form-control-label">Fecha Inicio</label>
+                            <div class="input-group input-group-sm m-0">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicio">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar "></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="txtFechaFin" class="form-control-label">Fecha Fin</label>
+                            <div class="input-group input-group-sm m-0">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFin">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar "></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                        <div>
+                            <button class="btn btn-success btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnGenerarRptTamizaje"><i class="fas fa-file-excel mr-1"></i> Descargar</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml" />
+
+
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    @*<script src="https://momentjs.com/downloads/moment-with-locales.js"></script>*@
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script>
+
+    <script type="text/javascript" src=@Href("~/js/Facturacion/PacienteExternoConCuentaSeguro.js")></script>
+
+
+
+
+    @*<script>
+        $(document).ready(() => {
+            AtencionMedica.Iniciar()
+            //ESTABLECIMIENTOSSALUD.init()
+
+            //Cargando(0);
+
+        })
+
+    </script>*@
+
+
+
+}
+
+<style>
+    body {
+        padding-right: 0px !important;
+    }
+
+    nav.navbar {
+        background-color: #CC1414;
+    }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+
+
+    /*==============REFCON===============*/
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff !important;
+            border-color: #ccc !important;
+        }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                                        width: 100% !important;
+                                    }*/
+
+
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+    #cboServicioIngreso_chosen {
+        max-width: 310px !important;
+    }
+
+    #cboTipoAfiliacion_chosen {
+        max-width: 175px !important;
+    }
+
+    /*.chosen-container:focus {
+                        color: #2c2c2c;
+                        background-color: #fff;
+                        border-color: #66afe9;
+                        box-shadow: 1px 1px 5px #5892c1;
+                    }*/
+
+
+
+</style>

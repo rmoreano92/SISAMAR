@@ -1,0 +1,267 @@
+﻿<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalRegistroCitaProcedimiento" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-white">Cita Procedimiento</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-xl-12">
+                        <div class="card bg-pink mb-1">
+                            <div class="card-header">Cita</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-7">
+                                        <div class="form-group m-0">
+                                            <label for="txtCitaMedico">Medico</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtCitaMedico" autocomplete="off" disabled>
+                                        </div>
+                                        <div class="form-group m-0">
+                                            <label for="txtCitaServicio">Servicio</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtCitaServicio" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtCitaFechaCita">Fecha</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtCitaFechaCita" autocomplete="off" disabled>
+                                        </div>
+                                        <div class="form-group m-0">
+                                            <label for="txtCitaHoraCita">Hora</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtCitaHoraCita" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12" id="frmBusquedaMovimiento">
+                        <div class="card bg-blue mb-1" style="border-color: #97a5f7;">
+                            <div class="card-header text-info">Búsqueda</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtCitaNroMovimiento">N° Movimiento</label>
+                                            <input type="text" class="form-control form-control-sm solo-numero searchMovimiento" id="txtCitaNroMovimiento" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <br />
+                                        <div class="d-flex m-t-5">
+                                            <button id="btnBuscarNroMovimiento" class="btn btn-info btn-sm w-100 mr-1">Buscar</button>
+                                            <button id="btnLimpiarNroMovimiento" class="btn btn-secondary btn-sm w-100">Limpiar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                    
+                </div>
+
+                
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card bg-green">
+                            <div class="card-header">Datos Paciente</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtCitaNroMov">N° Movimiento</label>
+                                            <input type="text" class="form-control form-control-sm registro" id="txtCitaNroMov" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtCitaNroCuenta">N° Cuenta</label>
+                                            <input type="text" class="form-control form-control-sm registro" id="txtCitaNroCuenta" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtCitaNroHistoria">Nº Historia</label>
+                                            <input type="text" class="form-control form-control-sm registro" id="txtCitaNroHistoria" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-7">
+                                        <div class="form-group m-0">
+                                            <label for="txtCitaPaciente">Paciente</label>
+                                            <input type="text" class="form-control form-control-sm registro" id="txtCitaPaciente" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5">
+                                        <div class="form-group m-0">
+                                            <label for="txtCitaPlan">Plan</label>
+                                            <input type="text" class="form-control form-control-sm registro" id="txtCitaPlan" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="form-group m-0">
+                                            <label for="txtCitaDatosCuenta">Datos Cuenta</label>
+                                            <input type="text" class="form-control form-control-sm registro" id="txtCitaDatosCuenta" autocomplete="off" disabled>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm table-content-md table-striped w-100" id="tblDetalleOrdenCitaProcedimiento">
+                                <thead style="color: white; background: #404457;">
+                                    <tr>
+                                        @* <th style="width: 15%;">idProducto</th> *@
+                                        <th style="width: 20%;">Código</th>
+                                        <th style="width: 80%;">Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer bg-">
+                    <button type="button" class="btn btn-large btn-primary" id="btnGuardarCitaProcedimiento">Guardar</button>
+                    <button type="button" class="btn btn-large btn-secondary" id="btnCerrarCitaProcedimiento">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalReprogramacionCitaProcedimiento" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-brown">
+                <h4 class="modal-title text-white">Reprogramación Cita Procedimiento</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <table class="table table-sm table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th class="text-sm-center" style="background: #c7d0ff;">Nº Movimiento</th>
+                                    <th class="text-sm-center" style="background: #c7d0ff;">Nº Cuenta</th>
+                                    <th class="text-sm-center" style="background: #c7d0ff;">Nº Historia</th>
+                                </tr>
+                                <tr>
+                                    <td class="text-sm-center tdRegistro" id="tdCitaNroMovimiento"></td>
+                                    <td class="text-sm-center tdRegistro" id="tdCitaNroCuenta"></td>
+                                    <td class="text-sm-center tdRegistro" id="tdCitaNroHistoria"></td>
+                                </tr>                                                               
+                            </tbody>
+                        </table>
+
+                        <table class="table table-sm table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th class="text-sm-center" style="background: #c7d0ff;">Paciente</th>
+                                    <th class="text-sm-center" style="background: #c7d0ff;">Fecha Cita</th>
+                                    <th class="text-sm-center" style="background: #c7d0ff;">Hora Cita</th>
+                                </tr>
+                                <tr>
+                                    <td class="text-sm-center tdRegistro" id="tdCitaPaciente"></td>
+                                    <td class="text-sm-center tdRegistro" id="tdCitaFechaCita"></td>
+                                    <td class="text-sm-center tdRegistro" id="tdCitaHoraCita"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-sm table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th class="text-sm-center" style="background: #c7d0ff;">Servicio</th>
+                                    <th class="text-sm-center" style="background: #c7d0ff;">Médico</th>
+                                </tr>
+                                <tr>
+                                    <td class="text-sm-center tdRegistro" id="tdCitaServicio"></td>
+                                    <td class="text-sm-center tdRegistro" id="tdCitaMedico"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>           
+                    
+                    <div class="col-xl-12">
+                        <div class="card bg-green">
+                            <div class="card-header text-info">Reprogramar cita a</div>
+                            <div class="card-block">                                
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="row">
+                                            <div class="col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaNuevaReprogMed">Fecha</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoReprogMed" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNuevaReprogMed">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-9">
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboServicioNuevoReprogMed">Servicio</label>
+                                                            <select class="chzn-select campoReprogMed" id="cboServicioNuevoReprogMed" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtMedicoNuevoReprogMed">Médico</label>
+                                                            <input type="text" class="form-control form-control-sm campoReprogMed" id="txtMedicoNuevoReprogMed" placeholder="" autocomplete="off" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row">
+                                            
+                                            <div class="col-xl-4">
+                                                <div class="form-group m-0">
+                                                    <label for="cboHoraNuevaReprogMed">Hora (Cupo libre)</label>
+                                                    <select class="chzn-select campoReprogMed" id="cboHoraNuevaReprogMed" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <button class="btn btn-brown mt-2" id="btnReprogramarPorPaciente">REPROGRAMAR</button>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer bg-">
+                    <button type="button" class="btn btn-large btn-secondary" id="btnCerrarReprogramacionCitaProcedimiento">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,287 @@
+﻿<div class="row">
+    <div class="col-xl-8 mb-1">
+        <div class="card bg-yellow">
+            <div class="card-header bg-white">Datos de Nacimiento del Neonato</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-xl-5">
+                        <div class="row d-none">
+                            <div class="col-sm-7">
+                                <div class="form-group mb-0">
+                                    <label for="txtFechaNacimiento">Fecha Nacimiento</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 campo" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNacimiento">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="form-group mb-0">
+                                    <label for="txtHoraNacimiento">Hora Nac. </label>
+                                    <input type="text" class="form-control form-control-sm campo" id="txtHoraNacimiento" placeholder="__:__" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-0 d-none">
+                            <label for="cboTipoSexo">Sexo</label>
+                            <select id="cboTipoSexo" class="chzn-select campo-select campo" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                        <div class="casilla mt-1">
+                            <h5>N° Gemelar</h5>
+                            <div class="form-group mb-0">
+                                <label for="cboTipoGestacion">Tipo de Gestación</label>
+                                <select id="cboTipoGestacion" class="chzn-select campo-select campo" data-placeholder="Seleccione una opción"></select>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-0">
+                                        <label for="txtNroFetos">N° de Fetos</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" id="txtNroFetos" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-0">
+                                        <label for="cboNumeroGemelar">Gemelar</label>
+                                        <select id="cboNumeroGemelar" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-0" hidden>
+                            <label for="cboRiesgo">Riesgo del RN</label>
+                            <select id="cboRiesgo" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xxl-7 col-md-12">
+                                <div class="form-group mb-0">
+                                    <label for="cboCondicion">Condición</label>
+                                    <select id="cboCondicion" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-xxl-12 col-md-12">
+                                <div class="form-group mb-0">
+                                    <label style="width: 100%;">Óbito</label>
+                                    <div class="switch-field">
+                                        <input type="radio" id="rdbObitoNo" name="rdbObito" class="rdbObito campo" />
+                                        <input type="radio" id="rdbObitoSiMenor" name="rdbObito" class="rdbObito campo" />
+                                        <label for="rdbObitoSiMenor" class="pl-2 pr-2">&#60 500 GR</label>
+                                        <input type="radio" id="rdbObitoSiMayor" name="rdbObito" class="rdbObito campo" />
+                                        <label for="rdbObitoSiMayor" class="pl-2 pr-2">&#62; 500 GR</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="col-xl-3">
+                        <div class="form-group mb-0">
+                            <label for="txtPeso">Peso al Nacer (gr)</label>
+                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txtPeso" minlength="3" maxlength="4" autocomplete="off">
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="txtTalla">Talla al Nacer (cm)</label>
+                            <input type="text" class="form-control form-control-sm solo-decimal campo" id="txtTalla" autocomplete="off">
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="txtPerCefalico">Périmetro Cefálico</label>
+                            <input type="text" class="form-control form-control-sm solo-decimal campo" id="txtPerCefalico" autocomplete="off">
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="txtPerToracico">Périmetro Toráxico</label>
+                            <input type="text" class="form-control form-control-sm solo-decimal campo" id="txtPerToracico" autocomplete="off">
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="txtEdadGestacional">Edad Gest. al Nacer (sem)</label>
+                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txtEdadGestacional" minlength="2" maxlength="2" autocomplete="off">
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="cboTiempoClampaje">Tiempo Clampaje</label>
+                            <select id="cboTiempoClampaje" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="form-group mb-0">
+                            <label style="width: 100%;">Clamp Tardío</label>
+                            <div class="switch-field">
+                                <input type="radio" id="rdbTardioSi" name="rdbTardio" class="rdbTardio campo" />
+                                <label for="rdbTardioSi" class="">Si</label>
+                                <input type="radio" id="rdbTardioNO" name="rdbTardio" class="rdbTardio campo" />
+                                <label for="rdbTardioNO" class="">No</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="cboContactoPiel">Contacto Piel a Piel</label>
+                            <select id="cboContactoPiel" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label style="width: 100%;">Lact. 1era Hora</label>
+                            <div class="switch-field">
+                                <input type="radio" id="rdbLacthoraSi" name="rdbLacthora" class="rdbLacthora campo" />
+                                <label for="rdbLacthoraSi" class="">Si</label>
+                                <input type="radio" id="rdbLacthoraNO" name="rdbLacthora" class="rdbLacthora campo" />
+                                <label for="rdbLacthoraNO" class="">No</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="cboServicioNacimiento">Servicio Nacimiento</label>
+                            <select id="cboServicioNacimiento" class="chzn-select-deselect campo" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="cboProcedenciaRn">Otra Procedencia</label>
+                            <select id="cboProcedenciaRn" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 mb-1">
+        <div class="card bg-blue" style="padding-bottom: 0px;">
+            <div class="card-header bg-white">Respiración y Llanto al Nacer</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group mb-0">
+                            <label style="width: 100%;">Inmediato</label>
+                            <div class="switch-field">
+                                <input type="radio" id="rdbInmediatoSi" name="rdbInmediato" class="rdbInmediato campo" />
+                                <label for="rdbInmediatoSi" class="pl-2 pr-2">Si</label>
+                                <input type="radio" id="rdbInmediatoNO" name="rdbInmediato" class="rdbInmediato campo" />
+                                <label for="rdbInmediatoNO" class="pl-2 pr-2">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group mb-0">
+                                    <label style="width: 100%;">Reanimación</label>
+                                    <div class="switch-field">
+                                        <input type="radio" id="rdbReanimacionSi" name="rdbReanimacion" class="rdbReanimacion campo" />
+                                        <label for="rdbReanimacionSi" class="pl-2 pr-2">Si</label>
+                                        <input type="radio" id="rdbReanimacionNO" name="rdbReanimacion" class="rdbReanimacion campo" />
+                                        <label for="rdbReanimacionNO" class="pl-2 pr-2">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <div class="form-group mb-0">
+                                    <label for="cboTipoReanimacionRn">Tipo Reanimación</label>
+                                    <select id="cboTipoReanimacionRn" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group mb-0">
+                            <label for="txtMinuto">APGAR 1 min</label>
+                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txtMinuto" minlength="1" maxlength="2" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group mb-0">
+                            <label for="txt5Minuto">APGAR 5 min</label>
+                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txt5Minuto" minlength="1" maxlength="2" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group mb-0">
+                            <label for="txt10Minuto">APGAR 10 min</label>
+                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txt10Minuto" minlength="1" maxlength="2" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group mb-0">
+                            <label for="txt15Minuto">APGAR 15 min</label>
+                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txt15Minuto" minlength="1" maxlength="2" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group mb-0">
+                            <label for="txt20Minuto">APGAR 20 min</label>
+                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txt20Minuto" minlength="1" maxlength="2" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="form-group mb-0">
+                                    <label style="width: 100%;">Patología Neonatal</label>
+                                    <div class="switch-field">
+                                        <input type="radio" id="rdbPatNeoSi" name="rdbPatNeo" class="rdbPatNeo campo" />
+                                        <label for="rdbPatNeoSi" class="pl-2 pr-2">Si</label>
+                                        <input type="radio" id="rdbPatNeoNo" name="rdbPatNeo" class="rdbPatNeo campo" />
+                                        <label for="rdbPatNeoNo" class="pl-2 pr-2">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="form-group mb-0">
+                                    <label for="txtEspecificar">Especificar</label>
+                                    <input type="text" class="form-control form-control-sm campo" id="txtEspecificar" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group mb-0">
+                                    <label style="width: 100%;">Transporte</label>
+                                    <div class="switch-field">
+                                        <input type="radio" id="rdbTransporteSi" name="rdbTransporte" class="rdbTransporte field" />
+                                        <label for="rdbTransporteSi" class="pl-2 pr-2">Si</label>
+                                        <input type="radio" id="rdbTransporteNO" name="rdbTransporte" class="rdbTransporte field" />
+                                        <label for="rdbTransporteNO" class="pl-2 pr-2">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <div class="form-group mb-0">
+                                    <label for="cboTipoTransporteRn">Tipo Transporte</label>
+                                    <select id="cboTipoTransporteRn" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

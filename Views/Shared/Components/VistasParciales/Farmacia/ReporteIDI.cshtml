@@ -1,0 +1,163 @@
+﻿<div class="modal fade" id="modalIDI" tabindex="-1" role="dialog" aria-labelledby="modalIDI">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">IDI</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <label for="cboTipoReporteIDI" class="form-control-label">Tipo</label>
+                                    <div class="input-group">
+                                        <select class="chzn-select" id="cboTipoReporteIDI">
+                                            <option value="1">SISMED</option>
+                                            <option value="2">DONACIONES</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="cboFarmaciaIDI" class="form-control-label">Almacen</label>
+                                    <div class="input-group">
+                                        <select class="chzn-select" id="cboFarmaciaIDI">
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <label for="txtFechaInicioIDI">Fecha Inicio</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioIDI" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="txtHoraInicioIDI" class="form-label">Hora Inicio</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="txtHoraInicioIDI" placeholder="__:__" value="07:00">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="txtFechaFinIDI">Fecha Fin</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinIDI" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="txtHoraFinIDI" class="form-label">Hora Fin</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="txtHoraFinIDI" placeholder="__:__" value="19:00">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 d-flex align-items-end mb-1" style="height: 50px;">
+                                    <div>
+                                        <button type="button" class="btn btn-sm btn-primary" style="padding-left: 1rem !important; padding-right: 1rem !important;" id="btnGenerarIDI">Buscar</button>&nbsp;&nbsp;
+                                        <button type="button" class="btn btn-sm btn-default" style="padding-left: 1rem !important; padding-right: 1rem !important;">limpiar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <table id="tblReporteIDI" width="100%" class="table table-sm table-bordered">
+                                        <thead style="color: white;background: #434343;">
+                                            <tr>
+                                                <th style="width:4%">Codigo</th>
+                                                <th style="width:20%">Descripcion</th>
+                                                <th style="width:5%">Precio</th>
+                                                <th style="width:5%">Saldo</th>
+                                                @*<th style="width:5%">ICompra</th>
+                                                <th style="width:5%">IDevol</th>
+                                                <th style="width:5%">IInterv</th>
+                                                <th style="width:5%">IOtrasUe</th>
+                                                <th style="width:5%">IAnula</th>*@
+                                                <th style="width:5%">TotalIng.</th>
+                                                @*<th style="width:5%">SVentas</th>
+                                                <th style="width:5%">SSis</th>
+                                                <th style="width:5%">SInterv</th>
+                                                <th style="width:5%">SOtrasUe</th>
+                                                <th style="width:5%">SConsumoInst</th>*@
+                                                <th style="width:5%">TotalSal.</th>
+                                                <th style="width:5%">StockCalc</th>
+                                                <th style="width:5%">Stock</th>
+                                                <th style="width:5%">FecVen</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+
+                                    <table id="tblReporteIDIDonaciones" width="100%" class="table table-sm table-bordered">
+                                        <thead style="color: white;background: #434343;">
+                                            <tr>
+                                                <th style="width:4%">Codigo</th>
+                                                <th style="width:70%">Descripcion</th>
+                                                <th style="width:5%">Precio</th>
+                                                <th style="width:5%">Saldo</th>
+                                                <th style="width:5%">Ingresos.</th>
+                                                <th style="width:5%">Consumo</th>
+                                                <th style="width:5%">SaldoFinal</th>
+                                                <th style="width:5%">FecVen</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!--<div class="row">
+                            <div class="col-lg-6">
+                                <label for="cboConsultorio" class="form-control-label">Tipo</label>
+                                <div class="input-group">
+                                    <select class="chzn-select" id="cboTipoReporteFarmacia">
+                                        <option value="1">Saldos Totales</option>
+                                        <option value="2">Lote y Fecha de Vencimiento</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label for="cboConsultorio" class="form-control-label">Almacén</label>
+                                <div class="input-group">
+                                    <select class="chzn-select" id="cboFarmAlmacen"></select>
+                                </div>
+                            </div>-->
+                            @*<div class="col-lg-12 mt-2">
+                            <button class="btn btn-success btn-sm float-lg-right" id="btnGenerarSaldosPorAlmacen">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+                            </div>*@
+                            <!--</div>-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" id="btnGenerarReporteIDI">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

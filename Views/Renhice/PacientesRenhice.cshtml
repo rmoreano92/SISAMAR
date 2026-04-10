@@ -1,0 +1,217 @@
+﻿@* @section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+
+
+} *@
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-clipboard"></i>
+                @ViewBag.Modulo
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Modulo</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group mb-0">
+                                    <label for="txtNroHistoria" class="form-control-label"><b>Nro. Historia</b></label>
+                                    <div class="input-group d-flex">
+                                        <input id="txtNroHistoria" autocomplete="off" placeholder="" class="solo-numero form-control">
+                                        <div class="input-group-append" style="margin-left: -2px;">
+                                            <button class="btn btn-primary btnBuscarPaciente" type="button" id="btnBuscarPacienteHistoria"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group mb-0">
+                                    <label for="txtNroDocumento" class="form-control-label"><b>Nro. DNI</b></label>
+                                    <div class="input-group d-flex">
+                                        <input id="txtNroDocumento" autocomplete="off" placeholder="" class="solo-numero form-control">
+                                        <div class="input-group-append" style="margin-left: -2px;">
+                                            <button class="btn btn-primary btnBuscarPaciente" type="button" id="btnBuscarPacienteDocumento"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="form-group mb-0">
+                                    <label for="txtNombres" class="form-control-label"><b>Nombres</b></label>
+                                    <div class="input-group">
+                                        <input id="txtNombres" autocomplete="off" placeholder="" class="form-control" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-2" id="tabSeguimientoGenerales">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <table id="tblCuentas" class="table table-sm table-bordered" style="width: 100%; cursor: pointer; margin-top: 0 !important;">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th style="display:none" align="center">Cuenta</th>
+                                        <th align="center">Atenciones <button class="btn btn-success" id="btnMigrarAtencion">Migrar</button></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-lg-8">
+                            <div class="row">
+
+                                <div class="col-lg-3">
+                                    <label for="txtIdPaciente" class="d-block text-truncate">Identificador</label>
+                                    <div class="input-group input-group-sm d-flex">
+                                        <input type="text" class="form-control form-control-sm" id="txtIdPaciente" value="1585" />
+                                        <div class="input-group-append" style="margin-left: -2px;">
+                                            <button class="btn btn-indigo" type="button" id="btnPacienteBusq"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <label for="txtNroDocumentoPacienteBusq" class="d-block text-truncate">NroDocumento</label>
+                                    <div class="input-group input-group-sm d-flex">
+                                        <input type="text" class="form-control form-control-sm" id="txtNroDocumentoPacienteBusq" value="" />
+                                        <div class="input-group-append" style="margin-left: -2px;">
+                                            <button class="btn btn-indigo" type="button" id="btnNroDocumentoPacienteBusq"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <label>Resultado Bundle</label>
+                                    <textarea class="form-control" rowspan="3" id="txtJsonBundleResponse" hidden></textarea>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <table id="tblPacientes" class="table table-xs table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                        <thead style="color: white; background: #434343;">
+                                            <tr>
+                                                <th>Id Paciente</th>
+                                                <th>Fecha Nacimiento</th>
+                                                <th>Genero</th>
+                                                <th>Nombre</th>
+                                                <th>Tipo Doc</th>
+                                                <th>Doc</th>
+                                                <th>Establecimiento</th>
+                                                <th>Bundle</th>
+                                                <th>Opcion</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalDatosPaciente" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">ServicioDocumentReference</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <table id="fhirTable" class="table table-xs table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                            <thead>
+                                <tr>
+                                    <th width="15%">Sección</th>
+                                    <th>Detalle</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    @* <button id="btnGuardarRegistroTamizaje" class="btn btn-success " style="width: 100px;"> Aceptar</button> *@
+                    <button id="btnCerrarModal" target="_blank" class="btn btn-secondary" style="width: 100px;"> Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts
+{
+
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/VisorRecetas.js?v=")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/SeguimientoPaciente.js?v=")></script>
+    <script type="text/javascript" src=@Href("~/js/Renhice/Renhice.js?v=")></script>
+
+
+
+}

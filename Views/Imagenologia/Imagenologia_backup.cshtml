@@ -1,0 +1,531 @@
+﻿@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+    <!--Page level styles-->
+}
+
+@using CapaEntidades
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa-solid @ViewBag.Icono mr-1"></i>
+                @ViewBag.Modulo @*- @ViewBag.Area*@
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Modulo</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    <input hidden="hidden" id="hdIdProducto" type="text" class="form-control">
+
+                    <div class="card-block pt-1">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-block pb-0">
+
+                                        <div class="row">
+
+                                            <div class="col-md-2">
+                                                <label for="txtNroMovimiento" class="form-control-label ">N° Movimiento</label>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control solo-numero search" id="txtNroMovimiento">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="txtNroCuenta" class="form-control-label ">N° Cuenta</label>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control solo-numero search" id="txtNroCuenta">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <label for="txtNroHistoria" class="form-control-label ">N° Historia</label>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control solo-numero search" id="txtNroHistoria">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <label for="txtNombres" class="form-control-label ">Nombres</label>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtNombres">
+                                                </div>
+                                            </div>
+
+                                            <div id="PuntoCarga" hidden>@ViewBag.PuntoCarga</div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-2">
+                                                <label for="txtFechaInicio" class="form-control-label ">Fecha Inicio</label>
+                                                <div class="input-group form-group input-group-sm">
+                                                    <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicio" autocomplete="off">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2" style="max-width: 150px">
+                                                <label for="txtHoraInicio" class="form-control-label">Hora Inicio</label>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control" id="txtHoraInicio" placeholder="__:__" value="07:00">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <label for="txtFechaFin" class="form-control-label">Fecha Fin</label>
+                                                <div class="input-group form-group input-group-sm">
+                                                    <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFin" autocomplete="off">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2" style="max-width: 150px">
+                                                <label for="txtHoraFin" class="form-control-label">Hora Fin</label>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control" id="txtHoraFin" placeholder="__:__" value="19:00">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-2 d-flex align-items-end mb-1" style="height: 50px;">
+                                                <div>
+                                                    <button type="button" class="btn btn-sm btn-primary px-2 mr-2" style="" id="btnListarOrdenesPatologia">Buscar</button>
+                                                    <button type="button" class="btn btn-sm btn-default px-2" style="" id="btnLimpiarBusqueda">limpiar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mt-2">
+                                <div class="card bg-blue" style="border-color: #9ec9ec;">
+                                    <div class="card-header bg-white">
+                                        <div class="d-flex">
+                                            <div id="">Listado de Ordenes</div>
+                                        </div>
+                                    </div>
+                                    <div class="card-block pt-1">
+                                        <div class="row">
+
+                                            <div class="col-lg-12 pb-2" style="margin-top: -20px;">
+                                                <table id="tblListadoOrdenes" width="100%" class="table table-sm table-bordered table-content-md">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th valign="middle">N° Movimiento</th>
+                                                            <th valign="middle">N° Cuenta</th>
+                                                            <th valign="middle">N° H.C.</th>
+                                                            <th valign="middle">Paciente</th>
+                                                            <th valign="middle">Estado Orden</th>
+                                                            <th valign="middle">F. Registro</th>
+                                                            <th valign="middle">Ordena Prueba</th>
+                                                            <th valign="middle">Fecha Nacimiento</th>
+                                                            <th valign="middle">Sexo</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="cursor: pointer;"></tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="col-md-12 d-flex align-items-end justify-content-end" style="height: 50px;">
+                                                <div>
+                                                    <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaMovimiento"><i class="fa-light fa-signature mr-1"></i>Firmar Movimiento</button>
+                                                    <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaLote"><i class="fa-light fa-signature mr-1"></i>Firmar Lote</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-12 mt-2">
+                                                <div class="card bg-green" style="border-color: #9ec9ec;">
+                                                    <div class="card-header bg-white">
+                                                        <div>
+                                                            <div style="float: left;">Detalle de la Orden</div>
+
+                                                            <div style="float: right;">
+                                                                <button class="btn btn-success layout_btn_prevent" style="font-size: 15px;" id="btnImprimirTodosResultados"><i class="fa-sharp fa-solid fa-print"></i></button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="card-block pt-1">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <button class="btn btn-warning btn-sm layout_btn_prevent" id="btnConsultarResultadoImg" style="width:100px;"><i class="fa fa-eye" style="width: 20px; text-align:center;"></i> Consultar</button>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <table id="tblListadoOrdenesDetalle" width="100%" class="table table-sm table-bordered  table-content-md">
+                                                                    <thead style="color: white; background: #434343;">
+                                                                        <tr>
+                                                                            <th valign="middle">Codigo</th>
+                                                                            <th valign="middle">Prueba</th>
+                                                                            <th valign="middle">Cantidad</th>
+                                                                            <th valign="middle">Precio</th>
+                                                                            <th valign="middle">Total</th>
+                                                                            <th valign="middle">Resultado</th>
+                                                                            <th valign="middle">ObsReceta</th>
+                                                                            <th valign="middle">Opciones</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody style="cursor: pointer;"></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12 mt-2 d-none">
+                                <div class="card bg-green" style="border-color: #9ec9ec;">
+                                    <div class="card-header bg-white">
+                                        <div class="d-flex">
+                                            <div id="">Resultados Examenes</div>
+                                            <div style="">
+                                                <button type="button" class="btn btn-sm btn-primary" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnGenerarTodosOrdenesPatologia">Generar PDFs</button>&nbsp;&nbsp;
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-block pt-1">
+                                        <div class="row">
+
+                                            <div class="col-lg-12">
+                                                <table id="tblResultadosPatologiaClinica" width="100%" class="table table-sm table-bordered table-content-md">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th valign="middle">N° Cuenta</th>
+                                                            <th valign="middle">N° Orden</th>
+                                                            <th valign="middle">N° Movimiento</th>
+                                                            <th valign="middle">Codigo</th>
+                                                            <th valign="middle">Nombre</th>
+                                                            <th valign="middle">Fecha Recepción</th>
+                                                            <th valign="middle">Fecha Resultado</th>
+                                                            <th valign="middle">Informe</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="cursor: pointer;"></tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/Shared/Components/VistasParciales/VisorResultadosLabImg.cshtml" />
+
+
+<div data-backdrop="static" style="overflow-y: scroll; background-color: rgba(0, 0, 0, 0.46);" data-keyboard="false" class="modal fade" id="modalResultadoImagenes" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-deep-teal">
+                <span class="text-white" style="font-size: 1.28rem;font-weight: 500;letter-spacing: 0.5px;"><small id="TituloModalResImg"></small></span>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Datos de Cabecera</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-lg-12 col-xl-12">
+                                        <div class="form-group m-0">
+                                            <label for="txtMedicoSolicitante">Médico Solicitante</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtMedicoSolicitante" placeholder="" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="row">
+                                            <div class="col-sm-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaResultado" class="d-block text-truncate">Fecha Resultado</label>
+                                                    <div class="input-group form-group input-group-sm m-0">
+                                                        <input type="text" class="form-control form_val_popup_dp3 campoRes" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaResultado" autocomplete="off">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtHoraResultado" class="d-block text-truncate">Hora Resultado</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes" id="txtHoraResultado" placeholder="__:__" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="cboRealizaPrueba">Realiza Prueba</label>
+                                            <select id="cboRealizaPrueba" class="chzn-select w-100 campoRes" style="width 100% !important" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-1">
+                        <div class="card bg-pink">
+                            <div class="card-header bg-white">Datos de Paciente</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtResNroHistoria">N° Historia</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtResNroHistoria" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResTipoHistoria">Tipo Historia</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtResTipoHistoria" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResApPaterno">Apellido Paterno</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtResApPaterno" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResApMaterno">Apellido Materno</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtResApMaterno" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResNombres">Nombres</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtResNombres" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResSexo">Sexo</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtResSexo" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResFechaNacimiento" class="form-control-label">Fecha Nac.</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" autocomplete="off" class="form-control campoRes" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtResFechaNacimiento" disabled="">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResEdad">Edad</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtResEdad" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    @* <partial name="~/Views/Shared/Components/VistasParciales/Imagenologia/EcografiaBasicaVaginal.cshtml" /> *@
+
+                    <div id="modulo"> </div>
+                </div>
+
+                
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnGuardarResultado" type="button" class="btn btn-info btn-lg mb-1 pl-3 pr-3" style="max-width: 140px;">Guardar</button>
+                <button id="btnCancelarResultado" type="button" class="btn btn-secondary btn-lg mb-1 ml-2 pl-3 pr-3" style="max-width: 140px;">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<style>
+    .form-control-label {
+        margin-top: 5px !important;
+    }
+
+    .max-w-150 {
+        max-width: 150px !important;
+    }
+
+    .max-w-250 {
+        max-width: 250px !important;
+    }
+
+    .max-w-350 {
+        max-width: 350px !important;
+    }
+
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    /*
+                    .bg-blue {
+                        background-color: aliceblue;
+                    }
+
+                    .bg-indigo {
+                        background-color: azure;
+                    }
+
+                    .bg-red {
+                        background-color: #fff3f3;
+                    }
+
+                    .bg-purple {
+                        background-color: #ffebff;
+                    }
+
+                    .bg-orange {
+                        background-color: #fff5eb;
+                    }
+
+                    .bg-yellow {
+                        background-color: lightyellow;
+                    }
+
+                    .bg-green {
+                        background-color: #ecffec;
+                    }
+
+                    .bg-pink {
+                        background-color: #fff5f7;
+                    }
+
+                    .casilla {
+                        padding: 1rem;
+                        border: 1px solid #d3d3d3;
+                        background-color: rgba(211, 211, 211, 0.2);
+                        margin-bottom: 1rem;
+                    }
+
+                    .table-border {
+                        border-top: 1px solid #d3d3d3 !important;
+                        border-bottom: 1px solid #d3d3d3 !important;
+                    }*/
+</style>
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    @*<script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>*@
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    @*<script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script src="~/AdmiRE/js/date.format.js"></script>*@
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Imagenologia/EcografiaVaginalBasica.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Imagenologia/EcografiaGenetica.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Imagenologia/EcografiaBasica.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Imagenologia/EcografiaUtero.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Imagenologia/EcografiaDoppler.js")></script>
+
+    <script type="text/javascript" src=@Href("~/js/Imagenologia/Imagenologia.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script>
+
+    
+    @*<script type="text/javascript" src=@Href("~/js/Comun/Variables.js")></script>*@
+
+    @*<script type="text/javascript" src="~/AdmiRE/vendors/sortable/js/Sortable.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/slimscroll/js/jquery.slimscroll.min.js"></script>*@
+
+}
+

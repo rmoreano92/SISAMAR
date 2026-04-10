@@ -1,0 +1,375 @@
+﻿@using System.Data
+<div id="modalRegistroNotaCredito" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalRegistroNotaCreditoLabel">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="modalRegistroNotaCreditoLabel">Registro Nota Crédito</h5>
+            </div>
+            <div class="modal-body">
+                <div id="cabeceraNotaDebito" class="row">
+                    <div class="col-md-12 mb-1">
+                        <div class="card bg-teal" style="border-color: #009688;">
+                            <div class="card-header">Nota de Débito</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="row">
+                                            <div class="col-xl-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroSerieComprobanteNC" class="form-label d-block text-truncate font-weight-bold">Nº Serie</label>
+                                                    <input id="txtNroSerieComprobanteNC" autocomplete="off" placeholder="" class="form-control reading" disabled style="background-color: #e9ecff; color: #3F51B5;">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroDocumentoComprobanteNC" class="form-label d-block text-truncate font-weight-bold">Nº Documento</label>
+                                                    <input id="txtNroDocumentoComprobanteNC" autocomplete="off" placeholder="" class="form-control reading" disabled style="background-color: #e9ecff; color: #3F51B5;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtEstadoComprobanteComprobanteNC" class="form-label d-block text-truncate font-weight-bold">Estado</label>
+                                            <input id="txtEstadoComprobanteComprobanteNC" autocomplete="off" placeholder="" class="form-control reading" disabled style="background-color: #e9ecff; color: #3F51B5;">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5" id="frmFechaEmisionNotaCredito">
+                                        <div class="row">
+                                            <div class="col-sm-6" style="max-width: 170px;">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaEmisionComprobanteNC" class="form-label d-block text-truncate font-weight-bold">Fecha Emisión</label>
+                                                    <div class="input-group">
+                                                        <input id="txtFechaEmisionComprobanteNC" type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha reading" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" disabled style="background-color: #e9ecff; color: #3F51B5;">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6" style="max-width: 130px;">
+                                                <div class="form-group m-0">
+                                                    <label for="txtHoraEmisionComprobanteNC" class="form-label d-block text-truncate font-weight-bold">Hora Emisión</label>
+                                                    <div class="input-group">
+                                                        <input id="txtHoraEmisionComprobanteNC" type="text" autocomplete="off" class="form-control maskHora reading" placeholder="__:__" disabled style="background-color: #e9ecff; color: #3F51B5;">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-timer "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="frmComprobanteAfectado" class="row">
+                    <div class="col-xl-12 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Comprobante de pago afectado</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="cboTipoDocumentoComprobanteAfectadoNC">Tipo Comprobante</label>
+                                            <select id="cboTipoDocumentoComprobanteAfectadoNC" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow tiposcomp in ViewBag.TiposComprobantes.Rows)
+                                                {
+                                                    <option value="@tiposcomp["IdTipoComprobante"]">@tiposcomp["Descripcion"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="row">
+                                            <div class="col-xl-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroSerieComprobanteAfectadoNC" class="form-label d-block text-truncate">Nº Serie</label>
+                                                    <input id="txtNroSerieComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm searchComprobanteAfectado writing">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroDocumentoComprobanteAfectadoNC" class="form-label d-block text-truncate">Nº Documento</label>
+                                                    <input id="txtNroDocumentoComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm solo-numero searchComprobanteAfectado writing">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                    <div class="col-xl-2">
+                                        <div style="margin-top: 28px;">
+                                            <button id="btnBuscarComprobanteAfectado" class="btn btn-sm btn-indigo layout_btn_prevent" style="min-width: 70px;" type="button">Buscar</button>
+                                            <button id="btnLimpiarComprobanteAfectado" class="btn btn-sm btn-secondary layout_btn_prevent" style="min-width: 70px;" type="button">Limpiar</button>
+                                        </div>
+                                    </div>   
+                                    <div class="col-xl-4">
+                                        <div class="row" style="max-width: 270px; margin-left: auto;">
+                                            <div class="col-xl-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaComprobanteAfectadoNC" class="form-label d-block text-truncate">Fecha</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input id="txtFechaComprobanteAfectadoNC" type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha reading" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" disabled>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtHoraComprobanteAfectadoNC" class="form-label d-block text-truncate">Hora</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input id="txtHoraComprobanteAfectadoNC" type="text" autocomplete="off" class="form-control maskHora reading" placeholder="__:__" disabled>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-timer "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroCuentaComprobanteAfectadoNC" class="form-label d-block text-truncate">Nº Cuenta</label>
+                                            <input id="txtNroCuentaComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroHistoriaComprobanteAfectadoNC" class="form-label d-block text-truncate">Nº Historia</label>
+                                            <input id="txtNroHistoriaComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtRucComprobanteAfectadoNC" class="form-label d-block text-truncate">RUC</label>
+                                            <input id="txtRucComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5">
+                                        <div class="form-group m-0">
+                                            <label for="txtRazonSocialComprobanteAfectadoNC" class="form-label d-block text-truncate">Razón Social o Apellidos y Nombres</label>
+                                            <input id="txtRazonSocialComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                        </div>
+                                    </div>                                    
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtTipoOrdenComprobanteAfectadoNC" class="form-label d-block text-truncate">Tipo Orden</label>
+                                            <input id="txtTipoOrdenComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div style="margin-top: 28px;">
+                                            <button class="btn btn-sm btn-teal layout_btn_prevent" style="min-width: 70px;" id="btnImprimirComprobanteAfectado"><i class="fa fi fi-ss-file-invoice-dollar text-sm-left" style="width: 20px;"></i> Comprobante</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4"></div>
+                                    <div class="col-xl-2">                                        
+                                        <div class="form-group m-0">
+                                            <label for="txtTotalComprobanteAfectadoNC" class="form-label d-block text-truncate">Total</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtTotalComprobanteAfectadoNC" type="text" autocomplete="off" class="form-control solo-decimal reading" disabled>
+                                                <span class="input-group-addon">S/.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <form id="frmCitaConsultaExterna">
+                                    <fieldset class="m-0" style="background-color: #d3d3d333;">
+                                        <legend class="mb-0">
+                                            <label id="" style="font-size: 16px;" class="form-control-label">Consulta Externa - Cita</label>
+                                        </legend>
+                                        <div class="px-1 pb-1">
+                                            <div class="row">
+                                                <div class="col-xl-4">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtServicioCitaComprobanteAfectadoNC" class="form-label d-block text-truncate">Servicio</label>
+                                                        <input id="txtServicioCitaComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtMedicoCitaComprobanteAfectadoNC" class="form-label d-block text-truncate">Médico</label>
+                                                        <input id="txtMedicoCitaComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtFechaCitaComprobanteAfectadoNC" class="form-label d-block text-truncate">Fecha</label>
+                                                        <input id="txtFechaCitaComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtTurnoCitaComprobanteAfectadoNC" class="form-label d-block text-truncate">Turno</label>
+                                                        <input id="txtTurnoCitaComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+
+                                <form id="frmFarmacia">
+                                    <fieldset class="m-0" style="background-color: #d3d3d333;">
+                                        <legend class="mb-0">
+                                            <label id="" style="font-size: 16px;" class="form-control-label">Nota de Ingreso a Farmacia</label>
+                                        </legend>
+                                        <div class="px-1 pb-1">
+                                            <div class="row">
+                                                <div class="col-xl-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtNroMovimientoFarmaciaComprobanteAfectadoNC" class="form-label d-block text-truncate">Nº Movimiento</label>
+                                                        <input id="txtNroMovimientoFarmaciaComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2">
+                                                    <div style="margin-top: 28px;">                                                        
+                                                        <button id="btnImprimirNotaIngreso" class="btn btn-sm btn-deep-orange layout_btn_prevent" style="min-width: 70px;" type="button"><i class="fa fi fi-ss-file-invoice text-sm-left" style="width: 20px;"></i> Nota Ingreso</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtDestinoMovimientoFarmaciaComprobanteAfectadoNC" class="form-label d-block text-truncate">Farmacia Destino</label>
+                                                        <input id="txtDestinoMovimientoFarmaciaComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtFechaMovimientoFarmaciaComprobanteAfectadoNC" class="form-label d-block text-truncate">Fecha Movimiento</label>
+                                                        <input id="txtFechaMovimientoFarmaciaComprobanteAfectadoNC" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtTotalMovimientoFarmaciaComprobanteAfectadoNC" class="form-label d-block text-truncate">Total</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input id="txtTotalMovimientoFarmaciaComprobanteAfectadoNC" type="text" autocomplete="off" class="form-control solo-decimal reading" disabled>
+                                                            <span class="input-group-addon">S/.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Detalle de la nota de débito</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="cboTipoDocumentoNC">Tipo Documento</label>
+                                            <select id="cboTipoDocumentoNC" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow tiposdoc in ViewBag.TiposDocumentos.Rows)
+                                                {
+                                                    <option value="@tiposdoc["IdDocIdentidad"]">@tiposdoc["Descripcion"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label id="lblNroDocumentoNC" for="txtNroDocumentoNC" class="form-label d-block text-truncate">Nº Documento</label>
+                                            <input id="txtNroDocumentoNC" autocomplete="off" placeholder="" class="form-control form-control-sm solo-numero writing">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label id="lblRazonSocialNC" for="txtRazonSocialNC" class="form-label d-block text-truncate">Razon Social/Apellidos y Nombres</label>
+                                            <input id="txtRazonSocialNC" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtDireccionNC" class="form-label d-block text-truncate">Dirección</label>
+                                            <input id="txtDireccionNC" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="cboMotivoNC">Motivo</label>
+                                            <select id="cboMotivoNC" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow motivo in ViewBag.Motivos.Rows)
+                                                {
+                                                    <option value="@motivo["IdMotivo"]">@motivo["Motivo"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="d-flex" style="margin-top: 27px;">
+                                            <label id="optMotivoAnulacionTotal" class="radioButtonStyleLabel mr-1">
+                                                <input type="radio" name="rdbTipoMotivoAnulacion" class="radioButtonStyleInput writing" id="rdbTipoMotivoAnulacionTotal">
+                                                <span class="radioButtonStyleSpan w-100">Total</span>
+                                            </label>
+                                            <label id="optMotivoAnulacionParcial" class="radioButtonStyleLabel mr-1">
+                                                <input type="radio" name="rdbTipoMotivoAnulacion" class="radioButtonStyleInput writing" id="rdbTipoMotivoAnulacionParcial">
+                                                <span class="radioButtonStyleSpan w-100">Parcial</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="form-group m-0">
+                                            <label for="txtConceptoNC" class="form-label d-block text-truncate">Concepto</label>
+                                            <textarea style="overflow:scroll;" class="form-control writing" id="txtConceptoNC" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-10"></div>
+                    <div class="col-xl-2 mb-1">
+                        <div class="form-group m-0">
+                            <label for="txtImporteNC" class="form-label d-block text-truncate font-weight-bold">IMPORTE</label>
+                            <div class="input-group">
+                                <input id="txtImporteNC" type="text" autocomplete="off" class="form-control solo-decimal writing">
+                                <span class="input-group-addon">S/.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarRegistroNotaCredito">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCancelarRegistroNotaCredito">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

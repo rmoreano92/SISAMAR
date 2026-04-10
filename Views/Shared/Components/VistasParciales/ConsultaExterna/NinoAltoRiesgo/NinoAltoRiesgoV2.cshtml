@@ -1,0 +1,183 @@
+﻿<input id="TipoModulo" type="text" value="@ViewBag.TipoModulo" disabled hidden />
+
+
+<div class="row mb-1">
+    <div class="col-md-12">
+        <div class="card bg-orange">
+            @* <div class="card-header bg-white text-info" id="hsessionEvaluarPlan">Session</div> *@
+            <div class="card-block pt-1">
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="cboClasificacionNar" class="form-label">Clasificación NAR</label>
+                        <div class="input-group input-group-sm">
+                            <select class="chzn-select bloquear" id="cboClasificacionNar">
+                                <option value="0">Seleccione una opción</option>
+                                <option value="1">NAR 1</option>
+                                <option value="2">NAR 2</option>
+                                <option value="3">NAR 3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label for="cboEdadCorregida" class="form-label">Edad Corregida</label>
+                        <div class="input-group input-group-sm">
+                            <select class="chzn-select bloquear" id="cboEdadCorregida"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="txtEdadCronologica" disabled>Edad Cronológica</label>
+                        <div class="form-group m-0">
+                            <input id="txtEdadCronologica" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy"
+                                autocomplete="off" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul id="ulNinoSano" class="nav nav-tabs jerarquiaB" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link bg-whitesmoke border-bottom active" href="#entrevistaNino" role="tab" id="entrevistaNino-tab"
+            data-toggle="tab" aria-controls="hats" aria-expanded="true">ENTREVISTA</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link bg-whitesmoke border-bottom" href="#controlNino" role="tab" id="controlNino-tab"
+            data-toggle="tab" aria-controls="hats">CONTROLES</a>
+    </li>
+</ul>
+
+@*<div class="card">
+    <div class="card-block pt-1">*@
+<div id="clothing-nav-content4" class="tab-content pt-1">
+
+    <div role="tabpanel" class="tab-pane fade in active" id="entrevistaNino" aria-labelledby="entrevistaNino-tab">
+        <partial name="~/Views/Shared/Components/VistasParciales/ConsultaExterna/NinoAltoRiesgo/Entrevista.cshtml" />
+    </div>
+
+    <div role="tabpanel" class="tab-pane fade" id="controlNino" aria-labelledby="controlNino-tab">
+        <partial name="~/Views/Shared/Components/VistasParciales/ConsultaExterna/NinoAltoRiesgo/Controles.cshtml" />
+    </div>
+
+</div>
+@*</div>
+</div>*@
+
+
+<input hidden="hidden" id="hdidPlanDesarrolloPaciente" name="hdidPlanDesarrolloPaciente" type="text"
+    class="form-control">
+<input hidden="hidden" id="hdidPlanIntegralPaciente" name="hdidPlanIntegralPaciente" type="text" class="form-control">
+<input hidden="hidden" id="hdidEstablecimiento" name="hdidEstablecimiento" type="text" class="form-control">
+
+<div class="modal fade" id="modalEvaluarPlan" role="dialog" aria-hidden="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-white" id="titulo">Plan de Desarrollo Psicomotor</h4>
+            </div>
+            <div class="modal-body p-1" @*style="background-color: #dedede"*@>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bg-orange">
+                            <div class="card-header bg-white text-info" id="hsessionEvaluarPlan">Session</div>
+                            <div class="card-block pt-1">
+
+                                <div class="row">
+                                    @*<div class="col-md-2">
+                                        
+                                    </div>*@
+                                    <div class="col-md-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaProgramada" disabled>Fecha Programada</label>
+                                            <input id="txtFechaProgramadaEvaluarPlan" placeholder="dd/mm/yyyy"
+                                                data-date-format="dd/mm/yyyy" disabled autocomplete="off"
+                                                class=" form-control">
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-2">
+                                        
+                                    </div>*@
+                                    <div class="col-md-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaEjecucion" disabled>Fecha Ejecución</label>
+                                            <input id="txtFechaEjecucionEvaluarPlan" placeholder="dd/mm/yyyy"
+                                                data-date-format="dd/mm/yyyy" autocomplete="off" class=" form-control">
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-2">
+                                        
+                                    </div>*@
+                                    <div class="col-md-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtEvaluacion" disabled
+                                                class="form-control-label">Evaluación</label>
+                                            <input id="txtEvaluacionEvaluarPlan" style="color: #2221fd;" disabled
+                                                autocomplete="off" placeholder="" class=" form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 my-1">
+                        <div class="card bg-yellow">
+                            <div class="card-header bg-white text-info" id="">Items a Evaluar</div>
+                            <div class="card-block pt-1">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="tblItemsEvaluarPlan" class="table table-sm table-bordered"
+                                            style=" width:100%">
+                                            <thead style="color: white; background: #3e8481;">
+                                                <tr>
+                                                    <th style="display: none;width: 0%" align="center">idItem</th>
+                                                    <th style="width: 80%" align="center">Descripcion</th>
+                                                    <th style="width: 10%" align="center">SI</th>
+                                                    <th style="width: 10%" align="center">NO</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="row">
+                    
+                </div>*@
+
+            </div>
+            <div class="modal-footer" @*style="background-color: #dedede"*@>
+                <button type="button" class="btn btn-info mr-1" id="btnGurdarEvaluarPlan">Guardar</button>
+                <button type="button" class="btn btn-default" id="btnCerrarEvaluarPlan">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@*<script type="text/javascript" src=@Href("~/js/ConsultaExterna/AtencionMedicaV2.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/NinioAltoRiesgo.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Anestesiologia.js")></script>
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV2.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos.js")></script>*@
+
+
+@*<script>
+        $(document).ready(() => {
+            AtencionMedica.Plugins()
+            AtencionMedica.ParcialEvents()
+            AtencionMedica.ListaTiposConsulta()
+
+            Anestesiologia.Iniciar()
+
+        })
+    </script>*@

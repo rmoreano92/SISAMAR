@@ -1,0 +1,113 @@
+﻿<input id="TipoModulo" type="text" value="@ViewBag.TipoModulo" disabled hidden />
+<ul id="ulPerinatal" class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" href="#entrevistaPer" role="tab" id="entrevistaPer-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">ENTREVISTA</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#controlPer" role="tab" id="controlPer-tab" data-toggle="tab" aria-controls="hats">CONTROLES</a>
+    </li>
+</ul>
+
+<div class="card">
+    <div class="card-block">
+        <div id="clothing-nav-content1" class="tab-content pt-1">
+
+            <div role="tabpanel" class="tab-pane fade in active" id="entrevistaPer" aria-labelledby="entrevistaPer-tab">
+                <partial name="~/Views/Shared/Components/VistasParciales/ConsultaExterna/Prenatal/Entrevista.cshtml" />
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="controlPer" aria-labelledby="controlPer-tab">
+                <partial name="~/Views/Shared/Components/VistasParciales/ConsultaExterna/Prenatal/Controles.cshtml" />
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<input hidden="hidden" id="idCabecera" name="idCabecera" type="text" class="form-control">
+<input hidden="hidden" id="idControl" name="idControl" type="text" class="form-control">
+<input hidden="hidden" id="EstadoCabecera" name="EstadoCabecera" type="text" class="form-control">
+<input hidden="hidden" id="inicioCliclo" name="inicioCliclo" type="text" class="form-control">
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalLstControl" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border: 5px solid rgb(168 189 154);">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Lista de Controles</h4>
+            </div>
+            <div class="modal-body">
+                <table id="tblListaControl" class="table table-sm table-bordered">
+                    <thead style="color: white; background: #971742; ">
+                        <tr>
+                            <th width="20%">Control</th>
+                            <th width="20%">Fecha</th>
+                            <th width="20%">Consultorio</th>
+                            <th width="20%">Medico</th>
+                            <th width="20%">Cuenta</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrarListaControl" target="_blank" class="btn  btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalCierreCiclo" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border: 5px solid rgb(168 189 154);">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Cerrar ciclo de embarazo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="txtFechaFinCiclo" class="form-control-label">Fecha fin ciclo</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinCiclo">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar "></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="txtMotivoCierreCiclo" class="form-control-label font-weight-bold text-info">Motivo Cierre</label>
+                            <textarea class="form-control" id="txtMotivoCierreCiclo" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnAceptarCierreCiclo" target="_blank" class="btn btn-success "> Aceptar</button>
+                <button id="btnCerrarModalCierreCiclo" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@*<script type="text/javascript" src=@Href("~/js/ConsultaExterna/AtencionMedicaV2.js")></script>*@
+
+@*<script type="text/javascript" src=@Href("~/js/VistasParciales/Anestesiologia.js")></script>*@
+
+@*<script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV2.js")></script>
+<script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos.js")></script>*@
+
+@*<script>
+    $(document).ready(() => {
+        //AtencionMedica.Plugins()
+        //AtencionMedica.ParcialEvents()
+        
+
+        //Anestesiologia.Iniciar()        
+    })
+</script>*@

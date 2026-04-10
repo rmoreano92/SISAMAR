@@ -1,0 +1,430 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hoja de Evaluación</title>
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/util.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/select2/css/select2.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/scroller.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/colReorder.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/dataTables.bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        /*
+                li {
+                    font-size: 22px;
+                }
+
+                .d-flex {
+                    display: -webkit-box !important;
+                    display: -ms-flexbox !important;
+                    display: flex !important;
+                }
+
+                .datos-generales td {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+
+                .mr-auto, .mx-auto {
+                    margin-right: auto !important;
+                }
+
+                .ml-auto, .mx-auto {
+                    margin-left: auto !important;
+                }
+
+                .datos {
+                    font-size: 22px;
+                    font-weight: bold;
+                }
+
+                table, th, td {
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                }
+
+                #fecha th {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    text-align: center;
+                    background-color: #ebe9e9;
+
+                }
+
+                #fecha td {
+                    padding: 0px 10px;
+                    text-align: center;
+
+                }
+
+                .titulo {
+                    background-color: #ebe9e9;
+                    color: black;
+                    margin-bottom: 3px;
+                    width: 100%;
+
+                }
+
+                .tabla1 td, .tabla1 th {
+                    padding-left: 5px;
+                    padding-right: 5px;
+                }
+
+                .miCheckBox {
+                    padding: 0;
+                    margin: 0;
+
+                    width: 17px;
+                    height: 17px;
+                    vertical-align: middle;
+                    text-align: center;
+                }
+        */
+        .item {
+            display: flex;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-box {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #535353;
+            margin-right: 5px;
+        }
+
+        .item-cabecera {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            text-align: center;
+        }
+
+        .item-label {
+            height: 15px;
+            vertical-align: middle;
+        }
+
+        .item.Si .item-Si {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+            .item.Si .item-Si::before {
+                font-weight: bold;
+                content: "X";
+            }
+
+        .item.No .item-No {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+            .item.No .item-No::before {
+                font-weight: bold;
+                content: "X";
+            }
+
+        .Si .item-Si {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+            .Si .item-Si::before {
+                font-weight: bold;
+                content: "X";
+            }
+
+        .No .item-No {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+            .No .item-No::before {
+                font-weight: bold;
+                content: "X";
+            }
+
+        #cajaTitulo {
+            width: 50%;
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 10px 10px #8d8d8d;
+            margin-bottom: 20px;
+        }
+
+        .subtitulo {
+            writing-mode: vertical-lr;
+            -webkit-writing-mode: vertical-lr;
+            -ms-writing-mode: vertical-lr;
+            filter: flipH() flipV();
+            margin: 0 auto;
+            /*transform: rotate(270deg);*/
+        }
+
+        body {
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+
+<body style="background: white; width:793px; height:1122px;position:relative; /*border: 1px solid red;*/" class="">
+    @*<body style="background: white">*@
+    <img src="~/images/Logo.png" style="width: 80px; position:absolute; top:0;" />
+    <table class="table table-bordered border-secondary" style="width: 100px; position:absolute; right: 0; top: 5px; border: none;">
+        <tbody>
+            <tr style="">
+                <td class="border-secondary text-center fw-bold">FN-004</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h6 style="" id="cajaTitulo">NOTA DE INGRESO - EVALUACION EN HOSPITALIZACIÓN @*N° @ViewBag.NroEvaluacion*@</h6>
+
+    <div class="d-flex" style="margin-bottom: 3px;">
+
+    </div>
+
+    <div class="d-flex mb-1">
+        <table class="table table-bordered border-secondary m-0 me-2" style="width: 150px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-center fw-bold p-0" style="width:60px;">FECHA</th>
+                    <td class="border-secondary text-center p-0">@ViewBag.FechaEvaluacion</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-secondary m-0" style="width: 150px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-center fw-bold p-0" style="width:60px;">HORA</th>
+                    <td class="border-secondary text-center p-0">@ViewBag.HoraEvaluacion</td>
+                </tr>
+            </tbody>
+        </table>
+
+        @*<div class="ms-auto" style="font-size: 9px;">
+                Impreso por: @ViewBag.Usuario - @ViewBag.FechaImpresion
+            </div>*@
+    </div>
+
+
+    @*==================================RESUMEN HISTORIA CLINICA======================================*@
+    @*<table class="table table-bordered border-secondary">
+            <tbody>
+                <tr>
+                    <th scope="row" class="border-secondary text-left align-middle table-active">ANAMNESIS</th>
+                </tr>
+            </tbody>
+        </table>*@
+
+    @*<table  class="table table-bordered border-secondary">
+            <tbody>
+                <tr style="height: 50px">
+                    <th scope="row" style="width: 50px;" class="border-secondary text-center align-middle subtitulo">MOTIVO</th>
+                    <td class="border-secondary align-top">---</td>
+                </tr>
+            </tbody>
+        </table>*@
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0 col-4" colspan="2">SE REEVALUA PACIENTE CON RESULTADOS:</th>
+            </tr>
+            <tr style="height: 20px;">
+                <td class="border-secondary align-top" style="width: 50%;">
+                    <b>FUNCIONES VITALES</b> <br/>
+                    <b>PA</b> = @ViewBag.TriajePresion mm/Hg - <b>FC</b> = @ViewBag.TriajeFrecuenciaCardiaca /min - <b>FR</b> = @ViewBag.TriajeFrecuenciaRespiratoria /min - <b>T°</b> = @ViewBag.TriajeTemperatura C° - <b>PESO</b> = @ViewBag.TriajePeso Kg - <b>IMC</b> = @ViewBag.imc  <br />
+                </td>
+
+                <td class="border-secondary align-top" style="width: 50%;">
+                    <b>EXAMEN FÍSICO</b> <br/>
+                    <b>General y sensorio</b> = @ViewBag.lEstadoGeneral -> @ViewBag.dEstadoGeneral @ViewBag.dEdemas
+                    <b>Cardiovascular</b> = @ViewBag.lAparatoCV -> @ViewBag.dAparatoCV @ViewBag.dReflejos
+                    <b>Abdomen</b> = @ViewBag.lAbdomen -> @ViewBag.dAbdomen
+                    <b>Respiratorio</b> = @ViewBag.lAparatoR -> @ViewBag.dAparatoR
+                    <b>Urinario</b> = @ViewBag.lAparatoU -> @ViewBag.dAparatoU
+                    <b>Extremidades</b> = @ViewBag.lExtremidades -> @ViewBag.dExtremidades
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0 col-4">DESCRIPCIÓN EXAMEN FÍSICO</th>
+            </tr>
+            <tr style="height: 70px">
+                <td class="border-secondary align-top">
+                    @ViewBag.DescripcionExamenFisico
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0 col-4">TACTO VAGINAL</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0">Dilatacion</th>
+                <th class="border-secondary table-active text-center p-0">Incorporacion</th>
+                <th class="border-secondary table-active text-center p-0">Alt. Prsent</th>
+                <th class="border-secondary table-active text-center p-0">Varied. Prsent</th>
+                <th class="border-secondary table-active text-center p-0">Memb. Rotas</th>
+                <th class="border-secondary table-active text-center p-0">Procubito</th>
+                <th class="border-secondary table-active text-center p-0">Prolapso</th>
+                <th class="border-secondary table-active text-center p-0">Sangrado V.</th>
+                <th class="border-secondary table-active text-center p-0">Liquido Amniótico</th>
+            </tr>
+            <tr style="height: 20px">
+                <td class="border-secondary align-top">@ViewBag.lDilatacion  cm</td>
+                <td class="border-secondary align-top">@ViewBag.lIncorporacion </td>
+                <td class="border-secondary align-top">@ViewBag.lAlPresent</td>
+                <td class="border-secondary align-top">@ViewBag.dVarPresent</td>
+                <td class="border-secondary align-top">@ViewBag.membranasRotas</td>
+                <td class="border-secondary align-top">@ViewBag.lProcubito</td>
+                <td class="border-secondary align-top">@ViewBag.lProlapso</td>
+                <td class="border-secondary align-top">@ViewBag.dSangradoV</td>
+                <td class="border-secondary align-top">@ViewBag.lLiquidoA</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0 col-4">DIAGNÓSTICO</th>
+            </tr>
+            <tr style="height: 70px">
+                <td class="border-secondary align-top">
+                    @{
+                        int index = 1;
+                    }
+                    @foreach (System.Data.DataRow row in ViewBag.DxEvaluacion.Rows)
+                    {
+                            <span style="font-weight: bold;">DX @index</span>
+                            <span>@row["codigoCIE10"] - @row["descripcion"] <b>(@row["tipoDiagnostico"])</b></span>
+                            <br />
+                        index++;
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0 col-4" colspan="2">SE REEVALUA PACIENTE CON RESULTADOS:</th>
+            </tr>
+            <tr style="height: 20px;">
+                <td class="border-secondary align-top" style="width: 50%;">
+                    <b>FUNCIONES VITALES</b> <br />
+                    <b>PA</b> = @ViewBag.TriajePresion mm/Hg - <b>FC</b> = @ViewBag.TriajeFrecuenciaCardiaca /min - <b>FR</b> = @ViewBag.TriajeFrecuenciaRespiratoria /min - <b>T°</b> = @ViewBag.TriajeTemperatura C° - <b>PESO</b> = @ViewBag.TriajePeso Kg - <b>IMC</b> = @ViewBag.imc  <br />
+                </td>
+
+                <td class="border-secondary align-top" style="width: 50%;">
+                    <b>EXAMEN FÍSICO</b> <br />
+                    <b>General y sensorio</b> = @ViewBag.lEstadoGeneral -> @ViewBag.dEstadoGeneral @ViewBag.dEdemas
+                    <b>Cardiovascular</b> = @ViewBag.lAparatoCV -> @ViewBag.dAparatoCV @ViewBag.dReflejos
+                    <b>Abdomen</b> = @ViewBag.lAbdomen -> @ViewBag.dAbdomen
+                    <b>Respiratorio</b> = @ViewBag.lAparatoR -> @ViewBag.dAparatoR
+                    <b>Urinario</b> = @ViewBag.lAparatoU -> @ViewBag.dAparatoU
+                    <b>Extremidades</b> = @ViewBag.lExtremidades -> @ViewBag.dExtremidades
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0 col-4" colspan="2">SE REEVALUA PACIENTE CON RESULTADOS:</th>
+            </tr>
+            <tr style="height: 20px;">
+                <td class="border-secondary align-top" style="width: 50%;">
+                    <b>PLAN DE TRABAJO</b> <br />
+                    @*@ViewBag.PlandeTrabajo*@
+                </td>
+
+                <td class="border-secondary align-top" style="width: 50%;">
+                    <b>TRATAMIENTO</b> <br />
+                    @ViewBag.Tratamiento
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div class=" ms-auto mt-3 pt-5 mb-2" style="width: 250px;">
+        <div class="border-top border-secondary text-center">
+            @ViewBag.Medico
+        </div>
+    </div>
+
+
+    <table class="table table-bordered border-secondary">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0">NOMBRES Y APELLIDOS</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">N° HISTORIA</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">N° CUENTA</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">FECHA</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">HORA</th>
+            </tr>
+            <tr>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.Paciente
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.NroHistoriaClinica
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.IdCuentaAtencion
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.fecha
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.HoraInicioAtencion
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+
+
+
+</html>

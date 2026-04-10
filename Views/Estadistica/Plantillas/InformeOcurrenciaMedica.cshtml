@@ -1,0 +1,1380 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Informe Ocurrencia Médica</title>    
+    <style>
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 9px;
+            color: black !important;
+            font-family: helvetica;
+            letter-spacing: 0.4px;
+            line-height: 9px;
+        }
+
+        hr {
+            margin: 1rem 0;
+            color: inherit;
+            background-color: currentColor;
+            border: 0;
+            opacity: .25
+        }
+
+        .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            margin-bottom: .5rem;
+            font-weight: 500;
+            line-height: 1.2
+        }
+
+        .h1, h1 {
+            font-size: calc(1.375rem + 1.5vw)
+        }
+
+        .h2, h2 {
+            font-size: calc(1.325rem + .9vw)
+        }
+
+        .h3, h3 {
+            font-size: calc(1.3rem + .6vw)
+        }
+
+        .h4, h4 {
+            font-size: calc(1.275rem + .3vw)
+        }
+
+        .h5, h5 {
+            font-size: 1.25rem
+        }
+
+        .h6, h6 {
+            font-size: 1rem
+        }
+
+        .small, small {
+            font-size: .6rem;
+        }
+
+        .bg-secondary {
+            background-color: #ebeced !important
+        }
+
+        .text-secondary {
+            color: #ebeced !important
+        }
+
+        .row {
+            display: flex !important;
+            flex-wrap: wrap;
+        }
+
+        .col-1 {
+            flex: 0 0 auto;
+            width: 8.33333333%
+        }
+
+        .col-2 {
+            flex: 0 0 auto;
+            width: 16.66666667%
+        }
+
+        .col-3 {
+            flex: 0 0 auto;
+            width: 25%
+        }
+
+        .col-4 {
+            flex: 0 0 auto;
+            width: 33.33333333%
+        }
+
+        .col-5 {
+            flex: 0 0 auto;
+            width: 41.66666667%
+        }
+
+        .col-6 {
+            flex: 0 0 auto;
+            width: 50%
+        }
+
+        .col-7 {
+            flex: 0 0 auto;
+            width: 58.33333333%
+        }
+
+        .col-8 {
+            flex: 0 0 auto;
+            width: 66.66666667%
+        }
+
+        .col-9 {
+            flex: 0 0 auto;
+            width: 75%
+        }
+
+        .col-10 {
+            flex: 0 0 auto;
+            width: 83.33333333%
+        }
+
+        .col-11 {
+            flex: 0 0 auto;
+            width: 91.66666667%
+        }
+
+        .col-12 {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+
+        .d-flex {
+            display: flex !important;
+        }
+
+        .w-25 {
+            width: 25% !important
+        }
+
+        .w-50 {
+            width: 50% !important
+        }
+
+        .w-75 {
+            width: 75% !important
+        }
+
+        .w-100 {
+            width: 100% !important
+        }
+
+        .w-auto {
+            width: auto !important
+        }
+
+        .position-absolute {
+            position: absolute;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            vertical-align: top;
+            border-color: #dee2e6;
+            caption-side: bottom;
+            border-collapse: collapse;
+        }
+
+        .table-bordered {
+            border: solid 1px #4c4c4c;
+        }
+
+            .table-bordered td, .table-bordered th {
+                border: solid 1px #4c4c4c;
+                padding: 3px 5px !important;
+            }
+
+        button, input, optgroup, select, textarea {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit
+        }
+
+        .card {
+            position: relative;
+            /*display: flex;
+                    flex-direction: column;*/
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0,0,0,.125);
+            /*border-radius: .25rem*/
+        }
+
+            .card > hr {
+                margin-right: 0;
+                margin-left: 0
+            }
+
+            .card > .list-group {
+                border-top: inherit;
+                border-bottom: inherit
+            }
+
+                /*.card > .list-group:first-child {
+                    border-top-width: 0;
+                    border-top-left-radius: calc(.25rem - 1px);
+                    border-top-right-radius: calc(.25rem - 1px)
+                }
+
+                .card > .list-group:last-child {
+                    border-bottom-width: 0;
+                    border-bottom-right-radius: calc(.25rem - 1px);
+                    border-bottom-left-radius: calc(.25rem - 1px)
+                }*/
+
+                .card > .card-header + .list-group, .card > .list-group + .card-footer {
+                    border-top: 0
+                }
+
+        .card-body {
+            flex: 1 1 auto;
+            padding: 1rem 1rem
+        }
+
+        .card-title {
+            margin-bottom: .5rem
+        }
+
+        .card-subtitle {
+            margin-top: -.25rem;
+            margin-bottom: 0
+        }
+
+        .card-text:last-child {
+            margin-bottom: 0
+        }
+
+        .card-link + .card-link {
+            margin-left: 1rem
+        }
+
+        .card-header {
+            padding: .5rem 1rem;
+            margin-bottom: 0;
+            background-color: rgba(0,0,0,.03);
+            border-bottom: 1px solid rgba(0,0,0,.125)
+        }
+
+        /*.card-header:first-child {
+                    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0
+                }*/
+
+        .card-footer {
+            padding: .5rem 1rem;
+            background-color: rgba(0,0,0,.03);
+            border-top: 1px solid rgba(0,0,0,.125)
+        }
+
+        /*.card-footer:last-child {
+                    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px)
+                }*/
+
+        .card-header-tabs {
+            margin-right: -.5rem;
+            margin-bottom: -.5rem;
+            margin-left: -.5rem;
+            border-bottom: 0
+        }
+
+        .card-header-pills {
+            margin-right: -.5rem;
+            margin-left: -.5rem
+        }
+
+        /*.card-img-overlay {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    padding: 1rem;
+                    border-radius: calc(.25rem - 1px)
+                }*/
+
+        .card-img, .card-img-bottom, .card-img-top {
+            width: 100%
+        }
+
+        /*.card-img, .card-img-top {
+                    border-top-left-radius: calc(.25rem - 1px);
+                    border-top-right-radius: calc(.25rem - 1px)
+                }
+
+                .card-img, .card-img-bottom {
+                    border-bottom-right-radius: calc(.25rem - 1px);
+                    border-bottom-left-radius: calc(.25rem - 1px)
+                }*/
+
+        .card-group > .card {
+            margin-bottom: .75rem
+        }
+
+        .border {
+            border: 1px solid #dee2e6 !important
+        }
+
+        .border-0 {
+            border: 0 !important
+        }
+
+        .border-top {
+            border-top: 1px solid #dee2e6 !important
+        }
+
+        .border-top-0 {
+            border-top: 0 !important
+        }
+
+        .border-end {
+            border-right: 1px solid #dee2e6 !important
+        }
+
+        .border-end-0 {
+            border-right: 0 !important
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #dee2e6 !important
+        }
+
+        .border-bottom-0 {
+            border-bottom: 0 !important
+        }
+
+        .border-start {
+            border-left: 1px solid #dee2e6 !important
+        }
+
+        .border-start-0 {
+            border-left: 0 !important
+        }
+
+        .border-secondary {
+            border-color: #2c2c2c !important
+        }
+
+        .w-100 {
+            width: 100% !important;
+        }
+
+        .m-0 {
+            margin: 0 !important
+        }
+
+        .m-1 {
+            margin: .25rem !important
+        }
+
+        .m-2 {
+            margin: .5rem !important
+        }
+
+        .m-3 {
+            margin: 1rem !important
+        }
+
+        .m-4 {
+            margin: 1.5rem !important
+        }
+
+        .m-5 {
+            margin: 3rem !important
+        }
+
+        .m-auto {
+            margin: auto !important
+        }
+
+        .mx-0 {
+            margin-right: 0 !important;
+            margin-left: 0 !important
+        }
+
+        .mx-1 {
+            margin-right: .25rem !important;
+            margin-left: .25rem !important
+        }
+
+        .mx-2 {
+            margin-right: .5rem !important;
+            margin-left: .5rem !important
+        }
+
+        .mx-3 {
+            margin-right: 1rem !important;
+            margin-left: 1rem !important
+        }
+
+        .mx-4 {
+            margin-right: 1.5rem !important;
+            margin-left: 1.5rem !important
+        }
+
+        .mx-5 {
+            margin-right: 3rem !important;
+            margin-left: 3rem !important
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important
+        }
+
+        .my-0 {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important
+        }
+
+        .my-1 {
+            margin-top: .25rem !important;
+            margin-bottom: .25rem !important
+        }
+
+        .my-2 {
+            margin-top: .5rem !important;
+            margin-bottom: .5rem !important
+        }
+
+        .my-3 {
+            margin-top: 1rem !important;
+            margin-bottom: 1rem !important
+        }
+
+        .my-4 {
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.5rem !important
+        }
+
+        .my-5 {
+            margin-top: 3rem !important;
+            margin-bottom: 3rem !important
+        }
+
+        .my-auto {
+            margin-top: auto !important;
+            margin-bottom: auto !important
+        }
+
+        .mt-0 {
+            margin-top: 0 !important
+        }
+
+        .mt-1 {
+            margin-top: .25rem !important
+        }
+
+        .mt-2 {
+            margin-top: .5rem !important
+        }
+
+        .mt-3 {
+            margin-top: 1rem !important
+        }
+
+        .mt-4 {
+            margin-top: 1.5rem !important
+        }
+
+        .mt-5 {
+            margin-top: 3rem !important
+        }
+
+        .mt-auto {
+            margin-top: auto !important
+        }
+
+        .me-0 {
+            margin-right: 0 !important
+        }
+
+        .me-1 {
+            margin-right: .25rem !important
+        }
+
+        .me-2 {
+            margin-right: .5rem !important
+        }
+
+        .me-3 {
+            margin-right: 1rem !important
+        }
+
+        .me-4 {
+            margin-right: 1.5rem !important
+        }
+
+        .me-5 {
+            margin-right: 3rem !important
+        }
+
+        .me-auto {
+            margin-right: auto !important
+        }
+
+        .mb-0 {
+            margin-bottom: 0 !important
+        }
+
+        .mb-1 {
+            margin-bottom: .25rem !important
+        }
+
+        .mb-2 {
+            margin-bottom: .5rem !important
+        }
+
+        .mb-3 {
+            margin-bottom: 1rem !important
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem !important
+        }
+
+        .mb-5 {
+            margin-bottom: 3rem !important
+        }
+
+        .mb-auto {
+            margin-bottom: auto !important
+        }
+
+        .ms-0 {
+            margin-left: 0 !important
+        }
+
+        .ms-1 {
+            margin-left: .25rem !important
+        }
+
+        .ms-2 {
+            margin-left: .5rem !important
+        }
+
+        .ms-3 {
+            margin-left: 1rem !important
+        }
+
+        .ms-4 {
+            margin-left: 1.5rem !important
+        }
+
+        .ms-5 {
+            margin-left: 3rem !important
+        }
+
+        .ms-auto {
+            margin-left: auto !important
+        }
+
+        .p-0 {
+            padding: 0 !important
+        }
+
+        .p-1 {
+            padding: .25rem !important
+        }
+
+        .p-2 {
+            padding: .5rem !important
+        }
+
+        .p-3 {
+            padding: 1rem !important
+        }
+
+        .p-4 {
+            padding: 1.5rem !important
+        }
+
+        .p-5 {
+            padding: 3rem !important
+        }
+
+        .px-0 {
+            padding-right: 0 !important;
+            padding-left: 0 !important
+        }
+
+        .px-1 {
+            padding-right: .25rem !important;
+            padding-left: .25rem !important
+        }
+
+        .px-2 {
+            padding-right: .5rem !important;
+            padding-left: .5rem !important
+        }
+
+        .px-3 {
+            padding-right: 1rem !important;
+            padding-left: 1rem !important
+        }
+
+        .px-4 {
+            padding-right: 1.5rem !important;
+            padding-left: 1.5rem !important
+        }
+
+        .px-5 {
+            padding-right: 3rem !important;
+            padding-left: 3rem !important
+        }
+
+        .py-0 {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important
+        }
+
+        .py-1 {
+            padding-top: .25rem !important;
+            padding-bottom: .25rem !important
+        }
+
+        .py-2 {
+            padding-top: .5rem !important;
+            padding-bottom: .5rem !important
+        }
+
+        .py-3 {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important
+        }
+
+        .py-4 {
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important
+        }
+
+        .py-5 {
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important
+        }
+
+        .pt-0 {
+            padding-top: 0 !important
+        }
+
+        .pt-1 {
+            padding-top: .25rem !important
+        }
+
+        .pt-2 {
+            padding-top: .5rem !important
+        }
+
+        .pt-3 {
+            padding-top: 1rem !important
+        }
+
+        .pt-4 {
+            padding-top: 1.5rem !important
+        }
+
+        .pt-5 {
+            padding-top: 3rem !important
+        }
+
+        .pe-0 {
+            padding-right: 0 !important
+        }
+
+        .pe-1 {
+            padding-right: .25rem !important
+        }
+
+        .pe-2 {
+            padding-right: .5rem !important
+        }
+
+        .pe-3 {
+            padding-right: 1rem !important
+        }
+
+        .pe-4 {
+            padding-right: 1.5rem !important
+        }
+
+        .pe-5 {
+            padding-right: 3rem !important
+        }
+
+        .pb-0 {
+            padding-bottom: 0 !important
+        }
+
+        .pb-1 {
+            padding-bottom: .25rem !important
+        }
+
+        .pb-2 {
+            padding-bottom: .5rem !important
+        }
+
+        .pb-3 {
+            padding-bottom: 1rem !important
+        }
+
+        .pb-4 {
+            padding-bottom: 1.5rem !important
+        }
+
+        .pb-5 {
+            padding-bottom: 3rem !important
+        }
+
+        .ps-0 {
+            padding-left: 0 !important
+        }
+
+        .ps-1 {
+            padding-left: .25rem !important
+        }
+
+        .ps-2 {
+            padding-left: .5rem !important
+        }
+
+        .ps-3 {
+            padding-left: 1rem !important
+        }
+
+        .ps-4 {
+            padding-left: 1.5rem !important
+        }
+
+        .ps-5 {
+            padding-left: 3rem !important
+        }
+
+        .my-2 {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem !important;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem !important;
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+
+        .fw-normal {
+            font-weight: normal !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .align-baseline {
+            vertical-align: baseline !important
+        }
+
+        .align-top {
+            vertical-align: top !important
+        }
+
+        .align-middle {
+            vertical-align: middle !important
+        }
+
+        .align-bottom {
+            vertical-align: bottom !important
+        }
+
+        .white-space {
+            white-space: pre-line;
+            line-height: 11px !important;
+        }
+        /*===============================================*/
+
+        .item {
+            display: flex;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-box {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #535353;
+            margin-right: 5px;
+        }
+
+        .item-cabecera {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            text-align: center;
+        }
+
+        .item-label {
+            height: 15px;
+            vertical-align: middle;
+        }
+
+        .item.Si .item-Si {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+            .item.Si .item-Si::before {
+                font-weight: bold;
+                content: "X";
+            }
+
+        .item.No .item-No {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+            .item.No .item-No::before {
+                font-weight: bold;
+                content: "X";
+            }
+
+        .Si .item-Si {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+            .Si .item-Si::before {
+                font-weight: bold;
+                content: "X";
+            }
+
+        .No .item-No {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+            .No .item-No::before {
+                font-weight: bold;
+                content: "X";
+            }
+
+        #cajaTitulo {
+            width: 40%;
+            border: 1px solid black;
+            text-align: center;
+            padding: 3px;
+            font-weight: bold;
+            font-size: 12px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 5px 5px #8d8d8d;
+            margin-bottom: 15px;
+        }
+
+        .subtitulo {
+            writing-mode: vertical-lr;
+            -webkit-writing-mode: vertical-lr;
+            -ms-writing-mode: vertical-lr;
+            filter: flipH() flipV();
+            margin: 0 auto;
+            /*transform: rotate(270deg);*/
+        }
+
+        textarea {
+            resize: none !important;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            line-height: 14px !important;
+        }
+
+        body {
+            font-size: 10px;
+        }
+
+        .card-block {
+            font-size: 10px;
+            padding: 4px 7px;
+        }
+
+        .card-header {
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 7px;
+            background-color: #ddf5e9;
+        }
+
+        div {
+            line-height: 11px;
+        }
+
+        .py-02 {
+            padding-top: 0.2rem !important;
+            padding-bottom: 0.2rem !important;
+        }
+
+
+        .qr-code {
+            position: absolute;
+            width: 70px;
+            right: 0;
+            top: -50px;
+        }
+    </style>
+</head>
+
+<body style="background: transparent; width:698px; height:1015px; position:relative;" class="pt-2">
+
+    @if (ViewBag.CodigoQR != null)
+    {
+        <img class="qr-code" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.CodigoQR))" />
+    }
+
+    <div class="fw-bold m-0 text-center" style="font-size: 12px">LIBRO DE OCURRENCIAS MÉDICAS EN LA GUARDIA HOSPITALARIA</div>
+
+    <div class="row mt-2">
+        <div class="col-4">
+            <div class="p-1"><b>FECHA:</b> @ViewBag.FechaOcurrencia</div>
+        </div>
+        <div class="col-4">
+            <div class="p-1"><b>GUARDIA:</b> @ViewBag.Turno</div>
+        </div>
+        <div class="col-4">
+            <div class="border border-secondary p-1 ms-auto text-center" style="width: 120px;"><b>FOLIO N°:</b> @ViewBag.NroFolio</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="p-1"><b>JEFE DE EQUIPO:</b> Dr. (a) @ViewBag.JefeGuardiaSaliente</div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-4 p-1">
+            <div class="card border-secondary">
+                <div class="card-header border-secondary">
+                    GINECO-OBSTETRAS
+                </div>
+                <div class="card-block">
+                    <div class="px-1 m-0">
+                        @foreach (System.Data.DataRow row in ViewBag.Medicos.Rows)
+                        {
+                            @if (@row["IdCargomedico"].ToString() == "1")
+                            {
+                                <div>@row["NombreMedico"]</div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 p-1">
+            <div class="card border-secondary">
+                <div class="card-header border-secondary">
+                    NEONATÓLOGOS
+                </div>
+                <div class="card-block">
+                    <div class="px-1 m-0">
+                        @foreach (System.Data.DataRow row in ViewBag.Medicos.Rows)
+                        {
+                            @if (@row["IdCargomedico"].ToString() == "2")
+                            {
+                                <div>@row["NombreMedico"]</div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 p-1">
+            <div class="card border-secondary">
+                <div class="card-header border-secondary">
+                    ANESTESIÓLOGOS
+                </div>
+                <div class="card-block">
+                    <div class="px-1 m-0">
+                        @foreach (System.Data.DataRow row in ViewBag.Medicos.Rows)
+                        {
+                            @if (@row["IdCargomedico"].ToString() == "3")
+                            {
+                                <div>@row["NombreMedico"]</div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 p-1">
+            <div class="card border-secondary">
+                <div class="card-header border-secondary">
+                    INTENSIVISTAS
+                </div>
+                <div class="card-block">
+                    <div class="px-1 m-0">
+                        @foreach (System.Data.DataRow row in ViewBag.Medicos.Rows)
+                        {
+                            @if (@row["IdCargomedico"].ToString() == "4")
+                            {
+                                <div>@row["NombreMedico"]</div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 p-1">
+            <div class="card border-secondary">
+                <div class="card-header border-secondary">
+                    RESIDENTES
+                </div>
+                <div class="card-block">
+                    <div class="px-1 m-0">
+                        @foreach (System.Data.DataRow row in ViewBag.Medicos.Rows)
+                        {
+                            @if (@row["IdCargomedico"].ToString() == "5")
+                            {
+                                <div>@row["NombreMedico"]</div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-4 p-1">
+            <div><b>Muertes Maternas: </b>@ViewBag.MuertesMaternas</div>
+            <div class="fw-bold mt-1">Comentarios: </div>
+            <div class="white-space border border-secondary p-1" style="min-height:40px;">@ViewBag.DMuertesMaternas</div>
+        </div>
+        <div class="col-4 p-1">
+            <div><b>Eventos Adversos: </b>@ViewBag.EventosAdversos</div>
+            <div class="fw-bold mt-1">Comentarios: </div>
+            <div class="white-space border border-secondary p-1" style="min-height:40px;">@ViewBag.DEventosAdversos</div>
+        </div>
+        <div class="col-4 p-1">
+            <div><b>Pacientes Críticos: </b>@ViewBag.PacientesCriticos</div>
+            <div class="fw-bold mt-1">Comentarios: </div>
+            <div class="white-space border border-secondary p-1" style="min-height:40px;">@ViewBag.DPacientesCriticos</div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-4 p-1">
+            <div><b>Reinterve. Quirurgicas: </b>@ViewBag.ReintervencionesQx</div>
+            <div class="fw-bold mt-1">Comentarios: </div>
+            <div class="white-space border border-secondary p-1" style="min-height:40px;">@ViewBag.DReintervencionesQx</div>
+        </div>
+        <div class="col-4 p-1">
+            <div><b>Casos Posible Implic. Médico Legal: </b>@ViewBag.CasosMedicoLegal</div>
+            <div class="fw-bold mt-1">Comentarios: </div>
+            <div class="white-space border border-secondary p-1" style="min-height:40px;">@ViewBag.DCasosMedicoLegal</div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="card mb-1 bg-blue border-secondary">
+                <div class="card-header bg-white border-secondary">EMERGENCIA</div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-12">
+                            <form>
+                                <fieldset class="mx-0 mb-1 px-1 pb-1 border-secondary">
+                                    <legend class="mb-0">Atenciones</legend>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div><b>Obstetricas: </b>@ViewBag.AtEmerObstetricas</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div><b>Ginecológicas: </b>@ViewBag.AtEmerGiencologicas</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div><b>Pediatricas: </b>@ViewBag.AtEmerPediatricas</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div><b>Observación: </b>@ViewBag.AtEmerObservacion</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div><b>Trauma Shock: </b>@ViewBag.AtEmerTraumaShock</div>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </form>
+
+                            <div class="row mt-2">
+                                <div class="col-2">
+                                    <div><b>Ecografias: </b>@ViewBag.AtEmerEcografias</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Cesáreas: </b>@ViewBag.AtEmerCesareas</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Laparatomias: </b>@ViewBag.AtEmerLaparatomias</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Laparascopias: </b>@ViewBag.AtEmerLaparascopias</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Legrados: </b>@ViewBag.AtEmerLegrados</div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2 mb-2">
+                                <div class="col-2">
+                                    <div><b>Partos: </b>@ViewBag.AtEmerPartos</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Tocólisis: </b>@ViewBag.AtEmerTocolisis</div>
+                                </div>
+                            </div>
+
+                            <form>
+                                <fieldset class="mx-0 mb-1 px-1 pb-1 border-secondary">
+                                    <legend class="mb-0">Pendientes</legend>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div><b>Cesárea: </b>@ViewBag.AtEmerCesareasPend</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div><b>Ameu: </b>@ViewBag.AtEmerAmeuPend</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div><b>Ecografías: </b>@ViewBag.AtEmerEcografiasPend</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div><b>Laparascopias: </b>@ViewBag.AtEmerLaparascopiasPend</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div><b>Laparatomías: </b>@ViewBag.AtEmerLaparatomiasPend</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div><b>Ref. por llegar: </b>@ViewBag.AtEmerReferidosPorLlegarPend</div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+
+                            <form>
+                                <fieldset class="mx-0 mb-1 px-1 pb-1 border-secondary">                                    
+                                    <legend class="mb-0">Comentarios</legend>
+                                    <div class="white-space" style="min-height:30px;">@ViewBag.DPacientesEmer</div>
+                                </fieldset>
+                            </form>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="card mb-1 bg-blue border-secondary">
+                <div class="card-header bg-white border-secondary">CENTRO OBSTÉTRICO</div>
+                <div class="card-block">
+                    <div class="row mb-2">
+                        <div class="col-2">
+                            <div><b>Cesáreas: </b>@ViewBag.AtCoCesareas</div>
+                        </div>
+                        <div class="col-2">
+                            <div><b>Laparatomias: </b>@ViewBag.AtCoLaparatomias</div>
+                        </div>
+                        <div class="col-2">
+                            <div><b>Laparascopias: </b>@ViewBag.AtCoLaparascopias</div>
+                        </div>
+                        <div class="col-2">
+                            <div><b>Legrados: </b>@ViewBag.AtCoLegrados</div>
+                        </div>
+                        <div class="col-2">
+                            <div><b>Partos: </b>@ViewBag.AtCoPartos</div>
+                        </div>
+                        <div class="col-2">
+                            <div><b>Tocólisis: </b>@ViewBag.AtCoTocolisis</div>
+                        </div>
+                    </div>
+
+                    <form>
+                        <fieldset class="mx-0 mb-1 px-1 pb-1 border-secondary">
+                           @*  <legend class="mb-0">Pendientes</legend>
+                            <div class="row">
+                                <div class="col-2">
+                                    <div><b>Cesárea: </b>@ViewBag.AtCoCesareasPend</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Ameu: </b>@ViewBag.AtCoAmeuPend</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Ecografías: </b>@ViewBag.AtCoEcografiasPend</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Laparascopias: </b>@ViewBag.AtCoLaparascopiasPend</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Laparatomías: </b>@ViewBag.AtCoLaparatomiasPend</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Referidos por llegar: </b>@ViewBag.AtCoReferidosPorLlegarPend</div>
+                                </div>
+                            </div> *@
+                            <legend class="mb-0">Comentarios</legend>
+                            <div class="white-space" style="min-height:30px;">@ViewBag.DPacientesCO</div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="card mb-1 bg-blue border-secondary">
+                <div class="card-header bg-white border-secondary">PERIFÉRICOS</div>
+                <div class="card-block">
+                    <div class="row mb-2">
+                        <div class="col-2">
+                            <div><b>Cesáreas: </b>@ViewBag.AtPerCesareas</div>
+                        </div>
+                        <div class="col-2">
+                            <div><b>Laparatomias: </b>@ViewBag.AtPerLaparatomias</div>
+                        </div>
+                        <div class="col-2">
+                            <div><b>Laparascopias: </b>@ViewBag.AtPerLaparascopias</div>
+                        </div>
+                        <div class="col-2">
+                            <div><b>Legrados: </b>@ViewBag.AtPerLegrados</div>
+                        </div>
+                        <div class="col-2">
+                            <div><b>Partos: </b>@ViewBag.AtPerPartos</div>
+                        </div>
+                        <div class="col-2">
+                            <div><b>Tocólisis: </b>@ViewBag.AtPerTocolisis</div>
+                        </div>
+                    </div>
+                    <form>
+                        <fieldset class="mx-0 mb-1 px-1 pb-1 border-secondary">
+                            @* <legend class="mb-0">Pendientes</legend>
+                            <div class="row">
+                                <div class="col-2">
+                                    <div><b>Cesárea: </b>@ViewBag.AtPerCesareasPend</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Ameu: </b>@ViewBag.AtPerAmeuPend</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Ecografías: </b>@ViewBag.AtPerEcografiasPend</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Laparascopias: </b>@ViewBag.AtPerLaparascopiasPend</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Laparatomías: </b>@ViewBag.AtPerLaparatomiasPend</div>
+                                </div>
+                                <div class="col-2">
+                                    <div><b>Referidos por llegar: </b>@ViewBag.AtPerReferidosPorLlegarPend</div>
+                                </div>
+                            </div> *@
+                            <legend class="mb-0">Comentarios</legend>
+                            <div class="white-space" style="min-height:30px;">@ViewBag.DPacientesPer</div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-6 mr-1">
+            <div class="card mb-2 border-secondary">
+                <div class="card-header border-secondary fw-normal">
+                    <strong>Pacientes UCI: </strong>@ViewBag.PacientesUCI
+                </div>
+                <div class="card-block">
+                    <div class="white-space" style="min-height:30px;">@ViewBag.DPacientesUCI</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 ml-1">
+            <div class="card mb-2 border-secondary">
+                <div class="card-header border-secondary">
+                    OCURRENCIAS
+                </div>
+                <div class="card-block">
+                    <div class="white-space" style="min-height:30px;">@ViewBag.Ocurrencias</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   @*  <div class="row mt-2">
+        
+    </div> *@
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <div>Siendo las horas @ViewBag.FechaHora del día @ViewBag.FechaDia se hizo entrega de la guardia al Dr.(a) @ViewBag.JefeGuardiaEntrante</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="w-100 h-100 pb-5">
+                <div class=" mx-auto mt-4 pt-5 mb-2" style="width: 280px;">
+                    <div class="border-top border-secondary text-center p-1">
+                        FIRMA DEL JEFE MÉDICO DE GUARDIA SALIENTE<br />
+                        <b>@ViewBag.JefeGuardiaSaliente</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="w-100 h-100 pb-5">
+                <div class=" mx-auto mt-4 pt-5 mb-2" style="width: 280px;">
+                    <div class="border-top border-secondary text-center p-1">
+                        FIRMA DEL JEFE MÉDICO DE GUARDIA ENTRANTE<br />
+                        <b>@ViewBag.JefeGuardiaEntrante</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+
+
+</html>

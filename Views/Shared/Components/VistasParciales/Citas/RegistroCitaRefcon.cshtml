@@ -1,0 +1,373 @@
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalCitarPaciente"
+    role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Cita</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <ul id="idCitaTabs" class="nav nav-tabs" role="tablist">
+                            <li class="nav-item nav-item-header">
+                                <a class="nav-link active" href="#tabPaciente" role="tab" id="tabPaciente-tab"
+                                    data-toggle="tab" aria-controls="tabPaciente" aria-expanded="true"
+                                    style="font-weight: bold; letter-spacing: 1px;">PACIENTE</a>
+                            </li>
+                            <li class="nav-item nav-item-header">
+                                <a class="nav-link" href="#tabCita" role="tab" id="tabCita-tab" data-toggle="tab"
+                                    aria-controls="tabCita" style="font-weight: bold; letter-spacing: 1px;">CITA</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#tabDatosFamiliar" role="tab" id="tabDatosFamiliar-tab"
+                                    data-toggle="tab" aria-controls="tabDatosFamiliar">FICHA FAMILIAR</a>
+                            </li>
+                        </ul>
+
+                        <div id="clothing-nav-content" class="tab-content">
+                            <div role="tabpanel" class="tab-pane border p-1 fade in active" id="tabPaciente"
+                                aria-labelledby="tabPaciente-tab" style="background-color: #3d668208;">
+                                <partial
+                                    name="~/Views/Shared/Components/VistasParciales/Paciente/RegistroPacienteRefcon.cshtml" />
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane border p-1 fade" id="tabCita"
+                                aria-labelledby="tabCita-tab" style="background-color: #3d668208;">
+                                <div class="row">
+                                    <div class="col-md-12 mt-1 mb-1">
+                                        <button class="btn btn-md btn-success" id="btnConsultarAfiliacionSis">Consultar
+                                            afiliación SIS
+                                            del paciente</button>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card bg-lightindigo">
+                                            @* <div class="card-header bg-white">Cita</div> *@
+                                            <div class="card-block p-t-5 custom-form">
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label for="txtMotivoReferencia"
+                                                            class="form-label">Motivo Referencia</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control"
+                                                                id="txtMotivoReferencia" disabled>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <label for="txtExamenFisico"
+                                                            class="form-label">Examen Físico Referencia</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control"
+                                                                id="txtExamenFisico" disabled>
+                                                        </div>
+                                                    </div>
+
+                                                    
+
+                                                    <div class="col-md-6">
+                                                        <label for="txtDiagnosticosReferencia"
+                                                            class="form-label">Diagnósticos Referencia</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <textarea class="form-control"
+                                                                id="txtDiagnosticosReferencia" colspan="3" disabled></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="txtImagenesReferencia"
+                                                            class="form-label">Imagenologia Referencia</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <textarea class="form-control"
+                                                                id="txtImagenesReferencia" colspan="3" disabled></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-md-8">
+
+                                        <div class="card bg-lightindigo">
+                                            @* <div class="card-header bg-white">Cita</div> *@
+                                            <div class="card-block p-t-5 custom-form">
+
+
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label for="" class="form-label">Origen</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <select class="chzn-select" id="cboTipoOrigenCita"
+                                                                disabled></select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">Tipo Servicio.</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <select class="chzn-select" id="cboTipoServicioCita"
+                                                                disabled></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">Fecha</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off"
+                                                                class="form-control form_val_popup_dp3 maskFecha"
+                                                                placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy"
+                                                                id="txtFechaCita">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table id="tblProgramacionMedica"
+                                                            class="table table-sm table-content-sm table-bordered table-striped w-100"
+                                                            style="cursor: default; width: 100% !important;">
+
+
+                                                            <thead style="color: white; background: #434343;">
+                                                                <tr>
+
+                                                                    <th style="max-width: 10px !important;">Programacion
+                                                                    </th>
+                                                                    <th style="max-width: 40px !important;">Consultorio
+                                                                    </th>
+                                                                    <th style="max-width: 10px !important;">Turno</th>
+                                                                    <th style="max-width: 40px !important;">Medico</th>
+                                                                    <th style="max-width: 5px !important;">Cupos</th>
+                                                                    <th style="max-width: 5px !important;">Disp.</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        <div class="card bg-lightindigo">
+                                            @* <div class="card-header bg-white">Cita</div> *@
+                                            <div class="card-block p-t-5 custom-form">
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="txtEspecialidadCita"
+                                                            class="form-label">Especialidad</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control"
+                                                                id="hdIdEspecialidad" disabled hidden>
+                                                            <input type="text" class="form-control"
+                                                                id="txtEspecialidadCita" disabled>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label for="txtConsultorioCita"
+                                                            class="form-label">Consultorio</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control"
+                                                                id="hdIdServicioIngreso" disabled hidden>
+                                                            <input type="text" class="form-control"
+                                                                id="txtConsultorioCita" disabled>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <label for="txtMedicoCita" class="form-label">Medico</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control" id="hdIdMedicoCita"
+                                                                disabled hidden>
+                                                            <input type="text" class="form-control" id="txtMedicoCita"
+                                                                disabled>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label for="cboCuposDisponibles" class="form-label">Horarios
+                                                            Disponibles</label>
+                                                        <div class="input-group input-group-sm"
+                                                            style="margin-bottom: 10px;">
+                                                            <select class="chzn-select bloquear-campos"
+                                                                id="cboCuposDisponibles"></select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <label for="cboCodPrestacion" class="form-label">Codigo
+                                                            Prestacion</label>
+                                                        <div class="input-group input-group-sm"
+                                                            style="margin-bottom: 10px;">
+                                                            <select class="chzn-select bloquear-campos"
+                                                                id="cboCodPrestacion"></select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 col-lg-12" id="contProductoCitaProcedimiento"
+                                                        style="display: none;">
+                                                        <label for="cboIdProductoImg"
+                                                            class="form-label">Procedimiento</label>
+                                                        <div class="input-group input-group-sm"
+                                                            style="margin-bottom: 10px;">
+                                                            <select class="chzn-select bloquear-campos"
+                                                                id="cboIdProductoImg"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class='row'>
+                                                    <div class='col-md-12'>
+                                                        <div class="card mt-1 bg-orange">
+                                                            <div class="card-header bg-white">Referencia</div>
+                                                            <div class="card-block p-t-5 custom-form">
+                                                                <div class="row">
+                                                                    <div class="col-md-12" hidden>
+                                                                        <label for="" class="form-label"
+                                                                            id="lblTipoRefCon">Tipo
+                                                                            Referencia</label>
+                                                                        <div class="input-group input-group-sm">
+                                                                            <select class="chzn-select bloquear-campos"
+                                                                                id="cboTipoReferenciaCita"
+                                                                                disabled></select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-4">
+                                                                        <input type="text"
+                                                                            id="hdIdEstablecimientoReferenciaOrigen"
+                                                                            hidden="hidden" />
+
+                                                                        <label for="" class="form-label"
+                                                                            id="lblEstabRefCon">Codigo</label>
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                id="txtCodigoReferencia" disabled>
+                                                                            <span class="input-group-btn">
+                                                                                <button class="btn btn-info"
+                                                                                    type="button"
+                                                                                    id="btnOpenModalEstablecimientoReferenciaCita"
+                                                                                    disabled><i
+                                                                                        class='fa fa-search'></i></button>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-8">
+
+                                                                        <label for="" class="form-label"
+                                                                            id="lblEstabRefCon">Estab.
+                                                                            Referencia</label>
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                id="txtDescripcionReferenciaCita"
+                                                                                disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label for="" class="form-label">N°
+                                                                            Referencia</label>
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                id="txtNroReferenciaCita">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">Fecha</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off"
+                                                                class="form-control form_val_popup_dp3 maskFecha"
+                                                                placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy"
+                                                                id="txtFechaCupoSeleccionado" disabled>
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <label for="" class="form-label">Hora Inicio</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control"
+                                                                id="txtHoraInicioCita" placeholder="__:__" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label for="" class="form-label">Hora Fin</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control" id="txtHoraFinCita"
+                                                                placeholder="__:__" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="tabDatosFamiliar">
+                                <partial
+                                    name="~/Views/Shared/Components/VistasParciales/Paciente/FichaFamiliar.cshtml" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <!--<button class="btn  btn-primary" data-dismiss="modal">Close me!</button>-->
+                    <button type="button" class="btn btn-primary" id="btnImprimeHojaFiliacionConsultorio"
+                        style="float: left;"><i class="fa-solid fa-print"></i> <br /> Hoja Filiacion
+                        Consultorio</button>
+                    <button type="button" class="btn btn-info" id="btnImprimirTicket" style="float: left;"><i
+                            class="fa-solid fa-print"></i> <br /> Ticket</button>
+                    <button type="button" class="btn btn-success" id="ImprimeFormatoFiliacionArchivoClinico"
+                        style="float: left;"><i class="fa-solid fa-print"></i> <br /> Filiacion Arch. Clínico</button>
+                    <button type="button" class="btn btn-secondary" id="ImprimeFormatoFO030" style="float: left;"><i
+                            class="fa-solid fa-print"></i> <br /> FO-030</button>
+
+
+                    <button id="btnguardarCita" class="btn btn-info btn-lg pl-3 pr-3"
+                        style="max-width: 140px;">Guardar</button>
+                    <button type="button" class="btn btn-secondary btn-lg ml-2 pl-3 pr-3" id="btnCerrarModalCita"
+                        style="max-width: 140px;">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

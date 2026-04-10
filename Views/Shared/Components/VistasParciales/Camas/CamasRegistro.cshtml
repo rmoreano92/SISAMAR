@@ -1,0 +1,125 @@
+﻿<div class="modal fade" id="modalRegistroCama" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Camas</h5>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="card bg-yellow">
+                            <div class="card-header bg-white">Cama</div>
+                            <div class="card-block">
+                                <div class="form-group m-0">
+                                    <label for="cboTipoServicio">Tipo Servicio</label>
+                                    <select class="chzn-select" id="cboTipoServicio" data-placeholder="Seleccione una opción" disabled></select>
+                                </div>
+                                <div class="form-group m-0" style="width:200px;">
+                                    <label for="txtCodigo" class="form-control-label">Código Cama</label>
+                                    <input id="txtCodigo" autocomplete="off" placeholder="" class="form-control form-control-sm campo">
+                                </div>
+                                <div class="form-group m-0">
+                                    <label for="cboTipoCama">Tipo Cama</label>
+                                    <select class="chzn-select campo" id="cboTipoCama" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                                <div class="form-group m-0">
+                                    <label for="cboEstadoCama">Estado Cama</label>
+                                    <select class="chzn-select campo" id="cboEstadoCama" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                                <div class="form-group m-0">
+                                    <label for="cboCondicionOcupacion">Condición Ocupación</label>
+                                    <select class="chzn-select campo" id="cboCondicionOcupacion" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                                <div class="form-group m-0">
+                                    <label for="cboServicioPropietario">Servicio Propietario</label>
+                                    <select class="chzn-select campo" id="cboServicioPropietario" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                                <div class="form-group m-0">
+                                    <label for="cboUbicacionActual">Ubicación Actual</label>
+                                    <select class="chzn-select campo" id="cboUbicacionActual" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="card bg-pink">
+                            <div class="card-header bg-white">Movimiento de Camas</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0" style="width:200px;">
+                                            <label for="txtFechaIngreso" class="form-control-label">Fecha Ingreso</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtFechaIngreso" autocomplete="off" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" class="form-control form-control-sm campo">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0" style="width:200px;">
+                                            <label for="txtFechaSalida" class="form-control-label">Fecha Salida</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtFechaSalida" autocomplete="off" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" class="form-control form-control-sm campo">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                
+                                <div class="form-group m-0">
+                                    <label for="cboUbicacionMov">Ubicación</label>
+                                    <select class="chzn-select campo" id="cboUbicacionMov" data-placeholder="Seleccione una opción"></select>
+                                </div>
+
+                                <div class="pt-1">
+                                    @{
+                                        if (@ViewBag.Agregar)
+                                        {
+                                            <button class="btn btn-success btn-sm layout_btn_prevent" id="btnAgregarMovimientoCama">Agregar</button>
+                                        }
+                                        if (@ViewBag.Eliminar)
+                                        {
+                                            <button class="btn btn-danger btn-sm layout_btn_prevent" id="btnEliminarMovimientoCama">Eliminar</button>
+                                        }
+                                    }
+
+                                </div>
+
+                                <table id="tblMovCamas" width="100%" class="table table-sm table-bordered table-content-sm" style="cursor: default;">
+                                    <thead style="color: white;background: #434343;">
+                                        <tr>
+                                            <th style="width:50%">Servicio</th>
+                                            <th style="width:25%">Fecha Ingreso</th>
+                                            <th style="width:25%">Fecha Salida</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-secondary mr-1" id="btnCerrarCama" style="width: 120px;">CERRAR</button>
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarCama" style="width: 120px;">GUARDAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .chosen-container {
+        width: 100% !important;
+    }
+</style>

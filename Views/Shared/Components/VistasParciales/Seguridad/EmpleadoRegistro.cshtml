@@ -1,0 +1,521 @@
+﻿<div class="modal fade" id="modalRegistroEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Empleado</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-1 bg-blue">
+                            <div class="card-block">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtCodigoPlanilla">Código Planilla</label>
+                                            <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtCodigoPlanilla">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboTiposDocumentos">Tipo Documento</label>
+                                            <select id="cboTiposDocumentos" class="chzn-select-deselect" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtDni">DNI</label>
+                                            <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtDni">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtApPaterno">Apellido Paterno</label>
+                                            <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtApPaterno">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtApMaterno">Apellido Materno</label>
+                                            <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtApMaterno">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtNombres">Nombres</label>
+                                            <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtNombres">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaNacimiento" class="form-control-label">Fecha Nacimiento</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" autocomplete="off" class="form-control campo" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNacimiento">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                                                                              
+                               <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboTiposSexo">Sexo</label>
+                                            <select id="cboTiposSexo" class="chzn-select-deselect" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                   <div class="col-md-6">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboTiposEmpleados">Tipo Empleado</label>
+                                            <select id="cboTiposEmpleados" class="chzn-select-deselect" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                   </div>
+                                   <div class="col-md-6">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboTiposCondicionTrabajo">Condición Trabajo</label>
+                                            <select id="cboTiposCondicionTrabajo" class="chzn-select-deselect" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                   </div>
+                                   <div class="col-md-6">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboTiposDestacado">Tipo Destacado</label>
+                                            <select id="cboTiposDestacado" class="chzn-select-deselect" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                   </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboTipoPuesto">Puesto Empleado</label>
+                                            <select id="cboTipoPuesto" class="chzn-select-deselect" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                               </div>
+                                                               
+                                <div class="row">
+                                    <div class="col-md-12" style="margin-top: 5px;"><label for="destino">CS, PS externo donde labora (HisGalenhos)</label></div>
+                                    <div class="col-md-10 col-xl-9">
+                                        <div class="form-group m-0">
+                                            <input type="text" class="form-control form-control-sm" id="destino" placeholder="" disabled readonly >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-xl-3">
+                                        <a class="btn btn-sm btn-success" id="btnEstablecimientoDestino"> <i class="fa fa-search-plus text-white"></i> </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12" style="margin-top: 5px;"><label for="supervisor">Supervisor (HisGalenhos)</label></div>
+                                    <div class="col-md-10 col-xl-9">
+                                        <div class="form-group m-0">
+                                            <input type="text" class="form-control form-control-sm" id="supervisor" placeholder="" disabled readonly >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-xl-3">
+                                        <a class="btn btn-sm btn-success" id="btnEstablecimientoDestino"> <i class="fa fa-search-plus text-white"></i> </a>
+                                    </div>
+                                </div>
+                                @*<div class="row">                                    
+                                    <div class="col-md-4 col-lg-4 col-xl-3" style="display: none;">
+                                        <div class="form-group m-0">
+                                            <label for="ipressdestino">Cod. IPRESS</label>
+                                            <input type="text" class="form-control form-control-sm" id="ipressdestino" placeholder="" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10 col-lg-10 col-xl-9">
+                                        <div class="form-group m-0">                                            
+                                            <input type="text" class="form-control form-control-sm" id="destino" placeholder="" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-lg-2 col-xl-3">
+                                        <a class="btn btn-sm btn-success" id="btnEstablecimientoDestino"> <i class="fa fa-search-plus text-white"></i> </a>
+                                    </div>
+                                </div>*@
+                                
+                                
+                            </div>
+                        </div>
+
+                        <div class="card bg-green">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtUsuario">Usuario</label>
+                                            <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtUsuario">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-group m-0">
+                                                    <label for="txtClaveWeb">Clave</label>
+                                                    <input type="password" class="form-control form-control-sm campo" autocomplete="off" id="txtClaveWeb">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a class="btn btn-sm btn-success" style="margin-top: 28px;" id="btnCambiarClave"> <i class="fa fa-lock-keyhole text-white"></i> </a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-6">
+                                        <input hidden type="file" id="fileFotoFirma" accept="image/*">
+                                        <input hidden type="text" id="fotoFirma" />
+                                        <div id="marcoFotoFirma" class="border border-secondary mt-1" style="width: 150px; height: 80px; position: relative; overflow: hidden;"></div>
+                                        <button class="btn btn-sm btn-success" id="btnFotoFirma" style="width: 150px;">Firma Empleado</button>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtCodigoHis">Codigo Digitador (HIS)</label>
+                                            <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtCodigoHis">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="check__toggle" style="margin-top: 32px;">
+                                            <label class="toggle">
+                                                <input class="toggle__input campo" type="checkbox" id="chkAutorizaReniec">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Autorizado por RENIEC</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtLoginPc">Esta usando Galenhos</label>
+                                            <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtLoginPc" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="check__toggle" style="margin-top: 32px;">
+                                            <label class="toggle">
+                                                <input class="toggle__input campo" type="checkbox" id="chkActivo">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">ACTIVO</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-md-8">
+
+                        <ul id="TabPanelOpcionesEmpleado" class="nav nav-tabs" role="tablist">
+                            <li class="nav-item m-0">
+                                <a class="nav-link active" href="#roles" role="tab" id="roles-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Roles y Cargos</a>
+                            </li>
+                            <li class="nav-item m-0">
+                                <a class="nav-link" href="#profesional" role="tab" id="profesional-tab" data-toggle="tab" aria-controls="hats">Prof. de la Salud</a>
+                            </li>
+                        </ul>
+
+                        <div class="card">
+                            <div class="card-block">
+                                <div id="clothing-nav1-content" class="pt-1 tab-content fade in active">
+
+                                    @*==============================ROLES Y PERMISOS=======================================*@
+                                    <div id="roles" role="tabpanel" class="tab-pane fade in active campo" aria-labelledby="roles-tab">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card mb-1" style="height:320px;">
+                                                    <div class="card-header">Roles</div>
+                                                    <div class="card-block pt-1">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    @*<label for="cboRoles">Rol</label>*@
+                                                                    <div class="input-group">
+                                                                        <select class="chzn-select-deselect campo" id="cboRoles" data-placeholder="Seleccione una opción">
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div>
+                                                                    <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1" style="width: 100px;" onclick="Empleado.AgregarRol();">
+                                                                        <span class="btn-label"><i class="fa fa-plus" style="width: 20px; text-align:center;"></i></span>
+                                                                        Agregar
+                                                                    </button>
+                                                                    <button id="btnQuitarDiagnostico" type="button" class="btn btn-sm btn-labeled btn-danger" style="width: 100px;" onclick="Empleado.QuitarRol();">
+                                                                        <span class="btn-label"><i class="fa fa-trash" style="width: 20px; text-align:center;"></i></span>
+                                                                        Quitar
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <table id="tblRoles" width="100%" class="table table-sm table-bordered table-content-sm mt-1">
+                                                            <thead style="color: white;background: #3e6184;">
+                                                                <tr>
+                                                                    <th style="width:20%">Rol</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="card mb-1" style="height:320px;">
+                                                    <div class="card-header">Cargos</div>
+                                                    <div class="card-block pt-1">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    @*<label for="cboCargos">Cargos</label>*@
+                                                                    <div class="input-group">
+                                                                        <select class="chzn-select-deselect campo" id="cboCargos" data-placeholder="Seleccione una opción">
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div>
+                                                                    <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1" style="width: 100px;" onclick="Empleado.AgregarCargo();">
+                                                                        <span class="btn-label"><i class="fa fa-plus" style="width: 20px; text-align:center;"></i></span>
+                                                                        Agregar
+                                                                    </button>
+                                                                    <button id="btnQuitarDiagnostico" type="button" class="btn btn-sm btn-labeled btn-danger" style="width: 100px;" onclick="Empleado.QuitarCargo();">
+                                                                        <span class="btn-label"><i class="fa fa-trash" style="width: 20px; text-align:center;"></i></span>
+                                                                        Quitar
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <table id="tblCargos" width="100%" class="table table-sm table-bordered table-content-sm mt-1">
+                                                            <thead style="color: white;background: #3e6184;">
+                                                                <tr>
+                                                                    <th style="width:20%">Cargos asignados</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="card mb-1" style="height:320px;">
+                                                    <div class="card-header">Labora en</div>
+                                                    <div class="card-block">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="cboArea">Area</label>
+                                                                    <div class="input-group">
+                                                                        <select class="chzn-select-deselect campo" id="cboArea" data-placeholder="Seleccione una opción">
+                                                                            <option value=""></option>
+                                                                            <option value="0">En otro Lugar</option>
+                                                                            <option value="1">Almacén o Farmacia</option>
+                                                                            <option value="2">Imageneología</option>
+                                                                            <option value="3">Laboratorio</option>
+                                                                            <option value="4">Seguros</option>
+                                                                            <option value="5">Especialidades de Consulta Externa</option>
+                                                                            <option value="6">Especialidades de Hospitalización</option>
+                                                                            <option value="7">Especialidades de Emergencia - Observación</option>
+                                                                            <option value="8">Especialidades de Emergencia - Consultorios</option>
+                                                                            <option value="9">Area Tramita Seguros</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6" id="SubArea">
+                                                                <div class="form-group">
+                                                                    <label for="cboSubArea">SubArea</label>
+                                                                    <div class="input-group">
+                                                                        <select class="chzn-select-deselect campo" id="cboSubArea" data-placeholder="Seleccione una opción">
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div>
+                                                                    <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1" style="width: 100px;" onclick="Empleado.AgregarLaboraLugar();">
+                                                                        <span class="btn-label"><i class="fa fa-plus" style="width: 20px; text-align:center;"></i></span>
+                                                                        Agregar
+                                                                    </button>
+                                                                    <button id="btnQuitarDiagnostico" type="button" class="btn btn-sm btn-labeled btn-danger" style="width: 100px;" onclick="Empleado.QuitarLaboraLugar();">
+                                                                        <span class="btn-label"><i class="fa fa-trash" style="width: 20px; text-align:center;"></i></span>
+                                                                        Quitar
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <table id="tblLaboraLugar" width="100%" class="table table-sm table-bordered table-content-sm mt-1">
+                                                            <thead style="color: white;background: #3e6184;">
+                                                                <tr>
+                                                                    <th style="width:40%">Area</th>
+                                                                    <th style="width:60%">SubArea</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                                                
+                                    </div>
+
+                                    @*================================PROFESIONAL DE LA SALUD===========================================*@
+                                    <div id="profesional" role="tabpanel" class="tab-pane fade campo" aria-labelledby="profesional-tab">
+                                        <div class="card mb-1 bg-yellow">
+                                            <div class="card-block">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtColegiatura">Colegiatura</label>
+                                                            <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtColegiatura">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtLoteHis">Lote (HIS)</label>
+                                                            <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtLoteHis">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group campo m-0">
+                                                            <label for="cboColegioProfesionales">Colegio Profes. (HIS)</label>
+                                                            <select id="cboColegioProfesionales" class="chzn-select-deselect">
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtRne">RNE (FUA)</label>
+                                                            <input type="text" class="form-control form-control-sm campo" autocomplete="off" id="txtRne">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="check__toggle" style="margin-top: 32px;">
+                                                            <label class="toggle">
+                                                                <input class="toggle__input campo" type="checkbox" id="chkEgresado">
+                                                                <span class="toggle__label mr-2">
+                                                                    <span class="toggle__text">Egresado (FUA)</span>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+                                        <div class="card mb-1">
+                                            <div class="card-header">Especialidades</div>
+                                            <div class="card-block" style="height:320px;">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="cboDepartamento">Departamento</label>
+                                                            <div class="input-group">
+                                                                <select class="chzn-select-deselect campo" id="cboDepartamento" data-placeholder="Seleccione una opción">
+                                                                    <option value=""></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6" id="SubArea">
+                                                        <div class="form-group">
+                                                            <label for="cboEspecialidad">Especialidad</label>
+                                                            <div class="input-group">
+                                                                <select class="chzn-select-deselect campo" id="cboEspecialidad" data-placeholder="Seleccione una opción">
+                                                                    <option value=""></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div>
+                                                            <button id="btnAñadirEspecialidad" type="button" class="btn btn-sm btn-labeled btn-success mr-1" style="width: 100px;" onclick="Empleado.AgregarEspecialidad();">
+                                                                <span class="btn-label"><i class="fa fa-plus" style="width: 20px; text-align:center;"></i></span>
+                                                                Agregar
+                                                            </button>
+                                                            <button id="btnQuitarEspecialidad" type="button" class="btn btn-sm btn-labeled btn-danger" style="width: 100px;" onclick="Empleado.QuitarEspecialidad();">
+                                                                <span class="btn-label"><i class="fa fa-trash" style="width: 20px; text-align:center;"></i></span>
+                                                                Quitar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <table id="tblEspecialidades" width="100%" class="table table-sm table-bordered table-content-sm mt-1">
+                                                    <thead style="color: white;background: #3e6184;">
+                                                        <tr>
+                                                            <th style="width:40%">Departamento</th>
+                                                            <th style="width:60%">Especialidad</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                                                
+                    </div>
+                </div>                
+               
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCancelarEmpleado">CERRAR</button>
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarEmpleado">GUARDAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .chosen-container {
+        width: 100% !important;
+    }
+</style>
+
+
+
+
+
+
+
+

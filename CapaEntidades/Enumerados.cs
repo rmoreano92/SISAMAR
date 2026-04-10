@@ -1,0 +1,275 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CapaEntidades
+{
+    public class Enumerados
+    {
+        public enum sghTipoOrden
+        {
+            sghPorCodigo = 1,
+            sghPorDescripcion = 2,
+            sghPorIdProductoMasFecha = 3,
+            sghPorFechaYhora = 4,
+            sghPorIdProductoMasIdServiciopaciente = 5,
+            sghPorIdFuenteFinanciamientoIdTipoServicio = 6,
+            sghPorServicioNombre = 7,
+            sghPorDepartamentoEspecialidadServicioNombre = 8,
+        }
+        public enum sghRecetaEstados
+        {
+            sighRecetaAnulada = 0,
+            sighRecetaRegistrada = 1,
+            sighRecetaDespachada = 2,
+            sighRecetaConBoleta = 3
+        }
+        public enum TiposDiagnostico
+        {
+            AtencionConsultaExterna = 1,
+            HospitalizacionIngreso = 2,
+            HospitalizacionEgreso = 3,
+            HospitalizacionMortalidad = 4,
+            HospitalizacionNacimiento = 5,
+            HospitalizacionComplicaciones = 6,
+            EmergenciaIngreso = 8,
+            Interconsultas = 7
+        }
+
+        public enum EstadosTabla
+        {
+            sghAnulado = 0,
+            sghRegistrado = 1,
+            sghCerrado = 2,
+        }
+        public enum TiposServicio
+        {
+            Consultorios_Externos=1,
+            Consultorios_Emergencia=2,
+            Hospitalización=3,
+            Observación_Emergencia=4,
+            Ayuda_diagnóstico_Tratamiento=5,
+            ProgramasNacionalesSalud=6,
+            ApoyoAsistencial=7,
+        }
+
+        public enum Grupo {
+            Consulta_externa = 100,
+            Emergencia = 200,
+            Hospitalización = 300,
+            Programacion_General = 400,
+            Archivo_Clinico = 500,
+            Facturación_General = 600,
+            Caja = 700,
+            Farmacia = 800,
+            Estadística = 900,
+            Centro_Quirurgico = 1000,
+            Servicio_Social = 1100,
+            General = 1200,
+            Seguridad = 1300,
+            Facturación = 1500,
+            Fact_Config = 1700,
+            Laboratorio = 1800,
+            Imagenología = 1900,
+            SIS = 2000,
+            HIS = 2001,
+            Seguimiento = 2002,
+            Centro_Quirúrgico = 2003,
+            CallCenter = 2004,
+
+        }
+
+        public enum sghPuntosCargaBasicos {
+            sghPtoCargaAdmisionEmergencia = 10,
+            sghPtoCargaAdmisionHospitalizacion = 9,
+            sghPtoCargaAdmisionCE = 6,
+            sghPtoCargaServicioHospitalizacion = 1,
+            sghPtoCargaCaja = 99,
+            sghPtoCargaRayosX = 21,
+            sghPtoCargaTomografia = 22,
+            sghPtoCargaSolicitudCQx = 1060,
+            sghPtoCargaEcogObstetrica = 23,
+            sghPtoCargaEcogObstetricaProcedimientos = 24,
+            sghPtoCargaEcogGeneral = 20,
+            sghPtoCargaPatologiaClinica = 2,
+            sghPtoCargaAnatomiaPatologica1 = 3,
+            sghPtoCargaAnatomiaPatologica2 = 32,
+            sghPtoCargaBancoSangre1 = 11,
+            sghPtoCargaBancoSangre2 = 38,
+            sghPtoCargaFarmacia = 5,
+            sghPtoCargaCentroQx = 622,
+            sghPtoCargaInterconsulta = 12,
+        }
+
+        public enum EstadosFacturacion {
+            Atendido = 1,
+            Pendiente_Pago = 3,
+            Pagado = 4,
+            Devolver = 5,
+            Devuelto = 6,
+            Anulado = 9,
+            Autoriz_automática = 10,
+            Despachado = 11,
+            Registrado = 12,
+            Reembolso_Parcial = 15,
+            Con_Preventa = 16,
+        }
+        //Lmoreano
+        public enum shgIdsBar
+        {
+            Consultaexterna_Paciente = 101,
+            Consultaexterna_Citas_y_Admisión = 102,
+            Consultaexterna_Registro_de_atenciones = 103,
+            Consultaexterna_Registro_de_Triaje = 1303,
+            Consultaexterna_Recetas = 1366,
+            Consultaexterna_vacio = 1367,
+            Consultaexterna_MARAtención_Rapida = 1373,
+            Consultaexterna_CitaTerapias = 1386,
+            Consultaexterna_Dashboard = 1388,
+            Consultaexterna_Solicitud_de_Citas = 1395,
+            Consultaexterna_Planificacion_Familiar = 1396,
+            Emergencia_Planificacion_Familiar = 1397,
+            Emergencia_Dashboard = 1389,
+            Emergencia_Dashboard_Atenciones = 1391,
+            Emergencia_Dashboard_Hospitalizacion = 1392,
+            Emergencia_DashBoard_DerivacionAtencion = 1394,
+            Emergencia_Priorización_de_Emergencia = 1383,
+            Emergencia_Triaje_de_Emergencia = 1374,
+            Emergencia_PreIngreso_Emergencia = 1375,
+            Emergencia_Paciente = 201,
+            Emergencia_Admision_de_emergencia = 202,
+            Emergencia_Camas_de_observación = 203,
+            Emergencia_Recetas = 1343,
+            Hospitalizacion_NotaIngreso=1412,
+            Hospitalizacion_ListaNotaIngreso = 1413,
+            Hospitalización_Recetas = 1344,
+            Hospitalización_Alojados = 1330,
+            Hospitalización_Paciente = 301,
+            Hospitalización_Admisión_de_hospitalización = 302,
+            Hospitalización_Camas_de_hospitalización = 303,
+            Hospitalización_Visitas_medicas = 1390,
+            Hospitalización_Planificacion_Familiar = 1398,
+            Hospitalización_Evaluacion_RN = 1400,
+            ProgramacionGeneral_Programacion = 401,
+            ProgramacionGeneral_Turno = 402,
+            ProgramacionGeneral_Profesionales_de_la_Salud = 403,
+            ArchivoClinico_Historia_Clínica = 501,
+            ArchivoClinico_Movimiento_de_historias = 502,
+            ArchivoClinico_Solicitud_de_historias = 503,
+            ArchivoClinico_Archiveros = 504,
+            ArchivoClinico_Movimiento_Formatos_HC = 1332,
+            Caja_Gestion_de_caja = 702,
+            Caja_Cajas = 705,
+            Caja_Aprueba_Nota_de_Debito = 1378,
+            Caja_Extracto_Bancario = 1379,
+            Caja_Trasferencia_Bancaria = 1380,
+            Caja_Nota_Contable = 1381,
+            Caja_Devoluciones = 1364,
+            Caja_Aprueba_Nota_de_Credito = 1365,
+            Farmacia_Despacho_Donaciones = 1342,
+            Farmacia_Farmacias = 1355,
+            Farmacia_Nota_de_Ingreso_Farmacia = 1357,
+            Farmacia_Nota_de_Salida_Farmacia = 1358,
+            Farmacia_Historico_de_Precios = 1363,
+            Farmacia_Inventario = 801,
+            Farmacia_Recetas_para_Unidosis = 1348,
+            Farmacia_Nota_de_Ingreso_Almacén = 1304,
+            Farmacia_Nota_de_Salida_Almacén = 1305,
+            Farmacia_Venta = 1307,
+            Farmacia_Intervenciones_Sanitarias = 1308,
+            Farmacia_Dependencias_Externas = 1310,
+            Estadística_Constancias = 1325,
+            Estadística_ConstanciaRN = 1401,
+            General_Servicios = 1201,
+            General_Diagnósticos = 1202,
+            General_Procedimientos = 1203,
+            General_Establecimientos_No_MINSA = 1204,
+            General_Diagnosticos_PDF = 1205,
+            General_Especialidades = 1206,
+            General_Establecimientos = 1333,
+            Seguridad_Empleados = 1301,
+            Seguridad_Roles = 1302,
+            Facturación_Estado_de_Cuenta = 613,
+            Facturación_Reembolsos = 1331,
+            Facturación_Pacientes_Externos_con_Cuenta_Seguro = 1339,
+            Facturación_Pacientes_Externos_con_Cuenta_Particular = 1340,
+            Facturación_Consumo_en_el_Servicio = 601,
+            Facturación_Laboratorio = 603,
+            Facturación_Imagenología = 604,
+            Facturación_Anatomía_Patológica = 605,
+            Facturación_Farmacia = 606,
+            Facturación_Sala_de_Operaciones = 607,
+            Facturación_Apertura_de_Credito = 1382,
+            Facturación_Evaluacion_Riesgo_Social = 1387,
+            FactConfig_Configuración_Resultados_de_Imagenologia = 1384,
+            FactConfig_Configuración_Resultados_de_Laboratorio = 1356,
+            FactConfig_Integración_con_otros_sistemas = 1362,
+            FactConfig_Centro_de_costos = 609,
+            FactConfig_Catalogo_de_servicios = 610,
+            FactConfig_Producto_Plan = 611,
+            FactConfig_Catalogo_de_Partidas = 612,
+            FactConfig_Fuente_Financiamiento_IAFA = 1311,
+            FactConfig_Paquetes = 1341,
+            FactConfig_Tipos_de_Cargo = 1334,
+            FactConfig_Tipos_de_Condición_de_trabajo = 1335,
+            FactConfig_Tipos_de_Empleado = 1336,
+            FactConfig_Tipo_Tarifa = 1337,
+            FactConfig_Tipos_de_Establecimientos = 1338,
+            FactConfig_Catalogo_de_bienes_e_insumos = 803,
+            Laboratorio_Anat_Patológica = 1321,
+            Laboratorio_Banco_de_Sangre = 1322,
+            Laboratorio_Pat_Clínica = 1312,
+            Laboratorio_Ingreso_Insumos = 1313,
+            Laboratorio_Salida_Insumos = 1314,
+            Imagenología_Ingresos = 1315,
+            Imagenología_Salidas = 1316,
+            Imagenología_Ecografía_General = 1317,
+            Imagenología_Rayos_X = 1318,
+            Imagenología_Tomografía = 1319,
+            Imagenología_Ecografía_Obstétrica = 1320,
+            Imagenología_Tipo_Modalidad_Sala = 1359,
+            Imagenología_Salas = 1360,
+            Imagenología_Duración_de_Procedimientos_por_servicio = 1361,
+            Imagenología_CitaProcedimientos = 1385,
+            SIS_Formato_FUA = 1345,
+            HIS_Registro_HIS_de_la_MicroRed = 1346,
+            HIS_Programación_Medica_de_la_MicroRed = 1347,
+            HIS_Establecimientos_de_la_MicroRed = 1349,
+            HIS_Calidad = 1353,
+            HIS_Padrón_Nominal = 1354,
+            Seguimiento_Seguimiento_Paciente = 1399,
+            Seguimiento_HC_Electrónica = 1350,
+            Seguimiento_Programas = 1351,
+            Seguimiento_Adscripción = 1352,
+            CentroQuirúrgico_Orden_PreOperatoria = 1368,
+            CentroQuirúrgico_Admisión_de_Orden_Operatoria = 1369,
+            CentroQuirúrgico_Programación_de_Sala = 1370,
+            CentroQuirúrgico_Módulo_Quirúrgico = 1371,
+            CentroQuirúrgico_Sala_de_Operaciones = 1372,
+            CentroQuirúrgico_Dirección_Medica = 1376,
+            CentroQuirúrgico_Asignación_Anestesiólogos = 1377,
+        }
+        //
+
+        public enum sghTiposEspecialidad {
+            ConsultaExterna=2,
+            Emergencia = 1,
+            Hospitalizacion =0,
+        }
+
+        public enum sghTiposNumeracionDeHistoria
+        {
+            sghHistoriaDefinitivaAutomatica = 1,
+            sghHistoriaDefinitivaManual = 2,
+            sghHistoriaDefinitivaReciclada = 3,
+            sghHistoriaTemporalCOnsultaExterna = 4,
+            sghHistoriaTemporalEmergencia = 5,
+            sghHistoriaTemporalAlojamiento = 6,
+            sghHistoriaTemporalServiciosIntermedios = 7,
+            sghSinHistoria = 9
+        }
+
+    }
+}

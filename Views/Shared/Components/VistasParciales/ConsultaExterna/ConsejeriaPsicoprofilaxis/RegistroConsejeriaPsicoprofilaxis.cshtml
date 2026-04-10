@@ -1,0 +1,267 @@
+﻿<div class="row">
+    <div class="col-xl-12 mb-1">
+        <div class="card bg-green">
+            <div class="card-header bg-white">Diagnóstico del último Control Gestante</div>
+            <div class="card-block p-1">
+                <div class="row" id="ContentDiagnosticosReceta">
+                    <div class="col-sm-12">
+                        <table id="tblDiagnosticosUltimoControl" class="table table-sm table-bordered table-striped table-content-sm" width="100%">
+                            <thead style="color: white;background: #51717a;">
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Diagnóstico</th>
+                                    <th>TipoDiagnostico</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-7 mb-1">
+        <div class="card bg-yellow">
+            <div class="card-header bg-white">Datos Obstétricos</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-6" style="max-width: 160px;">
+                                <div class="form-group m-0">
+                                    <label for="txtFechaFUR" class="d-block text-truncate">FUR</label>
+                                    <div class="input-group form-group input-group-sm m-0">
+                                        <input type="text" class="form-control form_val_popup_dp3 writing" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFUR" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6" style="max-width: 160px;">
+                                <div class="form-group m-0">
+                                    <label for="txtFechaFPP" class="d-block text-truncate">FPP</label>
+                                    <div class="input-group form-group input-group-sm m-0">
+                                        <input type="text" class="form-control form_val_popup_dp3 writing" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFPP" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4" style="max-width: 300px;">
+                        <div class="form-group m-0">
+                            <label for="txtEdadGestSem" class="d-block text-truncate">Edad Gestacional</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control solo-numero writing" id="txtEdadGestSem">
+                                <span class="input-group-addon">sem</span>
+                                <input type="text" autocomplete="off" class="form-control solo-numero writing" id="txtEdadGestDias">
+                                <span class="input-group-addon">dias</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="form-group m-0">
+                            <div class="form-group m-0">
+                                <label for="txtParidad1" class="d-block text-truncate">Paridad</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control form-control-sm solo-numero paridad1 writing" id="txtParidad1" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                    <input type="text" class="form-control form-control-sm solo-numero paridad2 writing" id="txtParidad2" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                    <input type="text" class="form-control form-control-sm solo-numero paridad3 writing" id="txtParidad3" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                    <input type="text" class="form-control form-control-sm solo-numero paridad4 writing" id="txtParidad4" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @* <div class="row">
+                    <div class="col-xl-12">
+
+                    </div>
+
+                     <div class="col-xl-5">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group m-0">
+                                    <label for="txtMovGesta">Gesta</label>
+                                    <input id="txtMovGesta" class="form-control form-control-sm campoMov" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="form-group m-0">
+                                    <div class="form-group m-0">
+                                        <label for="txtMovParidad1">Paridad</label>
+                                        <div class="d-flex">
+                                            <input type="text" class="form-control form-control-sm solo-numero paridad1 campoMov" id="txtMovParidad1" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                            <input type="text" class="form-control form-control-sm solo-numero paridad2 campoMov" id="txtMovParidad2" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                            <input type="text" class="form-control form-control-sm solo-numero paridad3 campoMov" id="txtMovParidad3" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                            <input type="text" class="form-control form-control-sm solo-numero paridad4 campoMov" id="txtMovParidad4" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div> 
+
+
+                </div> *@
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-5 mb-1">
+        <div class="card bg-pink">
+            <div class="card-header bg-white">Factor de Riesgo</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="form-group m-0">
+                            <label for="cboFactorRiesgo" class="d-block text-truncate">Factor de Riesgo</label>
+                            <select class="chzn-select writing" id="cboFactorRiesgo" data-placeholder="Seleccione una opción"></select>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group m-0">
+                            <label for="txtFactorRiesgo" class="d-block text-truncate">Descripción</label>
+                            <input type="text" class="form-control form-control-sm writing" id="txtFactorRiesgo" placeholder="" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-4 mb-1">
+        <div class="card bg-orange">
+            <div class="card-header bg-white">Tipo de Atención</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group m-0">
+                            <label for="cboDetalleAtencion" class="d-block text-truncate">Detalle Atención (CPT/CPMS)</label>
+                            <select class="chzn-select writing" id="cboDetalleAtencion" data-placeholder="Seleccione una opción"></select>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group m-0">
+                            <label for="txtSesionEducativa">Cantidad de Sesiones Educativas</label>
+                            <input type="text" class="form-control form-control-sm solo-numero writing" id="txtSesionEducativa" placeholder="" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-8 mb-1">
+        <div class="card bg-orange">
+            @* <div class="card-header bg-white">Motivo de Atención</div> *@
+            <div class="card-block">
+                <div class="form-group m-0">
+                    <label for="txtMotivoAtencion" class="d-block text-truncate">Motivo de Atención</label>
+                    <textarea class="form-control writing" id="txtMotivoAtencion" rows="6"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-xl-4 mb-1">
+        <div class="card bg-orange">
+            <div class="card-block p-1">
+                <div class="form-group m-0">
+                    <div class="row">
+                        <div class="col-xl-6" style="max-width: 200px;">
+                            <label for="" class="d-block text-truncate font-weight-bold">Gestante preparada al parto</label>
+                        </div>
+                        <div class="col-xl-3 px-0 pr-1" style="max-width: 110px;">
+                            <label class="radioButtonStyleLabel m-0">
+                                <input type="radio" name="rdbPreparadaParto" class="radioButtonStyleInput writing" id="rdbPreparadaPartoSi" value="1">
+                                <span class="radioButtonStyleSpan w-100">SI</span>
+                            </label>
+                        </div>
+                        <div class="col-xl-3 px-0 pr-1" style="max-width: 110px;">
+                            <label class="radioButtonStyleLabel m-0">
+                                <input type="radio" name="rdbPreparadaParto" class="radioButtonStyleInput writing" id="rdbPreparadaPartoNo" value="0">
+                                <span class="radioButtonStyleSpan w-100">NO</span>
+                            </label>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12 mb-1">
+        <div class="card bg-purple">
+            <div class="card-header bg-white">Datos del Acompañante</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="form-group m-0">
+                            <label for="cboTipoDocumentoAcompaniante" class="d-block text-truncate">Tipo Documento</label>
+                            <select class="chzn-select writing" id="cboTipoDocumentoAcompaniante" data-placeholder="Seleccione una opción"></select>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="form-group m-0">
+                            <label for="txtNroDocumentoAcompaniante" class="d-block text-truncate">Nº Documento</label>
+                            <input type="text" class="form-control form-control-sm solo-numero writing" id="txtNroDocumentoAcompaniante" placeholder="" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-xl-5">
+                        <div class="form-group m-0">
+                            <label for="txtNombresAcompaniante" class="d-block text-truncate">Datos Personales</label>
+                            <input type="text" class="form-control form-control-sm writing" id="txtNombresAcompaniante" placeholder="" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="form-group m-0">
+                            <label for="cboTipoParentescoAcompaniante" class="d-block text-truncate">Parentesco</label>
+                            <select class="chzn-select writing" id="cboTipoParentescoAcompaniante" data-placeholder="Seleccione una opción"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    
+                    <div class="col-xl-2" style="max-width: 180px;">
+                        <div class="form-group m-0">
+                            <label for="txtNroSesionAcompaniante">Cantidad de Sesiones</label>
+                            <input type="text" class="form-control form-control-sm solo-numero writing" id="txtNroSesionAcompaniante" placeholder="" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="form-group m-0" style="max-width: 230px;">
+                            <label for="txtCondicionAcompaniante" class="d-block text-truncate">Condición</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control form-control-sm reading" id="txtCondicionAcompaniante" placeholder="" autocomplete="off" disabled>
+                                <span class="input-group-addon">Núm. Sesiones &#62;= 4</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,669 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fi fi-ss-asterik"></i>
+                @ViewBag.Modulo
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Intervención Sanitaria</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="row m-0">
+    <div id="TipoFarmacia" hidden>@ViewBag.TipoFarmacia</div>
+    <div id="IdFarmaciaLabora" hidden>@ViewBag.IdFarmaciaLabora</div>
+    <input type="text" class="form-control" id="hdIdUsuario" value="@ViewBag.IdUsuario" disabled hidden>
+
+    <div class="col-md-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+            <li class="nav-item m-0" role="presentation">
+                <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Registro Int. Sanitaria</a>
+            </li>
+        </ul>
+        <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContent">
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <div class="card">
+                            <div class="card-block pb-1">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="cboFarmaciasBusq">Almacen/Farmacia</label>
+                                            <select id="cboFarmaciasBusq" class="chzn-select search" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="row">
+                                            <div class="col-lg-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaInicioBusq">Fecha Inicio</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioBusq">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtHoraInicioBusq" class="font-weight-bold text-info">Hora </label>
+                                                    <div class="d-flex">
+                                                        <div style="max-width:80px;">
+                                                            <input type="text" name="txtHoraInicioBusq" id="txtHoraInicioBusq" onblur="valida_hora(value)" class="form-control form-control-sm" placeholder="__:__" autocomplete="off" value="07:00">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="row">
+                                            <div class="col-lg-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaFinalBusq">Fecha Final</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinalBusq">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtHoraFinalBusq" class="font-weight-bold text-info">Hora </label>
+                                                    <div class="d-flex">
+                                                        <div style="max-width:80px;">
+                                                            <input type="text" name="txtHoraFinalBusq" id="txtHoraFinalBusq" onblur="valida_hora(value)" class="form-control form-control-sm" placeholder="__:__" autocomplete="off" value="19:00">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+
+
+                                    <div class="col-lg-1">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroCuentaBusq">N° Cuenta </label>
+                                            <input type="text" name="txtNroCuentaBusq" id="txtNroCuentaBusq" class="form-control form-control-sm" autocomplete="off">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-1">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroGuiaBusq">N° Guia </label>
+                                            <input type="text" name="txtNroGuiaBusq" id="txtNroGuiaBusq" class="form-control form-control-sm" autocomplete="off">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-3">
+                                        <div class="d-flex">
+                                            <div style="padding-top: 5px;">
+                                                <button class="btn btn-sm btn-primary layout_btn_prevent d-block w-100" style="padding: 0.3rem 1rem !important; margin-bottom: 5px;" id="btnBuscar">Buscar</button>
+                                                <button class="btn btn-sm btn-secondary layout_btn_prevent d-block w-100" style="padding: 0.3rem 1rem !important;" id="btnLimpiar">Limpiar</button>
+
+                                            </div>
+                                            <div class="mx-1" style="padding-top: 15px;">
+                                                <button class="btn btn-outline-success " style="padding-left: 1.5rem !important; padding-right: 1.5rem !important;" id="btnGenerarReporte">
+                                                    <i class="fa-regular fa-file-excel" style="font-size: 20px;"></i> @* <br />Reporte *@
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-2 d-none">
+                                        <div class="d-flex" style="height: 55px; padding-top: 30px;">
+                                            <div>
+                                                <label class="checkbox-inline mr-1">
+                                                    <input type="radio" id="rdbVentaBusqueda" name="rdbTipoVentaBusqueda" value="1" checked> VENTA
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <label class="checkbox-inline mr-1">
+                                                    <input type="radio" id="rdbPreventaBusqueda" name="rdbTipoVentaBusqueda" value="2"> PRE-VENTA
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        @{
+                            if (@ViewBag.Agregar)
+                            {
+                                <button class="btn btn-success layout_btn_prevent" id="btnAgregarVentas">Agregar</button>
+                            }
+                            if (@ViewBag.Modificar)
+                            {
+                                <button class="btn btn-info layout_btn_prevent" id="btnModificarVentas">Modificar</button>
+                            }
+                            if (@ViewBag.Eliminar)
+                            {
+                                <button class="btn btn-danger layout_btn_prevent" id="btnEliminarVentas">Eliminar</button>
+                            }
+                            if (@ViewBag.Consultar)
+                            {
+                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultarVentas">Consultar</button>
+                            }
+                        }
+                    </div>
+                    @*  <div class="col-lg-6 text-sm-right">
+                    <button class="btn btn-secondary" id="btnAbrirModalUnidosis">Agregar UNIDOSIS</button>
+                    </div> *@
+
+                    <div class="col-md-12">
+                        <table id="tblVentas" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th>N° Movimiento</th>
+                                    <th>N° Guia</th>
+                                    <th>Fecha</th>
+                                    <th>Almacén</th>
+                                    <th>Estado</th>
+                                    <th>Producto/Plan</th>
+                                    <th>N° Cuenta</th>
+                                    <th>N° Historia</th>
+                                    <th>Paciente</th>
+                                    <th>Total</th>
+                                    <th>idPreventa</th>
+                                    <th>Imprime</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade" id="TabPanelRegistro" role="tabpanel" aria-labelledby="TabRegistro">
+                <div id="modulo">
+                    <partial name="~/Views/Shared/Components/VistasParciales/Farmacia/IntervencionSanitaria/RegistroIntervencionSanitaria.cshtml" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+@*=========================================================MODAL BUSQUEDA CUENTAS PACIENTES==================================================================*@
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalBusquedaPacientes" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xxl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-indigo">
+                <h4 class="modal-title text-white">Busqueda de Pacientes</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12 mb-1">
+                        @* <div class="row">
+                        <div class="col-lg-12">
+                        <b>Busqueda</b>
+                        </div>
+                        </div> *@
+                        <div class="card bg-blue">
+                            <div class="card-block">
+                                <div class="row">
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaPacienteDNI" class="form-control-label">DNI</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos searchPaciente" id="txtBusquedaPacienteDNI" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaPacienteNroHistoria" class="form-control-label">N° Historia</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos searchPaciente" id="txtBusquedaPacienteNroHistoria" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaPacienteApPaterno" class="form-control-label">Apellido Paterno</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos searchPaciente" id="txtBusquedaPacienteApPaterno" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaPacienteApMaterno" class="form-control-label">Apellido Materno</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos searchPaciente" id="txtBusquedaPacienteApMaterno" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaPacientePrimerNombre" class="form-control-label">Nombres</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos searchPaciente" id="txtBusquedaPacientePrimerNombre" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                                        <div>
+                                            <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarPacientes">Buscar</button>
+                                            <button class="btn btn-secondary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiarBusquedaPaciente">Limpiar</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 mb-1">
+                        @* <h5 class="text-sm-center mb-0 font-weight-bold" style="color: #20295e;">Productos a devolver</h5> *@
+                        <table class="table table-sm table-bordered" id="tblBusquedaPacientes" width="100%" style="font-size: 12px;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th width="10%">Ap .Paterno</th>
+                                    <th width="10%">Ap .Materno</th>
+                                    <th width="10%">1er Nombre</th>
+                                    <th width="10%">2do Nombre</th>
+                                    <th width="10%">N° Historia</th>
+                                    <th width="10%">Fecha Nac.</th>
+                                    <th width="10%">Ult. Tipo Serv.</th>
+                                    <th width="10%">Ult. Serv. Ing.</th>
+                                    <th width="10%">Ult. F. Ing.</th>
+                                    <th width="10%">Ult. F. Egr.</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12">
+                        <h5 class="text-sm-center mb-0 font-weight-bold" style="color: #135d79;">Atenciones del Paciente</h5>
+                        <table class="table table-sm table-bordered" id="tblAtencionesPacientes" width="100%" style="font-size: 12px;">
+                            <thead style="color: white; background: #135d79;">
+                                <tr>
+                                    <th width="7%">Nª Cuenta</th>
+                                    <th width="10%">Estado Cuenta</th>
+                                    <th width="7%">Fec. Ingreso</th>
+                                    <th width="7%">Fec. Egreso</th>
+                                    <th width="7%">Hr. Egreso</th>
+                                    <th width="13%">Servicio Ing.</th>
+                                    <th width="10%">Tipo Servicio</th>
+                                    <th width="7%">Edad</th>
+                                    <th width="25%">Diagnóstico</th>
+                                    <th width="7%">Veces Abierto</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-indigo" id="btnAceptarCuentaPaciente">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" id="btnCerrarModalBusquedaPaciente">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*=========================================================MODAL UNIDOSIS==================================================================*@
+@*
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalUnidosis" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Agregar Receta UNIDOSIS</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card m-t-5">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtHistoriaBusqSolicitud" class="form-control-label">N° Cuenta</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtHistoriaBusqSolicitud" autocomplete="off" placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <div class="form-group">
+                                            <label for="txtNroSolicitudBusqSolicitud" class="form-control-label">Datos</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtNroSolicitudBusqSolicitud" autocomplete="off" placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="cboServicio" class="form-control-label">Medico</label>
+                                            <div class="input-group input-group-sm">
+
+                                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboServicio"></select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="cboServicio" class="form-control-label">Servicio</label>
+                                            <div class="input-group input-group-sm">
+
+                                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboServicio"></select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label for="cboServicio" class="form-control-label">Farmacia</label>
+                                            <div class="input-group input-group-sm">
+
+                                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboServicio">
+                                                    <option>UNIDOSIS FARMACIA-SISMED</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="txtNroSolicitudBusqSolicitud" class="form-control-label">F. Vigencia</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtNroSolicitudBusqSolicitud" autocomplete="off" placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table id="tblRecetaUnidosis" width="100%" class="table table-sm table-content-md table-bordered">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th style="width: 80%;">Medicamento</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>AMPICILINA SODICA - 1G - INYECTABLE</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CIPROFLOXACINO 3 MG/ML</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FENILERFRINA 100 MG/ML</td>
+                                        <td>0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-succes">Agregar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ *@
+
+@* <partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaCuentasPacientes.cshtml" /> *@
+<partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaRecetasPacientes.cshtml" />
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalInforme" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Informe</h4>
+            </div>
+            <div class="modal-body" style="background-color:#b4c6d6">
+
+                <iframe id="ifrmInforme"
+                        title="Inline Frame Example"
+                        width="100%"
+                        height="600"
+                        src=""></iframe>
+
+            </div>
+            <div class="modal-footer" style="background-color:#ced8e1">
+                <button id="btnCerrarTicket" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<iframe id="ifrmReporte"
+        title="Inline Frame Example"
+        width="100"
+        height="600" hidden="hidden"
+        src=""></iframe>
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment-with-locales.js"></script>
+
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src=@Href("~/js/Farmacia/IntervencionSanitaria.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Comun/BusquedaRecetasPacientes.js")></script>
+
+    @*COMENTADO POR KHOYOSI - (DESCOMENTAR DESPUES)
+        <script type="text/javascript" src=@Href("~/js/Comun/Referencia.js")></script>
+        <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientosSalud.js")></script>*@
+
+
+
+}
+
+<style>
+    body {
+        padding-right: 0px !important;
+    }
+
+    nav.navbar {
+        background-color: #CC1414;
+    }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+    /*==============REFCON===============*/
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff !important;
+            border-color: #ccc !important;
+        }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                                width: 100% !important;
+                            }*/
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+    .dataTables_scrollHead {
+        padding-right: 10px !important;
+    }
+
+    .dataTables_scrollBody {
+        overflow: scroll !important;
+    }
+</style>

@@ -1,0 +1,127 @@
+﻿<div class="card-header text-center" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">Evaluaciones</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div id="BadgeEvaluacion" style="max-width: 280px;" class="">
+            <div class="msc-hotline bg-blue mt-1">
+                <div class="msc-hotline-icon bg-info">
+                    <i class="fa-solid fa-baby"></i>
+                </div>
+                <div class="msc-hotline-content m-auto">
+                    <div class="msc-hotline-title">
+                        <span id="lblNumeroEvaluacion" class="text-info"></span>
+                    </div>
+                    <div class="msc-hotline-text" id="lblTipoEvaluacion"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="d-flex" style="float: right;">
+            <div class="form-group text-right mr-2" style="width: 200px;">
+                <label for="FechaInicioAtencion" class="form-control-label" style="font-weight: bold;">Fecha Ingreso</label>
+                <div class="input-group">
+                    <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 text-info entrada" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="FechaInicioAtencion" style="font-weight: bold;border-color:#ff9900;" readonly>
+                    <span class="input-group-addon " for="FechaInicioAtencion" id="FechaInicioAtencionIcon">
+                        <i class="fa fa-calendar "></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group text-right" style="width: 200px;">
+                <label for="HoraInicioAtencion" class="form-control-label" style="font-weight: bold;">Hora Inicio Atención (24 h)</label>
+                <div class="input-group">
+                    <input type="text" autocomplete="off" class="form-control text-info text-right entrada" name="HoraInicioAtencion" id="HoraInicioAtencion" onblur="valida_hora(value)" style="font-weight: bold;border-color:#ff9900;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row mt-1">
+    <div class="col-md-12">
+
+        <ul class="nav nav-tabs" id="EvaNeo-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="diagnosticos-tab-link" data-toggle="tab" href="#diagnosticos-tab" role="tab" aria-controls="home" aria-selected="true" aria-expanded="true">Impresión Diagnóstica</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="otrosCpt-tab-link" data-toggle="tab" href="#otrosCpt-tab" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">Procedimientos (CPT)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="ordenes-tab-link" data-toggle="tab" href="#ordenes-tab" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">Ordenes Médicas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="ordenes-tab-link" data-toggle="tab" href="#resultados-tab" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">Resultados</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="EvaNeoTabContent">
+
+            <div class="tab-pane fade show active in" id="diagnosticos-tab" role="tabpanel" aria-labelledby="diagnosticos-tab-link" aria-expanded="true">
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Diagnosticos.cshtml")*@
+                        <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/DiagnosticosLab.cshtml" />
+                    </div>
+
+                    <div class="col-md-12 mt-1">
+                        <div class="form-group">
+                            <b><label for="txtImpresionDiagnosticaNeo" class="form-control-label">Evaluación/Impresión diagnóstica</label></b>
+                            <div class="input-group">
+                                <textarea class="form-control entrada" id="txtImpresionDiagnosticaNeo" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="ordenes-tab" role="tabpanel" aria-labelledby="ordenes-tab-link" aria-expanded="false">
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <partial name="~/Views/Shared/Components/VistasParciales/Recetas/Ordenes.cshtml" />
+                        @*<partial name="~/Views/Shared/Components/VistasParciales/Ordenes.cshtml" />*@
+                        @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Ordenes.cshtml")*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="otrosCpt-tab" role="tabpanel" aria-labelledby="otrosCpt-tab-link" aria-expanded="false">
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <partial name="~/Views/Shared/Components/VistasParciales/Procedimientos/ProcedimientosCpt.cshtml" />
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <div class="form-group">
+                            <b><label for="txtTratamientoNeo" class="form-control-label">Tratamiento</label></b>
+                            <div class="input-group">
+                                <textarea class="form-control entrada" id="txtTratamientoNeo" rows="6"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <div class="form-group">
+                            <b><label for="txtPlanTrabajoNeo" class="form-control-label">Plan de Trabajo</label></b>
+                            <div class="input-group">
+                                <textarea class="form-control entrada" id="txtPlanTrabajoNeo" rows="6"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="resultados-tab" role="tabpanel" aria-labelledby="ordenes-tab-link" aria-expanded="false">
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <partial name="~/Views/Shared/Components/VistasParciales/Resultados.cshtml" />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

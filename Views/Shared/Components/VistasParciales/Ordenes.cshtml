@@ -1,0 +1,1452 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var AppVistaOrdenesMedica = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:TipoVistaOrdenesMedica");
+    string VistaOrdenesMedica = AppVistaOrdenesMedica.ToString();
+}
+
+
+<div class="row mb-1 OpcionesOrdenes">
+    <div class="col-md-12">
+        <div class="card bg-teal">
+            <div class="card-block pb-0">
+                <table id="tblDiagnosticosOrdenesMedicas" class="table table-sm table-bordered table-striped table-content-sm" width="100%">
+                    <thead style="color: white;background: #51717a;">
+                        <tr>                            
+                            <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Código</th>
+                            <th style="width: 80%;" data-columna="Descripcion" valign="middle" align="center">Diagnóstico</th>
+                            <th style="width: 10%;" data-columna="TipoDiagnostico" valign="middle" align="center">TipoDiagnostico</th>                            
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* @VistaOrdenesMedica *@
+<div class="card bg-pink"  id="ContOrdenesMedicas">
+    <div class="card-header bg-white">Órdenes Médicas</div>
+    <div class="card-block ">
+        <div class="row ">
+
+            <div class="col-md-4">
+                <div class="form-group m-0" style="margin-bottom: 1rem !important;">
+                    <label for="cboMedicoReceta" class="m-0">Médico</label>
+                    <select class="chzn-select" id="cboMedicoReceta" data-placeholder="Seleccione una opción" disabled required></select>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <ul id="clothing-nav" class="nav nav-tabs jerarquia2A" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#farmacia" role="tab" id="farmacia-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Farmacia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#patoClinica" role="tab" id="patoClinica-tab" data-toggle="tab" aria-controls="hats">Pat. Clinica</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#anatoPato" role="tab" id="anatoPato-tab" data-toggle="tab" aria-controls="hats">Anat. Patologica</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#bancoSangre" role="tab" id="bancoSangre-tab" data-toggle="tab" aria-controls="hats">Banco Sangre</a>
+                    </li>
+                    <li class="nav-item">
+                        @if (VistaOrdenesMedica == "1")
+                        {
+                            <a class="nav-link" href="#ecoObst" role="tab" id="ecoObst-tab" data-toggle="tab" aria-controls="hats">Eco. Obstétrica</a>
+                        }
+                        @if (VistaOrdenesMedica == "2")
+                        {
+                            <a class="nav-link" href="#ecoMedFet" role="tab" id="ecoMedFet-tab" data-toggle="tab" aria-controls="hats">Medicina Fetal</a>
+                        }
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ecoGene" role="tab" id="ecoGene-tab" data-toggle="tab" aria-controls="hats">Eco. General</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#rayos" role="tab" id="rayos-tab" data-toggle="tab" aria-controls="hats">Rayos X</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tomografia" role="tab" id="tomografia-tab" data-toggle="tab" aria-controls="hats">Tomografía</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#interconsultas" role="tab" id="interconsultas-tab" data-toggle="tab" aria-controls="hats">Interconsultas</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#solicitudCQx" role="tab" id="solicitudCQx-tab" data-toggle="tab" aria-controls="hats">Solicitud CQx</a>
+                    </li>
+                </ul>
+
+                <div id="clothing-nav-content" class="tab-content fade in active">
+                    <div role="tabpanel" class="tab-pane fade  in active" id="farmacia" aria-labelledby="farmacia-tab">
+                        <div class="row OpcionesOrdenes">
+                            @* <div class="col-md-4">
+                                <div class="form-group m-0">
+                                    <label for="cboFarmacia">Farmacia</label>
+                                    <select class="chzn-select" id="cboFarmacia" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group m-0">
+                                    <label for="txtFechaVigencia">Fecha de Vigencia</label>
+                                    <div class="input-group input-group-sm" style="max-width: 130px;">
+                                        <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaVigencia">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div> *@
+                            <div class="col-lg-6 col-xl-6">
+                                <div class="row">
+                                    <div class="col-lg-8 col-xl-9">
+                                        <div class="form-group m-0">
+                                            <label for="cboFarmacia">Farmacia</label>
+                                            <select class="chzn-select" id="cboFarmacia" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaVigencia">Fecha de Vigencia</label>
+                                            <div class="input-group input-group-sm" style="max-width: 130px;">
+                                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaVigencia">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-xl-6">
+                                <div class="check__toggle" id="optAntimicrobianos" style="margin-top: 30px;">
+                                    <label class="toggle">
+                                        <input class="toggle__input" type="checkbox" id="chkAntimicrobianos">
+                                        <span class="toggle__label">
+                                            <span class="toggle__text">Recetar Antimicrobianos</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <form>
+                            <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                <legend class="mb-0">
+                                    <i class="fa-solid fa-pills m-r-5" style="color: #ccc;"></i>
+                                    <label id="lblFarmacia" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                </legend>
+                                <div class="row m-0 OpcionesOrdenes">
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="cboMedicamento" class="m-0">Medicamento/Insumo</label>
+                                            <select class="chzn-select" id="cboMedicamento" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    @* <div class="col-md-6">
+                                        <div class="check__toggle mt-2" id="contentAntimicrobianos">
+                                            <label class="toggle">
+                                                <input class="toggle__input" type="checkbox" id="chkAntimicrobianos">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Recetar Antimicrobianos</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div> *@
+                                </div>
+                                <div class="row m-0 OpcionesOrdenes">
+                                    <div class="col-lg-1">
+                                        <div class="form-group m-0">
+                                            <label for="txtCAntidadFarmacia">Cantidad</label>
+                                            <input id="txtCAntidadFarmacia" autocomplete="off" placeholder="Cantidad" class="solo-numero form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="cboDosis">Dosis</label>
+                                            <select class="chzn-select" id="cboDosis" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="cboVia">Via</label>
+                                            <select class="chzn-select" id="cboVia" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtFrecuencia">Frecuencia</label>
+                                            <input id="txtFrecuencia" autocomplete="off" placeholder="Frecuencia" class="form-control form-control-sm" data-placeholder="Seleccione una opción">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="d-flex align-items-end" style="height: 50px;">
+                                            <button id="btnAgregaFarmacia" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                Agregar
+                                            </button>
+                                            <button id="btnQuitarFarmacia" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    @*<div class="col-md-6"><label id="lblFarmacia" style="color:red" class="form-control-label"></label></div>*@
+                                    <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaFarmacia" name="hdIdRecetaFarmacia" type="text" class="form-control form-control-sm"></div>
+
+                                    <div class="col-md-12">
+                                        <table id="tblCatalogoFarmacia" class="table table-sm table-bordered table-content-md" style=" width:100%">
+                                            <thead style="color: white;background: #51537a;">
+                                                <tr>
+                                                    <th style="display: none;width: 0%" align="center">idProducto</th>
+                                                    <th style="width: 35%" align="center">Descripcion</th>
+                                                    <th style="width: 10%" align="center">Cantidad</th>
+                                                    <th style="display:none;width: 0%" align="center">idDosis</th>
+                                                    <th style="width: 10%" align="center">Dosis</th>
+                                                    <th style="display: none;width: 0%" align="center">idVias</th>
+                                                    <th style="width: 15%" align="center">Via Adm.</th>
+                                                    <th style="width: 20%" align="center">Frecuencia</th>
+                                                    <th style="width: 10%" align="center">CIE10</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                        <div class="row" id="cardAntimicrobianos">
+                            <div class="col-lg-7">
+                                <div class="card bg-green mb-1">
+                                    <div class="card-header">
+                                        Solicitud de Antimicrobianos
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="row">
+
+                                            <div class="col-xl-6">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboMotivoSolAntimic">Motivo Solicitud</label>
+                                                            <select class="chzn-select" id="cboMotivoSolAntimic" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+
+                                                        <div class="form-group m-0">
+                                                            <label for="txtTratamientoActualSolAntimic">Apreciación y Tratamiento Actual</label>
+                                                            <textarea class="form-control" id="txtTratamientoActualSolAntimic" rows="7"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboCondicionPacienteSolAntimic">Condicion del Paciente</label>
+                                                            <div class="row" id="contentCondicionAntimicrobiano">
+                                                                <div class="col-lg-9">
+                                                                    <select class="chzn-select" id="cboCondicionPacienteSolAntimic" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <button class="btn btn-sm btn-success layout_btn_prevent" id="btnAgregarCondicionPacienteSolAntimic"><i class="fa-solid fa-plus"></i> Agregar</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <table id="tblCondicionPacienteSolAntimic" width="100%" class="table table-sm table-bordered table-content-sm">
+                                                            <thead style="color: white; background-color: #434343;">
+                                                                <tr>
+                                                                    <th>idCondicion</th>
+                                                                    <th>Condición</th>
+                                                                    <th>Acción</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="card bg-yellow mb-1" style="border: 2px solid #d5c493;">
+                                    <div class="card-header">Respuesta a la Solicitud de Antimicrobianos</div>
+                                    <div class="card-block pt-0">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group custom-controls-stacked m-0">
+                                                    <label>Autoriza Antimicrobiano</label>
+                                                    <div class="switch-field">
+                                                        <input type="radio" class="rdbAutorizaSolAntimic" id="rdbAutorizaSolAntimicSI" name="rdbAutorizaSolAntimic" disabled>
+                                                        <label for="rdbAutorizaSolAntimicSI" class="pl-2 pr-2">SI</label>
+                                                        <input type="radio" class="rdbAutorizaSolAntimic" id="rdbAutorizaSolAntimicNO" name="rdbAutorizaSolAntimic" disabled>
+                                                        <label for="rdbAutorizaSolAntimicNO" class="pl-2 pr-2">NO</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group m-0 float-sm-right">
+                                                    <label for="txtFechaRespuestaSolAntimic">Fecha Respuesta</label>
+                                                    <div class="input-group input-group-sm" style="max-width: 150px;">
+                                                        <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campo campoAprob" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaRespuestaSolAntimic" disabled>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group m-0" id="contentRechazaAntimicrobiano" style="display: none;">
+                                                    <label for="cboMotivoRechazoSolAntimic">Motivo Rechazo</label>
+                                                    <select class="chzn-select" id="cboMotivoRechazoSolAntimic" data-placeholder="Seleccione una opción" disabled></select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group m-0">
+                                                    <label for="txtSugerenciaTratamientoSolAntimic">Sugerencias de Tratamiento y Dosis</label>
+                                                    <textarea class="form-control" id="txtSugerenciaTratamientoSolAntimic" rows="5" disabled></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="rayos" aria-labelledby="rayos-tab">
+                        <form>
+                            <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                <legend class="mb-0">
+                                    <i class="fa-solid fa-x-ray m-r-5" style="color: #ccc;"></i>
+                                    <label id="lblRx" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                </legend>
+                                <div class="row m-0 OpcionesOrdenes">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                        <label for="cboRx">Exámen</label>
+                                        <select class="chzn-select" id="cboRx" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                    <div class="col-sm-6 col-md-2 col-lg-2 col-xl-1">
+                                        <label for="txtCAntidadRx">Cantidad</label>
+                                        <input id="txtCAntidadRx" autocomplete="off" placeholder="Cantidad" class="solo-numero form-control form-control-sm">
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                                        <div class="d-flex align-items-end" style="height: 50px;">
+                                            <button id="btnAgregaRayosX" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                Agregar
+                                            </button>
+                                            <button id="btnQuitarRayos" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaRX" name="hdIdRecetaRX" type="text" class="form-control"></div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12">
+                                        <table id="tblCatalogoRayos" class="table table-sm table-bordered table-content-md">
+                                            <thead style="color: white;background: #51537a;">
+                                                <tr>
+                                                    <th style="display:none" align="center">idProducto</th>
+                                                    <th align="center">Descripcion</th>
+                                                    <th align="center">Cantidad</th>
+                                                    <th style="width: 10%" align="center">CIE10</th>
+                                                </tr>
+                                            </thead>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    @if (VistaOrdenesMedica == "1")
+                    {
+                        <div role="tabpanel" class="tab-pane fade" id="ecoObst" aria-labelledby="ecoObst-tab">
+                            <form>
+                                <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                    <legend class="mb-0">
+                                        <i class="fa-solid fa-person-pregnant m-r-5" style="color: #ccc;"></i>
+                                        <label id="lblEcoObs" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                    </legend>
+                                    <div class="row m-0 OpcionesOrdenes">
+                                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                            <label for="cboEcoObs">Exámen</label>
+                                            <select class="chzn-select" id="cboEcoObs" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                        <div class="col-sm-6 col-md-2 col-lg-2 col-xl-1">
+                                            <label for="txtCAntidadObs">Cantidad</label>
+                                            <input id="txtCAntidadObs" autocomplete="off" placeholder="Cantidad" class="solo-numero form-control form-control-sm">
+                                        </div>
+                                        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                                            <div class="d-flex align-items-end" style="height: 50px;">
+                                                <button id="btnAgregaEcoObs" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                    <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                    Agregar
+                                                </button>
+                                                <button id="btnQuitarEcoObs" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                    <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                    Eliminar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row m-0">
+                                        <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaEcoObs" name="hdIdRecetaEcoObs" type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="row m-0">
+                                        <div class="col-md-12">
+                                            <table id="tblCatalogoEcoObs" class="table table-sm table-bordered table-content-md">
+                                                <thead style="color: white;background: #51537a;">
+                                                    <tr>
+                                                        <th style="display:none" align="center">idProducto</th>
+                                                        <th align="center">Descripcion</th>
+                                                        <th align="center">Cantidad</th>
+                                                        <th style="width: 10%" align="center">CIE10</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    }
+                    @if (VistaOrdenesMedica == "2")
+                    {
+                        <div role="tabpanel" class="tab-pane fade mt-1" id="ecoMedFet" aria-labelledby="ecoMedFet-tab">
+                            <ul id="clothing-nav2" class="nav nav-tabs jerarquia2B" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#ecoObst" role="tab" id="ecoObst-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Ecografias</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#ecoObstProc" role="tab" id="ecoObstProc-tab" data-toggle="tab" aria-controls="hats">Procedimientos</a>
+                                </li>
+
+                            </ul>
+
+                            <div id="clothing-nav-content2" class="tab-content fade in active">
+                                <div role="tabpanel" class="tab-pane fade in active" id="ecoObst" aria-labelledby="ecoObst-tab">
+                                    <form>
+                                        <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                            <legend class="mb-0">
+                                                <i class="fa-solid fa-person-pregnant m-r-5" style="color: #ccc;"></i>
+                                                <label id="lblEcoObs" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                            </legend>
+                                            <div class="row m-0 OpcionesOrdenes">
+                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                    <label for="cboEcoObs">Exámen</label>
+                                                    <select class="chzn-select" id="cboEcoObs" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                                <div class="col-sm-6 col-md-2 col-lg-2 col-xl-1">
+                                                    <label for="txtCAntidadObs">Cantidad</label>
+                                                    <input id="txtCAntidadObs" autocomplete="off" placeholder="Cantidad" class="solo-numero form-control form-control-sm">
+                                                </div>
+                                                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                                                    <div class="d-flex align-items-end" style="height: 50px;">
+                                                        <button id="btnAgregaEcoObs" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                            <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                            Agregar
+                                                        </button>
+                                                        <button id="btnQuitarEcoObs" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                            <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row m-0">
+                                                <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaEcoObs" name="hdIdRecetaEcoObs" type="text" class="form-control"></div>
+                                            </div>
+                                            <div class="row m-0">
+                                                <div class="col-md-12">
+                                                    <table id="tblCatalogoEcoObs" class="table table-sm table-bordered table-content-md">
+                                                        <thead style="color: white;background: #51537a;">
+                                                            <tr>
+                                                                <th style="display:none" align="center">idProducto</th>
+                                                                <th align="center">Descripcion</th>
+                                                                <th align="center">Cantidad</th>
+                                                                <th style="width: 10%" align="center">CIE10</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="ecoObstProc" aria-labelledby="ecoObstProc-tab">
+                                    <form>
+                                        <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                            <legend class="mb-0">
+                                                <i class="fa-solid fa-person-pregnant m-r-5" style="color: #ccc;"></i>
+                                                <label id="lblEcoObsProc" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                            </legend>
+                                            <div class="row m-0 OpcionesOrdenes">
+                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                    <label for="cboEcoObsProc">Exámen</label>
+                                                    <select class="chzn-select" id="cboEcoObsProc" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                                <div class="col-sm-6 col-md-2 col-lg-2 col-xl-1">
+                                                    <label for="txtCAntidadObsProc">Cantidad</label>
+                                                    <input id="txtCAntidadObsProc" autocomplete="off" placeholder="Cantidad" class="solo-numero form-control form-control-sm">
+                                                </div>
+                                                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                                                    <div class="d-flex align-items-end" style="height: 50px;">
+                                                        <button id="btnAgregaEcoObsProc" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                            <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                            Agregar
+                                                        </button>
+                                                        <button id="btnQuitarEcoObsProc" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                            <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row m-0">
+                                                <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaEcoObsProc" name="hdIdRecetaEcoObsProc" type="text" class="form-control"></div>
+                                            </div>
+                                            <div class="row m-0">
+                                                <div class="col-md-12">
+                                                    <table id="tblCatalogoEcoObsProc" class="table table-sm table-bordered table-content-md">
+                                                        <thead style="color: white;background: #51537a;">
+                                                            <tr>
+                                                                <th style="display:none" align="center">idProducto</th>
+                                                                <th align="center">Descripcion</th>
+                                                                <th align="center">Cantidad</th>
+                                                                <th style="width: 10%" align="center">CIE10</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div role="tabpanel" class="tab-pane fade" id="ecoGene" aria-labelledby="anatoPato-tab">
+                        <form>
+                            <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                <legend class="mb-0">
+                                    <i class="fa-solid fa-person-dots-from-line m-r-5" style="color: #ccc;"></i>
+                                    <label id="lblEcoGene" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                </legend>
+                                <div class="row m-0 OpcionesOrdenes">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                        <label for="cboecoGene">Exámen</label>
+                                        <select class="chzn-select" id="cboecoGene" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                    <div class="col-sm-6 col-md-2 col-lg-2 col-xl-1">
+                                        <label for="txtCAntidadEcoGeneral">Cantidad</label>
+                                        <input id="txtCAntidadEcoGeneral" autocomplete="off" placeholder="Cantidad" class="solo-numero form-control form-control-sm">
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                                        <div class="d-flex align-items-end" style="height: 50px;">
+                                            <button id="btnAgregaEcoGene" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                Agregar
+                                            </button>
+                                            <button id="btnQuitarEcoGene" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaEcoGene" name="hdIdRecetaEcoGene" type="text" class="form-control"></div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12">
+                                        <table id="tblCatalogoEcoGene" class="table table-sm table-bordered table-content-md">
+                                            <thead style="color: white;background: #51537a;">
+                                                <tr>
+                                                    <th style="display:none" align="center">idProducto</th>
+                                                    <th align="center">Descripcion</th>
+                                                    <th align="center">Cantidad</th>
+                                                    <th style="width: 10%" align="center">CIE10</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="anatoPato" aria-labelledby="anatoPato-tab">
+                        <form>
+                            <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                <legend class="mb-0">
+                                    <i class="fa-solid fa-vial m-r-5" style="color: #ccc;"></i>
+                                    <label id="lblanaPatologica" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                </legend>
+                                <div class="row m-0 OpcionesOrdenes">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                        <label for="cboanaPatologica">Exámen</label>
+                                        <select class="chzn-select" id="cboanaPatologica" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                    <div class="col-sm-6 col-md-2 col-lg-2 col-xl-1">
+                                        <label for="txtCAntidadAPatologica">Cantidad</label>
+                                        <input id="txtCAntidadAPatologica" autocomplete="off" placeholder="Cantidad" class="solo-numero form-control form-control-sm">
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                                        <div class="d-flex align-items-end" style="height: 50px;">
+                                            <button id="btnAgregaanaPatologica" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                Agregar
+                                            </button>
+                                            <button id="btnQuitaranaPatologica" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaAnaPatologica" name="hdIdRecetaAnaPatologica" type="text" class="form-control"></div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12">
+                                        <table id="tblCatalogoAnaPatologica" class="table table-sm table-bordered table-content-md">
+                                            <thead style="color: white;background: #51537a;">
+                                                <tr>
+                                                    <th style="display:none" align="center">idProducto</th>
+                                                    <th align="center">Descripcion</th>
+                                                    <th align="center">Cantidad</th>
+                                                    <th style="width: 10%" align="center">CIE10</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="patoClinica" aria-labelledby="patoClinica-tab">
+                        <form>
+                            <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                <legend class="mb-0">
+                                    <i class="fa-solid fa-microscope m-r-5" style="color: #ccc;"></i>
+                                    <label id="lblPatoClinica" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                </legend>
+                                <div class="row m-0 OpcionesOrdenes">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                        <label for="cboPatoClinica">Exámen</label>
+                                        <select class="chzn-select" id="cboPatoClinica" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                    <div class="col-sm-6 col-md-2 col-lg-2 col-xl-1">
+                                        <label for="txtCAntidadPatoClinica">Cantidad</label>
+                                        <input id="txtCAntidadPatoClinica" autocomplete="off" placeholder="Cantidad" class="solo-numero form-control form-control-sm">
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                                        <div class="d-flex align-items-end" style="height: 50px;">
+                                            <button id="btnAgregaPatoClinica" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                Agregar
+                                            </button>
+                                            <button id="btnQuitarPatoClinica" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaPatoClinica" name="hdIdRecetaPatoClinica" type="text" class="form-control"></div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12">
+                                        <table id="tblCatalogoPatoClinica" class="table table-sm table-bordered table-content-md">
+                                            <thead style="color: white;background: #51537a;">
+                                                <tr>
+                                                    <th style="display:none" align="center">idProducto</th>
+                                                    <th align="center">Descripcion</th>
+                                                    <th align="center">Cantidad</th>
+                                                    <th style="width: 10%" align="center">CIE10</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="bancoSangre" aria-labelledby="bancoSangre-tab">
+                        <form>
+                            <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                <legend class="mb-0">
+                                    <i class="fa-solid fa-hand-holding-droplet m-r-5" style="color: #ccc;"></i>
+                                    <label id="lblbancoSangre" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                </legend>
+                                <div class="row m-0 OpcionesOrdenes">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                        <label for="cbobancoSangre">Exámen</label>
+                                        <select class="chzn-select" id="cbobancoSangre" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                    <div class="col-sm-6 col-md-2 col-lg-2 col-xl-1">
+                                        <label for="txtCAntidadbancoSangre">Cantidad</label>
+                                        <input id="txtCAntidadbancoSangre" autocomplete="off" placeholder="Cantidad" class="solo-numero form-control form-control-sm">
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                                        <div class="d-flex align-items-end" style="height: 50px;">
+                                            <button id="btnAgregabancoSangre" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                Agregar
+                                            </button>
+                                            <button id="btnQuitarbancoSangre" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-6"><input hidden="hidden" id="hdIdRecetabancoSangre" name="hdIdRecetabancoSangre" type="text" class="form-control"></div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12">
+                                        <table id="tblCatalogobancoSangre" class="table table-sm table-bordered table-content-md">
+                                            <thead style="color: white;background: #51537a;">
+                                                <tr>
+                                                    <th style="display:none" align="center">idProducto</th>
+                                                    <th align="center">Descripcion</th>
+                                                    <th align="center">Cantidad</th>
+                                                    <th style="width: 10%" align="center">CIE10</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="tomografia" aria-labelledby="tomografia-tab">
+                        <form>
+                            <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                <legend class="mb-0">
+                                    <i class="fa-light fa-display-medical m-r-5" style="color: #ccc;"></i>
+                                    <label id="lbltomografia" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                </legend>
+                                <div class="row m-0 OpcionesOrdenes">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                        <label for="cbotomografia">Exámen</label>
+                                        <select class="chzn-select" id="cbotomografia" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                    <div class="col-sm-6 col-md-2 col-lg-2 col-xl-1">
+                                        <label for="txtCAntidadtomografia">Cantidad</label>
+                                        <input id="txtCAntidadtomografia" autocomplete="off" placeholder="Cantidad" class="solo-numero form-control form-control-sm">
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                                        <div class="d-flex align-items-end" style="height: 55px;">
+                                            <button id="btnAgregatomografia" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                Agregar
+                                            </button>
+                                            <button id="btnQuitartomografia" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-6"><input hidden="hidden" id="hdIdRecetatomografia" name="hdIdRecetatomografia" type="text" class="form-control"></div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12">
+                                        <table id="tblCatalogotomografia" class="table table-sm table-bordered table-content-md">
+                                            <thead style="color: white;background: #51537a;">
+                                                <tr>
+                                                    <th style="display:none" align="center">idProducto</th>
+                                                    <th align="center">Descripcion</th>
+                                                    <th align="center">Cantidad</th>
+                                                    <th style="width: 10%" align="center">CIE10</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="interconsultas" aria-labelledby="interconsultas-tab">
+                        @*JDELGADO011 añadir tab interconsulta*@
+
+                        <form>
+                            <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                <legend class="mb-0">
+                                    <i class="fa-solid fa-hand-holding-droplet m-r-5" style="color: #ccc;"></i>
+                                    <label id="lblInterconsulta" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                </legend>
+
+                                @* <div class="row m-0 mb-1">
+                                    <div class="col-md-12">
+                                        <label for="">Diagnosticos</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <table id="tblDiagnosticosInterconsulta" class="table table-sm table-bordered table-content-md" width="100%">
+                                            <thead style="color: white;background: #51717a;">
+                                                <tr>
+                                                    <th style="width: 0%;" data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                                                    <th style="width: 0%;" data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                                                    <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Código</th>
+                                                    <th style="width: 80%;" data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                                                    <th style="width: 0%;" data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                                                    <th style="width: 0%;" data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                                                    <th style="width: 0%;" data-columna="idTipoDiagnostico" valign="middle" align="center">idTipoDiagnostico</th>
+                                                    <th style="width: 10%;" data-columna="TipoDiagnostico" valign="middle" align="center">TipoDiagnostico</th>
+                                                    <th style="width: 10%;" data-columna="Intrahospitalario" valign="middle" align="center">IntraHospitalario</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div> *@
+
+
+                                <div class="row m-0 mt-1">
+                                    <div class="col-md-4">
+                                        <label for="cbointerconsultasCE">Procedimiento</label>
+                                        <select class="chzn-select" id="cbointerconsultasCE" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+
+                                    <div class="col-md-4" id="contEspecialidadesInterconsulta">
+                                        <label for="cboEspecialidades">Especialidad: </label>
+                                        <select class="chzn-select" id="cboEspecialidades" data-placeholder="Seleccione una opción" disabled></select>
+                                    </div>
+
+                                    <div class="col-md-4" id="contOtrasEspecialidadesInterconsulta">
+                                        <label for="txtOtrasEspecialidadesInterconsulta">Especialidad</label>
+                                        <input id="txtOtrasEspecialidadesInterconsulta" autocomplete="off" placeholder="Especialidad" class="form-control form-control-sm">
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="d-flex align-items-end" style="height: 55px;">
+                                            <button id="btnAgregainterconsultas" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                Agregar
+                                            </button>
+                                            <button id="btnQuitarinterconsultas" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row m-0 mb-1 mt-1">
+                                    <div class="col-md-2">
+                                        <label for="txtResumenHistoriaClinica">Resumen de Historia Clínica Interconsulta</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <textarea id="txtResumenHistoriaClinica" autocomplete="off" class="form-control" rows="3"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row m-0 mb-1">
+                                    <div class="col-md-2">
+                                        <label for="txtMotivoInterconsulta">Motivo de Interconsulta</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <textarea id="txtMotivoInterconsulta" autocomplete="off" class="form-control" rows="3"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="row m-0">
+                                    <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaInterconsulta" name="hdIdRecetaInterconsulta" type="text" class="form-control"></div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12">
+                                        <table id="tblCatalogointerconsultas" class="table table-sm table-bordered table-content-md">
+                                            <thead style="color: white;background: #51537a;">
+                                                <tr>
+                                                    <th style="display:none" align="center">idProducto</th>
+                                                    <th align="center">Descripcion</th>
+                                                    <th align="center">Cantidad</th>
+                                                    <th style="display:none" align="center">idEspecialidad</th>
+                                                    <th align="center">Especialidad</th>
+                                                    <th align="center">Otra Especialidad</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="solicitudCQx" aria-labelledby="solicitudCQx-tab">
+                        @*JDELGADO011 añadir tab interconsulta*@
+
+                        <form>
+                            <fieldset class="m-0 mb-1 pb-1" style="border-color: #d5d5d5;">
+                                <legend class="mb-0">
+                                    <i class="fa-solid fa-hand-holding-droplet m-r-5" style="color: #ccc;"></i>
+                                    <label id="lblSolicitudCQx" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                </legend>
+
+                                <div class="row m-0 mt-1">
+                                    <div class="col-md-12">
+                                        <div class="row m-0">
+                                            <div class="col-md-2">
+                                                <div class="form-group m-0">
+                                                    <label class="form-control-label">Historia</label>
+                                                    <input class="form-control form-control-sm" id="txtNroHistoriaSolicitud" disabled />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group m-0">
+                                                    <label class="form-control-label">Edad</label>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" class="form-control" placeholder="Año" aria-describedby="basic-addon2" id="txtEdadAnioSolicitud" disabled>
+                                                                <span class="input-group-addon" id="basic-addon2">A</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" class="form-control" placeholder="Mes" aria-describedby="basic-addon2" id="txtEdadMesSolicitud" disabled>
+                                                                <span class="input-group-addon" id="basic-addon2">M</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" class="form-control" placeholder="Mes" aria-describedby="basic-addon2" id="txtEdadDiaSolicitud" disabled>
+                                                                <span class="input-group-addon" id="basic-addon2">D</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group m-0">
+                                                    <label class="form-control-label">Sexo</label>
+                                                    <input class="form-control form-control-sm" id="txtSexoSolicitud" disabled />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group m-0">
+                                                    <label class="form-control-label">Servicio</label>
+                                                    <input class="form-control form-control-sm" id="txtServicioSolicitud" disabled />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group m-0">
+                                                    <label class="form-control-label">Cama</label>
+                                                    <input class="form-control form-control-sm" id="txtCamaSolicitud" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-7">
+                                        <div class="row m-0">
+                                            <div class="col-md-6">
+                                                <label for="cboClaseIntervencion">Clase de intervención</label>
+                                                <select class="chzn-select" id="cboClaseIntervencion" data-placeholder="Seleccione una opción">
+                                                    @* <option value="0">Seleccionar Opcion</option>
+                                                    <option value="1">Emergencia</option>
+                                                    <option value="2">Programada</option> *@
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="cboClasePlaciente">Clasificación del paciente</label>
+                                                <select class="chzn-select" id="cboClasePlaciente" data-placeholder="Seleccione una opción">
+                                                   @*  <option value="0">Seleccionar Opcion</option>
+                                                    <option value="1">Gestante</option>
+                                                    <option value="2">Ginecológica</option>
+                                                    <option value="3">Neonatal</option>
+                                                    <option value="4">Pediátrico</option> *@
+                                                </select>
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <label for="cboUbicacionPlaciente">Ubicacion del paciente</label>
+                                                <select class="chzn-select" id="cboUbicacionPlaciente" data-placeholder="Seleccione una opción" disabled>
+                                                    <option value="0">Seleccionar Opcion</option>
+                                                    <option value="1">Consulta externa</option>
+                                                    <option value="2">Emergencia</option>
+                                                    <option value="3">Hospitalización</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row m-0">
+                                            <div class="col-md-6" hidden>
+                                                <label for="cboSolicitudCirujano">Cirujano</label>
+                                                <select class="chzn-select" id="cboSolicitudCirujano" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+
+                                            <div class="col-md-6" hidden>
+                                                <label for="cboSolicitudPrimerAyudante">1<sup>er</sup> ayudante</label>
+                                                <select class="chzn-select" id="cboSolicitudPrimerAyudante" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+
+                                            <div class="col-md-6" hidden>
+                                                <label for="cboSolicitudAnestesiologoCQx">Anestesiologo</label>
+                                                <select class="chzn-select" id="cboSolicitudAnestesiologoCQx" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row m-0">
+                                            <div class="col-md-6" hidden>
+                                                <label for="cboSolicitudTipoAnestesiaPreviaCQx">Tipo Anestesia previa</label>
+                                                <select class="chzn-select" id="cboSolicitudTipoAnestesiaPreviaCQx" data-placeholder="Seleccione una opción">
+                                                    <option value="0">Seleccionar Opcion</option>
+                                                    <option value="1">Opcion 1</option>
+                                                    <option value="2">Opcion 2</option>
+                                                    <option value="3">Opcion 3</option>
+                                                    <option value="4">Opcion 4</option>
+                                                </select>
+                                            </div>
+
+
+                                            <div class="col-md-6" hidden>
+                                                <label for="cboSalaSolicitudCQx">Sala</label>
+                                                <select class="chzn-select" id="cboSalaSolicitudCQx" data-placeholder="Seleccione una opción">
+                                                    <option value="0">Seleccionar Opcion</option>
+                                                    <option value="1">Opcion 1</option>
+                                                    <option value="2">Opcion 2</option>
+                                                    <option value="3">Opcion 3</option>
+                                                    <option value="4">Opcion 4</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="cboProcedimientoQuirurgico">Prcedimiento quirúrgico</label>
+                                                <select class="chzn-select" id="cboProcedimientoQuirurgico" data-placeholder="Seleccione una opción">
+                                                    <option value="0">Seleccionar Opcion</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <div class="row m-0">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaSolicitudCQx" class="form-control-label">Fecha solicitud</label>
+                                                    <div class="input-group input-group-sm m-0">
+                                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaSolicitudCQx" disabled>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group m-0 campo">
+                                                    <label for="txtHoraSolicitudCQx" class="font-weight-bold text-info">Hora solicitud</label>
+                                                    <div class="d-flex">
+                                                        <div style="max-width:80px;">
+                                                            <input type="text" name="txtHoraSolicitudCQx" id="txtHoraSolicitudCQx" onblur="valida_hora(value)" class="form-control form-control-sm" placeholder="" autocomplete="off" disabled>
+                                                        </div>
+                                                        <div class="ml-1 mr-1">
+                                                            <label class="m-0 text-info">24 Horas</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaParaCQx" class="form-control-label">Fecha sugerida para la IQ</label>
+                                                    <div class="input-group input-group-sm m-0">
+                                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaParaCQx">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group m-0 campo">
+                                                    <label for="txtHoraParaCqx" class="font-weight-bold text-info">Hora sugerida para la IQ</label>
+                                                    <div class="d-flex">
+                                                        <div style="max-width:80px;">
+                                                            <input type="text" name="txtHoraParaCqx" id="txtHoraParaCqx" onblur="valida_hora(value)" class="form-control form-control-sm" placeholder="" autocomplete="off">
+                                                        </div>
+                                                        <div class="ml-1 mr-1">
+                                                            <label class="m-0 text-info">24 Horas</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaSolicitudCQxAceptada" class="form-control-label">Fecha aceptada</label>
+                                                    <div class="input-group input-group-sm m-0">
+                                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaSolicitudCQxAceptada" disabled>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group m-0 campo">
+                                                    <label for="txtHoraSolicitudCQxAceptada" class="font-weight-bold text-info">Hora aceptada</label>
+                                                    <div class="d-flex">
+                                                        <div style="max-width:80px;">
+                                                            <input type="text" name="txtHoraSolicitudCQxAceptada" id="txtHoraSolicitudCQxAceptada" onblur="valida_hora(value)" class="form-control form-control-sm" placeholder="" autocomplete="off" disabled>
+                                                        </div>
+                                                        <div class="ml-1 mr-1">
+                                                            <label class="m-0 text-info">24 Horas</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="row m-0 mt-1">
+                                            <div class="col-md-4">
+                                                <div class="d-flex align-items-end" style="height: 55px;">
+                                                    <button id="btnAgregaSolicitudCQx" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                        <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                        Agregar
+                                                    </button>
+                                                    <button id="btnQuitarSolicitudCQx" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                        <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                        Eliminar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row m-0 mt-1">
+                                    <div class="col-lg-12">
+
+                                        <div class="card bg-teal">
+                                            <div class="card-header bg-white" id="TituloCardDiagnostico">Diagnósticos Pre-Operatorio</div>
+                                            <div class="card-block custom-form pt-1">
+                                                <div class="row OpcionesDiagnosticos">
+                                                    <div class="col-md-3" style="max-width: 200px;">
+                                                        <div class="form-group m-0">
+                                                            <div class="d-flex">
+                                                                <input id="txtCodigoDiagSolicitudCQx" type="text" class="form-control form-control-sm m-auto" autocomplete="off">
+                                                                <input id="hdnIdDiagnosticoSolicitudCQx" type="hidden" class="form-control">
+                                                                <button type="button" class="btn btn-sm btn-outline-primary layout_btn_prevent ml-1" onclick="Ordenes.AbrirModalBusqueda();">
+                                                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="form-group m-0">
+                                                            <input id="txtDescripcionDiagSolicitudCQx" type="text" class="form-control form-control-sm m-auto" readonly>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-3" style="max-width: 300px;">
+                                                                <div class="fomr-group">
+                                                                    <label class="font-weight-bold">Tipo de Diagnóstico</label>
+                                                                    <select class="hide_search" id="cboTipoDiagnosticoSolicitudCQx" name="cboTipoDiagnostico">
+                                                                        <option value="-1">---Seleccione tipo diagnostico---</option>
+                                                                        @foreach (var item in @ViewBag.TiposDiagnosticos)
+                                                                        {
+                                                                            <option value="@item.IdSubclasificacionDx"> @item.Descripcion  </option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="col-lg-4">
+                                                                <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;" onclick="Ordenes.AgregarDiagnostico();">
+                                                                    <span class="btn-label">
+                                                                        <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                                    </span>
+                                                                    Agregar
+                                                                </button>
+                                                                <button id="btnQuitarDiagnostico" type="button" class="btn btn-sm btn-labeled btn-danger mt-2" style="width: 100px;" onclick="Ordenes.QuitarDiagnostico();">
+                                                                    <span class="btn-label">
+                                                                        <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                                    </span>
+                                                                    Quitar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table id="lstDiagnosticosSolicitudCQx" class="table table-sm table-bordered table-content-sm" width="100%">
+                                                            <thead style="color: white;background: #51717a;">
+                                                                <tr>
+                                                                    <th style="width: 0%;" data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                                                                    <th style="width: 0%;" data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                                                                    <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Código</th>
+                                                                    <th style="width: 80%;" data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                                                                    <th style="width: 0%;" data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                                                                    <th style="width: 0%;" data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                                                                    <th style="width: 0%;" data-columna="idTipoDiagnostico" valign="middle" align="center">idTipoDiagnostico</th>
+                                                                    <th style="width: 10%;" data-columna="TipoDiagnostico" valign="middle" align="center">TipoDiagnostico</th>
+                                                                    @* <th style="width: 10%;" data-columna="Intrahospitalario" valign="middle" align="center">IntraHospitalario</th> *@
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row m-0">
+                                    <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaSolicitudCQx" name="hdIdRecetaSolicitudCQx" type="text" class="form-control"></div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12">
+                                        <table id="tblCatalogoSolicitudCQx" class="table table-sm table-bordered table-content-md">
+                                            <thead style="color: white;background: #51537a;">
+                                                <tr>
+                                                    <th style="display:none" align="center">idProducto</th>
+                                                    <th align="center">Descripcion</th>
+                                                    <th align="center">Cantidad</th>
+                                                    <th style="width: 10%" align="center">CIE10</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <button type="button" class="btn btn-danger float-lg-right OpcionesOrdenes" id="btnMuestraPaquete"><i class="fa fa-medkit"></i>&nbsp;&nbsp;Paquete</button>&nbsp;&nbsp;
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalBusquedaCatalogo" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+
+    <div class="modal-dialog modal-lg" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-white" id="titulo">Busqueda de Catalogo</h4>
+            </div>
+            <div class="modal-body p-t-5">
+                <div class="card-block p-t-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-success" id="btnAgregarProductoCalogo"><i class="fa fa-plus"></i>&nbsp;&nbsp;Agregar</button>&nbsp;&nbsp;
+                        </div>
+                    </div>
+
+
+                    <table id="tblCatalogo" class="table table-bordered">
+                        <thead style="color: white;background: #3e6184;">
+                            <tr>
+                                <th align="center">Codigo</th>
+                                <th align="center">Descripcion</th>
+                                <th style="display:none" align="center">precio</th>
+                                <th style="display:none" align="center">total</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnCerrar">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalPaquete" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+
+    <div class="modal-dialog modal-lg" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-white" id="titulo">Paquete</h4>
+            </div>
+            <div class="modal-body p-t-5" style="background-color:#b4c6d6">
+                <div class="card m-t-20">
+                    <div class="card-block p-t-5">
+                        <br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label id="lblPaq" style="color:red" class="form-control-label"><b>Seleccione Paquete</b></label>
+                            </div>
+                            <div class="col-md-6 float-lg-left">
+                                <select class="chzn-select" id="cboPaquetes"></select>
+                            </div>
+
+                        </div>
+
+                        <br>
+                        <table id="tblPaqueteDetalle" class="table table-bordered">
+                            <thead style="color: white; background: #3e6184;">
+                                <tr>
+                                    <th align="center">Especialidad</th>
+                                    <th align="center">Codigo</th>
+                                    <th align="center">Descripcion</th>
+                                    <th align="center">Cantidad</th>
+                                    <th align="center">Precio</th>
+                                    <th align="center">Importe</th>
+                                    <th style="display:none" align="center">idPuntoCarga</th>
+                                    <th style="display:none" align="center">idProducto</th>
+                                    <th style="display:none" align="center">idVias</th>
+                                    <th style="display:none" align="center">Vias</th>
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="background-color:#ced8e1">
+
+                <button type="button" class="btn btn-info" id="btnCargarPaqueteDetalle">Aceptar</button>
+                <button type="button" class="btn btn-default" id="btnCerrarPaquete">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalBusquedaDiagnosticosSolicitudCQx" role="dialog" aria-hidden="false" style="background-color: #00000075; z-index: 9999" data-keyboard="false" data-backdrop="static">
+
+    <div class="modal-dialog modal-lg" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-white" id="titulo">Busqueda de Diagnósticos</h4>
+            </div>
+            <div class="modal-body p-t-5">
+                <div class="card-block p-t-5">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group m-0">
+                                <label class="font-weight-bold">Código</label>
+                                <input id="txtCodigoDiagSolicitudCQxFiltro" autocomplete="off" type="text" class="form-control" maxlength="7">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group m-0">
+                                <label class="font-weight-bold">Descripción</label>
+                                <input id="txtDescripcionDiagSolicitudCQxFiltro" autocomplete="off" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="margin-top: 30px;">
+                                <button type="button" class="btn btn-primary mr-1" onclick="Ordenes.BuscarDiagnosticoBusqueda();">Buscar</button>
+                                <button type="button" class="btn btn-default" onclick="Ordenes.LimpiarFiltros();">limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <table id="lstDiagnosticosSolicitudCQxBusqueda" class="table table-bordered" @*data-source="/PlanificacionFamiliar/ObtenerDiagnostico?area=Comun"*@>
+                        <thead style="color: white;background: #3e6184;">
+                            <tr>
+                                <th data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                                <th data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                                <th data-columna="Codigo" valign="middle" align="center" style="width: 10%">Código</th>
+                                <th data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                                <th data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                                <th data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="Ordenes.CerrarModalBusqueda();">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<input hidden="hidden" id="hdIdTipoFuenteFian" name="hdIdFuente" type="text" class="form-control">
+<style>
+    /*.dataTables_scrollHeadInner {
+                width: 100% !important;
+            }
+
+            .dataTables_scrollHeadInner table {
+                width: 100% !important;
+            }*/
+    /*.dataTables_scrollHeadInner, .dataTables_scrollHeadInner .dataTable {
+                 width: auto !important;
+            }*/
+</style>

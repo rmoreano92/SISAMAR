@@ -1,0 +1,623 @@
+﻿
+@{
+    ViewData["Title"] = "Layout2";
+}
+
+@model CapaEntidades.User
+@using CapaDatos
+@using System.Data
+@using Microsoft.Extensions.Configuration;
+@using SiHospCrypKey;
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "--SISGALEN--";
+    DataSet lsParametros;
+    DalParametros dalParametros = new DalParametros();
+    Encriptar objCripto = new Encriptar();
+    string nombre, siglas, tipoBD;
+
+    lsParametros = await dalParametros.SeleccionaFilaParametro2(205);
+    nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
+
+    lsParametros = await dalParametros.SeleccionaFilaParametro2(1007);
+    siglas = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
+
+    lsParametros = await dalParametros.SeleccionaParametroPorCodigo("TIPO_VERSION_DB"); //version BD
+    tipoBD = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
+
+    ViewBag.nombre = nombre;
+    ViewBag.siglas = siglas;
+    ViewBag.tipoBD = tipoBD;
+
+    //ViewBag.version = "v3.5.111223";
+
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+
+    var urlAppWeb = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UrlAppWeb");
+    var urlAppSocket = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UrlAppSocket");
+    var urlAppFiles = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UrlAppFiles");
+
+    ViewBag.version = version.ToString();
+
+    /////ACTAULIZACION DE CONTRASEÑA//////////////////////////////////////
+    //string clave = objCripto.DesencriptarCadena(HttpContextAccessor.HttpContext?.Session.GetString("clave").ToString());
+    string clave = HttpContextAccessor.HttpContext?.Session.GetString("clave").ToString();
+    string fechaObligatorioCambioPassword = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("ActualizaionContraseña:FechaObligatorio");    
+    DateTime fechaLimiteCambioPassword = DateTime.ParseExact(fechaObligatorioCambioPassword, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+    bool esObligatorioCambiarPassword = DateTime.Today >= fechaLimiteCambioPassword;
+    string descripcionCambioPassword = "";
+    if (esObligatorioCambiarPassword)
+    {
+        descripcionCambioPassword = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("ActualizaionContraseña:DescripcionObligatoria").ToString();
+    } else {
+        descripcionCambioPassword = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("ActualizaionContraseña:DescripcionNoObligatoria").ToString();
+    }
+}
+
+
+
+
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.nombre</title>
+    <!--IE Compatibility modes-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--Mobile first-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="~/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/components.css" />
+    @*<link type="text/css" rel="stylesheet" href="~/AdmiRE/css/modern-overrides.css" />*@
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/custom.css" />
+    @*<link type="text/css" rel="stylesheet" href="~/AdmiRE/css/custom-modern.css" />*@
+
+    @* <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/select2/css/select2.min.css" /> *@
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/scroller.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/colReorder.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/dataTables.bootstrap.min.css" />
+    @*<link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/dataTables.bootstrap.css" />*@
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datepicker/css/bootstrap-datepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+    <!--End of plugin styles-->
+    <!--Page level styles-->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/form_validations.css" />
+    <!-- end of plugin styles -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/c3/css/c3.min.css" />
+    <!--Page level styles-->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/tables.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/toastr/css/toastr.min.css">
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/toastr.css">
+
+
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/animate/css/animate.min.css" />
+
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/pnotify/css/pnotify.css">
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/pnotify/css/pnotify.brighttheme.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/pnotify/css/pnotify.buttons.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/pnotify/css/pnotify.history.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/pnotify/css/pnotify.mobile.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/p_notify.css" />
+
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/index.css">
+
+
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/sweetalert/css/sweetalert2.min.css" />
+    @*=========================KHOYOSI=========================*@
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/fontawesome/css/all.css">
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/flaticon/css/uicons-solid-straight.css">
+
+    <style>
+        /*.loadingoverlay_text{
+        margin-top: -20% !important;
+        }*/
+
+        .loadingoverlay .loadingoverlay_element{
+          background-size: contain !important;
+        }
+
+        .loadingoverlay .loadingoverlay_image img{
+          max-width: 180px !important;   /* ajusta si quieres más/menos */
+          max-height: 180px !important;
+          width: auto !important;
+          height: auto !important;
+          object-fit: contain !important;
+          display: block;
+        }
+
+        #menu > li.active {
+        background-color: #3d6682 !important;
+        }
+
+        #menu li.active ul li.active > a {
+        background-color: #5e90b3 !important;
+        }
+
+        .btn-setting {
+        font-weight: bold;
+        color: #6a6a6a;
+        }
+
+        .btn-setting:hover {
+        color: #5e90b3;
+        }
+
+        .bit4-link { /*no eliminar*/
+        display: none;
+        }
+    </style>
+
+    @RenderSection("Css", required: false)
+    <!---->
+</head>
+
+<body class="fixedMenu_left">
+    <div class="preloader" style=" position: fixed;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: 100000;
+          backface-visibility: hidden;
+          background: #ffffff;">
+        <div class="preloader_img" style="width: 200px;
+              height: 200px;
+              position: absolute;
+              left: 48%;
+              top: 48%;
+              background-position: center;
+            z-index: 999999">
+            <img src="~/AdmiRE/img/loader.gif" style=" width: 40px;" alt="loading...">
+        </div>
+    </div>
+
+    <input id="hdUsaLabs" value="@usaLabs" hidden>
+    <div id="UrlAppWeb" hidden>@urlAppWeb</div>
+    <div id="UrlAppSocket" hidden>@urlAppSocket</div>
+    <div id="UrlAppFiles" hidden>@urlAppFiles</div>
+
+    <div class="bg-dark" id="wrap">
+        <div id="top">
+            <!-- .navbar -->
+            <nav class="navbar navbar-static-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-xs-center" style="padding-top: 5px;" asp-controller="Home" asp-action="Inicio">
+                        <div class="d-flex">
+                            <img src="~/images/Logo.png" class="admin_img m-0" alt="logo" style="width: auto; height:40px;">
+                            <h3 style="margin-top: 12px;">
+                                @* <img src="~/images/Logo.png" class="admin_img" alt="logo">    *@
+                                @ViewBag.siglas
+                            </h3>
+                        </div>                        
+                    </a>
+                    <div class="menu">
+                        <span class="toggle-left" id="menu-toggle">
+                            <i class="fa fa-bars"></i>
+                        </span>
+                    </div>
+
+                    <div class="topnav float-xs-right" >                        
+
+                        <div class="btn-group">
+                            <div class="user-settings no-bg" style="padding-top: 7px;">
+
+                                <a class="nav-link dropdown-toggle btn-setting" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="~/AdmiRE/img/Doctor.jpg" class="admin_img2 img-thumbnail rounded-circle avatar-img"
+                                    alt="avatar" style="margin-right:5px;">
+                                    @{
+                                        if (@ViewBag.Usuario == null)
+                                        {
+                                            @User.Identity.Name
+                                        }
+                                        else
+                                        {
+                                            @ViewBag.Usuario
+                                        }
+                                    }
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right admire_admin" aria-labelledby="navbarDropdown" style="z-index: 1000;">
+                                    <a class="dropdown-item" onclick="CambiarClave();" href="#">
+                                        <i class="fa-solid fa-key mr-1"></i>
+                                        Cambiar Contraseña
+                                    </a>
+                                    @*<div class="dropdown-divider"></div>*@
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="CerrarSession" id="btnCerrarSesion">
+                                        <i class="fa-solid fa-right-from-bracket mr-1"></i>
+                                        Cerrar Sesión
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item bg-green" style="font-size: 10px;">
+                                        <i class="fa-solid fa-database mr-1"></i>
+                                        v@{
+                                            @ViewBag.version
+                                        }
+                                    </a>
+                                </div>
+                            </div>                            
+
+                        </div>
+
+                    </div>
+
+                    @* <span>|</span> *@
+
+                    @* <div class="topnav float-xs-right">
+                        <div class="btn-group">
+                            <div class="user-settings no-bg">
+                                <a class="nav-link text-sm-center mx-1" href="#" id="navbarDropdownHerramientas" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 9px;">
+                                    <i class="fa-solid fa-screwdriver-wrench fa-xl" style="color: #795548;"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right admire_admin" aria-labelledby="navbarDropdownHerramientas">
+                                    <a class="dropdown-item" href="#" id="btnHerrReprogramacionMedica">
+                                        <i class="fa-solid fa-calendar-range mr-1"></i>
+                                        Reprogramación Médica
+                                    </a>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                                    *@    
+
+                </div>
+                <!-- /.container-fluid -->
+                @if (esObligatorioCambiarPassword)
+                {
+                    @if (clave == "123456")
+                    {
+                        <div class="position-absolute w-100"
+                             style="z-index: 100; background: #d5d6ecb8; height: calc(100vh - 53px); overflow-y: auto;">
+                        </div>
+                    }
+                }
+                
+            </nav>
+            <!-- /.navbar -->
+            <!-- /.head -->
+        </div>
+        <!-- /#top -->
+        <div class="wrapper" id="wrapBody">
+                        
+            <div id="left">
+                <div class="menu_scroll">
+                    <div class="left_media" id="menuCabecera">
+                        <div class="media user-media bg-dark dker">
+                            <div class="user-media-toggleHover">
+                                <span class="fa fa-user"></span>
+                            </div>
+                            @*
+                                <div class="user-wrapper bg-dark">
+                                    <a class="user-link" href="#">
+                                        <img class="media-object img-thumbnail user-img rounded-circle admin_img3" alt="User Picture"
+                                             src="~/AdmiRE/img/Doctor.jpg">
+                                        <p class="user-info menu_hide">
+                                            @{ if (@ViewBag.Usuario == null)
+                                                {@User.Identity.Name}
+                                            else
+                                            {@ViewBag.Usuario}}
+                                        </p>
+                                    </a>
+                                </div>
+                            *@
+                            @*============================KHOYOSI=======================================*@
+                            <div style="display: flex;align-items: center; margin-left: 0.75rem;" class="d-flex align-items-center mt-1 mb-1">
+                                <div class="position-relative" style="position: relative;">
+                                    <img class="rounded-circle" src="/AdmiRE/img/Doctor.jpg" alt="" style="width: 50px; height: 50px;">
+                                    <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1" style="display: none;"></div>
+                                </div>
+                                <div class="ml-1 mr-1">
+                                    <h5 class="mb-0" style="color: white;">
+                                        @{ if (@ViewBag.Usuario == null)
+                                            {@User.Identity.Name}
+                                            else
+                                            {@ViewBag.Usuario}}
+                                    </h5>
+                                </div>
+                            </div>
+                            @if(ViewBag.tipoBD != "")
+                            {
+                                <div class="text-sm-center bg-secondary text-white mt-1">
+                                    VERSIÓN @ViewBag.tipoBD
+                                </div>
+                            } 
+                            @*============================KHOYOSI=======================================*@
+
+                        </div>
+                        @*<hr />*@
+                    </div>
+
+                    @await Component.InvokeAsync("MenuBar")
+                    <!-- /#menu -->
+                </div>
+            </div>
+
+
+            <!-- /#left -->
+            <div id="content" class="bg-container">
+                @RenderBody()                
+            </div>
+
+
+
+
+        </div>
+        <!-- /#requsest list -->
+        <!-- # right side -->
+
+    </div>
+
+    <div class="modal fade" id="modalCambiarClave" role="dialog" aria-hidden="false" data-backdrop="static">
+
+        <div class="modal-dialog modal-sm ">
+
+            <div class="modal-content">
+                <div class="modal-header bg-mint">
+                    <h4 class="modal-title text-white" id="titulo">Cambio de Contraseña</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-lg-10 push-lg-1">
+                            <label for="txtClaveActual" class="form-control-label form-group-horizontal">
+                                Contraseña Actual
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <input type="password" id="txtClaveActual" class="form-control" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-10 push-lg-1">
+                            <label for="txtNuevaClave" class="form-control-label form-group-horizontal">
+                                Nueva Contraseña
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <input type="password" id="txtNuevaClave" class="form-control" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-10 push-lg-1">
+                            <label for="txtNuevaClave2" class="form-control-label form-group-horizontal">
+                                Confirmar Contraseña
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <input type="password" id="txtNuevaClave2" class="form-control" placeholder="Confirm Password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="form-group m-0 text-sm-center">
+                        <button class="btn btn-mint layout_btn_prevent" onclick="ActualizarClave();">CAMBIAR</button>
+                        <button class="btn btn-secondary layout_btn_prevent" onclick="CerrarModalCambiarClave();">CANCELAR</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="modalFirmaDigital" role="dialog" aria-hidden="false" style="background-color: rgba(0, 0, 0, 0.46);z-index:99999;" data-backdrop="static">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">               
+                <div class="modal-body">
+                    <iframe src="" width="100%" height="400" allow="fullscreen" id="ifmFirmaDigital"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modalLogin" role="dialog" aria-hidden="false" style="background-color: rgba(0, 0, 0, 0.46);" data-backdrop="static">
+
+        <div class="modal-dialog modal-sm ">
+
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row px-1">
+                        <div class="col-sm-12 login2_border login_section_top" >
+                            <div class="login_logo login_border_radius1">
+                                <div class="text-xs-center text-white">
+                                    <img src="/images/Logo.png" alt="logo" class="mb-1" style="width: 150px;"><br>
+                                    <h3 class="text-gray text-bold text-xs-center titulo-login">SIHCE</h3>
+                                    <h4 class="text-gray text-xs-center m-t-10">Sistema de Información de Historias Clínicas Electrónicas</h4>
+                                </div>
+                            </div>
+                            <div class="mb-1 login_section">                               
+                                <div class="form-group">
+                                    <label for="username" class="form-control-label2 text-gray">Usuario</label>
+                                    <div class="input-group">
+                                        <input class="form-control b_r_20 text-gray iniciar-sesion" readonly id="username" name="USERID" placeholder="Ingrese su usuario" required="required" type="text" value="" data-bv-field="USERID" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-user text-gray"></i>
+                                        </span>
+                                    </div>
+                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="USERID" data-bv-result="NOT_VALIDATED" style="display: none;">Por favor ingrese un valor.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="form-control-label2 text-gray">Contraseña</label>
+                                    <div class="input-group">
+                                        <input class="form-control b_r_20 text-gray iniciar-sesion" id="password" name="PASSWORD" placeholder="Ingrese su contraseña" required="required" type="password" data-bv-field="PASSWORD" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-key text-gray"></i>
+                                        </span>
+                                    </div>
+                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="PASSWORD" data-bv-result="NOT_VALIDATED" style="display: none;">Por favor ingrese un valor.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="text-xs-center">
+                                            <button type="submit" class="btn btn-block b_r_20 m-t-20 btn-login text-white" id="btnLogin" onclick="Utilitario.ReIniciarSesion();">INGRESAR</button>
+                                        </div>
+                                    </div>
+                                </div>                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="SpeechModal" role="dialog" aria-hidden="false" style="background-color: rgba(0, 0, 0, 0.46);" data-backdrop="static">
+
+        <div class="modal-dialog modal-md">
+
+            <div class="modal-content">
+                <div class="modal-header d-flex btn-brown" id="">
+                    <i class="fa-solid fa-microphone speech fa-lg mr-1" id="" style="margin-top: auto; margin-bottom: auto"></i>
+                    <h4 class="modal-title text-white" id="VisorDocumentoTitulo">Reconocimiento de Voz</h4>
+                </div>
+                <div class="modal-body p-1">
+                    <textarea id="speechTextRec" class="w-100" rows="8"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-secondary" id="cerrarModalSpeech">Detener</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modalVisorDocumento" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalVisorDocumentoLabel" style="background-color: #00000075;">
+
+        <div class="modal-dialog modal-xl">
+
+            <div class="modal-content">
+                <div class="modal-header d-flex" id="VisorDocumentoHeader">
+                    <i class="fa-solid fa-file-signature fa-lg mr-1" id="VisorDocumentoIcon" style="margin-top: auto; margin-bottom: auto"></i>
+                    <h4 class="modal-title text-white" id="VisorDocumentoTitulo">Visor Documento</h4>
+                </div>
+                <div class="modal-body p-t-5">
+                    <embed id="visorDocumento" src="" type="application/pdf" class="visor-documento" />
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-xl-6 text-sm-left">
+                            <button type="button" class="btn btn-lg btn-teal" id="btnImprimirDocumentoPersonalizado" style="display: none;"><i class="fa fi fi-ss-print text-sm-left" style="width: 25px;"></i> Imprimir</button>
+                        </div>
+                        <div class="col-xl-6">
+                            <button type="button" class="btn btn-lg btn-secondary" data-dismiss="modal" id="CerrarVisorDocumento" onclick="CerrarVisorDocumento();">Cancelar</button>
+                        </div>
+                    </div>                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <iframe id="iframePrintDoc" class="d-none" width="0" height="0"></iframe>
+
+   
+
+
+    <!-- /#wrap -->
+    <!-- global scripts-->
+    <environment>
+        <script type="text/javascript">
+            var VersionApp = '@ViewBag.version';
+        </script>
+        <script type="text/javascript" src="~/AdmiRE/js/components.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/js/custom.js"></script>
+        <!-- end of global scripts-->
+        <script type="text/javascript" src="~/AdmiRE/js/pages/layouts.js"></script>
+
+        <!--Datepicker-->
+        <script type="text/javascript" src="~/AdmiRE/vendors/datepicker/js/bootstrap-datepicker.min.js"></script>
+
+        <!--notificacion-->
+        <script type="text/javascript" src="~/AdmiRE/vendors/noty/js/jquery.noty.packaged.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/toastr/js/toastr.min.js"></script>
+
+        <script type="text/javascript" src="~/AdmiRE/vendors/pnotify/js/pnotify.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/pnotify/js/pnotify.animate.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/pnotify/js/pnotify.buttons.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/pnotify/js/pnotify.confirm.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/pnotify/js/pnotify.desktop.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/pnotify/js/pnotify.history.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/pnotify/js/pnotify.mobile.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/pnotify/js/pnotify.nonblock.js"></script>
+
+        <script type="text/javascript" src="~/AdmiRE/js/pages/p_notify.js"></script>
+
+
+
+        <!--plugin scripts-->
+        @* <script type="text/javascript" src="~/AdmiRE/vendors/select2/js/select2.js"></script> *@
+        <script type="text/javascript" src="~/AdmiRE/vendors/datatables/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/js/pluginjs/dataTables.tableTools.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/datatables/js/dataTables.colReorder.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/datatables/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/datatables/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/datatables/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/datatables/js/dataTables.rowReorder.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/datatables/js/buttons.colVis.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/datatables/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/datatables/js/buttons.bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/datatables/js/buttons.print.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/datatables/js/dataTables.scroller.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/js/pages/loadingoverlay.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/signalr/signalr.min.js"></script>
+
+        <script type="text/javascript" src="~/AdmiRE/vendors/sweetalert/js/sweetalert2.min.js"></script>
+
+        <script type="text/javascript" src="~/js/Comun/FirmaDigitalFirmaPeru.js"></script>
+               
+        <script src="~/js/site.js"></script>
+
+        @* JAA CARGARCOMBOS *@
+        <script src="~/js/Comun/combos.js"></script>
+        @* ----------------------------------------------- *@
+
+        <!-- end of plugin scripts -->
+        @if (clave == "123456")
+        {
+            <script>
+               
+                swal({
+                    title: "<div>Notificación Importante:</div><div>Actualización Obligatoria de Contraseña 🛡️</div>",
+                    html: "@Html.Raw(descripcionCambioPassword)",
+                    type: "warning",
+                    allowOutsideClick: false,                    
+                    allowEscapeKey: false, 
+                }).then(function () {
+                    CambiarClave();
+                }, function (dimiss) {
+
+                });
+                
+            </script>
+        }
+
+        @RenderSection("Scripts", required: false)
+
+        
+    </environment>
+
+</body>
+</html>
+

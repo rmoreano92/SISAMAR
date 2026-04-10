@@ -1,0 +1,715 @@
+﻿<div class="row mb-1">
+    
+    <div class="col-md-12 mb-1">
+        <div class="card bg-yellow">
+            <div class="card-header" style="font-size: 14px;background-color:#ffe6c3;">
+                <div class="row" id="sectionCabeceraNota">
+                    <div class="col-lg-5">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="d-flex">
+                                    <div class="pr-1">
+                                        <span for="txtNroDocumentoVenta" class="font-weight-bold w-100">Documento</span>
+                                    </div>
+                                    <div style="width:150px !important;">
+                                        <div class="form-group m-0">
+                                            <input id="txtNroDocumentoVenta" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="d-flex">
+                                    <div class="pr-1">
+                                        <span for="txtNroPreventa" class="font-weight-bold w-100">Nro Preventa</span>
+                                    </div>
+                                    <div style="width:150px !important;">
+                                        <div class="form-group m-0">
+                                            <input id="txtNroPreventa" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="d-flex">
+                                    <div class="pr-1">
+                                        <span for="txtFechaRegistro" class="font-weight-bold">Fecha Registro</span>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="mr-1">
+                                            <div class="input-group input-group-sm" style="width:130px !important;">
+                                                <input type="text" class="form-control search" id="txtFechaRegistro" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" disabled>
+                                                <span class="input-group-addon" style="background-color: slategray;">
+                                                    <i class="fa fa-calendar" style="color: white;"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-0">
+                                            <div class="input-group input-group-sm" style="width:110px !important;">
+                                                <input id="txtHoraRegistro" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                                <span class="input-group-addon" style="background-color: slategray;">
+                                                    <i class="fa fa-timer" style="color: white;"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5">
+                                <div class="d-flex">
+                                    <div class="pr-1">
+                                        <span for="txtEstadoVenta" class="font-weight-bold">Estado</span>
+                                    </div>
+                                    <div style="width:150px !important;">
+                                        <div class="form-group m-0">
+                                            <input id="txtEstadoVenta" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                                        
+                </div>
+            </div>
+
+
+            <div class="card-block" style="padding: 10px;">
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card bg-teal mb-1">
+                            <div class="card-block" style="padding-bottom: 10px;">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="form-group m-0">
+                                            <label for="cboFarmaciaVenta" class="form-label d-block text-truncate">Farmacia</label>
+                                            <select id="cboFarmaciaVenta" class="chzn-select" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group m-0" style="max-width:450px;">
+                                            <label for="cboFarmaciaDestinoNI" class="form-label d-block text-truncate">Tipo Venta</label>
+                                            <div class="d-flex">
+                                                <label class="radioButtonStyleLabel m-0">
+                                                    <input type="radio" name="rdbTipoVenta" class="radioButtonStyleInput camposRegistro" id="rdbVenta" value="1">
+                                                    <span class="radioButtonStyleSpan">VENTA(tienen algún seguro)</span>
+                                                </label>
+                                                <label class="radioButtonStyleLabel m-0">
+                                                    <input type="radio" name="rdbTipoVenta" class="radioButtonStyleInput camposRegistro" id="rdbPreventa" value="2">
+                                                    <span class="radioButtonStyleSpan">PRE-VENTA(Pagantes)</span>
+                                                </label>
+                                            </div>
+                                            @* <div class="d-flex tipo-busqueda" style="background-color: #ff57221c; border: 1px solid lightgray;">
+                                                <div class="px-1">
+                                                    
+                                                    <label class="checkbox-inline mr-1">
+                                                        <input type="radio" class=" camposRegistro" id="rdbVenta" name="rdbTipoVenta" value="1"> VENTA(tienen algún seguro)
+                                                    </label>
+                                                </div>
+                                                <div class="px-1">
+                                                    
+                                                    <label class="checkbox-inline mr-1">
+                                                        <input type="radio" class=" camposRegistro" id="rdbPreventa" name="rdbTipoVenta" value="2"> PRE-VENTA(Pagantes)
+                                                    </label>
+                                                </div>
+                                            </div> *@
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group m-0">
+                                            <label for="cboTipoReceta" class="form-label d-block text-truncate">Tipo Receta</label>
+                                            <select id="cboTipoReceta" class="chzn-select camposRegistro" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <div class="d-flex">
+                                            <div class="px-1">
+                                                <div class="check__toggle" style="margin-top: 30px;">
+                                                    <label class="toggle">
+                                                        <input class="toggle__input campo bloquear camposRegistro" type="checkbox" id="chkConsumoHistorico">
+                                                        <span class="toggle__label mr-2">
+                                                            <span class="toggle__text">Consumo Historico</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="px-1">
+                                                <div class="check__toggle" style="margin-top: 30px;">
+                                                    <label class="toggle">
+                                                        <input class="toggle__input campo bloquear camposRegistro" type="checkbox" id="chkIafaNoCubre">
+                                                        <span class="toggle__label mr-2">
+                                                            <span class="toggle__text">IAFA NO cubre</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4" id="frmPrescriptorInterno">
+                        <div class="card bg-teal mb-1">
+                            <div class="card-block" style="padding-bottom: 10px;">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group m-0">
+                                            <label for="cboPrescriptor" class="form-label d-block text-truncate font-weight-bold">Prescriptor</label>
+                                            <select id="cboPrescriptor" class="chzn-select camposRegistro" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-9">
+                                        <div class="row">
+                                            <div class="col-lg-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaPrescripcion" class="form-label d-block text-truncate">Fecha Prescripcion</label>
+                                                    <div class="form-group input-group input-group-sm m-0" style="min-width: 75px;">
+                                                        <input type="text" class="form-control camposRegistro" id="txtFechaPrescripcion" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" autocomplete="off">
+                                                        <span class="input-group-addon" style="background-color: slategray;">
+                                                            <i class="fa fa-calendar" style="color: white;"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtHoraPrescripcion" class="form-label d-block text-truncate">Hora Pre.</label>
+                                                    <div class="form-group input-group input-group-sm m-0">
+                                                        <input id="txtHoraPrescripcion" autocomplete="off" placeholder="" class="form-control camposRegistro">
+                                                        <span class="input-group-addon" style="background-color: slategray;">
+                                                            <i class="fa fa-timer" style="color: white;"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4" id="frmPrescriptorExterno">
+                        <div class="card bg-teal mb-1">
+                            <div class="card-block" style="padding-bottom: 10px;">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="row">
+                                            <div class="col-xl-4">
+                                                <div class="form-group m-0">
+                                                    <label for="txtCmpPrescriptorExterno" class="form-label d-block text-truncate font-weight-bold camposRegistro">N° CMP Presc. Externo</label>
+                                                    <input id="txtCmpPrescriptorExterno" autocomplete="off" placeholder="" class="form-control form-control-sm camposRegistro">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-8">
+                                                <div class="form-group m-0">
+                                                    <label for="txtDatosMedicoExterno" class="form-label d-block text-truncate font-weight-bold camposRegistro">Medico Presc. Externo</label>
+                                                    <input id="txtDatosMedicoExterno" autocomplete="off" placeholder="" class="form-control form-control-sm camposRegistro">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-9">
+                                        <div class="row">
+                                            <div class="col-xl-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaPrescripcionExterno" class="form-label d-block text-truncate camposRegistro">Fecha Prescripcion Ext.</label>
+                                                    <div class="form-group input-group input-group-sm m-0" style="min-width: 75px;">
+                                                        <input type="text" class="form-control camposRegistro" id="txtFechaPrescripcionExterno" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" autocomplete="off">
+                                                        <span class="input-group-addon" style="background-color: slategray;">
+                                                            <i class="fa fa-calendar" style="color: white;"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtHoraPrescripcionExt" class="form-label d-block text-truncate camposRegistro">Hora Pre. Ext.</label>
+                                                    <div class="form-group input-group input-group-sm m-0">
+                                                        <input id="txtHoraPrescripcionExt" autocomplete="off" placeholder="" class="form-control camposRegistro">
+                                                        <span class="input-group-addon" style="background-color: slategray;">
+                                                            <i class="fa fa-timer" style="color: white;"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card bg-teal mb-1">
+                            <div class="card-block" style="padding-bottom: 10px;">
+                                <div class="row">
+
+                                    <div class="col-xl-3" style="max-width: 390px;">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroReceta" class="form-label d-block text-truncate font-weight-bold">N° Receta</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input id="txtNroReceta" autocomplete="off" placeholder="" class="form-control solo-numero camposRegistro">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-unique camposRegistro" type="button" id="btnBuscarDatosPacienteNroReceta"><i class="fa fa-search"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroCuenta" class="form-label d-block text-truncate font-weight-bold">N° Cuenta</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" id="txtNroCuenta" class="form-control solo-numero camposRegistro" autocomplete="off">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-indigo camposRegistro" type="button" id="btnModalBusquedaPacientes"><i class="fa fa-search-plus"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-9">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtDatosDeCuenta" class="form-label d-block text-truncate font-weight-bold">Datos Cuenta</label>
+                                                    <input id="txtDatosDeCuenta" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="cboTipoFinanciamiento" class="form-label d-block text-truncate">Producto Plan</label>
+                                                    <select id="cboTipoFinanciamiento" class="chzn-select camposRegistro" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtDescripcionPlan" class="form-label d-block text-truncate font-weight-bold">Descripcion</label>
+                                                    <input id="txtDescripcionPlan" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-10">
+                        <div class="card bg-teal">
+                            <div class="card-block" style="padding-bottom: 10px;">
+                                <div class="row">
+                                    <div class="col-xl-4" style="max-width: 390px;">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroHistoria" class="form-label d-block text-truncate font-weight-bold">N° Historia</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" class="form-control solo-numero camposRegistro bloquear" id="txtNroHistoria" autocomplete="off">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-info camposRegistro" type="button" id="btnBuscarDatosPacienteNroHistoria"><i class="fa fa-search"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroDocumentoPaciente" class="form-label d-block text-truncate font-weight-bold">N° Documento</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" class="form-control solo-numero camposRegistro bloquear" id="txtNroDocumentoPaciente" autocomplete="off">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-info camposRegistro" type="button" id="btnBuscarDatosPacienteNroDocumento"><i class="fa fa-search"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-8">
+                                        <div class="row">
+                                            <div class="col-xl-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNombrePaciente" class="form-label d-block text-truncate font-weight-bold">Paciente</label>
+                                                    <input id="txtNombrePaciente" autocomplete="off" placeholder="" class="form-control form-control-sm camposRegistro">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-5">
+                                                <div class="form-group m-0">
+                                                    <label for="cboServicioRegistro" class="form-label d-block text-truncate">Servicio</label>
+                                                    <select id="cboServicioRegistro" class="chzn-select camposRegistro" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2">
+                        <div class="card bg-teal">
+                            <div class="card-block" style="padding-bottom: 10px;">
+                                <div class="form-group m-0">
+                                    <label for="txtNroFormato" class="form-label d-block text-truncate font-weight-bold camposRegistro">Nº Formato</label>
+                                    <input id="txtNroFormato" autocomplete="off" placeholder="" class="form-control form-control-sm camposRegistro">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-lg-12">
+                        <div class="card bg-light">
+                            <div class="card-header bg-white" id="TituloCardDiagnostico">Diagnósticos</div>
+                            <div class="card-block py-0">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="lstDiagnosticos" class="table table-sm table-bordered table-content-sm" width="100%">
+                                            <thead style="color: white;background: #51717a;">
+                                                <tr>
+                                                    <th style="width: 0%;" data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                                                    <th style="width: 0%;" data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                                                    <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Código</th>
+                                                    <th style="width: 80%;" data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                                                    <th style="width: 0%;" data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                                                    <th style="width: 0%;" data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                                                    <th style="width: 0%;" data-columna="idTipoDiagnostico" valign="middle" align="center">idTipoDiagnostico</th>
+                                                    <th style="width: 10%;" data-columna="TipoDiagnostico" valign="middle" align="center">TipoDiagnostico</th>
+                                                    <th style="width: 10%;" data-columna="Intrahospitalario" valign="middle" align="center">IntraHospitalario</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                            
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="col-lg-12">
+        <div class="card bg-blue">
+            <div class="card-block">
+                <div id="frameBusquedaProductos" class="row mb-1">
+                    <div class="col-lg-5">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group mb-0">
+                                    <label for="txtCodigoProductoBusqueda" class="form-label d-block text-truncate">Código</label>
+                                    <input type="text" class="form-control form-control-sm camposRegistro" id="txtCodigoProducto" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9">
+                                <div class="form-group mb-0">
+                                    <label for="txtNombreProductoBusqueda" class="form-label d-block text-truncate">Producto</label>
+                                    <input type="text" class="form-control form-control-sm camposRegistro" id="txtNombreProducto" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="d-flex align-items-end" style="height: 55px;">
+                            <button id="btnAgregaProducto" type="button" class="btn btn-sm btn-success camposRegistro mr-1" style="width: 100px;"><i class="fa fa-plus"></i>&#160;&#160; Agregar</button>
+                            <button id="btnQuitarProducto" type="button" class="btn btn-sm btn-danger camposRegistro" style="width: 100px;"><i class="fa fa-trash"></i>&#160;&#160; Eliminar</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 text-sm-right">
+                        <button class="btn btn-brown mt-2" id="btnMuestraPaquete"><i class="fa fa-medkit"></i>&#160;&#160; Carga Paquetes</button>
+                    </div>
+                </div>
+
+                <div id="frameResultadosBusquedaProdutos" class="row w-100" style="position: absolute; z-index: 1000; max-width: 900px; margin-top: -10px;">
+                    <div class="col-lg-12">
+                        <div id="contProductosBusqueda" class="card mb-3 frameProductosBusqueda" style="background-color: slategrey; color: whitesmoke; border-color: darkslategrey; box-shadow: rgb(64, 64, 64) 15px 15px 10px; max-height: 35vh;">
+                            <div class="card-block p-0 px-1">
+                                <table id="tblProductosBuscados" class="table table-sm table-content-sm table-bordered w-100" style="cursor: default;">
+                                    <thead style="color: white; background: #434343;">
+                                        <tr>
+                                            <th style="width:0%" hidden>IdProducto</th>
+                                            <th style="width:10%">Código</th>
+                                            <th style="width:35%">Nombre Producto</th>
+                                            <th style="width:20%">Tipo</th>
+                                            <th style="width:15%">Lote</th>
+                                            <th style="width:10%">Saldo</th>
+                                            <th style="width:10%">Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="tblDetalleVentas" class="table table-sm table-content-sm table-bordered w-100" style="cursor: default;">
+                    <thead style="color: white; background: #434343;">
+                        <tr>
+                            <th style="width:0%">Nº</th>
+                            <th style="width:0%" hidden>IdItem</th>
+                            <th style="width:10%">Código</th>
+                            <th style="width:40%">Nombre Producto</th>
+                            <th style="width:10%">Tipo Salida</th>
+                            <th style="width:10%">Saldo</th>
+                            <th style="width:10%">Cantidad</th>
+                            <th style="width:10%">Precio</th>
+                            <th style="width:10%">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <table class="mb-0 float-sm-right">
+                    <tbody>
+                        <tr>
+                            <th width="60" class="text-sm-right border pr-1" style="background: #e6e6e6;">Total:</th>
+                            <th id="TotalDetalleVentas" width="150" class="border px-1"></th>
+                        </tr>
+                    </tbody>
+                </table>
+               @*  <div class="row mb-1">
+                    <div class="col-lg-2">
+                        <div class="form-group mb-0">
+                            <label for="txtCodigoProducto">Código</label>
+                            <input type="text" class="form-control form-control-sm" id="txtCodigoProducto" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group mb-0">
+                            <label for="txtNombreProducto">Producto</label>
+                            <input type="text" class="form-control form-control-sm" id="txtNombreProducto" autocomplete="off">
+                        </div>
+                        <div class="card bg-green" style="min-width: 700px; position: absolute; z-index: 1000;" id="contProductosBusqueda">
+                            <div class="card-block p-0 px-1">
+                                <table id="tblProductosBuscados" class="table table-sm table-content-sm table-bordered w-100" style="cursor: default;">
+                                    <thead style="color: white; background: #434343;">
+                                        <tr>
+                                            <th style="width:0%" hidden>IdProducto</th>
+                                            <th style="width:20%">Código</th>
+                                            <th style="width:80%">Nombre Producto</th>
+                                            <th style="width:80%">Tipo</th>
+                                            <th style="width:80%">Saldo</th>
+                                            <th style="width:80%">Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="d-flex align-items-end" style="height: 55px;">
+                            <button id="btnAgregaProducto" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;"><i class="fa fa-plus" style="width: 20px; text-align:center;"></i>Agregar</button>
+                            <button id="btnQuitarProducto" type="button" class="btn btn-sm btn-danger" style="width: 100px;"><i class="fa fa-trash" style="width: 20px; text-align:center;"></i>Eliminar</button>
+                        </div>
+                    </div> 
+                </div> *@
+
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 mt-2" id="ContentConsumoHistorico">
+        <div class="card bg-red">
+            <div class="card-header" style="background-color: pink;">
+                Consumo historico
+            </div>
+            <div class="card-block">
+
+                <table id="tblConsumoHistorico" class="table table-sm table-content-sm table-bordered w-100 mt-1" style="cursor: default; font-size: 10px;">
+                    <thead style="color: white; background: #434343;">
+                        <tr>
+                            <th style="width:5%">Tipo</th>
+                            <th style="width:10%">F. Creación</th>
+                            <th style="width:5%">MovNumero</th>
+                            <th style="width:5%">N° Documento</th>
+                            <th style="width:5%">Codigo</th>
+                            <th style="width:20%">Nombre</th>
+                            <th style="width:5%">Cantidad</th>
+                            <th style="width:5%">Precio</th>
+                            <th style="width:5%">Total</th>
+                            <th style="width:5%">Estado</th>
+                            <th style="width:5%">Almacen</th>
+                            <th style="width:5%">Financiamiento</th>
+                            <th style="width:5%">Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row p-1 border" style="background: #ededed;">
+
+    <div class="col-md-12">
+        <div>
+            <button id="btnCancelarVentas" type="button" class="btn btn-secondary btn-lg float-sm-right px-2" style="max-width: 140px">Cancelar</button>
+            <button id="btnGuardarVentas" type="button" class="btn btn-primary btn-lg float-sm-right px-2 mr-2" style="max-width: 140px">Guardar</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@* 
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalBusquedaRecetas" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Busqueda de Recetas</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <b>Busqueda</b>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtBusquedaPacienteDNI" class="form-control-label">DNI</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtBusquedaPacienteDNI">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtBusquedaPacienteNroHistoria" class="form-control-label">N° Historia</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtBusquedaPacienteNroHistoria">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtBusquedaPacienteApPaterno" class="form-control-label">Apellido Paterno</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtBusquedaPacienteApPaterno">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtBusquedaPacienteApMaterno" class="form-control-label">Apellido Materno</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtBusquedaPacienteApMaterno">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2" style="max-width: 180px;">
+                                <div class="form-group m-0">
+                                    <label for="txtBusquedaPacientePrimerNombre" class="form-control-label">Nombres</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control bloquear-campos search" id="txtBusquedaPacientePrimerNombre">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                                <div>
+                                    <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarRecetas">Buscar</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr />
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <table class="table table-sm table-bordered" id="tblBusquedaPacientes" width="100%" style="font-size: 12px;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th width="10%">Ap .Paterno</th>
+                                    <th width="10%">Ap .Materno</th>
+                                    <th width="10%">1er Nombre</th>
+                                    <th width="10%">2do Nombre</th>
+                                    <th width="10%">N° Historia</th>
+                                    <th width="10%">Fecha Nac.</th>
+                                    <th width="10%">Ult. Tipo Serv.</th>
+                                    <th width="10%">Ult. Serv. Ing.</th>
+                                    <th width="10%">Ult. F. Ing.</th>
+                                    <th width="10%">Ult. F. Egr.</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ *@

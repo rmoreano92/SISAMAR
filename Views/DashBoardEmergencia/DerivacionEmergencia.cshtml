@@ -1,0 +1,101 @@
+﻿@section Css
+    {
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+}
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card m-t-5">
+                    <div class="card-header bg-white">
+                        Derivacion y Atencion Emergencia por paciente
+                    </div>
+                    <div class="row m-t-10 m-l-10">
+
+                        <div class="col-md-3">
+                            <h4>Fecha Inicio:</h4>
+                            <p>
+                                <div class="input-group form-group input-append date form_datetime">
+                                    <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicio">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Fecha Fin:</h4>
+                            <p>
+                                <div class="input-group form-group input-append date form_datetime">
+                                    <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFin">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="col-lg-1">
+                            <h4>&nbsp;</h4>
+                            <p>
+                                <button class="btn btn-primary layout_btn_prevent" onclick="cargarGrafico();">Buscar</button>
+                            </p>
+
+                        </div>
+                        <div class="col-lg-1">
+                            <h4>&nbsp;</h4>
+                            <p>
+                                <button class="btn btn-success layout_btn_prevent" onclick="DescargarExcel();">Exportar Excel</button>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-block m-t-35">
+                        <div id="chart1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        Detalle de <label id="lblTitulo"></label>
+                    </div>
+                    <div class="card-block p-t-5">
+                        <table id="lstVisita" class="table table-striped table-bordered table-hover" data-source="/DashBoardEmergencia/ListarDerivacionEmergencia?area=Emergencia">
+                            <thead style="color: white;background: #3e6184;">
+                                <tr>
+                                    <th data-columna="nroDocumento" valign="middle" align="center">Nro.Documento</th>
+                                    <th data-columna="Paciente" valign="middle" align="center">Paciente</th>
+                                    <th data-columna="Serv.Ing" valign="middle" align="center">Serv.Ingreso</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src=@Href("~/js/DerivacionEmergencia.js")></script>
+}

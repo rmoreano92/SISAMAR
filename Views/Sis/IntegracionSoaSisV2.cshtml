@@ -1,0 +1,351 @@
+﻿<div>
+    <div>
+        <div>
+            @section Css
+            {
+                <!-- plugin css -->
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/bootstrap.vertical-tabs.css" />
+
+            }
+            <header class="head">
+                <div class="main-bar row">
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                        <h4 class="nav_top_align">
+                            <i class="fa fa-th"></i>
+                            @ViewBag.Area
+                        </h4>
+                    </div>
+                    <div class="col-lg-6 col-md-8 col-sm-8">
+                        <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                            <li class="breadcrumb-item">
+                                <a href="index1.html">
+                                    <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">@ViewBag.Area</a>
+                            </li>
+                            <li class="breadcrumb-item active">Migracion SOASIS</li>
+                        </ol>
+                    </div>
+                </div>
+            </header>
+
+            <div class="outer">
+                <div class="inner bg-light lter bg-container">
+                    <div class="row">
+                        <div class="col-xs-12 data_tables">
+                            <div class="card">
+                                <div class="card-header bg-white">
+                                    <i class="fa fa-pencil-square-o"></i> Migracion SOASIS
+                                </div>
+
+                                <div class="card-block p-t-5">
+
+                                    <div class="row">
+                                        <div class="col-lg-6" hidden>
+                                            <fieldset class="scheduler-border">
+                                                <legend class="scheduler-border">Fecha de Producción</legend>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="cboTipoBusqueda" class="form-control-label">Mes</label>
+                                                            <div class="input-group">
+                                                                <select class="chzn-select" id="cboMesProduccion" disabled>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="cboTipoBusqueda" class="form-control-label">Año</label>
+                                                            <div class="input-group">
+                                                                <select class="chzn-select" id="cboAnioProduccion" disabled>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="card m-t-5 bg-red" style="padding-bottom: 0px;">
+                                        <div class="card-block m-t-5 custom-form" style="padding-bottom: 0px;">
+                                            <div class="row pb-1">
+
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <label for="txtFechaFuaInicio" class="form-control-label">Fecha de Inicio</label>
+                                                        <div class="input-group input-group-sm m-0">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFuaInicio">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <label for="txtFechaFuaFin" class="form-control-label">Fecha de Fin</label>
+                                                        <div class="input-group input-group-sm m-0">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFuaFin">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="cboTipoBusqueda" class="form-control-label">UPS</label>
+                                                        <div class="input-group">
+                                                            <select class="chzn-select" id="cboFuaUPS">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                                                    <div>
+                                                        <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarAtencionesFUA">Buscar</button>
+                                                        <button class="btn btn-secondary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiarFiltro">Limpiar</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-1">
+                                        <div class="col-md-12" style="height: 50px;">
+                                            <button class="btn btn-success layout_btn_prevent" id="btnMigrarPorFechasV2">MigrarV2<i class="fa fa-exchange" style="margin-left: 10px;"></i></button>
+                                            <button class="btn btn-primary layout_btn_prevent" id="btnMigrarPorFechas">Migrar<i class="fa fa-exchange" style="margin-left: 10px;"></i></button>
+
+                                            <button class="btn btn-warning layout_btn_prevent" id="btnAbrirModalPaquete">Listar Paquetes Migrados<i class="fa fa-archive" style="margin-left: 10px;"></i></button>
+
+                                            <button class="btn btn-info layout_btn_prevent" id="btnMarcarEnviado" title="" data-toggle="tooltip" style="margin: 2px;"> Marcar como enviados<i class="fa fa-pencil" style="margin-left: 10px;"></i></button>
+
+                                        </div>
+
+
+                                        <div class="col-lg-12 pb-2">
+                                            <table id="tblAtencionFUA" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                                <thead style="color: white;background: #434343;">
+                                                    <tr>
+                                                        <th style="width:5%;">N° Cuenta</th>
+                                                        <th style="width:5%">N° FUA</th>
+                                                        <th style="width:5%">Afiliación</th>
+                                                        <th style="width:5%">Contraro</th>
+                                                        <th style="width:5%">N° Documento</th>
+                                                        <th style="width:5%">Apellidos Y Nombres</th>
+                                                        <th style="width:6%">Fecha Atención</th>
+                                                        <th style="width:7%">Código Prestacional</th>
+                                                        <th style="width:5%">DNI Usuario Registra</th>
+                                                        <th style="width:5%">SOASIS</th>
+                                                        <th style="width:5%">Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                    
+
+                                    @* <div class="row mt-1">
+                                        <div class="col-lg-12">
+                                            <div class="card m-t-5 bg-blue" style="padding-bottom: 0px;">
+                                                <div class="card-header bg-white">Respuesta Servicio Migracion SOASIS</div>
+                                                <div class="card-block m-t-5 custom-form" style="padding-bottom: 0px;">
+                                                    <div class="row pb-1">
+
+                                                        <div class="col-xl-8">
+                                                            <div class="row">
+                                                                <div class="col-lg-2">
+                                                                    <label for="txtPaquete" class="form-control-label">Paquete </label>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control form-control-sm bloquear" id="txtPaquete" placeholder="" autocomplete="off" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-8 mt-1">
+                                                            <div class="row">
+
+                                                                <div class="col-lg-2">
+                                                                    <label for="txtRespuesta" class="form-control-label">Respuesta </label>
+                                                                </div>
+
+                                                                <div class="col-lg-10">
+                                                                    <div class="form-group">
+                                                                        <textarea class="form-control form-control-sm" id="txtRespuesta" rows="5" style="height: 75px !important;" disabled></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> *@
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="modalRegistroPaquetes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title text-white" id="exampleModalLabel">Registro Bien e Insumo</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xl-12 mb-1">
+
+                                    <div class="card bg-green">
+                                        <div class="card-header bg-white">
+                                            <i class="fa fa-pencil-square-o"></i> Paquetes Migrados
+                                        </div>
+
+                                        <div class="card-block p-t-5">
+                                            <button class="btn btn-primary layout_btn_prevent" id="btnActualizarListaFuas">Actualizar</button>
+
+                                            <div class="row">
+                                                <div class="col-lg-12 pb-2">
+                                                    <table id="tblListaPaquetesSis" width="100%" class="table table-sm table-content-md table-bordered">
+                                                        <thead style="color: white;background: #434343;">
+                                                            <tr>
+                                                                <th style="width:45%">Paquete</th>
+                                                                <th style="width:5%">Año</th>
+                                                                <th style="width:5%">Mes</th>
+                                                                <th style="width:5%">ATE</th>
+                                                                <th style="width:5%">SMI</th>
+                                                                <th style="width:5%">DIA</th>
+                                                                <th style="width:5%">MED</th>
+                                                                <th style="width:5%">INS</th>
+                                                                <th style="width:5%">PRO</th>
+                                                                <th style="width:5%">SER</th>
+                                                                <th style="width:5%">RN</th>
+                                                                <th style="width:5%">Opcion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="btnCerrarModalPaquete">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+
+
+            @section Scripts
+    {
+                <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+                <script type="text/javascript" src=@Href("~/js/Sis/IntegracionSoaSis.js")></script>
+                @*<script type="text/javascript" src=@Href("~/js/Facturacion/Facturacion_Lista.js")></script>*@
+
+                <script src="~/AdmiRE/js/date.format.js"></script>
+
+                
+
+            }
+
+            <style>
+                .tab100 {
+                    width: 100%
+                }
+
+                #clothing-nav-content2 .form-group {
+                    margin-bottom: 0 !important;
+                }
+
+                #tblPacientesHosp tr.over td {
+                    background: #D6E8F8;
+                    font-weight: bold;
+                }
+
+                /*  .chosen-container chosen-container-single {
+                                    width: 100% !important;
+                                }*/
+
+
+                .chosen-container {
+                    width: 100% !important;
+                }
+
+                .modal-lg {
+                    max-width: 1400px !important;
+                }
+
+                fieldset.scheduler-border {
+                    border: 1px groove #ddd !important;
+                    padding: 0 1.4em 1.4em 1.4em !important;
+                    margin: 0 0 1.5em 0 !important;
+                    -webkit-box-shadow: 0px 0px 0px 0px #000;
+                    box-shadow: 0px 0px 0px 0px #000;
+                }
+
+                legend.scheduler-border {
+                    width: inherit; /* Or auto */
+                    padding: 0 10px; /* To give a bit of padding on the left and right */
+                    border-bottom: none;
+                    font-size: 15px;
+                }
+            </style>
+        </div>
+    </div>
+</div>@{
+    Layout = "_Layout";
+}

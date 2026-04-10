@@ -1,0 +1,584 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <UserSecretsId>2108a21b-b811-4442-95a4-07da39fb8d8a</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
+	<RazorCompileOnBuild>false</RazorCompileOnBuild>
+    <RazorCompileOnPublish>false</RazorCompileOnPublish>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>False</Optimize>
+	<RazorCompileOnBuild>false</RazorCompileOnBuild>
+    <RazorCompileOnPublish>false</RazorCompileOnPublish>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\js\Farmacia\IntervencionSanitaria - Copia.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Sis\NewFolder1\" />
+    <Folder Include="Areas\Sis\NewFolder\" />
+    <Folder Include="pase sql\Alta Med y Papeleta Egreso\" />
+    <Folder Include="utilitario\" />
+    <Folder Include="Views\Facturacion\NewFolder\" />
+    <Folder Include="Views\Hospitalizacion\Plantillas\NewFolder\" />
+    <Folder Include="Views\Shared\Components\VistasParciales\General\" />
+    <Folder Include="Views\Sis\Plantillas\" />
+    <Folder Include="wwwroot\AdmiRE\src\vendors\" />
+    <Folder Include="wwwroot\js\Facturacion\Plantillas\" />
+    <Folder Include="wwwroot\js\NewFolder\" />
+    <Folder Include="wwwroot\js\Seguridad\" />
+    <Folder Include="wwwroot\js\VistasParciales\Emergencia\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Farmacia\GestionAntimicrobianos.cshtml" />
+    <None Include="Views\Home\Inicio.cshtml" />
+    <None Include="Views\Shared\Components\VistasParciales\Default.cshtml" />
+    <None Include="Views\Shared\Components\VistasParciales\Diagnosticos.cshtml" />
+    <None Include="wwwroot\AdmiRE\css\.gitignore" />
+    <None Include="wwwroot\AdmiRE\fonts\.gitignore" />
+    <None Include="wwwroot\AdmiRE\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\AdmiRE\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\AdmiRE\img\.gitignore" />
+    <None Include="wwwroot\AdmiRE\js\.gitignore" />
+    <None Include="wwwroot\AdmiRE\js\admire.js" />
+    <None Include="wwwroot\AdmiRE\js\bootstrap.js" />
+    <None Include="wwwroot\AdmiRE\js\bootstrap.min.js" />
+    <None Include="wwwroot\AdmiRE\js\components.js" />
+    <None Include="wwwroot\AdmiRE\js\custom.js" />
+    <None Include="wwwroot\AdmiRE\js\dashboard_components.js" />
+    <None Include="wwwroot\AdmiRE\js\form.js" />
+    <None Include="wwwroot\AdmiRE\js\jquery.min.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\404.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\advanced_charts.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\advanced_tables.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\animations.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\buttons.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\calendar.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\cards.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\chartist.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\charts.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\cropper.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\dashboard.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\datatable.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\datetime_piker.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\draggable_portlets.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\flot_charts.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\forgot_password.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\form_editors.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\form_elements.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\form_layouts.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\form_validation.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\gallery.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\icons.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\index.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\izi_toastr.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\jquery.sessionTimeout.min.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\jquery.ui.min.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\jqvmaps.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\jstree.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\layouts.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\lockscreen.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\lockscreen2.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\lockscreen3.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\login1.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\login2.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\login3.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\mail_box.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\mail_sent.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\maps_page.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\mini_calendar.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\modals.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\new_dashboard.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\p_notify.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\radio_checkbox.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\ratings.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\register.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\richshaw_chart.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\session_timeout.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\simple_datatables.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\sliders.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\sortable.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\sweet_alerts.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\toastr_notifications.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\transitions-sliders.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\users.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\user_profile.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\validation.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\widget1.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\widget2.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\widget3.js" />
+    <None Include="wwwroot\AdmiRE\js\pages\wizard.js" />
+    <None Include="wwwroot\AdmiRE\js\pluginjs\calendarcustom.js" />
+    <None Include="wwwroot\AdmiRE\js\pluginjs\chartist-tooltip.js" />
+    <None Include="wwwroot\AdmiRE\js\pluginjs\dataTables.tableTools.js" />
+    <None Include="wwwroot\AdmiRE\js\pluginjs\jasny-bootstrap.js" />
+    <None Include="wwwroot\AdmiRE\js\pluginjs\jquery.flot.animator.min.js" />
+    <None Include="wwwroot\AdmiRE\js\pluginjs\jquery.sparkline.js" />
+    <None Include="wwwroot\AdmiRE\js\pluginjs\sample_data.js" />
+    <None Include="wwwroot\AdmiRE\js\tether.min.js" />
+    <None Include="wwwroot\AdmiRE\src\js\admire.js" />
+    <None Include="wwwroot\AdmiRE\src\js\bootstrap.js" />
+    <None Include="wwwroot\AdmiRE\src\js\form.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\404.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\advanced_charts.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\advanced_tables.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\animations.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\buttons.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\calendar.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\cards.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\chartist.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\charts.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\cropper.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\dashboard.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\datatable.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\datetime_piker.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\draggable_portlets.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\flot_charts.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\forgot_password.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\form_editors.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\form_elements.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\form_layouts.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\form_validation.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\gallery.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\icons.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\index.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\izi_toastr.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\jquery.sessionTimeout.min.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\jquery.ui.min.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\jqvmaps.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\jstree.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\layouts.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\lockscreen.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\lockscreen2.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\lockscreen3.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\login1.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\login2.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\login3.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\mail_box.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\mail_sent.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\maps_page.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\mini_calendar.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\modals.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\new_dashboard.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\p_notify.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\radio_checkbox.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\ratings.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\register.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\richshaw_chart.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\session_timeout.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\simple_datatables.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\sliders.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\sortable.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\sweet_alerts.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\toastr_notifications.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\transitions-sliders.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\users.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\user_profile.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\validation.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\widget1.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\widget2.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\widget3.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pages\wizard.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pluginjs\calendarcustom.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pluginjs\chartist-tooltip.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pluginjs\dataTables.tableTools.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pluginjs\jasny-bootstrap.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pluginjs\jquery.flot.animator.min.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pluginjs\jquery.sparkline.js" />
+    <None Include="wwwroot\AdmiRE\src\js\pluginjs\sample_data.js" />
+    <None Include="wwwroot\AdmiRE\src\sass\admire.scss" />
+    <None Include="wwwroot\AdmiRE\src\sass\bootstrap\app.scss" />
+    <None Include="wwwroot\AdmiRE\src\sass\bootstrap\_variables.scss" />
+    <None Include="wwwroot\AdmiRE\src\sass\sweetalert\sweetalert2.scss" />
+    <None Include="wwwroot\AdmiRE\vendors\.gitignore" />
+    <None Include="wwwroot\AdmiRE\vendors\autosize\js\jquery.autosize.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-colorpicker\js\bootstrap-colorpicker.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\bootstrap-datetimepicker.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\bootstrap-datetimepicker.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.ar.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.az.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.bg.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.bn.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.ca.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.cs.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.da.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.de.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.ee.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.el.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.es.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.fi.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.fr.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.he.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.hr.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.hu.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.hy.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.id.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.is.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.it.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.ja.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.ka.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.ko.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.lt.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.lv.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.ms.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.nb.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.nl.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.no.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.pl.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.pt-BR.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.pt.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.ro.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.rs-latin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.rs.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.ru.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.sk.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.sl.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.sv.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.sw.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.th.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.tr.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.ua.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.uk.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.zh-CN.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.zh-TW.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-slider\js\bootstrap-slider.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-switch\js\bootstrap-switch.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-tagsinput\js\bootstrap-tagsinput.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap-timepicker\js\bootstrap-timepicker.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap3-wysihtml5-bower\js\bootstrap3-wysihtml5.all.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap3-wysihtml5-bower\js\bootstrap3-wysihtml5.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstraprating\js\star-rating.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrapvalidator\js\bootstrapValidator.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\bootstrap_calendar\js\bootstrap_calendar.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\Buttons\js\buttons.js" />
+    <None Include="wwwroot\AdmiRE\vendors\Buttons\js\scrollto.js" />
+    <None Include="wwwroot\AdmiRE\vendors\c3\js\c3.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\chartist\js\chartist.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\chartJs\js\Chart.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\chosen\js\chosen.jquery.js" />
+    <None Include="wwwroot\AdmiRE\vendors\chosen\js\chosen1.jquery.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\circliful\js\jquery.circliful.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\clockpicker\js\jquery-clockpicker.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\countUp.js\js\countUp.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\cropper\js\cropper.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\d3\js\d3.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datatables\js\buttons.bootstrap.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datatables\js\buttons.colVis.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datatables\js\buttons.html5.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datatables\js\buttons.print.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datatables\js\dataTables.bootstrap.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datatables\js\dataTables.buttons.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datatables\js\dataTables.colReorder.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datatables\js\dataTables.responsive.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datatables\js\dataTables.rowReorder.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datatables\js\dataTables.scroller.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datatables\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datepicker\js\bootstrap-datepicker.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\daterangepicker\js\daterangepicker.js" />
+    <None Include="wwwroot\AdmiRE\vendors\datetimepicker\js\DateTimePicker.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\ExportSvgaPng\saveSvgAsPng.js" />
+    <None Include="wwwroot\AdmiRE\vendors\fancybox\js\jquery.fancybox-buttons.js" />
+    <None Include="wwwroot\AdmiRE\vendors\fancybox\js\jquery.fancybox-media.js" />
+    <None Include="wwwroot\AdmiRE\vendors\fancybox\js\jquery.fancybox-thumbs.js" />
+    <None Include="wwwroot\AdmiRE\vendors\fancybox\js\jquery.fancybox.js" />
+    <None Include="wwwroot\AdmiRE\vendors\fancybox\js\jquery.fancybox.pack.js" />
+    <None Include="wwwroot\AdmiRE\vendors\fancybox\js\jquery.mousewheel-3.0.6.pack.js" />
+    <None Include="wwwroot\AdmiRE\vendors\fileinput\js\fileinput.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\fileinput\js\theme.js" />
+    <None Include="wwwroot\AdmiRE\vendors\flip\js\jquery.flip.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\flot.tooltip\js\jquery.flot.tooltip.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\flotchart\js\jquery.flot.categories.js" />
+    <None Include="wwwroot\AdmiRE\vendors\flotchart\js\jquery.flot.js" />
+    <None Include="wwwroot\AdmiRE\vendors\flotchart\js\jquery.flot.pie.js" />
+    <None Include="wwwroot\AdmiRE\vendors\flotchart\js\jquery.flot.resize.js" />
+    <None Include="wwwroot\AdmiRE\vendors\flotchart\js\jquery.flot.stack.js" />
+    <None Include="wwwroot\AdmiRE\vendors\flotchart\js\jquery.flot.threshold.js" />
+    <None Include="wwwroot\AdmiRE\vendors\flotchart\js\jquery.flot.time.js" />
+    <None Include="wwwroot\AdmiRE\vendors\flotspline\js\jquery.flot.spline.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\fullcalendar\js\fullcalendar.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\gmaps\js\gmaps.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\handlebars\js\handlebars.js" />
+    <None Include="wwwroot\AdmiRE\vendors\holderjs\js\holder.js" />
+    <None Include="wwwroot\AdmiRE\vendors\inputlimiter\js\jquery.inputlimiter.js" />
+    <None Include="wwwroot\AdmiRE\vendors\inputmask\js\inputmask.date.extensions.js" />
+    <None Include="wwwroot\AdmiRE\vendors\inputmask\js\inputmask.extensions.js" />
+    <None Include="wwwroot\AdmiRE\vendors\inputmask\js\inputmask.js" />
+    <None Include="wwwroot\AdmiRE\vendors\inputmask\js\inputmask.phone.extensions.js" />
+    <None Include="wwwroot\AdmiRE\vendors\inputmask\js\jquery.inputmask.bundle.js" />
+    <None Include="wwwroot\AdmiRE\vendors\inputmask\js\jquery.inputmask.js" />
+    <None Include="wwwroot\AdmiRE\vendors\intl-tel-input\js\intlTelInput.js" />
+    <None Include="wwwroot\AdmiRE\vendors\intl-tel-input\js\utils.js" />
+    <None Include="wwwroot\AdmiRE\vendors\ion-rangeslider\js\ion.rangeSlider.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\ionicons\fonts\ionicons.svg" />
+    <None Include="wwwroot\AdmiRE\vendors\izitoast\js\iziToast.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jasny-bootstrap\js\inputmask.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jasny-bootstrap\js\jasny-bootstrap.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqplot\js\jqplot.canvasAxisTickRenderer.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqplot\js\jqplot.canvasTextRenderer.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqplot\js\jqplot.dateAxisRenderer.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqplot\js\jqplot.highlighter.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqplot\js\jqplot.logAxisRenderer.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqplot\js\jquery.jqplot.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery-tagsinput\js\jquery.tagsinput.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery-timepicker-1.3.5\AUTHORS" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery-timepicker-1.3.5\CHANGELOG" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery-timepicker-1.3.5\jquery.timepicker.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery-timepicker-1.3.5\jquery.timepicker.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery-timepicker-1.3.5\LICENSE-GPL" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery-timepicker-1.3.5\LICENSE-MIT" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery-timepicker-1.3.5\README.md" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery-validation-engine\js\jquery.validationEngine-en.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery-validation-engine\js\jquery.validationEngine.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery-validation\js\jquery.validate.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery.backstretch\js\jquery.backstretch.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery.uniform\js\jquery.uniform.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jquery_newsTicker\js\newsTicker.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqvmap\js\jquery.vmap.australia.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqvmap\js\jquery.vmap.canada.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqvmap\js\jquery.vmap.europe.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqvmap\js\jquery.vmap.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqvmap\js\jquery.vmap.russia.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqvmap\js\jquery.vmap.usa.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jqvmap\js\jquery.vmap.world.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jScrollPane\js\jquery.jscrollpane.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jScrollPane\js\jquery.mousewheel.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jScrollPane\js\mwheelIntent.js" />
+    <None Include="wwwroot\AdmiRE\vendors\jstree\js\jstree.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\justgage\js\justgage.js" />
+    <None Include="wwwroot\AdmiRE\vendors\j_timepicker\js\jquery.timepicker.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\Knob\js\jquery.knob.js" />
+    <None Include="wwwroot\AdmiRE\vendors\LC-switch\js\lc_switch.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\masked\masked.js" />
+    <None Include="wwwroot\AdmiRE\vendors\modal\js\classie.js" />
+    <None Include="wwwroot\AdmiRE\vendors\modal\js\css-filters-polyfill.js" />
+    <None Include="wwwroot\AdmiRE\vendors\modal\js\cssParser.js" />
+    <None Include="wwwroot\AdmiRE\vendors\modal\js\modalEffects.js" />
+    <None Include="wwwroot\AdmiRE\vendors\modal\js\modernizr.custom.js" />
+    <None Include="wwwroot\AdmiRE\vendors\moments\js\moment-with-locales.js" />
+    <None Include="wwwroot\AdmiRE\vendors\moments\js\moment.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\moment\js\moment.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\noty\js\jquery.noty.packaged.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\nvd3\js\nv.d3.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.animate.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.buttons.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.callbacks.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.confirm.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.desktop.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.history.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.mobile.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.nonblock.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.reference.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\3.0.0\js\pnotify.tooltip.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\js\pnotify.animate.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\js\pnotify.buttons.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\js\pnotify.callbacks.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\js\pnotify.confirm.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\js\pnotify.desktop.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\js\pnotify.history.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\js\pnotify.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\js\pnotify.mobile.js" />
+    <None Include="wwwroot\AdmiRE\vendors\pnotify\js\pnotify.nonblock.js" />
+    <None Include="wwwroot\AdmiRE\vendors\raphael\js\raphael-min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\rateyo\js\jquery.rateyo.js" />
+    <None Include="wwwroot\AdmiRE\vendors\rickshaw\js\rickshaw.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\select2\js\select2.js" />
+    <None Include="wwwroot\AdmiRE\vendors\slimscroll\js\jquery.slimscroll.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\snabbt\js\snabbt.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\sortable\js\Sortable.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\summernote\js\summernote.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\sweetalert\js\sweetalert2.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\swiper\js\swiper.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\switchery\js\switchery.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\themify\js\ie7.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\jquery.tinymce.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\advlist\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\advlist\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\anchor\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\anchor\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\autolink\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\autolink\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\autoresize\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\autoresize\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\autosave\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\autosave\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\bbcode\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\bbcode\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\charmap\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\charmap\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\codesample\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\codesample\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\code\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\code\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\colorpicker\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\colorpicker\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\contextmenu\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\contextmenu\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\directionality\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\directionality\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\emoticons\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\emoticons\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\fullpage\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\fullpage\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\fullscreen\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\fullscreen\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\hr\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\hr\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\imagetools\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\imagetools\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\image\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\image\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\importcss\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\importcss\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\insertdatetime\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\insertdatetime\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\layer\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\layer\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\legacyoutput\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\legacyoutput\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\link\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\link\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\lists\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\lists\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\media\moxieplayer.swf" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\media\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\media\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\nonbreaking\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\nonbreaking\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\noneditable\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\noneditable\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\pagebreak\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\pagebreak\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\paste\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\paste\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\preview\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\preview\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\print\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\print\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\save\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\save\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\searchreplace\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\searchreplace\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\spellchecker\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\spellchecker\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\tabfocus\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\tabfocus\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\table\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\table\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\template\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\template\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\textcolor\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\textcolor\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\textpattern\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\textpattern\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\visualblocks\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\visualblocks\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\visualchars\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\visualchars\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\wordcount\plugin.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\plugins\wordcount\plugin.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\skins\lightgray\fonts\tinymce-small.svg" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\skins\lightgray\fonts\tinymce.svg" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\themes\inlite\theme.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\themes\inlite\theme.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\themes\modern\theme.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\themes\modern\theme.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\tinymce\js\tinymce.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\toastr\js\toastr.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\twitter-bootstrap-wizard\js\jquery.bootstrap.wizard.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\validval\js\jquery.validVal.min.js" />
+    <None Include="wwwroot\AdmiRE\vendors\wow\js\wow.min.js" />
+    <None Include="wwwroot\js\Farmacia\IntervencionSanitaria - Copia.js" />
+    <None Include="wwwroot\js\Farmacia\IntervencionSanitaria.js" />
+    <None Include="wwwroot\js\VistasParciales\Comun\BusquedaRecetasPacientes.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspose.Cells" Version="24.10.0" />
+    <PackageReference Include="Aspose.Zip" Version="24.9.0" />
+    <PackageReference Include="ClosedXML" Version="0.104.1" />
+    <PackageReference Include="DbfDataReader" Version="0.9.0" />
+    <PackageReference Include="DwrZip" Version="0.0.2" />
+    <PackageReference Include="ElmahCore" Version="2.1.2" />
+    <PackageReference Include="Ghostscript.NET" Version="1.2.3.1" />	  
+    <PackageReference Include="itext7" Version="8.0.5" />	  
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.5" />	  
+    <PackageReference Include="itext7.pdfhtml" Version="5.0.5" />	  
+    <PackageReference Include="MediatR" Version="13.0.0" />	  
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
+    <PackageReference Include="NPOI" Version="2.7.1" />
+    <PackageReference Include="QRCoder" Version="1.4.2" />
+    <PackageReference Include="Select.HtmlToPdf.NetCore" Version="24.1.0" />
+    <PackageReference Include="SevenZipSharp.Interop" Version="19.1.0" />
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+    <PackageReference Include="System.Data.Odbc" Version="8.0.0" />
+    <PackageReference Include="System.Data.OleDb" Version="7.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+    <PackageReference Include="System.Json" Version="4.7.1" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.10.*" />
+    <PackageReference Include="System.ServiceModel.Federation" Version="4.10.*" />
+    <PackageReference Include="System.ServiceModel.Http" Version="6.1.0" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.10.*" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="6.1.0" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.10.*" />
+    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\FactConfig\ProductoPlan - Copia.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\FactConfig\ProductoPlanMantenimiento - Copia.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\SubMenu\Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Components\VistasParciales\Comorbilidades.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\SolicitudCitas\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Visitas\VisitaMedica.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Farmacia\GestionAntimicrobianos.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\Farmacia\IntervencionSanitaria.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SiHospCrypKey">
+      <HintPath>Library\SiHospCrypKey.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

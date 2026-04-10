@@ -1,0 +1,366 @@
+﻿<div class="card bg-blue mb-1">
+    <div class="card-block pb-0">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <label for="cboIntervencionesTipoHemoderivado">Tipo hemoderivado</label>
+                        <div class="form-group">
+                            <select id="cboIntervencionesTipoHemoderivado" class="chzn-select" data-placeholder="Seleccionar una opcion">
+                                <option value="0">No</option>
+                                <option value="1">Paquete globular</option>
+                                <option value="2">Plasma fresco congelado</option>
+                                <option value="3">Plaquetas aféresis</option>
+                                <option value="4">Plaquetas</option>
+                                <option value="5">Crioprecipitados</option>
+                                <option value="99">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="text" autocomplete="off" class="form-control form-control-sm " id="txtIntervencionesTipoHemoderivadoOtros" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2">
+                        <label for="txtIntervencionesHemoderivadoNroUnidades">N° Uni.</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" id="txtIntervencionesHemoderivadoNroUnidades" autocomplete="off">
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-4 mt-2">
+                        <button id="btnAgregarHemoderivado" type="button" class="btn btn-sm btn-labeled btn-success mr-1" style="width: 100px;">
+                            <span class="btn-label">
+                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                            </span>
+                            Agregar
+                        </button>
+                        <button id="btnQuitarHemoderivado" type="button" class="btn btn-sm btn-labeled btn-danger" style="width: 100px;">
+                            <span class="btn-label">
+                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                            </span>
+                            Quitar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12 mt-1">
+                <table id="tblIntervencionesHemoderivado" width="100%" class="table table-sm table-bordered">
+                    <thead style="color: white;background: #434343;">
+                        <tr>
+                            <th style="width:0%">IdTipoHemoderivado</th>
+                            <th style="width:70%">Tipo hemoderivado</th>
+                            <th style="width:30%">N° Unidades</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="col-xl-12 mt-1">
+                <div class="row">
+                    <div class="offset-lg-8 col-xl-2">
+                        <label for="txtTotalUnidadesHemoderivado">Total Unidades</label>
+                    </div>
+
+                    <div class="col-xl-2">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" id="txtTotalUnidadesHemoderivado" autocomplete="off" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card bg-blue mb-1">
+    <div class="card-block pb-0">
+        <div class="row">
+            <div class="col-xl-12 mt-1">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <label for="cboIntervencionesCorticoide">Corticoide</label>
+                        <div class="form-group">
+                            <select id="cboIntervencionesCorticoide" class="chzn-select" data-placeholder="Seleccionar una opcion">
+                                <option value="0">Ninguno</option>
+                                <option value="1">Dexametasona</option>
+                                <option value="2">Prednisona</option>
+                                <option value="3">Betametasona</option>
+                                <option value="4">Metilprednisolona</option>
+                                <option value="5">Fluticasona</option>
+                                <option value="6">Beclometasona</option>
+                                <option value="7">Hidrocortisona</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-1">
+                        <label for="txtIntervencionesCorticoideDosis">Dosis(cc/h)</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" id="txtIntervencionesCorticoideDosis" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2">
+                        <label for="txtIntervencionesCorticoideHorario">Horario</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" id="txtIntervencionesCorticoideHorario" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 mt-2">
+                        <button id="btnAgregarCorticoide" type="button" class="btn btn-sm btn-labeled btn-success mr-1" style="width: 100px;">
+                            <span class="btn-label">
+                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                            </span>
+                            Agregar
+                        </button>
+                        <button id="btnQuitarCorticoide" type="button" class="btn btn-sm btn-labeled btn-danger" style="width: 100px;">
+                            <span class="btn-label">
+                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                            </span>
+                            Quitar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12 mt-1">
+                <table id="tblIntervencionesCorticoide" width="100%" class="table table-sm table-bordered">
+                    <thead style="color: white;background: #434343;">
+                        <tr>
+                            <th style="width:0%" hidden>IdCorticoide</th>
+                            <th style="width:80%">Descripcion</th>
+                            <th style="width:10%">Dosis</th>
+                            <th style="width:10%">Horario</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card bg-blue mb-1">
+    <div class="card-block pb-0">
+        <div class="row">
+            <div class="col-xl-12 mt-1">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <label for="cboIntervencionesFluidoterapia">Fluidoterapia</label>
+                        <div class="form-group">
+                            <select id="cboIntervencionesFluidoterapia" class="chzn-select" data-placeholder="Seleccionar una opcion">
+                                <option value="0">Ninguno</option>
+                                <option value="1">CLNA 0.9%</option>
+                                <option value="2">Dextrosa 5%</option>
+                                <option value="3">Dextrosa 10%</option>
+                                <option value="4">Dextrosa 33%</option>
+                                <option value="5">Isofundin</option>
+                                <option value="6">Ringer Lactato</option>
+                                <option value="7">Plasmalyte</option>
+                                <option value="8">Poligelina</option>
+                                <option value="9">Gelafusin</option>
+                                <option value="10">Albumina 20%</option>
+                                <option value="11">Manitol 20%</option>
+                                <option value="12">Agua destilada</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-1">
+                        <label for="txtIntervencionesFluidoterapiaDosis">Dosis</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" id="txtIntervencionesFluidoterapiaDosis" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2">
+                        <label for="txtIntervencionesFluidoterapiaVolumen">Volumen (cc)</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" id="txtIntervencionesFluidoterapiaVolumen" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 mt-2">
+                        <button id="btnAgregarFluidoterapia" type="button" class="btn btn-sm btn-labeled btn-success mr-1" style="width: 100px;">
+                            <span class="btn-label">
+                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                            </span>
+                            Agregar
+                        </button>
+                        <button id="btnQuitarFluidoterapia" type="button" class="btn btn-sm btn-labeled btn-danger" style="width: 100px;">
+                            <span class="btn-label">
+                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                            </span>
+                            Quitar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12 mt-1">
+                <table id="tblIntervencionesFluidoterapia" width="100%" class="table table-sm table-bordered">
+                    <thead style="color: white;background: #434343;">
+                        <tr>
+                            <th style="width:0%" hidden>IdFluidoterapia</th>
+                            <th style="width:80%">Descripcion</th>
+                            <th style="width:10%">Dosis</th>
+                            <th style="width:10%">Volumen</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="col-xl-12 mt-1">
+                <div class="row">
+                    <div class="offset-lg-8 col-xl-2">
+                        <label for="txtTotalVolumenFluidoterapia">Total Volumen</label>
+                    </div>
+
+                    <div class="col-xl-2">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" id="txtTotalVolumenFluidoterapia" autocomplete="off" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card bg-orange mb-1">
+    <div class="card-header bg-white">Ingresos de fluidos</div>
+    <div class="card-block pb-0">
+
+        <div class="row pb-1">
+
+            <div class="col-xl-8">
+
+                <div class="row mb-1 mt-1">
+
+                    <div class="col-xl-7">
+
+                        <div class="row">
+                            <div class="col-xl-8">
+                                <label for="txtIngresosFluidossvo6h" class="form-control-label">Ingresos fluidos s/vo 6h</label>
+                            </div>
+
+                            <div class="col-xl-4">
+                                <div class="form-group m-0 campo">
+                                    <div class="input-group">
+                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtIngresosFluidossvo6h">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-5">
+
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <label for="txtInterBh6" class="form-control-label">Bh 6h</label>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <div class="form-group m-0 campo">
+                                    <div class="input-group">
+                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtInterBh6">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row  mb-1">
+
+                    <div class="col-xl-7">
+
+                        <div class="row">
+                            <div class="col-xl-8">
+                                <label for="txtIngresosFluidossvo12h" class="form-control-label">Ingresos fluidos s/vo  12h</label>
+                            </div>
+
+                            <div class="col-xl-4">
+                                <div class="form-group m-0 campo">
+                                    <div class="input-group">
+                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtIngresosFluidossvo12h">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-5">
+
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <label for="txtInterBh12" class="form-control-label">Bh 12h</label>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <div class="form-group m-0 campo">
+                                    <div class="input-group">
+                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtInterBh12">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row mb-1">
+
+                    <div class="col-xl-7">
+
+                        <div class="row">
+                            <div class="col-xl-8">
+                                <label for="txtIngresosFluidossvo24h" class="form-control-label">Ingresos fluidos s/vo 24h</label>
+                            </div>
+
+                            <div class="col-xl-4">
+                                <div class="form-group m-0 campo">
+                                    <div class="input-group">
+                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtIngresosFluidossvo24h">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-5">
+
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <label for="txtInterBh24" class="form-control-label">Bh 24h</label>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <div class="form-group m-0 campo">
+                                    <div class="input-group">
+                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtInterBh24">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

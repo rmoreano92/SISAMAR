@@ -1,0 +1,92 @@
+﻿@using System.Data
+<div class="modal fade" id="modalRegistroArchivero" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Archivero</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12 mb-1">
+                        <div class="card bg-blue">
+                            @* <div class="card-header bg-white">Datos Generales</div> *@
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-8">
+                                        <div class="form-group m-0">
+                                            <label for="cboEmpleadoArchivero">Archivero</label>
+                                            <select id="cboEmpleadoArchivero" class="chzn-select-deselect writing reading" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>                                     
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-12">
+
+                        <div class="card bg-green mb-1">
+                            <div class="card-header bg-white">Lista de Servicios Autorizados</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-8">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboServicioArchivero">Servicio</label>
+                                            <select id="cboServicioArchivero" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow pais in ViewBag.Servicios.Rows)
+                                                {
+                                                    <option value="@pais["IdServicio"]">@pais["Nombre"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 d-flex align-items-end" style="height: 55px;">
+                                        <button class="btn btn-sm btn-success layout_btn_prevent mr-1" id="btnAgregarServicioAutorizado">
+                                            <i class="fas fa-plus"></i> Agregar
+                                        </button>
+                                        <button class="btn btn-sm btn-danger layout_btn_prevent" id="btnQuitarServicioAutorizado">
+                                            <i class="fas fa-trash"></i> Quitar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <table id="tblServiciosAutorizados" class="table table-sm table-content-sm table-bordered table-striped w-100 m-0 mt-2" style="cursor: default;">
+                                            <thead style="color: white; background: #007368;">
+                                                <tr>
+                                                    <th width="100%">Servicio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                                               
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarArchivero">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCancelarArchivero">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* 
+<script>
+    var tiposFinanciamientoBI = @Html.Raw(Json.Serialize(ViewBag.TiposFinanciamientoSoloIngresaPrecios.Rows));
+</script> *@
+
+
+

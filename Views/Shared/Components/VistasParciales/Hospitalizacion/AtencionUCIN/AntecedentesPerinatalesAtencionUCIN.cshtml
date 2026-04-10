@@ -1,0 +1,245 @@
+﻿<div class="row">
+    <div class="col-xl-7 mb-1">
+        <div class="card bg-blue" style="padding-bottom: 0px;">
+            <div class="card-header bg-white">Embarazo</div>
+            <div class="card-block" style="padding-bottom: 0px;">
+                <div class="row">
+                    <div class="col-xl-12 pb-1">
+
+                        <div class="form-group mb-0">
+                            <label style="width: 100%;">Embarazo</label>
+                            <div class="switch-field">
+                                <input type="radio" id="rdbEmbarazoN" name="rdbEmbarazo" class="rdbEmbarazo campo" />
+                                <label for="rdbEmbarazoN" class="">Normal</label>
+                                <input type="radio" id="rdbEmbarazoC" name="rdbEmbarazo" class="rdbEmbarazo campo" />
+                                <label for="rdbEmbarazoC" class="">Complicado</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="txtPatGest">Patología(s) durante la Gestación</label>
+                            @*<input type="text" class="form-control form-control-sm campo" id="txtPatGest" autocomplete="off">*@
+                            <textarea class="form-control campo" id="txtPatGest" rows="2"></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-3">
+                                <div class="form-group mb-0">
+                                    <label for="txtNroEmbarazo">Nro Embarazo</label>
+                                    <input type="text" class="form-control form-control-sm solo-numero campo" id="txtNroEmbarazo" minlength="1" maxlength="2" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="casilla mt-1">
+                            <h5>Atención Prenatal (APN)</h5>                            
+                            <div class="row">
+                                <div class="col-xl-3">
+                                    <div class="form-group m-0">
+                                        <label style="width: 100%;">Atención Prenatal</label>
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbAtPreNatalSi" name="rdbAtPreNatal" class="rdbAtPreNatal campo" />
+                                            <label for="rdbAtPreNatalSi" class="">Si</label>
+                                            <input type="radio" id="rdbAtPreNatalNo" name="rdbAtPreNatal" class="rdbAtPreNatal campo" />
+                                            <label for="rdbAtPreNatalNo" class="">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="form-group m-0">
+                                        <label for="txtNroAPN">Nro APN</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero campo" id="txtNroAPN" minlength="1" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtLugarAPN">Lugar del APN</label>
+                                        <input type="text" class="form-control form-control-sm campo" id="txtLugarAPN" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="casilla mt-1">
+                            <h5>Formula Obstétrica</h5>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="form-group m-0">
+                                                <label for="txtGesta">Gesta <small class="font-weight-bold">(Nº de gestaciones, incluida la actual)</small></label>
+                                                <input type="text" class="form-control form-control-sm solo-numero campo" id="txtGestas" minlength="1" maxlength="2" autocomplete="off" style="max-width:150px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group m-0">
+                                                <label for="txtParidad">Paridad</label>
+                                                <div class="d-flex">
+                                                    <input type="text" class="form-control form-control-sm solo-numero paridad1 campo" id="txtParidad1" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                                    <input type="text" class="form-control form-control-sm solo-numero paridad2 campo" id="txtParidad2" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                                    <input type="text" class="form-control form-control-sm solo-numero paridad3 campo" id="txtParidad3" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                                    <input type="text" class="form-control form-control-sm solo-numero paridad4 campo" id="txtParidad4" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-12">
+                                    <form>
+                                        <fieldset class="m-0 px-1 pb-1">
+                                            <legend class="mb-0">Leyenda Paridad</legend>
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item d-flex align-items-center p-0" style="background: transparent;">
+                                                                <span class="chip" style="background-color: #009688"></span>
+                                                                Embarazos a término.
+                                                            </li>
+                                                            <li class="list-group-item d-flex align-items-center p-0" style="background: transparent;">
+                                                                <span class="chip" style="background-color: #E91E63"></span>
+                                                                Pre-término.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <ul class="list-group">                                                            
+                                                            <li class="list-group-item d-flex align-items-center p-0" style="background: transparent;">
+                                                                <span class="chip" style="background-color: #2196F3"></span>
+                                                                Abortos.
+                                                            </li>
+                                                            <li class="list-group-item d-flex align-items-center p-0" style="background: transparent;">
+                                                                <span class="chip" style="background-color: #795548"></span>
+                                                                Nacidos vivos.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-5 mb-1">
+        <div class="card bg-lightindigo" style="padding-bottom: 0px;">
+            <div class="card-header bg-white">Parto</div>
+            <div class="card-block" style="padding-bottom: 0px;">
+                <div class="row">
+                    <div class="col-xl-12 pb-1">
+
+                        <div class="casilla mt-1">
+                            <div class="form-group mb-0">
+                                <label style="width: 100%;" class="m-0">Atendido por</label>
+                                <div class="switch-field">
+                                    <input type="radio" id="rdbAtendidoPorMed" name="rdbAtendidoPor" class="rdbAtendidoPor campo" />
+                                    <label for="rdbAtendidoPorMed" class="">Médico</label>
+                                    <input type="radio" id="rdbAtendidoPorObs" name="rdbAtendidoPor" class="rdbAtendidoPor campo" />
+                                    <label for="rdbAtendidoPorObs" class="">Obstetra</label>
+                                    <input type="radio" id="rdbAtendidoPorOtro" name="rdbAtendidoPor" class="rdbAtendidoPor campo" />
+                                    <label for="rdbAtendidoPorOtro" class="">Otro</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-0" id="profesionalResponsableCombo">
+                                <label for="cmbProfResponsable">Profesional Responsable MGP</label>
+                                <select id="cboProfResponsable" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                            </div>
+
+                            <div class="form-group mb-0" id="profesionalResponsableTexto">
+                                <label for="txtProfResponsable">Profesional Responsable MGP</label>
+                                <input type="text" class="form-control form-control-sm campo" id="txtProfResponsable" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="casilla mt-1">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group mb-0">
+                                        <label for="cboTipoParto" class="m-0">Tipo Parto</label>
+                                        <select id="cboTipoParto" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex">
+                                <div class="form-group mb-0 mr-2">
+                                    <label style="width: 100%;">Complicación del Parto</label>
+                                    <div class="switch-field">
+                                        <input type="radio" id="rdbComplicado" name="rdbPartoComplicado" class="rdbPartoComplicado campo">
+                                        <label for="rdbComplicado" class="">Si</label>
+                                        <input type="radio" id="rdbEutocito" name="rdbPartoComplicado" class="rdbPartoComplicado campo">
+                                        <label for="rdbEutocito" class="">No</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-success btn-sm mx-2" id="btnDiagnosticosRn" style="margin-top: 30px;">Diagnósticos</button>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group mb-0">
+                                <label for="txtComplicaciones">Descripción de complicación</label>
+                                <textarea class="form-control campo" id="txtComplicaciones" rows="2"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label style="width: 100%;">Posición del Parto</label>
+                            <div class="switch-field">
+                                <input type="radio" id="rdbTipoPartoH" name="rdbTipoParto" class="rdbTipoParto campo" />
+                                <label for="rdbTipoPartoH" class="">Horizontal</label>
+                                <input type="radio" id="rdbTipoPartoV" name="rdbTipoParto" class="rdbTipoParto campo" />
+                                <label for="rdbTipoPartoV" class="">Vertical</label>
+                            </div>
+                        </div>
+
+
+                        <div class="casilla mt-1">
+                            @*<h5>Parto</h5>*@
+                            <div class="">
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input campo" type="checkbox" id="chkConAcompaniante">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Parto Con Acompañante</span>
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input campo" type="checkbox" id="chkConAnalgesia">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Parto Con Analgesia</span>
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div class="check__toggle">
+                                    <label class="toggle">
+                                        <input class="toggle__input campo" type="checkbox" id="chkTrasladoConjunto">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Traslado Conjunto</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

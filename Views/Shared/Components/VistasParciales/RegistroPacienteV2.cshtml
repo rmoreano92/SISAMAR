@@ -1,0 +1,864 @@
+﻿@*JDELGADO001.2 CREACION*@
+<!-- <div class="row mt-1"> -->
+<!-- <div class="col-md-12"> -->
+<ul id="idDatosPaciente" class="nav nav-tabs" role="tablist">
+	<li class="nav-item">
+		<a class="nav-link active" href="#tabDatosPaciente" role="tab" id="tabDatosPaciente-tab" data-toggle="tab" aria-controls="tabDatosPaciente" aria-expanded="true">DATOS DEL PACIENTE</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#tabDatosFamiliar" role="tab" id="tabDatosFamiliar-tab" data-toggle="tab" aria-controls="tabDatosFamiliar">FICHA FAMILIAR</a>
+	</li>
+
+</ul>
+<!--< /div> -->
+<!-- </div> -->
+<div class="tab-content">
+	<div class="tab-pane p-1 active" id="tabDatosPaciente">
+		<!-- Contenido aquí -->
+
+		<div class="card mb-1 bg-yellow RegistroPacienteContenedor">
+			<!-- <div class="card-header bg-white">Datos de la historia clinica</div> -->
+			<div class="card-block p-t-5 custom-form">
+				<div class="row">
+					<div class="col-md-5">
+						<div class="row">
+							<div class="col-md-6 col-lg-5">
+								<label for="txtUsuarioCrea" class="form-label">Usuario Crea</label>
+								<div class="input-group input-group-sm bloquear-campos">
+									<input type="text" class="form-control" id="txtUsuarioCrea" autocomplete="off" disabled>
+								</div>
+							</div>
+							<div class="col-md-6 col-lg-5">
+								<label for="txtUsuarioModifica" class="form-label">Usuario Modifica</label>
+								<div class="input-group input-group-sm bloquear-campos">
+									<input type="text" class="form-control" id="txtUsuarioModifica" autocomplete="off" disabled>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-5">
+						<div class="row">
+							<div class="col-md-6 col-lg-5">
+								<label for="" class="form-label">Tipo Doc.</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboTipoDocPaciente" data-placeholder="Seleccione una opción"></select>
+								</div>
+							</div>
+							<div class="col-md-6 col-lg-5">
+								<label for="" class="form-label">Nro. Doc.</label>
+								<div class="input-group input-group-sm bloquear-campos">
+									<input type="text" class="form-control bloquear-campos" id="txtDniPaciente" autocomplete="off">
+									<div class="alert alert-danger" role="alert" id="errorDocumento" style="display: none"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-5">
+						<div class="row">
+							<div class="col-md-6 col-lg-4">
+								<label for="" class="form-label">CIP</label>
+								<div class="input-group input-group-sm bloquear-campos">
+									<input type="text" class="form-control bloquear-campos" id="txtCipPaciente" oninput="soloNumeros(this)" autocomplete="off">
+									<div class="alert alert-danger" role="alert" id="errorDocumento" style="display: none"></div>
+								</div>
+							</div>
+							<div class="col-md-6 col-lg-4">
+								<label for="" class="form-label">Tipo Nro. Historia</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" data-placeholder="Seleccione una opción" class="chzn-select" id="cboTipoHistoriaPaciente" disabled>
+										<option value="1">1 = Automatica</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6 col-lg-4">
+								<label for="" class="form-label">Nro. Historia.</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control" id="txtNroHistoriaPaciente" disabled>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div class="row">
+							<div class="col-md-6 col-lg-12">
+								<label for="" class="form-label">Fecha Creacion</label>
+								<div class="input-group input-group-sm">
+									<input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaCreacionPaciente" disabled>
+									<span class="input-group-addon">
+										<i class="fa fa-calendar "></i>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		<div class="card mb-1 bg-green RegistroPacienteContenedor">
+			<div class="card-header bg-white">Datos del paciente</div>
+			<div class="card-block m-t-5 custom-form">
+				<div class="row">
+					<div class="col-xl-10">
+						<div class="row">
+							<div class="col-md-6 col-xl-2">
+								<label for="" class="form-label">Apellido Paterno</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtApellidoPaternoPaciente" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-md-6 col-xl-2">
+								<label for="" class="form-label">Apellido Materno</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtApellidoMaternoPaciente" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Primer Nombre</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtPrimerNombrePaciente" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Segundo Nombre</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtSegundoNombrePaciente" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Tercer Nombre</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtTercerNombrePaciente" autocomplete="off">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-2">
+						<div class="offset-sm-6 offset-xl-2 col-xl-10">
+							<label for="" class="form-label">Id Paciente</label>
+							<div class="input-group input-group-sm">
+								<input type="text" class="form-control" id="txtIdPaciente" disabled>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xl-7">
+						<div class="row">
+							<div class="col-md-3 col-xl-3">
+								<label for="txtFechaNacimientoPaciente" class="form-label">Fecha Nacimiento</label>
+								<div class="input-group input-group-sm">
+									<input type="text" autocomplete="off" class="form-control form_val_popup_dp3 bloquear-campos" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtPacienteFechaNacimiento">
+									<span class="input-group-addon">
+										<i class="fa fa-calendar "></i>
+									</span>
+								</div>
+							</div>
+							<div class="col-md-2 col-xl-2">
+								<label for="" class="form-label">Hora: </label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtHoraNacimientoPaciente" placeholder="__:__" value="00:00">
+								</div>
+							</div>
+							<div class="col-md-2 col-xl-2">
+								<label for="" class="form-label">Edad</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtEdadPaciente" style="background: #d8eaff;">
+								</div>
+							</div>
+							<div class="col-md-3 col-xl-2">
+								<label for="" class="form-label">Tipo Edad</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboTipoEdadPaciente"></select>
+								</div>
+							</div>
+							<div class="col-md-2 col-xl-2">
+								<label for="" class="form-label">Es hijo N°</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtEsNroHijoPaciente" autocomplete="off">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-5">
+						<div class="row">
+							<div class=" col-md-4 col-xl-3">
+								<label for="" class="form-label">Sexo</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboSexoPaciente">
+										<option value="0">--Seleccionar--</option>
+										<option value="1">1 = Masculino</option>
+										<option value="2">2 = Femenino</option>
+									</select>
+								</div>
+							</div>
+							<div class=" col-md-4 col-xl-4">
+								<label for="" class="form-label">Estado Civil</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboEstadoCivilPaciente"></select>
+								</div>
+							</div>
+							<div class=" col-md-4 col-xl-5">
+								<label for="" class="form-label">Etnia</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboEtniaPaciente">
+										<option value="0">--Seleccionar--</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="row">
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Idioma Materno</label>
+								<div class="input-group input-group-sm bloquear-campos">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboIdiomaMaternoPaciente">
+										<option value="0">--Seleccionar--</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-3">
+								<label for="" class="form-label">Grado de Instruccion</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboGradoInstruccionPaciente"></select>
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Situación</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboOcupacionPaciente"></select>
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-3">
+								<label for="" class="form-label">Dependencia</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboProcedenciaPaciente"></select>
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Religion</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboReligionPaciente"></select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="row">
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Parentesco</label>
+								<div class="input-group input-group-sm bloquear-campos">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboParentescoPaciente">										
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Discapacidad</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboDiscapacidadPaciente">
+										<option value="0">--Seleccionar--</option>
+										<option value="1">Discapacidad física</option>
+										<option value="2">Discapacidad mental</option>
+										<option value="3">Discapacidad intelectual</option>
+										<option value="4">Discapacidad sensorial</option>
+										<option value="5">Pluridiscapacidad</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Unidad Pago</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboUnidadPagoPaciente">
+										<option value="0">--Seleccionar--</option>
+										<option value="1">OGA</option>
+										<option value="2">OPREFA</option>
+										<option value="3">CPMP</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Factor RH</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboFactorRHPaciente">
+										<option value="0">--Seleccionar--</option>
+										<option value="1">POSITIVO</option>
+										<option value="2">NEGATIVO</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Grupo Sanguineo</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboGrupoSanguineoPaciente">
+										<option value="0">--Seleccionar--</option>
+										<option value="1">O</option>
+										<option value="2">A</option>
+										<option value="3">B</option>
+										<option value="4">AD</option>
+										<option value="5">A1</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Codigo Caja Pensión</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtCodigoCajaPensionPaciente" autocomplete="off">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="row">
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Telefono</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtTelefonoPaciente">
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Telefono2</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtTelefono2Paciente">
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-2">
+								<label for="" class="form-label">Telefono3</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtTelefono3Paciente">
+								</div>
+							</div>
+							<div class="col-md-4 col-xl-6">
+								<label for="" class="form-label">Email</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtEmailPaciente">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-xl-6">
+						<div class="row">
+							<div class="col-md-4 col-xl-12">
+								<label for="" class="form-label">Nombre Padre</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtNombrePadrePaciente" autocomplete="off">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-6">
+						<label for="" class="form-label">Observaciones</label>
+						<div class="input-group input-group-sm">
+							<textarea class="form-control text-info bloquear-campos" style="font-weight: bold;" id="txtObservacionPaciente" rows="2"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card mb-1 bg-pink RegistroPacienteContenedor">
+					<div class="card-header bg-white">Datos de la Madre o Tutor</div>
+					<div class="card-block custom-form">
+						<div class="row">
+							<div class="col-xl-2">
+								<label for="" class="form-label">Tipo Doc.</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboTipoDocMadre"></select>
+								</div>
+							</div>
+							<div class="col-xl-2">
+								<label for="" class="form-label">Nro. Doc.</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtNroDocMadre" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-xl-2">
+								<label for="" class="form-label">Apellido Paterno</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtApellidoPaternoMadre" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-xl-2">
+								<label for="" class="form-label">Apellido Materno</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtApellidoMaternoMadre" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-xl-2">
+								<label for="" class="form-label">Primer Nombre</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtPrimerNombreMadre" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-xl-2">
+								<label for="" class="form-label">Segundo Nombre</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtSegundoNombreMadre" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-xl-2">
+								<label for="" class="form-label">Telefono</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtTelefonoMadre" oninput="soloNumeros(this)" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-xl-2">
+								<label for="" class="form-label">Parentesco</label>
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboParentescoMadre">										
+									</select>
+								</div>
+							</div>
+
+						 <div class="col-xl-2">
+							<label for="" class="form-label">Pais</label>
+							<div class="input-group input-group-sm">
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboPaisMadre"></select>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-2">
+							<label for="" class="form-label">Departamento</label>
+							<div class="input-group input-group-sm">
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboDepartamentoMadre"></select>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-2">
+							<label for="" class="form-label">Provincia</label>
+							<div class="input-group input-group-sm">
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboProvinciaMadre"></select>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-2">
+							<label for="" class="form-label">Distrito</label>
+							<div class="input-group input-group-sm">
+								<div class="input-group input-group-sm">
+									<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboDistritoMadre"></select>
+								</div>
+							</div>
+						</div>	
+						</div>
+						<div class="row">
+							<div class="col-xl-2">
+								<label for="" class="form-label">Centro Poblado</label>
+								<div class="input-group input-group-sm">
+									<div class="input-group input-group-sm">
+										<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboCentroPobladoMadre"></select>
+									</div>
+								</div>
+				            </div>
+							<div class="col-xl-6">
+								<label for="" class="form-label">Direccion</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtDireccionMadre" autocomplete="off">
+								</div>
+							</div>
+						</div>
+					</div>					
+				</div>
+				<div class="card mb-1 bg-pink">
+					<div class="card-header bg-white" style="font-size:10">Datos del contacto</div>
+					<div class="card-block p-1 custom-form">
+						<input type="hidden" id="Contactos" name="Contactos" />
+						<div class="row">
+							<div class="col-xl-2">
+								<label for="" class="form-label">Apellido Paterno</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtApellidoPaternoContactoMadre" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-xl-2">
+								<label for="" class="form-label">Apellido Materno</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtApellidoMaternoContactoMadre" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-xl-2">
+								<label for="" class="form-label">Nombre</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtPrimerNombreContactoMadre" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-xl-2">
+								<label for="" class="form-label">Telefono</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtTelefonoContactoMadre" oninput="soloNumeros(this)" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-xl-1">
+								<label style="margin-top:21px;" class="custom-control custom-checkbox">
+									<input type="checkbox"
+										   class="custom-control-input"
+										   id="chkParentescoContacto">
+									<span class="custom-control-indicator"></span>
+									<span class="custom-control-description">Parentesco</span>
+								</label>
+							</div>
+							<div class="col-xl-3">
+								<button class="btn btn-success layout_btn_prevent" style="margin-top:14px;" id="btnAgregarContacto">Agregar</button>
+							</div>
+							<div class="col-xl-12" style="margin-top:20px">
+								<table id="DataTableDatosContactoMujer" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+									<thead style="color: white; background: #434343;">
+										<tr>
+											<th style="width: 5% !important; text-align:center;">parentesco</th>
+											<th style="width: 20% !important; text-align:center;">Apellido Paterno</th>
+											<th style="width: 20% !important; text-align:center;">Apellido Materno</th>
+											<th style="width: 30% !important; text-align:center;">Nombre</th>
+											<th style="width: 20% !important; text-align:center;">telefono</th>
+											<th style="width: 5% !important; text-align:center;"></th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4" style="display: none;">
+				<div class="card mb-1 m-t-5 bg-blue pb-1" style="padding-bottom: 0px;">
+					<div class="card-header bg-white">Datos del Sector y Sectorista</div>
+					<div class="card-block m-t-5 custom-form" style="padding-bottom: 0px;">
+						<div class="row">
+							<div class="col-lg-6">
+								<label for="" class="form-label">Sector</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtSector" autocomplete="off">
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<label for="" class="form-label">Sectorista</label>
+								<div class="input-group input-group-sm">
+									<input type="text" class="form-control bloquear-campos" id="txtSectorista" autocomplete="off">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-1">
+			<div class="col-md-12">
+				<ul id="idDatosResidencia" class="nav nav-tabs" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" href="#tabDatosDomicilio" role="tab" id="tabDatosDomicilio-tab" data-toggle="tab" aria-controls="tabDatosDomicilio" aria-expanded="true">Datos de domicilio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#tabDatosProcedencia" role="tab" id="tabDatosProcedencia-tab" data-toggle="tab" aria-controls="tabDatosProcedencia">Datos de procedencia</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#tabDatosNacimiento" role="tab" id="tabDatosNacimiento-tab" data-toggle="tab" aria-controls="tabDatosNacimiento">Datos de nacimiento</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#tabDatosPadres" role="tab" id="tabDatosPadres-tab" data-toggle="tab" aria-controls="tabDatosPadres">Datos de los padres</a>
+					</li>
+				</ul>
+
+				<div class="card mt-1">
+
+					<div class="card-block">
+						<div id="clothing-nav-content1" class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active" id="tabDatosDomicilio" aria-labelledby="tabDatosDomicilio-tab">
+								<div class="row RegistroPacienteContenedor">
+									<div class="col-xl-2">
+										<label for="" class="form-label">Pais</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboPaisDomicilio"></select>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-2">
+										<label for="" class="form-label">Departamento</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboDepartamentoDomicilio"></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Provincia</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboProvinciaDomicilio"></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Distrito</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboDistritoDomicilio"></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Centro Poblado</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboCentroPobladoDomicilio"></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<label for="" class="form-label">Direccion</label>
+										<div class="input-group input-group-sm">
+											<input type="text" class="form-control bloquear-campos" id="txtDireccionDomicilio" autocomplete="off">
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div role="tabpanel" class="tab-pane fade" id="tabDatosProcedencia" aria-labelledby="tabDatosProcedencia-tab">
+								<div class="row RegistroPacienteContenedor">
+									<div class="col-xl-2">
+										<label for="" class="form-label">Pais</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboPaisProcedencia"></select>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-2">
+										<label for="" class="form-label">Departamento</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboDepartamentoProcedencia"></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Provincia</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboProvinciaProcedencia"></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Distrito</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboDistritoProcedencia"></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Centro Poblado</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboCentroPobladoProcedencia"></select>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-2">
+										<label style="text-align: left; margin-top: 21px;" class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input bloquear-campos" id="chbBusquedaSis" value="1">
+											<span class="custom-control-indicator"></span>
+											<span class="custom-control-description">Igual que el domicilio</span>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div role="tabpanel" class="tab-pane fade" id="tabDatosNacimiento" aria-labelledby="tabDatosNacimiento-tab">
+								<div class="row RegistroPacienteContenedor">
+									<div class="col-xl-2">
+										<label for="" class="form-label">Pais</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboPaisNacimiento"></select>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-2">
+										<label for="" class="form-label">Departamento</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboDepartamentoNacimiento"></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Provincia</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboProvinciaNacimiento"></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Distrito</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboDistritoNacimiento"></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Centro Poblado</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group input-group-sm">
+												<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboCentroPobladoNacimiento"></select>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-2">
+										<label style="text-align: left; margin-top: 21px;" class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input bloquear-campos" id="chbBusquedaSis" value="1">
+											<span class="custom-control-indicator"></span>
+											<span class="custom-control-description">Igual que el domicilio</span>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div role="tabpanel" class="tab-pane fade" id="tabDatosPadres" aria-labelledby="tabDatosPadres-tab">
+								<div class="row RegistroPacienteContenedor">
+									<div class="col-xl-2">
+										<label for="" class="form-label">Doc. De la Madre</label>
+										<div class="input-group input-group-sm">
+											<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboTipoMPadres"></select>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Nro Documento</label>
+										<div class="input-group input-group-sm">
+											<input type="text" class="form-control bloquear-campos" id="txtNroDocMPadres" autocomplete="off">
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Nombres</label>
+										<div class="input-group input-group-sm">
+											<input type="text" class="form-control bloquear-campos" id="txtNombresMPadres" autocomplete="off">
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Doc. Del padre</label>
+										<div class="input-group input-group-sm">
+											<select data-placeholder="Seleccione una opción" class="chzn-select bloquear-campos" id="cboTipoPPadres"></select>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Nro Documento</label>
+										<div class="input-group input-group-sm">
+											<input type="text" class="form-control bloquear-campos" id="txtNroDocPPadres" autocomplete="off">
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<label for="" class="form-label">Nombres</label>
+										<div class="input-group input-group-sm">
+											<input type="text" class="form-control bloquear-campos" id="txtNombresPPadres" autocomplete="off">
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+
+
+	</div>
+	<div class="tab-pane p-1" id="tabDatosFamiliar">
+		<!-- Contenido aquí -->
+		
+
+		<label for="txtPaciente2" class="form-label">PACIENTE</label>
+		<div class="input-group input-group-sm bloquear-campos">
+			<input type="text" class="form-control" id="txtPaciente2" autocomplete="off" disabled>
+		</div>
+
+
+		<label for="txtSexo" class="form-label">SEXO</label>
+		<div class="input-group input-group-sm bloquear-campos">
+			<input type="text" class="form-control" id="txtSexo" autocomplete="off" disabled>
+		</div>
+
+
+		<label for="txtDocumento" class="form-label">DOCUMENTO</label>
+		<div class="input-group input-group-sm bloquear-campos">
+			<input type="text" class="form-control" id="txtDocumento" autocomplete="off" disabled>
+		</div>
+
+		<label for="txtNroDocumento" class="form-label">NRO DOCUMENTO</label>
+		<div class="input-group input-group-sm bloquear-campos">
+			<input type="text" class="form-control" id="txtNroDocumento" autocomplete="off" disabled>
+		</div>
+
+				<label for="txtNroHistoria" class="form-label">NRO HISTORIA</label>
+		<div class="input-group input-group-sm bloquear-campos">
+			<input type="text" class="form-control" id="txtNroHistoria" autocomplete="off" disabled>
+		</div>
+
+		<label for="txtPais" class="form-label">PAIS</label>
+		<div class="input-group input-group-sm bloquear-campos">
+			<input type="text" class="form-control" id="txtPais" autocomplete="off" disabled>
+		</div>
+
+
+
+		<table id="DataTablePacienteHijos" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+			<thead style="color: white; background: #434343;">
+				<tr>
+					<!-- <th width ="30%">paciente</th>
+					<th width ="20%">parentesco</th>
+					<th width ="20%">nroHistoria</th>
+					<th width ="10%" >estadoHistoria</th>
+					<th width ="10%">fechaNacimiento</th>
+					<th width ="10%">ultimoNumeroCuenta</th> -->
+					<th style="width: 30% !important;">paciente</th>
+					<th style="width: 20% !important;">parentesco</th>
+					<th style="width: 20% !important;">nroHistoria</th>
+					<th style="width: 10% !important;">estadoHistoria</th>
+					<th style="width: 10% !important;">fechaNacimiento</th>
+					<th style="width: 10% !important;">ultimoNumeroCuenta</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+
+
+
+	</div>
+</div>
+
+

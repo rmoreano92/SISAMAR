@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Papeleta de Hospitalización</title>
+
+<style>
+   
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        margin: -10px 0;
+    }
+
+    .line {
+        border-bottom: 1px dotted black;
+        display: inline-block;
+        height: 14px;
+        vertical-align: bottom;
+    }
+
+    .label {
+        width: 200px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    img {
+        width: 40px;
+       
+    }
+
+</style>
+</head>
+
+<body>
+
+    <!-- CABECERA -->
+    <table style="margin-top:-40px;position:absolute;top:0">
+        <tr>
+            <td style="width:40px;">
+                <img src="@($"{Context.Request.Scheme}://{Context.Request.Host}/images/logo.png")" />
+            </td>
+
+            <td>
+                <span style="font-size:8px;">
+                    DIRECCIÓN DE SALUD Y CENTRO MÉDICO NAVAL<br>
+                    <!--“CIRUJANO MAYOR SANTIAGO TÁVARA”-->
+                </span>
+            </td>
+
+            <td style="width:30%; text-align:right; font-size:11px;">
+            
+            </td>
+        </tr>
+    </table>
+
+
+<h3 style="text-align:center;">PAPELETA DE HOSPITALIZACIÓN</h3>
+
+<br>
+
+<!-- FORMULARIO -->
+<table>
+    <tr>
+        <td class="label">Paciente:</td>
+        <td><span class="line" style="width:100%;"><span>@ViewBag.Paciente</span></span></td>
+    </tr>
+
+    <tr>
+        <td>Grado o Parentesco:</td>
+        <td>
+            <span class="line" style="width:60%;"><span>@ViewBag.Parentesco</span></span>
+            &nbsp;&nbsp;
+            N° CIP:
+            <span class="line" style="width:25%;"><span>@ViewBag.FichaFamiliar</span></span>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Garante:</td>
+            <td><span class="line" style="width:100%;">@ViewBag.Titular</span></td>
+    </tr>
+
+    <tr>
+        <td>Dependencia:</td>
+            <td><span class="line" style="width:100%;">@ViewBag.dependencia</span></td>
+    </tr>
+
+    <tr>
+        <td>Diagnóstico de Ingreso:</td>
+            <td><span class="line" style="width:100%;">@ViewBag.diagnostico</span></td>
+    </tr>
+</table>
+
+<br>
+
+<!-- LIBRETA -->
+<table>
+    <tr>
+        <td><strong>Libreta Sanitaria:</strong></td>
+    </tr>
+
+    <tr>
+        <td style="padding-left:20px;">No tiene Libreta Sanitaria [ ]</td>
+    </tr>
+
+    <tr>
+        <td style="padding-left:20px;">Es llevada por el enfermero [ ]</td>
+    </tr>
+
+    <tr>
+        <td style="padding-left:20px;">Se remitirá próximamente [ ]</td>
+    </tr>
+</table>
+
+<br>
+
+<!-- FECHAS -->
+<table>
+    <tr>
+        <td style="width:60%;">Para hospitalizarse el:
+            <span class="line" style="width:60%;"><span>01/04/2026</span></span>
+        </td>
+
+        <td style="width:40%;">Hora:
+            <span class="line" style="width:60%;"><span>10:30</span></span>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Remitido al Hospital el:
+            <span class="line" style="width:60%;"></span>
+        </td>
+
+        <td>Hora:
+            <span class="line" style="width:60%;"></span>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<!-- OBSERVACIONES -->
+<table>
+    <tr>
+        <td><strong>Observaciones:</strong></td>
+    </tr>
+
+    <tr>
+            <td><span class="line" style="width:100%;">@ViewBag.ObservacionAltaMedica</span></td>
+    </tr>
+
+    <tr>
+        <td><span class="line" style="width:100%;"></span></td>
+    </tr>
+</table>
+
+<br><br>
+
+<!-- BLOQUE FINAL -->
+<table>
+    <tr>
+        <td style="width:40%;"></td>
+        <td style="width:60%; text-align:right;">
+            @*<span class="line" style="width:150px;"></span>
+            &nbsp;de&nbsp;
+            <span class="line" style="width:80px;"></span>
+            &nbsp;del 20&nbsp;
+            <span class="line" style="width:60px;"></span>*@
+            <span>@ViewBag.FechaTexto</span>
+        </td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td style="text-align:right; padding-top:10px;">
+            El
+            <span class="line" style="width:250px;"></span>
+            SN (MC)
+        </td>
+    </tr>
+</table>
+
+<br><br><br>
+
+<!-- FIRMA -->
+<table style="text-align:center;">
+    <tr>
+        <td>
+            <span class="line" style="width:300px;"></span><br>
+            Médico Tratante
+        </td>
+    </tr>
+</table>
+
+<br><br><br>
+
+<!-- V°B° -->
+<table>
+    <tr>
+        <td style="width:50%;">
+            V° B°<br><br>
+            <span class="line" style="width:250px;"></span><br>
+            Sub-Director Médico
+        </td>
+
+        <td style="width:50%;"></td>
+    </tr>
+</table>
+
+</body>
+</html>

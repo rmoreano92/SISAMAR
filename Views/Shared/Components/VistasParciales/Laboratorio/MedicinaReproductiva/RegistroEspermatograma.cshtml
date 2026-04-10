@@ -1,0 +1,635 @@
+﻿@using System.Data
+<script>
+    MedRepro.registro = @Html.Raw(ViewBag.MedicinaRep);
+</script>
+<div class="row mb-1">
+    <div class="col-md-12 mb-1">
+        <div class="card bg-orange">
+            <div class="card-header bg-white">Datos de Pareja</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group m-0">
+                                    <label for="txtNroCuentaPareja">Nro. Cuenta</label>
+                                    <input type="text" class="form-control  form-control-sm" id="txtNroCuentaPareja" disabled autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group m-0">
+                                    <label for="txtNroHistoriaPareja">Historia Clinica</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNroHistoriaMadrePareja" disabled autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group m-0">
+                                    <label for="txtNombrePareja">Nombres</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNombreMadrePareja" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group m-0">
+                                    <label for="txtEdadPareja">Edad (años)</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtEdadMadrePareja" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group m-0">
+                            <label for="txtCodigoEspe">CÓDIGO ESPE</label>
+                            <input type="text" class="form-control form-control-sm" id="txtCodigoEspe" autocomplete="off">
+                        </div>
+                    </div>
+                    
+                    @* <div class="col-md-2 d-none">
+                        <div class="form-group m-0">
+                            <label for="txtCodigoEspePareja">CÓDIGO ESPE</label>
+                            <input type="text" class="form-control form-control-sm" id="txtCodigoEspePareja" disabled autocomplete="off">
+                        </div>
+                    </div> *@
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 mb-1">
+        <div class="card bg-orange">
+            <div class="card-header bg-white">Datos de Paciente</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group m-0">
+                                    <label for="txtNroCuentaPaciente">Nro. Cuenta</label>
+                                    <input type="text" class="form-control  form-control-sm" id="txtNroCuentaPaciente" disabled autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group m-0">
+                                    <label for="txtNroHistoriaPaciente">Historia Clinica</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNroHistoriaPaciente" disabled autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group m-0">
+                                    <label for="txtNombrePaciente">Nombres</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNombrePaciente" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group m-0">
+                                    <label for="txtEdadPaciente">Edad (años)</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtEdadPaciente" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group m-0">
+                                    <label for="txtVihRprPaciente">VIH/RPR</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtVihRprPaciente" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-yellow mb-2">
+            <div class="card-header bg-white">Datos de Recolección de Muestra</div>
+            <div class="card-block custom-form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="txtFechaExamen">Fecha de Examen</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha field" placeholder="__/__/____" data-date-format="dd/mm/yyyy" id="txtFechaExamen">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtHoraRecoleccion">Hora Recolección</label>
+                                    <input type="text" class="form-control form-control-sm maskHora field" id="txtHoraRecoleccion" placeholder="__:__" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtHoraEvaluacion">Hora Evaluación</label>
+                                    <input type="text" class="form-control form-control-sm maskHora field" id="txtHoraEvaluacion" placeholder="__:__" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cboMetodoObtencion">Método de Obtención</label>
+                                    <select id="cboMetodoObtencion" class="chzn-select field" data-placeholder="Seleccione una opción">
+                                        <option value="1">Masturbación</option>                                        
+                                        <option value="2">Coito interrumpido</option>
+                                        <option value="9">Otros</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtMetodoObtencion">Otro Metodo</label>
+                                    <input type="text" class="form-control form-control-sm field" id="txtMetodoObtencion" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="txtAbstinenciaSexual">Abstinencia sexual</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" autocomplete="off" class="form-control field" id="txtAbstinenciaSexual" placeholder="" autocomplete="off">
+                                        <span class="input-group-addon">días</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtDificultad">Dificultad</label>
+                                    <input type="text" class="form-control form-control-sm field" id="txtDificultad" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cboLugarObtencion">Lugar de Obtención</label>
+                                    <select id="cboLugarObtencion" class="chzn-select field" data-placeholder="Seleccione una opción">
+                                        <option value="1">MGP</option>
+                                        <option value="2">Casa</option>
+                                        <option value="9">Otros</option>                                        
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtLugarObtencion">Otro Lugar</label>
+                                    <input type="text" class="form-control form-control-sm field" id="txtLugarObtencion" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card bg-pink">
+            <div class="card-header bg-white">Evaluación Macroscópica</div>
+            <div class="card-block custom-form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="casilla mt-1">
+                                    <h5>Color</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="opciones-radio">
+                                                <div class="form-group">
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroColorOpt1" name="EvalMacroColor" value="1" class="field">
+                                                        <label for="EvalMacroColorOpt1">Blanco opalescente</label>
+                                                    </span>
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroColorOpt2" name="EvalMacroColor" value="2" class="field">
+                                                        <label for="EvalMacroColorOpt2">Amarillento</label>
+                                                    </span>
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroColorOpt3" name="EvalMacroColor" value="3" class="field">
+                                                        <label for="EvalMacroColorOpt3">Traslucido</label>
+                                                    </span>
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroColorOpt4" name="EvalMacroColor" value="4" class="field">
+                                                        <label for="EvalMacroColorOpt4">Rojizo</label>
+                                                    </span>
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroColorOpt9" name="EvalMacroColor" value="9" class="field">
+                                                        <label for="EvalMacroColorOpt9">Otros</label>
+                                                        <input type="text" id="txtEvalMacroColorOpt9" class="form-control form-control-sm field" autocomplete="off">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="casilla mt-1">
+                                    <h5>Olor</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="opciones-radio">
+                                                <div class="form-group">
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroOlorOpt1" name="EvalMacroOlor" value="1" class="field">
+                                                        <label for="EvalMacroOlorOpt1">Sui géneris</label>
+                                                    </span>
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroOlorOpt2" name="EvalMacroOlor" value="2" class="field">
+                                                        <label for="EvalMacroOlorOpt2">No sui géneris</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="casilla mt-1">
+                                    <h5>Aspecto</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="opciones-radio">
+                                                <div class="form-group">
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroAspectoopt1" name="EvalMacroAspecto" value="1" class="field">
+                                                        <label for="EvalMacroAspectoopt1">Homogéneo</label>
+                                                    </span>
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroAspectoopt2" name="EvalMacroAspecto" value="2" class="field">
+                                                        <label for="EvalMacroAspectoopt2">Grumoso</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="casilla mt-1">
+                                    <h5>Licuefacción</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="opciones-radio">
+                                                <div class="form-group">
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroLicuefaccionOpt1" name="EvalMacroLicuefaccion" value="1" class="field">
+                                                        <label for="EvalMacroLicuefaccionOpt1">Completa</label>
+                                                    </span>
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroLicuefaccionOpt2" name="EvalMacroLicuefaccion" value="2" class="field">
+                                                        <label for="EvalMacroLicuefaccionOpt2">Incompleta</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="casilla mt-1">
+                                    <h5>Viscosidad</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="opciones-radio">
+                                                <div class="form-group">
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroViscocidadOpt1" name="EvalMacroViscocidad" value="1" class="field">
+                                                        <label for="EvalMacroViscocidadOpt1">Normal</label>
+                                                    </span>
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroViscocidadOpt2" name="EvalMacroViscocidad" value="2" class="field">
+                                                        <label for="EvalMacroViscocidadOpt2">Aumentada</label>
+                                                    </span>
+                                                    <span class="opcion-radio d-block">
+                                                        <input type="radio" id="EvalMacroViscocidadOpt3" name="EvalMacroViscocidad" value="3" class="field">
+                                                        <label for="EvalMacroViscocidadOpt3">Disminuida</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="casilla mt-1">
+                                    @* <h5>Viscosidad</h5> *@
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="EvalMacroVolumen">Volúmen</label>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" autocomplete="off" class="form-control" id="EvalMacroVolumen" disabled>
+                                                    <span class="input-group-addon">ml</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="EvalMacroPeso1">Peso 1</label>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" autocomplete="off" class="form-control field volumen" id="EvalMacroPeso1">
+                                                    <span class="input-group-addon">gr.</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="EvalMacroPeso2">Peso 2</label>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" autocomplete="off" class="form-control field volumen" id="EvalMacroPeso2">
+                                                    <span class="input-group-addon">gr.</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="EvalMacroPh">Ph</label>
+                                                <input type="text" class="form-control form-control-sm field" id="EvalMacroPh" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-8">
+        <div class="card bg-blue" style="padding-bottom: 0px;">
+            <div class="card-header bg-white">Evaluación Microscópica</div>
+            <div class="card-block custom-form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="casilla mt-1">
+                            <h5>Movilidad</h5>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="txtPreProgresivaRapida">Progresiva rápida</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control field movilidad" id="txtPreProgresivaRapida">
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="txtPreProgresivaLenta">Progresiva lenta</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control field movilidad" id="txtPreProgresivaLenta">
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="txtPreNoProgresiva">No progresiva</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control field movilidad" id="txtPreNoProgresiva">
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="txtPreInmoviles">Inmóviles</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control field movilidad" id="txtPreInmoviles">
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="txtPreTotalMovilidad">Total</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control" id="txtPreTotalMovilidad" disabled>
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="casilla mt-1">
+                            <h5>Vitalidad</h5>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="txtEspermatozoidesVivos">Espermatozoides vivos</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control field vitalidad" id="txtEspermatozoidesVivos">
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="txtEspermatozoidesMuertos">Espermatozoides muertos</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control field vitalidad" id="txtEspermatozoidesMuertos">
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="txtTotalMovilidad">Total</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control" id="txtTotalMovilidad" disabled>
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="casilla mt-1">
+                            <h5>Concentración</h5>
+                            <div class="row mt-1">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        @* <label for="txtConcentracion">Número</label> *@
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-addon">Número</span>
+                                            <input type="text" autocomplete="off" class="form-control field solo-decimal concentracion" id="txtConcentracionNumeroA">
+                                            <span class="input-group-addon">/</span>
+                                            <input type="text" autocomplete="off" class="form-control field solo-decimal concentracion" id="txtConcentracionNumeroB">
+                                            <span class="input-group-addon">=</span>
+                                            <input type="text" autocomplete="off" class="form-control solo-decimal" id="txtConcentracionNumeroTotal" disabled>
+                                            <span class="input-group-addon">mill/mil</span>
+                                            <span class="input-group-addon">x</span>
+                                            <input type="text" autocomplete="off" class="form-control solo-decimal" id="txtConcentracionMill" disabled>
+                                            <span class="input-group-addon">=</span>
+                                            <input type="text" autocomplete="off" class="form-control solo-decimal" id="txtConcentracionMillTotal" disabled>
+                                            <span class="input-group-addon">mill</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @* <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-sm">                                            
+                                            <input type="text" autocomplete="off" class="form-control solo-decimal" id="txtConcentracionMill" disabled>
+                                            <span class="input-group-addon">=</span>
+                                            <input type="text" autocomplete="off" class="form-control solo-decimal" id="txtConcentracionMillTotal" disabled>
+                                            <span class="input-group-addon">mill</span>
+                                        </div>
+                                    </div>
+                                </div> *@
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="casilla mt-1">
+                            <h5>Morfología</h5>
+                            <div class="row mt-1">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        @* <label for="txtConcentracion">Número</label> *@
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-addon">Normal</span>
+                                            <input type="text" autocomplete="off" class="form-control field morfologia" id="txMorfologiaNormalA">
+                                            @* <span class="input-group-addon">-</span>
+                                            <input type="text" autocomplete="off" class="form-control" id="txMorfologiaNormalB" disabled> *@
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        @* <label for="txtConcentracion">Número</label> *@
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-addon">Anormal</span>
+                                            <input type="text" autocomplete="off" class="form-control field morfologia" id="txMorfologiaAnormalA">
+                                            @* <span class="input-group-addon">-</span>
+                                            <input type="text" autocomplete="off" class="form-control" id="txMorfologiaAnormalB" disabled> *@
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-addon">Total</span>
+                                            <input type="text" autocomplete="off" class="form-control" id="txMorfologiaTotal" disabled>
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="casilla mt-1">
+                            <h5>Exámen Directo</h5>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="txtExaDirectoLeucocitos">Leucocitos</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control field examenDirecto" id="txtExaDirectoLeucocitos">
+                                            <span class="input-group-addon">x25,000 =</span>
+                                            <input type="text" autocomplete="off" class="form-control" id="txtExaDirectoLeucocitosTotal" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="txtExaDirectoCelEspermInmaduras">Cel. Esperm. Inmaduras</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control field examenDirecto" id="txtExaDirectoCelEspermInmaduras">
+                                            <span class="input-group-addon">x25,000 =</span>
+                                            <input type="text" autocomplete="off" class="form-control" id="txtExaDirectoCelEspermInmadurasTotal" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="txtCelRedondas">Cel. Redondas</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtCelRedondas" autocomplete="off" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-5">
+                        <div class="casilla mt-1">
+                            <h5 class="mb-1">Otros</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="font-weight-bold">Aglutinación</h6>
+                                    <div class="opciones-radio">
+                                        <div class="form-group">
+                                            <span class="opcion-radio d-block">
+                                                <input type="radio" id="AglutinacionOpt1" name="Aglutinacion" value="1">
+                                                <label for="AglutinacionOpt1">Ausente</label>
+                                            </span>
+                                            <span class="opcion-radio d-block">
+                                                <input type="radio" id="AglutinacionOpt2" name="Aglutinacion" value="2">
+                                                <label for="AglutinacionOpt2">Escasa</label>
+                                            </span>
+                                            <span class="opcion-radio d-block">
+                                                <input type="radio" id="AglutinacionOpt3" name="Aglutinacion" value="3">
+                                                <label for="AglutinacionOpt3">Moderada</label>
+                                            </span>
+                                            <span class="opcion-radio d-block">
+                                                <input type="radio" id="AglutinacionOpt4" name="Aglutinacion" value="4">
+                                                <label for="AglutinacionOpt4">Abundante</label>
+                                            </span>
+                                            <span class="opcion-radio d-block">
+                                                <input type="radio" id="AglutinacionOpt5" name="Aglutinacion" value="5">
+                                                <label for="AglutinacionOpt5">Severa</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="font-weight-bold">Agregación</h6>
+                                    <div class="opciones-radio">
+                                        <div class="form-group">
+                                            <span class="opcion-radio d-block">
+                                                <input type="radio" id="AgregacionOpt1" name="Agregacion" value="1">
+                                                <label for="AgregacionOpt1">Ausente</label>
+                                            </span>
+                                            <span class="opcion-radio d-block">
+                                                <input type="radio" id="AgregacionOpt2" name="Agregacion" value="2">
+                                                <label for="AgregacionOpt2">Presente</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label for="txtObservacion">Observación</label>
+                            <textarea class="form-control field" id="txtObservacion" rows="8"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="form-group ml-auto" style="max-width:350px;">
+            <label for="cboProfesionalBiologo">Profesional Biólogo</label>
+            <select id="cboProfesionalBiologo" class="chzn-select field" data-placeholder="Seleccione una opción">               
+                @foreach (DataRow row in ViewBag.Biologos.Rows)
+                {
+                    <option value="@row["IdEmpleado"]">@row["Empleado"]</option>
+                }
+            </select>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row p-1 border" style="background: #ededed;">
+    <div class="col-12">
+        <button id="btnCancelarMedicinaReproductiva" type="button" class="btn btn-secondary btn-lg float-sm-right pl-3 pr-3" style="max-width: 140px">Cancelar</button>
+        <button id="btnGuardarMedicinaReproductiva" type="button" class="btn btn-primary btn-lg float-sm-right pl-3 pr-3 mr-2" style="max-width: 140px">Guardar</button>
+        <button id="btnEliminarMedicinaReproductiva" type="button" class="btn btn-danger btn-lg float-sm-right pl-3 pr-3 mr-2" style="max-width: 140px">Eliminar</button>
+    </div>
+</div>

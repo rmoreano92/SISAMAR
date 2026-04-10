@@ -1,0 +1,204 @@
+﻿<div class="row">
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label for="txtFUM">FUM/FUR</label>
+                    <div class="input-group input-group-sm campo">
+                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFUM">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar "></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label for="txtFPP">FPP</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFPP">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar "></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label for="txtCPNveces">CPN</label>
+                    <div class="d-flex">
+                        <input type="text" class="form-control form-control-sm" id="txtCPNveces" placeholder="" autocomplete="off">
+                        <span style="margin: 0 10px;font-weight: bold;">veces</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 d-none">
+                <div class="form-group">
+                    <label for="txtImc">IMC</label>
+                    <input type="text" disabled style="background-color: #d3f7eb" autocomplete="off" class="form-control form-control-sm" id="txtImc">
+                </div>
+            </div>
+            <div class="col-lg-4 d-none">
+                <div class="form-group">
+                    <label for="txtImc">IMC DESCRIPCION</label>
+                    <input type="text" disabled style="background-color: #d3f7eb" autocomplete="off" class="form-control form-control-sm" id="txtImcDes">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="form-group campo">
+                    <br />
+                    <div class="check__toggle">
+                        <label class="toggle">
+                            <input class="toggle__input" type="checkbox" id="chkMuestraEco">
+                            <span class="toggle__label mr-2">
+                                <span class="toggle__text">Muestra Ecografía</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <label for="txtFEcog">Fecha de ecografía</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFEcog">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar "></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="txtSemasEco">Sem. Eco.</label>
+                            <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtSemasEco">
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="txtDiasEco">Días Eco.</label>
+                            <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtDiasEco">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group campo">
+                    <br />
+                    <div class="check__toggle">
+                        <label class="toggle">
+                            <input class="toggle__input" type="checkbox" id="chkCalculaFechaEco">
+                            <span class="toggle__label mr-2">
+                                <span class="toggle__text">Calcula con ecografía</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                @*<div class="form-group">
+                        <div class="input-group">
+                            <br>
+                            <label><input id="chkCalculaFechaEco" class="checkbox-inout" type="checkbox"><span>Calcula con ecografía</span></label>
+                        </div>
+                    </div>*@
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group campo">
+                    <div class="row">
+                        <div class="col-lg-6 campo">
+                            <div class="form-group">
+                                <label for="txtSemanas">Semana</label>
+                                <input type="text" style="background: #f9c6c5;" autocomplete="off" class="form-control form-control-sm solo-numero" maxlength="2" id="txtSemanas">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="txtDias">Días</label>
+                                <input type="text" style="background: #f9c6c5;" autocomplete="off" class="form-control form-control-sm solo-numero" maxlength="2" id="txtDias">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+        
+</div>
+
+<partial name="~/Views/Shared/Components/VistasParciales/Comun/AntecedentesPaciente.cshtml" />
+
+<div class="row" hidden>
+    <div class="row">
+        <div class="col-md-12">
+            @*======================================KHOYOSI=============================================*@
+            <div class="card m-t-5" style="background-color: #e3eaef;">
+                <div class="card-header bg-white">Antecedentes Personales</div>
+                <div class="card-block pb-0">
+                    <div class="row pb-1">
+                        <div class="col-lg-6">
+                            <div class="form-group m-0">
+                                <label for="txtQuirurgicos" class="form-control-label">Quirúrgicos</label>
+                                <div class="input-group">
+                                    <textarea class="form-control" id="txtQuirurgicos" rows="2"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="txtPatologicos" class="form-control-label">Patologicos</label>
+                                <div class="input-group">
+                                    <textarea class="form-control" id="txtPatologicos" rows="2"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="txtObstetricos" class="form-control-label">Obstétricos</label>
+                                <div class="input-group">
+                                    <textarea class="form-control" id="txtObstetricos" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group m-0">
+                                <label for="txtAlergias" class="form-control-label">Alergias</label>
+                                <div class="input-group">
+                                    <textarea class="form-control" id="txtAlergias" rows="2"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="txtOtros" class="form-control-label">Otros</label>
+                                <div class="input-group">
+                                    <textarea class="form-control" id="txtOtros" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*======================================KHOYOSI=============================================*@
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @*======================================KHOYOSI=============================================*@
+            <div class="card m-t-5 bg-orange">
+                <div class="card-header bg-white">Antecedentes Familiares</div>
+                <div class="card-block pb-0">
+                    <div class="row pb-1 pt-1">
+                        <div class="col-lg-12">
+                            <div class="form-group m-0">
+                                <div class="input-group">
+                                    <textarea class="form-control" id="txtFamiliares" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

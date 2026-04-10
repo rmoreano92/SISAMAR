@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Formato Cronico</title>
+    <style>
+        /* Estilos base adaptados de plantillas CE */
+        *, ::after, ::before { box-sizing: border-box; }
+        body {
+            font-size: 9px;
+            color: black !important;
+            font-family: helvetica, Arial, sans-serif;
+            letter-spacing: 0.3px;
+            line-height: 10px;
+            background: transparent;
+            width: 698px;
+            padding: 10px 12px;
+        }
+        .w-100 { width: 100%; }
+        .d-flex { display:flex; }
+        .text-center { text-align:center; }
+        .text-end { text-align:right; }
+        .border { border: 1px solid #4c4c4c; }
+        .border-secondary { border: 1px solid #4c4c4c; }
+        .bg-gray { background-color: #e5e5e5; }
+        .p-1 { padding: 4px; }
+        .p-2 { padding: 6px; }
+        .mb-1 { margin-bottom: 6px; }
+        .mx-1 { margin-left: 6px; margin-right: 6px; }
+        .fw-bold { font-weight: 700; }
+        table { width:100%; border-collapse: collapse; font-size: 9px; }
+        th, td { padding: 4px; vertical-align: middle; border: 1px solid #4c4c4c; }
+        .table-borderless td, .table-borderless th { border: none; padding: 2px; }
+        .small { font-size: 8px; }
+        .qr-code { position:absolute; width:70px; right:12px; top:12px; }
+        .checkbox { display:inline-block; width:14px; height:14px; border:1px solid #000; vertical-align: middle; margin-right:6px; }
+        .line { border-bottom:1px solid #4c4c4c; height:10px; display:block; }
+        .signed-box {height:70px;}
+        .signature {border-top:1px solid #4c4c4c; text-align:center; padding-top:6px; font-size:9px;}
+        .small-note { font-size: 8px; color: #333; }
+        .table-med { font-size:9px; }
+    </style>
+</head>
+<body style="background: transparent; width:698px; height:1015px; padding-bottom:180px; position:relative;">
+
+   
+    @if (ViewBag.CodigoQR != null)
+    {
+    
+        <img class="qr-code" style="top: -5px;" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.CodigoQR))" />
+   
+    }
+    </br>
+    </br>
+    <div class="d-flex mb-1" style="margin-bottom:25px;">
+        <div style="width:82%; text-align:center;">
+            <div class="fw-bold" style="font-size:12px;">FORMATO DE FICHA DE INSCRIPCIÓN DE PACIENTES CRÓNICOS</div>
+            <div class="small">SERVICIO DE CONSULTORIO EXTERNO</div>
+        </div>
+    </div>
+
+    <div class="d-flex mb-1">
+        <div style="width:60%;" class="border p-1">
+            <b>SERVICIO SOLICITANTE:</b> <span class="line" style="width:62%; display:inline-block;">@ViewBag.ServicioSolicitante</span>
+        </div>
+        <div style="width:20%; margin-left:6px;" class="border p-1 text-center">
+            <b>FECHA</b><br />
+            <span>@ViewBag.Fecha</span>
+        </div>
+        <div style="width:18%; margin-left:6px;" class="border p-1 text-center">
+            <b>NÚMERO DE REGISTRO</b><br />
+            <span>@ViewBag.NumeroRegistro</span>
+        </div>
+    </div>
+
+    <div class="mb-1">
+        <div class="fw-bold bg-gray p-1 border">DATOS DEL TITULAR</div>
+        <table class="table-borderless" style="width:100%;">
+            <tr>
+                <td style="width:60%;" class="border p-1">
+                    <b>Nombre y Apellido:</b>
+                    <div class="line">@ViewBag.TitularNombre</div>
+                </td>
+                <td style="width:20%;" class="border p-1">
+                    <b>Grado</b>
+                    <div class="line">@ViewBag.TitularGrado</div>
+                </td>
+                <td style="width:20%;" class="border p-1">
+                    <b>CIP</b>
+                    <div class="line">@ViewBag.TitularCIP</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border p-1">
+                    <b>Unidad / Dependencia</b>
+                    <div class="line">@ViewBag.UnidadDependencia</div>
+                </td>
+                <td class="border p-1">
+                    <b>ACTIV.</b>
+                    <div class="line">@ViewBag.Activ</div>
+                </td>
+                <td class="border p-1">
+                    <b>TELF.</b>
+                    <div class="line">@ViewBag.TitularTelefono</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="mb-1">
+        <div class="fw-bold bg-gray p-1 border">DATOS DEL PACIENTE</div>
+        <table class="table-borderless" style="width:100%;">
+            <tr>
+                <td class="border p-1" style="width:55%;">
+                    <b>Nombre y Apellido</b>
+                    <div class="line">@ViewBag.PacienteNombre</div>
+                </td>
+                <td class="border p-1" style="width:20%;">
+                    <b>Parentesco</b>
+                    <div class="line">@ViewBag.Parentesco</div>
+                </td>
+                <td class="border p-1" style="width:25%;">
+                    <b>Correo electrónico / DNI</b>
+                    <div class="line">@ViewBag.PacienteCorreo &nbsp; / &nbsp; @ViewBag.PacienteDNI</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="border p-1">
+                    <b>Dirección del paciente:</b>
+                    <div class="line">@ViewBag.Direccion</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="mb-1">
+        <div class="fw-bold bg-gray p-1 border">DIAGNÓSTICO DEL PACIENTE - CIE10</div>
+        <table class="table-borderless" style="width:100%;">
+            <tr>
+                <td class="border p-1" style="width:85%;">
+                    <div class="line">@ViewBag.Diagnostico</div>
+                </td>
+                <td class="border p-1" style="width:15%;">
+                   <div class="line">@ViewBag.CIE10</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="mb-1">
+        <div class="fw-bold bg-gray p-1 border">MEDICAMENTO PROPUESTO</div>
+        <table class="table-med" style="width:100%;">
+            <thead>
+                <tr>
+                    <th style="width:6%;">#</th>
+                    <th style="width:56%;">Fármaco (DCI)</th>
+                    <th style="width:12%;">Tipo Unidad</th>
+                    <th style="width:13%;">Dosis / día</th>
+                    <th style="width:13%;">Cantidad Mensual</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    // rellenar hasta 8 filas
+                    int index = 1;
+                        
+                        foreach (System.Data.DataRow row in ViewBag.Medicamentos.Rows)
+                        {
+                              <tr>
+                                        <td class="text-center">@row["Fila"]</td>
+                                        <td class="text-center">@row["Nombre"]</td>
+                                        <td>@row["TipoUnidad"]</td>
+                                        <td class="text-center">@row["Dosis"]</td>
+                                        <td class="text-center">@row["CantidadRecetada"]</td>
+                              </tr>
+
+                    
+                        }
+
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mb-1">
+        <div class="fw-bold bg-gray p-1 border">TIEMPO DE USO DEL MEDICAMENTO (MESES: MAX. 12 MESES)</div>
+        <table style="width:100%; font-size:9px;">
+            <tbody>
+                @{
+                    var tiempos = ViewBag.TiempoUso as System.Collections.IEnumerable;
+                    int maxT = 8;
+                    int j = 0;
+                    if (tiempos != null) {
+                        foreach (var t in tiempos) {
+                            j++;
+                            <tr><td style="width:6%;">@j</td><td>@t</td></tr>;
+                            if (j >= maxT) break;
+                        }
+                    }
+                    for (int k = j + 1; k <= maxT; k++) {
+                        <tr><td style="width:6%;">@k</td><td>&nbsp;</td></tr>;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mb-1 d-flex align-items-center">
+        <div style="width:65%;">
+            <b>LUGAR DE RECEPCIÓN DE MEDICAMENTOS:</b>
+            <div style="margin-top:6px;">
+                <span class="checkbox">@((ViewBag.LugarRecepcion=="CEMENA")? "X": "")</span> CEMENA &nbsp;&nbsp;
+                <span class="checkbox">@((ViewBag.LugarRecepcion=="POL.SAN BORJA")? "X": "")</span> POL. SAN BORJA &nbsp;&nbsp;
+                <span class="checkbox">@((ViewBag.LugarRecepcion=="VENTANILLA")? "X": "")</span> VENTANILLA
+            </div>
+        </div>
+        <div style="width:35%; text-align:right;">
+            <div class="small-note">Impreso por: @ViewBag.Usuario</div>
+            <div class="small-note">Fecha impresión: @ViewBag.FechaImpresion</div>
+        </div>
+    </div>
+
+    <div class="d-flex mb-1">
+        <div style="width:33%;" class="border p-1 signed-box">
+            <div class="signature">FIRMA Y SELLO<br/>MÉDICO TRATANTE</div>
+        </div>
+        <div style="width:33%; margin-left:6px;" class="border p-1 signed-box">
+            <div class="signature">FIRMA Y SELLO<br/>JEFE DEL SERVICIO</div>
+        </div>
+        <div style="width:33%; margin-left:6px;" class="border p-1 signed-box">
+            <div class="signature">FIRMA Y SELLO<br/>JEFE DEL DEPARTAMENTO</div>
+        </div>
+    </div>
+
+</body>
+</html>

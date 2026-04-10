@@ -1,0 +1,296 @@
+﻿
+<div data-backdrop="static" style="overflow-y: scroll; background-color: rgba(0, 0, 0, 0.46);" data-keyboard="false" class="modal fade" id="modalImgResultado" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-deep-teal">
+                <span class="text-white" style="font-size: 1.28rem;font-weight: 500;letter-spacing: 0.5px;">Resultado Imagenologia: <small id="TituloModalResImg"></small></span>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-lg-5 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Datos de Cabecera</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-lg-5 col-xl-5 d-none">
+                                        <div class="form-group m-0">
+                                            <label for="txtGrupoExamen">Grupo Examen</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtGrupoExamen" placeholder="" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtMedicoSolicitante">Médico Solicitante</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtMedicoSolicitante" placeholder="" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-xl-6">
+                                       <div class="row">
+                                            <div class="col-sm-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaResultado" class="d-block text-truncate">Fecha Resultado</label>
+                                                    <div class="input-group form-group input-group-sm m-0">
+                                                        <input type="text" class="form-control form_val_popup_dp3 campoRes" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaResultado" autocomplete="off" disabled>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtHoraResultado" class="d-block text-truncate">Hora Resultado</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes" id="txtHoraResultado" placeholder="__:__" autocomplete="off" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @* <div class="col-lg-12 col-xl-6">
+                                        <div class="row">
+                                            <div class="col-sm-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaResultado" class="d-block text-truncate">Fecha Resultado</label>
+                                                    <div class="input-group form-group input-group-sm m-0">
+                                                        <input type="text" class="form-control form_val_popup_dp3 campoRes" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaResultado" autocomplete="off" disabled>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtHoraResultado" class="d-block text-truncate">Hora Resultado</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes" id="txtHoraResultado" placeholder="__:__" autocomplete="off" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div> *@
+
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="cboRealizaPrueba">Realiza Prueba</label>
+                                            <select id="cboRealizaPrueba" class="chzn-select w-100 campoRes" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="cboServicioRealizaPrueba">Servicio Realiza</label>
+                                            <select id="cboServicioRealizaPrueba" class="chzn-select w-100 campoRes" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                @* <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-xl-8">
+                                        <div class="form-group m-0">
+                                            <label>Archivo</label>
+                                            <input type="file" class="form-control form-control-sm campoRes" accept=".pdf" id="archivoLab" hidden>
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-5 col-lg-5">
+                                                    <input type="text" class="form-control form-control-sm font-weight-bold campoRes" id="txtNombreArchivo" placeholder="" autocomplete="off" disabled>
+                                                </div>
+                                                <div class="col-sm-6 col-md-7 col-lg-7">
+                                                    <div class="d-flex align-items-end">
+                                                        <button id="btnSubirArchivoLab" type="button" class="btn btn-sm btn-indigo mr-1" style="width: 90px;"><i class="fa fa-file-upload" style="width: 20px; text-align:center;"></i> Subir</button>
+                                                        <button id="btnMostrarArchivoLab" type="button" class="btn btn-sm btn-purple" style="width: 90px;"><i class="fa fa-file-lines" style="width: 20px; text-align:center;"></i> Visualizar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtCodigoIngreso">Código Ingreso</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtCodigoIngreso" placeholder="" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div> *@
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-7 mb-1">
+                        <div class="card bg-pink">
+                            <div class="card-header bg-white">Datos de Paciente</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtResNroHistoria">N° Historia</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtResNroHistoria" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-9">
+                                        @* <div class="form-group m-0">
+                                            <label for="txtResTipoHistoria">Tipo Historia</label>
+                                            <input type="text" class="form-control form-control-sm campoRes" id="txtResTipoHistoria" placeholder="" autocomplete="off" disabled="">
+                                        </div> *@
+                                        <div class="row">
+                                            <div class="col-lg-6 col-xl-4">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResApPaterno">Apellido Paterno</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes" id="txtResApPaterno" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-xl-4">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResApMaterno">Apellido Materno</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes" id="txtResApMaterno" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-xl-4">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResNombres">Nombres</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes" id="txtResNombres" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-lg-5 col-xl-5">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResSexo">Sexo</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes" id="txtResSexo" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-6 col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResFechaNacimiento" class="form-control-label">Fecha Nac.</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control campoRes" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtResFechaNacimiento" disabled="">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-7 col-xl-7">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-lg-4 col-xl-4">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResEdad">Edad</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes" id="txtResEdad" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-4 col-xl-4" id="frmEdadGestacional">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResEdadGest">Edad Gest.</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes" id="txtResEdadGest" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-4 col-xl-4" id="frmPeso">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResPeso">Peso</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes" id="txtResPeso" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-4 col-xl-4" id="frmTalla">
+                                                <div class="form-group m-0">
+                                                    <label for="txtResTalla">Talla</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes" id="txtResTalla" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div id="PanelResultadosImg" class="col-md-12">
+                        <div class="row mb-1">
+                            <div class="col-md-12">
+                                <table id="tblFormatoResultadosImg" class="table table-bordered table-sm table-content-sm table-striped w-100">
+                                    <thead style="color: white;background: #3e6184;">
+                                        <tr>
+                                            <th width="15%">Grupo</th>
+                                            <th width="15%">Item</th>
+                                            @*<th width="10%">Código</th>*@
+                                            <th width="10%">Valor Número</th>
+                                            <th width="15%">Valor Texto</th>
+                                            @*<th width="10%">Fecha</th>*@
+                                            <th width="15%">ValorCombo</th>
+                                            @*<th width="5%">Con Res.</th>*@
+                                            <th width="10%">Valor Check</th>
+                                            <th width="20%">Valor Referencial</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyFormatoResultadosImg"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 mb-1" id="frameInformeResultado">
+                                <div class="card bg-green">
+                                    @* <div class="card-header bg-white">Datos de Paciente</div> *@
+                                    <div class="card-block">
+                                        <div class="form-group m-0">
+                                            <label for="txtResInforme" class="form-control-label font-weight-bold">INFORME</label>
+                                            <textarea style="overflow:scroll;" class="form-control campoRes campoResultado" id="txtResInforme" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-1">
+                                <div class="card bg-green">
+                                    @* <div class="card-header bg-white">Datos de Paciente</div> *@
+                                    <div class="card-block">
+                                        <div class="form-group m-0">
+                                            <label for="txtResObservaciones" class="form-control-label font-weight-bold">OBSERVACIONES</label>
+                                            <textarea style="overflow:scroll;" class="form-control campoRes campoResultado" id="txtResObservaciones" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-1">
+                                <div class="card bg-green">
+                                    @* <div class="card-header bg-white">Datos de Paciente</div> *@
+                                    <div class="card-block">
+                                        <div class="form-group m-0">
+                                            <label for="txtResConclusiones" class="form-control-label font-weight-bold">CONCLUSIONES</label>
+                                            <textarea style="overflow:scroll;" class="form-control campoRes campoResultado" id="txtResConclusiones" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="PanelResultadosPersonalizadosImg" class="col-md-12"></div>
+                </div>
+
+                
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnGuardarResultado" type="button" class="btn btn-info btn-lg mb-1 pl-3 pr-3" style="max-width: 140px;">Guardar</button>
+                <button id="btnCancelarResultado" type="button" class="btn btn-secondary btn-lg mb-1 ml-2 pl-3 pr-3" style="max-width: 140px;">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

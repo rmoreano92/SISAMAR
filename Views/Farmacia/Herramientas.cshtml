@@ -1,0 +1,371 @@
+﻿@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+    <!--Page level styles-->
+}
+
+@using CapaEntidades
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-wrench mr-1"></i>
+                Herramientas - Farmacia @*- @ViewBag.Area*@
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Herramientas</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row m-0">
+            <div class="col-sm-12">
+                <input hidden="hidden" id="hdIdProducto" type="text" class="form-control">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom active" id="TabFecVenc" data-toggle="tab" data-target="#TabPanel1" role="tab" aria-controls="TabPanel1" aria-selected="true">Actualizar Fecha Vencimiento </a>
+                    </li>
+                </ul>
+                <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContent">
+                    <!--=============================================Panel Actualizar fecha vencimiento==================================================================-->
+                    <div class="tab-pane fade active in" id="TabPanel1" role="tabpanel" aria-labelledby="TabFecVenc">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-block pb-0">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboAlmacen">Almacen/Farmacia</label>
+                                                    <select class="chzn-select w-100" id="cboAlmacen" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtCodigo">Producto</label>
+                                                    <div class="input-group input-group-sm d-flex">
+                                                        <input type="text" class="form-control buscaProducto" id="txtCodigo" style="max-width: 120px">
+                                                        <button class="btn btn-sm btn-primary" type="button" id="btnBuscarProducto" style="border-radius: 0;">
+                                                            <i class="fa-solid fa-magnifying-glass mr-1 ml-1"></i>
+                                                        </button>
+                                                        <input type="text" class="form-control" id="txtDescripcion" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboTipoSalida">Tipo Salida</label>
+                                                    <select class="chzn-select w-100" id="cboTipoSalida"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2 d-flex align-items-end" style="height: 55px;">
+                                                <div>
+                                                    <button type="button" class="btn btn-sm btn-primary" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="Kardex.ListarKardex();" id="btnListarKardex">Buscar</button>&nbsp;&nbsp;
+                                                    <button type="button" class="btn btn-sm btn-default" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="Kardex.LimpiarFiltroBusqueda();">limpiar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-md-12 mt-2">
+                                <div class="card bg-green" style="border-color: #9ec9ec;">
+                                    <div class="card-header bg-white">
+                                        <div class="d-flex">
+                                            <div>Resultado de Lotes</div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="card-block pt-1">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5 id="KardexDescripcion1" class="d-flex"></h5>
+                                                <h5 id="KardexDescripcion2" class="d-flex mb-1 m-t-5"></h5>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <table id="tblSaldoLotes" width="100%" class="table table-sm table-bordered">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th valign="middle" width: "25%">Almacen/Farmacia</th>
+                                                            <th valign="middle" width: "20%">Lote</th>
+                                                            <th valign="middle" width: "15%">Tipo Salida</th>
+                                                            <th valign="middle" width: "20%">Fecha Vencimiento</th>
+                                                            <th valign="middle" width: "10%">Cantidad</th>
+                                                            <th valign="middle" width: "10%">Precio</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="cursor: pointer;"></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade display_none in" id="modalActualizarLote" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static" style="background-color: rgba(0,0,0,0.4);">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-header bg-info">
+                <h5 class="modal-title text-white">Actualizar Fecha Vencimiento</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div style="text-align: center;">
+                            <i class="fa-solid fa-calendar-day fa-3x text-secondary"></i>
+                            <p class="mt-1" id="DescModalActualizarLote"></p>
+                        </div>
+                        <div class="form-group">
+                            <label style="font-weight: bold;">Nuevo Lote</label>
+                            <input class="form-control" type="text" id="NuevoLote" required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnActualizarLote" type="button" class="btn btn-info" onclick="">Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="Kardex.CerrarModalActualizarFechaVencimiento();">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade display_none in" id="modalActualizarFechaVencimiento" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static" style="background-color: rgba(0,0,0,0.4);">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-header bg-info">
+                <h5 class="modal-title text-white">Actualizar Fecha Vencimiento</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div style="text-align: center;">
+                            <i class="fa-solid fa-calendar-day fa-3x text-secondary"></i>
+                            <p class="mt-1" id="DescModalActualizarFechaVenc"></p>
+                        </div>
+                        <div class="form-group">
+                            <label style="font-weight: bold;">Nueva fecha</label>
+                            <input class="form-control" type="date" id="NuevaFechaVencimiento" required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnActualizarFechaVencimiento" type="button" class="btn btn-info" onclick="">Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="Kardex.CerrarModalActualizarFechaVencimiento();">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* =======================================MODAL REPORTE==================================================== *@
+<!--<div class="modal fade display_none in" id="modalReporte" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static">
+
+    <div class="modal-dialog modal-sm">
+
+        <div class="modal-content" id="Reporte">
+            <div class="modal-header modal-header bg-success">
+                <h5 class="modal-title text-white" id="tituloRpt">Reportes</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card  m-t-5">
+                            <div class="card-block m-t-5">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="name4" class=" form-control-label">Tipo Reporte</label>
+                                            <select id="cboTipoReporte" class="chzn-select" style="display: none;">
+                                                <option value="1">Parte Diario de Partos y Nacimientos</option>
+                                                <option value="2">Reporte Registro de Nacimientos</option>-->
+@*<option value="3">Reporte Anual de Parto y Nacimientos</option>*@
+<!--</select>
+                                        </div>
+                                        <div class="form-group FechaIniRpt">
+                                            <label for="name4" class=" form-control-label">Fecha Inicio</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioRpt" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group FechaFinRpt">
+                                            <label for="name4" class=" form-control-label">Fecha Fin</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinRpt" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnGuardar" type="button" class="btn btn-success" onclick="RegistroRN.GenerarReporteRegistroRn();">Generar Reporte</button>
+                    <button type="button" class="btn btn-secondary" onclick="RegistroRN.CerrarModalReporte();">Cancelar</button>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>-->
+@* =======================================MODAL REPORTE==================================================== *@
+
+
+<style>
+    .max-w-150 {
+        max-width: 150px !important;
+    }
+
+    .max-w-250 {
+        max-width: 250px !important;
+    }
+
+    .max-w-350 {
+        max-width: 350px !important;
+    }
+
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    /*
+    .bg-blue {
+        background-color: aliceblue;
+    }
+
+    .bg-indigo {
+        background-color: azure;
+    }
+
+    .bg-red {
+        background-color: #fff3f3;
+    }
+
+    .bg-purple {
+        background-color: #ffebff;
+    }
+
+    .bg-orange {
+        background-color: #fff5eb;
+    }
+
+    .bg-yellow {
+        background-color: lightyellow;
+    }
+
+    .bg-green {
+        background-color: #ecffec;
+    }
+
+    .bg-pink {
+        background-color: #fff5f7;
+    }
+
+    .casilla {
+        padding: 1rem;
+        border: 1px solid #d3d3d3;
+        background-color: rgba(211, 211, 211, 0.2);
+        margin-bottom: 1rem;
+    }
+
+    .table-border {
+        border-top: 1px solid #d3d3d3 !important;
+        border-bottom: 1px solid #d3d3d3 !important;
+    }*/
+</style>
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src=@Href("~/js/Farmacia/Herramientas.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Variables.js")></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/sortable/js/Sortable.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/slimscroll/js/jquery.slimscroll.min.js"></script>
+
+}

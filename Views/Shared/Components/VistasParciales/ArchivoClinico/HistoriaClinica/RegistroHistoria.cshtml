@@ -1,0 +1,136 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using System.Data
+<div class="modal fade" id="modalRegistroHistoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Archivero</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-xl-12">
+
+                        <div class="card bg-green mb-1">
+                            <div class="card-header bg-white">Datos del Paciente</div>
+                            <div class="card-block">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <label for="txtDatosPaciente" class="form-label">Nombres</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control solo-numero bloquear-campo" id="hdIdPaciente" hidden="" disabled="">
+                                            <input type="text" autocomplete="off" class="form-control" id="txtDatosPaciente" disabled="">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-info" type="button" id="btnModalPaciente">Buscar</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="cboTipoHistoriaAnteriorPaciente" class="form-label">Tipo Nro. Historia Anterior</label>
+                                        <div class="input-group input-group-sm">
+                                            <select data-placeholder="Seleccione una opción" class="chzn-select" id="cboTipoHistoriaAnteriorPaciente" style="display: none;"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="txtNroHistoriaAnteriorPaciente" class="form-label">Nro. Historia Anterior</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" id="txtNroHistoriaAnteriorPaciente">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-xl-12">
+
+                        <div class="card bg-green mb-1">
+                            <div class="card-block">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label for="cboTipoHistoriaActualPaciente" class="form-label">Tipo Nro. Historia Actual</label>
+                                        <div class="input-group input-group-sm">
+                                            <select data-placeholder="Seleccione una opción" class="chzn-select" id="cboTipoHistoriaActualPaciente" style="display: none;"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="txtNroHistoriaActualPaciente" class="form-label">Nro. Historia Actual</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" id="txtNroHistoriaActualPaciente">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <label for="txtFechaCreacion" class="form-control-label">Fecha Creación</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaCreacion">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar "></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6">
+                                        <label for="txtFechaPasivo" class="form-control-label">Fecha Paso a Pasivo</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaPasivo">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar "></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="cboEstadoHistoria" class="form-label">Estado Historia</label>
+                                        <div class="input-group input-group-sm">
+                                            <select data-placeholder="Seleccione una opción" class="chzn-select" id="cboEstadoHistoria" style="display: none;"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="cboTipoHistoria" class="form-label">Tipo Historia</label>
+                                        <div class="input-group input-group-sm">
+                                            <select data-placeholder="Seleccione una opción" class="chzn-select" id="cboTipoHistoria" style="display: none;"></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardar">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCancelar">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*
+<script>
+    var tiposFinanciamientoBI = @Html.Raw(Json.Serialize(ViewBag.TiposFinanciamientoSoloIngresaPrecios.Rows));
+</script> *@
+
+
+

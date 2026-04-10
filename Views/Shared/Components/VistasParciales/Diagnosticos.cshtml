@@ -1,0 +1,243 @@
+﻿<input hidden="hidden" id="idGrupoDiagnostico" name="idGrupoDiagnostico" type="text" class="form-control" value="@ViewBag.Vista">
+<div class="card bg-teal">
+    <div class="card-header bg-white" id="TituloCardDiagnostico">Diagnósticos</div>
+    <div class="card-block custom-form pt-1">
+        <div class="row OpcionesDiagnosticos">
+            <div class="col-md-3" style="max-width: 200px;">
+                <div class="form-group">
+                    @*<label for="txtCodigoDiag">Código</label>*@
+                    <div class="d-flex">
+                        <input id="txtCodigoDiag" type="text" class="form-control form-control-sm m-auto" autocomplete="off">
+                        <input id="hdnIdDiagnostico" type="hidden" class="form-control">
+                        <button type="button" class="btn btn-sm btn-outline-primary layout_btn_prevent ml-1" onclick="Diagnosticos.AbrirModalBusqueda();">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="form-group">
+                    @*<label for="txtDescripcionDiag">Descripción</label>*@
+                    <input id="txtDescripcionDiag" type="text" class="form-control form-control-sm m-auto" readonly>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                @*JDELGADO ESTA PARTE DEL CODIGO ESTABA COMENTADA*@
+                <div class="row mb-1">
+                    @*<div class="col-lg-4" style=" width: 100px;">
+                        <h5>Tipo de Diagnóstico</h5>
+                    </div>*@
+                    <div class="col-lg-3" style="max-width: 300px;">
+                        <div class="fomr-group">
+                            <label class="font-weight-bold">Tipo de Diagnóstico</label>
+                            <select class="hide_search" id="cboTipoDiagnostico" name="cboTipoDiagnostico">
+                                <option value="-1">---Seleccione tipo diagnostico---</option>
+                                @foreach (var item in @ViewBag.TiposDiagnosticos)
+                                {
+                                    <option value="@item.IdSubclasificacionDx"> @item.Descripcion  </option>
+                                }
+                            </select>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-4">
+                        <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;" onclick="Diagnosticos.AgregarDiagnostico();">
+                            <span class="btn-label">
+                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                            </span>
+                            Agregar
+                        </button>
+                        <button id="btnQuitarDiagnostico" type="button" class="btn btn-sm btn-labeled btn-danger mt-2" style="width: 100px;" onclick="Diagnosticos.QuitarDiagnostico();">
+                            <span class="btn-label">
+                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                            </span>
+                            Quitar
+                        </button>
+                    </div>
+                </div>
+                @*JDELGADO ESTA PARTE DEL CODIGO ESTABA COMENTADA*@
+            </div>
+
+            
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table id="lstDiagnosticos" class="table table-sm table-bordered" width="100%">
+                    <thead style="color: white;background: #51717a;">
+                        <tr>
+                            <th style="width: 0%;" data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                            <th style="width: 0%;" data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                            <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Código</th>
+                            <th style="width: 80%;" data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                            <th style="width: 0%;" data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                            <th style="width: 0%;" data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                            <th style="width: 0%;" data-columna="idTipoDiagnostico" valign="middle" align="center">idTipoDiagnostico</th>
+                            <th style="width: 10%;" data-columna="TipoDiagnostico" valign="middle" align="center">TipoDiagnostico</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*
+    <div class="card m-t-10">
+
+            <div class="card-block">
+
+                <br>
+                <div class="row">
+                    <div class="col-lg-2" style="padding-right: 0px; width: 100px;">
+                        <h5 class="titulo" style="margin-top: 10px;">Diagnóstico</h5>
+                    </div>
+                    <div class="col-lg-1" style="padding: 0px;">
+                        <input id="txtCodigoDiag" type="text" class="form-control" autocomplete="off">
+                        <input id="hdnIdDiagnostico" type="hidden" class="form-control">
+                    </div>
+                    <div class="col-lg-1" style="padding: 0px;padding-left: 15px;">
+                        <button type="button" class="btn btn-outline-secondary layout_btn_prevent" onclick="Diagnosticos.AbrirModalBusqueda();">...</button>
+                    </div>
+                    <div class="col-lg-4" style="padding: 0px;">
+                        <input id="txtDescripcionDiag" type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-lg-4" style="padding: 0px;padding-left: 15px;">
+                        <button id="btnAñadirDiagnostico" type="button" class="btn btn-labeled btn-success" onclick="Diagnosticos.AgregarDiagnostico();">
+                            <span class="btn-label">
+                                <i class="fa fa-plus"></i>
+                            </span>
+                            Agregar
+                        </button>
+                        <button id="btnQuitarDiagnostico" type="button" class="btn btn-labeled btn-danger" onclick="Diagnosticos.QuitarDiagnostico();">
+                            <span class="btn-label">
+                                <i class="fa fa-trash"></i>
+                            </span>
+                            Quitar
+                        </button>
+                    </div>
+                </div>
+                <div class="row m-t-15">
+                    <div class="col-lg-4" style=" width: 100px;">
+                        <h5>Tipo de Diagnóstico</h5>
+                    </div>
+                    <div class="col-lg-4">
+                        <select class="hide_search" id="cboTipoDiagnostico" name="cboTipoDiagnostico">
+
+                            <option value="-1">---Seleccione---</option>
+                            @foreach (var item in @ViewBag.TiposDiagnosticos)
+                            {
+                                <option value="@item.IdSubclasificacionDx"> @item.Descripcion  </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row" style="margin-right: 5px;margin-left: 5px;">
+                    <table id="lstDiagnosticos" class="table table-sm table-bordered" width="100%">
+                        <thead style="color: white;background: #3e6184;">
+                            <tr>
+                                <th style="width: 0%;" data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                                <th style="width: 0%;" data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                                <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Código</th>
+                                <th style="width: 80%;" data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                                <th style="width: 0%;" data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                                <th style="width: 0%;" data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                                <th style="width: 0%;" data-columna="idTipoDiagnostico" valign="middle" align="center">idTipoDiagnostico</th>
+                                <th style="width: 10%;" data-columna="TipoDiagnostico" valign="middle" align="center">TipoDiagnostico</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+                </div>
+                @*<div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="txtInfoCompleDiag" class="form-control-label">Información complementaria del diagnóstico :</label>
+                                <div class="input-group">
+                                    <textarea class="form-control" id="txtInfoCompleDiag" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+
+@*
+        </div>
+    </div>
+*@
+
+
+<div class="modal fade" id="modalBusquedaDiagnostico" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+
+    <div class="modal-dialog modal-lg" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-white" id="titulo">Busqueda de Diagnósticos</h4>
+            </div>
+            <div class="modal-body p-t-5">
+                <div class="card-block p-t-5">
+                    @*<h5 class="m-t-10">Búsqueda</h5>*@
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="font-weight-bold">Código</label>
+                                <input id="txtCodigoDiagFiltro" autocomplete="off" type="text" class="form-control" maxlength="7">
+                            </div>
+                            @*<h4 style=" color: black !important;">Código :</h4>
+                            <p>
+                                <input id="txtCodigoDiagFiltro" autocomplete="off" type="text" class="form-control" maxlength="7">
+                            </p>*@
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="font-weight-bold">Descripción</label>
+                                <input id="txtDescripcionDiagFiltro" autocomplete="off" type="text" class="form-control">
+                            </div>
+                            @*<h4 style=" color: black !important;">Descripción :</h4>
+                            <p>
+                                <input id="txtDescripcionDiagFiltro" autocomplete="off" type="text" class="form-control">
+                            </p>*@
+                        </div>
+                        <div class="col-md-4">
+                            <div style="margin-top: 30px;">
+                                <button type="button" class="btn btn-primary mr-1" onclick="Diagnosticos.BuscarDiagnosticoBusqueda();">Buscar</button>
+                                <button type="button" class="btn btn-default" onclick="Diagnosticos.LimpiarFiltros();">limpiar</button>
+                            </div>
+                            @*<h4>&nbsp;</h4>
+                            <button type="button" class="btn btn-primary mt-2 mr-1" onclick="Diagnosticos.BuscarDiagnosticoBusqueda();">Buscar</button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-default mt-2" onclick="Diagnosticos.LimpiarFiltros();">limpiar</button>&nbsp;&nbsp;*@
+                        </div>
+                    </div>
+
+
+                    <table id="lstDiagnosticosBusqueda" class="table table-bordered" data-source="/PlanificacionFamiliar/ObtenerDiagnostico?area=Comun">
+                        <thead style="color: white;background: #3e6184;">
+                            <tr>
+                                <th data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                                <th data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                                <th data-columna="Codigo" valign="middle" align="center" style="width: 10%">Código</th>
+                                <th data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                                <th data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                                <th data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="Diagnosticos.CerrarModalBusqueda();">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

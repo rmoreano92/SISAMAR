@@ -1,0 +1,69 @@
+﻿namespace WebAppMaternidad.CapaEntidades
+{
+    public class MotivoAtencionUCI
+    {
+        public int CondicionIngreso { get; set; }
+        public string EdadGestacionalFinalSemanas { get; set; }
+        public string EdadGestacionalFinalDias { get; set; }
+        public int TipoParto { get; set; }
+        public int CondicionProducto { get; set; }
+        public string TiempoEnfermedadDias { get; set; }
+        public string TiempoEnfermedadHoras { get; set; }
+        public string SOFAPreUCI { get; set; }
+        public int PrioridadIngresoUCI { get; set; }
+        public int TranstornoHipertensivoEmbarazo { get; set; }
+        public string TranstornoHipertensivoEmbarazoOtros { get; set; }
+        public int OtrasEnfermedadesHipertensivasAfectanEmbarazo { get; set; }
+        public string OtrasEnfermedadesHipertensivasAfectanEmbarazoOtros { get; set; }
+        public int Hemorragicas { get; set; }
+        public int Infecciosas { get; set; }
+        public string InfecciosasOtros { get; set; }
+        public int GastroEnterico { get; set; }
+        public string GastroEntericoOtros { get; set; }
+        public int Respiratorio { get; set; }
+        public string RespiratorioOtros { get; set; }
+        public int EndocrinoMetabolico { get; set; }
+        public string EndocrinoMetabolicoOtros { get; set; }
+        public int Cardiovascular { get; set; }
+        public string CardiovascularOtros { get; set; }
+        public int CirugiaIntrauterina { get; set; }
+        public int Quirurgicas { get; set; }
+        public int Traumatismo { get; set; }
+        public int DisfuncionesNinguno { get; set; }
+        public int DisfuncionesRespiratorio { get; set; }
+        public int DisfuncionesHematologico { get; set; }
+        public int DisfuncionesRenal { get; set; }
+        public int DisfuncionesHepatico { get; set; }
+        public int DisfuncionesNeurologico { get; set; }
+        public int DisfuncionesMetabolico { get; set; }
+        public int DisfuncionesUterina { get; set; }
+        public int DisfuncionesCardiovascular { get; set; }
+        public int DisfuncionesGastrointestinal { get; set; }
+        public int DisfuncionesOtro { get; set; }
+        public string DisfuncionesOtroDescripcion { get; set; }
+        public int SignosSintomasCefaleaHolocraneana { get; set; }
+        public int SignosSintomasCefaleaFocalizada { get; set; }
+        public int SignosSintomasEscotomas { get; set; }
+        public int SignosSintomasTinitus { get; set; }
+        public int SignosSintomasVisionBorrosa { get; set; }
+        public int SignosSintomasDesorientacionDelirio { get; set; }
+        public int SignosSintomasConvulsiones { get; set; }
+        public int SignosSintomasDisnea { get; set; }
+        public int SignosSintomasNauseasVomitos { get; set; }
+        public int SignosSintomasEpigastralgia { get; set; }
+        public int SignosSintomasDolorHipocondrioDerecho { get; set; }
+        public int SignosSintomasDolorAbdominalDifuso { get; set; }
+        public int SignosSintomasContraccionesAnormales { get; set; }
+        public int SignosSintomasEdema { get; set; }
+        public int SignosSintomasOrinaEspumosa { get; set; }
+        public int SignosSintomasAlteracionesUrinarias { get; set; }
+        public int SignosSintomasPerdidaliquidoAmniotico { get; set; }
+        public int SignosSintomasSangradoVaginal { get; set; }
+        public int SignosSintomasOtroDolorLocalizado { get; set; }
+        public int SignosSintomasDolorGeneralizado { get; set; }
+        public int SignosSintomasFiebre { get; set; }
+        public int SignosSintomasOtro { get; set; }
+        public string SignosSintomasOtroDescripcion { get; set; }
+        public string RelatoCronologico { get; set; }
+    }
+}

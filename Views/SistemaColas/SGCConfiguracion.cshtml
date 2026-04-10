@@ -1,0 +1,210 @@
+﻿@section Css
+{
+    <!-- plugin css -->
+    @*<link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />*@
+    <!--Page level styles-->
+}
+
+@using CapaEntidades
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa-solid @ViewBag.Icono mr-1"></i>
+                @ViewBag.Modulo @*- @ViewBag.Area*@
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Modulo</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="row m-0">
+    @* <div class="col-sm-12 mb-1">
+        <div class="card bg-blue">
+            <div class="card-header bg-white">Administración de Videos</div>
+            <div class="card-block pb-1">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span>Ingrese la ruta de los videos</span>
+                    </div>
+                    <div class="col-md-4">                        
+                        <div class="form-group m-0">
+                            <label>Ruta de videos</label>
+                            <div class="input-group input-group-sm d-flex">
+                                <input id="txtRutaVideos" autocomplete="off" placeholder="" class="solo-numero form-control">
+                                <div class="input-group-append" style="margin-left: -2px;">
+                                    <button class="btn btn-primary buscarMadre" type="button" id="btnCarpetaVideos"><i class="fas fa-folder-open"></i></button>
+                                </div>
+                            </div>  
+                            <a href="\\mgp-263\PUBLICO\VIDEOS_EXIS_CONSULTA EXTERNA" target="_blank">Open folder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <button class="btn btn-sm btn-success" style="margin-top: 30px;" id="btnSincronizarVideos">SINCRONIZAR</button>
+                    </div>
+                </div> 
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group m-0">
+                            <label>Archivos de video:</label>
+                            <input type="file" class="form-control form-control-sm" accept=".mp4" id="archivosVideos">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <button class="btn btn-primary" style="margin-top: 27px;" id="btnSubirVideos">SUBIR VIDEOS</button>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div> *@
+
+    <div class="col-sm-12 mb-1">
+        <div class="card bg-blue">
+            <div class="card-header bg-white">Administración de Ventanillas</div>
+            <div class="card-block pb-1">
+                <div class="row" id="Ventanillas">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .switch-field input:checked + .rdbAbierto {
+        background-color: #009688;
+        box-shadow: none;
+        color: white;
+        border-color: #009688;
+    }
+
+    .switch-field input:checked + .rdbCerrado {
+        background-color: #607d8b;
+        box-shadow: none;
+        color: white;
+        border-color: #607d8b;
+    }
+
+
+
+
+
+
+
+    .form-control-label {
+        margin-top: 5px !important;
+    }
+
+    .max-w-150 {
+        max-width: 150px !important;
+    }
+
+    .max-w-250 {
+        max-width: 250px !important;
+    }
+
+    .max-w-350 {
+        max-width: 350px !important;
+    }
+
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    /*
+                .bg-blue {
+                    background-color: aliceblue;
+                }
+
+                .bg-indigo {
+                    background-color: azure;
+                }
+
+                .bg-red {
+                    background-color: #fff3f3;
+                }
+
+                .bg-purple {
+                    background-color: #ffebff;
+                }
+
+                .bg-orange {
+                    background-color: #fff5eb;
+                }
+
+                .bg-yellow {
+                    background-color: lightyellow;
+                }
+
+                .bg-green {
+                    background-color: #ecffec;
+                }
+
+                .bg-pink {
+                    background-color: #fff5f7;
+                }
+
+                .casilla {
+                    padding: 1rem;
+                    border: 1px solid #d3d3d3;
+                    background-color: rgba(211, 211, 211, 0.2);
+                    margin-bottom: 1rem;
+                }
+
+                .table-border {
+                    border-top: 1px solid #d3d3d3 !important;
+                    border-bottom: 1px solid #d3d3d3 !important;
+                }*/
+</style>
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+
+    <script type="text/javascript" src=@Href("~/js/SistemaColas/SGCConfiguracion.js")></script>
+    @* <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script> *@
+
+}

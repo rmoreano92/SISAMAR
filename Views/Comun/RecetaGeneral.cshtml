@@ -1,0 +1,386 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+<div>
+    <div>
+        <div>
+            @section Css
+            {
+                <!-- plugin css -->
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+            }
+
+            <header class="head">
+                <div class="main-bar row">
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                        <h4 class="nav_top_align">
+                            <i class="fa fa-note-medical"></i>
+                            Recetas @ViewBag.Area
+                        </h4>
+                    </div>
+                    <div class="col-lg-6 col-md-8 col-sm-8">
+                        <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                            <li class="breadcrumb-item">
+                                <a href="index1.html">
+                                    <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">@ViewBag.Area</a>
+                            </li>
+                            <li class="breadcrumb-item active">Recetas</li>
+                        </ol>
+                    </div>
+                </div>
+            </header>
+
+            <div class="outer">
+                <div class="inner bg-light lter bg-container">
+                    <div class="row">
+                        <div class="col-xs-12 data_tables">
+                            <div class="card">
+                                @*<div class="card-header bg-white">
+                                <i class="fa fa-note-medical"></i> Recetas
+                            </div>*@
+                                <input hidden="hidden" id="idGrupo" name="idGrupo" type="text" class="form-control" value="@ViewBag.Vista">
+                                <input hidden="hidden" id="hdIdTipoServicio" name="hdIdTipoServicio" type="text" class="form-control" value="@ViewBag.Servicio">
+                                <input hidden="hidden" id="hdIdPaciente" name="hdIdPaciente" type="text" class="form-control">
+                                <input hidden="hidden" id="hdIdCuentaAtencion" name="hdIdCuentaAtencion" type="text" class="form-control">
+                                <input hidden="hidden" id="hdIdServicioPaciente" name="hdIdServicioPaciente" type="text" class="form-control">
+                                <input hidden="hidden" id="hdNroEvaluacion" name="hdNroEvaluacion" type="text" class="form-control">
+                                <div class="card-block pt-1">
+                                    <div class="row">
+
+                                        <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-block">
+                                                    <div class="row">
+                                                        <div class="col-lg-8">
+                                                            <div class="row">
+                                                                <div class="col-lg-2">
+                                                                    <div class="form-group m-0">
+                                                                        <label for="txtNroReceta" class="form-control-label">N° Receta</label>
+                                                                        <div class="input-group">
+                                                                            <input id="txtNroReceta" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm searchReceta">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-2">                                                                    
+                                                                    <div class="form-group m-0">
+                                                                        <label for="txtNroCuenta" class="form-control-label">N° Cuenta</label>
+                                                                        <div class="input-group">
+                                                                            <input id="txtNroCuenta" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm searchReceta">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-2">
+                                                                    <div class="form-group m-0">
+                                                                        <label for="txtNroDni" class="form-control-label">N° Dni</label>
+                                                                        <div class="input-group">
+                                                                            <input id="txtNroDni" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm searchReceta">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-2">
+                                                                    <div class="form-group m-0">
+                                                                        <label for="txtNroHistoria" class="form-control-label">N° Historia</label>
+                                                                        <div class="input-group">
+                                                                            <input id="txtNroHistoria" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm searchReceta">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-2">
+                                                                    <div class="form-group m-0">
+                                                                        <label for="txtApPaterno" class="form-control-label">Ap. Paterno</label>
+                                                                        <div class="input-group">
+                                                                            <input id="txtApPaterno" autocomplete="off" placeholder="" class=" form-control form-control-sm searchReceta">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-2">
+                                                                    <div class="form-group m-0">
+                                                                        <label for="txtApMaterno" class="form-control-label">Ap. Materno</label>
+                                                                        <div class="input-group">
+                                                                            <input id="txtApMaterno" autocomplete="off" placeholder="" class=" form-control form-control-sm searchReceta">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="d-flex align-items-end" style="height: 55px;">
+                                                                <button class="btn btn-sm btn-primary layout_btn_prevent mr-1" id="btnBuscar" style="padding-left: 2rem !important; padding-right: 2rem !important;">Buscar</button>
+                                                                <button class="btn btn-sm btn-default layout_btn_prevent" id="btnLimpiarCS" style="padding-left: 2rem !important; padding-right: 2rem !important;">Limpiar</button>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 pt-2 pb-0">
+                                            @{
+                                                if (@ViewBag.Agregar)
+                                                {
+                                                    <button class="btn btn-success layout_btn_prevent" id="btnAgregar">Agregar</button>
+                                                }
+                                                if (@ViewBag.Modificar)
+                                                {
+                                                    <button class="btn btn-info layout_btn_prevent" id="btnModificar">Modificar</button>
+                                                }
+                                                if (@ViewBag.Eliminar)
+                                                {
+                                                    <button class="btn btn-danger layout_btn_prevent" id="btnEliminar">Eliminar</button>
+                                                }
+                                                if (@ViewBag.Consultar)
+                                                {
+                                                    <button class="btn btn-warning layout_btn_prevent" id="btnConsultar">Consultar</button>
+                                                }
+                                            }
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <table id="tblRecetaGeneral" width="100%" class="table table-sm table-bordered table-content-md">
+                                                <thead style="color: white; background-color: #434343;">
+                                                    <tr>
+                                                        <th>Nª Receta</th>
+                                                        <th>N° Cuenta</th>
+                                                        <th>Fecha Receta</th>
+                                                        <th>N°. Historia</th>
+                                                        <th>Apellido Paterno</th>
+                                                        <th>Apellido Materno</th>
+                                                        <th>Primer Nombre</th>
+                                                        <th>N° Documento</th>
+
+                                                        
+                                                        <th>Servicio</th>
+                                                        <th>Pt. Carga</th>
+                                                        <th>Estado</th>
+                                                        <th>Receta</th>
+                                                        <th>Crónico</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalReceta" role="dialog" aria-labelledby="modalLabelsuccess">
+                <div class="modal-dialog modal-xxl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info">
+                            <h4 class="modal-title text-white" id="modalLabelsuccess">Registro de Receta</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card bg-blue">
+                                        <div class="card-block">
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtNroCuentaRegistro">Nª Cuenta</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input id="txtNroCuentaRegistro" autocomplete="off" placeholder="" class="solo-numero form-control">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-indigo" type="button" id="btnmodalBusquedaCuentasAtenciones"><i class="fa fa-search-plus"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    @* <div class="form-group m-0">
+                                                        <label for="txtNroCuentaRegistro" class="form-control-label">N° Cuenta</label>
+                                                        <input id="txtNroCuentaRegistro" autocomplete="off" type="tel" placeholder="" class="solo-numero form-control form-control-sm searchCuentaReceta">
+                                                    </div> *@
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtPacienteRegistro" class="form-control-label">Datos del Paciente</label>
+                                                        <input id="txtPacienteRegistro" disabled autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtDesFuenteFinan" class="form-control-label">Fte. Finaciamiento</label>
+                                                        <input id="txtDesPlan" disabled="disabled" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group m-0">
+                                                        <label for="cboProcedencia" class="form-control-label">Servicio Actual</label>
+                                                        <select class="chzn-select" id="cboProcedencia" data-placeholder="Seleccione una opción"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*<div class="row">
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <label for="cboProcedencia" class="form-control-label">Medico</label>
+                                                    <div class="input-group">
+                                                        <select class="chzn-select" id="cboMedico"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                            </div>
+                                        </div>*@
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row mt-1">
+                                <div class="col-md-12">
+                                    @* <partial name="~/Views/Shared/Components/VistasParciales/Ordenes.cshtml" /> *@
+                                    <partial name="~/Views/Shared/Components/VistasParciales/Recetas/RegistroOrdenes.cshtml" />
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button id="btnImprimeRecetas" target="_blank" class="btn btn-lg btn-cyan float-lg-left"><i class="fa fa-note-medical mr-1"></i>Rec. Médicas</button>
+                            <button id="btnguardar" class="btn btn-lg btn-info">Guardar</button>
+                            <button id="btnCerrarRecetasGeneral" type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">Cerrar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            @*============================= BUSQUEDA DE CUENTAS =======================================*@
+            <partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaCuentasPacientes.cshtml" />
+
+            @*============================= VISOR DE RECETAS =======================================*@
+            <partial name="~/Views/Shared/Components/VistasParciales/Recetas/VisorRecetas.cshtml" />
+            @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Recetas/VisorRecetas.cshtml")*@
+
+            @*@Html.Partial("~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistro.cshtml")*@
+
+
+            @* ======================RECETAS Y ORDENES==================================================== *@
+            <partial name="~/Views/Shared/Components/VistasParciales/Recetas/Paquetes.cshtml" />
+            <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticosSolicitudCQx.cshtml" />
+            @* ===================================================================================================== *@
+
+            @section Scripts
+    {
+                <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+
+                <script type="text/javascript" src=@Href("~/js/Comun/RecetaGeneral.js?v=" + version)></script>
+                   <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/BusquedaDiagnosticos.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/Diagnosticos.js?v=" + version)></script>
+        
+                @*<script type="text/javascript" src=@Href("~/js/VistasParciales/Ordenes.js")></script>*@
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV3.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Comun/BusquedaCuentasPacientes.js?v=" + version)></script>
+               
+                  <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/VisorRecetas.js?v=" + version)></script>                
+                <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js?v=" + version)></script>
+                @*<script type="text/javascript" src=@Href("~/js/Facturacion/Facturacion_Lista.js")></script>*@
+                <script type="text/javascript" src=@Href("~/js/Comun/Variables.js?v=" + version)></script>
+
+
+                
+
+                <script src="~/AdmiRE/js/date.format.js"></script>
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        var idTipoServ = parseInt(@ViewBag.Servicio);
+                        if(idTipoServ == 1){
+                            Ordenes.tipoServicio = 'CE'
+                        } else if(idTipoServ == 2){
+                            Ordenes.tipoServicio = 'EMER'
+                        } else if (idTipoServ == 3){
+                            Ordenes.tipoServicio = 'HOSP'
+                        }
+                        RecetaGeneral.IniciarScript();
+                        /*$(window).resize(function () {
+                            $('#cboProcedencia_chosen').attr('style', 'width:' + $('#cboProcedencia_chosen').parent().parent().width() + 'px !important');
+                        }); */
+                        //setInterval(function () { $('#cboProcedencia_chosen').attr('style', 'width:' + $('#cboProcedencia_chosen').parent().parent().width() + 'px !important'); }, 500);
+                    });
+
+                </script>
+
+            }
+
+            <style>
+
+                #clothing-nav-content2 .form-group {
+                    margin-bottom: 0 !important;
+                }
+
+                #tblAtencion tr.over td {
+                    background: #D6E8F8;
+                    font-weight: bold;
+                }
+
+                /*.chosen-container chosen-container-single {
+                    width: 100% !important;
+                }*/
+
+
+                .chosen-container {
+                    width: 100% !important;
+                }
+
+                .modal-lg {
+                    max-width: 1100px !important;
+                }
+
+                /*=======KHOYOSI============*/
+                .chosen-disabled {
+                    opacity: 1 !important;
+                }
+
+                .chosen-disabled .chosen-single {
+                    background: #eceeef !important;
+                    border-color: rgba(0, 0, 0, 0.15) !important;
+                }
+
+
+                legend {
+                    width: auto !important;
+                    padding: 0 5px !important;
+                    font-size: 1.2rem !important;
+                    margin-left: 5px !important;
+                }
+
+                fieldset {
+                    border: 1px solid #ccc !important;
+                    margin: 0px 10px !important;
+                }
+            </style>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,201 @@
+﻿<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hoja de Evaluación</title>
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/util.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/select2/css/select2.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/scroller.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/colReorder.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/dataTables.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" />
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">*@
+    <style>
+        body {
+            font-size: 12px;
+            color: black;
+        }
+
+        table, th, td {
+            /*border: 1px solid black;*/
+            /*border-collapse: collapse;*/
+            font-size: 11px;
+        }
+
+        th {
+            background: #ededed;
+        }
+
+        td, th {
+            padding-top: 2px;
+            padding-bottom: 2px;
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+
+        .card {
+            border-color: black !important;
+            border-width: 2px;
+        }
+
+        .card-header {
+            border-bottom: 1px solid black;
+        }
+
+        .font-cabecera {
+            font-size: 10px !important;
+            font-weight: bold !important;
+            background-color: lightgrey;
+        }
+
+        .font-titulo {
+            font-weight: bold !important;
+            font-size: 7px !important;
+        }
+
+        .font-input {
+            font-size: 8px !important;
+        }
+
+        .font-input2 {
+            font-size: 7px !important;
+        }
+
+        .bg-titulo {
+            /*background-color: #e1dddd;*/
+        }
+
+        .hd {
+            height: 12.59px;
+        }
+
+        p-l-3 {
+            padding-left: 3px !important;
+        }
+
+        p-r-3 {
+            padding-right: 3px !important;
+        }
+
+        p-t-3 {
+            padding-top: 3px !important;
+        }
+
+        p-b-3 {
+            padding-bottom: 3px !important;
+        }
+
+        p-x-3 {
+            padding-left: 3px !important;
+            padding-right: 3px !important;
+        }
+
+        p-y-3 {
+            padding-top: 3px !important;
+            padding-bottom: 3px !important;
+        }
+    </style>
+</head>
+
+<body style="background: white; width: 793px; height: 1122px; position: relative;" class="">
+    @*<img src="~/images/LogoSeguroIntegralSalud.png" style="width: 250px; position:absolute; top:0; left: 1rem;" />*@
+    <div class="position-absolute text-left" style="right: 0.1rem;">
+        <span style="font-size: 10px;"><b>Fecha de Impresión: </b> @ViewBag.FechaImpresion</span> <br />
+        <span style="font-size: 10px;"><b> Hora de Impresion: </b> @ViewBag.HoraImpresion</span>
+    </div>
+
+
+    <div class="text-center" style="right:1rem; top: 0.4rem;">
+        <span>INSTITUTO NACIONAL MATERNO PERINTAL</span> <br />
+        <span style="font-size: 10px;"><b>Jr. Santa Rosa Nro 941 - Cercado de Lima</b></span> <br />
+        <span><b>TELEFONO: 013281380</b></span>
+    </div>
+
+    <table class="mt-3" style="width: 100%">
+        <tr>
+            <th style="border: solid #a9a9a9 1px; width: 20%"><b>MEDICO SOLICITANTE: </b></th>
+            <td style="border: solid #a9a9a9 1px; width: 80%">@ViewBag.OrdenaPrueba</td>
+        </tr>
+    </table>
+
+
+    @*aqui va el foreach*@
+    @{
+        int index = 0;
+    }
+
+    @foreach (System.Data.DataTable rowResultados in ViewBag.Resultados)
+    {
+        List<string> grupos = new List<string>();
+
+        @foreach (System.Data.DataRow rowResultado in rowResultados.Rows)
+        {
+            if (!grupos.Contains(rowResultado["Grupo"].ToString()))
+            {
+                grupos.Add(rowResultado["Grupo"].ToString());
+            }
+        }
+
+        <div class="mt-3" style="width: 100%; border: solid #565656 1px; padding: 5px">
+
+            <table style="width: 100%; border-bottom: solid #565656 1px">
+                <tr>
+                    <td style="width: 80%;"><b>Examen:</b> @rowResultados.Rows[0]["NombreCorto"]</td>
+                    <td style="width: 20%;"><b>Codigo Ingreso:</b> @rowResultados.Rows[0]["CodigoAP"]</td>
+                </tr>
+                
+                <tr>
+                    <td style="width: 80%;"><b>Realiza la Prueba:</b> @rowResultados.Rows[0]["TipoEmpleado"]: @rowResultados.Rows[0]["realiza_prueba"]</td>
+                    <td style="width: 20%;"><b>Fecha:</b> @rowResultados.Rows[0]["Fecha"]</td>
+                </tr>
+            </table>
+
+            @foreach (string rowGrupo in grupos)
+            {
+                <div class="mt-2" style="width: 100%;">
+
+                    <table class="mb-1" style="width: 100%">
+                        <thead style="border: solid #a9a9a9 1px">
+                            <tr>
+                                <th style="width: 40%;"><b>@rowGrupo</b></th>
+                                <th style="width: 30%;"></th>
+                                <th style="width: 30%;"><b>Referencias</b></th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="border: solid #a9a9a9 1px">
+                            @foreach (System.Data.DataRow rowResultado in rowResultados.Rows)
+                            {
+                                if (rowResultado["Grupo"].ToString() == rowGrupo)
+                                {
+                                    <tr>
+                                        <td style="width: 40%;">@rowResultado["Item"]</td>
+                                        <td style="width: 30%;">: @rowResultado["valor"]</td>
+                                        <td style="width: 30%;">@rowResultado["ValorReferencial"]</td>
+                                    </tr>
+                                }
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            }
+        
+        </div>
+
+        
+        index++;
+    }
+
+    @*aqui va el foreach*@
+
+
+
+</body>
+</html>
+
+
+
+

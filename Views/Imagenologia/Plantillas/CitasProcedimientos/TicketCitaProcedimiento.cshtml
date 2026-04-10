@@ -1,0 +1,275 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var TipoFormatoTicket = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:TipoFormatoTicketCita");
+    var Siglas = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:Siglas");
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hoja de Evaluación</title>
+    @*<link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />*@
+    @*<link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" />
+    <link href="~/BootstrapV5.1.3/font.roboto.css" rel="stylesheet">*@
+    <style>
+        body {
+            font-size: 10px;
+            color: black !important;
+            font-family: helvetica;
+            letter-spacing: 0.4px;
+            font-weight: bolder;
+        }
+
+        td, th {
+            padding: 0.25rem !important;
+        }
+
+        .font-sm {
+            font-size: 8px;
+        }
+
+        .font-md {
+            font-size: 11px;
+        }
+
+        .font-lg {
+            font-size: 12px;
+        }
+
+        .table {
+            border-color: #607d8b !important;
+        }
+
+        /*=====================MI CSS=======================*/
+        .d-flex {
+            display: flex !important;
+        }
+
+        .position-absolute {
+            position: absolute;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .border {
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .border-secondary {
+            border-color: #6c757d !important;
+        }
+
+        .w-100 {
+            width: 100% !important;
+        }
+
+        .my-2 {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem !important;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem !important;
+        }
+
+        .p-1 {
+            padding: 0.25rem !important;
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .table {
+            caption-side: bottom;
+            border-collapse: collapse;
+        }
+
+        .table-bordered {
+            border: solid 1px #4c4c4c;
+        }
+
+            .table-bordered td, .table-bordered th {
+                border: solid 1px #4c4c4c;
+            }
+        /*=================================================*/
+
+
+        .qr-code {
+            width: 75px;
+            right: 0;
+            top: 0;
+        }
+
+
+    </style>
+</head>
+
+
+@*<body style="background: white;  width: 793px; height: 1145px; position: relative;  /*border: 1px solid red;*/" >*@
+<body style="background: white; width:900px; height:600px; position:relative; margin-top: -35px; /*padding-top: 30px; border: 1px solid red;*/">
+
+    @*<div class="row mt-4" style="width: 35%; margin-left: 15px">*@
+    <div class="position-relative" style="width: 270px; margin-left: -40px; page-break-before: always; ">
+        <div class="col-12 position-relative">
+            @*<div class="position-absolute" style="width: 40px; left:0px; top: 0px;">
+            <img src="~/images/Logo.png" width="100%" />
+            </div>*@
+
+            <div class="row  text-center mx-auto" style="width: 95%;">
+                <div class="col-12"><span class="fw-bold" style="font-size: 11px;">@ViewBag.NombreInstitucion</span></div>
+                <div class="col-12"><span style="font-size: 8px;">@ViewBag.DireccionInstitucion</span></div>
+                <div class="col-12"><span style="font-size: 8px;">Telefono: @ViewBag.TelefonoInstitucion</span></div>
+                <div class="col-12 my-2"><span class="fw-bold font-md" style="font-size: 13px;">TICKET DE CITA</span></div>
+            </div>
+
+            <div class="position-absolute text-center" style="width: 60px; left: 2px; top: 75px;">
+                <div class="fw-bold border border-secondary w-100" style="font-size: 12px;">CUPO: @ViewBag.NroCupo</div>
+
+
+            </div>
+           
+            <br>
+            <br>
+            <br>
+            <div class="row" style="margin-top: 5px;">
+                <div class="d-flex m-0" style="font-size: 14px;">
+                    <div class="col-3 p-0"><div class="fw-bold" style="padding-left: 5px;">Fecha: </div></div>
+                    <div class="col-5 p-0"><div style="padding-left: 5px;">@ViewBag.FechaCita</div></div>
+                    <div class="col-2 p-0"><div class="fw-bold" style="padding-left: 5px;">Hora: </div></div>
+                    <div class="col-2 p-0"><div style="padding-left: 5px;">@ViewBag.HoraCita</div></div>
+                </div>
+
+                <div class="d-flex m-0" style="font-size: 14px; margin-top: 5px;">
+                    <div class="col-3 p-0"><div class="fw-bold" style="padding-left: 5px;">Servicio: </div></div>
+                    <div class="col-9 p-0"><div style="padding-left: 5px;">@ViewBag.ServicioCita</div></div>
+                </div>
+
+                @*  <div class="d-flex m-0" style="font-size: 12px; margin-top: 2px;">
+                <div class="col-3 p-0"><div style="padding-left: 5px;">Turno: </div></div>
+                <div class="col-9 p-0"><div style="padding-left: 5px;">@ViewBag.TurnoCita</div></div>
+                </div> *@
+
+                <div class="d-flex m-0" style="font-size: 12px; margin-top: 2px;">
+                    <div class="col-12 p-0"><div style="padding-left: 5px;">@ViewBag.TipoProfesionalSalud: @ViewBag.ProfesionalSalud</div></div>
+                </div>
+
+                <div class="row m-0 p-0" style="font-size: 12px;">
+                    <hr>
+                </div>
+
+                <div class="d-flex m-0" style="font-size: 14px; margin-top: 2px;">
+                    <div class="col-4 p-0"><div style="padding-left: 5px;">N° Movimiento: </div></div>
+                    <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.IdMovimiento</div></div>
+                </div>
+
+                <div class="d-flex m-0" style="font-size: 14px; margin-top: 2px;">
+                    <div class="col-4 p-0"><div style="padding-left: 5px;">N° Cuenta: </div></div>
+                    <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.NroCuenta</div></div>
+                </div>
+                
+                <div class="d-flex m-0" style="font-size: 14px">
+                    <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">N° Historia: </div></div>
+                    <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">@ViewBag.NroHistoria</div></div>
+                </div>
+
+                <div class="d-flex m-0" style="font-size: 14px; margin-top: 2px;">
+                    <div class="col-12 p-0"><div class="fw-bold" style="padding-left: 5px;">Paciente: @ViewBag.PacienteNombres</div></div>
+                </div>
+                
+                <div class="d-flex m-0" style="font-size: 12px; margin-top: 5px;">
+                    <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">@ViewBag.FuenteFinanciamiento</div></div>
+                </div>
+
+                @* @if (@ViewBag.IdFuenteFinanciamiento == "3")
+                {
+                    <div class="d-flex m-0" style="font-size: 12px; margin-top: 2px;">
+                        <div class="col-12 p-0"><div style="padding-left: 5px;">Estab. Referencia: @ViewBag.EstablecimientoReferencia</div></div>
+                    </div>
+
+                    <div class="d-flex m-0" style="font-size: 12px; margin-top: 2px;">
+                        <div class="col-12 p-0"><div style="padding-left: 5px;">Nro. Referencia: @ViewBag.NroReferencia</div></div>
+                    </div>
+                }
+ *@
+
+                @* <div class="d-flex m-0" style="font-size: 12px; margin-top: 2px;">
+                    <div class="col-4 p-0"><div style="padding-left: 5px;">Interconsulta: </div></div>
+                    <div class="col-4 p-0"><div style="padding-left: 5px;">SI ( @(ViewBag.TipoCita.ToString() == "I " ? "X" : "")  ) </div></div>
+                    <div class="col-4 p-0"><div style="padding-left: 5px;">NO ( @(ViewBag.TipoCita.ToString() == "I " ? "" : "X")  ) </div></div>
+                </div>
+ *@
+                <div class="row m-0 p-0" style="font-size: 12px;">
+                    <hr>
+                </div>
+
+                <div class="m-0" style="font-size: 12px; margin-bottom: 10px;">
+                    <div class="p-0"><div style="padding-left: 5px; font-weight: bold;">Procedimiento: </div></div>
+                    <div class="p-0"><div style="padding-left: 5px; font-weight: bold;">@ViewBag.Procedimiento</div></div>
+                </div>
+                <div class="d-flex m-0" style="font-size: 12px;">
+                    <div class="col-3 p-0"><div style="padding-left: 5px;">Fecha: </div></div>
+                    <div class="col-9 p-0"><div style="padding-left: 5px;">@ViewBag.FechaSolicitud @ViewBag.HoraSolicitud</div></div>
+                </div>
+                <div class="d-flex m-0" style="font-size: 12px;">
+                    <div class="col-3 p-0"><div style="padding-left: 5px;">Usuario: </div></div>
+                    <div class="col-9 p-0"><div style="padding-left: 5px;">@ViewBag.Usuario</div></div>
+                </div>
+
+                @* @if (@ViewBag.IdFuenteFinanciamiento == "1")
+                {
+                <div class="col-12 p-0 text-center" style="margin-top: 5px;">
+                <div class="fw-bold" style="padding-left: 5px; width: 90%;">PACIENTE CON PLAN "@Siglas" DEBE PAGAR ANTES DE LA ATENCIÓN</div>
+                </div>
+                }
+
+                <div class="row m-0 mt-4" style="font-size: 12px; margin-top: 5px;">
+                <div class="col-12 p-0 text-center">
+                <div class="fw-bold" style="padding-left: 5px; width: 90%;">IMPORTANTE: Debe presentarse con 30 minutos de anticipación pertinente al consultorio asignado para su atención</div>
+                </div>
+                </div> *@
+
+                 <div class="row m-0 mt-4" style="font-size: 12px; margin-top: 18px;">
+                    <div class="col-12 p-0 text-center">
+                        <div class="fw-bold" style="padding-left: 5px; width: 90%;">CONSERVE SU TICKET / ASISTIR 1 HORA ANTES DE SU CITA</div>
+                        <div class="" style="padding-left: 5px; width: 90%;">Fecha y Hora de Impresión: @ViewBag.FechaImpresion</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
+
+</body>
+
+
+
+</html>

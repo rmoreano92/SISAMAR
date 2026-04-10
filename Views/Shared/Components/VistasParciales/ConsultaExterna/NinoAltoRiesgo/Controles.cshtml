@@ -1,0 +1,185 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="txtExamenCNinio" class="form-control-label titulo text-info">Examen Clínico</label>
+            <textarea class="form-control" id="txtExamenCNinio" rows="3"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card" style="background: #ede9f1;">
+            <div class="card-header bg-white">Funciones Biológicas</div>
+            <div class="card-block">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group m-0">
+                            <label for="txtApetito" class="">Apetito</label>
+                            <input id="txtApetitoNinio" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group m-0">
+                            <label for="txtOrina" class="">Orina</label>
+                            <input id="txtOrinaNinio" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group m-0">
+                            <label for="txtSuenio" class="">Sueño</label>
+                            <input id="txtSuenioNinio" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group m-0">
+                            <label for="txtSed" class="">Sed</label>
+                            <input id="txtSedNinio" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group m-0">
+                            <label for="txtDiposiciones" class="">Deposiciones</label>
+                            <input id="txtDiposicionesNinio" autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul id="ulControlesNino" class="nav nav-tabs mt-1" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" href="#desarrolloPsicomotor" role="tab" id="desarrolloPsicomotor-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Desarrollo Psicomotor</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#inmunizaciones" role="tab" id="inmunizaciones-tab" data-toggle="tab" aria-controls="hats">Grafico Peso y Talla</a>
+    </li>
+</ul>
+
+<div id="clothing-nav-content7" class="tab-content pt-1">
+    <div role="tabpanel" class="tab-pane fade in active" id="desarrolloPsicomotor" aria-labelledby="desarrolloPsicomotor-tab">
+
+        <div class="row">
+            <div class="col-md-12 mb-1" id="contenedorSesionEvaluarNAR">
+                <div class="card bg-lightindigo">
+                    <div class="card-header bg-white text-info">Sesión Programada a Evaluar</div>
+                    <div class="card-block pt-1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card bg-orange">
+                                    <div class="card-header bg-white text-info" id="hsession">Sesion</div>
+                                    <div class="card-block pt-1">
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group m-0">
+                                                    <div class="input-group">
+                                                        <label for="txtFechaProgramada" disabled class="">Fecha Programada</label>
+                                                        <input id="txtFechaProgramada" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" disabled autocomplete="off" placeholder="" class=" form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group m-0">
+                                                    <div class="input-group">
+                                                        <label for="txtFechaEjecucion" disabled class="">Fecha Ejecución</label>
+                                                        <input id="txtFechaEjecucion" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" autocomplete="off" placeholder="" class=" form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group m-0">
+                                                    <div class="input-group">
+                                                        <label for="txtEvaluacion" disabled class="f">Evaluación</label>
+                                                        <input id="txtEvaluacion" style="color: #2221fd;" disabled autocomplete="off" placeholder="" class=" form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mt-1">
+                                <div class="card bg-yellow">
+                                    <div class="card-header bg-white text-info" id="">Items a Evaluar</div>
+                                    <div class="card-block pt-1">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table id="tblItemsEvaluar" class="table table-sm table-bordered" style=" width:100%">
+                                                    <thead style="color: white; background: #3e8481; ">
+                                                        <tr>
+                                                            <th style="display: none;width: 0%" align="center">idItem</th>
+                                                            <th style="width: 80%" align="center">Descripcion</th>
+                                                            <th style="width: 10%" align="center">SI</th>
+                                                            <th style="width: 10%" align="center">NO</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @*<div class="row">
+            <div class="col-md-12">
+
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-md-12">
+
+            </div>
+        </div>*@
+
+            @*<div class="row mt-1">
+
+        </div>*@
+
+            <div class="col-md-12">
+                <div class="card bg-teal">
+                    <div class="card-header bg-white text-info" id="">Plan de Desarrollo Psicomotor</div>
+                    <div class="card-block pt-1">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table id="tblPlanPsicomotor" class="table table-sm table-bordered" style=" width:100%">
+                                    <thead style="color: white; background: #817795; border-color: red;">
+                                        <tr>
+                                            <th style="display: none;width: 0%" align="center">id</th>
+                                            <th style="width: 20%" align="center">Edad</th>
+                                            <th style="width: 20%" align="center">Fecha Programada</th>
+                                            <th style="width: 20%" align="center">Fecha Ejecucion</th>
+                                            <th style="width: 20%" align="center">Nro. Session</th>
+                                            <th style="width: 20%" align="center">Evaluacion</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button id="btnAbrirPlan" class="btn btn-success">Ver Plan Detallado</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="inmunizaciones" aria-labelledby="inmunizaciones-tab"></div>
+    </div>
+</div>

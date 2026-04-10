@@ -1,0 +1,42 @@
+﻿@using WebAppMaternidad.ViewModels
+@model MenuViewModel
+<ul id="menu" class="mt-1">
+    @foreach (var item in Model.lstMenu)
+    {
+        <li class="dropdown_menu">
+            <a href='javascript:;'>
+                <i style="width: 20px; text-align:center;" class="fa @item.iconoArea"></i>
+                <span class="link-title menu_hide">@item.Descripcion</span>
+                <span class="fa arrow menu_hide"></span>
+            </a>
+            <ul class="collapse" aria-expanded='true'>
+                @foreach (var itemHijo in item.Menuhijos)
+                {
+
+                    <li>
+                        <a class="menubar" asp-area="@item.Area" asp-controller="@itemHijo.Controlador" asp-action="@itemHijo.Metodo" asp-route-idListBar="@itemHijo.IdListItem">
+                            <i style="width: 20px; text-align:center;" class="fa @itemHijo.KeyIcon"></i>&nbsp;&nbsp; @itemHijo.Texto
+                        </a>
+                    </li>
+
+                }                
+            </ul>
+        </li>
+    }
+
+    <li class="dropdown_menu">
+        <a href='javascript:;'>
+            <i style="width: 20px; text-align:center;" class="fa-solid fa-toolbox"></i>
+            <span class="link-title menu_hide">Herramientas</span>
+            <span class="fa arrow menu_hide"></span>
+        </a>
+        <ul class="collapse" aria-expanded='true'>
+            <li>
+                <a class="menubar" asp-area="Herramientas" asp-controller="Herramientas" asp-action="Utilidades">
+                    <i style="width: 20px; text-align:center;" class="fa-solid fa-screwdriver-wrench"></i>&nbsp;&nbsp; Utilidades
+                </a>
+            </li>
+        </ul>
+    </li>
+
+</ul>

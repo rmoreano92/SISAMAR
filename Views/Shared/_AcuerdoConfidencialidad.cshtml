@@ -1,0 +1,146 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var nombreIPress = HttpContextAccessor.HttpContext?.Session?.GetString("NombreIPress") ?? "-";
+    var nombre = ViewBag.Usuario ?? "USUARIO";
+}
+
+<div id="acuerdoOverlay" class="acuerdo-overlay" style="display:none;">
+    <div class="acuerdo-card">
+        <div class="acuerdo-header">
+            <img src="~/images/header_marina.jpg" class="acuerdo-banner" alt="header" />
+        </div>
+
+        <div class="acuerdo-body">
+            <h3 class="acuerdo-titulo">ACUERDO DE CONFIDENCIALIDAD</h3>
+            <p class="acuerdo-subtitulo">El Suscrito - <b>@nombre</b></p>
+            <p class="acuerdo-texto">
+                En virtud del cumplimiento de la Historia Clínica Electrónica <b>@nombreIPress</b>.
+            </p>
+
+            <div id="acuerdoScroll" class="acuerdo-scroll">
+                <p style="text-align:justify;">
+                    Por el presente documento, el/la usuario/a del <b>Sistema de Información de Historias Clínicas Electrónicas (SIHCE)</b>,
+                    en adelante <b>“EL USUARIO”</b>, declara haber sido informado/a que la información registrada o consultada en el sistema
+                    constituye <b>información sensible y confidencial</b>, protegida por normativa aplicable, políticas internas y medidas de seguridad
+                    institucionales.
+                </p>
+
+                <h5 style="margin-top:14px;"><b>1. Objeto</b></h5>
+                <p style="text-align:justify;">
+                    Este Acuerdo tiene por objeto establecer las obligaciones de confidencialidad, reserva y uso responsable de la información
+                    a la que EL USUARIO accede en el desempeño de sus funciones, incluyendo —sin limitarse— a datos personales, diagnósticos,
+                    procedimientos, resultados, imágenes, documentos clínicos, registros administrativos, credenciales y reportes.
+                </p>
+
+                <h5 style="margin-top:14px;"><b>2. Alcance de la información confidencial</b></h5>
+                <p style="text-align:justify;">
+                    Se considera confidencial toda información contenida en el SIHCE y/o generada a partir de su uso, sea verbal, escrita,
+                    digital, impresa o reproducida por cualquier medio. Esto incluye datos de pacientes, personal, proveedores, procesos,
+                    configuraciones del sistema y cualquier otra información clasificada como reservada por la institución.
+                </p>
+
+                <h5 style="margin-top:14px;"><b>3. Obligaciones del usuario</b></h5>
+                <ul>
+                    <li>Usar el SIHCE exclusivamente para fines laborales autorizados y relacionados a sus funciones.</li>
+                    <li>No divulgar, copiar, fotografiar, grabar, reenviar ni compartir información confidencial con terceros no autorizados.</li>
+                    <li>No extraer información del sistema para fines personales, académicos o comerciales sin autorización expresa.</li>
+                    <li>Resguardar sus credenciales (usuario/contraseña) y evitar el uso compartido de cuentas.</li>
+                    <li>Bloquear la sesión al ausentarse del equipo y cerrar sesión al finalizar sus actividades.</li>
+                    <li>Notificar inmediatamente cualquier incidente: acceso no autorizado, pérdida de información, uso indebido o fallas de seguridad.</li>
+                </ul>
+
+                <h5 style="margin-top:14px;"><b>4. Prohibiciones</b></h5>
+                <ul>
+                    <li>Acceder a historias clínicas u otra información sin relación con sus funciones o sin necesidad operativa.</li>
+                    <li>Realizar consultas masivas, exportaciones o capturas de pantalla con datos sensibles sin autorización.</li>
+                    <li>Modificar información sin sustento o fuera de los procedimientos establecidos.</li>
+                    <li>Intentar vulnerar mecanismos de seguridad, controles de acceso o auditoría.</li>
+                </ul>
+
+                <h5 style="margin-top:14px;"><b>5. Auditoría y trazabilidad</b></h5>
+                <p style="text-align:justify;">
+                    EL USUARIO acepta que el SIHCE registra eventos de acceso y operaciones realizadas (auditoría), tales como inicios de sesión,
+                    búsquedas, visualización y modificaciones. Dichos registros podrán ser revisados por las áreas autorizadas para fines de
+                    control, seguridad, cumplimiento y mejora del servicio.
+                </p>
+
+                <h5 style="margin-top:14px;"><b>6. Medidas y consecuencias</b></h5>
+                <p style="text-align:justify;">
+                    El incumplimiento de este Acuerdo puede dar lugar a medidas administrativas, disciplinarias, civiles y/o penales según
+                    corresponda, sin perjuicio de otras acciones que la institución estime necesarias. EL USUARIO asume responsabilidad por el
+                    uso indebido de la información y por cualquier daño ocasionado por negligencia o dolo.
+                </p>
+
+                <h5 style="margin-top:14px;"><b>7. Vigencia</b></h5>
+                <p style="text-align:justify;">
+                    El presente Acuerdo entra en vigencia desde el momento de su aceptación y se mantiene mientras EL USUARIO tenga acceso al
+                    SIHCE, y aun después de concluida su relación o autorización de acceso, respecto a la información conocida durante dicho período.
+                </p>
+
+                <h5 style="margin-top:14px;"><b>8. Declaración final</b></h5>
+                <p style="text-align:justify;">
+                    EL USUARIO declara haber leído íntegramente el presente Acuerdo, comprender su alcance y aceptar sus obligaciones.
+                    Para continuar utilizando el SIHCE, deberá desplazarse hasta el final del documento y presionar <b>ACEPTAR</b>.
+                </p>
+
+                <p style="margin-top:18px; text-align:center;"><b>FIN DEL DOCUMENTO</b></p>
+            </div>
+
+            <div class="acuerdo-footer">
+                <button id="btnAceptarAcuerdo" class="btn btn-success" disabled>
+                    <i class="fa fa-check"></i> Aceptar
+                </button>
+                <button id="btnCancelarAcuerdo" class="btn btn-danger">
+                    <i class="fa fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .acuerdo-header{
+        background:#06243b;
+    }
+    .acuerdo-overlay{
+        position:fixed; inset:0;
+        background:rgba(0,0,0,.35);
+        z-index:99999;
+        display:flex; align-items:center; justify-content:center;
+        padding:15px;
+    }
+    .acuerdo-card{
+        width:820px; max-width:95vw;
+        background:#fff;
+        border-radius:10px;
+        box-shadow:0 8px 28px rgba(0,0,0,.25);
+        overflow:hidden;
+    }
+    .acuerdo-banner{
+        width:100%;
+        height:120px;
+        display:block;
+        object-fit:contain;     
+        object-position:center; 
+        padding:8px 10px;       
+        background:#06243b;     
+    }
+    .acuerdo-body{ padding:18px 22px; }
+    .acuerdo-titulo{ text-align:center; margin:6px 0 12px; font-weight:700; }
+    .acuerdo-subtitulo{ margin:0 0 6px; }
+    .acuerdo-texto{ margin:0 0 12px; color:#444; }
+    .acuerdo-scroll{
+        height:360px;
+        overflow:auto;
+        border:1px solid #e2e2e2;
+        padding:14px;
+        background:#fafafa;
+        border-radius:6px;
+    }
+    .acuerdo-footer{
+        display:flex; justify-content:center; gap:12px;
+        margin-top:14px;
+    }
+</style>

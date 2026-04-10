@@ -1,0 +1,855 @@
+﻿<div class="card bg-blue mb-1">
+    <div class="card-header bg-white">Busqueda</div>
+    <div class="card-block pt-1 custom-form">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="card BusquedaPacienteContenedor">
+                    <div class="card-block pt-1 pb-1">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="check__toggle mt-04">
+                                            <label class="toggle">
+                                                <input class="toggle__input campo" type="checkbox" id="chbBusquedaSis">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Buscar en IAFAS</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="check__toggle mt-04">
+                                            <label class="toggle">
+                                                <input class="toggle__input campo" type="checkbox" id="chbPacienteNuevo">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Paciente nuevo</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4" style="display: none;">
+                                        <div class="check__toggle mt-04">
+                                            <label class="toggle">
+                                                <input class="toggle__input campo" type="checkbox" id="chbBusquedaReniec">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Buscar Reniec</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <hr />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4" style="text-align: right;">
+                                <label id="tipoPaciente" class="text-danger" style="font-size: 18px;font-weight: bold;"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-xl-2">
+                                <div class="input-group input-group-sm">
+                                    <label class="form-label">DNI</label>
+                                    <input type="text" class="form-control bloquear-campos search-modal" id="txtDniBusqueda">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-2">
+                                <div class="input-group input-group-sm">
+                                    <label class="form-label">N° Historia</label>
+                                    <input type="text" class="form-control search-modal" id="txtNroHistoriaBusqueda">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-2">
+                                <div class="input-group input-group-sm">
+                                    <label class="form-label">Apell. Pat.</label>
+                                    <input type="text" class="form-control bloquear-campos search-modal" id="txtApellidoPaternoBusqueda">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-2">
+                                <div class="input-group input-group-sm">
+                                    <label class="form-label">Apell. Mat.</label>
+                                    <input type="text" class="form-control bloquear-campos search-modal" id="txtApellidoMaternoBusqueda">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-2">
+                                <div class="input-group input-group-sm">
+                                    <label class="form-label">1er Nombre</label>
+                                    <input type="text" class="form-control bloquear-campos search-modal" id="txtPrimerNombreBusqueda">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-2">
+                                <div class="input-group input-group-sm">
+                                    <label class="form-label">2do Nombre</label>
+                                    <input type="text" class="form-control bloquear-campos search-modal" id="txtSegundoNombreBusqueda">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-8 d-none">
+                                <div class="row">
+                                    <div class="col-lg-6 mb-1">
+                                        <div class="input-group input-group-sm">
+                                            <label class="form-label">Tipo Afiliacion</label>
+                                            <select class="chzn-select" id="cboTipoAfiliacion"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-1">
+                                        <label class="form-label">Nº de Afiliacion SIS</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtDisa" type="text" required class="form-control bloquear-campos search-modal" placeholder="Disa" style="width: 30%;">
+                                            <input id="txtTipo" type="text" required class="form-control bloquear-campos search-modal" placeholder="Tipo" style="width: 20%;">
+                                            <input id="txtNroAfiliacion" type="text" required class="form-control bloquear-campos search-modal" placeholder="Nro Afiliacion" style="width: 50%;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="d-flex align-items-end" style="height: 53px;">
+                                    <button id="btnBuscarDatosPaciente" class="btn btn-mint pl-2 pr-2 btn-sm">Buscar</button>
+                                    <button id="btnLimpiarDatosPaciente" class="btn btn-default ml-1 pl-2 pr-2 btn-sm">Limpiar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4">
+                <div class="row">
+                    <div class="col-lg-12" id="citaNormal">
+                        <div class="table-responsive mt-1">
+                            <table class="table" id="tblMedicosProgramados" width="100%">
+                                <thead style="color: white; background: #009688;">
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Consultorio</th>
+                                        <th>Plan</th>
+                                        <th>CE</th>
+                                        <th>CS</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" id="contPacienteProviene">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Procede de</legend>
+                            <div class="row p-1">
+                                <div class="col-lg-6">
+                                    <button class="btn btn-primary btn-block btn-sm" id="btnProcedeEmergencia">Emergencia</button>
+                                </div>
+                                <div class="col-lg-6">
+                                    <button class="btn btn-primary btn-block btn-sm" id="btnProcedeConsultaExterna">Cons. Externa</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <ul id="idCitaTabs" class="nav nav-tabs" role="tablist">
+            <li class="nav-item nav-item-header">
+                <a class="nav-link active" href="#tabPaciente" role="tab" id="tabPaciente-tab" data-toggle="tab" aria-controls="tabPaciente" aria-expanded="true" style="font-weight: bold; letter-spacing: 1px;">PACIENTE</a>
+            </li>
+            <li class="nav-item nav-item-header">
+                <a class="nav-link" href="#tabAtencion" role="tab" id="tabAtencion-tab" data-toggle="tab" aria-controls="tabAtencion" style="font-weight: bold; letter-spacing: 1px;">INGRESO</a>
+            </li>
+            <li class="nav-item nav-item-header">
+                <a class="nav-link" href="#tabCausasMorbilidad" role="tab" id="tabCausasMorbilidad-tab" data-toggle="tab" aria-controls="tabCausasMorbilidad" style="font-weight: bold; letter-spacing: 1px;">CAUSAS EXTERNAS MORBILIDAD</a>
+            </li>
+        </ul>
+
+        <div id="clothing-nav-content" class="tab-content">
+            <div role="tabpanel" class="tab-pane border p-1 fade in active" id="tabPaciente" aria-labelledby="tabPaciente-tab" style="background-color: #3d668208;">
+                <partial name="~/Views/Shared/Components/VistasParciales/RegistroPacienteV2.cshtml" />
+            </div>
+
+            <div role="tabpanel" class="tab-pane border p-1 fade" id="tabAtencion" aria-labelledby="tabAtencion-tab" style="background-color: #3d668208;">
+
+                <div class="row">
+                    <div class="col-lg-3 mb-1" id="divContDerivacionEmergencia">
+                        <div class="form-group">
+                            <h5 class="text-primary mb-0">N° Derivación</h5>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" id="txtNroDerivacion" />
+                            </div>
+                        </div>
+                        @* <fieldset class="scheduler-border" style="padding: 0 20px;">
+                            <legend class="scheduler-border">Datos Derivacion</legend>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <h5 class="text-primary mb-0">N° Derivación</h5>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" id="txtNroDerivacion" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset> *@
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <div class="card bg-lightindigo mb-1">
+                            <div class="card-header bg-white">Atención</div>
+                            <div class="card-block p-t-5 custom-form">
+                                <div class="row">
+                                    <div class="col-lg-6 col-xl-8">
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label for="cboTipoOrigenAdmision" class="form-label">Origen</label>
+                                                <div class="input-group input-group-sm">
+                                                    <select class="chzn-select bloquear-campos" id="cboTipoOrigenAdmision"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="cboTipoServicioAdmision" class="form-label">Tipo Servicio.</label>
+                                                <div class="input-group input-group-sm">
+                                                    <select class="chzn-select" id="cboTipoServicioAdmision" disabled></select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6 mb-1">
+                                                        <label for="txtServicioIngresoAdmision" class="form-control-label">Servicio de Ingreso</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control solo-numero bloquear-campo" id="hdIdServicioIngresoAdmision" hidden>
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtServicioIngresoAdmision" disabled>
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-info" type="button" id="btnModalServicioIngreso">Buscar</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label for="txtMedicoIngreso" class="form-label">Medico</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control solo-numero bloquear-campo" id="hdIdMedicoIngreso" hidden>
+                                                            <input type="text" autocomplete="off" class="form-control solo-numero bloquear-campo" id="hdIdEspecialidadMedicoIngreso" hidden>
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtMedicoIngreso" disabled>
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-info" type="button" id="btnModalMedicoIngreso">Buscar</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-12 col-xl-6">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="txtFechaIngresoAdmision" class="form-label">Fecha Ingreso</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIngresoAdmision">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label for="" class="form-label">Hora</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control" id="txtHoraIngresoAdmision" placeholder="__:__">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-10 col-xl-6">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="txtEdadAdmision" class="form-label">Edad Atencion</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control" id="txtEdadAdmision">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="cboTipoEdadAdmision" class="form-label">Tipo Edad</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <select class="chzn-select" id="cboTipoEdadAdmision"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-6" id="contGravedad">
+                                                <label for="cboGravedadAdmision" class="form-label">Gravedad</label>
+                                                <div class="input-group input-group-sm">
+                                                    <select class="chzn-select bloquear-campos" id="cboGravedadAdmision"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 mb-1" id="contCama">
+                                                <div class="input-group input-group-sm">
+                                                    <label for="cboCamaIngresoAdmision" class="form-label">Cama Ing.</label>
+                                                    <select class="chzn-select" id="cboCamaIngresoAdmision"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4" id="contLlegoAlServicio" hidden>
+                                                <div class="check__toggle mt-04">
+                                                    <label class="toggle">
+                                                        <input class="toggle__input campo" type="checkbox" id="chkLlegoAlServicio" hidden>
+                                                        <span class="toggle__label mr-2">
+                                                            <span class="toggle__text">Leggó al Servicio Ingreso</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6" id="contCamaIngreso" hidden>
+                                                <label for="txtCamaIngresoAdmision" class="form-label">Medico</label>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" autocomplete="off" class="form-control solo-numero bloquear-campo" id="hdIdCamaIngresoAdmision" hidden>
+                                                    <input type="text" autocomplete="off" class="form-control" id="txtCamaIngresoAdmision" disabled>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-info" type="button" id="btnCamaIngresoAdmisionModal">Buscar</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-xl-4">
+                                        <div class="card mt-1">
+                                            <div class="card-block p-t-5">
+
+                                                <div class="row">
+                                                    <div class="col-md-6 col-lg-12">
+                                                        <label for="cboFuenteFinanciamientoAdmision" class="form-label">Fte. Financiamiento/IAFA</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <select class="chzn-select  bloquear-campos" id="cboFuenteFinanciamientoAdmision"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-lg-12">
+                                                        <label for="cboProductoPlanAdmision" class="form-label">Producto/Plan</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <select class="chzn-select" id="cboProductoPlanAdmision"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-5 col-xl-6">
+                                                        <input type="text" id="hdIdOrden" hidden />
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-lg-12">
+                                                                <label for="" class="form-label">N° Cuenta</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" class="form-control" id="txtNroCuentaPaciente" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-lg-12">
+                                                                <label for="" class="form-label">N° Orden Pago</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" class="form-control" id="txtOrdenPagoPaciente" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-lg-12">
+                                                                <label for="" class="form-label">N° Atencion</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" class="form-control" id="txtidAtencion" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-7 col-xl-6">
+                                                        <div class="row" style="display: none" id="divParticular">
+                                                            <div class="col-lg-12">
+                                                                <label for="" class="form-label">N° Boleta (Paquete)</label>
+                                                            </div>
+
+                                                            <div class="col-xs-5">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" class="form-control bloquear-campos" id="txtIdNroBoleta">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-7">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" class="form-control bloquear-campos" id="txtNroBoleta">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row" style="display: none" id="divSis">
+                                                            <div class="col-lg-12">
+                                                                <label for="" class="form-label">Cód. Prestación (SIS)</label>
+                                                            </div>
+
+                                                            <div class="col-md-8 col-lg-12">
+                                                                <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                                    <select class="chzn-select bloquear-campos" id="cboCodPrestacion"></select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-4 col-lg-12">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label style="float: right;" class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input" id="chbBusquedaSis" value="1">
+                                                                        <span class="custom-control-indicator m-0"></span>
+                                                                        <span class="custom-control-description">D.U-17 </span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card bg-lightindigo mb-1">
+                            <div class="card-header bg-white">Datos del Acompañante</div>
+                            <div class="card-block p-t-5 custom-form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="txtNombreAcompanianteAdmision" class="form-label">Nombre</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" id="txtNombreAcompanianteAdmision">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="txtTelefonoAcompanianteAdmision" class="form-label">Telefono</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" id="txtTelefonoAcompanianteAdmision">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card mt-1 bg-orange mb-1">
+                            <div class="card-header bg-white">Referencia</div>
+                            <div class="card-block p-t-5 custom-form">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6 col-xl-5">
+                                        <label for="cboTipoReferenciaAdmision" class="form-label" id="lblTipoRefCon">Tipo Referencia</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="chzn-select bloquear-campos" id="cboTipoReferenciaAdmision" disabled></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6 col-xl-5">
+                                        <input type="text" id="hdIdEstablecimientoReferenciaOrigen" hidden="hidden" />
+
+                                        <label for="" class="form-label" id="lblEstabRefCon">Estab. Referencia</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" id="txtCodigoReferenciaAdmision" disabled>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-info" type="button" id="btnOpenModalEstablecimientoReferenciaAdmision" disabled>Buscar</button>
+                                            </span>
+                                            <input type="text" class="form-control" id="txtDescripcionReferenciaAdmision" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6 col-xl-5">
+                                        <label for="txtNroReferenciaAdmision" class="form-label">N° Referencia</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" id="txtNroReferenciaAdmision" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/DiagnosticosIngreso.cshtml" />
+                        </div>
+
+
+
+
+                        @*<div class="card  m-t-5 bg-blue" style="padding-bottom: 0px;">
+                        <div class="card-header bg-white">Cita</div>
+                        <div class="card-block m-t-5 custom-form" style="padding-bottom: 0px;">
+
+                        </div>
+                        </div>*@
+                        @*<ul id="" class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                        <a class="nav-link active" href="#tabAtencion" role="tab" id="tabAtencion-tab" data-toggle="tab" aria-controls="tabAtencion" aria-expanded="true">Atencion</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#tabSunasa" role="tab" id="tabSunasa-tab" data-toggle="tab" aria-controls="tabSunasa">Sunasa</a>
+                        </li>
+                        </ul>
+                        <div id="clothing-nav-content2" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="tabAtencion" aria-labelledby="tabAtencion-tab">
+
+                        </div>
+                        </div>*@
+
+                        @*<div role="tabpanel" class="tab-pane fade" id="tabSunasa" aria-labelledby="tabSunasa-tab">
+                        <partial name="~/Views/Shared/Components/VistasParciales/RegistroPacienteSunasa.cshtml" />
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane border p-1 fade" id="tabCausasMorbilidad" aria-labelledby="tabCausasMorbilidad-tab" style="background-color: #3d668208;">
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboCausaExternaMorbilidadAdmision" class="form-label">Causa Externa de morbilidad</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboCausaExternaMorbilidadAdmision"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboLugarEventoAdmision" class="form-label">Lugar del evento</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboLugarEventoAdmision" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboTipoEventoAdmision" class="form-label">Tipo de evento</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboTipoEventoAdmision" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboSeguridadAdmision" class="form-label">Seguridad</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboSeguridadAdmision" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboRelacionAgresorVictimaAdmision" class="form-label">Relacion agresor víctima</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboRelacionAgresorVictimaAdmision" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboClaseAccidenteAdmision" class="form-label">Clase accidente</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboClaseAccidenteAdmision" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboTipoVehiculoAdmision" class="form-label">Tipo de vehiculo</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboTipoVehiculoAdmision" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboTipoTransporteAdmision" class="form-label">Tipo de transporte</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboTipoTransporteAdmision" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboUbicacionLesionadoAdmision" class="form-label">Ubicación del lesionado</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboUbicacionLesionadoAdmision" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboPosicionLesionadoAlabAdmision" class="form-label">Posición del lesionado ALAB</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboPosicionLesionadoAlabAdmision" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboGrupoOcupacionalAlabAdmision" class="form-label">Grupo ocupacional ALAB</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboGrupoOcupacionalAlabAdmision" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="cboTipoAgenteAganAdmision" class="form-label">Tipo de agente AGAN</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select bloquear-campos" id="cboTipoAgenteAganAdmision" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal-footer">
+    <!--<button class="btn  btn-primary" data-dismiss="modal">Close me!</button>-->
+    <button type="button" class="btn btn-primary" id="btnImprimeHojaFiliacionConsultorio" style="float: left;"><i class="fa-solid fa-print"></i> <br /> Hoja Filiacion Consultorio</button>
+    @*<button type="button" class="btn btn-info" id="btnImprimirTicket" style="float: left;"><i class="fa-solid fa-print"></i> <br /> Ticket</button>*@
+    <button type="button" class="btn btn-success ml-2" id="ImprimeFormatoFiliacionArchivoClinico" style="float: left;"><i class="fa-solid fa-print"></i> <br /> Filiacion Arch. Clínico</button>
+    @*<button type="button" class="btn btn-secondary" id="ImprimeFormatoFO030" style="float: left;"><i class="fa-solid fa-print"></i> <br /> FO-030</button>*@
+
+
+    <button id="btnRegistrarAdmision" class="btn btn-info btn-lg pl-3 pr-3" style="max-width: 140px;">Aceptar</button>
+    @*<button id="btnmodificarCita" class="btn btn-warning btn-lg pl-3 pr-3" style="max-width: 140px;">Modificar</button>
+    <button id="btneliminarCita" class="btn btn-danger btn-lg pl-3 pr-3" style="max-width: 140px;">Eliminar</button>*@
+    <button type="button" class="btn btn-secondary btn-lg ml-2 pl-3 pr-3" id="btnCerrarModalAdmision" style="max-width: 140px;">Cerrar</button>
+</div>
+
+
+@* <partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaServicios.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaMedicos.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml" /> *@
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalBusquedaSis" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente SIS</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered" id="tblBusquedaSis" width="100%">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th>ApPaterno</th>
+                                        <th>ApMaterno</th>
+                                        <th>PNombre</th>
+                                        <th>SNombre</th>
+                                        <th>Fnacimiento</th>
+                                        <th>cAfiliacion</th>
+                                        <th>estado</th>
+                                        <th>fBajaOK</th>
+                                        <th>DNI</th>
+                                        <th>sexo</th>
+                                        <th>distritoDomicilio</th>
+                                        <th>cDisa</th>
+                                        <th>cFormato</th>
+                                        <th>cNumero</th>
+                                        @* <th>AfiliacionNroIntegrante</th> *@
+                                        <th>codigo</th>
+                                        <th>idSiaSis</th>
+                                        <th>MotivoBaja</th>
+                                        <th>CodigoEstablAdscripcion</th>
+                                        <th>AfiliacionFecha</th>
+                                        <th>IdTipoDoc</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="btnCerrarModalPacienteSIS" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalPacientesBusqueda" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table id="tblPacientesBusqueda" width="100%" class="table table-sm table-bordered" style="cursor: default;">
+                                <thead style="color: white;background: #434343;">
+                                    <tr>
+                                        <th>Ap.Paterno</th>
+                                        <th>Ap.Materno</th>
+                                        <th>1erNombre</th>
+                                        <th>2doNombre</th>
+                                        <th>Nro.Historia</th>
+                                        <th>FechaNac.</th>
+                                        <th>Ult.Tipo</th>
+                                        <th>Ult.Serv.Ing.</th>
+                                        <th>UltFechaIng.</th>
+                                        <th>Ult.FechaEgr.</th>
+                                        <th>EstadoHistoria</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="btnCerrarModalBusquedaPaciente" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalTicket" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Cita</h4>
+            </div>
+            <div class="modal-body" style="background-color:#b4c6d6">
+
+                <iframe id="ifrmTicketCita"
+                        title="Inline Frame Example"
+                        width="100%"
+                        height="600"
+                        src=""></iframe>
+
+            </div>
+            <div class="modal-footer" style="background-color:#ced8e1">
+                <button id="btnCerrarTicket" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="text" id="hdIdSiaSis" hidden />
+<input type="text" id="hdCodigo" hidden />
+<input type="text" id="hdAfiliacionDisa" hidden />
+<input type="text" id="hdAfiliacionTipoFormato" hidden />
+<input type="text" id="hdAfiliacionNroFormato" hidden />
+<input type="text" id="hdAfiliacionNroIntegrante" hidden />
+<input type="text" id="hdDocumentoTipo" hidden />
+<input type="text" id="hdCodigoEstablAdscripcion" hidden />
+<input type="text" id="hdAfiliacionFecha" hidden />
+<input type="text" id="hdPaterno" hidden />
+<input type="text" id="hdMaterno" hidden />
+<input type="text" id="hdPnombre" hidden />
+<input type="text" id="hdOnombres" hidden />
+<input type="text" id="hdGenero" hidden />
+<input type="text" id="hdFnacimiento" hidden />
+<input type="text" id="hdIdDistritoDomicilio" hidden />
+<input type="text" id="hdEstado" hidden />
+<input type="text" id="hdFbaja" hidden />
+<input type="text" id="hdDocumentoNumero" hidden />
+<input type="text" id="hdMotivoBaja" hidden />
+<input type="text" id="hdtipoCondicionPaciente" hidden />

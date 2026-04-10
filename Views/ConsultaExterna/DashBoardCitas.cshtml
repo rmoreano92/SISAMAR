@@ -1,0 +1,101 @@
+﻿@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+
+
+    <!-- end of plugin css -->
+}
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+       
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card m-t-5">
+                    <div class="card-header bg-white">
+                        CITAS POR CONSULTORIO
+                    </div>
+                    <div class="row m-t-10 m-l-10">
+                        <div class="col-lg-1">
+                            <h5 style="margin-top: 10px;">Fec.Inicio</h5>
+                        </div>
+                        <div class="col-lg-2" style="margin-left: -10px;">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="FechaInicio">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar "></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <h5 style="margin-top: 10px;">Fec.Fin</h5>
+                        </div>
+                        <div class="col-lg-2" style="margin-left: -25px;">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="FechaFin">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar "></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-primary layout_btn_prevent" onclick="cargarAtencionesxCE();">Buscar</button>
+                        </div>
+                    </div>
+                    <div class="card-block m-t-35">
+                        <div id="chart1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card m-t-5">
+                    <div class="card-header bg-white">
+                        CITAS MENSUALES - CITAS ATENDIDAS Y NO ATENDIDAS &nbsp;&nbsp; <button class="btn btn-primary layout_btn_prevent" onclick="CambiarGrafico();" id="btnCambiarGrafico">Barras</button>
+                    </div>
+                    <div class="row m-t-10 m-l-10" >
+                        <div class="col-lg-1">
+                            <h5 style="margin-top: 10px;">Mes:</h5>
+                        </div>
+                        <div class="col-lg-2" style="margin-left: -10px;">
+                            <select class="chzn-select" id="cboMes"></select>
+                        </div>
+                        <div class="col-lg-1">
+                            <h5 style="margin-top: 10px;">Consultorio:</h5>
+                        </div>
+                        <div class="col-lg-2" style="margin-left: -25px;">
+                            <select class="chzn-select" id="cboServicio"></select>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-primary layout_btn_prevent" onclick="cargarGrafico();">Buscar</button>
+                        </div>
+                    </div>
+                    <div class="card-block m-t-35">
+                        <div id="chart2"></div>
+                        <br />
+                        <div id="chart3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+@section Scripts
+    {
+    <!-- plugin script -->
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script src="~/js/DashBoard.js"></script>
+    <!-- end of plugin script -->
+}

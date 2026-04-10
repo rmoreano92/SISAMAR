@@ -1,0 +1,87 @@
+﻿@section Css
+    {
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    }
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-shield-check"></i>
+                @ViewBag.Area
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Roles</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="row m-0">
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+        </ul>
+        <div class="tab-content border p-1" id="myTabContent">
+            <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <div class="row">
+                    <div class="col-md-6">
+                        @{
+                            if (@ViewBag.Agregar)
+                            {
+                                <button class="btn btn-success layout_btn_prevent" id="btnAgregarRol">Agregar</button>
+                            }
+                            if (@ViewBag.Modificar)
+                            {
+                                <button class="btn btn-info layout_btn_prevent" id="btnModificarRol">Modificar</button>
+                            }
+                            if (@ViewBag.Eliminar)
+                            {
+                                <button class="btn btn-danger layout_btn_prevent" id="btnEliminarRol">Eliminar</button>
+                            }
+                            if (@ViewBag.Consultar)
+                            {
+                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultarRol">Consultar</button>
+                            }
+                        }
+                    </div>
+                </div>
+
+                <table id="tblRoles" width="100%" class="table table-sm table-bordered table-content-md mt-1">
+                    <thead style="color: white;background: #3e6184;">
+                        <tr>
+                            <th style="width:5%">Roles</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/Seguridad/RolesRegistro.cshtml" />
+
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+
+    <script type="text/javascript" src=@Href("~/js/Seguridad/Roles.js")></script>
+    }
+
+

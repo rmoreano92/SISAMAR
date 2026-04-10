@@ -1,0 +1,333 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@* <input id="hdUsaLabs" value="@usaLabs" hidden> *@
+
+
+
+@section Css {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen1.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar" style="overflow: visible;">
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="d-flex">
+                    <div>
+                        <h4 class="nav_top_align">
+                            <i class="fa fa-hospital-o"></i>
+                            Establecimientos No MINSA
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="row template_auto-1fr-auto">
+        <div class="col-lg-12">
+            <div class="card">
+
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card m-t-5">
+                                <div class="card-block bg-blue">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="codigoEstBuscar">Cod. IPRESS</label>
+                                                        <input type="text" class="form-control form-control-sm searchEstab" id="codigoEstBuscar" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group m-0">
+                                                        <label for="nombreEstBuscar">Nombre</label>
+                                                        <input type="text" class="form-control form-control-sm searchEstab" id="nombreEstBuscar" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="cmbdepEstbuscar">Departamento</label>
+                                                        <div class="input-group">
+                                                            <select class="chzn-select searchEstab" id="cmbdepEstbuscar" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="cmbprovEstBuscar">Provincia</label>
+                                                        <div class="input-group">
+                                                            <select class="chzn-select searchEstab" id="cmbprovEstBuscar" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="cmbdistEstBuscar">Distrito</label>
+                                                        <div class="input-group">
+                                                            <select class="chzn-select searchEstab" id="cmbdistEstBuscar" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                                            <button class="btn btn-sm btn-outline-primary layout_btn_prevent" id="btnBuscarEstablecimiento" style="width:70px;">Buscar</button>
+                                            <button class="btn btn-sm btn-outline-secondary layout_btn_prevent" id="btnLimpiarBusquedaEstablecimiento" style="width:70px;">Limpiar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 pt-2 pb-0">
+                            @{
+                                if (@ViewBag.Agregar)
+                                {
+                                    <button class="btn btn-primary layout_btn_prevent" id="btnAgregar">Agregar</button>
+                                }
+                                if (@ViewBag.Modificar)
+                                {
+                                    <button class="btn btn-info layout_btn_prevent" id="btnModificar">Modificar</button>
+                                }
+                                if (@ViewBag.Eliminar)
+                                {
+                                    // <button class="btn btn-danger layout_btn_prevent" id="btnEliminar">Eliminar</button>
+                                }
+                                if (@ViewBag.Consultar)
+                                {
+                                    <button class="btn btn-warning layout_btn_prevent" id="btnConsultar">Consultar</button>
+                                }
+                            }
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="table-responsive mt-1">
+                                <table id="tblEstSalud" width="100%" class="table table-sm table-bordered table-content-md">
+                                    <thead style="color: white;background: #434343;">
+                                        <tr>
+                                            <th style="width:5%">Codigo</th>
+                                            <th style="width:15%">Nombre</th>
+                                            <th style="width:15%">Distrito</th>
+                                            <th style="width:15%">Provincia</th>
+                                            <th style="width:15%">Departamento</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalRegistroEstablecimiento" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Establecimientos</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="card m-t-5 bg-green">
+                            <div class="card-block p-t-0">
+
+
+                                <div class="row mt-1">
+
+                                    <div class="col-lg-6">
+                                        <label for="txtCodigoEstablecimiento" class="form-control-label">Codigo</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtCodigoEstablecimiento" autocomplete="off" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <label for="txtNombreEstablecimiento" class="form-control-label">Nombre</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtNombreEstablecimiento" autocomplete="off" class="form-control">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="form-group m-0">
+                                            <label for="cboDepartamento">Departamento</label>
+                                            <div class="input-group">
+                                                <select class="chzn-select" id="cboDepartamento" style="width: 100%;" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group m-0">
+                                            <label for="cboProvincia">Provincia</label>
+                                            <div class="input-group">
+                                                <select class="chzn-select" id="cboProvincia" style="width: 100%;" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group m-0">
+                                            <label for="cboDistrito">Distrito</label>
+                                            <div class="input-group">
+                                                <select class="chzn-select" id="cboDistrito" style="width: 100%;" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-12 mb-1">
+                                        <div class="form-group m-0">
+                                            <label for="cboSubSectorEstablecimiento">Sub Sector</label>
+                                            <div class="input-group">
+                                                <select class="chzn-select" id="cboSubSectorEstablecimiento" style="width: 100%;" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="check__toggle">
+                                            <label class="toggle">
+                                                <input class="toggle__input" type="checkbox"
+                                                       id="chkActivo">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Activo</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnGuardar" target="_blank" class="btn btn-primary "> Guardar</button>
+                <button id="btnCerrarModalEstablecimientos" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .tabListEvaluacion h6 {
+        background-color: #394273;
+    }
+
+    .tabListEvaluacion .nav-link.active, .tabListEvaluacion .nav-link.active:focus {
+        background: #878fbb !important;
+    }
+
+    .submenu .nav-link.active {
+        background-color: transparent !important;
+        color: inherit !important;
+    }
+
+    .input-table {
+        border: none;
+        background-color: none;
+        outline: 0;
+        font-size: 12px;
+        width: 40px;
+        height: 12px;
+        background-color: #fffabd !important
+    }
+
+        .input-table:focus {
+            border: none;
+            background-color: none;
+            outline: 0;
+            font-size: 12px;
+            width: 40px;
+            height: 12px;
+            background-color: #fffabd !important
+        }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    #tblServicios, #tblFarmacia {
+        table-layout: auto !important;
+        width: auto !important;
+    }
+
+    .chosen-container {
+        width: 100% !important;
+    }
+</style>
+
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen1.jquery.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    @*<script src="https://momentjs.com/downloads/moment-with-locales.js"></script>*@
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/html2canvas.min.js"></script>
+
+
+    <script type="text/javascript" src=@Href("~/js/General/EstablecimientosNoMinsa.js?v=" + version)></script>
+
+
+
+
+}

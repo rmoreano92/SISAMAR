@@ -1,0 +1,627 @@
+﻿@using Microsoft.Extensions.Configuration;
+@using System.Data
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar" style="overflow: visible;">
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="d-flex">
+                    <div>
+                        <h4 class="nav_top_align">
+                            <i class="fa fi fi-ss-payment-pos"></i>
+                            @*@ViewBag.Area*@
+                            Gestion de Caja
+                        </h4>
+                    </div>
+                    <div class="mx-1 border"></div>
+                    @if (ViewBag.EstadoCaja == "A")
+                    {
+                        <div class="">
+                            <div class="chip success ml-0 mr-1" style="color: #5e5e5e; background: #fffb80; margin-top: 8px;">
+                                <i class="fa fa-cash-register" style="margin-right: 5px;"></i>
+                                <span style="text-decoration: underline;">CAJA: </span><span style="font-weight: normal;" id="txtCajaAperturado">@ViewBag.CajaAperturo</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="chip success ml-0 mr-1" style="color: #5e5e5e; background: #80ffd4; margin-top: 8px;">
+                                <i class="fa fi fi-ss-user-unlock" style="margin-right: 5px;"></i>
+                                <span style="text-decoration: underline;">APERTURADO POR: </span><span style="font-weight: normal;" id="txtAperturadoPor">@ViewBag.CajeroAperturo</span>
+                            </div>
+                        </div>
+                    }
+                    <div>
+                        @if (ViewBag.EstadoCaja == "C")
+                        {
+                            <button id="btnAperturaCaja" type="button" class="btn btn-labeled btn-teal" style="margin-top: 8px;">
+                                <span class="btn-label">
+                                    <i class="fi fi-ss-lock-open-alt"></i>
+                                </span>
+                                APERTURA
+                            </button>
+                            @* <button id="btnAperturaCaja" class="btn btn-teal layout_btn_prevent ml-0 mr-1" style="margin-top: 5px;"><i class="fi fi-ss-lock-open-alt"></i> APERTURA</button> *@
+                        }
+                    </div>
+                    <div>
+                        @if (ViewBag.EstadoCaja == "A"@*  && ViewBag.CodigoGestionCaja2 != "" *@)
+                        {
+                            <button id="btCierreCaja" type="button" class="btn btn-labeled btn-brown" style="margin-top: 8px;">
+                                <span class="btn-label">
+                                    <i class="fi fi-ss-unlock"></i>
+                                </span>
+                                CIERRE
+                            </button>
+                            @* <div><input id="txtCodigoGestioncaja2" type="text" value="@ViewBag.CodigoGestionCaja2" hidden /></div> *@
+                            @* <button id="btCierreCaja" class="btn btn-brown layout_btn_prevent ml-0 mr-1" style="margin-top: 5px;"><i class="fi fi-ss-unlock"></i> CIERRE</button> *@
+                        }
+                    </div>
+                    <div><input id="txtCodigoGestioncaja" type="text" value="@ViewBag.CodigoGestionCaja" hidden /></div>
+                    <div><input id="txtIdCaja" type="text" value="@ViewBag.IdCaja" hidden /></div>
+                </div>
+
+            </div>
+            <div class="col-sm-2">
+                <div class="d-flex">
+                    <div class="dropdown ml-auto" style="margin-top: 8px;">
+                        <button class="btn btn-labeled btn-success dropdown-toggle" type="button" id="reporte-caja" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="btn-label">
+                                <i class="fa-solid fa-file-excel"></i>
+                            </span>
+                            Reportes
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="reporte-caja" style="border-color: teal;">
+                            <a id="btnAbrirReporteConsolidadoVentas" class="dropdown-item" href="#">Consolidado de Ventas</a>
+                            <a id="btnAbrirReporteConsolidadoRecaudacion" class="dropdown-item" href="#">Consolidado de Recaudación</a>
+                            <a id="btnAbrirReporteResumenPorPartida" class="dropdown-item" href="#">Resumen por Partida</a>
+                        </div>
+                    </div>
+                </div>
+                @* <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Gestion de Caja</li>
+            </ol> *@
+
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="row m-0">
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" id="tabGestionCaja" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+            @if (ViewBag.EstadoCaja == "A" && ViewBag.CodigoGestionCaja != "")
+            {
+                <li class="nav-item m-0" role="presentation">
+                    <a href="#" class="nav-link nav-link-custom" id="TabEmisionComprobante" data-toggle="tab" data-target="#TabPanelEmisionComprobante" role="tab" aria-controls="TabPanelEmisionComprobante" aria-selected="false">Emisión Comprobante</a>
+                </li>
+                <li class="nav-item m-0" role="presentation">
+                    <a href="#" class="nav-link nav-link-custom" id="TabCanjeNotaCreditoDebito" data-toggle="tab" data-target="#TabPanelCanjeNotaCreditoDebito" role="tab" aria-controls="TabPanelCanjeNotaCreditoDebito" aria-selected="false">Canje Nota Crédito/Débito</a>
+                </li>
+                <li class="nav-item m-0 d-none" role="presentation">
+                    <a href="#" class="nav-link nav-link-custom" id="TabPlanCredito" data-toggle="tab" data-target="#TabPanelPlanCredito" role="tab" aria-controls="TabPanelPlanCredito" aria-selected="false">Plan de Crédito</a>
+                </li>
+            }            
+        </ul>
+        <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContentGestionCaja">
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade active in pb-1 h-100" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <div class="row template_auto-1fr-auto">
+                    <div class="col-lg-12 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-block">
+                                <div class="row">
+                                    @*<div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="cboFiltroTipoDocumento" class="form-control-label">Tipo Comprobante</label>
+                                            <select class="chzn-select w-100" id="cboFiltroTipoDocumento" data-placeholder="Seleccione una opción">
+                                                @foreach (var item in @ViewBag.TiposDocumentos.Tables[0].Rows)
+                                                {
+                                                    <option value="@item["id"]"> @item["descripcion"]  </option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>*@
+                                    <div class="col-xl-3 col-lg-5 col-md-4">
+                                        <div class="row">
+                                            <div class="col-xl-5 col-lg-5 col-md-6"@* style="max-width: 100px;"*@>
+                                                <div class="form-group m-0">
+                                                    <label for="txtFiltroNroSerie" class="form-control-label">Serie</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm search solo-numero" id="txtFiltroNroSerie">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-7 col-lg-7 col-md-6" @* style="max-width: 150px;"*@>
+                                                <div class="form-group m-0">
+                                                    <label for="txtFiltroNroDocumento" class="form-control-label">N° Documento</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm search solo-numero" id="txtFiltroNroDocumento">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3">
+                                        <div class="row">
+                                            <div class="col-xl-6"@* style="max-width: 150px;"*@>
+                                                <div class="form-group m-0">
+                                                    <label for="txtFiltroNroHistoria" class="form-control-label">Historia</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm search solo-numero" id="txtFiltroNroHistoria">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6"@* style="max-width: 150px;"*@>
+                                                <div class="form-group m-0">
+                                                    <label for="txtFiltroNroCuenta" class="form-control-label">Cuenta</label>
+                                                    <input type="text" autocomplete="off" class="form-control form-control-sm search solo-numero" id="txtFiltroNroCuenta">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6">
+                                        <div class="row">
+                                            <div class="col-xl-4">
+                                                <div class="form-group m-0">
+                                                    <label for="cboFiltroCaja" class="form-control-label">Caja</label>
+                                                    <select class="chzn-select-deselect search w-100" id="cboFiltroCaja" data-placeholder="Seleccione una opción">
+                                                        <option value=""></option>
+                                                        @foreach (var item in @ViewBag.ListaCajas.Tables[0].Rows)
+                                                        {
+                                                            <option value="@item["idCaja"]"> @item["descripcion"]  </option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4">
+                                                <div class="form-group m-0">
+                                                    <label for="cboFiltroTurno" class="form-control-label">Turno</label>
+                                                    <select class="chzn-select-deselect search w-100" id="cboFiltroTurno" data-placeholder="Seleccione una opción">
+                                                        <option value=""></option>
+                                                        @foreach (var item in @ViewBag.ListaTurnos.Tables[0].Rows)
+                                                        {
+                                                            <option value="@item["idTurno"]"> @item["descripcion"]  </option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4">
+                                                <div class="form-group m-0">
+                                                    <label for="cboFiltroCajero" class="form-control-label">Cajero</label>
+                                                    <select class="chzn-select-deselect search w-100" id="cboFiltroCajero" data-placeholder="Seleccione una opción">
+                                                        <option value=""></option>
+                                                        @foreach (var item in @ViewBag.ListaCajeros.Tables[0].Rows)
+                                                        {
+                                                            <option value="@item["idEmpleado"]"> @item["dCajero"]  </option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtFiltroRazonSocial" class="form-control-label">Razón Social</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtFiltroRazonSocial">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-2" style="max-width: 200px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaInicioBuscar" class="form-control-label">Fecha Inicio</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFiltroFechaInicio">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-2" style="max-width: 200px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaFinBuscar" class="form-control-label">Fecha Fin</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFiltroFechaFin">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="d-flex align-items-end" style="height: 55px;">
+                                            <button class="btn btn-sm btn-primary layout_btn_prevent mr-1" id="btnFiltroBuscar" style="padding-left: 2rem !important; padding-right: 2rem !important;">Buscar</button>
+                                            <button class="btn btn-sm btn-secondary layout_btn_prevent" id="btnFiltroLimpiar" style="padding-left: 2rem !important; padding-right: 2rem !important;">Limpiar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                    
+                    <div class="col-lg-12 template_auto-1fr">
+                        <div>
+                            <ul class="nav nav-tabs border" id="ComprobantesNotas-TabList" role="tablist">
+                                <li class="nav-item m-0">
+                                    <a class="nav-link active" id="comprobantes-tab-link" data-toggle="tab" href="#comprobantes-tab" role="tab" aria-controls="comprobantes" aria-selected="true" aria-expanded="true">Boletas y Facturas</a>
+                                </li>
+                                <li class="nav-item m-0">
+                                    <a class="nav-link" id="notas-tab-link" data-toggle="tab" href="#notasCredito-tab" role="tab" aria-controls="notas" aria-selected="false" aria-expanded="false">Notas Crédito</a>
+                                </li>
+                                <li class="nav-item m-0">
+                                    <a class="nav-link" id="notas-tab-link" data-toggle="tab" href="#notasDebito-tab" role="tab" aria-controls="notas" aria-selected="false" aria-expanded="false">Notas Débito</a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+
+                        <div class="tab-content" id="Comprobantes-TabContent" style="padding-top: 5px;">
+                            <div class="tab-pane fade show active in" id="comprobantes-tab" role="tabpanel" aria-labelledby="comprobantes-tab-link">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        @if (ViewBag.Eliminar && ViewBag.EstadoCaja == "A" && ViewBag.CodigoGestionCaja != "")
+                                        {
+                                            <button class="btn btn-danger layout_btn_prevent text-sm-left" id="btnEliminarComprobante"><i class="fa fi fi-ss-delete-document" style="width: 20px;"></i> ANULAR COMPROBANTE</button>
+                                        }
+                                    </div>
+                                    <div class="col-xl-6 text-sm-right">
+                                        @if (ViewBag.PermisoHabilitarEnvioSunat > 0)
+                                        {
+                                            <button class="btn btn-teal layout_btn_prevent" id="btnHabilitarEnvioSunatComprobante"><i class="fa-solid fa-send mr-1"></i> MIGRAR</button>
+                                        }
+                                        @if (ViewBag.PermisoCorrecionComprobante > 0)
+                                        {
+                                            <button class="btn btn-brown layout_btn_prevent" id="btnCorregirComprobante"><i class="fa-solid fa-screwdriver-wrench mr-1"></i> CORREGIR</button>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row">                                    
+                                    <div class="col-xl-12 h-100" >
+                                        <table id="tblComprobantes" width="100%" height="100%" class="table table-xs table-bordered table-content-sm" style="cursor: default;">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th>Caja</th>
+                                                    <th>Turno</th>
+                                                    <th>Fecha</th>
+                                                    <th>Tipo</th>
+                                                    <th>Serie</th>
+                                                    <th>Correlativo</th>
+                                                    <th>Cuenta</th>
+                                                    <th>Historia</th>
+                                                    <th>Razón Social</th>
+                                                    <th>Total</th>
+                                                    <th>Cajero</th>
+                                                    <th>Estado</th>
+                                                    <th>Migración</th>
+                                                    <th>Imprimir</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="notasCredito-tab" role="tabpanel" aria-labelledby="notas-tab-link">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        @if (ViewBag.Eliminar && ViewBag.EstadoCaja == "A" && ViewBag.CodigoGestionCaja != "")
+                                        {
+                                            <button class="btn btn-danger layout_btn_prevent text-sm-left" id="btnEliminarDevolucionNotaCredito"><i class="fa fi fi-ss-delete-document" style="width: 20px;"></i> REVERTIR DEVOLUCIÓN</button>
+                                        }
+                                    </div>
+                                    <div class="col-xl-6 text-sm-right">
+                                        @if (ViewBag.PermisoHabilitarEnvioSunat > 0)
+                                        {
+                                            <button class="btn btn-teal layout_btn_prevent" id="btnHabilitarEnvioSunatNotaCredito"><i class="fa-solid fa-send mr-1"></i> MIGRAR</button>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <table id="tblNotasCredito" width="100%" class="table table-xs table-bordered table-content-sm" style="cursor: default;">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th>Caja</th>
+                                                    <th>Turno</th>
+                                                    <th>Fecha</th>
+                                                    <th>Tipo</th>
+                                                    <th>Serie</th>
+                                                    <th>Correlativo</th>
+                                                    <th>Cuenta</th>
+                                                    <th>Historia</th>
+                                                    <th>Razón Social</th>
+                                                    <th>Total</th>
+                                                    <th>Cajero</th>
+                                                    <th>Estado</th>
+                                                    <th>Migración</th>
+                                                    <th>Imprimir</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>                                
+                            </div>
+
+                            <div class="tab-pane fade" id="notasDebito-tab" role="tabpanel" aria-labelledby="notas-tab-link">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        @if (ViewBag.Eliminar && ViewBag.EstadoCaja == "A" && ViewBag.CodigoGestionCaja != "")
+                                        {
+                                            <button class="btn btn-danger layout_btn_prevent text-sm-left" id="btnEliminaCanjeNotaDebito"><i class="fa fi fi-ss-delete-document" style="width: 20px;"></i> REVERTIR CANJE</button>
+                                        }
+                                    </div>
+                                    <div class="col-xl-6 text-sm-right">
+                                        @if (ViewBag.PermisoHabilitarEnvioSunat > 0)
+                                        {
+                                            <button class="btn btn-teal layout_btn_prevent" id="btnHabilitarEnvioSunatNotaDebito"><i class="fa-solid fa-send mr-1"></i> MIGRAR</button>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <table id="tblNotasDebito" width="100%" class="table table-xs table-bordered table-content-sm" style="cursor: default;">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th>Caja</th>
+                                                    <th>Turno</th>
+                                                    <th>Fecha</th>
+                                                    <th>Tipo</th>
+                                                    <th>Serie</th>
+                                                    <th>Correlativo</th>
+                                                    <th>Cuenta</th>
+                                                    <th>Historia</th>
+                                                    <th>Razón Social</th>
+                                                    <th>Total</th>
+                                                    <th>Cajero</th>
+                                                    <th>Estado</th>
+                                                    <th>Migración</th>
+                                                    <th>Imprimir</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                
+                    <div class="col-xl-12">
+                        <table class="table table-sm m-0">
+                            <thead>
+                                <tr>
+                                    <td width="120">Resumen Caja</td>
+                                    <th>Boletas</th>
+                                    <th>Facturas</th>
+                                    <th>Anuladas</th>
+                                    <th>Notas Crédito</th>
+                                    <th>Notas Débito</th>
+                                    <th>Recaudado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Monto (S/.)</th>
+                                    <td id="dMontoBoletas" class="text-info"></td>
+                                    <td id="dMontoFacturas" class="text-teal"></td>
+                                    <td id="dMontoAnulados" class="text-danger"></td>
+                                    <td id="dMontoNotasCredito" class="text-warning"></td>
+                                    <td id="dMontoNotasDebito" class="text-deep-purple"></td>
+                                    <td id="dMontoRecaudado" class="text-muted"></td>
+                                </tr>
+                                <tr>
+                                    <th>Cantidad</th>
+                                    <td id="dCantidadBoletas" class="text-info"></td>
+                                    <td id="dCantidadFacturas" class="text-teal"></td>
+                                    <td id="dCantidadAnulados" class="text-danger"></td>
+                                    <td id="dCantidadNotasCredito" class="text-warning"></td>
+                                    <td id="dCantidadNotasDebito" class="text-deep-purple"></td>
+                                    <td id="dCantidadRecaudado" class="text-muted"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--=============================================Panel Emision Comprobante==================================================================-->
+            <div class="tab-pane fade pb-1 h-100" id="TabPanelEmisionComprobante" role="tabpanel" aria-labelledby="TabEmisionComprobante" style="position:relative;">
+                <div class="template_auto-1fr-auto">
+                    <partial name="~/Views/Shared/Components/VistasParciales/Caja/GestionCaja/RegistroEmisionComprobante.cshtml" />
+                </div>                
+            </div>
+            <!--=============================================Panel Canje Nota Credito Debito==================================================================-->
+            <div class="tab-pane fade pb-1" id="TabPanelCanjeNotaCreditoDebito" role="tabpanel" aria-labelledby="TabCanjeNotaCreditoDebito">
+                <partial name="~/Views/Shared/Components/VistasParciales/Caja/GestionCaja/RegistroCanjeNotaCreditoDebito.cshtml" />
+            </div>
+            <!--=============================================Panel Plan de Credito==================================================================-->
+            <div class="tab-pane fade pb-1" id="TabPanelPlanCredito" role="tabpanel" aria-labelledby="TabPlanCredito">
+                <partial name="~/Views/Shared/Components/VistasParciales/Caja/GestionCaja/RegistroPlanCredito.cshtml" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaCuentasPacientes.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaRecetasPacientes.cshtml" />
+
+<partial name="~/Views/Shared/Components/VistasParciales/Caja/GestionCaja/ReportesCaja.cshtml" />
+
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/decimal.js/decimal.js"></script>
+
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src=@Href("~/js/Caja/GestionCaja.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Caja/EmisionComprobante.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Caja/CanjeNotacreditoDebito.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Caja/ReportesCaja.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Comun/BusquedaCuentasPacientes.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Comun/BusquedaRecetasPacientes.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Comun/BusquedaServiciosProductos.js?v=" + version)></script>
+
+
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            Migracion.Iniciar();
+            //ESTABLECIMIENTOSSALUD.init();
+            //REFERENCIAS.init();
+            //ESTABLECIMIENTOSSALUD.init();
+            /*$(window).resize(function () {
+                $('#cboServicioEmergenciaBuscar_chosen').attr('style', 'width:' + $('#cboServicioEmergenciaBuscar_chosen').parent().parent().width() + 'px !important');
+            });*/
+
+        });
+    </script>*@
+
+}
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff !important;
+            border-color: #ccc !important;
+        }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                            width: 100% !important;
+                        }*/
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+
+
+
+
+
+
+
+    .card-list-radio {
+        overflow: hidden;
+        max-height: 60px; /* altura solo para el radio seleccionado */
+        transition: max-height 0.7s ease;
+    }
+
+    .card-list-radio.expandida {
+        /* position: absolute;*/
+        max-height: 500px; /* suficientemente grande para todos los radios */
+    }
+
+    .card-list-radio:hover {
+        position: absolute;
+        z-index: 1000;
+        box-shadow: 0 0 5px 4px #607D8B; /* halo verde más fuerte */
+    }
+</style>
+
+

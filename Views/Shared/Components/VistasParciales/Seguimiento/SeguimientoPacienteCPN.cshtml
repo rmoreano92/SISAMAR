@@ -1,0 +1,103 @@
+﻿<div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalSeguimientoCPN" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light-blue">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Seguimiento de ciclos de Control Prenatal (CPN)</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group mb-0">
+                                            <label for="txtNroHistoriaCPN" class="form-control-label"><b>Nro. Historia</b></label>
+                                            <div class="input-group">
+
+                                                <input id="txtNroHistoriaCPN" autocomplete="off" placeholder="" class=" solo-numero form-control">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <div class="form-group mb-0">
+                                            <label for="txtNombresCPN" class="form-control-label"><b>Nombres</b></label>
+                                            <div class="input-group">
+
+                                                <input id="txtNombresCPN" autocomplete="off" placeholder="" class="form-control" disabled>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <table id="tblCiclosEmbarazo" class="table table-sm table-bordered" style="width: 100%; cursor: pointer; margin-top: 0 !important;">
+                                        <thead style="color: white; background: #434343;">
+                                            <tr>
+                                                <th align="center">Ciclos</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-lg-8">
+
+                                    <ul id="idtbSeguimiento" class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#diagnosticoCons" role="tab" id="diagnosticoCons-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Lista de controles</a>
+                                        </li>
+                                    </ul>
+
+                                    <div role="tabpanel" class="tab-pane fade in active" id="diagnosticoCons" aria-labelledby="diagnosticoCons-tab">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table id="tblListaControlCPN" class="table table-sm table-bordered">
+                                                    <thead style="color: white; background: #971742; ">
+                                                        <tr>
+                                                            <th width="20%">Control</th>
+                                                            <th width="20%">Fecha</th>
+                                                            <th width="20%">Consultorio</th>
+                                                            <th width="20%">Medico</th>
+                                                            <th width="20%">Cuenta</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button id="btnCerrarSeguimientoCPN" target="_blank" class="btn btn-lg btn-secondary "> Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    #tblCuentas tr.selected {
+        color: #0300a9;
+        letter-spacing: 0.5px;
+        background-color: #c6cbf1 !important;
+        /*background-color: #dbefc5 !important;*/
+    }
+</style>

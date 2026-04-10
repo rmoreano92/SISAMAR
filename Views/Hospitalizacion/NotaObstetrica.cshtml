@@ -1,0 +1,530 @@
+﻿<div>
+    <div>
+        <div>
+            @section Css
+    {
+                <!-- plugin css -->
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+                <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/bootstrap.vertical-tabs.css" />
+
+
+
+            }
+            <header class="head">
+                <div class="main-bar row">
+                    <div class="col-lg-6 col-md-4 col-sm-4">
+                        <h4 class="nav_top_align">
+                            <i class="fa fa-th"></i>
+                            @ViewBag.Area
+                        </h4>
+                    </div>
+                    <div class="col-lg-6 col-md-8 col-sm-8">
+                        <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                            <li class="breadcrumb-item">
+                                <a href="index1.html">
+                                    <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">@ViewBag.Area</a>
+                            </li>
+                            <li class="breadcrumb-item active">Nota  Obstetrica </li>
+                        </ol>
+                    </div>
+                </div>
+            </header>
+
+            <div class="outer">
+                <div class="inner bg-light lter bg-container">
+                    <div class="row">
+                        <div class="col-xs-12 data_tables">
+                            <div class="card">
+                                <div class="card-header bg-white">
+                                    <i class="fa fa-pencil-square-o"></i> Nota Obstetrica
+                                    @{
+                                        if (@ViewBag.Agregar)
+                                        {
+                                            <button class="btn btn-success layout_btn_prevent" id="btnAgregarNI">Agregar</button>
+                                        }
+
+                                        if (@ViewBag.Consultar)
+                                        {
+                                            <button class="btn btn-warning layout_btn_prevent" id="btnConsultarNI">Consultar</button>
+                                        }
+                                    }
+                                </div>
+                                <input hidden="hidden" id="hditembar" name="hditembar" value="@ViewBag.itemBar" type="text" class="form-control">
+                                <input hidden="hidden" id="idGrupo" name="idGrupo" type="text" class="form-control" value="@ViewBag.Vista">
+                                <input hidden="hidden" id="idServicio" name="idServicio" type="text" class="form-control" value="@ViewBag.Servicio">
+                                <input hidden="hidden" id="hdIdPaciente" name="hdIdPaciente" type="text" class="form-control">
+                                <input hidden="hidden" id="hdIdCuentaAtencion" name="hdIdCuentaAtencion" type="text" class="form-control">
+                                <input hidden="hidden" id="hdIdNumero" name="hdIdNumero" type="text" class="form-control">
+                                <input hidden="hidden" id="hdIdNumeroSiguiente" name="hdIdNumeroSiguiente" type="text" class="form-control">
+                                <input hidden="hidden" id="hdestadoBtn" name="hdestadoBtn" type="text" class="form-control">
+                                <div class="card-block p-t-5">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card bg-green m-t-5">
+                                                <div class="card-block pb-0">
+                                                    <div class="row mt-1 mb-1">
+
+                                                        <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                            <label for="txtNroCuentaBusqueda" class="form-control-label">N° Cuenta</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control" id="txtNroCuentaBusqueda">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                            <label for="txtNroHistoriaBusqueda" class="form-control-label">N° Historia</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control" id="txtNroHistoriaBusqueda">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                            <label for="txtAPaternoBusqueda" class="form-control-label">A. Paterno</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control" id="txtAPaternoBusqueda">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                            <label for="txtAMaternoBusqueda" class="form-control-label">A. Materno</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control" id="txtAMaternoBusqueda">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                            <label for="txtNombresBusqueda" class="form-control-label">Nombres</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control" id="txtNombresBusqueda">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                            <label for="txtFechaAtencion" class="form-control-label">Fecha Ingreso</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencion">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                            <label for="cboConsultorio" class="form-control-label">Servicio</label>
+                                                            <div class="input-group">
+                                                                <select class="chzn-select" id="cboConsultorio"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-2 col-lg-3 col-md-3 d-flex align-items-end" style="height: 50px;">
+                                                            <div>
+                                                                <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarAtenciones">Buscar</button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-6 pt-2 pb-0">
+                                            @{
+                                                if (@ViewBag.Agregar)
+                                                {
+                                                    @*<button class="btn btn-primary layout_btn_prevent" id="btnAgregar">Agregar</button>*@
+                                                }
+                                                if (@ViewBag.Modificar)
+                                                {
+                                                    <button class="btn btn-info layout_btn_prevent" id="btnModificarAtencion">Modificar</button>
+                                                }
+                                                if (@ViewBag.Eliminar)
+                                                {
+                                                    <button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtencion">Eliminar</button>
+                                                }
+                                                if (@ViewBag.Consultar)
+                                                {
+                                                    <button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtencion">Consultar</button>
+                                                }
+                                            }
+                                        </div>
+
+                                        <div class="col-md-6 d-flex align-items-end justify-content-end" style="height: 50px;">
+                                            @*<label for="" class="titulo mr-1" style=" font-size: medium; color: #0095ff !important;">Parte Diario: </label>
+                                            <div>
+                                            <button class="btn btn-danger layout_btn_prevent" id="btnGeneraParte" title="Genera Parte" data-toggle="tooltip" style="margin: 2px;"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-success layout_btn_prevent" id="btnDescargaParte" title="Imprime Parte Firmado" data-toggle="tooltip" style="margin: 2px;"><i class="fa fa-print"></i></button>
+                                            <button class="btn btn-warning layout_btn_prevent" id="btnDescargaParteSF" title="Visualiza Parte" data-toggle="tooltip" style="margin: 2px;"><i class="fa fa-eye"></i></button>
+                                            </div>*@
+                                            @*
+                                            <div class="row">
+                                            <div class="col-lg-4">
+                                            <br>
+                                            <label for="" class="form-control-label titulo" style=" font-size: medium;">Parte Diario: </label>
+                                            </div>
+                                            <div class="col-lg-2">
+                                            <br>
+                                            <button class="btn btn-default layout_btn_prevent" id="btnGeneraParte" title="Genera Parte" data-toggle="tooltip"><i class="fa fa-pencil"></i></button>
+
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                            <br>
+                                            <button class="btn btn-success layout_btn_prevent" id="btnDescargaParte" title="Imprime Parte Firmado" data-toggle="tooltip"><i class="fa fa-print"></i></button>
+                                            </div>
+                                            <div class="col-lg-2">
+                                            <br>
+                                            <button class="btn btn-warning layout_btn_prevent" id="btnDescargaParteSF" title="Visualiza Parte" data-toggle="tooltip"><i class="fa fa-eye"></i></button>
+                                            </div>
+                                            </div>*@
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <table id="tblAtenciones" width="100%" class="table table-sm table-content-md table-bordered">
+                                                <thead style="color: white;background: #434343;">
+                                                    <tr>
+                                                        <th style="width:6%">N° Cuenta</th>
+                                                        <th style="width:6%">N° Historia.</th>
+                                                        <th style="width:30%">Paciente</th>
+                                                        <th style="width:10%">Fecha Ingreso</th>
+                                                        <th style="width:10%">F.Egre.Adm.</th>
+                                                        <th style="width:10%">Servicio</th>
+                                                        <th style="width:10%">Plan</th>
+                                                        <th style="width:10%; text-align: center;" align="center">Cant.Eval</th>
+                                                        <th style="width:10%; text-align: center;" align="center">Estado</th>
+                                                        <th style="width:10%; text-align: center;" align="center">Informe</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    @*
+                                    <table id="tblPacientesHosp" class="table table-bordered">
+                                        <thead style="color: white;background: #3e6184;">
+                                            <tr>
+
+                                                <th>N° Cuenta</th>
+                                                <th>N°. Historia</th>
+                                                <th>Apellido Paterno</th>
+                                                <th>Apellido Materno</th>
+                                                <th>Primer Nombre</th>
+                                                <th>Fecha de Nacimiento</th>
+                                                <th>Fecha de Ingreso</th>
+                                                <th>Hora de Ingreso</th>
+                                                <th>F. Egre. Admin</th>
+                                                <th>H. Egre. Admin</th>
+                                                <th>Servicio Actual</th>
+                                                <th>Plan</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>*@
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <partial name="~/Views/Shared/Components/VistasParciales/NotaObstetricaRegistrar.cshtml" />
+            @*@Html.Partial("~/Views/Shared/Components/VistasParciales/NotaObstetricaRegistrar.cshtml")*@
+            <div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalReceta" role="dialog" aria-labelledby="modalLabelsuccess">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info">
+                            <h4 class="modal-title text-white" id="modalLabelsuccess">Imprime Receta</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card m-t-10">
+                                <div class="card">
+                                    <ul id="clothing-nav" class="nav nav-tabs" role="tablist">
+
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#farmaciaRece" role="tab" id="farmaciaRece-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Farmacia</a>
+                                        </li>
+
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#rayosRece" role="tab" id="rayosRece-tab" data-toggle="tab" aria-controls="hats">Rayos X</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#ecoObstRece" role="tab" id="ecoObstRece-tab" data-toggle="tab" aria-controls="hats">Ecografía Obstetrica</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#ecoGeneRece" role="tab" id="ecoGeneRece-tab" data-toggle="tab" aria-controls="hats">Ecografía General</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#anatoPatoRece" role="tab" id="anatoPatoRece-tab" data-toggle="tab" aria-controls="hats">Anat. Patologica</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#patoClinicaRece" role="tab" id="patoClinicaRece-tab" data-toggle="tab" aria-controls="hats">Pat. Clinica</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#bancoSangreRece" role="tab" id="bancoSangreRece-tab" data-toggle="tab" aria-controls="hats">Banco Sangre</a>
+                                        </li>
+                                    </ul>
+                                    <div class="card-block">
+                                        <div id="clothing-nav-content" class="tab-content fade in active">
+
+                                            <div role="tabpanel" class="tab-pane fade in active" id="farmaciaRece" aria-labelledby="farmaciaRece-tab">
+                                                <br>
+                                                <iframe id="ifrmRecetaFarm"
+                                                        title="Inline Frame Example"
+                                                        @*width="100%"*@
+                                                        height="600"
+                                                        src=""></iframe>
+
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="rayosRece" aria-labelledby="rayosRece-tab">
+                                                <br>
+                                                <iframe id="ifrmRecetaRx"
+                                                        title="Inline Frame Example"
+                                                        @*width="100%"*@
+                                                        height="600"
+                                                        src=""></iframe>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="ecoObstRece" aria-labelledby="ecoObstRece-tab">
+                                                <br>
+                                                <iframe id="ifrmRecetaEcoObs"
+                                                        title="Inline Frame Example"
+                                                        @*width="100%"*@
+                                                        height="600"
+                                                        src=""></iframe>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="ecoGeneRece" aria-labelledby="ecoGeneRece-tab">
+                                                <br>
+                                                <iframe id="ifrmRecetaEcoGene"
+                                                        title="Inline Frame Example"
+                                                        @*width="100%"*@
+                                                        height="600"
+                                                        src=""></iframe>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="anatoPatoRece" aria-labelledby="anatoPatoRece-tab">
+                                                <br>
+                                                <iframe id="ifrmRecetaAnaPatolg"
+                                                        title="Inline Frame Example"
+                                                        @*width="100%"*@
+                                                        height="600"
+                                                        src=""></iframe>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="patoClinicaRece" aria-labelledby="patoClinicaRece-tab">
+                                                <br>
+                                                <iframe id="ifrmRecetaPatoClini"
+                                                        title="Inline Frame Example"
+                                                        @*width="100%"*@
+                                                        height="600"
+                                                        src=""></iframe>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="bancoSangreRece" aria-labelledby="bancoSangreRece-tab">
+                                                <br>
+                                                <iframe id="ifrmRecetaBs"
+                                                        title="Inline Frame Example"
+                                                        @*width="100%"*@
+                                                        height="600"
+                                                        src=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="modal-footer">
+
+                                <button id="btnCerrarRecetas" target="_blank" class="btn  btn-secondary "> Cerrar</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalSeguimiento" role="dialog" aria-labelledby="modalLabelsuccess">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h4 class="modal-title text-white" id="modalLabelsuccess">Seguimiento de Paciente</h4>
+                        </div>
+                        <div class="modal-body" style="background-color:#b4c6d6">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @*<partial name="~/Views/Shared/Components/VistasParciales/Seguimiento/SeguimientoPaciente.cshtml" />*@
+                                    @*@Html.Partial("~/Views/Shared/Components/VistasParciales/SeguimientoPaciente.cshtml");*@
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer" style="background-color:#ced8e1">
+
+                            <button id="btnCerrarSeguimiento" target="_blank" class="btn  btn-secondary "> Cerrar</button>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroLab.cshtml" />
+            @*@Html.Partial("~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistro.cshtml")*@
+            @section Scripts
+    {
+                <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+
+                <script type="text/javascript" src=@Href("~/js/Comun/Variables.js")></script>
+                <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script>
+
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos.js")></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Triaje.js")></script>
+                <script type="text/javascript" src=@Href("~/js/Hospitalizacion/NotaObstetrica.js")></script>
+                @*<script type="text/javascript" src=@Href("~/js/VistasParciales/SeguimientoPaciente.js")></script>*@
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/OrdenesYResultados.js")></script>
+                <script type="text/javascript" src=@Href("~/js/Facturacion/ConsumoServicioV3.js")></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Ordenes.js")></script>
+                @*<script type="text/javascript" src=@Href("~/js/Facturacion/Facturacion_Lista.js")></script>*@
+
+                <script src="~/AdmiRE/js/date.format.js"></script>
+
+                <script type="text/javascript">
+                //    $(document).ready(function () {
+                //        NOTAOBSTETRICA.init();
+
+                //    });
+
+                //</script>
+
+            }
+
+            @*<style>
+            .tab100 {
+                width: 100%
+            }
+
+            #clothing-nav-content2 .form-group {
+                margin-bottom: 0 !important;
+            }
+
+            #tblPacientesHosp tr.over td {
+                background: #D6E8F8;
+                font-weight: bold;
+            }
+
+
+
+            .chosen-container {
+                width: 100% !important;
+            }
+
+            .modal-lg {
+                max-width: 1200px !important;
+            }
+        </style>*@
+
+            <style>
+                .chosen-disabled {
+                    opacity: 1 !important;
+                }
+
+                    .chosen-disabled .chosen-single {
+                        background: #eceeef !important;
+                        border-color: rgba(0, 0, 0, 0.15) !important;
+                    }
+
+                .custom-control-indicator {
+                    border: 1px solid darkgrey;
+                }
+
+                .text-right {
+                    text-align: right !important;
+                }
+
+                .bg-light {
+                    background-color: #f8f9fa !important;
+                    color: #434343 !important;
+                }
+
+                .border-x-0 {
+                    border-right: 0 !important;
+                    border-left: 0 !important;
+                }
+
+                .btn-sm {
+                    padding: 0.4rem 0.5rem !important;
+                }
+
+                legend {
+                    width: auto !important;
+                    padding: 0 5px !important;
+                    font-size: 1.2rem !important;
+                    margin-left: 5px !important;
+                }
+
+                fieldset {
+                    border: 1px solid #ccc !important;
+                    margin: 0px 10px !important;
+                }
+
+                .nav-link:hover {
+                    border-color: whitesmoke !important;
+                    background-color: whitesmoke !important;
+                }
+
+                .btn-outline-secondary {
+                    color: #999 !important;
+                    border-color: #999 !important;
+                }
+
+                    .btn-outline-secondary:hover {
+                        color: #fff !important;
+                        border-color: #ccc !important;
+                    }
+
+                #clothing-nav-content2 .form-group {
+                    margin-bottom: 0 !important;
+                }
+
+                #tblAtencion tr.over td {
+                    background: #D6E8F8;
+                    font-weight: bold;
+                }
+
+                /*  .chosen-container chosen-container-single {
+                        width: 100% !important;
+                    }*/
+
+
+                .chosen-container {
+                    width: 100% !important;
+                }
+
+                .modal-lg {
+                    max-width: 1100px !important;
+                }
+            </style>
+        </div>
+    </div>
+</div>

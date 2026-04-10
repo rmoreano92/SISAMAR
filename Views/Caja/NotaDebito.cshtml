@@ -1,0 +1,246 @@
+﻿@using Microsoft.Extensions.Configuration;
+@using System.Data
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/context-menu.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa @ViewBag.Icono"></i>
+                @ViewBag.Modulo
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Modulo</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+                    </li>
+                    <li class="nav-item m-0" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Registro Resultados</a>
+                    </li>
+                </ul>
+                <div class="tab-content border p-1" id="myTabContent">
+                    <!--=============================================Panel Busqueda==================================================================-->
+                    <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                        <div class="row">
+                            <div class="col-xl-12 mb-2">
+                                <div class="card">
+                                    <div class="card-block pb-1">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-xl-3 col-xxl-2">
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtNroSerieBusq" class="d-block text-truncate">Nº Serie</label>
+                                                            <input id="txtNroSerieBusq" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtNroDocumentoBusq" class="d-block text-truncate">Nº Documento</label>
+                                                            <input id="txtNroDocumentoBusq" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-xl-2 col-xxl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtRazonSocialBusq" class="d-block text-truncate">Razón Social</label>
+                                                    <input id="txtRazonSocialBusq" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-xl-3 col-xxl-2">
+                                                <div class="form-group m-0">
+                                                    <label for="cboTipoEstadoBusq" class="d-block text-truncate">Estado</label>
+                                                    <select id="cboTipoEstadoBusq" class="chzn-select search" data-placeholder="Seleccione un opción">
+                                                        <option value=""></option>
+                                                        @foreach (DataRow estado in ViewBag.EstadosNota.Rows)
+                                                        {
+                                                            <option value="@estado["IdEstado"]">@estado["EstadoNota"]</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-xl-4 col-xxl-3">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtFechaInicioBusq">Fecha Inicio</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input id="txtFechaInicioBusq" type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtFechaFinBusq">Fecha Fin</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input id="txtFechaFinBusq" type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-2 col-xxl-2">
+                                                <div class="d-flex" style="margin-top: 30px;">
+                                                    <button class="btn btn-sm btn-primary layout_btn_prevent mr-2" style="min-width: 70px;" id="btnBuscar">Buscar</button>
+                                                    <button class="btn btn-sm btn-secondary layout_btn_prevent" style="min-width: 70px;" id="btnLimpiar">Limpiar</button>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6">
+                                @{
+                                    if (@ViewBag.Agregar)
+                                    {
+                                        <button class="btn btn-success layout_btn_prevent" id="btnAgregar">Agregar</button>
+                                    }
+                                    if (@ViewBag.Modificar)
+                                    {
+                                        <button class="btn btn-info layout_btn_prevent" id="btnModificar">Modificar</button>
+                                    }
+                                    if (@ViewBag.Eliminar)
+                                    {
+                                        <button class="btn btn-danger layout_btn_prevent" id="btnEliminar">Eliminar</button>
+                                    }
+                                    if (@ViewBag.Consultar)
+                                    {
+                                        <button class="btn btn-warning layout_btn_prevent" id="btnConsultar">Consultar</button>
+                                    }
+                                }
+                            </div>
+
+                            <div class="col-xl-12">
+                                <table id="tblNotasDebito" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                    <thead style="color: white; background: #434343;">
+                                        <tr>
+                                            <th>Nª Comprobante</th>
+                                            <th>Comprobante Afectado</th>
+                                            <th>Razón Social</th>
+                                            <th>Motivo</th>
+                                            <th>Total</th>
+                                            <th>Estado Nota</th>
+                                            <th>Usuario</th>
+                                            <th>Fecha Aprueba</th>
+                                            <th>Fecha Pagado</th>
+                                            <th>Imprimir</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/Caja/NotaDebito/RegistroNotaDebito.cshtml" />
+
+@section Scripts
+{
+
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+
+    @* <script type="text/javascript" src="~/AdmiRE/js/ProgressBar.js"></script> *@
+
+
+    <script type="text/javascript" src=@Href("~/js/Caja/NotaDebito.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Variables.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js?v=" + version)></script>
+
+
+
+}
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .tabListEvaluacion h6 {
+        background-color: #394273;
+    }
+
+    .tabListEvaluacion .nav-link.active, .tabListEvaluacion .nav-link.active:focus {
+        background: #878fbb !important;
+    }
+
+    /* .nav-tabs {
+                        width: 250px;
+                    } */
+
+    /* /* .nav-link {
+                        cursor: pointer;
+                    } */
+
+    /* .submenu {
+                        padding-left: 20px;
+                    } */
+
+    /* Mostrar el submenú cuando está activo */
+    .submenu .nav-link.active {
+        background-color: transparent !important;
+        color: inherit !important;
+    }
+</style>

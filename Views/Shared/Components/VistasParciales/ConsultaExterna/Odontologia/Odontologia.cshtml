@@ -1,0 +1,260 @@
+﻿<input type="text" id="TipoModulo" value="Odontologia" hidden>
+
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="idtbAtencion5" class="nav nav-tabs jerarquiaZ" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link  bg-whitesmoke border-bottom active" href="#AtencionOdonto" role="tab" id="AtencionOdonto-tab" data-toggle="tab" aria-controls="Perinatal">Anamnesis</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-whitesmoke border-bottom" href="#ExamenFisico" role="tab" id="examen-fisico-tab" data-toggle="tab" aria-controls="Perinatal">Odontograma</a>
+            </li>
+        </ul>
+
+        <div id="clothing-nav-contentAtencion5" class="tab-content p-1 border-right border-left border-bottom">
+            <div role="tabpanel" class="tab-pane fade active in" id="AtencionOdonto" aria-labelledby="AtencionOdonto-tab">
+                @* <input id="TipoModulo" type="text" value="@ViewBag.TipoModulo" disabled hidden /> *@
+                <div class="row" id="divClasificacionPaciente">
+                    <div class="col-md-12" style="display: none;">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group campo">
+                                    <label for="cboClasisifcacion" class="form-control-label">Clasificacion de Paciente</label>
+                                    <div class="input-group">
+                                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboClasisifcacion"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="cboDestino" class="form-control-label">Controles MGP</label>
+                                    <div class="input-group">
+                                        <input id="txtControles" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="txtEdadGestacional" class="form-control-label">Edad Gestacional</label>
+                                    <div class="input-group">
+                                        <input id="txtEdadGestacional" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="txtGestas" class="form-control-label">Nro. Gestas</label>
+                                    <div class="input-group">
+                                        <input id="txtGestas" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row" id="divTipoAtencion">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group campo">
+                                    <label for="cboClasificacionTipoAtencion" class="form-control-label">Tipo Atención</label>
+                                    <div class="input-group">
+                                        <select class="chzn-select" id="cboClasificacionTipoAtencion">
+                                            <option value="0">Seleccione una opción</option>
+                                            <option value="1">Atención integral - control emocional</option>
+                                            <option value="2">Atención psicológica por infertilidad</option>
+                                            <option value="3">Atención psicológica del Niño de Alto Riesgo (NAR)</option>
+                                            <option value="4">Evaluación de desarrollo infantil del NAR</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="contenedorEspecialidades" class="campo">
+                    <partial name="~/Views/Shared/Components/VistasParciales/ConsultaExterna/EspecialidadesMedicas/Entrevista.cshtml" />
+                </div>
+
+                @*<script type="text/javascript" src=@Href("~/js/ConsultaExterna/AtencionMedicaV2.js")></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Anestesiologia.js")></script>
+
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV2.js")></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos.js")></script>*@
+
+                @*<script>
+                $(document).ready(() => {
+                AtencionMedica.ParcialEvents()
+                AtencionMedica.ListaTiposConsulta()
+                AtencionMedica.TiposClasificacionPaciente()
+
+                Anestesiologia.Iniciar()
+                if (AtencionMedica.permisoClasiPaciente == '0') { // jdelgado para el control de versiones
+                $('#divClasificacionPaciente').hide()
+                } else {
+                $('#divClasificacionPaciente').show()
+                }
+                })
+                </script>*@
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="ExamenFisico" aria-labelledby="examen-fisico-tab">
+                <div class="row mb-2" hidden>
+                    <div class="col-md-12">
+                        <div class="card" style="background-color: #f8ffeb;">
+                            <div class="card-block">
+                                <div class="row campo">
+                                    <div class="col-md-12">
+                                        <div class="form-group m-0">
+                                            <label for="txtExamenGeneral" class="form-control-label">Exámen General</label>
+                                            <textarea class="form-control" id="txtExamenGeneral" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group m-0">
+                                            <label for="txtExamenRegional" class="form-control-label">Exámen Regional</label>
+                                            <textarea class="form-control" id="txtExamenRegional" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="PanelOdontologia">
+                    <div class="col-md-12">
+                        <partial name="~/Views/Shared/Components/VistasParciales/ConsultaExterna/Odontologia/Odontograma.cshtml" />
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+
+
+    </div>
+</div>
+
+<style>
+    .FacetFormTABLE {
+        box-sizing: initial !important;
+    }
+
+    .FacetTdInput {
+        border: solid 1px #000000;
+        text-align: center;
+        padding: 2px;
+    }
+
+    .FacetInput {
+        width: 23px;
+        font-size: 9px;
+        border: solid 1px #ffffff;
+        color: #0000FF;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .FacetDiente {
+        width: 38px;
+        padding: 0;
+    }
+
+    .divisor-central {
+        width: 1px;
+        background-color: #484848;
+        padding: 0;
+        border: 1px solid
+    }
+
+    .diente-tituloS {
+        position: absolute;
+        width: 38px;
+        z-index: 100;
+        text-align: center;
+        font-size: 9px;
+        font-family: Arial;
+        font-weight: bold;
+        margin-top: 3px;
+        line-height: initial;
+    }
+
+    .diente-tituloI {
+        position: absolute;
+        width: 38px;
+        z-index: 100;
+        text-align: center;
+        font-size: 9px;
+        font-family: Arial;
+        font-weight: bold;
+        margin-top: 53px;
+        line-height: initial;
+    }
+
+    .diente-capa {
+        position: absolute;
+        width: 38px;
+        height: 65px;
+        /*padding-top:5px; */
+        z-index: 100;
+    }
+
+    .diente-img {
+    }
+
+    .disposicion {
+        width: 38px;
+        height: 65px;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .diente {
+        height: 65px;
+        transition: transform .35s;
+    }
+
+    .diente-zoom {
+        transform: scale(2);
+        background-color: white;
+        border: 1px solid #2c2c2c;
+        border-radius: 0.25rem;
+        /*box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);*/
+    }
+
+    .diente-zoom-box {
+        position: relative;
+        z-index: 10000;
+    }
+
+    .btnDisposicion {
+        width: 100px;
+    }
+
+        .btnDisposicion.selectedDisposicion {
+            background-color: green;
+            color: white;
+        }
+
+    /*
+                .zoom-diente:hover {
+                    transform: scale(1.5);
+                }*/
+</style>
+
+<script>
+    $(document).ready(function () {
+        Odonto.Iniciar();
+    });
+    //
+</script>

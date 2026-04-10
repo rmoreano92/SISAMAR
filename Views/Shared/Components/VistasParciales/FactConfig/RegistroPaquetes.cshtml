@@ -1,0 +1,272 @@
+﻿@using System.Data
+
+
+<div class="modal fade" id="modalRegistroPaquetes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Bien e Insumo</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12 mb-1">
+
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Datos Generales</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtCodigoPaquete">Código</label>
+                                            <input type="text" class="form-control form-control-sm writing reading"
+                                                autocomplete="off" id="txtCodigoPaquete">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-9">
+                                        <div class="form-group m-0">
+                                            <label for="txtDescripcionPaquete">Descripcion</label>
+                                            <input type="text" class="form-control form-control-sm reading"
+                                                autocomplete="off" id="txtDescripcionPaquete">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 mt-1 mb-1">
+                                        <div class="check__toggle">
+                                            <label class="toggle">
+                                                <input class="toggle__input" type="checkbox" id="chkActivo">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Habilitado</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-xl-12">
+
+                                        <div class="row mb-1">
+                                            <div class="col-lg-2">
+                                                <label for="cboRayosX">Rayos X</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <select id="cboRayosX" class="chzn-select-deselect writing reading"
+                                                    data-placeholder="Seleccione una opción">
+                                                    @foreach (DataRow partida in ViewBag.RayosX.Rows)
+                                                    {
+                                                        <option value="@partida["IdProducto"]" codigo="@partida["Codigo"]"
+                                                            nombre="@partida["Nombre"]" precio="@partida["PrecioUnitario"]">
+                                                            @partida["Codigo"] - @partida["Nombre"]</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <button class="btn btn-success btn-sm btn-block" id="btnAgregarRx"><i
+                                                        class="fa fa-plus"></i></button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-1">
+                                            <div class="col-lg-2">
+                                                <label for="cboTomografia">Tomografía</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <select id="cboTomografia" class="chzn-select-deselect writing reading"
+                                                    data-placeholder="Seleccione una opción">
+                                                    @foreach (DataRow partida in ViewBag.Tomografia.Rows)
+                                                    {
+                                                        <option value="@partida["IdProducto"]" codigo="@partida["Codigo"]"
+                                                            nombre="@partida["Nombre"]" precio="@partida["PrecioUnitario"]">
+                                                            @partida["Codigo"] - @partida["Nombre"]</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <button class="btn btn-success btn-sm btn-block"
+                                                    id="btnAgregarTomografia"><i class="fa fa-plus"></i></button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-1">
+                                            <div class="col-lg-2">
+                                                <label for="cboEcografiaObstetrica">Ecog. Obstétrica</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <select id="cboEcografiaObstetrica"
+                                                    class="chzn-select-deselect writing reading"
+                                                    data-placeholder="Seleccione una opción">
+                                                    @foreach (DataRow partida in ViewBag.EcoObstetrica.Rows)
+                                                    {
+                                                        <option value="@partida["IdProducto"]" codigo="@partida["Codigo"]"
+                                                            nombre="@partida["Nombre"]" precio="@partida["PrecioUnitario"]">
+                                                            @partida["Codigo"] - @partida["Nombre"]</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <button class="btn btn-success btn-sm btn-block"
+                                                    id="btnAgregarEcoObstetrica"><i class="fa fa-plus"></i></button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-1">
+                                            <div class="col-lg-2">
+                                                <label for="cboEcografiaGeneral">Ecog. General</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <select id="cboEcografiaGeneral"
+                                                    class="chzn-select-deselect writing reading"
+                                                    data-placeholder="Seleccione una opción">
+                                                    @foreach (DataRow partida in ViewBag.EcoGeneral.Rows)
+                                                    {
+                                                        <option value="@partida["IdProducto"]" codigo="@partida["Codigo"]"
+                                                            nombre="@partida["Nombre"]" precio="@partida["PrecioUnitario"]">
+                                                            @partida["Codigo"] - @partida["Nombre"]</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <button class="btn btn-success btn-sm btn-block"
+                                                    id="btnAgregarEcoGeneral"><i class="fa fa-plus"></i></button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-1">
+                                            <div class="col-lg-2">
+                                                <label for="cboPatologiaClinica">Patol. Clínica</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <select id="cboPatologiaClinica"
+                                                    class="chzn-select-deselect writing reading"
+                                                    data-placeholder="Seleccione una opción">
+                                                    @foreach (DataRow partida in ViewBag.PatologiaClinica.Rows)
+                                                    {
+                                                        <option value="@partida["IdProducto"]" codigo="@partida["Codigo"]"
+                                                            nombre="@partida["Nombre"]" precio="@partida["PrecioUnitario"]">
+                                                            @partida["Codigo"] - @partida["Nombre"]</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <button class="btn btn-success btn-sm btn-block"
+                                                    id="btnAgregarPatologiaClinica"><i class="fa fa-plus"></i></button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-1">
+                                            <div class="col-lg-2">
+                                                <label for="cboCitasEnCe">Cite en CE</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <select id="cboCitasEnCe" class="chzn-select-deselect writing reading"
+                                                    data-placeholder="Seleccione una opción">
+                                                    @foreach (DataRow partida in ViewBag.CinaEnCE.Rows)
+                                                    {
+                                                        <option value="@partida["IdEspecialidad"]"
+                                                            idProducto="@partida["IdProducto"]" codigo="@partida["Codigo"]"
+                                                            nombre="@partida["NombreProducto"]"
+                                                            precio="@partida["PrecioUnitario"]">@partida["Codigo"] -
+                                                            @partida["NombreProducto"] (@partida["Nombre"])</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <button class="btn btn-success btn-sm btn-block"
+                                                    id="btnAgregarCitaEnCe"><i class="fa fa-plus"></i></button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-1">
+                                            <div class="col-lg-2">
+                                                <label for="cboAdministrativos">Administrativos</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <select id="cboAdministrativos"
+                                                    class="chzn-select-deselect writing reading"
+                                                    data-placeholder="Seleccione una opción">
+                                                    @foreach (DataRow partida in ViewBag.Administrativos.Rows)
+                                                    {
+                                                        <option value="@partida["IdProducto"]" codigo="@partida["Codigo"]"
+                                                            nombre="@partida["Nombre"]" precio="@partida["PrecioUnitario"]">
+                                                            @partida["Codigo"] - @partida["Nombre"]</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <button class="btn btn-success btn-sm btn-block"
+                                                    id="btnAgregarAdministrativos"><i class="fa fa-plus"></i></button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-1">
+                                            <div class="col-lg-2">
+                                                <label for="cboFarmacia">Farmacia</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <select id="cboFarmacia" class="chzn-select-deselect writing reading"
+                                                    data-placeholder="Seleccione una opción">
+                                                    @foreach (DataRow partida in ViewBag.Farmacia.Rows)
+                                                    {
+                                                        <option value="@partida["IdProducto"]" codigo="@partida["Codigo"]"
+                                                            nombre="@partida["Nombre"]" precio="@partida["PrecioUnitario"]">
+                                                            @partida["Codigo"] - @partida["Nombre"]</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <button class="btn btn-success btn-sm btn-block"
+                                                    id="btnAgregarFarmacia"><i class="fa fa-plus"></i></button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-xl-6">
+                                        <button class="btn btn-danger layout_btn_prevent"
+                                            id="btnQuitarProductoDetalle">Eliminar</button>
+                                    </div>
+
+                                    <div class="col-xl-12">
+                                        <table id="tblDetallePaquete"
+                                            class="table table-sm table-content-sm table-bordered table-striped w-100"
+                                            style="cursor: default;">
+                                            <thead style="color: white; background: #434343; width: 100%;">
+                                                <tr>
+                                                    <th width="85%">Descripcion</th>
+                                                    <th width="5%">Cantidad</th>
+                                                    <th width="5%">Precio</th>
+                                                    <th width="5%">Importe</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardadPaquete">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCerrarModalPaquete">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

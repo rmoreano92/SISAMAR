@@ -1,0 +1,1298 @@
+﻿<div class="row campo">
+    <div class="col-lg-5">
+        <i class="fa-solid fa-person-pregnant fa-lg m-r-5 text-info"></i>
+        <FONT SIZE=3><b><label for="cboControles" id="lblControl" class="form-control-label font-weight-bold text-info h4"></label></b></FONT>
+        <div class="d-flex">
+            <button class="btn btn-success layout_btn_prevent" id="btnotroControles">Mis otros controles  <i class="fa fa-list-ol m-l-10"></i></button>
+            <button id="btnCarnetPrenatal" class="btn btn-indigo layout_btn_prevent m-l-10">Carnet Prenatal <i class="fa fa-address-card m-l-10"></i></button>
+            <button class="btn btn-warning layout_btn_prevent m-l-10" id="btnAbrirModalCierreCiclo">Cerrar ciclo de embarazo <i class="fa fa-check m-l-10"></i></button>
+        </div>
+    </div>
+    <div class="col-lg-7 mb-1">
+        <div class="card bg-green">
+            <div class="card-block pb-0">
+                <div class="form-group campo">
+                    <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">Motivo Consulta</label>
+                    <button class="ml-1 speech" data-speech="txtMotivoConsultaPeri"><i class="fa-sharp fa-solid fa-microphone" style="text-align: center; width: 20px;"></i></button>
+                    <textarea class="form-control" id="txtMotivoConsultaPeri" rows="2"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <ul id="ulPerinatal2" class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" href="#evalExamenes" role="tab" id="evalExamenes-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Exámen General</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#dtosBasales" role="tab" id="dtosBasales-tab" data-toggle="tab" aria-controls="hats">Exámen obstétrico</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#percentiles" role="tab" id="percentiles-tab" data-toggle="tab" aria-controls="hats">Percentiles</a>
+            </li>
+        </ul>
+
+        <div id="clothing-nav-content3" class="tab-content pt-1">
+
+            <div role="tabpanel" class="tab-pane fade in active campo" id="evalExamenes" aria-labelledby="evalExamenes-tab">
+                <div class="row mb-1">
+                    <div class="col-lg-12">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Exámen General</div>
+                            <div class="card-block pt-1">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        @*<h5 class="m-t-10">Exámen Evaluación</h5>*@
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>General y sensorio</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbEstGSNormal" name="rdbEstGS">
+                                                        <label for="rdbEstGSNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbEstGSANormal" name="rdbEstGS">
+                                                        <label for="rdbEstGSANormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbEstGS" id="rdbEstGSNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbEstGS" id="rdbEstGSANormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="row">
+                                                    <div class="col-lg-7">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtEstdGeneSens">
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-5">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <input type="text" placeholder="Edemas/4+" autocomplete="off" class="form-control form-control-sm" id="txtEdemas">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>Cardiovascular</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbCardNormal" name="rdbCard">
+                                                        <label for="rdbCardNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbCardANormal" name="rdbCard">
+                                                        <label for="rdbCardANormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbCard" id="rdbCardNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbCard" id="rdbCardANormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="row">
+                                                    <div class="col-lg-7">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtCardvas">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-5">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <input type="text" placeholder="Reflejos/4+" autocomplete="off" class="form-control form-control-sm" id="txtReflejos">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>Abdomen</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbAbdomenNormal" name="rdbAbdomen">
+                                                        <label for="rdbAbdomenNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbAbdomenANormal" name="rdbAbdomen">
+                                                        <label for="rdbAbdomenANormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbAbdomen" id="rdbAbdomenNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbAbdomen" id="rdbAbdomenANormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtAbdomenNormal">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>Respiratorio</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbAptRespNormal" name="rdbAptResp">
+                                                        <label for="rdbAptRespNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbAptRespnANormal" name="rdbAptResp">
+                                                        <label for="rdbAptRespnANormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbAptResp" id="rdbAptRespNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbAptResp" id="rdbAptRespnANormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtbAptResp">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>Urinario</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbAptUrinpNormal" name="rdbAptUrin">
+                                                        <label for="rdbAptUrinpNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbAptUrinpAnorNormal" name="rdbAptUrin">
+                                                        <label for="rdbAptUrinpAnorNormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbAptUrin" id="rdbAptUrinpNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbAptUrin" id="rdbAptUrinpAnorNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtbAptUrin">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>Extremidades</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbExtremNormal" name="rdbExtrem">
+                                                        <label for="rdbExtremNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbExtremAnorNormal" name="rdbExtrem">
+                                                        <label for="rdbExtremAnorNormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbExtrem" id="rdbExtremNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbExtrem" id="rdbExtremAnorNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtExtrem">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-1">
+                    <div class="col-lg-12">
+                        <div class="card bg-orange">
+                            <div class="card-header bg-white">Exámen Ginecologico y Especulo</div>
+                            <div class="card-block pt-1">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        @*<h5 class="m-t-10">Examen Ginecologico y Especulo</h5>*@
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>GE y BUS</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbGBNormal" name="rdbGB">
+                                                        <label for="rdbGBNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbGBANormal" name="rdbGB">
+                                                        <label for="rdbGBANormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbGB" id="rdbGBNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbGB" id="rdbGBANormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtGB">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>Vagina</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdVaginadNormal" name="rdVagina">
+                                                        <label for="rdVaginadNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdVaginaANormal" name="rdVagina">
+                                                        <label for="rdVaginaANormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdVagina" id="rdVaginadNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdVagina" id="rdVaginaANormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtVagina">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>Cérvix</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbCervixNormal" name="rdbCervix">
+                                                        <label for="rdbCervixNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbCervixANormal" name="rdbCervix">
+                                                        <label for="rdbCervixANormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbCervix" id="rdbCervixNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbCervix" id="rdbCervixANormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtCervix">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>Útero</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbUteroNormal" name="rdbUtero">
+                                                        <label for="rdbUteroNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbUteroANormal" name="rdbUtero">
+                                                        <label for="rdbUteroANormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbUtero" id="rdbUteroNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbUtero" id="rdbUteroANormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtUtero">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>Anexos</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbAnexosNormal" name="rdbAnexos">
+                                                        <label for="rdbAnexosNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbAnexosANormal" name="rdbAnexos">
+                                                        <label for="rdbAnexosANormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbAnexos" id="rdbAnexosNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbAnexos" id="rdbAnexosANormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtAnexos">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>F.S Douglas</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbFsDouglasNormal" name="rdbFsDouglas">
+                                                        <label for="rdbFsDouglasNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbFsDouglasAnorNormal" name="rdbFsDouglas">
+                                                        <label for="rdbFsDouglasAnorNormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbFsDouglas" id="rdbFsDouglasNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbFsDouglas" id="rdbFsDouglasAnorNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtFsDouglas">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>Parametrios</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbParamNormal" name="rdbParam">
+                                                        <label for="rdbParamNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbParamAnorNormal" name="rdbParam">
+                                                        <label for="rdbParamAnorNormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbParam" id="rdbParamNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbParam" id="rdbParamAnorNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtParam">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <span>Mamas</span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbMamasNormal" name="rdbMamas">
+                                                        <label for="rdbMamasNormal" class="pl-1 pr-1">Normal</label>
+                                                        <input type="radio" id="rdbMamasAnorNormal" name="rdbMamas">
+                                                        <label for="rdbMamasAnorNormal" class="pl-1 pr-1 mr-auto">Anormal</label>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbMamas" id="rdbMamasNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Norm</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbMamas" id="rdbMamasAnorNormal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">Anorm</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtMamas">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-1">
+                    <div class="col-lg-2">
+                        <span>Se tomo muestra de PAP</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group custom-controls-stacked m-0">
+                            <div class="switch-field">
+                                <input type="radio" id="rdbPapSi" name="rdbPap">
+                                <label for="rdbPapSi" class="pl-2 pr-2">Si</label>
+                                <input type="radio" id="rdbPapNo" name="rdbPap">
+                                <label for="rdbPapNo" class="pl-2 pr-2 mr-auto">No</label>
+                            </div>
+                            @*<div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="custom-control custom-radio">
+                                            <input type="radio" name="rdbPap" id="rdbPapSi" class="custom-control-input">
+                                            <span class="custom-control-indicator custom_checkbox_default"></span>
+                                            <span class="custom-control-description text-default">Si</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="custom-control custom-radio">
+                                            <input type="radio" name="rdbPap" id="rdbPapNo" class="custom-control-input">
+                                            <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                            <span class="custom-control-description text-danger">No</span>
+                                        </label>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="txtObserExamenes" class="font-weight-bold text-info">Observaciones</label>
+                            <textarea class="form-control" id="txtObserExamenes" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="dtosBasales" aria-labelledby="dtosBasales-tab">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card bg-blue mb-1">
+                            <div class="card-header bg-white">Control de Gestante</div>
+                            <div class="card-block pb-0">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        @*<h5 class="m-t-10">Control de Gestante</h5>*@
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group custom-controls-stacked mb-0">
+                                                    <div class="row">
+                                                        <div class="col-lg-2">
+                                                            <div class="form-group">
+                                                                <label for="txtFechaControl" class="form-control-label">Fecha Control</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" disabled autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaControl">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar "></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="form-group">
+                                                                <label for="txtFPPControl" class="form-control-label">FPP</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" disabled autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFPPControl">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar "></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <div class="form-group">
+                                                                <label for="txtSemGestacional" class="form-control-label">Semanas</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" disabled autocomplete="off" class="form-control form-control-sm" id="txtSemanaGestacional">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <div class="form-group">
+                                                                <label for="txtDiasGestacional" class="form-control-label">Días</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" disabled autocomplete="off" class="form-control form-control-sm" id="txtDiasGestacional">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+
+                                                            <div class="form-group campo">
+                                                                <label for="cboTipoEmbrazo" class="form-control-label">Tipo de Embarazo</label>
+                                                                <div class="input-group">
+                                                                    <select class="chzn-select" id="cboTipoEmbrazo"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <div class="form-group">
+                                                                <label for="txtNroFetos" class="form-control-label">N° Fetos</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtNroFetos">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row campo">
+                    <div class="col-lg-8">
+                        <div class="card bg-orange mb-1">
+                            <div class="card-header bg-white">Abdomen</div>
+                            <div class="card-block pb-0">
+                                <div class="row ">
+                                    <div class="col-lg-12">
+                                        @*<h5 class="m-t-10">Abdomen</h5>*@
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="txtAlturaUterina" class="form-control-label">Altura Uterina</label>
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtAlturaUterina">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="txtLfc" class="form-control-label">LCF</label>
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtLfc">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="txtDU" class="form-control-label">DU</label>
+                                                    <div class="input-group">
+                                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtDU">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card mb-1">
+                            <div class="card-block pb-0">
+                                <div class="form-group">
+                                    <label for="txtProteinuria" class="form-control-label font-weight-bold">Proteinuria</label>
+                                    <div class="input-group">
+                                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtProteinuria">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row campo">
+                    <div class="col-lg-8 col-xxl-4">
+                        <div class="card bg-yellow mb-1">
+                            <div class="card-header bg-white">Feto único</div>
+                            <div class="card-block pb-0">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        @*<h5 class="m-t-10">Feto único</h5>*@
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 mb-1">
+                                                            <div><label class="form-control-label"><strong>Situación</strong></label></div>
+                                                            <div class="input-group">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbSituacion" id="rdbSitNinguno" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Ninguno</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbSituacion" id="rdbSitLongitudinal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Longitudinal</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbSituacion" id="rdbSitTransversal" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Transversal</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 mb-1">
+                                                            <div><label class="form-control-label"><strong>Posición</strong></label></div>
+                                                            <div class="input-group">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbPosicion" id="rdbPosNinguno" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-danger">Ninguno</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbPosicion" id="rdbPosDerecha" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Derecha</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbPosicion" id="rdbPosIzquierda" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Izquierda</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 mb-1">
+                                                            <div><label class="form-control-label"><strong>Presentación</strong></label></div>
+                                                            <div class="input-group">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbPresentacion" id="rdbPreNinguno" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-danger">Ninguno</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbPresentacion" id="rdbPreCefalica" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Cefálica</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbPresentacion" id="rdbPrePodalica" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Podálica</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <strong>Mov.Fetales</strong>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <div class="form-group mb-0">
+                                                                <div class="input-group ">
+                                                                    <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtMovFetales">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-xxl-1">
+                        <div class="card mb-1">
+                            <div class="card-header bg-white">DIPS</div>
+                            <div class="card-block pb-0">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        @*<h5 class="m-t-10">DIPS</h5>*@
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbDips" id="rdbDipsI" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">I</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbDips" id="rdbDipsII" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">II</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbDips" id="rdbDipsIII" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">III</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbDips" id="rdbDipsNA" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">NA</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7 col-xl-8 col-xxl-4">
+                        <div class="card bg-yellow mb-1">
+                            <div class="card-header bg-white">Feto Múltiple</div>
+                            <div class="card-block pb-0">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        @*<h5 class="m-t-10">Feto Múltiple</h5>*@
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group custom-controls-stacked mb-0">
+                                                    <div class="row">
+                                                        <div class="col-xs-2">
+                                                            <label></label>
+                                                        </div>
+                                                        <div class="col-xs-4" style="text-align:center">
+                                                            <label><strong>SiPoPr</strong></label>
+                                                        </div>
+                                                        <div class="col-xs-3" style="text-align:center">
+                                                            <label><strong>LFC</strong></label>
+                                                        </div>
+                                                        <div class="col-xs-3" style="text-align:center">
+                                                            <label><strong>MF</strong></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xs-2">
+                                                            <label><strong>F01</strong></label>
+                                                        </div>
+                                                        <div class="col-xs-4">
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <input type="text" autocomplete="off" class="form-control" id="txtF1SiPoPr">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <input type="text" autocomplete="off" class="form-control" id="txtF1Lfc">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <input type="text" autocomplete="off" class="form-control" id="txtF1Mf">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-xs-2">
+                                                            <label><strong>F02</strong></label>
+                                                        </div>
+                                                        <div class="col-xs-4">
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <input type="text" autocomplete="off" class="form-control" id="txtF2SiPoPr">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <input type="text" autocomplete="off" class="form-control" id="txtF2Lfc">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <input type="text" autocomplete="off" class="form-control" id="txtF2Mf">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-xs-2">
+                                                            <label><strong>F03</strong></label>
+                                                        </div>
+                                                        <div class="col-xs-4">
+
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtF3SiPoPr">
+
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtF3Lfc">
+
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <input type="text" autocomplete="off" class="form-control" id="txtF3Mf">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 col-xl-4 col-xxl-3">
+                        <div class="card mb-1">
+                            <div class="card-block pt-1 pb-0">
+                                <div class="row">
+                                    <div class="col-lg-12" style="padding-left: 6px;">
+                                        @*<h5 class="m-t-10">&nbsp;</h5>*@
+                                        <div class="row mb-1">
+                                            <div class="col-lg-12">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="col-lg-4">
+                                                        <strong>Soplos</strong>
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <div class="switch-field">
+                                                            <input type="radio" id="rdbSoplosSi" name="rdbSoplos">
+                                                            <label for="rdbSoplosSi" class="pl-2 pr-2">Si</label>
+                                                            <input type="radio" id="rdbSoplosNO" name="rdbSoplos">
+                                                            <label for="rdbSoplosNO" class="pl-2 pr-2 mr-auto">No</label>
+                                                        </div>
+                                                    </div>
+                                                    @*<div class="col-lg-4">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbSoplos" id="rdbSoplosSi" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">SI</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbSoplos" id="rdbSoplosNO" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                <span class="custom-control-description text-danger">NO</span>
+                                                            </label>
+                                                        </div>*@
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-1">
+                                            <div class="col-lg-12">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="col-lg-4">
+                                                        <strong>Hidrammios</strong>
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <div class="switch-field">
+                                                            <input type="radio" id="rdbHidromiosSi" name="rdbHidromios">
+                                                            <label for="rdbHidromiosSi" class="pl-2 pr-2">Si</label>
+                                                            <input type="radio" id="rdbHidromiossNO" name="rdbHidromios">
+                                                            <label for="rdbHidromiossNO" class="pl-2 pr-2 mr-auto">No</label>
+                                                        </div>
+                                                    </div>
+                                                    @*<div class="col-lg-4">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbHidromios" id="rdbHidromiosSi" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">SI</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbHidromios" id="rdbHidromiossNO" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                <span class="custom-control-description text-danger">NO</span>
+                                                            </label>
+                                                        </div>*@
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="col-lg-4">
+                                                        <strong>Ponderado</strong>
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <input type="text" autocomplete="off" class="form-control form-control-sm" id="txtPonderado">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-1 campo">
+                    <div class="col-lg-12">
+                        <div class="card bg-pink">
+                            <div class="card-block pt-1 pb-0">
+                                <div class="row">
+                                    <div class="col-lg-5 m-t-5">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <strong>Pelvis Ginecoide</strong>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="switch-field">
+                                                    <input type="radio" id="rdbPelvisGSI" name="rdbPelvisG">
+                                                    <label for="rdbPelvisGSI" class="pl-2 pr-2">Si</label>
+                                                    <input type="radio" id="rdbPelvisGNo" name="rdbPelvisG">
+                                                    <label for="rdbPelvisGNo" class="pl-2 pr-2 mr-auto">No</label>
+                                                </div>
+                                                @*<div class="form-group custom-controls-stacked">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbPelvisG" id="rdbPelvisGSI" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">SI</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbPelvisG" id="rdbPelvisGNo" class="custom-control-input">
+                                                                    <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                    <span class="custom-control-description text-danger">No</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-7">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="" class="form-control-label"><strong> Compat. Feto-Pelvica </strong></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="form-group custom-controls-stacked">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbCompativilidad" id="rdbCompativilidadSI" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">SI</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbCompativilidad" id="rdbCompativilidadNo" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                <span class="custom-control-description text-danger">No</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="radio" name="rdbCompativilidad" id="rdbCompativilidadDudosa" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                <span class="custom-control-description text-danger">Dudosa</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row campo">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="txtsignosAlarma" class="form-control-label font-weight-bold text-info">Signos de Alarma</label>
+                            <button class="ml-1 speech" data-speech="txtsignosAlarma"><i class="fa-sharp fa-solid fa-microphone" style="text-align: center; width: 20px;"></i></button>
+                            <textarea class="form-control" id="txtsignosAlarma" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="txtObserControl" class="form-control-label font-weight-bold text-info">Observaciones</label>
+                            <button class="ml-1 speech" data-speech="txtObserControl"><i class="fa-sharp fa-solid fa-microphone" style="text-align: center; width: 20px;"></i></button>
+                            <textarea class="form-control" id="txtObserControl" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="percentiles" aria-labelledby="percentiles-tab">
+                <div class="row">
+                    <div id="divchart4" class="col-lg-12 ">
+
+                        <div id="chart4"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="divchart5" class="col-lg-12 ">
+                        <div id="chart5"></div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+    </div>
+</div>

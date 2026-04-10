@@ -1,0 +1,429 @@
+﻿
+<div data-backdrop="static" style="overflow-y: scroll; background-color: rgba(0, 0, 0, 0.46);" data-keyboard="false" class="modal fade" id="modalLabMovimiento" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-info">
+                <span class="text-white" style="font-size: 1.28rem;font-weight: 500;letter-spacing: 0.5px;">Orden Laboratorio</span>
+            </div>
+
+            <div class="modal-body">
+                <div class="row mb-1">
+                    <div class="col-xl-12">
+                        <div class="card bg-green">
+                            <div class="card-header bg-white">Datos de Cabecera</div>
+                            <div class="card-block">
+                                <div class="row">
+
+                                    <div class="col-xl-9">
+
+                                        <div class="row mb-1">
+                                            <div class="col-xs-6 col-md-3 col-xxl-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtMovNroMovimiento">Nº Movimiento</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtMovNroMovimiento" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 col-md-3 col-xxl-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtMovEstadoMovimiento">Estado</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtMovEstadoMovimiento" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 col-md-3 col-xxl-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtMovFechaRegistroMovimiento">F. Registro</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtMovFechaRegistroMovimiento" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 col-md-3 col-xxl-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtMovFechaRealizaMovimiento">F. Realiza CPT</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtMovFechaRealizaMovimiento" placeholder="" autocomplete="off" disabled="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <ul class="nav nav-tabs" id="tabLabMovimiento" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <a href="#TabPanelPacienteConCuenta" class="nav-link active" id="TabPacienteConCuenta" data-toggle="tab" data-target="#TabPanelPacienteConCuenta" role="tab" aria-controls="TabPanelPacienteConCuenta">
+                                                            Paciente (con Nº Cuenta)
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <a href="#TabPanelPacienteExterno" class="nav-link" id="TabPacienteExterno" data-toggle="tab" data-target="#TabPanelPacienteExterno" role="tab" aria-controls="TabPanelPacienteExterno">
+                                                            Externo (con Boleta)
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content border px-1 pb-1 mb-1 bg-lightindigo" id="myTabContent">
+                                                    <div class="tab-pane fade active in" id="TabPanelPacienteConCuenta" role="tabpanel" aria-labelledby="TabPacienteConCuenta">
+                                                        <div class="row">
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtMovNroReceta">Nro. Receta</label>
+                                                                    <div class="input-group input-group-sm">
+                                                                        <input id="txtMovNroReceta" autocomplete="off" placeholder="" class="solo-numero form-control campoMovBusq">
+                                                                        <span class="input-group-btn">
+                                                                            <button class="btn btn-unique campoMovBusq" type="button" id="btnmodalBusquedaRecetas"><i class="fa fa-search-plus"></i></button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6 col-md-4 col-lg-3 col-xl-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtMovNroCuenta">Nro. Cuenta</label>
+                                                                    <div class="input-group input-group-sm">
+                                                                        <input id="txtMovNroCuenta" autocomplete="off" placeholder="" class="solo-numero form-control campoMovBusq">
+                                                                        <span class="input-group-btn">
+                                                                            <button class="btn btn-indigo campoMovBusq" type="button" id="btnmodalBusquedaCuentasAtenciones"><i class="fa fa-search-plus"></i></button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-md-7 col-lg-6 col-xl-5">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtMovEstadoCuenta">Estado Cuenta</label>
+                                                                    <input type="text" class="form-control form-control-sm" id="txtMovEstadoCuenta" placeholder="" autocomplete="off" disabled="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-md-5 col-lg-5 col-xl-3">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtMovProcedencia">Procedencia</label>
+                                                                    <input type="text" class="form-control form-control-sm" id="txtMovProcedencia" placeholder="" autocomplete="off" disabled="">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-6 col-lg-5 col-xl-3">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtMovPlan">Plan</label>
+                                                                    @* <input type="text" class="form-control form-control-sm" id="txtMovPlan" placeholder="" autocomplete="off" disabled=""> *@
+                                                                    <select id="cboMovPlan" class="chzn-select w-100" data-placeholder="Seleccione una opción" disabled></select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6 col-lg-7 col-xl-4">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtMovFuenteFinanciamiento">Fte. Finan/IAFA</label>
+                                                                    <input type="text" class="form-control form-control-sm" id="txtMovFuenteFinanciamiento" placeholder="" autocomplete="off" disabled="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-5">
+                                                                <div class="form-group m-0" id="formMovIAFAnoCubre">
+                                                                    <div class="check__toggle" style="margin-top: 25px;">
+                                                                        <label class="toggle">
+                                                                            <input class="toggle__input campoMov" type="checkbox" id="chkMovIAFAnoCubre">
+                                                                            <span class="toggle__label">
+                                                                                <span class="toggle__text">IAFA No cubre</span>
+                                                                            </span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="TabPanelPacienteExterno" role="tabpanel" aria-labelledby="TabPacienteExterno">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <div class="form-group m-0">
+                                                                    <label for="">Nª Boleta</label>
+                                                                    <div class="d-flex">
+                                                                        <input type="text" class="form-control form-control-sm campoMov" id="txtMovNroCorrelativoBoleta" placeholder="" autocomplete="off" style="width: 80px;">
+                                                                        <span style="margin: 0 2px;font-weight: bold;">-</span>
+                                                                        <input type="text" class="form-control form-control-sm solo-numero campoMov" id="txtMovNroDocumentoBoleta" placeholder="" autocomplete="off" style="width: 120px;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtMovNroOrden">Nª Orden</label>
+                                                                    <input type="text" class="form-control form-control-sm" id="txtMovNroOrden" placeholder="" autocomplete="off" disabled="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row" id="frameAnatomiaPatologica">
+                                            <div class="col-xs-12">
+                                                <div class="card bg-pink">
+                                                    <div class="card-block px-1 pb-1">
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-xl-3">
+                                                                <div class="form-group m-0" style="margin-top: 25px !important;">
+                                                                    <div class="switch-field">
+                                                                        <input type="radio" id="rdbMovTipoEstudioCito" name="rdbMovTipoEstudio" class="rdbMovTipoEstudio campoMov" value="C">
+                                                                        <label for="rdbMovTipoEstudioCito" class="">Citología</label>
+                                                                        <input type="radio" id="rdbMovTipoEstudioHisto" name="rdbMovTipoEstudio" class="rdbMovTipoEstudio campoMov" value="H">
+                                                                        <label for="rdbMovTipoEstudioHisto" class="">Histología</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-9 col-xl-5">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtMovFuenteFinanciamiento">Codigo AP</label>
+                                                                    <div class="d-flex">
+                                                                        <input type="text" class="form-control form-control-sm" style="width: 60px;" id="txtMovAnioAP" placeholder="" autocomplete="off" disabled>
+                                                                        <input type="text" class="form-control form-control-sm" style="width: 40px;" id="txtMovTipoAP" placeholder="" autocomplete="off" disabled>
+                                                                        <input type="text" class="form-control form-control-sm" style="width: 60px;" id="txtMovNumeracionAP" placeholder="" autocomplete="off" disabled>
+                                                                        <button id="btnReemplazarAP" type="button" class="btn btn-sm btn-pink ml-1"><i class="fa-regular fa-arrows-retweet mr-1"></i>Reemplazar AP</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-4 col-md-4 ">
+                                                <div class="form-group m-0">
+                                                    <label for="cboMovRegistraOrden">Registra Orden</label>
+                                                    <select id="cboMovRegistraOrden" class="chzn-select w-100 campoMov" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 col-md-4 ">
+                                                <div class="form-group m-0">
+                                                    <label for="cboMovMedicoSolicita">Médico Solicita</label>
+                                                    <input type="text" class="form-control form-control-sm campoMov" id="txtMovMedicoSolicita" placeholder="" autocomplete="off">
+                                                    <select id="cboMovMedicoSolicita" class="chzn-select w-100 campoMov" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 col-md-4 ">
+                                                <div class="form-group m-0">
+                                                    <label for="cboMovMedicoRealiza">Médico Realiza</label>
+                                                    <select id="cboMovMedicoRealiza" class="chzn-select w-100 campoMov" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    
+                                    <div class="col-xl-3">
+                                        <div class="card bg-orange mt-1">
+                                            <div class="card-header bg-white">Datos de Paciente</div>
+                                            <div class="card-block">
+                                                <div class="row">
+                                                    <div class="col-xs-6 col-sm-3 col-lg-3 col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtMovNroHistoria">N° Historia</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtMovNroHistoria" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-3 col-lg-3 col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtMovTipoHistoria">Tipo Historia</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtMovTipoHistoria" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-xs-6 col-lg-3 col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtMovApPaterno">Ap. Paterno</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtMovApPaterno" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 col-lg-3 col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtMovApMaterno">Ap. Materno</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtMovApMaterno" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 col-lg-3 col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtMovPrimerNombre">Prim. Nombre</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtMovPrimerNombre" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 col-lg-3 col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtMovSegundoNombre">Seg. Nombre</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtMovSegundoNombre" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtMovFechaNacimiento" class="form-control-label">Fecha Nac.</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control campoMov" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtMovFechaNacimiento">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtMovHoraNacimiento">Hora Nac.</label>
+                                                            <input type="text" class="form-control form-control-sm campoMov" id="txtMovHoraNacimiento" placeholder="" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboMovSexo">Sexo</label>
+                                                            <select id="cboMovSexo" class="chzn-select w-100 campoMov" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 col-xl-6">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtMovEdad">Edad</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtMovEdad" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                
+                    
+                </div>
+
+                
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card bg-blue">
+                            <div class="card-block">
+                                <div id="frameBusquedaProductos" class="row mb-1">
+                                    <div class="col-lg-5">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <div class="form-group mb-0">
+                                                    <label for="txtCodigoProductoBusqueda">Código</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtCodigoProductoBusqueda" autocomplete="off">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-9">
+                                                <div class="form-group mb-0">
+                                                    <label for="txtNombreProductoBusqueda">Producto</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtNombreProductoBusqueda" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-7">
+                                        <div class="d-flex align-items-end" style="height: 55px;">
+                                            <button id="btnAgregaProducto" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;"><i class="fa fa-plus" style="width: 20px; text-align:center;"></i>Agregar</button>                                            
+                                            <button id="btnQuitarProducto" type="button" class="btn btn-sm btn-danger" style="width: 100px;"><i class="fa fa-trash" style="width: 20px; text-align:center;"></i>Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="frameResultadosBusquedaProdutos" class="row w-100" style="position: absolute; z-index: 1000; max-width: 900px; margin-top: -10px;">
+                                    <div class="col-lg-12">
+                                        <div class="card mb-3 frameProductosBusqueda">
+                                            <div class="card-block p-0 px-1">
+                                                <table id="tblProductosBuscados" class="table table-sm table-content-sm table-bordered w-100" style="cursor: default;">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th style="width:0%" hidden>IdProducto</th>
+                                                            <th style="width:0%" hidden>IdPuntoCarga</th>
+                                                            <th style="width:10%">Código</th>
+                                                            <th style="width:75%">Nombre Producto</th>
+                                                            <th style="width:15%">Precio Unitario</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <table id="tblLabMovDetalleProductos" width="100%" class="table table-sm table-bordered table-content-sm">
+                                    <thead style="color: white; background: #434343;">
+                                        <tr>
+                                            <th style="width:0%" hidden>IdProducto</th>
+                                            <th style="width:0%" hidden>IdPuntoCarga</th>
+                                            <th style="width:0%" hidden>SeUsaSinPrecio</th>
+                                            <th valign="middle">Código</th>
+                                            <th valign="middle">Descripción</th>
+                                            <th valign="middle">Cantidad</th>
+                                            <th valign="middle">P.U (S/.)</th>
+                                            <th valign="middle">Sub Total</th>
+                                            <th valign="middle">Obs. Receta</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="cursor: pointer;"></tbody>
+                                </table>
+                                <table class="mb-0 float-sm-right">
+                                    <tbody>
+                                        <tr>
+                                            <th width="60" class="text-sm-right border pr-1" style="background: #e6e6e6;">Total:</th>
+                                            <th id="TotalDetalleLabMov" width="150" class="border px-1"></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer mt-2">
+                <button id="btnGuardarMovimiento" type="button" class="btn btn-info btn-lg mb-1 pl-3 pr-3" style="max-width: 140px;">Guardar</button>
+                <button id="btnCancelarMovimiento" type="button" class="btn btn-secondary btn-lg mb-1 ml-2 pl-3 pr-3" style="max-width: 140px;">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div data-backdrop="static" style="overflow-y: scroll; background-color: rgba(0, 0, 0, 0.46);" data-keyboard="false" class="modal fade" id="modalCodigosApDisponibles" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-deep-pink">
+                <span class="text-white" style="font-size: 1.28rem;font-weight: 500;letter-spacing: 0.5px;">Códigos AP Disponibles</span>
+            </div>
+
+            <div class="modal-body">
+                <table id="tblLabCodigosApDisponibles" width="100%" class="table table-sm table-bordered table-content-sm">
+                    <thead style="color: white; background: #434343;">
+                        <tr>
+                            <th valign="middle">Movimiento</th>
+                            <th valign="middle">Año</th>
+                            <th valign="middle">Tipo</th>
+                            <th valign="middle">Numeración</th>
+                        </tr>
+                    </thead>
+                    <tbody style="cursor: pointer;"></tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnCargarCodigoAp" type="button" class="btn btn-pink" style="width: 100px;"><i class="fa-solid fa-check-double"></i> Cargar</button>
+                <button id="btnCancelarCodigoAp" type="button" class="btn btn-secondary" style="width: 100px;">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,2099 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen1.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-bed-pulse"></i>
+                @*@ViewBag.Area*@
+                Nota de Enfermeria
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Nota de Enfermeria</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<input type="text" id="hdNroEvaluacion" hidden />
+<input type="text" id="hdIdTipoServicio" hidden />
+<input type="hidden" value="@ViewBag.idMedico" id="idMedicotxt" />
+<input type="hidden" value="@ViewBag.idUsuario" id="idUsuariotxt" />
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="card-block p-t-5">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+                    </li>
+                    <li class="nav-item m-0" role="presentation">
+                        @* <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Nota de ingreso</a> *@
+                        <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false">Nota de enfermeria</a>
+                    </li>
+                </ul>
+
+                <div class="card">
+                    <div class="card-block">
+                        <div id="clothing-nav-content" class="tab-content pt-1">
+
+                            <div role="tabpanel" class="tab-pane fade in active" id="TabPanelBusqueda" aria-labelledby="TabBusqueda-tab">
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card bg-green m-t-5">
+                                            <div class="card-block pb-0">
+                                                <div class="row mt-1 mb-1">
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtNroCuentaBusqueda" class="form-control-label">N° Cuenta</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtNroCuentaBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtNroHistoriaBusqueda" class="form-control-label">N° Historia</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtNroHistoriaBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtNroDocumentoBusqueda" class="form-control-label">N° Documento</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtNroDocumentoBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtAPaternoBusqueda" class="form-control-label">A. Paterno</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtAPaternoBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtAMaternoBusqueda" class="form-control-label">A. Materno</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtAMaternoBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtNombresBusqueda" class="form-control-label">Nombres</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtNombresBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtFechaInicio" class="form-control-label">Fecha Inicio</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicio">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtFechaFin" class="form-control-label">Fecha Fin</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFin">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="cboConsultorio" class="form-control-label">Servicio</label>
+                                                        <div class="input-group">
+                                                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboConsultorio"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg-3 col-md-3 d-flex align-items-end" style="height: 50px;">
+                                                        <div>
+                                                            <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarAtenciones">Buscar</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 pt-2 pb-0">
+                                        @{
+                                            if (@ViewBag.Agregar)
+                                            {
+                                                @*<button class="btn btn-primary layout_btn_prevent" id="btnAgregar">Agregar</button>*@
+                                            }
+                                            if (@ViewBag.Modificar)
+                                            {
+                                                <button class="btn btn-info layout_btn_prevent" id="btnModificarAtencion">Modificar</button>
+                                            }
+                                            if (@ViewBag.Eliminar)
+                                            {
+                                                @* <button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtencion">Eliminar</button> *@
+                                            }
+                                            if (@ViewBag.Consultar)
+                                            {
+                                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtencion">Consultar</button>
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="col-lg-12 mt-1">
+                                        <table id="tblAtenciones" width="100%" class="table table-sm table-content-sm table-striped table-bordered w-100">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th style="width:5%">N° Cuenta</th>
+                                                    <th style="width:5%">N° Historia.</th>
+                                                    <th style="width:25%">Paciente</th>
+                                                    <th style="width:10%">Fecha Ingreso</th>
+                                                    <th style="width:10%">Fecha Egreso</th>
+                                                    <th style="width:15%">Servicio Ing.</th>
+                                                    <th style="width:15%">Servicio Actual.</th>
+                                                    <th style="width:15%">Plan</th>
+                                                    <th style="width:5%; text-align: center;" align="center">Informe</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="TabPanelRegistro" aria-labelledby="TabPanelRegistro-tab">
+                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card m-t-5 bg-blue">
+                                            <div class="card-header bg-white">Datos generales</div>
+                                            <div class="card-block m-t-5">
+
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <label for="txtNroCuenta">N° Cuenta</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtNroCuenta" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtNroHistoria">N° Historia</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtNroHistoria" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <label for="txtApellidosNombrePaciente">Nombres</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtApellidosNombrePaciente" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtNroHistoriaMadre">N° Historia Madre</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtNroHistoriaMadre" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <label for="txtFechaNacimiento" class="form-control-label">Fecha de Nacimiento</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control campoRegistro form_val_popup_dp3 bloquear" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNacimiento" disabled>
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtHoraNacimiento">Hora Nacimiento</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtHoraNacimiento" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtSexo">Sexo</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtSexo" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtApgar5">APGAR</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtApgar5" placeholder="" autocomplete="off">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label for="txtEdad">Edad Gest. al Nacer (sem)</label>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="row">
+                                                                    @* <div class="col-md-4">
+                                                                        <label for="txtEdadSemanas">Sem</label>
+                                                                    </div> *@
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group m-0">
+                                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtEdadSemanas" placeholder="" autocomplete="off" disabled="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6" hidden>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <label for="txtEdadDias">Días</label>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="form-group m-0">
+                                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtEdadDias" placeholder="" autocomplete="off" disabled="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-md-4" id="contSomatometria" hidden>
+                                        <div class="card m-t-5 bg-blue">
+                                            <div class="card-header bg-white">Validación del R.N. (Somatometría)</div>
+                                            <div class="card-block m-t-5">
+
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label for="txtValidacionPeso">Peso</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtValidacionPeso" placeholder="" autocomplete="off">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <label for="txtValidacionPC">P.C.</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtValidacionPC" placeholder="" autocomplete="off">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <label for="txtValidacionTalla">Talla</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtValidacionTalla" placeholder="" autocomplete="off">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <label for="txtValidacionPT">P.T.</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtValidacionPT" placeholder="" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                @*<div class="row">
+                                <div class="col-md-12">
+                                <partial name="~/Views/Shared/Components/VistasParciales/Triaje.cshtml" />
+                                </div>
+                                </div>*@
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card m-t-10">
+                                                    <div class="card">
+                                                        <ul id="ListaOpcionesEval" class="nav nav-tabs tabs-left" role="tablist">
+
+                                                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                @* <a class="nav-link active" href="#triajeRn" role="tab" id="triajeRn-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>TRIAJE RN</a> *@
+                                                                <a class="nav-link active" href="#triajeRn" role="tab" id="triajeRn-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>FILIACION DEL RN</a>
+                                                            </li>
+
+                                                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                <a class="nav-link" href="#valoracionEnfermeria" role="tab" id="valoracionEnfermeria-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>VALORACIÓN DE ENFERMERÍA</a>
+                                                            </li>
+
+                                                           @*  <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                <a class="nav-link " href="#examenFisico" role="tab" id="examenFisico-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>EXAMEN FÍSICO</a>
+                                                            </li> *@
+
+                                                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                <a class="nav-link" href="#diagnosticos" role="tab" id="diagnosticos-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>DIAGNÓSTICO DE ENFERMERÍA </a>
+                                                            </li>
+
+                                                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                <a class="nav-link" href="#intervencionesCpt" role="tab" id="intervencionesCpt-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>INTERVENCIONES CPMS</a>
+                                                            </li>
+
+                                                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                <a class="nav-link" href="#evolucionSV" role="tab" id="evolucionSV-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>EVOLUCIÓN SV</a>
+                                                            </li>
+
+                                                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                <a class="nav-link" href="#evolucionAT" role="tab" id="evolucionAT-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>EVOLUCIÓN AT</a>
+                                                            </li>
+
+                                                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                <a class="nav-link" href="#evaluaciones" role="tab" id="evaluaciones-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>EVALUACIONES</a>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mt-1" id="PanelEvaluaciones">
+                                            <div class="col-lg-12">
+                                                <form>
+                                                    <fieldset class="m-0 pr-1 pl-1 pb-1">
+                                                        <legend class="mb-0">Evaluaciones del Paciente</legend>
+                                                        <table id="tblEvaluaciones" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                                                            <thead style="color: white;">
+                                                                <tr style="background-color: #434343;">
+                                                                    <th style="width:30% !important; text-align:center;">Eval.</th>
+                                                                    <th style="width:70% !important;">Enfermera</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+
+                                                        <div class="row mt-1" id="divFirma">
+                                                            <div class="col-xs-12 text-xs-center">
+                                                                <button type="button" style="width: 60px;" class="btn btn-sm btn-success" id="ImprimirEvalEmerCF"><i class="fa fa-print"></i></button>
+                                                                <button type="button" style="width: 60px;" class="btn btn-sm btn-info" id="FirmarEvalEmer"><i class="fa fa-pencil"></i></button>
+                                                                <button type="button" style="width: 60px;" class="btn btn-sm btn-warning" id="ImprimirEvalEmerSF"><i class="fa fa-eye"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-2">
+                                            <div class="col-lg-12">
+                                                <button style="width:100%;letter-spacing: 1px;" class="btn btn-success font-weight-bold layout_btn_prevent" id="btnNuevaEvaluacion"><i style="width: 20px; text-align:center;" class="fa-solid fa-file-plus"></i> NUEVA EVALUACIÓN</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="card m-t-10">
+
+                                            <div class="card">
+
+                                                <div class="card-block" id="CardEva">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div id="BadgeEvaluacion" style="max-width: 280px;" class="">
+                                                                <div class="msc-hotline bg-blue mt-1">
+                                                                    <div class="msc-hotline-icon bg-info">
+                                                                        <i class="fa-solid fa-baby"></i>
+                                                                    </div>
+                                                                    <div class="msc-hotline-content m-auto">
+                                                                        <div class="msc-hotline-title">
+                                                                            <span id="lblNumeroEvaluacion" class="text-info"></span>
+                                                                        </div>
+                                                                        <div class="msc-hotline-text" id="lblTipoEvaluacion"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="d-flex" style="float: right;">
+                                                                <div class="form-group text-right mr-2" style="width: 200px;">
+                                                                    <label for="FechaInicioAtencion" class="form-control-label" style="font-weight: bold;">Fecha Evaluación</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 text-info entrada" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="FechaInicioAtencion" style="font-weight: bold;border-color:#ff9900;" readonly>
+                                                                        <span class="input-group-addon " for="FechaInicioAtencion" id="FechaInicioAtencionIcon">
+                                                                            <i class="fa fa-calendar "></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group text-right" style="width: 200px;">
+                                                                    <label for="HoraInicioAtencion" class="form-control-label" style="font-weight: bold;">Hora Inicio Atención (24 h)</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" autocomplete="off" class="form-control text-info text-right entrada" name="HoraInicioAtencion" id="HoraInicioAtencion" onblur="valida_hora(value)" style="font-weight: bold;border-color:#ff9900;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="clothing-nav1-content" class="tab-content fade in active">
+
+                                                        @*============================== TRIAJE RN =======================================*@
+                                                        <div role="tabpanel" class="tab-pane fade show in active" id="triajeRn" aria-labelledby="triajeRn-tab">
+                                                            <div class="card-header text-center mb-1" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">FILIACION DEL RN</div>
+
+                                                            <div class="row mb-1">
+                                                                <div class="col-md-12 mb-1">
+                                                                    <div class="card bg-orange">
+                                                                        <div class="card-header bg-white">Datos de la Madre</div>
+                                                                        <div class="card-block">
+                                                                            <div class="row">
+                                                                                <div class="col-md-2">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="txtNroCuentaMadre" class="form-control-label"><b>Nro. Cuenta</b></label>
+                                                                                        <div class="input-group input-group-sm d-flex">
+                                                                                            <input id="txtNroCuentaMadre" autocomplete="off" placeholder="" class="solo-numero form-control buscarMadre">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-10">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-2">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label for="txtNroHistoriaMadreTriaje">Historia Clinica</label>
+                                                                                                <input type="text" class="form-control form-control-sm" id="txtNroHistoriaMadreTriaje" disabled autocomplete="off">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label for="txtNombreMadre">Datos Personales</label>
+                                                                                                <input type="text" class="form-control form-control-sm" id="txtNombreMadre" disabled autocomplete="off">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-2">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label for="txtEdadMadre">Edad (años)</label>
+                                                                                                <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-2">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label for="txtTipoDocMadre">Tipo Documento</label>
+                                                                                                <input type="text" class="form-control form-control-sm" id="txtTipoDocMadre" disabled autocomplete="off">
+                                                                                                @*<select id="cboTipoDocMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select> *@
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-2">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label for="txtNroDocMadre">Nro Documento</label>
+                                                                                                <input type="text" class="form-control form-control-sm" id="txtNroDocMadre" disabled autocomplete="off">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                @* <div class="col-md-3">
+                                                                                <div class="form-group mb-0">
+                                                                                <label for="txtEstadoCivilMadre">Estado Civil</label>
+                                                                                <input type="text" class="form-control form-control-sm" id="txtEstadoCivilMadre" disabled autocomplete="off">
+                                                                                </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                <div class="form-group mb-0">
+                                                                                <label for="txtGradoInstruccionMadre">Grado de Instrucción</label>
+                                                                                <input type="text" class="form-control form-control-sm" id="txtGradoInstruccionMadre" disabled autocomplete="off">
+                                                                                </div>
+                                                                                </div> *@
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-8">
+                                                                    <div class="card bg-yellow">
+                                                                        <div class="card-header bg-white">Datos de Nacimiento del Neonato</div>
+                                                                        <div class="card-block">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-7">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label for="txtFechaNacimientoTriaje">Fecha Nacimiento</label>
+                                                                                                <div class="input-group input-group-sm">
+                                                                                                    <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 field" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNacimientoTriaje">
+                                                                                                    <span class="input-group-addon">
+                                                                                                        <i class="fa fa-calendar "></i>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-5">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label for="txtHoraNacimientoTriaje">Hora Nac. </label>
+                                                                                                <input type="text" class="form-control form-control-sm field" id="txtHoraNacimientoTriaje" placeholder="__:__" autocomplete="off">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="cboTipoSexo">Sexo</label>
+                                                                                        <select id="cboTipoSexo" class="chzn-select campo-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                    </div>
+
+                                                                                    <div class="casilla mt-1">
+                                                                                        <h5>N° Gemelar</h5>
+                                                                                        <div class="form-group mb-0">
+                                                                                            <label for="cboTipoGestacion">Tipo de Gestación</label>
+                                                                                            <select id="cboTipoGestacion" class="chzn-select campo-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                        </div>
+
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-6">
+                                                                                                <div class="form-group mb-0">
+                                                                                                    <label for="txtNroFetos">N° de Fetos</label>
+                                                                                                    <input type="text" class="form-control form-control-sm solo-numero field" id="txtNroFetos" autocomplete="off">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-6">
+                                                                                                <div class="form-group mb-0">
+                                                                                                    <label for="cboNumeroGemelar">Gemelar</label>
+                                                                                                    <select id="cboNumeroGemelar" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="form-group mb-0" hidden>
+                                                                                        <label for="cboRiesgo">Riesgo del RN</label>
+                                                                                        <select id="cboRiesgo" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                    </div>
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-xxl-5 col-md-12">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label for="cboCondicion">Condición</label>
+                                                                                                <select id="cboCondicion" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-xxl-7 col-md-12">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label style="width: 100%;">Óbito</label>
+                                                                                                <div class="switch-field">
+                                                                                                    <input type="radio" id="rdbObitoNo" name="rdbObito" class="rdbObito field" />
+                                                                                                    @*<label for="rdbObitoNo" class="pl-2 pr-2">No</label>*@
+                                                                                                    <input type="radio" id="rdbObitoSiMenor" name="rdbObito" class="rdbObito field" />
+                                                                                                    <label for="rdbObitoSiMenor" class="pl-1 pr-1">&#60 500 GR</label>
+                                                                                                    <input type="radio" id="rdbObitoSiMayor" name="rdbObito" class="rdbObito field" />
+                                                                                                    <label for="rdbObitoSiMayor" class="pl-1 pr-1">&#62; 500 GR</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+
+                                                                                </div>
+
+
+                                                                                <div class="col-md-4">
+                                                                                    @* <div class="row">
+                                                                                    <div class="col-xxl-5 col-md-12">
+                                                                                    <div class="form-group mb-0">
+                                                                                    <label for="cboCondicion">Condición</label>
+                                                                                    <select id="cboCondicion" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                    </div>
+                                                                                    </div>
+                                                                                    <div class="col-xxl-7 col-md-12">
+                                                                                    <div class="form-group mb-0">
+                                                                                    <label style="width: 100%;">Óbito</label>
+                                                                                    <div class="switch-field">
+                                                                                    <input type="radio" id="rdbObitoNo" name="rdbObito" class="rdbObito field" />
+
+                                                                                    <input type="radio" id="rdbObitoSiMenor" name="rdbObito" class="rdbObito field" />
+                                                                                    <label for="rdbObitoSiMenor" class="pl-1 pr-1">&#60 500 GR</label>
+                                                                                    <input type="radio" id="rdbObitoSiMayor" name="rdbObito" class="rdbObito field" />
+                                                                                    <label for="rdbObitoSiMayor" class="pl-1 pr-1">&#62; 500 GR</label>
+                                                                                    </div>
+                                                                                    </div>
+                                                                                    </div>
+                                                                                    </div>         *@
+
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="txtPeso">Peso al Nacer (gr)</label>
+                                                                                        <input type="text" class="form-control form-control-sm solo-numero field" id="txtPeso" minlength="3" maxlength="4" autocomplete="off">
+                                                                                    </div>
+
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="txtTalla">Talla al Nacer (cm)</label>
+                                                                                        <input type="text" class="form-control form-control-sm solo-decimal field" id="txtTalla" autocomplete="off">
+                                                                                    </div>
+
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="txtPerCefalico">Périmetro Cefálico</label>
+                                                                                        <input type="text" class="form-control form-control-sm solo-decimal field" id="txtPerCefalico" autocomplete="off">
+                                                                                    </div>
+
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="txtPerToracico">Périmetro Toráxico</label>
+                                                                                        <input type="text" class="form-control form-control-sm solo-decimal field" id="txtPerToracico" autocomplete="off">
+                                                                                    </div>
+
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="txtEdadGestacional">Edad Gest. al Nacer (sem)</label>
+                                                                                        <input type="text" class="form-control form-control-sm solo-numero field" id="txtEdadGestacional" minlength="2" maxlength="2" autocomplete="off">
+                                                                                    </div>
+
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="cboTiempoClampaje">Tiempo Clampaje</label>
+                                                                                        <select id="cboTiempoClampaje" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Clamp Tardío</label>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbTardioSi" name="rdbTardio" class="rdbTardio field" />
+                                                                                            <label for="rdbTardioSi" class="pl-3 pr-3">Si</label>
+                                                                                            <input type="radio" id="rdbTardioNO" name="rdbTardio" class="rdbTardio field" />
+                                                                                            <label for="rdbTardioNO" class="pl-3 pr-3">No</label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="cboContactoPiel">Contacto Piel a Piel</label>
+                                                                                        <select id="cboContactoPiel" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                    </div>
+
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Lact. 1era Hora</label>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbLacthoraSi" name="rdbLacthora" class="rdbLacthora field" />
+                                                                                            <label for="rdbLacthoraSi" class="pl-3 pr-3">Si</label>
+                                                                                            <input type="radio" id="rdbLacthoraNO" name="rdbLacthora" class="rdbLacthora field" />
+                                                                                            <label for="rdbLacthoraNO" class="pl-3 pr-3">No</label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="cboServicioNacimiento">Servicio Nacimiento</label>
+                                                                                        <select id="cboServicioNacimiento" class="chzn-select-deselect field" data-placeholder="Seleccione una opción"></select>
+                                                                                    </div>
+
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="cboProcedenciaRn">Otra Procedencia</label>
+                                                                                        <select id="cboProcedenciaRn" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                    </div>
+                                                                                    @*  <div class="row">
+                                                                                    <div class="col-sm-7">
+                                                                                    <div class="form-group mb-0">
+                                                                                    <label for="txtFechaClampaje">Fecha Clampaje</label>
+                                                                                    <div class="input-group input-group-sm">
+                                                                                    <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 field" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaClampaje">
+                                                                                    <span class="input-group-addon">
+                                                                                    <i class="fa fa-calendar "></i>
+                                                                                    </span>
+                                                                                    </div>
+                                                                                    </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-5">
+                                                                                    <div class="form-group mb-0">
+                                                                                    <label for="txtHoraClampaje">Hora Clamp. </label>
+                                                                                    <input type="text" class="form-control form-control-sm field" id="txtHoraClampaje" placeholder="__:__" autocomplete="off">
+                                                                                    </div>
+                                                                                    </div>
+                                                                                    </div> *@
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <div class="card bg-blue" style="padding-bottom: 0px;">
+                                                                        <div class="card-header bg-white">Respiración y Llanto al Nacer</div>
+                                                                        <div class="card-block">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Inmediato</label>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbInmediatoSi" name="rdbInmediato" class="rdbInmediato field" />
+                                                                                            <label for="rdbInmediatoSi" class="pl-2 pr-2">Si</label>
+                                                                                            <input type="radio" id="rdbInmediatoNO" name="rdbInmediato" class="rdbInmediato field" />
+                                                                                            <label for="rdbInmediatoNO" class="pl-2 pr-2">No</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Reanimación</label>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbReanimacionSi" name="rdbReanimacion" class="rdbReanimacion field" />
+                                                                                            <label for="rdbReanimacionSi" class="pl-2 pr-2">Si</label>
+                                                                                            <input type="radio" id="rdbReanimacionNO" name="rdbReanimacion" class="rdbReanimacion field" />
+                                                                                            <label for="rdbReanimacionNO" class="pl-2 pr-2">No</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="cboTipoReanimacionRn">Tipo Reanimación</label>
+                                                                                        <select id="cboTipoReanimacionRn" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="txtMinuto">APGAR 1 min</label>
+                                                                                        <input type="text" class="form-control form-control-sm solo-numero field" id="txtMinuto" minlength="1" maxlength="2" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="txt5Minuto">APGAR 5 min</label>
+                                                                                        <input type="text" class="form-control form-control-sm solo-numero field" id="txt5Minuto" minlength="1" maxlength="2" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="txt10Minuto">APGAR 10 min</label>
+                                                                                        <input type="text" class="form-control form-control-sm solo-numero field" id="txt10Minuto" minlength="1" maxlength="2" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="txt15Minuto">APGAR 15 min</label>
+                                                                                        <input type="text" class="form-control form-control-sm solo-numero field" id="txt15Minuto" minlength="1" maxlength="2" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="txt20Minuto">APGAR 20 min</label>
+                                                                                        <input type="text" class="form-control form-control-sm solo-numero field" id="txt20Minuto" minlength="1" maxlength="2" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="row">
+                                                                                        <div class="col-xxl-6">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label style="width: 100%;">Patología Neonatal</label>
+                                                                                                <div class="switch-field">
+                                                                                                    <input type="radio" id="rdbPatNeoSi" name="rdbPatNeo" class="rdbPatNeo field" />
+                                                                                                    <label for="rdbPatNeoSi" class="pl-2 pr-2">Si</label>
+                                                                                                    <input type="radio" id="rdbPatNeoNo" name="rdbPatNeo" class="rdbPatNeo field" />
+                                                                                                    <label for="rdbPatNeoNo" class="pl-2 pr-2">No</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-xxl-12">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label for="txtEspecificar">Especificar</label>
+                                                                                                <input type="text" class="form-control form-control-sm field" id="txtEspecificar" autocomplete="off">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-6">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label style="width: 100%;">Transporte</label>
+                                                                                                <div class="switch-field">
+                                                                                                    <input type="radio" id="rdbTransporteSi" name="rdbTransporte" class="rdbTransporte field" />
+                                                                                                    <label for="rdbTransporteSi" class="pl-2 pr-2">Si</label>
+                                                                                                    <input type="radio" id="rdbTransporteNO" name="rdbTransporte" class="rdbTransporte field" />
+                                                                                                    <label for="rdbTransporteNO" class="pl-2 pr-2">No</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-md-12">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label for="cboTipoTransporteRn">Tipo Transporte</label>
+                                                                                                <select id="cboTipoTransporteRn" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+
+                                                        @*============================== VALORACION ENFERMERIA =======================================*@
+                                                        <div role="tabpanel" class="tab-pane fade" id="valoracionEnfermeria" aria-labelledby="valoracionEnfermeria-tab">
+                                                            <div class="card-header text-center" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">VALORACIÓN DE ENFERMERÍA</div>
+
+                                                            <div class="row mt-1">
+                                                                <div class="col-md-12 mb-1">
+                                                                    <div class="form-group">
+                                                                        <b><label for="txtManiobraDuranteParto" class="form-control-label">Maniobras aplicadas durante el parte</label></b>
+                                                                        <div class="input-group">
+                                                                            <textarea class="form-control entrada" id="txtManiobraDuranteParto" rows="4"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12 mb-1">
+                                                                    <div class="form-group">
+                                                                        <b><label for="txtRecepcionRn" class="form-control-label">Recepción del RN</label></b>
+                                                                        <div class="input-group">
+                                                                            <textarea class="form-control entrada" id="txtRecepcionRn" rows="4"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12 mb-1">
+                                                                    <div class="card bg-orange">
+                                                                        <div class="card-header bg-white">EXAMEN FÍSICO</div>
+                                                                        <div class="card-block">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="card bg-blue mt-1">
+
+                                                                                        @* <div class="card-header bg-white">
+                                                                                        VACUNAS
+                                                                                        </div> *@
+
+                                                                                        <div class="card-block">
+
+                                                                                            <div class="row mt-1">
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboPielColor">1. PIEL Color</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboPielColor"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtColorPielEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtColorPielEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12">
+                                                                                                    <label for="cboCabeza">2. Cabeza</label>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboFontanela">2.1. Fontanela</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboFontanela"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtFontanelaEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtFontanelaEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboSuturas">2.2. Suturas</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboSuturas"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtSuturasEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtSuturasEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        @* <div class="col-lg-8">
+                                                                                                        <label for="cboNroDosisVacunaCovid">Especificar</label>
+                                                                                                        <div class="input-group">
+                                                                                                        <input type="text" class="form-control form-control-sm" id="txtVacunaInfluenza" autocomplete="off" disabled>
+                                                                                                        </div>
+                                                                                                        </div> *@
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboOrejas">2.2. Orejas</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboOrejas"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtOrejasEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtOrejasEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtImplantacionUbicacion">Implantación/Ubicación</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtImplantacionUbicacion" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboNariz">2.4. Nariz</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboNariz"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtNarizEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtNarizEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboBoca">2.5. Boca</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboBoca"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtBocaEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtBocaEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboCuello">2.6. Cuello</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboCuello"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtCuelloEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtCuelloEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="card bg-blue mt-1">
+                                                                                        <div class="card-block">
+
+                                                                                            <div class="row mt-1">
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboTorax">3. Tórax</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboTorax"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtToraxEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtToraxEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-12">
+                                                                                                            <label for="cboAbdomen">4. Abdomen</label>
+                                                                                                            @* <div class="input-group">
+                                                                                                            <select class="chzn-select" id="cboAbdomen"></select>
+                                                                                                            </div> *@
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboCordonUmbilical">4.1 Cordon Umbilical</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboCordonUmbilical"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtCordonUmbilicalEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtCordonUmbilicalEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboCaracteristicaAbdomen">4.2. Caract. Abdomen</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboCaracteristicaAbdomen"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtCaracteristicaAbdomenEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtCaracteristicaAbdomenEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboGenitoUrinario">5. Genito Urinario</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboGenitoUrinario"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtGenitoUrinarioObservacion">Observación</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtGenitoUrinarioObservacion" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboEliminacion">5.1. Eliminacion</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboEliminacion"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtEliminacionEspecificar">Especifica</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtEliminacionEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboColumnaVertebral">6. Columna Vertebral</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboColumnaVertebral"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtColumnaVertebralEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtColumnaVertebralEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboExtremidades">7. Extremidades</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboExtremidades"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtExtremidadesEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtExtremidadesEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboTonoMuscular">7.1. Tono Muscular</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboTonoMuscular"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtTonoMuscularEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtTonoMuscularEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboCadera">8. Cadera</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboCadera"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtCaderaEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtCaderaEspecificar" autocomplete="off" disabled>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-4">
+                                                                                                            <label for="cboValoracionNeur">9. Valoración Neur</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <select class="chzn-select" id="cboValoracionNeur"></select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-8">
+                                                                                                            <label for="txtValoracionNeurEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtValoracionNeurEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-lg-12 mb-1">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-12">
+                                                                                                            <label for="cboReflejo">9.1. Reflejo</label>
+                                                                                                            <select id="cboReflejo" data-placeholder="Reflejo" class="chosen-select" multiple style="width:350px;" tabindex="4">
+                                                                                                            </select>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-12">
+                                                                                                            <label for="txtReflejoEspecificar">Especificar</label>
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" class="form-control form-control-sm" id="txtReflejoEspecificar" autocomplete="off">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-12">
+                                                                                    <label class="form-label" for="txtObservacionesExamenFisico">Observaciones</label>
+                                                                                    <div class="form-group">
+                                                                                        <textarea class="form-control" id="txtObservacionesExamenFisico"></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        @*==============================EXAMEN FÍSICO=======================================*@
+                                                        <div role="tabpanel" class="tab-pane fade" id="examenFisico" aria-labelledby="examenFisico-tab">
+                                                            <div class="card-header text-center" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">EXAMEN FÍSICO</div>
+                                                            <div class="row mt-1">
+
+                                                               
+                                                            </div>
+                                                        </div>
+
+                                                        @*============================== DIAGNÓSTICOS =======================================*@
+                                                        <div role="tabpanel" class="tab-pane fade" id="diagnosticos" aria-labelledby="diagnosticos-tab">
+                                                            <div class="card-header text-center" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">DIAGNÓSTICOS</div>
+                                                            <div class="row mt-1">
+
+                                                                <div class="col-lg-12 mt-1">
+                                                                    @* <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/DiagnosticosClap.cshtml" /> *@
+                                                                    <div class="card bg-teal">
+                                                                        <div class="card-header bg-white">Diagnósticos</div>
+                                                                        <div class="card-block custom-form pt-1">
+                                                                            <div class="row OpcionesDiagnosticos">
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="row mb-1">
+                                                                                        <div class="col-md-8">
+                                                                                            <label class="font-weight-bold">Diagnosticos</label>
+                                                                                            <div class="form-group">
+                                                                                                <select class="chzn-select" id="cboDiagnosticosNanda"></select>
+                                                                                            </div>
+
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-4">
+                                                                                            <button id="btnAñadirDiagnosticoNanda" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;">
+                                                                                                <span class="btn-label">
+                                                                                                    <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                                                                </span>
+                                                                                                Agregar
+                                                                                            </button>
+                                                                                            <button id="btnQuitarDiagnosticoNanda" type="button" class="btn btn-sm btn-labeled btn-danger mt-2" style="width: 100px;">
+                                                                                                <span class="btn-label">
+                                                                                                    <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                                                                </span>
+                                                                                                Quitar
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <table id="lstDiagnosticosEnfermeria" class="table table-sm table-bordered table-content-sm" width="100%">
+                                                                                        <thead style="color: white;background: #51717a;">
+                                                                                            <tr>
+                                                                                                <th style="width: 0%;" data-columna="codigoCIEsinPto" valign="middle" align="center">NANDA</th>
+                                                                                                <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Descripcion</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody></tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-12 mb-1">
+                                                                                    <div class="form-group">
+                                                                                        <b><label for="txtImpresionDiagnostica" class="form-control-label">Impresión Diagnóstica</label></b>
+                                                                                        <div class="input-group">
+                                                                                            <textarea class="form-control entrada" id="txtImpresionDiagnostica" rows="4"></textarea>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        @*============================== EVALUACION SV =======================================*@
+                                                        <div role="tabpanel" class="tab-pane fade" id="evolucionSV" aria-labelledby="evolucionSV-tab">
+                                                            <div class="card-header text-center" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">EVOLUCIÓN S.V.</div>
+                                                            <div class="row mt-1">
+
+                                                                <div class="col-md-6">
+                                                                    <div class="card bg-blue mt-1">
+
+                                                                        <div class="card-block">
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtHoraRegistroEvolucion">Hora Registro</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtHoraRegistroEvolucion" autocomplete="off" placeholder="__:__">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtTemperaturaEvolucion">Temperatura</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtTemperaturaEvolucion" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtFCardiacaEvolucion">F. Cardiaca</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtFCardiacaEvolucion" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtFRespiratoriaEvolucion">F. Respiratoria</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtFRespiratoriaEvolucion" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtPresionSiastoEvolucion">Presión Siasto</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtPresionSiastoEvolucion" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtPresionDiastoEvolucion">Presión Diasto</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtPresionDiastoEvolucion" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtPresionPromedioEvolucion">Presión Prom</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtPresionPromedioEvolucion" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4" hidden>
+                                                                                    <label for="txtPesoEvolucion">Peso</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtPesoEvolucion" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtSaturacionEvolucion">Saturación</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtSaturacionEvolucion" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtHgtEvolucion">HGT</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtHgtEvolucion" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-12 mt-1">
+                                                                                    <button id="btnAgregarEvolucionSV" class="btn btn-primary">Agregar</button>
+                                                                                    <button id="btnModificarEvolucionSV" class="btn btn-info">Modificar</button>
+                                                                                    <button id="btnEliminarEvolucionSV" class="btn btn-danger">Eliminar</button>
+                                                                                </div>
+
+                                                                                <div class="col-lg-12">
+                                                                                    <table id="tblEvolucionSv" width="100%" class="table table-sm table-bordered">
+                                                                                        <thead style="color: white;background: #434343;">
+                                                                                            <tr>
+                                                                                                <th style="width:10%">Fecha</th>
+                                                                                                <th style="width:20%">Hora</th>
+                                                                                                <th style="width:30%">Temperatura</th>
+                                                                                                <th style="width:30%">F. Cardiaca</th>
+                                                                                                <th style="width:10%">F. Respiratoria</th>
+                                                                                                <th style="width:10%">P. Siasto</th>
+                                                                                                <th style="width:10%">P. Diasto</th>
+                                                                                                <th style="width:10%">P. Promedio</th>
+                                                                                                @* <th style="width:10%">Peso</th> *@
+                                                                                                <th style="width:10%">Saturación</th>
+                                                                                                <th style="width:10%">HGT</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody></tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="card bg-blue mt-1">
+
+                                                                        @* <div class="card-header bg-white">
+                                                                        VACUNAS
+                                                                        </div> *@
+
+                                                                        <div class="card-block">
+
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-lg-12 mb-1">
+                                                                                    <div>
+                                                                                        <canvas id="chartFrecuenciaCardiaca" style="max-height: 200px !important;"></canvas>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-12 mb-1">
+                                                                                    <div>
+                                                                                        <canvas id="charFrecuenciaRespiratoria" style="max-height: 200px !important;"></canvas>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-12 mb-1">
+                                                                                    <div>
+                                                                                        <canvas id="charTemperatura" style="max-height: 200px !important;"></canvas>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div role="tabpanel" class="tab-pane fade" id="evolucionAT" aria-labelledby="evolucionAT-tab">
+                                                            <div class="card-header text-center" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">EVOLUCIÓN A.T.</div>
+                                                            <div class="row mt-1">
+
+
+                                                                <div class="col-md-12">
+                                                                    <div class="card bg-blue mt-1">
+
+                                                                        <div class="card-block">
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtHoraRegistroEvolucionAt">Hora Registro</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtHoraRegistroEvolucionAt" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="cboSoporteO2EvolucionAt">Sporte O2</label>
+                                                                                    <div class="input-group">
+                                                                                        <select class="chzn-select" id="cboSoporteO2EvolucionAt">
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="cboCanalizacionEvEvolucionAt">Canalización de E.V.</label>
+                                                                                    <div class="input-group">
+                                                                                        <select class="chzn-select" id="cboCanalizacionEvEvolucionAt">
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="cboInmovilizacionMiembroEvaluacionAt">Inmovilizacion de miembro</label>
+                                                                                    <div class="input-group">
+                                                                                        <select class="chzn-select" id="cboInmovilizacionMiembroEvaluacionAt">
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="cboAlimentacionEvaluacionAt">Alimentacion</label>
+                                                                                    <div class="input-group">
+                                                                                        <select class="chzn-select" id="cboAlimentacionEvaluacionAt">
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtDetalleFormulaEvolucionAt">Detalle Fórmula</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtDetalleFormulaEvolucionAt" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="cboEliminacionEvolucionAt">Eliminación</label>
+                                                                                    <div class="input-group">
+                                                                                        <select class="chzn-select" id="cboEliminacionEvolucionAt">
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <label for="txtEliminacionEvolucionAt">Detalle Eliminacion</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" class="form-control form-control-sm" id="txtEliminacionEvolucionAt" autocomplete="off">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-lg-12 mt-1">
+                                                                                    <button id="btnAgregarEvolucionAT" class="btn btn-primary">Agregar</button>
+                                                                                    <button id="btnModificarEvolucionAT" class="btn btn-info">Modificar</button>
+                                                                                    <button id="btnEliminarEvolucionAT" class="btn btn-danger">Eliminar</button>
+                                                                                </div>
+
+
+
+                                                                                <div class="col-lg-12">
+                                                                                    <table id="tblEvolucionAt" width="100%" class="table table-sm table-bordered">
+                                                                                        <thead style="color: white;background: #434343;">
+                                                                                            <tr>
+                                                                                                <th style="width:10%">Fecha</th>
+                                                                                                <th style="width:20%">Hora</th>
+                                                                                                <th style="width:0%">idSoporte</th>
+                                                                                                <th style="width:30%">Soporte O2</th>
+                                                                                                <th style="width:0%">idCanalizacionEv</th>
+                                                                                                <th style="width:10%">canalizacionEv</th>
+                                                                                                <th style="width:0%">idInmovilizacionMiembro</th>
+                                                                                                <th style="width:10%">InmovilizacionMiembro</th>
+                                                                                                <th style="width:0%">idAlimentacion</th>
+                                                                                                <th style="width:10%">alimentacion</th>
+                                                                                                <th style="width:10%">detalleFormula</th>
+                                                                                                <th style="width:0%">idEliminacion</th>
+                                                                                                <th style="width:10%">eliminacion</th>
+                                                                                                <th style="width:10%">Detalle Elim.</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody></tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+
+                                                            </div>
+                                                        </div>
+
+                                                        @*============================== INTERVENCIONES CPT =======================================*@
+                                                        <div role="tabpanel" class="tab-pane fade" id="intervencionesCpt" aria-labelledby="intervencionesCpt-tab">
+                                                            <div class="card-header text-center" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">INTERVENCIONES CPMS</div>
+
+                                                            <div class="row mt-1">
+                                                                <div class="col-lg-4">
+                                                                    <label for="txtProcedencia">Procedencia</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control form-control-sm" id="txtProcedencia" autocomplete="off">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label for="txtNroOrden">Número de Orden</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control form-control-sm" id="txtNroOrden" autocomplete="off">
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="row mt-1">
+                                                                <div class="col-md-12">
+                                                                    <partial name="~/Views/Shared/Components/VistasParciales/Procedimientos/ProcedimientosCpt.cshtml" />
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <b><label for="txtOtrosProcedimientos" class="form-control-label">Otros procedimientos</label></b>
+                                                                        <div class="input-group">
+                                                                            <textarea class="form-control entrada" id="txtOtrosProcedimientos" rows="6"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        @*============================== EVALUACIONES =======================================*@
+                                                        <div role="tabpanel" class="tab-pane fade" id="evaluaciones" aria-labelledby="evaluaciones-tab">
+                                                            <div class="card-header text-center" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">EVALUACIONES</div>
+
+                                                            <div class="row mt-1">
+                                                                <div class="col-md-12 mb-1">
+                                                                    <div class="form-group">
+                                                                        <b><label for="txtEvaluacionCuidadoRN" class="form-control-label">Evaluación del cuidado del RN</label></b>
+                                                                        <div class="input-group">
+                                                                            <textarea class="form-control entrada" id="txtEvaluacionCuidadoRN" rows="6"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12" id="contEvaluacionRn">
+                                                                    <div class="form-group">
+                                                                        <b><label for="txtEvaluacionCuidadoRnFactorRiesgo" class="form-control-label">Evaluación del cuidado del RN de Factor de Riesgo</label></b>
+                                                                        <div class="input-group">
+                                                                            <textarea class="form-control entrada" id="txtEvaluacionCuidadoRnFactorRiesgo" rows="6"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-6">
+                                                                    <label for="cboEnfermeraRegistra" class="form-label">Enfermera(o)</label>
+                                                                    <div class="input-group input-group-sm">
+                                                                        <select class="chzn-select bloquear-campos" id="cboEnfermeraRegistra"></select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-lg-6">
+                                        @*<button class="btn btn-cyan btn-lg layout_btn_prevent mr-1 float-lg-left" id="btnVisorRecetasEmer"><i class="fa fa-note-medical mr-1"></i>Rec. Médicas</button>*@
+                                        <button class="btn btn-light-blue btn-lg layout_btn_prevent float-lg-left" id="btnSeguimiento"><i class="fa fa-wheelchair-move mr-1"></i>Seguimiento</button>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button id="btnCerrarAtencion" type="button" data-dismiss="modal" class="btn btn-lg btn-secondary float-lg-right mr-1 mb-1">Cerrar</button>
+                                        <button id="btnGuardar" class="btn btn-lg  btn-info float-lg-right mr-1 mb-1">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" value="@ViewBag.idEmpleado" id="idEmpleadotxt" /> @*JDELGADO001*@
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            @*<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistro.cshtml" />*@
+
+            @* <partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroConDescripcion.cshtml" /> *@
+
+            @* =======================BUSQUEDA DE DIAGNOSTICOS (KHOYOSI)================================== *@
+            <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticos.cshtml" />
+            @* ================================================================================= *@
+
+
+
+            <div class="modal fade" id="modalIntervencionEnfermeria" role="dialog" aria-hidden="false" style="background-color: #00000075; z-index: 9999" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-lg" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 class="modal-title text-white" id="titulo">intervenciones de Enfermeria</h4>
+                        </div>
+                        <div class="modal-body p-t-5">
+                            <div class="card-block p-t-5">
+                                <div class="row">
+                                    <div class="col-xl-2">
+                                        <label for="txtCodigoCptIntervencion" class="form-control-label">Codigo</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control" id="txtCodigoCptIntervencion" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-10">
+                                        <label for="txtDescripcionIntervencion" class="form-control-label">Decripcion</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control" id="txtDescripcionIntervencion" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-8">
+                                        <label for="cboIntervencionesEnfermeria" class="form-control-label">Servicio</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboIntervencionesEnfermeria"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4" style="height: 50px;">
+                                        <div>
+                                            <button class="btn btn-primary btn-sm layout_btn_prevent mt-2" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnAgregarIntervencion">Agregar</button>
+                                            <button class="btn btn-danger btn-sm layout_btn_prevent mt-2" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnEliminarIntervencion">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table id="tblIntervencionesEnfemeria" width="100%" class="table table-sm table-content-sm table-striped table-bordered w-100 mt-1">
+                                    <thead style="color: white;background: #434343;">
+                                        <tr>
+                                            <th style="width:20%">id</th>
+                                            <th style="width:80%">Descripcion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            @* <button id="btnGuardarIntervenciones" type="button" class="btn btn-default">Guardar</button> *@
+                            <button id="btnCerrarModalIntervencion" type="button" class="btn btn-default">Cancelar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroLab.cshtml" />
+
+            @section Scripts
+            {
+
+                <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen1.jquery.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment-with-locales.js"></script>
+
+                <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/Comun/Variables.js?v=" + version)></script>
+
+                <script type="text/javascript" src=@Href("~/js/Hospitalizacion/NotaEnfermeriaNeo.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/Facturacion/ConsumoServicioV3.js?v=" + version)></script>
+
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/BusquedaDiagnosticos.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/Diagnosticos.js?v=" + version)></script>
+
+                @*
+            <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+            <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+            <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+            <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+            <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+            <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+            <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+
+
+            <script src="~/AdmiRE/js/date.format.js"></script> *@
+
+                @*
+
+            <script type="text/javascript" src=@Href("~/js/Hospitalizacion/EvaluacionesUCI.js?v=" + version)></script>
+            <script type="text/javascript" src=@Href("~/js/Hospitalizacion/RegistroEvaluacionesUCI.js?v=" + version)></script>
+
+
+
+
+
+            <script type="text/javascript" src=@Href("~/js/Facturacion/ConsumoServicioConDescripcion.js?v=" + version)></script>
+
+            <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenMedica.js?v=" + version)></script>
+            <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV3.js?v=" + version)></script>
+
+            <script type="text/javascript" src=@Href("~/js/VistasParciales/OrdenesYResultados.js?v=" + version)></script>
+            <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/VisorRecetas.js?v=" + version)></script>
+
+
+
+            <script type="text/javascript" src=@Href("~/js/VistasParciales/AltaMedica.js?v=" + version)></script>
+            <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientosSaludV2.js?v=" + version)></script>
+            <script type="text/javascript" src=@Href("~/js/Comun/Transferencias.js?v=" + version)></script>
+
+            <script type="text/javascript" src=@Href("~/js/Comun/Resultados.js?v=" + version)></script> *@
+
+            }
+
+            <style>
+                body {
+                    padding-right: 0px !important;
+                }
+
+                nav.navbar {
+                    background-color: #CC1414;
+                }
+
+                #clothing-nav-content2 .form-group {
+                    margin-bottom: 0 !important;
+                }
+
+                #tblAtencion tr.over td {
+                    background: #D6E8F8;
+                    font-weight: bold;
+                }
+
+                .chosen-container {
+                    width: 100% !important;
+                }
+
+                .modal-lg {
+                    max-width: 1100px !important;
+                }
+
+                /*==============REFCON===============*/
+                .chosen-disabled {
+                    opacity: 1 !important;
+                }
+
+                    .chosen-disabled .chosen-single {
+                        background: #eceeef !important;
+                        border-color: rgba(0, 0, 0, 0.15) !important;
+                    }
+
+                .custom-control-indicator {
+                    border: 1px solid darkgrey;
+                }
+
+                .text-right {
+                    text-align: right !important;
+                }
+
+                .bg-light {
+                    background-color: #f8f9fa !important;
+                    color: #434343 !important;
+                }
+
+                .border-x-0 {
+                    border-right: 0 !important;
+                    border-left: 0 !important;
+                }
+
+                .btn-sm {
+                    padding: 0.4rem 0.5rem !important;
+                }
+
+                legend {
+                    width: auto !important;
+                    padding: 0 5px !important;
+                    font-size: 1.2rem !important;
+                    margin-left: 5px !important;
+                }
+
+                fieldset {
+                    border: 1px solid #ccc !important;
+                    margin: 0px 10px !important;
+                }
+
+                .nav-link:hover {
+                    border-color: whitesmoke !important;
+                    background-color: whitesmoke !important;
+                }
+
+                .btn-outline-secondary {
+                    color: #999 !important;
+                    border-color: #999 !important;
+                }
+
+                    .btn-outline-secondary:hover {
+                        color: #fff !important;
+                        border-color: #ccc !important;
+                    }
+
+                #clothing-nav-content2 .form-group {
+                    margin-bottom: 0 !important;
+                }
+
+                #tblAtencion tr.over td {
+                    background: #D6E8F8;
+                    font-weight: bold;
+                }
+
+                /*  .chosen-container chosen-container-single {
+                                                                                                                                                                                                                    width: 100% !important;
+                                                                                                                                                                                                                }*/
+
+
+                .chosen-container {
+                    width: 100% !important;
+                }
+
+                .modal-lg {
+                    max-width: 1100px !important;
+                }
+
+                .titleAntecedentes {
+                    color: #5353f9;
+                    font-size: 15px;
+                    font-weight: bold;
+                }
+
+                .dataTables_scrollHead {
+                    padding-right: 10px !important;
+                }
+
+                .dataTables_scrollBody {
+                    overflow: scroll !important;
+                }
+            </style>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalReporteUCI" tabindex="-1" role="dialog" aria-labelledby="modalReporteUCILabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Saldos por Almacén Por Fecha</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+
+                    <div class="row mt-2">
+                        <div class="col-lg-12">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label for="txtFechaInicioReporte">Fecha Inicio</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioReporte" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="txtFechaFinReporte">Fecha Fin</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinReporte" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                @* <div class="col-md-2 d-flex align-items-end mb-1" style="height: 50px;">
+                                <div>
+                                <button type="button" class="btn btn-sm btn-default" style="padding-left: 1rem !important; padding-right: 1rem !important;">limpiar</button>
+                                </div>
+                                </div> *@
+                                @*<div class="col-lg-12 mt-2">
+                                <button class="btn btn-success btn-sm float-lg-right" id="btnGenerarSaldosPorAlmacen">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+                                </div>*@
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" id="btnDescargarReporteUCI">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalInformeEvaluacion" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <fieldset class="m-0 pr-1 pl-1 pb-1">
+                            <legend class="mb-0">Evaluaciones del Paciente</legend>
+                            <table id="tblInformeEvaluaciones" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                                <thead style="color: white;">
+                                    <tr style="background-color: #434343;">
+                                        <th style="width:10% !important; text-align:center;">Eval.</th>
+                                        <th style="width:30% !important; text-align:center;">Fecha</th>
+                                        <th style="width:40% !important;">Responsable</th>
+                                        <th style="width:20% !important; text-align:center;">Informe</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                            @*<div class="row mt-1" id="divFirma">
+                            <div class="col-xs-12 text-xs-center">
+                            <button type="button" style="width: 60px;" class="btn btn-sm btn-success" id="ImprimirEvalEmerCF"><i class="fa fa-print"></i></button>
+                            <button type="button" style="width: 60px;" class="btn btn-sm btn-info" id="FirmarEvalEmer"><i class="fa fa-pencil"></i></button>
+                            <button type="button" style="width: 60px;" class="btn btn-sm btn-warning" id="ImprimirEvalEmerSF"><i class="fa fa-eye"></i></button>
+                            </div>
+                            </div>*@
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrarInformeEvaluacion" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

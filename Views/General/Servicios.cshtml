@@ -1,0 +1,836 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@* <input id="hdUsaLabs" value="@usaLabs" hidden> *@
+
+
+
+@section Css {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-hand-holding-medical"></i>
+                Servicios
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Especialidades</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+
+<div class="row m-0">
+    <div class="col-sm-12">
+        <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContent">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-block pb-1">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group m-0">
+                                        <label for="txtNombreBusqueda" class="form-control-label">Nombre</label>
+                                        <div class="input-group input-group-sm m-0">
+                                            <input type="text" autocomplete="off" class="form-control" id="txtNombreBusqueda">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group m-0">
+                                        <label for="cboTipoServicioBusqueda" class="form-control-label">Tipo Servicio</label>
+                                        <select class="chzn-select" id="cboTipoServicioBusqueda" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                                    <div>
+                                        <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarServicio">Buscar</button>
+                                        <button class="btn btn-secondary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiarBuscquedaServicio">Limpiar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 pt-2 pb-0">
+                    @{
+                        if (@ViewBag.Agregar)
+                        {
+                            <button class="btn btn-primary layout_btn_prevent" id="btnAgregar">Agregar</button>
+                        }
+                        if (@ViewBag.Modificar)
+                        {
+                            <button class="btn btn-info layout_btn_prevent" id="btnModificar">Modificar</button>
+                        }
+                        if (@ViewBag.Eliminar)
+                        {
+                            // <button class="btn btn-danger layout_btn_prevent" id="btnEliminar">Eliminar</button>
+                        }
+                        if (@ViewBag.Consultar)
+                        {
+                            <button class="btn btn-warning layout_btn_prevent" id="btnConsultar">Consultar</button>
+                        }
+                    }
+                </div>
+
+
+                <div class="col-lg-12 pb-2">
+                    <table id="tblServicios" width="100%" class="table table-sm table-content-md table-bordered">
+                        <thead style="color: white;background: #434343;">
+                            <tr>
+                                <th style="width:5%">Código</th>
+                                <th style="width:15%">Servicio</th>
+                                <th style="width:15%">Especialidad</th>
+                                <th style="width:15%">Departamento</th>
+                                <th style="width:10%">TipoSexo</th>
+                                <th style="width:5%">maxEdad</th>
+                                <th style="width:5%">cod.SEM</th>
+                                <th style="width:5%">ubi.SEM</th>
+                                <th style="width:5%">cod. HIS</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalServicios" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Agregar Servicios</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="card m-t-5 bg-green">
+                            <div class="card-block p-t-0">
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-4">
+                                        <label for="cboTipoServicio" class="form-control-label">Tipo Servicio</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="chzn-select" id="cboTipoServicio"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="cboDepartamento" class="form-control-label">Departamento</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="chzn-select" id="cboDepartamento" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="cboEspecialidades" class="form-control-label">Especialidades</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="chzn-select" id="cboEspecialidades" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="txtCodigoServicio" class="form-control-label">Codigo</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtCodigoServicio" autocomplete="off" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-8">
+                                        <label for="txtNombreServicio" class="form-control-label">Nombre</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtNombreServicio" autocomplete="off" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="cboUpsSusalud" class="form-control-label">UPS SuSalud</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="chzn-select" id="cboUpsSusalud" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="cboUpsHis" class="form-control-label">UPS HIS</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="chzn-select" id="cboUpsHis" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="cboUpsFua" class="form-control-label">UPS FUA</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="chzn-select" id="cboUpsFua" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="cboUpsRenaes" class="form-control-label">UPS RENAES</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="chzn-select" id="cboUpsRenaes" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group campo">
+                                            <br>
+                                            <div class="check__toggle">
+                                                <label class="toggle">
+                                                    <input class="toggle__input" type="checkbox"
+                                                           id="chkEsTeleconsulta">
+                                                    <span class="toggle__label mr-2">
+                                                        <span class="toggle__text">El Servicio es Teleconsulta</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group campo">
+                                            <br>
+                                            <div class="check__toggle">
+                                                <label class="toggle">
+                                                    <input class="toggle__input" type="checkbox"
+                                                           id="chkEsPuntoCarga">
+                                                    <span class="toggle__label mr-2">
+                                                        <span class="toggle__text">El Servicio es un PUNTO DE CARGA</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group campo">
+                                            <br>
+                                            <div class="check__toggle">
+                                                <label class="toggle">
+                                                    <input class="toggle__input" type="checkbox"
+                                                           id="chkServicioHabilitado">
+                                                    <span class="toggle__label mr-2">
+                                                        <span class="toggle__text">Habilitado</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card m-t-5 bg-green">
+                            <div class="card-header bg-white" id="TituloCardRefCon">SIS</div>
+                            <div class="card-block p-t-0">
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group campo">
+                                            <br>
+                                            <div class="check__toggle">
+                                                <label class="toggle">
+                                                    <input class="toggle__input" type="checkbox"
+                                                           id="chkSeUsaFormatoFua">
+                                                    <span class="toggle__label mr-2">
+                                                        <span class="toggle__text">Se usa Formato FUA</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    
+                        <div class="card m-t-5 bg-green">
+                            <div class="card-header bg-white" id="TituloCardRefCon">Datos para Hospitalización/Emergencia</div>
+                            <div class="card-block p-t-0">
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label for="txtCodigoEstanciaPorDia" class="form-control-label">Estancia por día</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <div class="d-flex">
+                                                <input id="txtCodigoEstanciaPorDia" type="text" class="form-control form-control-sm m-auto" autocomplete="off" readonly="">
+                                                <input id="hdIdProductoEstanciaPorDia" type="hidden" class="form-control">
+                                                <button type="button" class="btn btn-sm btn-outline-primary layout_btn_prevent ml-1" id="btnProductoEstanciaPorDia" onclick="Servicios.AbrirModalCatalogoServicios(1);">
+                                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input id="txtProductoEstanciaPorDia" type="text" class="form-control form-control-sm m-auto" readonly="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-12">
+                                        <label for="txtCodigoServicioSem" class="form-control-label">Código Servicio</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtCodigoServicioSem" autocomplete="off" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label for="txtCodigoServicioSem" class="form-control-label" style="color: red;">(Para Exportar datos al Sistema SEM)</label>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-12">
+                                        <label for="txtUbicacionServicioSem" class="form-control-label">Ubicación Servicio</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtUbicacionServicioSem" autocomplete="off" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label for="txtUbicacionServicioSem" class="form-control-label" style="color: red;">(Para Exportar datos al Sistema SEM)</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group campo">
+                                            <br>
+                                            <div class="check__toggle">
+                                                <label class="toggle">
+                                                    <input class="toggle__input" type="checkbox"
+                                                           id="chkElServicioEsObservacionEmergencia">
+                                                    <span class="toggle__label mr-2">
+                                                        <span class="toggle__text">El Servicio es 'Observación de Emergencia'</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="card m-t-5 bg-green">
+                            <div class="card-header bg-white" id="TituloCardRefCon">Solo atiende a personas</div>
+                            <div class="card-block p-t-0">
+
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+                                        <label for="cboTipoSexoServicio" class="form-control-label">Tipo Sexo</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="chzn-select" id="cboTipoSexoServicio" data-placeholder="Seleccione una opción">
+                                                <option value="">Seleccione una opción</option>
+                                                <option value="1">Solo Masculino</option>
+                                                <option value="2">Solo Femenino</option>
+                                                <option value="3">Ambos Sexos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mt-1">
+
+                                    <div class="col-lg-6">
+                                        <label for="cboRangoEdad" class="form-control-label">Rango Edad</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="chzn-select" id="cboRangoEdad" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtRangoEdadDesde" class="form-control-label">Desde</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtRangoEdadDesde" autocomplete="off" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtRangoEdadHasta" class="form-control-label">Hasta</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtRangoEdadHasta" autocomplete="off" class="form-control">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card m-t-5 bg-green">
+                            <div class="card-header bg-white" id="TituloCardRefCon">Datos para Consultorio Externo</div>
+                            <div class="card-block p-t-0">
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-12">
+                                        <div class="form-group campo">
+                                            <div class="check__toggle">
+                                                <label class="toggle">
+                                                    <input class="toggle__input" type="checkbox"
+                                                           id="chkConsultorioNoCobra">
+                                                    <span class="toggle__label mr-2">
+                                                        <span class="toggle__text">El CONSULTORIO no cobra por 'atención Consultorio' a Particulares</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group campo">
+                                            <div class="check__toggle">
+                                                <label class="toggle">
+                                                    <input class="toggle__input" type="checkbox"
+                                                           id="chkConsultorioNecesitaTriaje">
+                                                    <span class="toggle__label mr-2">
+                                                        <span class="toggle__text">El CONSULTORIO necesita TRIAJE antes de registrar ATENCIÓN</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group campo">
+                                            <div class="check__toggle">
+                                                <label class="toggle">
+                                                    <input class="toggle__input" type="checkbox"
+                                                           id="chkEmiteFormatoFua">
+                                                    <span class="toggle__label mr-2">
+                                                        <span class="toggle__text">Se emite Formato FUA desde CITAS</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <div class="card m-t-5 bg-green">
+                                            <div class="card-block p-t-0">
+
+                                                <div class="row mt-1">
+
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-0">
+                                                            <label class="radioButtonStyleLabel m-0">
+                                                                <input type="radio" name="rdbActivaProcedimiento" class="radioButtonStyleInput camposRegistro" id="rdbActivaProcedimientoProcedimiento" value="1">
+                                                                <span class="radioButtonStyleSpan">EL CONSULTORIO sera sala de procedimientos</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-0">
+                                                            <label class="radioButtonStyleLabel m-0">
+                                                                <input type="radio" name="rdbActivaProcedimiento" class="radioButtonStyleInput camposRegistro" id="rdbActivaProcedimientoTerapia" value="2">
+                                                                <span class="radioButtonStyleSpan">El CONSULTORIO SERA SALA DE TERAPIAS</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-0">
+                                                            <label class="radioButtonStyleLabel m-0">
+                                                                <input type="radio" name="rdbActivaProcedimiento" class="radioButtonStyleInput camposRegistro" id="rdbActivaProcedimientoNinguno" value="0">
+                                                                <span class="radioButtonStyleSpan">Ninguno</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label for="cboTipoModuloServicio" class="form-control-label">Tipo Módulo</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="chzn-select" id="cboTipoModuloServicio" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnGuardarServicio" target="_blank" class="btn btn-primary "> Guardar</button>
+                <button id="btnCerrarModalServicios" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalCatalogoServicios" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Búsqueda de Catalogo de Servicios</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <input id="hdTipoCatalogoServicios" autocomplete="off" class="form-control" hidden>
+
+                    <div class="col-md-3">
+                        <div class="form-group m-0">
+                            <label for="txtCodigoProcedimientoBusqueda" class="form-control-label">Código</label>
+                            <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtCodigoProcedimientoBusqueda">
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="form-group m-0">
+                            <label for="txtNombreProcedimientoBusqueda" class="form-control-label">Nombre</label>
+                            <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtNombreProcedimientoBusqueda">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mb-1">
+
+                    <div class="col-md-2">
+                        <div class="d-flex align-items-end" style="height: 55px;">
+                            <button class="btn btn-sm btn-primary layout_btn_prevent mr-1" id="btnBuscarCatalogoServicios" style="padding-left: 2rem !important; padding-right: 2rem !important;">Buscar</button>
+                            <button class="btn btn-sm btn-secondary layout_btn_prevent" id="btnLimpiarFiltroCatalogoServicios" style="padding-left: 2rem !important; padding-right: 2rem !important;">Limpiar</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="tblCatalogoServicios" width="100%" class="table table-sm table-bordered table-content-sm" style="cursor: default;">
+                            <thead style="color: white;background: #434343;">
+                                <tr>
+                                    <th style="width:10%">Código</th>
+                                    <th style="width:15%">Servicio</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnSeleccionarProcedimiento" target="_blank" class="btn btn-primary "> Aceptar</button>
+                <button id="btnCerrarModalCatalogoServicios" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    @*<script src="https://momentjs.com/downloads/moment-with-locales.js"></script>*@
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/html2canvas.min.js"></script>
+
+
+    <script type="text/javascript" src=@Href("~/js/General/Servicios.js?v=" + version)></script>
+
+    <script>
+        $(document).ready(function () {
+            Servicios.Init()
+        })
+    </script>
+
+
+
+
+
+}
+
+<style>
+    body {
+        padding-right: 0px !important;
+    }
+
+    nav.navbar {
+        background-color: #CC1414;
+    }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+
+
+    /*==============REFCON===============*/
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff !important;
+            border-color: #ccc !important;
+        }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                                                        width: 100% !important;
+                                                    }*/
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+    /*.chosen-container:focus {
+                                        color: #2c2c2c;
+                                        background-color: #fff;
+                                        border-color: #66afe9;
+                                        box-shadow: 1px 1px 5px #5892c1;
+                                    }*/
+
+    /*=====================ODONTOGRAMA====================================*/
+    .FacetFormTABLE {
+        box-sizing: initial !important;
+    }
+
+    .FacetTdInput {
+        border: solid 1px #000000;
+        text-align: center;
+        padding: 2px;
+    }
+
+    .FacetInput {
+        width: 23px;
+        font-size: 9px;
+        border: solid 1px #ffffff;
+        color: #0000FF;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .FacetDiente {
+        width: 38px;
+        padding: 0;
+    }
+
+    .divisor-central {
+        width: 1px;
+        background-color: #484848;
+        padding: 0;
+        border: 1px solid
+    }
+
+    .diente-tituloS {
+        position: absolute;
+        width: 38px;
+        z-index: 100;
+        text-align: center;
+        font-size: 9px;
+        font-family: Arial;
+        font-weight: bold;
+        margin-top: 3px;
+        line-height: initial;
+    }
+
+    .diente-tituloI {
+        position: absolute;
+        width: 38px;
+        z-index: 100;
+        text-align: center;
+        font-size: 9px;
+        font-family: Arial;
+        font-weight: bold;
+        margin-top: 53px;
+        line-height: initial;
+    }
+
+    .diente-capa {
+        position: absolute;
+        width: 38px;
+        height: 65px;
+        /*padding-top:5px; */
+        z-index: 100;
+    }
+
+    .diente-img {
+    }
+
+    .disposicion {
+        width: 38px;
+        height: 65px;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .diente {
+        height: 65px;
+        transition: transform .35s;
+    }
+
+    .diente-zoom {
+        transform: scale(2);
+        background-color: white;
+        border: 1px solid #2c2c2c;
+        border-radius: 0.25rem;
+        /*box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);*/
+    }
+
+    .diente-zoom-box {
+        position: relative;
+        z-index: 10000;
+    }
+
+    .btnDisposicion {
+        width: 100px;
+    }
+
+        .btnDisposicion.selectedDisposicion {
+            background-color: green;
+            color: white;
+        }
+
+</style>

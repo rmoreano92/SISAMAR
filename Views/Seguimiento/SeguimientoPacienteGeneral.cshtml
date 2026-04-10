@@ -1,0 +1,152 @@
+﻿
+@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-wheelchair-move"></i>
+                Seguimiento
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">Seguimiento</a>
+                </li>
+                <li class="breadcrumb-item active">Seguimiento de Paciente</li>
+            </ol>
+        </div>
+    </div>
+</header>
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    <div class="card-block pt-1">
+                        <partial name="~/Views/Shared/Components/VistasParciales/Seguimiento/SeguimientoPaciente.cshtml" />
+                        @*@Html.Partial("~/Views/Shared/Components/VistasParciales/SeguimientoPaciente.cshtml")*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div data-backdrop="static" style="overflow-y: scroll;background-color: #00000075;" data-keyboard="false" class="modal fade" id="modalRecetaSegui" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="modalLabelsuccess">Recetas/Ordenes Médicas</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-block p-0">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <partial name="~/Views/Shared/Components/VistasParciales/OredenesYResultados.cshtml" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrarRecetaSegui" target="_blank" class="btn  btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div data-backdrop="static" style="overflow-y: scroll;background-color: #00000075;" data-keyboard="false" class="modal fade" id="modalResultadosLabImgSegui" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark-purple">
+                <h5 class="modal-title text-white" id="modalLabelsuccess">Resultados</h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 id="lblNombreExamenSegui" style="color: #3c3c3c !important;"></h4>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-block p-0">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <table id="tblResultadosExamenesSegui" class="table table-sm table-bordered">
+                                            <thead style="color: white;background: #3e6184;">
+                                                <tr>
+                                                    <th align="center" @*style="width: 150px;"*@>Grupo/Item</th>
+                                                    <th align="center" @*style="width: 100px;"*@>Valor</th>
+                                                    <th align="center" @*style="width: 100px;"*@>Valor Referencial</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbodyResultadosSegui"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="form-control-label font-weight-bold">OBSERVACIONES/CONCLUSIONES</label>
+                        <textarea style="overflow:scroll;" disabled class="form-control" id="txtObserOrdResSegui" rows="4"></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnCerrarResultadoLabImgSegui" target="_blank" class="btn  btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<input hidden="hidden" id="hdIdCuentaAtencion" name="hdIdCuentaAtencion" type="text" class="form-control">
+
+@*============================= VISOR DE RECETAS =======================================*@
+<partial name="~/Views/Shared/Components/VistasParciales/Recetas/VisorRecetas.cshtml" />
+@*@Html.Partial("~/Views/Shared/Components/VistasParciales/Recetas/VisorRecetas.cshtml")*@
+
+
+@section Scripts
+    {
+
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/SeguimientoPaciente.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/OrdenesYResultados.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/VisorRecetas.js")></script>
+}

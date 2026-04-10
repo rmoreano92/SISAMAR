@@ -1,0 +1,277 @@
+﻿
+@* <div class="modal fade" id="modalReprogramacionMedica" style="background-color: rgba(0, 0, 0, 0.46);" data-backdrop="static"> *@
+<div class="modal fade" id="modalReprogramacionMedica" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content">
+            <div class="modal-header bg-brown"><h5 class="text-white m-0">Reprogramación Médica</h5></div>
+            <div class="modal-body">
+
+                <div class="row mb-1" id="contentAutorizaAntimicrobiano" style="display: block;">
+                    <div class="col-lg-12">
+                        <div class="card bg-beige" style="border: 2px solid #93d5cd;">
+                            <div class="card-header">Consideraciones</div>
+                            <div class="card-block py-0">
+                                <h5 class="m-t-5">Este proceso reprograma pacientes con otro médico, fecha o servicio, teniendo en cuenta las siguientes consideraciones:</h5>
+                                <ol class="">
+                                    <li class="">Únicamente si tiene pacientes CITADOS</li>
+                                    <li class="">Únicamente reprogramara pacientes que no fueron atendidos.</li>
+                                    <li class="">Únicamente reprogramara pacientes que no tengan consumos en Farmacia y Servicios.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Convert.ToInt32(ViewBag.PermisoReprogMed.Tables[0].Rows[0]["Permiso"]) > 0)
+                {
+                    <div class="row mb-1">
+                        <div class="col-lg-12">
+                            <div class="card bg-yellow">
+                                <div class="card-header">Reprogramación Médica</div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="row">
+                                                <div class="col-xl-4">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtFechaActualReprogMed">F. Atención</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoReprogMed" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaActualReprogMed">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtHoraInicioActualReprogMed">Desde</label>
+                                                        <input type="text" class="form-control form-control-sm campoReprogMed" id="txtHoraInicioActualReprogMed" placeholder="__:__" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtHoraFinActualReprogMed">Hasta</label>
+                                                        <input type="text" class="form-control form-control-sm campoReprogMed" id="txtHoraFinActualReprogMed" placeholder="__:__" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-5">
+                                                    <div class="form-group m-0">
+                                                        <label for="cboServicioActualReprogMed">Servicio</label>
+                                                        <select class="chzn-select w-100 campoReprogMed" id="cboServicioActualReprogMed" data-placeholder="Seleccione una opción"></select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-7">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtMedicoActualReprogMed">Médico</label>
+                                                        <!--<input type="text" class="form-control form-control-sm campoReprogMed" id="txtMedicoActualReprogMed" placeholder="" autocomplete="off" disabled>-->
+                                                        <select class="chzn-select w-100 campoReprogMed" id="cboMedicoActualReprogMed" data-placeholder="Seleccione una opción"></select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6 pt-2">
+                                            <div class="border bg-transparent">
+                                                <div class="position-absolute mx-1" style="margin-top: -15px;">
+                                                    <i class="fa-solid fa-calendar m-r-5 " style="color: #bab6b6;"></i>
+                                                    <span style="color:#018aef; font-weight: bolder; font-size: 15px;" class="form-control-label">Reprogramar por</span>
+                                                </div>
+                                                <div class="px-1 pb-1" style="padding-top:8px;">
+                                                    <div class="row">
+
+                                                        <div class="col-xl-5">
+                                                            <div class="form-group m-0">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbTipoReprogMed" id="rdbTipoReprogMedFecha" class="custom-control-input campoReprogMed">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Fecha Nueva</span>
+                                                                </label>
+                                                                <div class="input-group input-group-sm" style="max-width: 130px;">
+                                                                    <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoReprogMed" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNuevaReemplazaReprogMed">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar "></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-7">
+                                                            <div class="form-group m-0">
+                                                                <label class="custom-control custom-radio">
+                                                                    <input type="radio" name="rdbTipoReprogMed" id="rdbTipoReprogMedMedico" class="custom-control-input campoReprogMed">
+                                                                    <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                    <span class="custom-control-description text-default">Medico Reemplaza</span>
+                                                                </label>
+                                                                <select class="chzn-select campoReprogMed" id="cboMedicoNuevoReemplazaReprogMed" data-placeholder="Seleccione una opción"></select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-2">
+                                                            <button class="btn btn-brown mt-1" id="btnReprogramarPorServicio">REPROGRAMAR</button>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+                
+                @if (Convert.ToInt32(ViewBag.PermisoReprogMedXPac.Tables[0].Rows[0]["Permiso"]) > 0)
+                {
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card bg-green">
+                                <div class="card-header">Reprogramación por Paciente</div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="row">
+                                                <div class="col-xl-3">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtNroCuentaReprogMed">Nº Cuenta</label>
+                                                        <input type="text" class="form-control form-control-sm campoReprogMed" id="txtNroCuentaReprogMed" placeholder="" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtNroHistoriaReprogMed">Historia</label>
+                                                        <input type="text" class="form-control form-control-sm campoReprogMed" id="txtNroHistoriaReprogMed" placeholder="" autocomplete="off" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtFechaAtencionReprogMed">F. Atención</label>
+                                                        <input type="text" class="form-control form-control-sm campoReprogMed" id="txtFechaAtencionReprogMed" placeholder="" autocomplete="off" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-7">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtPacienteReprogMed">Paciente</label>
+                                                        <input type="text" class="form-control form-control-sm campoReprogMed" id="txtPacienteReprogMed" placeholder="" autocomplete="off" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-5">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtServicioReprogMed">Servicio</label>
+                                                        <input type="text" class="form-control form-control-sm campoReprogMed" id="txtServicioReprogMed" placeholder="" autocomplete="off" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-7">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtMedicoReprogMed">Médico</label>
+                                                        <input type="text" class="form-control form-control-sm campoReprogMed" id="txtMedicoReprogMed" placeholder="" autocomplete="off" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-5">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtPlanReprogMed">Plan</label>
+                                                        <input type="text" class="form-control form-control-sm campoReprogMed" id="txtPlanReprogMed" placeholder="" autocomplete="off" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6 pt-2">
+                                            <div class="border bg-transparent position-relative p-2">
+                                                <div class="position-absolute mx-1" style="margin-top: -15px;">
+                                                    <i class="fa-solid fa-calendar m-r-5 " style="color: #bab6b6;"></i>
+                                                    <span style="color:#018aef; font-weight: bolder; font-size: 15px;" class="form-control-label">Reprogramar a</span>
+                                                </div>
+                                                <div class="container-fluid px-1" style="padding-top:10px;">
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-sm-12">
+                                                            <div class="form-group m-0">
+                                                                <label for="txtFechaNuevaReprogMed">Fecha</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text"
+                                                                           autocomplete="off"
+                                                                           class="form-control form_val_popup_dp3 campoReprogMed"
+                                                                           placeholder="dd/mm/yyyy"
+                                                                           data-date-format="dd/mm/yyyy"
+                                                                           id="txtFechaNuevaReprogMed"
+                                                                           style="height:32px;">
+                                                                    <span class="input-group-addon" style="height:32px;">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8 col-sm-12">
+                                                            <div class="form-group m-0">
+                                                                <label for="cboMedicoReprogPaciente">Médico</label>
+                                                                <select class="chzn-select campoReprogMed form-control"
+                                                                        id="cboMedicoReprogPaciente"
+                                                                        data-placeholder="Seleccione una opción"
+                                                                        style="height:32px;">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-top:8px; align-items:flex-end;">
+                                                        <div class="col-md-8 col-sm-12">
+                                                            <div class="form-group m-0">
+                                                                <label for="cboServicioNuevoReprogMed">Servicio</label>
+                                                                <select class="chzn-select campoReprogMed form-control"
+                                                                        id="cboServicioNuevoReprogMed"
+                                                                        data-placeholder="Seleccione una opción"
+                                                                        style="height:32px;">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-12">
+                                                            <div class="form-group m-0">
+                                                                <label for="cboHoraNuevaReprogMed">Hora (Cupo libre)</label>
+                                                                <select class="chzn-select campoReprogMed form-control"
+                                                                        id="cboHoraNuevaReprogMed"
+                                                                        data-placeholder="Seleccione una opción"
+                                                                        style="height:32px;">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-12">
+                                                            <div class="form-group m-0">
+                                                                <label style="visibility:hidden;">Botón</label>
+                                                                <button class="btn btn-brown w-120"
+                                                                        id="btnReprogramarPorPaciente"
+                                                                        style="height:32px;">
+                                                                    REPROGRAMAR
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrarHerrReprogramacionMedica" class="btn btn-secondary">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

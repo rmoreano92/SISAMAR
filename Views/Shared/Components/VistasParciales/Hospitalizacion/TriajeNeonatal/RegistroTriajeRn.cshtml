@@ -1,0 +1,776 @@
+﻿<div class="row mb-1">
+    <div class="col-md-12 mb-1">
+        @if (ViewBag.PermisoRegistroFiliacionPorRegistroNacimiento > 0)
+        {
+            <div class="card bg-orange">
+                <div class="card-header bg-white">Datos de la Madre</div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-md-2">                            
+                            <div class="d-flex">
+                                <div class="form-group mb-0 pr-1">
+                                    <label for="txtNroNacimiento" class="form-control-label"><b>Nº Nacimiento</b></label>
+                                    <div class="input-group input-group-sm d-flex">
+                                        <input id="txtNroNacimiento" autocomplete="off" placeholder="" class="solo-numero form-control buscarNacimiento">
+                                        <div class="input-group-append" style="margin-left: -2px;">
+                                            <button class="btn btn-primary buscarNacimiento" type="button" id="btnBuscarNacimiento"><i class="fas fa-search"></i></button>
+                                            <button class="btn btn-secondary " type="button" id="btnCambiarNacimiento"><i class="fas fa-rotate-right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 26px;">
+                                    <button class="btn btn-teal btn-sm" type="button" id="btnListarRegistroNacimiento"><i class="fa fi fi-ss-baby"></i></button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-0">
+                                                <label for="txtNroCuentaAtencionMadre">Nº Cuenta</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtNroCuentaAtencionMadre" disabled autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-0">
+                                                <label for="txtNroHistoriaMadre">Nº Historia</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtNroHistoriaMadre" disabled autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group mb-0">
+                                                <label for="txtNombreMadre">Datos Personales</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtNombreMadre" disabled autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-0">
+                                                <label for="txtEdadMadre">Edad (años)</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-0">
+                                                <label for="txtTipoDocMadre">Tipo Documento</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtTipoDocMadre" disabled autocomplete="off">
+                                                @*<select id="cboTipoDocMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select> *@
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-0">
+                                                <label for="txtNroDocMadre">Nro Documento</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtNroDocMadre" disabled autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        @* <div class="col-md-3">
+                        <div class="form-group mb-0">
+                            <label for="txtEstadoCivilMadre">Estado Civil</label>
+                            <input type="text" class="form-control form-control-sm" id="txtEstadoCivilMadre" disabled autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group mb-0">
+                            <label for="txtGradoInstruccionMadre">Grado de Instrucción</label>
+                            <input type="text" class="form-control form-control-sm" id="txtGradoInstruccionMadre" disabled autocomplete="off">
+                        </div>
+                    </div> *@
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="card bg-orange">
+                <div class="card-header bg-white">Datos de la Madre</div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group mb-0">
+                                <label for="txtNroCuentaMadre" class="form-control-label"><b>Nº Cuenta</b></label>
+                                <div class="input-group input-group-sm d-flex">
+                                    <input id="txtNroCuentaMadre" autocomplete="off" placeholder="" class="solo-numero form-control buscarMadre">
+                                    <div class="input-group-append" style="margin-left: -2px;">
+                                        <button class="btn btn-primary buscarMadre" type="button" id="btnBuscarMadre"><i class="fas fa-search"></i></button>
+                                        <button class="btn btn-secondary " type="button" id="btnCambiarMadre"><i class="fas fa-rotate-right"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group mb-0">
+                                        <label for="txtNroHistoriaMadre">Historia Clinica</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtNroHistoriaMadre" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0">
+                                        <label for="txtNombreMadre">Datos Personales</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtNombreMadre" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group mb-0">
+                                        <label for="txtEdadMadre">Edad (años)</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group mb-0">
+                                        <label for="txtTipoDocMadre">Tipo Documento</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtTipoDocMadre" disabled autocomplete="off">
+                                        @*<select id="cboTipoDocMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select> *@
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group mb-0">
+                                        <label for="txtNroDocMadre">Nro Documento</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtNroDocMadre" disabled autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        @* <div class="col-md-3">
+                        <div class="form-group mb-0">
+                            <label for="txtEstadoCivilMadre">Estado Civil</label>
+                            <input type="text" class="form-control form-control-sm" id="txtEstadoCivilMadre" disabled autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group mb-0">
+                            <label for="txtGradoInstruccionMadre">Grado de Instrucción</label>
+                            <input type="text" class="form-control form-control-sm" id="txtGradoInstruccionMadre" disabled autocomplete="off">
+                        </div>
+                    </div> *@
+                    </div>
+                </div>
+            </div>
+        }
+        
+    </div>
+
+    <div class="col-md-12 mb-1">
+        <div class="card bg-green">
+            <div class="card-header bg-white">Datos del Neonato</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group mb-0">
+                            <label for="txtNroCuentaNeonato" class="form-control-label"><b>Nro. Cuenta</b></label>
+                            <input type="text" class="form-control form-control-sm" id="txtNroCuentaNeonato" disabled autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group mb-0">
+                                    <label for="txtNroHistoriaNeonato">Historia Clinica</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNroHistoriaNeonato" disabled autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group mb-0">
+                                    <label for="txtNombreNeonato">Datos Personales</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNombreNeonato" disabled autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group mb-0">
+                                    <label for="txtEdadAnioNeonato">Edad (A|M|D)</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" autocomplete="off" class="form-control" disabled id="txtEdadAnioNeonato">
+                                        <span class="input-group-addon">|</span>
+                                        <input type="text" autocomplete="off" class="form-control" disabled id="txtEdadMesNeonato">
+                                        <span class="input-group-addon">|</span>
+                                        <input type="text" autocomplete="off" class="form-control" disabled id="txtEdadDiaNeonato">
+                                    </div>                                    
+                                </div>
+                            </div>
+                            @*
+                            <div class="col-md-2">
+                                <div class="form-group mb-0">
+                                    <label for="txtTipoDocNeonato">Tipo Documento</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtTipoDocNeonato" disabled autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group mb-0">
+                                    <label for="txtNroDocMadre">Nro Documento</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNroDocMadre" disabled autocomplete="off">
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 col-xl-9">
+        <div class="card bg-yellow">
+            <div class="card-header bg-white">Datos de Nacimiento del Neonato</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="form-group mb-0">
+                                    <label for="txtFechaNacimiento" class="text-info">Fecha Nacimiento</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 field" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNacimiento" disabled>
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="form-group mb-0">
+                                    <label for="txtHoraNacimiento" class="text-info">Hora Nac. </label>
+                                    <input type="text" class="form-control form-control-sm field" id="txtHoraNacimiento" placeholder="__:__" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="cboTipoSexo" class="text-info">Sexo</label>
+                            <select id="cboTipoSexo" class="chzn-select campo-select field" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                        <div class="casilla mt-1">
+                            <h5>N° Gemelar</h5>
+                            <div class="form-group mb-0">
+                                <label for="cboTipoGestacion" class="text-info">Tipo de Gestación</label>
+                                <select id="cboTipoGestacion" class="chzn-select campo-select field" data-placeholder="Seleccione una opción"></select>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-0">
+                                        <label for="txtNroFetos" class="text-info">N° de Feto</label>
+                                        <input type="text" class="form-control form-control-sm solo-numero field" id="txtNroFetos" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-0">
+                                        <label for="cboNumeroGemelar" class="text-info">Gemelar</label>
+                                        <select id="cboNumeroGemelar" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="cboServicioIngreso" class="text-info">Servicio Ingreso</label>
+                            <select id="cboServicioIngreso" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                        <div class="form-group mb-0" hidden>
+                            <label for="cboDiagnosticoIngreso" class="text-info">Diagnóstico Ingreso</label>
+                            <select id="cboDiagnosticoIngreso" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="cboMedicoIngreso" class="text-info">Méd. Prof. Atiende Recien Nacido</label>
+                            <select id="cboMedicoIngreso" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="txtTipoParto" class="text-info">Tipo de Parto</label>
+                            <input type="text" class="form-control form-control-sm solo-numero field" id="txtTipoParto" autocomplete="off" disabled>
+                        </div>
+
+                        <div class="form-group mb-0" hidden>
+                            <label for="cboRiesgo">Riesgo del RN</label>
+                            <select id="cboRiesgo" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+                        @* <div class="row">
+                            <div class="col-xxl-5 col-md-12">
+                                <div class="form-group mb-0">
+                                    <label for="cboCondicion">Condición</label>
+                                    <select id="cboCondicion" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-xxl-7 col-md-12">
+                                <div class="form-group mb-0">
+                                    <label style="width: 100%;">Óbito</label>
+                                    <div class="switch-field">
+                                        <input type="radio" id="rdbObitoNo" name="rdbObito" class="rdbObito field" />
+                                    
+                                        <input type="radio" id="rdbObitoSiMenor" name="rdbObito" class="rdbObito field" />
+                                        <label for="rdbObitoSiMenor" class="pl-1 pr-1">&#60 500 GR</label>
+                                        <input type="radio" id="rdbObitoSiMayor" name="rdbObito" class="rdbObito field" />
+                                        <label for="rdbObitoSiMayor" class="pl-1 pr-1">&#62; 500 GR</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>         *@    
+                        
+                        <div class="casilla mt-1 pt-0">
+                            <div class="row">
+                                <div class="col-xxl-8 col-md-12">
+                                    <div class="form-group mb-0">
+                                        <label for="cboCondicion">Condición del Neonato</label>
+                                        <select id="cboCondicion" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-12 col-md-12" id="ObitoPeso">
+                                    <div class="form-group mb-0">
+                                        <label style="width: 100%;">Óbito</label>
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbObitoNo" name="rdbObito" class="rdbObito field" />
+                                            @*<label for="rdbObitoNo" class="pl-2 pr-2">No</label>*@
+                                            <input type="radio" id="rdbObitoSiMenor" name="rdbObito" class="rdbObito field" />
+                                            <label for="rdbObitoSiMenor" class="pl-1 pr-1">&#60 500 GR</label>
+                                            <input type="radio" id="rdbObitoSiMayor" name="rdbObito" class="rdbObito field" />
+                                            <label for="rdbObitoSiMayor" class="pl-1 pr-1">&#62; 500 GR</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        @* <div class="row">
+                            <div class="col-xl-6">
+
+                            </div>
+                            <div class="col-xl-6">
+
+                            </div>
+                        </div> *@
+
+                        @* <div class="row">
+                            <div class="col-xl-6">
+
+                            </div>
+                            <div class="col-xl-6">
+
+                            </div>
+                        </div> *@
+
+                        <div class="row">
+                            <div class="col-xl-12 col-xxl-6">
+                                <div class="form-group mb-0">
+                                    <label for="txtPeso" class="d-block text-truncate">Peso al Nacer</label>
+                                    <div class="input-group input-group-sm">
+                                        <input id="txtPeso" type="text" autocomplete="off" class="form-control solo-decimal field">
+                                        <span class="input-group-addon">gr.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-xxl-6">
+                                <div class="form-group mb-0">
+                                    <label for="txtTalla" class="d-block text-truncate">Talla al Nacer</label>
+                                    <div class="input-group input-group-sm">
+                                        <input id="txtTalla" type="text" autocomplete="off" class="form-control solo-decimal field">
+                                        <span class="input-group-addon">cm.</span>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12 col-xxl-6">
+                                <div class="form-group mb-0">
+                                    <label for="txtPerCefalico" class="d-block text-truncate">Périmetro Cefálico</label>
+                                    <input type="text" class="form-control form-control-sm solo-decimal field" id="txtPerCefalico" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-xxl-6">
+                                <div class="form-group mb-0">
+                                    <label for="txtPerToracico" class="d-block text-truncate">Périmetro Toráxico</label>
+                                    <input type="text" class="form-control form-control-sm solo-decimal field" id="txtPerToracico" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12 col-xxl-6">
+                                <div class="form-group mb-0">
+                                    <label for="txtEdadGestacional" class="d-block text-truncate">Edad Gest. al Nacer</label>
+                                    <div class="input-group input-group-sm">
+                                        <input id="txtEdadGestacional" type="text" autocomplete="off" class="form-control solo-numero field" minlength="2" maxlength="2">
+                                        <span class="input-group-addon">sem.</span>
+                                    </div>
+                                </div>
+                            </div>                           
+                        </div>      
+                        
+                        <div class="casilla mt-1 pt-0">
+                            <div class="row">
+                                <div class="col-xl-12 col-xxl-6">
+                                    <div class="form-group mb-0">
+                                        @* <label class="d-block text-truncate">Clamp Tardío</label> *@
+                                        <label class="d-block text-truncate">Pinzamiento Tardío de Cordon</label>
+                                        <div class="switch-field" style="padding-right: 1px;">
+                                            <input type="radio" id="rdbTardioSi" name="rdbTardio" class="rdbTardio field" />
+                                            <label for="rdbTardioSi" class="w-100">Si</label>
+                                            <input type="radio" id="rdbTardioNO" name="rdbTardio" class="rdbTardio field" />
+                                            <label for="rdbTardioNO" class="w-100">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-xxl-12">
+                                    <div class="form-group mb-0">
+                                        <label for="cboTiempoClampaje" class="d-block text-truncate">Tiempo Pinzamiento</label>
+                                        <select id="cboTiempoClampaje" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-group mb-0" id="frmContactoPielaPiel_V1">
+                            <label for="cboContactoPiel" class="d-block text-truncate">Contacto Piel a Piel</label>
+                            <select id="cboContactoPiel" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                        </div>
+
+                        <div class="casilla mt-1 pt-0" id="frmContactoPielaPiel_V2">
+                            <div class="row">
+                                <div class="col-xl-12 col-xxl-12">
+                                    <div class="form-group mb-0">
+                                        <label class="d-block text-truncate">Contacto Piel a Piel</label>
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbContactoPielSi" name="rdbContactoPiel" class="rdbContactoPiel field" />
+                                            <label for="rdbContactoPielSi" class="px-2">Efectivo</label>
+                                            <input type="radio" id="rdbContactoPielNo" name="rdbContactoPiel" class="rdbContactoPiel field" />
+                                            <label for="rdbContactoPielNo" class="px-2">No Efectivo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-xxl-12" id="optTiempoContactoPielaPiel">
+                                    <div class="form-group mb-0">
+                                        <label for="cboTiempoContactoPiel">Tiempo Contacto Piel a Piel</label>
+                                        <select id="cboTiempoContactoPiel" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-xxl-12" id="desContactoPielaPiel">
+                                    <div class="form-group mb-0">
+                                        <label for="txtDescripcionContactoPielaPiel" class="d-block text-truncate">Descripción</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtDescripcionContactoPielaPiel" type="text" autocomplete="off" class="form-control field">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-12 col-xxl-12" hidden>
+                                    <div class="form-group mb-0">
+                                        <label class="d-block text-truncate">Efectividad Contacto Piel a Piel</label>
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbEfectividadContactoPielSi" name="rdbEfectividadContactoPiel" class="rdbEfectividadContactoPiel field" />
+                                            <label for="rdbEfectividadContactoPielSi" class="px-2">Efectivo</label>
+                                            <input type="radio" id="rdbEfectividadContactoPielNo" name="rdbEfectividadContactoPiel" class="rdbEfectividadContactoPiel field" />
+                                            <label for="rdbEfectividadContactoPielNo" class="px-2">No Efectivo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="casilla mt-1 pt-0" id="frmContactoPielaPiel_V2_Parto_Vaginal" hidden>
+                            <div class="row">
+                                <div class="col-xl-12 col-xxl-12">
+                                    <div class="form-group mb-0">
+                                        <label class="d-block text-truncate">Contacto Piel a Piel Parto Vaginal</label>
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbContactoPielPartoVaginalSi" name="rdbContactoPielPartoVaginal" class="rdbContactoPielPartoVaginal field" />
+                                            <label for="rdbContactoPielPartoVaginalSi" class="px-2">Si</label>
+                                            <input type="radio" id="rdbContactoPielPartoVaginalNo" name="rdbContactoPielPartoVaginal" class="rdbContactoPielPartoVaginal field" />
+                                            <label for="rdbContactoPielPartoVaginalNo" class="px-2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-xxl-12" id="optTiempoContactoPielaPielPartoVaginal">
+                                    <div class="form-group mb-0">
+                                        <label for="cboTiempoContactoPielPartoVaginal">Tiempo Contacto Parto Vaginal</label>
+                                        <select id="cboTiempoContactoPielPartoVaginal" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-xxl-12">
+                                    <div class="form-group mb-0">
+                                        <label class="d-block text-truncate">Efectividad Contacto Parto Vaginal</label>
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbEfectividadContactoPielPartoVaginalSi" name="rdbEfectividadContactoPielPartoVaginal" class="rdbEfectividadContactoPielPartoVaginal field" />
+                                            <label for="rdbEfectividadContactoPielPartoVaginalSi" class="px-2">Efectivo</label>
+                                            <input type="radio" id="rdbEfectividadContactoPielPartoVaginalNo" name="rdbEfectividadContactoPielPartoVaginal" class="rdbEfectividadContactoPielPartoVaginal field" />
+                                            <label for="rdbEfectividadContactoPielPartoVaginalNo" class="px-2">No Efectivo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="casilla mt-1 pt-0" id="frmContactoPielaPiel_V2_Cesarea" hidden>
+                            <div class="row">
+                                <div class="col-xl-12 col-xxl-12">
+                                    <div class="form-group mb-0">
+                                        <label class="d-block text-truncate">Contacto Piel a Piel Cesárea</label>
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbContactoPielCesareaSi" name="rdbContactoPielCesarea" class="rdbContactoPielCesarea field" />
+                                            <label for="rdbContactoPielCesareaSi" class="px-2">Si</label>
+                                            <input type="radio" id="rdbContactoPielCesareaNo" name="rdbContactoPielCesarea" class="rdbContactoPielCesarea field" />
+                                            <label for="rdbContactoPielCesareaNo" class="px-2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-xxl-12" id="optTiempoContactoPielaPielCesarea">
+                                    <div class="form-group mb-0">
+                                        <label for="cboTiempoContactoPielCesarea">Tiempo Contacto Piel a Piel Cesárea</label>
+                                        <select id="cboTiempoContactoPielCesarea" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-xxl-12">
+                                    <div class="form-group mb-0">
+                                        <label class="d-block text-truncate">Efectividad Contacto Piel a Piel Cesárea</label>
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbEfectividadContactoPielCesareaSi" name="rdbEfectividadContactoPielCesarea" class="rdbEfectividadContactoPielCesarea field" />
+                                            <label for="rdbEfectividadContactoPielCesareaSi" class="px-2">Efectivo</label>
+                                            <input type="radio" id="rdbEfectividadContactoPielCesareaNo" name="rdbEfectividadContactoPielCesarea" class="rdbEfectividadContactoPielCesarea field" />
+                                            <label for="rdbEfectividadContactoPielCesareaNo" class="px-2">No Efectivo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="casilla mt-1 pt-0">
+                            <div class="row">
+                                <div class="col-xl-12 col-xxl-6">
+                                    <div class="form-group mb-0">
+                                        <label class="d-block text-truncate">Lact. 1era Hora</label>
+                                        <div class="switch-field" style="padding-right: 1px;">
+                                            <input type="radio" id="rdbLacthoraSi" name="rdbLacthora" class="rdbLacthora field" />
+                                            <label for="rdbLacthoraSi" class="w-100">Si</label>
+                                            <input type="radio" id="rdbLacthoraNO" name="rdbLacthora" class="rdbLacthora field" />
+                                            <label for="rdbLacthoraNO" class="w-100">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-xxl-6">
+                                    <div class="form-group mb-0">
+                                        <label for="txtTiempoLactancia" class="d-block text-truncate">Tiempo Lactancia</label>
+                                        <input type="text" class="form-control form-control-sm solo-decimal field" id="txtTiempoLactancia" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr />
+
+                        <div class="form-group mb-0">
+                            <label for="cboServicioNacimiento">Servicio Nacimiento</label>
+                            <select id="cboServicioNacimiento" class="chzn-select-deselect field" data-placeholder="Seleccione una opción" disabled></select>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="cboProcedenciaRn">Otra Procedencia</label>
+                            <select id="cboProcedenciaRn" class="chzn-select field" data-placeholder="Seleccione una opción" disabled></select>
+                        </div>
+
+                        
+
+                        @*  <div class="row">
+                            <div class="col-sm-7">
+                                <div class="form-group mb-0">
+                                    <label for="txtFechaClampaje">Fecha Clampaje</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 field" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaClampaje">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="form-group mb-0">
+                                    <label for="txtHoraClampaje">Hora Clamp. </label>
+                                    <input type="text" class="form-control form-control-sm field" id="txtHoraClampaje" placeholder="__:__" autocomplete="off">
+                                </div>
+                            </div>
+                        </div> *@
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-xl-3">
+        <div class="card bg-blue" style="padding-bottom: 0px;">
+            <div class="card-header bg-white">Respiración y Llanto al Nacer</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-0">
+                            <label style="width: 100%;">Inmediato</label>
+                            <div class="switch-field">
+                                <input type="radio" id="rdbInmediatoSi" name="rdbInmediato" class="rdbInmediato field" />
+                                <label for="rdbInmediatoSi" class="pl-2 pr-2">Si</label>
+                                <input type="radio" id="rdbInmediatoNO" name="rdbInmediato" class="rdbInmediato field" />
+                                <label for="rdbInmediatoNO" class="pl-2 pr-2">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="casilla mt-1 pt-0">
+                            <div class="row">
+                                <div class="col-xl-12 col-xxl-6">
+                                    <div class="form-group mb-0">
+                                        <label style="width: 100%;">Reanimación</label>
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbReanimacionSi" name="rdbReanimacion" class="rdbReanimacion field" />
+                                            <label for="rdbReanimacionSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbReanimacionNO" name="rdbReanimacion" class="rdbReanimacion field" />
+                                            <label for="rdbReanimacionNO" class="pl-2 pr-2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-xxl-6">
+                                    <div class="form-group mb-0">
+                                        <label for="cboTipoReanimacionRn">Tipo Reanimación</label>
+                                        <select id="cboTipoReanimacionRn" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group mb-0">
+                            <label for="txtMinuto">APGAR 1 min</label>
+                            <input type="text" class="form-control form-control-sm solo-numero field" id="txtMinuto" minlength="1" maxlength="2" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mb-0">
+                            <label for="txt5Minuto">APGAR 5 min</label>
+                            <input type="text" class="form-control form-control-sm solo-numero field" id="txt5Minuto" minlength="1" maxlength="2" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mb-0">
+                            <label for="txt10Minuto">APGAR 10 min</label>
+                            <input type="text" class="form-control form-control-sm solo-numero field" id="txt10Minuto" minlength="1" maxlength="2" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mb-0">
+                            <label for="txt15Minuto">APGAR 15 min</label>
+                            <input type="text" class="form-control form-control-sm solo-numero field" id="txt15Minuto" minlength="1" maxlength="2" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mb-0">
+                            <label for="txt20Minuto">APGAR 20 min</label>
+                            <input type="text" class="form-control form-control-sm solo-numero field" id="txt20Minuto" minlength="1" maxlength="2" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="casilla mt-1 pt-0">
+                            <div class="row">
+                                <div class="col-xxl-5">
+                                    <div class="form-group mb-0">
+                                        <label class="d-block text-truncate">Patología Neonatal</label>
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbPatNeoSi" name="rdbPatNeo" class="rdbPatNeo field" />
+                                            <label for="rdbPatNeoSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbPatNeoNo" name="rdbPatNeo" class="rdbPatNeo field" />
+                                            <label for="rdbPatNeoNo" class="pl-2 pr-2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-7">
+                                    <div class="form-group mb-0">
+                                        <label for="txtEspecificar" class="d-block text-truncate">Especificar</label>
+                                        <input type="text" class="form-control form-control-sm field" id="txtEspecificar" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                               
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="casilla mt-1 pt-0">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group mb-0">
+                                        <label class="d-block text-truncate">Transporte</label>
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbTransporteSi" name="rdbTransporte" class="rdbTransporte field" />
+                                            <label for="rdbTransporteSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbTransporteNO" name="rdbTransporte" class="rdbTransporte field" />
+                                            <label for="rdbTransporteNO" class="pl-2 pr-2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-7">
+                                    <div class="form-group mb-0">
+                                        <label for="cboTipoTransporteRn" class="d-block text-truncate">Tipo Transporte</label>
+                                        <select id="cboTipoTransporteRn" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row p-1 border" style="background: #ededed;">
+    <div class="col-md-6">
+        <button type="button" class="btn btn-unique mr-2" id="GenerarBrazalete" style="float: left;"><i class="fa-light fa-rectangle-barcode"></i> <br> Brazalete</button>
+        <span id="notaRegistroTriaje" class="chip-custom chip-custom-primary mb-1">El registro de triaje ya se ha usado.</span>
+    </div>
+    <div class="col-md-6">
+        <div>
+            <button id="btnCancelarTriajeRn" type="button" class="btn btn-secondary btn-lg float-sm-right pl-3 pr-3" style="max-width: 140px">Cancelar</button>
+            <button id="btnGuardarTriajeRn" type="button" class="btn btn-primary btn-lg float-sm-right pl-3 pr-3 mr-2" style="max-width: 140px">Guardar</button>
+        </div>
+    </div>
+</div>

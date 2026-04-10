@@ -1,0 +1,298 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Registro de Ventas</title>
+    <style>
+        body {
+            font-size: 10px;
+            color: black !important;
+            font-family: helvetica;
+            letter-spacing: 0.4px;
+            font-weight: bolder;
+        }
+
+        td, th {
+            padding: 0.25rem !important;
+        }
+
+        .font-sm {
+            font-size: 8px;
+        }
+
+        .font-md {
+            font-size: 11px;
+        }
+
+        .font-lg {
+            font-size: 12px;
+        }
+
+        .table {
+            border-color: #607d8b !important;
+        }
+
+        /*=====================MI CSS=======================*/
+        .d-flex {
+            display: flex !important;
+        }
+
+        .position-absolute {
+            position: absolute;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .border {
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .border-secondary {
+            border-color: #6c757d !important;
+        }
+
+        .w-100 {
+            width: 100% !important;
+        }
+
+        .my-2 {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .my-1 {
+            margin-top: 0.25rem !important;
+            margin-bottom: 0.25rem !important;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem !important;
+        }
+
+        .mb-0 {
+            margin-bottom: 0 !important;
+        }
+
+        .mb-1 {
+            margin-bottom: 0.25rem !important;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem !important;
+        }
+
+        .me-2 {
+            margin-right: 0.5rem !important;
+        }
+
+        .ms-2 {
+            margin-left: 0.5rem !important;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem !important;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem !important;
+        }
+
+        .mt-4 {
+            margin-top: 1rem !important;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem !important;
+        }
+
+        .p-1 {
+            padding: 0.25rem !important;
+        }
+
+        .m-1 {
+            margin: 0.25rem !important;
+        }
+
+        .m-2 {
+            margin: 0.5rem !important;
+        }
+
+        .m-0 {
+            margin: 0 !important;
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .table {
+            caption-side: bottom;
+            border-collapse: collapse;
+        }
+
+        .table-bordered {
+            border: solid 1px #4c4c4c;
+        }
+
+            .table-bordered td, .table-bordered th {
+                border: solid 1px #4c4c4c;
+            }
+
+        .table td {
+            font-weight: lighter;
+        }
+        /*=================================================*/
+
+
+        .qr-code {
+            width: 90px;
+            text-align: center;
+            margin: auto;
+        }
+
+    </style>
+</head>
+
+
+<body style="background: white; width: 780px; height: 1050px; position: relative; /*border: 1px solid red; */" class="">
+    @*<body style="background: white">*@
+    <img src="~/images/Logo.png" style="width: 80px; position:absolute; top: 0px;" />
+    <table class="table" style="width: 200px; position:absolute; right: 0; top: 0px; border: none;">
+        <tbody>
+            <tr style="">
+                <td class="border-secondary text-right">Usuario: @ViewBag.Usuario</td>
+            </tr>
+            <tr style="">
+                <td class="border-secondary text-right">F. Impresión: @ViewBag.FechaImpresion</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row text-center mx-auto mb-3" style="width: 95%;">
+        <div class="col-12"><span class="fw-bold" style="font-size: 11px;">@ViewBag.NombreInstitucion</span></div>
+        <div class="col-12"><span style="font-size: 9px;">@ViewBag.DireccionInstitucion</span></div>
+        <div class="col-12"><span style="font-size: 9px;">Telefono: @ViewBag.TelefonoInstitucion</span></div>
+    </div>
+
+    <h2 class="text-center mt-0 mb-4" id="cajaTitulo">REGISTRO DE VENTAS POR CATALOGO</h2>
+
+    <div class="d-flex mb-1">
+        <table class="table table-bordered border-secondary me-2" style="width: 270px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:40px;">Fecha</th>
+                    <td class="border-secondary text-left">@ViewBag.Fecha</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-secondary me-2" style="width: 280px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:120px;">Comprobante de Pago</th>
+                    <td class="border-secondary text-left">@ViewBag.TipoComprobante</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-secondary me-2" style="width: 170px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:20px;">Tipo</th>
+                    <td class="border-secondary text-left">@ViewBag.TipoConsumo</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <table class="table table-bordered border-secondary w-100 mb-1 mt-2">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">#</th>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">Nombre</th>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">Cantidad</th>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">Sub Total</th>
+            </tr>
+            @{
+                int index = 1;
+            }
+            @foreach (System.Data.DataRow row in ViewBag.RegistrosRpt.Rows)
+            {
+                <tr>
+                    <td class="border-secondary align-top" style="font-size: 10px;">@index</td>
+                    <td class="border-secondary align-top" style="font-size: 10px;">@row["Nombre"]</td>
+                    <td class="border-secondary align-top" style="font-size: 10px;">@row["Cantidad"]</td>
+                    <td class="border-secondary align-top" style="font-size: 10px;">@row["Subtotal"]</td>
+                </tr>
+                index++;
+            }
+            @foreach (System.Data.DataRow row in ViewBag.TotalRpt.Rows)
+            {
+                <tr>
+
+                    <td class="border-secondary align-top" style="font-size: 11px;" colspan="2"></td>
+                    <td class="border-secondary align-top" style="font-size: 11px;">@row["Cantidad"]</td>
+                    <td class="border-secondary align-top" style="font-size: 11px;">@row["Total"]</td>
+                </tr>
+                index++;
+            }
+
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary w-100 mb-1 mt-2">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">Redondeo</th>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">Total Bruto</th>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">Devoluciones</th>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">Adelantos</th>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">Exoneraciones</th>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">Anulaciones</th>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">IGV</th>
+                <th class="border-secondary table-active text-left" style="font-size: 11px;">TOTAL</th>
+            </tr>
+
+            @foreach (System.Data.DataRow row in ViewBag.TotalDetalleRpt.Rows)
+            {
+                <tr>
+                    <td class="border-secondary align-top" style="font-size: 11px;">@row["TotalRedondeo"]</td>
+                    <td class="border-secondary align-top" style="font-size: 11px;">@row["SubTotal"]</td>
+                    <td class="border-secondary align-top" style="font-size: 11px;">@row["Devolucion"]</td>
+                    <td class="border-secondary align-top" style="font-size: 11px;">@row["Adelantos"]</td>
+                    <td class="border-secondary align-top" style="font-size: 11px;">@row["Exoneraciones"]</td>
+                    <td class="border-secondary align-top" style="font-size: 11px;">@row["Anulado"]</td>
+                    <td class="border-secondary align-top" style="font-size: 11px;">@row["IGV"]</td>
+                    <td class="border-secondary align-top" style="font-size: 11px;">@row["Total"]</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</body>
+
+
+
+</html>

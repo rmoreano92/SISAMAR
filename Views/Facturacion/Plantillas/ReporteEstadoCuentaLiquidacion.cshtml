@@ -1,0 +1,659 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Registro de Ventas</title>
+    <style>
+        body {
+            font-size: 10px;
+            color: black !important;
+            font-family: helvetica;
+            letter-spacing: 0.4px;
+            font-weight: bolder;
+        }
+
+        td, th {
+            padding: 0.25rem !important;
+        }
+
+        .font-sm {
+            font-size: 8px;
+        }
+
+        .font-md {
+            font-size: 11px;
+        }
+
+        .font-lg {
+            font-size: 12px;
+        }
+
+        .table {
+            border-color: #607d8b !important;
+        }
+
+        /*=====================MI CSS=======================*/
+        .d-flex {
+            display: flex !important;
+        }
+
+        .position-absolute {
+            position: absolute;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .border {
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .border-secondary {
+            border-color: #6c757d !important;
+        }
+
+        .w-100 {
+            width: 100% !important;
+        }
+
+        .h-100 {
+            width: 100% !important;
+        }
+
+        .my-2 {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .my-1 {
+            margin-top: 0.25rem !important;
+            margin-bottom: 0.25rem !important;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem !important;
+        }
+
+        .mb-0 {
+            margin-bottom: 0 !important;
+        }
+
+        .mb-1 {
+            margin-bottom: 0.25rem !important;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem !important;
+        }
+
+        .me-2 {
+            margin-right: 0.5rem !important;
+        }
+
+        .ms-2 {
+            margin-left: 0.5rem !important;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem !important;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem !important;
+        }
+
+        .mt-4 {
+            margin-top: 1rem !important;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem !important;
+        }
+
+        .m-1 {
+            margin: 0.25rem !important;
+        }
+
+        .m-2 {
+            margin: 0.5rem !important;
+        }
+
+        .m-0 {
+            margin: 0 !important;
+        }
+
+        .p-1 {
+            padding: 0.25rem !important;
+        }
+
+        .py-2 {
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+
+        .py-1 {
+            padding-top: 0.25rem !important;
+            padding-bottom: 0.25rem !important;
+        }
+
+        .pt-2 {
+            padding-top: 0.5rem !important;
+        }
+
+        .pb-0 {
+            padding-bottom: 0 !important;
+        }
+
+        .pb-1 {
+            padding-bottom: 0.25rem !important;
+        }
+
+        .pb-2 {
+            padding-bottom: 0.5rem !important;
+        }
+
+        .pe-2 {
+            padding-right: 0.5rem !important;
+        }
+
+        .ps-2 {
+            padding-left: 0.5rem !important;
+        }
+
+        .pt-3 {
+            padding-top: 0.75rem !important;
+        }
+
+        .pb-3 {
+            padding-bottom: 0.75rem !important;
+        }
+
+        .pt-4 {
+            padding-top: 1rem !important;
+        }
+
+        .pb-4 {
+            padding-bottom: 1rem !important;
+        }
+
+        .px-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .table {
+            caption-side: bottom;
+            border-collapse: collapse;
+        }
+
+
+            .table-bordered td, .table-bordered th {
+                border: solid 1px #4c4c4c;
+            }
+
+        .table td {
+            font-weight: lighter;
+        }
+        /*=================================================*/
+
+
+        .qr-code {
+            width: 90px;
+            text-align: center;
+            margin: auto;
+        }
+
+    </style>
+</head>
+
+
+<body style="background: white; width: 1500px; height: 1050px; /*position: relative; border: 1px solid red;*/" class="">
+
+    @* <img src="~/images/Logo.png" style="width: 80px; position:absolute; top: 0px;" />
+    <table class="table" style="width: 200px; position:absolute; right: 0; top: 0px; border: none;">
+        <tbody>
+            <tr style="">
+                <td class="border-secondary text-right">Usuario: @ViewBag.Usuario</td>
+            </tr>
+            <tr style="">
+                <td class="border-secondary text-right">F. Impresión: @ViewBag.FechaImpresion</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row text-center mx-auto mb-3" style="width: 100%;">
+        <div class="col-12"><span class="fw-bold" style="font-size: 11px;">@ViewBag.NombreInstitucion</span></div>
+        <div class="col-12"><span style="font-size: 9px;">@ViewBag.DireccionInstitucion</span></div>
+        <div class="col-12"><span style="font-size: 9px;">Telefono: @ViewBag.TelefonoInstitucion</span></div>
+    </div>
+
+    <div class="d-flex mb-1">
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">PACIENTE</th>
+                    <td class="border-secondary text-left">@ViewBag.RegistroRptCabecera["Paciente"]</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">N° HISTORIA CLÍNICA</th>
+                    <td class="border-secondary text-left">@ViewBag.RegistroRptCabecera["NroHistoriaClinica"] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cuenta: @ViewBag.RegistroRptCabecera["IdCuentaAtencion"]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex mb-1">
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">CIA ASEGURADORA</th>
+                    <td class="border-secondary text-left"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">PLACA N°</th>
+                    <td class="border-secondary text-left"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex mb-1">
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">CONTRATANTE</th>
+                    <td class="border-secondary text-left"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">POLIZA N°</th>
+                    <td class="border-secondary text-left"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex mb-1">
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">DIAGNÓSTICOS</th>
+                    <td class="border-secondary text-left"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">FECHA DE SINIESTRO</th>
+                    <td class="border-secondary text-left"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex mb-1">
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;"></th>
+                    <td class="border-secondary text-left"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">FECHA DE INGRESO</th>
+                    <td class="border-secondary text-left">@ViewBag.RegistroRptCabecera["FechaIngreso"]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex mb-1">
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;"></th>
+                    <td class="border-secondary text-left"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">FECHA DE ALTA</th>
+                    <td class="border-secondary text-left">@ViewBag.RegistroRptCabecera["FechaEgreso"]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-0 mb-4">
+        <h2 class="mb-0">PERIODO LIQUIDADO</h2>
+    </div>
+
+    <div class="d-flex mb-1">
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">EMERGENCIA</th>
+                    <td class="border-secondary text-left">@(ViewBag.RegistroRptCabecera["IdTipoServicio"]?.ToString() == "2" ? ViewBag.RegistroRptCabecera["FechaIngreso"] : "")</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">HOSPITALIZACIÓN (1)</th>
+                    <td class="border-secondary text-left">@(ViewBag.RegistroRptCabecera["IdTipoServicio"]?.ToString() == "3" ? ViewBag.RegistroRptCabecera["FechaIngreso"] : "")</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex mb-1">
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">CONSULTA EXTERNA</th>
+                    <td class="border-secondary text-left">
+                        @(ViewBag.RegistroRptCabecera["IdTipoServicio"]?.ToString() == "1" ? ViewBag.RegistroRptCabecera["FechaIngreso"] : "")
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:150px;">HOSPITALIZACIÓN (2)</th>
+                    <td class="border-secondary text-left"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div> *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @{
+        // Variables para subtotales
+        decimal subTotalGeneral = 0;
+        decimal importeExoneraGeneral = 0;
+        decimal totalSisGeneral = 0;
+        decimal totalSoatGeneral = 0;
+        decimal totalConvenioGeneral = 0;
+        decimal debeGeneral = 0;
+        decimal pagoGeneral = 0;
+        decimal saldoGeneral = 0;
+
+        decimal farmaciaGeneral = 0;
+        decimal servicioGeneral = 0;
+        decimal pagosCuenta = 0;
+    }
+
+    <table class="table table-bordered border-secondary w-100  mt-2">
+        <tbody>
+            <tr>
+                @* <th class="border-secondary table-active text-left" style="font-size: 8px;">#</th> *@
+                <th class="border-secondary table-active text-center" width="10%" style="font-size: 8px;">PTO. CARGA</th>
+                <th class="border-secondary table-active text-center" width="30%" style="font-size: 8px;">DESCRIPCION</th>
+                <th class="border-secondary table-active text-center" width="2%" style="font-size: 8px;">CANTIDAD</th>
+                <th class="border-secondary table-active text-center" width="2%" style="font-size: 8px;">TARIFA</th>
+                <th class="border-secondary table-active text-center" width="2%" style="font-size: 8px;">IMP. EXONERADO</th>
+                <th class="border-secondary table-active text-center" width="2%" style="font-size: 8px;">TOTAL</th>
+                <th class="border-secondary table-active text-center" width="2%" style="font-size: 8px;">N° ORDEN</th>
+            </tr>
+            @{
+                int index = 1;
+                bool mostrarPuntoCarga = true;
+
+                // Variables para subtotales
+                decimal subTotal = 0;
+                decimal importeExonera = 0;
+                decimal totalSis = 0;
+                decimal totalSoat = 0;
+                decimal totalConvenio = 0;
+                decimal debe = 0;
+                decimal pago = 0;
+                decimal saldo = 0;
+            }
+            @foreach (System.Data.DataRow row in ViewBag.RegistroRptFarmacia.Rows)
+            {
+                <tr>
+                    <td class="border-secondary align-top" style="font-size: 8px; border: none;">@(mostrarPuntoCarga || index == 1 ? row["DesPuntoCarga"].ToString() : "")</td>
+                    <td class="border-secondary align-top" style="font-size: 8px;">@row["Producto"]</td>
+                    <td class="border-secondary align-top text-center" style="font-size: 8px;">@(totalSoat > 0 ? row["Cantidad"] : 0)</td>
+                    <td class="border-secondary align-top text-center" style="font-size: 8px;">@(totalSoat > 0 ? row["PrecioUnitario"] : 0)</td>
+                    <td class="border-secondary align-top text-center" style="font-size: 8px;">@row["ImporteExonera"]</td>
+                    <td class="border-secondary align-top text-center" style="font-size: 8px;"></td>
+                    <td class="border-secondary align-top text-center" style="font-size: 8px;">@row["IdOrden"]</td>
+                </tr>
+
+                subTotal += Convert.ToDecimal(row["SubTotal"]);
+                importeExonera += Convert.ToDecimal(row["ImporteExonera"]);
+                totalSis += Convert.ToDecimal(row["TotalFinanciadoSis"]);
+                totalSoat += Convert.ToDecimal(row["TotalFinanciadoSoat"]);
+                totalConvenio += Convert.ToDecimal(row["TotalConvenio"]);
+                debe += Convert.ToDecimal(row["Debe"]);
+                pago += Convert.ToDecimal(row["Pago"]);
+                saldo += Convert.ToDecimal(row["Saldo"]);
+
+                subTotalGeneral += Convert.ToDecimal(row["SubTotal"]);
+                importeExoneraGeneral += Convert.ToDecimal(row["ImporteExonera"]);
+                totalSisGeneral += Convert.ToDecimal(row["TotalFinanciadoSis"]);
+                totalSoatGeneral += Convert.ToDecimal(row["TotalFinanciadoSoat"]);
+                totalConvenioGeneral += Convert.ToDecimal(row["TotalConvenio"]);
+                debeGeneral += Convert.ToDecimal(row["Debe"]);
+                pagoGeneral += Convert.ToDecimal(row["Pago"]);
+                saldoGeneral += Convert.ToDecimal(row["Saldo"]);
+                farmaciaGeneral += Convert.ToDecimal(row["Saldo"]);
+
+                index++;
+            }
+
+            <tr style="font-weight: bold;">
+                <td colspan="5" class="text-end" style="font-size: 8px; border: none;"></td>
+                <td class="text-center" style="font-size: 8px; border: none;">@importeExonera.ToString("N2")</td>
+                @* <td class="text-center" style="font-size: 8px;">@importeExonera.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalSis.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalSoat.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalConvenio.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@debe.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@pago.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@saldo.ToString("N2")</td>*@
+                <td style="border: none;"></td> 
+            </tr>
+
+            @* <tr><td colspan="17" style="height: 5px; border-color: #5495ff; border-width: medium;"></td></tr> *@
+
+            @{
+
+                var tablaServicios = ViewBag.RegistroRptServicios.Rows;
+                string puntoCargaActual = tablaServicios[0]["DesPuntoCarga"].ToString();
+                string puntoCargaAnterior = "";
+
+                index = 1;
+                mostrarPuntoCarga = true;
+
+                // Variables para subtotales
+                subTotal = 0;
+                importeExonera = 0;
+                totalSis = 0;
+                totalSoat = 0;
+                totalConvenio = 0;
+                debe = 0;
+                pago = 0;
+                saldo = 0;
+            }
+
+            @foreach (System.Data.DataRow row in tablaServicios)
+            {
+                puntoCargaAnterior = row["DesPuntoCarga"].ToString();
+
+                // Si cambia el punto de carga (y no es la primera fila), mostramos el subtotal acumulado
+                if (puntoCargaAnterior != puntoCargaActual && index > 1)
+                {
+                    <tr style="font-weight: bold;">
+                        <td colspan="5" class="text-end" style="font-size: 8px; border: none;"></td>
+                        <td class="text-center" style="font-size: 8px; border: none;">@importeExonera.ToString("N2")</td>
+                        @* <td class="text-center" style="font-size: 8px;">@importeExonera.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalSis.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalSoat.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalConvenio.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@debe.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@pago.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@saldo.ToString("N2")</td>*@
+                        <td style="border: none;"></td>
+                    </tr>
+
+                    // Reiniciar acumuladores
+                    subTotal = 0;
+                    importeExonera = 0;
+                    totalSis = 0;
+                    totalSoat = 0;
+                    totalConvenio = 0;
+                    debe = 0;
+                    pago = 0;
+                    saldo = 0;
+
+                    puntoCargaActual = puntoCargaAnterior;
+                    mostrarPuntoCarga = true;
+                }
+                else
+                {
+                    mostrarPuntoCarga = false;
+                }
+
+                // Acumuladores
+                subTotal += Convert.ToDecimal(row["SubTotal"]);
+                importeExonera += Convert.ToDecimal(row["ImporteExonera"]);
+                totalSis += Convert.ToDecimal(row["TotalFinanciadoSis"]);
+                totalSoat += Convert.ToDecimal(row["TotalFinanciadoSoat"]);
+                totalConvenio += Convert.ToDecimal(row["TotalConvenio"]);
+                debe += Convert.ToDecimal(row["Debe"]);
+                pago += Convert.ToDecimal(row["Pago"]);
+                saldo += Convert.ToDecimal(row["Saldo"]);
+
+
+
+                importeExoneraGeneral += Convert.ToDecimal(row["ImporteExonera"]);
+                totalSisGeneral += Convert.ToDecimal(row["TotalFinanciadoSis"]);
+                totalSoatGeneral += Convert.ToDecimal(row["TotalFinanciadoSoat"]);
+                totalConvenioGeneral += Convert.ToDecimal(row["TotalConvenio"]);
+                debeGeneral += Convert.ToDecimal(row["Debe"]);
+                pagoGeneral += Convert.ToDecimal(row["Pago"]);
+                saldoGeneral += Convert.ToDecimal(row["Saldo"]);
+
+                if (row["Codigo"].ToString() != "F00001")
+                {
+                    subTotalGeneral += Convert.ToDecimal(row["SubTotal"]);
+                    servicioGeneral += Convert.ToDecimal(row["Saldo"]);
+                }
+                else
+                {
+                    pagosCuenta = Convert.ToDecimal(row["SubTotal"]);
+                }
+
+
+                <tr>
+                    <td class="border-secondary align-top" style="font-size: 8px; border: none;">@(mostrarPuntoCarga || index == 1 ? row["DesPuntoCarga"].ToString() : "")</td>
+                    <td class="border-secondary align-top" style="font-size: 8px;">@row["Producto"]</td>
+                    <td class="border-secondary align-top text-center" style="font-size: 8px;">@(totalSoat > 0 ? row["Cantidad"] : 0)</td>
+                    <td class="border-secondary align-top text-center" style="font-size: 8px;">@(totalSoat > 0 ? row["PrecioUnitario"] : 0)</td>
+                    <td class="border-secondary align-top text-center" style="font-size: 8px;">@row["ImporteExonera"]</td>
+                    <td class="border-secondary align-top text-center" style="font-size: 8px;"></td>
+                    <td class="border-secondary align-top text-center" style="font-size: 8px;">@row["IdOrden"]</td>
+                </tr>
+
+                index++;
+            }
+
+            <tr style="font-weight: bold;">
+                <td colspan="5" class="text-end" style="font-size: 8px; border: none;"></td>
+                <td class="text-center" style="font-size: 8px; border: none;">@importeExonera.ToString("N2")</td>
+                @* <td class="text-center" style="font-size: 8px;">@importeExonera.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalSis.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalSoat.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalConvenio.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@debe.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@pago.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@saldo.ToString("N2")</td>*@
+                <td style="border: none;"></td>
+            </tr>
+
+            <tr style="font-weight: bold;">
+                <td colspan="17" class="text-end" style="font-size: 8px; height: 15px; border: none;"></td>
+            </tr>
+            <tr style="font-weight: bold;">
+                <td>Total:</td>
+                <td colspan="4" class="text-end" style="font-size: 8px;"></td>
+                <td class="text-center" style="font-size: 8px;">@importeExoneraGeneral.ToString("N2")</td>
+                @* <td class="text-center" style="font-size: 8px;">@importeExonera.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalSis.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalSoat.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@totalConvenio.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@debe.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@pago.ToString("N2")</td>
+                <td class="text-center" style="font-size: 8px;">@saldo.ToString("N2")</td>*@
+                <td style=""></td>
+            </tr>
+
+
+
+        </tbody>
+    </table>
+
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,1125 @@
+﻿@page
+@model WebAppMaternidad.Views.Shared.Components.VistasParciales.Imagenologia.EcografiaGeneticaModel
+@{
+}
+
+<input id="tipoModulo" value="@ViewBag.TipoModulo" hidden/>
+
+<div class="row">
+    <div class="col-md-12 mb-1">
+        <div class="card bg-blue">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="form-group m-0">
+                            <label for="txtFechaFUR" class="d-block text-truncate">FUR</label>
+                            <div class="input-group form-group input-group-sm m-0">
+                                <input type="text" class="form-control form_val_popup_dp3 campoRes" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFUR" autocomplete="off">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="form-group m-0">
+                            <label for="txtFechaFPP" class="d-block text-truncate">FPP</label>
+                            <div class="input-group form-group input-group-sm m-0">
+                                <input type="text" class="form-control form_val_popup_dp3 campoRes" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFPP" autocomplete="off">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="cboRealizaPrueba">Edad Gestacional</label>
+                            <input id="txtEdadGestacional" class="form-control  form-control-sm" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-lg-12 mb-1">
+
+                        <ul class="nav nav-tabs jerarquiaA" id="Fetos-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom active" id="fetoUno-tab-link" data-toggle="tab" href="#fetoUno-tab" role="tab" aria-controls="home" aria-selected="true" style="padding: 0.4em .8em !important;" @*aria-expanded="true"*@>FETO 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" id="fetoDos-tab-link" data-toggle="tab" href="#fetoDos-tab" role="tab" aria-controls="home" aria-selected="false" style="padding: 0.4em .8em !important; display: none;" @*aria-expanded="false"*@>FETO 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" id="fetoTres-tab-link" data-toggle="tab" href="#fetoTres-tab" role="tab" aria-controls="home" aria-selected="false" style="padding: 0.4em .8em !important; display: none;" @*aria-expanded="false"*@>FETO 3</a>
+                            </li>
+
+                            <li class="nav-item" style="float: right">
+                                <input type="radio" name="rdbFeto" id="rdbFeto1" value="1" checked /> <label for="rdbFeto1">Único</label>
+                                <input type="radio" name="rdbFeto" id="rdbFeto2" value="2" /> <label for="rdbFeto2">Doble</label>
+                                <input type="radio" name="rdbFeto" id="rdbFeto3" value="3" /> <label for="rdbFeto3">Triple</label>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-12">
+
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" id="fetoUno-tab" role="tabpanel" aria-labelledby="fetoUno-tab-link" @*aria-expanded="true"*@>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="card bg-yellow">
+                                            <div class="card-header bg-white">Biometria</div>
+                                            <div class="card-block">
+                                                <div class="row">
+
+                                                    <div class="col-lg-4">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtDbpFeto1">DBP</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtDbpFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtCcFeto1">CC</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtCcFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtCaFeto1">CA</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtCaFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtLfFeto1">LF</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtLfFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtLcnFeto1">LCN</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtLcnFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtPesoFeto1">Peso</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtPesoFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>g.</span>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtPercFeto1">Perc</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtPercFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>%</span>
+                                                        </div>
+
+                                                        <div class="row mt-1" hidden>
+                                                            <div class="col-lg-2">
+                                                                <label for="cboSexoFeto1">Sexo</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboSexoFeto1" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtFcfFeto1">Fcf</label>
+                                                            </div>
+                                                            <div class="col-lg-7">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtFcfFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>lat/min</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboCordonFeto1">Cordon</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboCordonFeto1" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboPlacentaFeto1">Placenta</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboPlacentaFeto1" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboGradoFeto1">Grado</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboGradoFeto1" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtIlaFeto1">ILA</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtIlaFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboLiquidoFeto1">Liquido</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboLiquidoFeto1" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtPozoFeto1">Pozo</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtPozoFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtVisualizFeto1">Visualiz</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtVisualizFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-4">
+                                        <div class="card bg-yellow">
+                                            <div class="card-header bg-white">Marcadores</div>
+                                            <div class="card-block">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="txtTnFeto1">TN</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtTnFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="txtIpDvFeto1">IP DV</label>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtIpDvFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>lat/min</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="cboOndaDvFeto1">Onda DV</label>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboOndaDvFeto1" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="cboTricuspideFeto1">Tricuspide</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboTricuspideFeto1" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="cboHuesoNasalFeto1">Hueso Nasal</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboHuesoNasalFeto1" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="txtOtroFeto1">otro</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtOtroFeto1" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-pane fade" id="fetoDos-tab" role="tabpanel" aria-labelledby="fetoDos-tab-link" @*aria-expanded="true"*@>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="card bg-yellow">
+                                            <div class="card-header bg-white">Biometria</div>
+                                            <div class="card-block">
+                                                <div class="row">
+
+                                                    <div class="col-lg-4">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtDbpFeto2">DBP</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtDbpFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtCcFeto2">CC</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtCcFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtCaFeto2">CA</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtCaFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtLfFeto2">LF</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtLfFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtLcnFeto2">LCN</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtLcnFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtPesoFeto2">Peso</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtPesoFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>g.</span>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtPercFeto2">Perc</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtPercFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>%</span>
+                                                        </div>
+
+                                                        <div class="row mt-1" hidden>
+                                                            <div class="col-lg-2">
+                                                                <label for="cboSexoFeto2">Sexo</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboSexoFeto2" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtFcfFeto2">Fcf</label>
+                                                            </div>
+                                                            <div class="col-lg-7">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtFcfFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>lat/min</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboCordonFeto2">Cordon</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboCordonFeto2" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboPlacentaFeto2">Placenta</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboPlacentaFeto2" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboGradoFeto2">Grado</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboGradoFeto2" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtIlaFeto2">ILA</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtIlaFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboLiquidoFeto2">Liquido</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboLiquidoFeto2" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtPozoFeto2">Pozo</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtPozoFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtVisualizFeto2">Visualiz</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtVisualizFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-4">
+                                        <div class="card bg-yellow">
+                                            <div class="card-header bg-white">Marcadores</div>
+                                            <div class="card-block">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="txtTnFeto2">TN</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtTnFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="txtIpDvFeto2">IP DV</label>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtIpDvFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>lat/min</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="cboOndaDvFeto2">Onda DV</label>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboOndaDvFeto2" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="cboTricuspideFeto2">Tricuspide</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboTricuspideFeto2" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="cboHuesoNasalFeto2">Hueso Nasal</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboHuesoNasalFeto2" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="txtOtroFeto2">otro</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtOtroFeto2" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-pane fade" id="fetoTres-tab" role="tabpanel" aria-labelledby="fetoTres-tab-link" @*aria-expanded="true"*@>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="card bg-yellow">
+                                            <div class="card-header bg-white">Biometria</div>
+                                            <div class="card-block">
+                                                <div class="row">
+
+                                                    <div class="col-lg-4">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtDbpFeto3">DBP</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtDbpFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtCcFeto3">CC</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtCcFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtCaFeto3">CA</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtCaFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtLfFeto3">LF</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtLfFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtLcnFeto3">LCN</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtLcnFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtPesoFeto3">Peso</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtPesoFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>g.</span>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtPercFeto3">Perc</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtPercFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>%</span>
+                                                        </div>
+
+                                                        <div class="row mt-1" hidden>
+                                                            <div class="col-lg-2">
+                                                                <label for="cboSexoFeto3">Sexo</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboSexoFeto3" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtFcfFeto3">Fcf</label>
+                                                            </div>
+                                                            <div class="col-lg-7">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtFcfFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>lat/min</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboCordonFeto3">Cordon</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboCordonFeto3" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboPlacentaFeto3">Placenta</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboPlacentaFeto3" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboGradoFeto3">Grado</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboGradoFeto3" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtIlaFeto3">ILA</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtIlaFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="cboLiquidoFeto3">Liquido</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboLiquidoFeto3" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtPozoFeto3">Pozo</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtPozoFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <label for="txtVisualizFeto3">Visualiz</label>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtVisualizFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-4">
+                                        <div class="card bg-yellow">
+                                            <div class="card-header bg-white">Marcadores</div>
+                                            <div class="card-block">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="txtTnFeto3">TN</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtTnFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="txtIpDvFeto3">IP DV</label>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtIpDvFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                            <span>lat/min</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="cboOndaDvFeto3">Onda DV</label>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboOndaDvFeto3" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                            <span>mm.</span>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="cboTricuspideFeto3">Tricuspide</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboTricuspideFeto3" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="cboHuesoNasalFeto3">Hueso Nasal</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <select id="cboHuesoNasalFeto3" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-4">
+                                                                <label for="txtOtroFeto3">otro</label>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="form-group m-0">
+                                                                    <input id="txtOtroFeto3" class="form-control  form-control-sm" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group m-0">
+                                <label for="cboAnatomia">Anatomia</label>
+                                <select id="cboAnatomia" class="chzn-select w-100 campoRes" style="width: 100% !important;" data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <textarea style="overflow:scroll;" class="form-control campoRes campoResultado mt-1" id="txtAnatomia" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6 mb-1">
+        <div class="card bg-pink">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12">
+                        @* <div class="card bg-green"> *@
+                        @* <div class="card-header bg-white">Datos de Paciente</div> *@
+                        @* <div class="card-block"> *@
+                        <div class="form-group m-0">
+                            <label for="txtResObservaciones" class="form-control-label font-weight-bold">OBSERVACIONES</label>
+                            <textarea style="overflow:scroll;" class="form-control campoRes campoResultado" id="txtResObservaciones" rows="2"></textarea>
+                        </div>
+                        @* </div> *@
+                        @* </div> *@
+                    </div>
+
+                    <div class="col-md-12 mt-1">
+                        @* <div class="card bg-green"> *@
+                        @* <div class="card-header bg-white">Datos de Paciente</div> *@
+                        @* <div class="card-block"> *@
+                        <div class="form-group m-0">
+                            <label for="txtResConclusion" class="form-control-label font-weight-bold">CONCLUSION</label>
+                            <textarea style="overflow:scroll;" class="form-control campoRes campoResultado" id="txtResConclusion" rows="2"></textarea>
+                        </div>
+                        @* </div> *@
+                        @* </div> *@
+                    </div>
+
+                    <div class="col-md-12 mt-1">
+                        @* <div class="card bg-green"> *@
+                        @* <div class="card-header bg-white">Datos de Paciente</div> *@
+                        @* <div class="card-block"> *@
+                        <div class="form-group m-0">
+                            <label for="txtResSugerencia" class="form-control-label font-weight-bold">SUGERENCIA</label>
+                            <textarea style="overflow:scroll;" class="form-control campoRes campoResultado" id="txtResSugerencia" rows="2"></textarea>
+                        </div>
+                        @* </div> *@
+                        @* </div> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card bg-yellow">
+            <div class="card-header bg-white">Doppler Uterinas y Materna</div>
+            <div class="card-block">
+                <div class="row">
+
+                    <div class="col-lg-12 mb-1 mt-1">
+                        <div class="card bg-yellow">
+                            <div class="card-header bg-white">A. Uterinas</div>
+                            <div class="card-block">
+
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtAuterinaDerecha">Derecha</label>
+                                            <input id="txtAuterinaDerecha" class="form-control  form-control-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtAuterinaIzquierda">Izquierda</label>
+                                            <input id="txtAuterinaIzquierda" class="form-control  form-control-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtAuterinaIpMedio">IP Medio</label>
+                                            <input id="txtAuterinaIpMedio" class="form-control  form-control-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtAuterinaPerc">Perc</label>
+                                            <input id="txtAuterinaPerc" class="form-control  form-control-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtAuterinaMom">MoM</label>
+                                            <input id="txtAuterinaMom" class="form-control  form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 mb-1">
+                        <div class="card bg-yellow">
+                            <div class="card-header bg-white">P.A. Materna</div>
+                            <div class="card-block">
+
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtPaMaternaSd">SD</label>
+                                            <input id="txtPaMaternaSd" class="form-control  form-control-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtPaMaternaDd">DD</label>
+                                            <input id="txtPaMaternaDd" class="form-control  form-control-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtPaMaternaSi">SI</label>
+                                            <input id="txtPaMaternaSi" class="form-control  form-control-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtPaMaternaDi">DI</label>
+                                            <input id="txtPaMaternaDi" class="form-control  form-control-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtPaMaternaPam">PAM</label>
+                                            <input id="txtPaMaternaPam" class="form-control  form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group m-0">
+                            <label for="txtCervixUterino">Cervix Uterino</label>
+                            <input id="txtCervixUterino" class="form-control  form-control-sm" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    EcografiaGenetica.Init();
+</script>

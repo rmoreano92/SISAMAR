@@ -1,0 +1,1135 @@
+﻿@using Microsoft.Extensions.Configuration;
+@using System.Data
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+
+
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-clipboard"></i>
+                @ViewBag.Modulo
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Modulo</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+
+<input id="hdIdUsuario" value="@ViewBag.Usuario" hidden />
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#TabPorPaciente" class="nav-link nav-link-custom active" id="TabPorPaciente-tab" data-toggle="tab" data-target="#TabPorPaciente" role="tab" aria-controls="TabPorPaciente" aria-selected="true">Por Paciente</a>
+                    </li>
+                    <li class="nav-item m-0" role="presentation">
+                        <a href="#TabListaPacientes" class="nav-link nav-link-custom" id="TabListaPacientes-tab" data-toggle="tab" data-target="#TabListaPacientes" role="tab" aria-controls="TabListaPacientes" aria-selected="false">Lista de Pacientes</a>
+                    </li>
+                </ul>
+                <div class="tab-content border p-1" id="myTabContent">
+                    <!--=============================================Panel Busqueda==================================================================-->
+                    <div class="tab-pane fade active in" id="TabPorPaciente" role="tabpanel" aria-labelledby="TabBusqueda">
+                        <div class="row">
+
+                            @* <div class="col-lg-2">
+                                <div class="card bg-green mb-1">
+                                    <div class="card-header bg-white">Busqueda</div>
+                                    <div class="card-block">
+                                        <div class="row">
+
+                                            <div class="col-lg-12">
+                                                <label for="txtNroCuentaBusq" class="d-block text-truncate">N° Cuenta</label>
+                                                <div class="input-group input-group-sm d-flex">
+                                                    <input type="text" class="form-control form-control-sm" id="txtNroCuentaBusq" value="" />
+                                                    <div class="input-group-append" style="margin-left: -2px;">
+                                                        <button class="btn btn-indigo" type="button" id="btnNroCuentaBusq"><i class="fas fa-search"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <label for="txtNroOrdenPagoBusq" class="d-block text-truncate">N° Orden Pago</label>
+                                                <div class="input-group input-group-sm d-flex">
+                                                    <input type="text" class="form-control form-control-sm" id="txtNroOrdenPagoBusq" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <label for="txtNroDctoFarmaciaBusq" class="d-block text-truncate">N° Dct. Exo. Farmacia.</label>
+                                                <div class="input-group input-group-sm d-flex">
+                                                    <input type="text" class="form-control form-control-sm" id="txtNroDctoFarmaciaBusq" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <label for="btnLeerEstadoCuenta" class="d-block text-truncate">...</label>
+                                                <div class="input-group input-group-sm d-flex">
+                                                    <button class="btn btn-info btn-sm btn-block" id="btnLeerEstadoCuenta"><i class="fa fa-search"></i> Leer</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div> *@
+
+                            <div class="col-lg-12">
+                                <i id="lblDeudasPacientePorCuenta" for="" class="d-block text-truncate" style="font-weight: bold; color: red; font-size: 18px;">  </i>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="card bg-green mb-1">
+                                    <div class="card-header bg-white">Datos del Paciente <span id="lblTipoPlanPaciente" for="" class="text-truncate" style="font-weight: bold; color: blue; font-size: 18px;">  </span></div>
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label for="txtNroCuentaBusq" class="d-block text-truncate">N° Cuenta</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm" id="txtNroCuentaBusq" value="" />
+                                                            <div class="input-group-append" style="margin-left: -2px;">
+                                                                <button class="btn btn-indigo" type="button" id="btnNroCuentaBusq"><i class="fas fa-search"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-12">
+                                                        <label for="cboSeleccionarCuenta">Lista Cuentas</label>
+                                                        <div class="form-group campo m-0">
+                                                            <select id="cboSeleccionarCuenta" class="chzn-select writing reading" data-placeholder="Seleccione una opción">
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <label for="txtDatosCuenta" class="d-block text-truncate">Datos Cuenta</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm" id="txtDatosCuenta" disabled />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-9">
+                                                <button id="btnActualizarEstadoCuenta" hidden>ActualizarEstadoCuenta</button>
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <label for="txtNroCuenta" class="d-block text-truncate">N° Cuenta</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm" id="txtNroCuenta" disabled />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-lg-6">
+                                                        <label for="txtServicioEgreso" class="d-block text-truncate">Servicio Egreso</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm" id="txtServicioEgreso" disabled />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label for="txtDiagnosticoEgreso" class="d-block text-truncate">Dx. Egreso</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm" id="txtDiagnosticoEgreso" disabled />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <label for="txtFechaIngreso" class="d-block text-truncate">F. Ingreso</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIngreso" disabled />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtFechaAltaMedica" class="d-block text-truncate">F. Alta Médica</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAltaMedica" disabled />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtFechaAperturaCuenta" class="d-block text-truncate">F. Apertura Cuenta</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAperturaCuenta" disabled />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtFechaEgresoAdministrativo" class="d-block text-truncate">F. Egreso Administrativo</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaEgresoAdministrativo" disabled />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <label for="txtNroHistoria" class="d-block text-truncate">N° Historia</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm" id="txtNroHistoria" disabled />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label for="txtNombrePaciente" class="d-block text-truncate">Nombre</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm" id="txtNombrePaciente" disabled />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label for="txtDomicilioPaciente" class="d-block text-truncate">Domicilio</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm" id="txtDomicilioPaciente" disabled />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-1">
+                                            <div class="col-lg-12">
+                                                <label id="lblDeudasPaciente" for="" class="d-block text-truncate" style="font-weight: bold; color: red; font-size: 18px;">  </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <ul class="nav nav-tabs mt-1" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#servicios-tab" data-toggle="tab" role="tab" id="servicios-tab-link" aria-controls="home" aria-selected="true" aria-expanded="true">Servicios</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#farmacia-tab" data-toggle="tab" role="tab" id="farmacia-tab-link" aria-controls="home" aria-selected="true" aria-expanded="true">Farmacia</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#consolidado-tab" data-toggle="tab" role="tab" id="consolidado-tab-link" aria-controls="home" aria-selected="true" aria-expanded="true">Consolidado</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#resumen-tab" data-toggle="tab" role="tab" id="resumen-tab-link" aria-controls="home" aria-selected="true" aria-expanded="true">Resumen</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#reembolso-tab" data-toggle="tab" role="tab" id="reembolso-tab-link" aria-controls="home" aria-selected="true" aria-expanded="true">Reembolso</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#farmaciaDonaciones-tab" data-toggle="tab" role="tab" id="farmaciaDonaciones-tab-link" aria-controls="home" aria-selected="true" aria-expanded="true">Farmacia Donaciones</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div id="clothing-nav5-content" class="tab-content fade in active">
+
+                                    <div role="tabpanel" class="tab-pane fade in active" id="servicios-tab" aria-labelledby="servicios-tab-link" aria-expanded="true">
+                                        <div class="table-responsive" style="overflow-x: auto;">
+                                            <table id="tblServicios" class="table table-xs table-content-sm  table-bordered table-striped" style="min-width: 3000px;">
+                                                <thead style="color: white; background: #434343;">
+                                                    <tr>
+                                                        <th style="max-width: 90px !important;">F. Atencion</th>
+                                                        <th style="max-width: 80px !important;">Pto. Carga</th>
+                                                        <th style="width: 100px;">N° Dcto.</th>
+                                                        <th style="width: 100px;">Codigo</th>
+                                                        <th style="max-width: 250px !important;">Descripcion</th>
+                                                        <th style="width: 80px;">Cantidad</th>
+                                                        <th style="width: 100px;">Pr.Unit</th>
+                                                        <th style="width: 100px;">SubTotal</th>
+                                                        <th style="width: 100px;" class="tb-header-sis">Cant.SIS</th>
+                                                        <th style="width: 100px;" class="tb-header-sis">Pr.SIS</th>
+                                                        <th style="width: 100px;" class="tb-header-sis">Imp.SIS</th>
+                                                        <th style="width: 100px;">Imp.SOAT</th>
+                                                        <th style="width: 100px;" id="thImpExoServicios">Imp.EXO</th>
+                                                        <th style="width: 120px;">UsuarioExo</th>
+                                                        <th style="width: 100px;">Cant.Pagar</th>
+                                                        <th style="width: 100px;">Tot.Pagar</th>
+                                                        <th style="width: 80px;">CantDev</th>
+                                                        <th style="width: 100px;">Estado</th>
+                                                        <th style="width: 120px;">Doc.Reemb</th>
+                                                        <th style="width: 100px;">ServInter</th>
+                                                        <th style="width: 100px;">IdOrden</th>
+                                                        <th style="width: 150px;">N°.Comprobante</th>
+                                                        <th style="width: 300px;">Producto/Plan</th>
+                                                        <th style="width: 200px;">Descripcion</th>
+                                                        <th style="width: 120px;">MovNumero</th>
+                                                        <th style="width: 100px;">MovTipo</th>
+                                                        <th style="width: 150px;">ServicioEstancia</th>
+                                                        <th style="width: 120px;">IdOrdenPago</th>
+                                                        <th style="width: 120px;">FechaDespacho</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="farmacia-tab" aria-labelledby="farmacia-tab-link" aria-expanded="true">
+                                        <div class="table-responsive" style="overflow-x: auto;">
+                                            <table id="tblFarmacia" class="table table-xs table-content-sm  table-bordered table-striped" style="min-width: 3000px;">
+                                                <thead style="color: white; background: #434343;">
+                                                    <tr>
+                                                        <th style="max-width: 90px !important;">F. Atencion</th>
+                                                        <th style="max-width: 80px !important;">Pto. Carga</th>
+                                                        <th style="width: 100px;">N° Dcto.</th>
+                                                        <th style="width: 100px;">Codigo</th>
+                                                        <th style="max-width: 250px !important;">Descripcion</th>
+                                                        <th style="width: 80px;">Cantidad</th>
+                                                        <th style="width: 100px;">Pr.Unit</th>
+                                                        <th style="width: 100px;">SubTotal</th>
+                                                        <th style="width: 100px;" class="tb-header-sis">Cant.SIS</th>
+                                                        <th style="width: 100px;" class="tb-header-sis">Pr.SIS</th>
+                                                        <th style="width: 100px;" class="tb-header-sis">Imp.SIS</th>
+                                                        <th style="width: 100px;">Imp.SOAT</th>
+                                                        <th style="width: 100px;" id="thImpExoServicios">Imp.EXO</th>
+                                                        <th style="width: 120px;">UsuarioExo</th>
+                                                        <th style="width: 100px;">Cant.Pagar</th>
+                                                        <th style="width: 100px;">Tot.Pagar</th>
+                                                        <th style="width: 80px;">CantDev</th>
+                                                        <th style="width: 100px;">Estado</th>
+                                                        <th style="width: 120px;">Doc.Reemb</th>
+                                                        <th style="width: 100px;">ServInter</th>
+                                                        <th style="width: 100px;">IdOrden</th>
+                                                        <th style="width: 150px;">N°.Comprobante</th>
+                                                        <th style="width: 300px;">Producto/Plan</th>
+                                                        <th style="width: 200px;">Descripcion</th>
+                                                        <th style="width: 120px;">MovNumero</th>
+                                                        <th style="width: 100px;">MovTipo</th>
+                                                        <th style="width: 150px;">ServicioEstancia</th>
+                                                        <th style="width: 120px;">IdOrdenPago</th>
+                                                        <th style="width: 120px;">FechaDespacho</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="consolidado-tab" aria-labelledby="consolidado-tab-link" aria-expanded="true">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="table-responsive" style="overflow-x: auto;">
+                                                    <table id="tblConsolidado" class="table table-xs table-content-sm  table-bordered table-striped w-100">
+                                                        <thead style="color: white; background: #434343;">
+                                                            <tr>
+                                                                <th>Pto. Carga</th>
+                                                                <th>Fecha</th>
+                                                                <th>N° Documento.</th>
+                                                                <th>Servicio</th>
+                                                                <th>Importe</th>
+                                                                <th>Receta</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="resumen-tab" aria-labelledby="resumen-tab-link" aria-expanded="true">
+                                        <div class="row mt-1">
+                                            <div class="col-lg-8">
+                                                <div class="card bg-green mb-1">
+                                                    <div class="card-header bg-white">ALTA ADMINISTRATIVA</div>
+                                                    <div class="card-block">
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <button class="btn btn-primary btn-lg btn-block" style="text-wrap: auto;" id="btnCuentaPagada">Cuenta Pagada</button>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="input-group input-group-sm d-flex">
+                                                                    <textarea type="text" class="form-control form-control-sm" rows="3" id="txtDescripcionCuentaPagada" disabled>Es usado cuando el Paciente ya Pagó sus Boletas (Farmacia y7o Servicio). El Sistema pone FECHA ALTA ADMINISTRATIVA y desocupa CAMA</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <button class="btn btn-primary btn-lg btn-block" style="text-wrap: auto;" id="btnPendientePagoSeguros">Pendiente Pago Seguros</button>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="input-group input-group-sm d-flex">
+                                                                    <textarea type="text" class="form-control form-control-sm" rows="3" id="txtDescripcionPendientePagoSeguros" disabled>Es usado cuando el Paciente tiene algun SEGURO (SIS, SOAT, etc). Cuando aún el Seguro no reembolsa lo gastado por el Paciente. El Sistema pone FECHA ALTA ADMINISTRATIVA, deuda del SEGURO y desocupa CAMA.</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <button class="btn btn-primary btn-lg btn-block" style="text-wrap: auto;" id="btnAbrirCuenta">Abrir Cuenta</button>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="input-group input-group-sm d-flex">
+                                                                    <textarea type="text" class="form-control form-control-sm" rows="3" id="txtDescripcionAbrirCuenta" disabled>Es usado cuando se quiere agregar un Consumo más o para que el Paciente FUGADO pueda cancelar su deuda. Elimina las FECHA DE ALTA ADMINISTRATIVA.</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <button class="btn btn-primary btn-lg btn-block" style="text-wrap: auto;" id="btnCerrarCuenta">Cerrar Cuenta</button>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="input-group input-group-sm d-flex">
+                                                                    <textarea type="text" class="form-control form-control-sm" rows="3" id="txtDescripcionCerrarCuenta" disabled>Es usado cuando el Paciente FUGA, sin cancelar. Se usará como ALERTA cuando el Paciente regrese. El Sistema pone FECHA ALTA ADMINISTRATIVA, deuda pendiente y desocupa CAMA.</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <button class="btn btn-primary btn-lg btn-block" style="text-wrap: auto;" id="btnCuentaAnulada">Cuenta Anulada</button>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="input-group input-group-sm d-flex">
+                                                                    <textarea type="text" class="form-control form-control-sm" rows="3" id="txtDescripcionCuentaAnulada" disabled>Es usado cuando el Paciente FUGO, pasado el tiempo Justifico en Economía, O tambien cuando se apertura una Cuenta por ERROR. El Sistema pone FECHA ALTA ADMINISTRATIVA y desocupa.</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-2">
+                                                                <button class="btn btn-primary btn-lg btn-block" style="text-wrap: auto;" id="btnCuentaConGarante">Cuenta Con Garante</button>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="input-group input-group-sm d-flex">
+                                                                    <textarea type="text" class="form-control form-control-sm" rows="3" id="txtDescripcionCuentaGarante" disabled>Es usado cuando un GARANTE se compromete a PAGAR la deuda del Paciente. El Sistema pone FECHA ALTA ADMINISTRATIVA y desocupa CAMA.</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                @if (ViewBag.tienePermisoRecalculo.ToString() != "0" && ViewBag.tienePermisoRecalculo.ToString() != "")
+                                                {
+                                                    <div class="card bg-green mb-1">
+                                                        <div class="card-header bg-white">RECALCULO de Cuenta de Atención</div>
+                                                        <div class="card-block">
+
+                                                            <div class="form-group mt-1">
+                                                                <div class="input-group input-group-sm d-flex">
+                                                                    <textarea type="text" class="form-control form-control-sm" rows="3" id="txtDescripcionCuentaPagada" disabled>Es usado cuando se cambia el 'Plan de Atención' a un Paciente</textarea>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group mt-1">
+                                                                <label class="form-control-label">Nuevo</label>
+                                                                <select id="cboFuenteFinancimiento" class="chzn-select" data-placeholder="Seleccione una opción"> </select>
+                                                            </div>
+
+
+                                                            <div class="form-group mt-1">
+                                                                <label class="form-control-label">Nuevo Producto/Plan</label>
+                                                                <select id="cboProductoPlan" class="chzn-select" data-placeholder="Seleccione una opción"></select>
+                                                            </div>
+
+                                                            <div class="form-group mt-1">
+                                                                <button id="btnCambioFuenteFinanciamiento" class="btn btn-info btn-block btn-lg">Cambia a otra 'Fuente Financiamiento/IAFA'</button>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                }
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="reembolso-tab" aria-labelledby="reembolso-tab-link" aria-expanded="true">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <table id="tblReembolso" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th>Ident</th>
+                                                            <th>Año</th>
+                                                            <th>Mes</th>
+                                                            <th>N° Serie</th>
+                                                            <th>N° Documento</th>
+                                                            <th>Tipo Reembolso</th>
+                                                            <th>Consumo</th>
+                                                            <th>Por Reembolsar</th>
+                                                            <th>Reembolso Farmacia</th>
+                                                            <th>Reembolso Servicio</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="farmaciaDonaciones-tab" aria-labelledby="farmaciaDonaciones-tab-link" aria-expanded="true">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <table id="tblFarmaciaDonaciones" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th>Fecha Atención</th>
+                                                            <th>Punto Carga</th>
+                                                            <th>N° Dcto</th>
+                                                            <th>Codigo</th>
+                                                            <th>Nombre</th>
+                                                            <th>Lote</th>
+                                                            <th>F. Vencimiento</th>
+                                                            <th>Cantidad</th>
+                                                            <th>Precio</th>
+                                                            <th>Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card bg-light" style="border-color:#607D8B;">
+                                    <div class="card-block p-1">
+
+                                        <div class="row">
+                                            <div class="col-xl-4">
+                                                <div class="check__toggle mt-04 contTodosNingunoSis" style="display: none">
+                                                    <label class="toggle">
+                                                        <input class="toggle__input campo bloquear" type="checkbox" id="chkTodosNingunoSis">
+                                                        <span class="toggle__label mr-2">
+                                                            <span class="toggle__text">Todos / Ninguno</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-8">
+                                                <div class="row mb-1">
+                                                    <div class="col-xl-4">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Pagos a Cuenta</span>
+                                                                <input id="txtPagoCuenta" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Total Seguro Servicios</span>
+                                                                <input id="txtTotalSeguros" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Total a Pagar en Servicios</span>
+                                                                <input id="txtTotalPagar" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row mb-1">
+                                                    <div class="col-xl-4">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Pagos a Cuenta</span>
+                                                                <input id="txtPagoCuentaFarm" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Total Seguro Farmacia</span>
+                                                                <input id="txtTotalSegurosFarm" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Total a Pagar en Farmacia</span>
+                                                                <input id="txtTotalPagarFarm" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="row mb-1">
+                                                    <div class="col-xl-2">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Total Consumo</span>
+                                                                <input id="txtTotalConsumoConsolidado" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Pagos a Cuenta</span>
+                                                                <input id="txtPagosCuentaConsolidado" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Exoner</span>
+                                                                <input id="txtExoneracionConsolidado" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Devol</span>
+                                                                <input id="txtDevolucionConsolidado" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Seguros</span>
+                                                                <input id="txtSegurosConsolidado" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2">
+                                                        <div class="form-group m-0">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon font-weight-bold">Saldo Final</span>
+                                                                <input id="txtSaldoFinalConsolidado" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                                                <span class="input-group-addon">S/.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-2">
+                            <div class="col-xl-12">
+                                <div class="card bg-light" style="border-color:#607D8B;">
+                                    <div class="card-block p-1">
+
+                                       
+
+                                        <div class="row">
+                                            <div class="col-xl-12 mb-1">
+
+                                                <button class="btn" style="text-wrap: auto; height: 100px; width: 150px; border: 2px solid #bfbfbf;" id="btnEstadoCuentaPorPtocCarga"> <i class="fa fa-file mb-1" style="font-size: 20px; width: 20px; text-align:center;"></i> <br /> ESTADO DE CUENTA por Pto. Carga</button>
+                                                
+                                                <button class="btn" style="text-wrap: auto; height: 100px; width: 150px; border: 2px solid #bfbfbf;" id="btnEstadoCuentaPorServicioHosp"> <i class="fa fa-file mb-1" style="font-size: 20px; width: 20px; text-align:center;"></i> <br /> ESTADO DE CUENTA por Servicio Hosp</button>
+                                                
+                                                <button class="btn" style="text-wrap: auto; height: 100px; width: 150px; border: 2px solid #bfbfbf;" id="btnLiquidacion"> <i class="fa fa-file mb-1" style="font-size: 20px; width: 20px; text-align:center;"></i> <br /> LIQUIDACION</button>
+
+                                                <button class="btn" style="text-wrap: auto; height: 100px; width: 150px; border: 2px solid #e98c00; background: #ffcd82;" id="btnExoneracion"> <i class="fa fa-file mb-1" style="font-size: 20px; width: 20px; text-align:center;"></i> <br /> EXONERACION</button>
+                                                
+                                                <button class="btn" style="text-wrap: auto; height: 100px; width: 150px; border: 2px solid #bfbfbf;" id="btnResumenLquidacion"> <i class="fa fa-file mb-1" style="font-size: 20px; width: 20px; text-align:center;"></i> <br /> RESUMEN DE LIQUIDACION</button>
+
+
+                                                <button class="btn" style="text-wrap: auto; height: 100px; width: 150px; border: 2px solid #bfbfbf;" id="btnEstadoCuentaHospEmergTotal"> <i class="fa fa-file mb-1" style="font-size: 20px; width: 20px; text-align:center;"></i> <br /> ESTADO DE CUENTA Hosp y Emerg (Total)</button>
+
+                                                <button class="btn" style="text-wrap: auto; height: 100px; width: 150px; border: 2px solid #bfbfbf;" id="btnEstadoCuentaHospEmergSis"> <i class="fa fa-file mb-1" style="font-size: 20px; width: 20px; text-align:center;"></i> <br /> ESTADO DE CUENTA Hosp y Emerg (SIS)</button>
+
+                                                <button class="btn bg-purple" style="text-wrap: auto; height: 100px; width: 150px; border: 2px solid #fd87fd;" id="btnAgregarCSAtencion"> <i class="fa fa-file mb-1" style="font-size: 20px; width: 20px; text-align:center;"></i> <br /> Consumo en el Servicio</button>
+
+                                                @* <div class="contExoneracion" style="display: none;"> *@
+
+                                                    <button class="contExoneracion btn btn-success" style="text-wrap: auto; height: 100px; width: 150px; border: 2px solid #00a178; display: none !important;" id="btnActualizaExoneracionSis"> <i class="fa fa-file mb-1" style="font-size: 20px; width: 20px; text-align:center;"></i> <br /> ACTUALIZA SIS / EXONERACIÓN</button>
+
+                                                @* </div> *@
+                                            </div>
+
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="TabListaPacientes" role="tabpanel" aria-labelledby="TabListaPacientes">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group m-0">
+                                    <label for="txtFechaIngresoBusq" class="">Fecha Inicio</label>
+                                    <div class="input-group form-group input-group-sm m-0">
+                                        <input type="text" class="form-control form_val_popup_dp3 search maskFecha" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIngresoBusq" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group m-0">
+                                    <label for="txtFechaHastaBusq" class="">Hasta</label>
+                                    <div class="input-group form-group input-group-sm m-0">
+                                        <input type="text" class="form-control form_val_popup_dp3 search maskFecha" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaHastaBusq" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-xl-3 col-xxl-3 d-flex align-items-end" style="height: 55px;">
+                                <div>
+                                    <button id="btnBuscarListaPacientes" type="button" class="btn btn-sm btn-primary" style="width: 50px;"><i class="fa-solid fa-search"></i></button>
+                                    <button id="btnLimpiarBusqueda" type="button" class="btn btn-sm btn-secondary" style="width: 50px;transform: rotate(180deg);"><i class="fa-solid fa-brush"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group m-0">
+                                    @* <label for="cboFarmaciaDestinoNI" class="form-label d-block text-truncate">Tipo Venta</label> *@
+                                    <div class="d-flex">
+                                        <label class="radioButtonStyleLabel m-0">
+                                            <input type="radio" name="rdbTipoBusqueda" class="radioButtonStyleInput camposRegistro" value="3" checked>
+                                            <span class="radioButtonStyleSpan">Hospitalizados</span>
+                                        </label>
+                                        <label class="radioButtonStyleLabel m-0">
+                                            <input type="radio" name="rdbTipoBusqueda" class="radioButtonStyleInput camposRegistro" value="2">
+                                            <span class="radioButtonStyleSpan">Emergencia</span>
+                                        </label>
+                                        <label class="radioButtonStyleLabel m-0">
+                                            <input type="radio" name="rdbTipoBusqueda" class="radioButtonStyleInput camposRegistro" value="1">
+                                            <span class="radioButtonStyleSpan">Consulta Externa</span>
+                                        </label>
+                                        <label class="radioButtonStyleLabel m-0">
+                                            <input type="radio" name="rdbTipoBusqueda" class="radioButtonStyleInput camposRegistro" value="4">
+                                            <span class="radioButtonStyleSpan">PreVentas Servicios</span>
+                                        </label>
+                                        <label class="radioButtonStyleLabel m-0">
+                                            <input type="radio" name="rdbTipoBusqueda" class="radioButtonStyleInput camposRegistro" value="5">
+                                            <span class="radioButtonStyleSpan">Exoneraciones en Farmacia</span>
+                                        </label>
+                                        <label class="radioButtonStyleLabel m-0">
+                                            <input type="radio" name="rdbTipoBusqueda" class="radioButtonStyleInput camposRegistro" value="6">
+                                            <span class="radioButtonStyleSpan">Pacientes Externos</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card bg-green mb-1 mt-1">
+                                    <div class="card-header bg-white">Lista de Pacientes</div>
+                                    <div class="card-block">
+                                        <div class="row">
+
+                                            <div class="col-lg-12" id="contListaPacientesTipoServicio" style="display: none">
+                                                <table id="tblListaPacientes" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th>N° Cuenta</th>
+                                                            <th>Apellido Paterno</th>
+                                                            <th>Apellido Materno</th>
+                                                            <th>Primer Nombre</th>
+                                                            <th>Segundo Nombre</th>
+                                                            <th>N° Historia</th>
+                                                            <th>F. Finaciamiento</th>
+                                                            <th>EstadoPlan</th>
+                                                            <th>Ult. Servicio</th>
+                                                            <th>Producto/Plan</th>
+                                                            <th>Fecha Ingreso</th>
+                                                            <th>Hora Ingreso</th>
+                                                            <th>Fecha Egreso</th>
+                                                            <th>Hora Egreso</th>
+                                                            <th>FecNacimiento</th>
+                                                            <th>Edad</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="col-lg-12" id="contListaPacientesPreventas" style="display: none">
+                                                <table id="tblListaPacientesPreventas" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th>N° Orden Pago</th>
+                                                            <th>Pto Carga</th>
+                                                            <th>Fecha Creacion</th>
+                                                            <th>Id Orden</th>
+                                                            <th>N° Historia</th>
+                                                            <th>Apellido Paterno</th>
+                                                            <th>Apellido Materno</th>
+                                                            <th>Primer Nombre</th>
+                                                            <th>Segundo Nombre</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="col-lg-12" id="contListaPacientesExoFarmacia" style="display: none">
+                                                <table id="tblListaPacientesExoFarmacia" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th>N° Documento</th>
+                                                            <th>Tipo Documento</th>
+                                                            <th>Fecha Creacion</th>
+                                                            <th>Farmacia</th>
+                                                            <th>N° Movimiento</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="col-lg-12" id="contListaPacientesExternos" style="display: none">
+                                                <table id="tblListaPacientesExternos" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th>N° Cuenta</th>
+                                                            <th>Apellido Paterno</th>
+                                                            <th>Apellido Materno</th>
+                                                            <th>Primer Nombre</th>
+                                                            <th>Segundo Nombre</th>
+                                                            <th>N° Historia</th>
+                                                            <th>F. Finaciamiento</th>
+                                                            <th>EstadoPlan</th>
+                                                            <th>Ult. Servicio</th>
+                                                            <th>Fecha Ingreso</th>
+                                                            <th>Hora Ingreso</th>
+                                                            <th>FecNacimiento</th>
+                                                            <th>Edad</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalBusquedaPacientes" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Busqueda de Pacientes</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="card m-t-5 bg-green">
+                            <div class="card-block p-t-0">
+
+
+                                <div class="row mt-1">
+
+                                    <div class="col-lg-3">
+                                        <label for="txtDniPacienteBusqueda" class="form-control-label">DNI</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtDniPacienteBusqueda" autocomplete="off" class="form-control busquedaPaciente">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtNroHistoriaPacienteBusqueda" class="form-control-label">N° Historia</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtNroHistoriaPacienteBusqueda" autocomplete="off" class="form-control busquedaPaciente">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtApPaternoPacienteBusqueda" class="form-control-label">Ap. Paterno</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtApPaternoPacienteBusqueda" autocomplete="off" class="form-control busquedaPaciente">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtApMaternoPacienteBusqueda" class="form-control-label">Ap. Materno</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtApMaternoPacienteBusqueda" autocomplete="off" class="form-control busquedaPaciente">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label for="txtPrimerNombrePacienteBusqueda" class="form-control-label">Primer Nombre</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtPrimerNombrePacienteBusqueda" autocomplete="off" class="form-control busquedaPaciente">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 d-flex align-items-end" style="height: 50px;">
+                                        <button class="btn btn-sm btn-outline-primary layout_btn_prevent" id="btnBuscarPacientes" style="width:70px;">Buscar</button>
+                                        <button class="btn btn-sm btn-outline-secondary layout_btn_prevent" id="btnLimpiarBusquedaPacientes" style="width:70px;">Limpiar</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-lg-12">
+                        <table id="tblListaPacientesBusqueda" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th>Ap. Paterno</th>
+                                    <th>Ap. Materno</th>
+                                    <th>1er Nombre</th>
+                                    <th>2do Nombre</th>
+                                    <th>N° Historia</th>
+                                    <th>N° Documento</th>
+                                    <th>Fec. Nacimiento</th>
+                                    <th>Tipo Serv.</th>
+                                    <th>Serv. ing.</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnCerrarModalListaPacientes" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" style="overflow-y: scroll; background: #0000008c;" data-keyboard="false" class="modal fade" id="modalBusquedaCuentasPaciente" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Cuentas del Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row mt-1">
+                    <div class="col-lg-12">
+                        <table id="tblListaCuentasPacientesBusqueda" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th>N° Cuenta</th>
+                                    <th>Estado Cuenta</th>
+                                    <th>F. Ingreso</th>
+                                    <th>F. Egreso</th>
+                                    <th>H. Egreso</th>
+                                    <th>Servicio Ing.</th>
+                                    <th>Tipo Servicio</th>
+                                    <th>Edad</th>
+                                    <th>Diagnostico</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnCerrarModalListaCuentasPaciente" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalReporte" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Estado Cuenta</h4>
+            </div>
+            <div class="modal-body" style="background-color:#b4c6d6">
+
+                <iframe id="ifrmReporte"
+                        title="Inline Frame Example"
+                        width="100%"
+                        height="600"
+                        src=""></iframe>
+
+            </div>
+            <div class="modal-footer" style="background-color:#ced8e1">
+                <button id="btnCerrarModalReporte" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroLab.cshtml" />
+
+@section Scripts
+{
+
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+
+    @* <script type="text/javascript" src="~/AdmiRE/js/ProgressBar.js"></script> *@
+
+
+    @* <script type="text/javascript" src=@Href("~/js/Facturacion/EstadoCuenta.js?v=" + version)></script> *@
+    <script type="module" src=@Href("~/js/Facturacion/EstadoCuenta.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Facturacion/ConsumoServicioV3.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Variables.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js?v=" + version)></script>
+
+
+
+}
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .tabListEvaluacion h6 {
+        background-color: #394273;
+    }
+
+    .tabListEvaluacion .nav-link.active, .tabListEvaluacion .nav-link.active:focus {
+        background: #878fbb !important;
+    }
+
+    .submenu .nav-link.active {
+        background-color: transparent !important;
+        color: inherit !important;
+    }
+
+    .input-table {
+        border: none;
+        background-color: none;
+        outline: 0;
+        font-size: 12px;
+        width: 40px;
+        height: 12px;
+        background-color: #fffabd !important
+    }
+
+        .input-table:focus {
+            border: none;
+            background-color: none;
+            outline: 0;
+            font-size: 12px;
+            width: 40px;
+            height: 12px;
+            background-color: #fffabd !important
+        }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    #tblServicios, #tblFarmacia {
+        table-layout: auto !important;
+        width: auto !important;
+    }
+</style>

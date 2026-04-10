@@ -1,0 +1,312 @@
+﻿        @using System.Data
+
+@* <div class="modal-dialog modal-lg" role="document"> *@
+
+<div class="modal fade" id="modalProductosPlan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true" data-backdrop="static">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-primary">
+				<h5 class="modal-title text-white" id="exampleModalLabel">Agregar Producto/Plan</h5>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-xl-12 mb-1">
+						<div class="card bg-blue">
+							<div class="card-block">
+								<div class="row">
+									<div class="col-xl-3">
+										<div class="form-group m-0">
+											<label for="txtId">Id</label>
+											<input type="text" class="form-control form-control-sm writing reading"
+												   autocomplete="off" id="txtId">
+										</div>
+									</div>
+
+									<div class="col-xl-9">
+										<div class="form-group m-0">
+											<label for="txtProductoPlanDescripcion">Producto/Plan</label>
+											<input type="text" class="form-control form-control-sm reading"
+												   autocomplete="off" id="txtProductoPlanDescripcion">
+										</div>
+									</div>
+
+
+
+
+									<div class="card border-primary">
+										<!-- border-success, border-warning, etc. -->
+										<div class="card-body">
+											<p>
+
+												<div class="col-lg-6">
+													<label for="cboEstadoCuenta">Columna ROJA en 'Estado Cuenta'</label>
+												</div>
+												<div class="col-lg-6">
+													<select id="cboEstadoCuenta" class="chzn-select-deselect writing reading"
+															data-placeholder="Seleccione una opción">
+														@* @foreach (DataRow partida in ViewBag.RayosX.Rows)
+                                                                {
+                                                                    <option value="@partida["IdProducto"]" codigo="@partida["Codigo"]"
+                                                                            nombre="@partida["Nombre"]" precio="@partida["PrecioUnitario"]">
+                                                                        @partida["Codigo"] - @partida["Nombre"]
+                                                                    </option>
+                                                                } *@
+													</select>
+												</div>
+
+											</p>
+
+										</div>
+
+									</div>
+								</div>
+
+
+
+
+								<div class="row">
+									<div class="col-xl-12">
+										<div class="row mb-1">
+											<p>
+												<div class="col-lg-6">
+													<label class="checkbox-item">
+														<input type="checkbox" name="opciones" value="1" id="chkEsOficinaHospital">
+														<span class="checkmark"></span>
+														Es Oficina del Hospital?
+													</label>
+												</div>
+												<div class="col-lg-6">
+													<label class="checkbox-item">
+														<input type="checkbox" name="opciones" value="1" id="chkSeIngresaPrecios">
+														<span class="checkmark"></span>
+														Se ingresa Precios (Tarifario) ?
+													</label>
+												</div>
+											</p>
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+								<div class="card bg-blue">
+									<div class="card-header bg-white">Datos para Farmacia:</div>
+									<div class="card-block">
+										
+
+										<div class="row">
+											<div class="col-lg-6">
+												<label class="checkbox-item">
+													<input type="checkbox" name="opciones" value="1" id="chkTieneFuenteFinanciamiento">
+													<span class="checkmark"></span>
+													Tiene Fuente Financieamiento (IAFA)?
+												</label>
+												<label for="cboRayosX"></label>
+											</div>
+											<div class="col-lg-6">
+												<label class="checkbox-item">
+													<input type="checkbox" name="opciones" value="1" id="chkEsUnaFormaPago">
+													<span class="checkmark"></span>
+													Es una Forma Pago (= SISMEDV2)?
+												</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-6">
+												<label for="cboTipoConcepto">Tipo Concepto (Form.ICI)</label>
+											</div>
+											<div class="col-lg-6">
+												<select id="cboTipoConcepto" class="chzn-select-deselect writing reading"
+														data-placeholder="Seleccione una opción">
+												</select>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+								<div class="card bg-blue">
+									@* <div class="card-header bg-white">Datos para Farmacia:</div> *@
+									<div class="card-block">
+
+
+
+										<div class="row">
+											<div class="col-lg-7">
+												<label class="checkbox-item">
+													<input type="checkbox" name="opciones" value="1" id="chkSeImprimirComprobante">
+													<span class="checkmark"></span>
+													Se imprime Comprobante (Fisicamente) ?
+												</label>
+											</div>
+											
+										</div>
+
+										<div class="row">
+											<div class="col-lg-6">
+												<label for="cboTipoComprobante">Tipo de Comprobante</label>
+											</div>
+											<div class="col-lg-6">
+												<select id="cboTipoComprobante" class="chzn-select-deselect writing reading"
+														data-placeholder="Seleccione una opción">
+												</select>
+											</div>
+										</div>
+
+
+									</div>
+								</div>
+
+								<div class="card bg-blue">
+									@* <div class="card-header bg-white">Datos para Farmacia:</div> *@
+									<div class="card-block">
+
+
+
+										<div class="row">
+											<div class="col-lg-10">
+												<label class="checkbox-item">
+													<input type="checkbox" name="opciones" value="1" id="chkSeUsaOpcionVentas">
+													<span class="checkmark"></span>
+													Se usa en la opción de VENTAS ?
+												</label>
+											</div>
+										</div>
+
+
+										<div class="row">
+										</div>
+
+										<div class="row">
+											<div class="card bg-blue">
+												<div class="card-header bg-white">Tipo de Venta</div>
+												<div class="card-block">
+													<div class="col-lg-10">
+														<div class="radio-group">
+															<label class="radio-item">
+																<input type="radio" name="opcion" value="1" id="optVDCI" checked>
+																<span class="radiomark"></span>
+																Venta Directa(con IAFA)
+															</label>
+															<label class="radio-item">
+																<input type="radio" name="opcion" value="2" id="optVDSI">
+																<span class="radiomark"></span>
+																Venta Directa(sin IAFA)
+															</label>
+															<label class="radio-item">
+																<input type="radio" name="opcion" value="2" id="optPVTA">
+																<span class="radiomark"></span>
+																PreVenta
+															</label>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										<div/>
+
+
+
+
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								@* <div class="row">
+
+									<div class="col-xl-6">
+										<button class="btn btn-danger layout_btn_prevent"
+												id="btnQuitarProductoDetalle">
+											Eliminar
+										</button>
+									</div>
+
+									<div class="col-xl-12">
+										<table id="tblDetallePaquete"
+											   class="table table-sm table-content-sm table-bordered table-striped w-100"
+											   style="cursor: default;">
+											<thead style="color: white; background: #434343; width: 100%;">
+												<tr>
+													<th width="85%">Descripcion</th>
+													<th width="5%">Cantidad</th>
+													<th width="5%">Precio</th>
+													<th width="5%">Importe</th>
+												</tr>
+											</thead>
+											<tbody></tbody>
+										</table>
+									</div>
+								</div> *@
+							</div>
+						</div>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
+				<!--<button type="button" class="btn btn-lg btn-secondary" id="btnCerrarModal">CERRAR</button>-->
+					<button type="button" class="btn btn-default"  id="btnCerrarModal" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+
+@* @section Scripts
+{
+
+	<script>
+		$(document).ready(function () {
+			 // cargarCombo('/Paquetes/GetEspecialidades', 'IdEspecialidad', '-- Seleccione --', 'Id', 'Nombre');
+			 // cargarCombo('/Paquetes/GetProductos', 'IdProducto', '-- Seleccione producto --', 'Id', 'Descripcion');
+
+			 //cargarCombo('/ProductoPlan(controller)/FactConfigProductoPlan_ListarTipoConceptos', 'idCombo', '-- Seleccione --', 'Id', 'Nombre');
+			 cargarCombo('/ProductoPlan/FactConfigProductoPlan_ListarTipoConceptos', 'cboTipoConcepto', 'Seleccione', 'IdTipoConcepto', 'Concepto');
+		});
+
+	</script>
+
+
+
+
+
+} *@
+
+

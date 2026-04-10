@@ -1,0 +1,376 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+
+@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-hospital-user"></i>
+                @*@ViewBag.Area*@
+                Evaluación Emergencia
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Admisión de Emergencias</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="row m-0">
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+            <li class="nav-item m-0" role="presentation">
+                <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Registro Evaluación</a>
+            </li>
+        </ul>
+        <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContent">
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroCuentaBuscar" class="form-control-label">N° Cuenta</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtNroCuentaBuscar">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroDniBuscar" class="form-control-label">N° Dni</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtNroDniBuscar">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroHistoriaBuscar" class="form-control-label">N° Historia</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtNroHistoriaBuscar">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtApPaternoBuscar" class="form-control-label">Ap. Paterno</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtApPaternoBuscar">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2" style="max-width: 150px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaAtencionBuscar" class="form-control-label">Fecha Ingreso</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label for="cboServicioEmergenciaBuscar" class="form-control-label">Servicio</label>
+                                            <select class="chzn-select w-100" id="cboServicioEmergenciaBuscar" data-placeholder="Seleccione una opción" ></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="d-flex align-items-end" style="height: 55px;">
+                                            <button class="btn btn-sm btn-primary layout_btn_prevent" id="btnBuscarAtencionesEmergencia" style="padding-left: 2rem !important; padding-right: 2rem !important;">Buscar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 pt-2 pb-0">
+                        @{
+                            if (@ViewBag.Agregar)
+                            {
+                                @*<button class="btn btn-success layout_btn_prevent" id="btnAgregarEvaluacion" onclick="EvaluacionEmergencia.Modificar();">Agregar</button>*@
+                            }
+                            if (@ViewBag.Modificar)
+                            {
+                                @*<button class="btn btn-primary layout_btn_prevent" id="btnModificarAtenciones" >Modificar</button>*@
+                                <button class="btn btn-primary layout_btn_prevent" id="btnModificarAtenciones" onclick="AdmisionEmergencia.Accion('M');">Modificar</button>
+                            }
+                            if (@ViewBag.Eliminar)
+                            {
+                                @*<button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtenciones">Eliminar</button>*@
+                            }
+                            if (@ViewBag.Consultar)
+                            {
+                                @*<button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtenciones" onclick="EvaluacionEmergencia.Consultar();">Consultar</button>*@
+                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtenciones" onclick="AdmisionEmergencia.Accion('C');">Consultar</button>
+                            }
+
+                            <button class="btn btn-light-green layout_btn_prevent float-xs-right" id="btnAltaMedica" onclick="AdmisionEmergencia.Accion('A');"><i class="fa fa-hands-heart mr-1"></i>ALTA MÉDICA</button>
+
+                        }
+                    </div>
+
+                    <div class="col-lg-12 pb-2">
+                        <table id="tblAtencionEmer" width="100%" class="table table-sm table-bordered" style="cursor: default;">
+                            <thead style="color: white;background: #434343;">
+                                <tr>
+                                    <th style="width:5%">Cuenta</th>
+                                    <th style="width:10%">Ap. Paterno</th>
+                                    <th style="width:10%">Ap. Materno</th>
+                                    <th style="width:10%">Nombres</th>
+                                    <th style="width:5%">Historia</th>
+                                    <th style="width:5%">Fec. Nac.</th>
+                                    <th style="width:10%">Tipo Paciente</th>
+                                    <th style="width:5%">Fec. Ing.</th>
+                                    <th style="width:5%">Hor. Ing.</th>
+                                    <th style="width:10%">Servicio</th>
+                                    <th style="width:5%">Plan</th>
+                                    <th style="width:5%">Cant. Eval.</th>
+                                    <th style="width:10%;text-align:center">Informe</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--=============================================Panel Registro==================================================================-->
+            <div class="tab-pane fade" id="TabPanelRegistro" role="tabpanel" aria-labelledby="TabRegistro">
+                <div id="modulo"></div>
+                @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Emergencia/EvaluacionNeonatal.cshtml")*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    <div class="card-block pt-1">
+                        
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>        
+</div>*@
+
+
+
+
+
+<div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalSeguimiento" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light-blue">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Seguimiento de Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <partial name="~/Views/Shared/Components/VistasParciales/SeguimientoPaciente.cshtml" />
+                        @*@Html.Partial("~/Views/Shared/Components/VistasParciales/SeguimientoPaciente.cshtml");*@
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrarSeguimiento" target="_blank" class="btn btn-lg btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*@Html.Partial("~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistro.cshtml")*@
+<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistro.cshtml" />
+
+@*@Html.Partial("~/Views/Shared/Components/VistasParciales/AltaMedica.cshtml")*@
+
+@*@Html.Partial("~/Views/Shared/Components/VistasParciales/Recetas/VisorRecetas.cshtml")*@
+<partial name="~/Views/Shared/Components/VistasParciales/Recetas/VisorRecetas.cshtml" />
+
+<partial name="~/Views/Shared/Components/VistasParciales/ContraReferenciaRegistro.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/ReferenciaRegistro.cshtml" />
+
+<partial name="~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml" />
+
+@* =======================BUSQUEDA DE DIAGNOSTICOS================================== *@
+<partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticos.cshtml" />
+@* ================================================================================= *@
+
+<div id="ModuloAlta"></div>
+
+
+<input hidden="hidden" id="hdIdTipoServicio" name="hdIdTipoServicio" type="text" class="form-control" value="@ViewBag.Servicio">
+<input hidden="hidden" id="hdNroEvaluacion" name="hdNroEvaluacion" type="text" class="form-control">
+
+
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment-with-locales.js"></script>
+
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src=@Href("~/js/Emergencia/AdmisionEmergencia.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Emergencia/EvaluacionNeonatal.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Emergencia/EvaluacionEmergencia.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/BusquedaDiagnosticos.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/Diagnosticos.js?v=" + version)></script>
+    @*<script type="text/javascript" src=@Href("~/js/VistasParciales/DiagnosticosV3.js")></script>*@
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Triaje.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/SeguimientoPaciente.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/OrdenesYResultados.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Facturacion/ConsumoServicioV3.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV3.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/AltaMedica.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/VisorRecetas.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientosSaludV2.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Variables.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/ReferenciaV2.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientoSalud.js?v=" + version)></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //ESTABLECIMIENTOSSALUD.init();
+            //REFERENCIAS.init();
+            //ESTABLECIMIENTOSSALUD.init();
+            /*$(window).resize(function () {
+                $('#cboServicioEmergenciaBuscar_chosen').attr('style', 'width:' + $('#cboServicioEmergenciaBuscar_chosen').parent().parent().width() + 'px !important');
+            });*/
+
+        });
+    </script>
+
+}
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+    .chosen-disabled .chosen-single {
+        background: #eceeef !important;
+        border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+    .btn-outline-secondary:hover {
+        color: #fff !important;
+        border-color: #ccc !important;
+    }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                        width: 100% !important;
+                    }*/
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+</style>
+

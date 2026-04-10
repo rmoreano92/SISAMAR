@@ -1,0 +1,985 @@
+﻿<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalSolicitudSalaOp" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Solicitud de Sala de Operaciones</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="card m-t-5 bg-green">
+                    <div class="card-block p-t-0">
+                        <div class="row mt-1">
+                            <div class="col-md-2">
+                                <label for="txtNroSolicitud" class="form-control-label">Nro. Solicitud</label>
+                                <div class="input-group input-group-sm">
+                                    <input id="txtNroSolicitud" disabled autocomplete="off" placeholder="" class="form-control" disabled>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-sm btn-info layout_btn_prevent" type="button" id="btnBuscarHC"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label for="cboMedicoSolicita" class="form-control-label">Medico Solicita</label>
+                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMedicoSolicita"></select>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <label for="txtEstado" class="form-control-label">Estado</label>
+                                <div class="input-group input-group-sm">
+                                    <input id="txtEstado" disabled autocomplete="off" placeholder="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-md-2">
+                                <label for="txtNroHistoriaSolicitud" class="form-control-label">Historia Clínica</label>
+                                <div class="input-group input-group-sm">
+                                    <input id="txtNroHistoriaSolicitud" autocomplete="off" placeholder="" class="form-control" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="txtDatosPaciente" class="form-control-label">Datos del Paciente</label>
+                                <div class="input-group input-group-sm">
+                                    <input id="txtDatosPaciente" disabled autocomplete="off" placeholder="" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-control-label">Edad</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" placeholder="Año" aria-describedby="basic-addon2" id="txtEdadAnioSolicitud" disabled>
+                                            <span class="input-group-addon" id="basic-addon2">A</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" placeholder="Mes" aria-describedby="basic-addon2" id="txtEdadMesSolicitud" disabled>
+                                            <span class="input-group-addon" id="basic-addon2">M</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" placeholder="Mes" aria-describedby="basic-addon2" id="txtEdadDiaSolicitud" disabled>
+                                            <span class="input-group-addon" id="basic-addon2">D</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="form-control-label">Sexo</label>
+                                <input class="form-control form-control-sm" id="txtSexoSolicitud" disabled />
+                            </div>
+                        </div>
+
+                        <div class="row mt-1">
+
+                            <div class="col-md-2">
+                                <label for="cboUbicacionPaciente">Ubicacion del paciente</label>
+                                <select class="chzn-select" id="cboUbicacionPaciente" data-placeholder="Seleccione una opción" disabled>
+                                    <option value="0">Seleccionar Opcion</option>
+                                    <option value="1">Consulta externa</option>
+                                    <option value="2">Emergencia</option>
+                                    <option value="3">Hospitalización</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="form-control-label">Servicio</label>
+                                <input class="form-control form-control-sm" id="txtServicioSolicitud" disabled />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="form-control-label">Cama</label>
+                                <input class="form-control form-control-sm" id="txtCamaSolicitud" disabled />
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="cboClaseIntervencion">Clase de intervención</label>
+                                <select class="chzn-select" id="cboClaseIntervencion" data-placeholder="Seleccione una opción">
+                                   @*  <option value="0">Seleccionar Opcion</option>
+                                    <option value="1">Emergencia</option>
+                                    <option value="2">Programada</option> *@
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="cboClasePlaciente">Clasificación del paciente</label>
+                                <select class="chzn-select" id="cboClasePlaciente" data-placeholder="Seleccione una opción">
+                                    @* <option value="0">Seleccionar Opcion</option>
+                                    <option value="1">Gestante</option>
+                                    <option value="2">Ginecológica</option>
+                                    <option value="3">Neonatal</option>
+                                    <option value="4">Pediátrico</option> *@
+                                </select>
+                            </div>
+
+                            @* <div class="col-md-7">
+
+                                <div class="row m-0">
+                                    <div class="col-md-6" hidden>
+                                        <label for="cboSolicitudTipoAnestesiaPreviaCQx">Tipo Anestesia previa</label>
+                                        <select class="chzn-select" id="cboSolicitudTipoAnestesiaPreviaCQx" data-placeholder="Seleccione una opción">
+                                            <option value="0">Seleccionar Opcion</option>
+                                            <option value="1">Opcion 1</option>
+                                            <option value="2">Opcion 2</option>
+                                            <option value="3">Opcion 3</option>
+                                            <option value="4">Opcion 4</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="col-md-6" hidden>
+                                        <label for="cboSalaSolicitudCQx">Sala</label>
+                                        <select class="chzn-select" id="cboSalaSolicitudCQx" data-placeholder="Seleccione una opción">
+                                            <option value="0">Seleccionar Opcion</option>
+                                            <option value="1">Opcion 1</option>
+                                            <option value="2">Opcion 2</option>
+                                            <option value="3">Opcion 3</option>
+                                            <option value="4">Opcion 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> *@
+
+
+                            @* <div class="col-md-12">
+                            <div class="row m-0 mt-1">
+                            <div class="col-md-4">
+                            <div class="d-flex align-items-end" style="height: 55px;">
+                            <button id="btnAgregaSolicitudCQx" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                            <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                            Agregar
+                            </button>
+                            <button id="btnQuitarSolicitudCQx" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                            <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                            Eliminar
+                            </button>
+                            </div>
+                            </div>
+                            </div>
+                            </div> *@
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-md-2">
+                                <label for="txtFechaSolicitudCQx" class="form-control-label">Fecha solicitud</label>
+                                <div class="input-group input-group-sm m-0">
+                                    <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaSolicitudCQx" disabled>
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="txtHoraSolicitudCQx" class="font-weight-bold text-info">Hora solicitud</label>
+                                <div class="d-flex">
+                                    <div style="max-width:80px;">
+                                        <input type="text" name="txtHoraSolicitudCQx" id="txtHoraSolicitudCQx" onblur="valida_hora(value)" class="form-control form-control-sm" placeholder="" autocomplete="off" disabled>
+                                    </div>
+                                    <div class="ml-1 mr-1">
+                                        <label class="m-0 text-info">24 H</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="txtFechaParaCQx" class="form-control-label">Fecha sugerida para la IQ</label>
+                                <div class="input-group input-group-sm m-0">
+                                    <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaParaCQx">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="txtHoraParaCqx" class="font-weight-bold text-info">Hora sugerida para la IQ</label>
+                                <div class="d-flex">
+                                    <div style="max-width:80px;">
+                                        <input type="text" name="txtHoraParaCqx" id="txtHoraParaCqx" onblur="valida_hora(value)" class="form-control form-control-sm" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="ml-1 mr-1">
+                                        <label class="m-0 text-info">24 H</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group m-0">
+                                    <label for="txtFechaSolicitudCQxAceptada" class="form-control-label">Fecha aceptada</label>
+                                    <div class="input-group input-group-sm m-0">
+                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaSolicitudCQxAceptada" disabled>
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group m-0 campo">
+                                    <label for="txtHoraSolicitudCQxAceptada" class="font-weight-bold text-info">Hora aceptada</label>
+                                    <div class="d-flex">
+                                        <div style="max-width:80px;">
+                                            <input type="text" name="txtHoraSolicitudCQxAceptada" id="txtHoraSolicitudCQxAceptada" onblur="valida_hora(value)" class="form-control form-control-sm" placeholder="" autocomplete="off" disabled>
+                                        </div>
+                                        <div class="ml-1 mr-1">
+                                            <label class="m-0 text-info">24 H</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <label for="cboEstadoSolicitud" class="form-control-label">Estado Solicitud</label>
+                                <div class="input-group input-group-sm">
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboEstadoSolicitud">
+                                        @* <option value="0">Seleccione una opción</option> *@
+                                        <option value="2">Aprobada</option>
+                                        @* <option value="10">Rechazada</option> *@
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-lg-12">
+
+                        <div class="card bg-teal">
+                            <div class="card-header bg-white" id="TituloCardDiagnostico">Diagnósticos Pre-Operatorio</div>
+                            <div class="card-block custom-form pt-1">
+                                <div class="row OpcionesDiagnosticos">
+                                    @* <div class="col-md-3" style="max-width: 200px;">
+                                    <div class="form-group">
+                                    <div class="d-flex">
+                                    <input id="txtCodigoDiagSolicitudCQx" type="text" class="form-control form-control-sm m-auto" autocomplete="off">
+                                    <input id="hdnIdDiagnosticoSolicitudCQx" type="hidden" class="form-control">
+                                    <button type="button" class="btn btn-sm btn-outline-primary layout_btn_prevent ml-1" onclick="Ordenes.AbrirModalBusqueda();">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                    </button>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                    <div class="form-group">
+                                    <input id="txtDescripcionDiagSolicitudCQx" type="text" class="form-control form-control-sm m-auto" readonly>
+                                    </div>
+                                    </div> *@
+
+                                    @* <div class="col-md-12">
+                                    <div class="row mb-1">
+                                    <div class="col-lg-3" style="max-width: 300px;">
+                                    <div class="fomr-group">
+                                    <label class="font-weight-bold">Tipo de Diagnóstico</label>
+                                    <select class="hide_search" id="cboTipoDiagnosticoSolicitudCQx" name="cboTipoDiagnostico">
+                                    <option value="-1">---Seleccione tipo diagnostico---</option>
+                                    @foreach (var item in @ViewBag.TiposDiagnosticos)
+                                    {
+                                    <option value="@item.IdSubclasificacionDx"> @item.Descripcion  </option>
+                                    }
+                                    </select>
+                                    </div>
+
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                    <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;" onclick="Ordenes.AgregarDiagnostico();">
+                                    <span class="btn-label">
+                                    <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                    </span>
+                                    Agregar
+                                    </button>
+                                    <button id="btnQuitarDiagnostico" type="button" class="btn btn-sm btn-labeled btn-danger mt-2" style="width: 100px;" onclick="Ordenes.QuitarDiagnostico();">
+                                    <span class="btn-label">
+                                    <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                    </span>
+                                    Quitar
+                                    </button>
+                                    </div>
+                                    </div>
+                                    </div> *@
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="lstDiagnosticosSolicitudCQx" class="table table-sm table-bordered table-content-sm" width="100%">
+                                            <thead style="color: white;background: #51717a;">
+                                                <tr>
+                                                    <th style="width: 0%;" data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                                                    <th style="width: 0%;" data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                                                    <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Código</th>
+                                                    <th style="width: 80%;" data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                                                    <th style="width: 0%;" data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                                                    <th style="width: 0%;" data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                                                    <th style="width: 0%;" data-columna="idTipoDiagnostico" valign="middle" align="center">idTipoDiagnostico</th>
+                                                    <th style="width: 10%;" data-columna="TipoDiagnostico" valign="middle" align="center">TipoDiagnostico</th>
+                                                    @* <th style="width: 10%;" data-columna="Intrahospitalario" valign="middle" align="center">IntraHospitalario</th> *@
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaSolicitudCQx" name="hdIdRecetaSolicitudCQx" type="text" class="form-control"></div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-md-12">
+
+                        <div class="card bg-teal">
+                            <div class="card-header bg-white" id="TituloCardDiagnostico">Procedimientos</div>
+                            <div class="card-block custom-form pt-1">
+
+                                <table id="tblCatalogoSolicitudCQx" class="table table-sm table-bordered table-content-md">
+                                    <thead style="color: white;background: #51537a;">
+                                        <tr>
+                                            <th style="display:none" align="center">idProducto</th>
+                                            <th align="center">Descripcion</th>
+                                            <th align="center">Cantidad</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card m-t-5 bg-green">
+                    <div class="card-block p-t-0">
+                        <div class="row">
+                            @* <div class="col-lg-3">
+                            <label for="txtHcPaciente" class="form-control-label">Historia Clinica</label>
+                            <div class="input-group input-group-sm">
+                            <input id="txtHcPaciente" disabled autocomplete="off" placeholder="" class="form-control">
+                            </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                            <label for="txtEdad" class="form-control-label">Edad</label>
+                            <div class="input-group input-group-sm">
+                            <input id="txtEdad" disabled autocomplete="off" placeholder="" class="form-control">
+                            </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                            <label for="txtPeso" class="form-control-label">Peso(kg)</label>
+                            <div class="input-group input-group-sm">
+                            <input id="txtPeso" autocomplete="off" placeholder="" class="form-control">
+                            </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                            <label for="cboSexo" class="form-control-label">Sexo</label>
+                            <div class="input-group input-group-sm">
+                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" data-placeholder="Seleccionar una opcion" id="cboSexo"></select>
+                            </div>
+                            </div> *@
+                        </div>
+
+                        <div class="row mt-1">
+                            @*   <div class="col-lg-3">
+                            <label for="txtFechaSolicitudSalaOp" class="form-control-label" style="font-weight: bold;">Fecha de Solicitud</label>
+                            <div class="form-group text-right">
+                            <div class="input-group input-group-sm">
+                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 text-info entrada" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaSolicitudSalaOp" style="font-weight: bold;border-color:#ff9900;" disabled>
+                            <span class="input-group-addon " for="txtFechaSolicitudSalaOp">
+                            <i class="fa fa-calendar "></i>
+                            </span>
+                            </div>
+                            </div>
+                            </div> *@
+
+                            @*  <div class="col-lg-3">
+                            <label for="cboTipoSolicitud" class="form-control-label">Tipo de Solicitud</label>
+                            <div class="input-group input-group-sm">
+                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboTipoSolicitud">
+                            <option value="0">Seleccione una opción</option>
+                            <option value="1">Tipo solicitud 1</option>
+                            <option value="2">Tipo solicitud 2</option>
+                            </select>
+                            </div>
+                            </div> *@
+
+
+                        </div>
+
+                        <div class="row" hidden>
+
+                            <div class="col-lg-3">
+                                <label for="cboTipoCirugia" class="form-control-label">Tipo de Cirugia</label>
+                                <div class="input-group input-group-sm">
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboTipoCirugia">
+                                        @* <option value="0">Seleccione una opción</option>
+                                        <option value="1">cboTipoCirugia 1</option>
+                                        <option value="2">cboTipoCirugia 2</option> *@
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <label for="cboTurno" class="form-control-label">Turno Sugerido</label>
+                                <div class="input-group input-group-sm">
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboTurno">
+                                        @* <option value="0">Seleccione una opción</option>
+                                        <option value="1">TurnoMañana 1</option>
+                                        <option value="2">TurnoTarde 2</option> *@
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <label for="cboOrdenSugerido" class="form-control-label">Orden Sugerido</label>
+                                <div class="input-group input-group-sm">
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboOrdenSugerido">
+                                       @*  <option value="0">Seleccione una opción</option>
+                                        <option value="1">Orden 1</option>
+                                        <option value="2">orden 2</option> *@
+                                    </select>
+                                </div>
+                            </div>
+
+                           
+                        </div>
+                        <div class="row">
+
+
+                            @*  <div class="col-lg-3">
+                            <label for="cboSala" class="form-control-label">Sala</label>
+                            <div class="input-group input-group-sm">
+                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboSala">
+                            <option value="0">Seleccione una opción</option>
+                            <option value="1">Sala 1</option>
+                            <option value="2">Sala 2</option>
+                            </select>
+                            </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                            <label for="cboEspecialidad" class="form-control-label">Especialidad</label>
+                            <div class="input-group input-group-sm">
+                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboEspecialidad">
+                            <option value="0">Seleccione una opción</option>
+                            <option value="1">cboEspecialidad 1</option>
+                            <option value="2">cboEspecialidad 2</option>
+                            </select>
+                            </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                            <label for="cboCondicion" class="form-control-label">Condición</label>
+                            <div class="input-group input-group-sm">
+                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboCondicion">
+                            <option value="0">Seleccione una opción</option>
+                            <option value="1">cboCondicion 1</option>
+                            <option value="2">cboCondicion 2</option>
+                            </select>
+                            </div>
+                            </div> *@
+                        </div>
+                        <div class="row">
+                            @*  <div class="col-lg-3">
+                            <label for="cboQuirifano" class="form-control-label">Quirofano</label>
+                            <div class="input-group input-group-sm">
+                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboQuirifano">
+                            <option value="0">Seleccione una opción</option>
+                            <option value="1">cboQuirifano 1</option>
+                            <option value="2">cboQuirifano 2</option>
+                            </select>
+                            </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                            <label for="cboServicioOrigen" class="form-control-label">Servicio Origen</label>
+                            <div class="input-group input-group-sm">
+                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboServicioOrigen" disabled="disabled"></select>
+                            </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                            <label for="cboNroCama" class="form-control-label">Nro. Cama</label>
+                            <div class="input-group input-group-sm">
+                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboNroCama"></select>
+                            </div>
+                            </div> *@
+                        </div>
+                        <div class="row">
+                            @* <div class="col-lg-3">
+                            <label for="txtFechaCirugia" class="form-control-label">Fecha Cirugia</label>
+                            <div class="form-group text-right">
+                            <div class="input-group input-group-sm">
+                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaCirugia">
+                            <span class="input-group-addon " for="txtFechaCirugia">
+                            <i class="fa fa-calendar "></i>
+                            </span>
+                            </div>
+                            </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                            <label for="txtHoraCirugia" class="form-control-label">Hora Cirugia</label>
+                            <div class="input-group input-group-sm">
+                            <input id="txtHoraCirugia" autocomplete="off" placeholder="" class="form-control">
+                            </div>
+                            </div> *@
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card mt-1">
+                    <ul id="clothing-nav" class="nav nav-tabs" role="tablist">
+                        @* <li class="nav-item">
+                        <a class="nav-link active" href="#signosVitales" role="tab" id="signosVitales-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Diagnosticos</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#procedimientos" role="tab" id="procedimientos-tab" data-toggle="tab" aria-controls="hats">Procedimientos</a>
+                        </li>*@
+
+                        @* <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="#consentimiento" role="tab" id="consentimiento-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Consentimento Informado</a>
+                        </li> *@
+
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom active" href="#solicitud" role="tab" id="solicitud-tab" data-toggle="tab" aria-controls="hats">Solicitud SOP(Qx)</a>
+                        </li>
+                    </ul>
+
+                    <div class="card-block">
+                        <div id="clothing-nav-content" class="tab-content fade in active">
+
+                            <div role="tabpanel" class="tab-pane" id="signosVitales" aria-labelledby="signosVitales-tab">
+                                <div class="row mt-1">
+                                    <div class="col-md-12">
+                                        <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/DiagnosticosLab.cshtml" />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="txtImpresion" class="form-control-label"> Impresión diagnóstica</label>
+                                        <div class="input-group input-group-sm">
+                                            <textarea class="form-control" id="txtImpresion" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="txtPlan" class="form-control-label">Plan de Trabajo</label>
+                                        <div class="input-group input-group-sm">
+                                            <textarea class="form-control" id="txtPlan" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5><label for="HoraInicioAtencion" class="form-control-label titulo">Hora de Inicio de  Atención</label></h5>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" autocomplete="off" class="form-control" name="HoraInicioAtencion" id="HoraInicioAtencion" onblur="valida_hora(value)">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h5><label for="HoraInicioAtencion" class="form-control-label titulo">24 Horas</label></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="procedimientos" aria-labelledby="procedimientos-tab">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card m-t-20">
+                                            <div class="card-block">
+
+                                                <h5 class="m-t-5 titulo">Procedimientos CPT/CPMS Ejecutados</h5>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <table id="tblCSAtencion" class="table table-bordered">
+                                                            <thead style="        color: white; background: #5f7184;">
+                                                                <tr>
+                                                                    <th>N°. Orden</th>
+                                                                    <th>N°. Orden Pago</th>
+                                                                    <th>Producto</th>
+                                                                    <th>cantidad</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <button id="btnAgregarCSAtencion" title="Agregar CPT" data-toggle="tooltip" class="btn  btn-success"><span class="btn-label"> <i class="fa fa-plus"></i>&nbsp; Agregar</span></button><br>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <button id="btnEliminarCSAtencion" title="Eliminar CPT" data-toggle="tooltip" class="btn  btn-danger"><span class="btn-label"> <i class="fa fa-trash">&nbsp;Quitar</i></span></button><br>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <button id="btnActualizaCSAtencion" title="Actualiza CPT" data-toggle="tooltip" class="btn  btn-primary"><span class="btn-label"> <i class="fa fa-refresh">&nbsp;Actualizar</i></span></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="consentimiento" aria-labelledby="consentimiento-tab">
+
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <b><label for="txtDescripcioncirugia" class="form-control-label">Descripción de Cirugia o Procedimiento</label></b>
+                                            <div class="input-group">
+
+                                                <textarea class="form-control form-control-sm" id="txtDescripcioncirugia" rows="3"></textarea>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <b><label for="txtRiesgosDerivados" class="form-control-label">Riesgo Derivados</label></b>
+                                            <div class="input-group">
+
+                                                <textarea class="form-control form-control-sm" id="txtRiesgosDerivados" rows="3"></textarea>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4><label for="" class="form-control-label titulo">Datos del Tutor</label></h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-4">
+
+                                        <div class="form-group">
+                                            <label for="cboTipoDocTutor" class="form-control-label">Tipo de Documento</label>
+                                            <div class="input-group">
+
+                                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboTipoDocTutor"></select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="txtNroDocumentoMaterno" class="form-control-label">Nro Documento</label>
+                                            <div class="input-group">
+
+                                                <input id="txtNroDocumentoMaterno" autocomplete="off" placeholder="" class="form-control form-control-sm">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="cboParentesco" class="form-control-label">Parentesco</label>
+                                            <div class="input-group">
+
+                                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboParentesco">
+                                                    <option value="0">Seleccione una opción</option>
+                                                    <option value="1">Parentesco 1</option>
+                                                    <option value="2">Parentesco 2</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade in active" id="solicitud" aria-labelledby="solicitud-tab">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="cboMedicoPrincipal" class="form-control-label">Medico Principal</label>
+                                            <div class="input-group">
+
+                                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMedicoPrincipal"></select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="cboCirujanoII" class="form-control-label">Cirujano II</label>
+                                            <div class="input-group">
+
+                                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboCirujanoII"></select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="cboMedicoAyudanteI" class="form-control-label">Medico Ayudante I</label>
+                                            <div class="input-group">
+
+                                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMedicoAyudanteI"></select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="cboMedicoAyudanteII" class="form-control-label">Medico Ayudante II</label>
+                                            <div class="input-group">
+
+                                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMedicoAyudanteII"></select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @* <div class="col-lg-6">
+                                    <div class="form-group">
+                                    <label for="cboAnestesiologo" class="form-control-label">Anestesiólogo</label>
+                                    <div class="input-group">
+
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboAnestesiologo"></select>
+
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                    <div class="form-group">
+                                    <label for="cboAyudanteAnestesiologo" class="form-control-label">AyudanteAnestesiólogo</label>
+                                    <div class="input-group">
+
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboAyudanteAnestesiologo"></select>
+
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                    <div class="form-group">
+                                    <label for="cboInstrumentistaI" class="form-control-label">Instrumentista I</label>
+                                    <div class="input-group">
+
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboInstrumentistaI"></select>
+
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                    <div class="form-group">
+                                    <label for="cboInstrumentistaII" class="form-control-label">Instrumentista II</label>
+                                    <div class="input-group">
+
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboInstrumentistaII"></select>
+
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                    <div class="form-group">
+                                    <label for="cboTecEnfermeria" class="form-control-label">Téc. Enfermería</label>
+                                    <div class="input-group">
+
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboTecEnfermeria"></select>
+
+                                    </div>
+                                    </div>
+                                    </div> *@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @{
+                    if (@ViewBag.Agregar == true || @ViewBag.Modificar == true)
+                    {
+                        <button id="btnGuardar" class="btn  btn-info">Guardar</button>
+                    }
+
+                }
+
+
+                <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@*MODALS*@
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalPacientesBusqueda" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card m-t-5">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtHistoriaBusqSolicitud" class="form-control-label">Historia Clinica</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtHistoriaBusqSolicitud" autocomplete="off" placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtNroSolicitudBusqSolicitud" class="form-control-label">N° Solicitud</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtNroSolicitudBusqSolicitud" autocomplete="off" placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtNroDocumentoBusqSolicitud" class="form-control-label">N° Documento</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtNroDocumentoBusqSolicitud" autocomplete="off" placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtApPaternoBusqSolicitud" class="form-control-label">Apellido Paterno</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtApPaternoBusqSolicitud" autocomplete="off" placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtApMaternoBusqSolicitud" class="form-control-label">Apellido Materno</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtApMaternoBusqSolicitud" autocomplete="off" placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtFechaSolicitudBusqSolicitud" class="form-control-label">Fecha Solicitud</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtFechaSolicitudBusqSolicitud" autocomplete="off" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" class=" form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button class="btn btn-sm btn-primary layout_btn_prevent pl-1 pr-1" id="btnBuscarSolicitud">Buscar</button>
+                                        <button class="btn btn-sm  btn-default layout_btn_prevent pl-1 pr-1" id="btnLimpiarFiltroSolicitud">Limpiar</button>
+                                    </div>
+                                    @* <div class="col-lg-2">
+                                    <div class="form-group">
+                                    <label for="cboServicio" class="form-control-label">Servicio</label>
+                                    <div class="input-group input-group-sm">
+
+                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboServicio"></select>
+
+                                    </div>
+                                    </div>
+                                    </div> *@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table id="tblPacientesBusqueda" width="100%" class="table table-sm table-content-md table-bordered">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th>N°.Historia</th>
+                                        <th>N°.Solicitud</th>
+                                        <th>Paciente</th>
+                                        <th>Sexo</th>
+                                        <th>Fecha Nac.</th>
+                                        <th>N°.Cuenta</th>
+                                        <th>F. Ingreso</th>
+                                        @* <th>Serv. Ingreso</th>
+                                        <th>Serv. Actual</th> *@
+                                        <th>Tipo Serv.</th>
+                                        @*<th>Ult.Tipo</th>
+                                        <th>Ult.Serv.Ing.</th>
+                                        <th>UltFechaIng.</th>
+                                        <th>Ult.FechaEgr.</th>*@
+                                        @*<th>EstadoHistoria</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<iframe id="ifrmReporte"
+        title="Inline Frame Example"
+        width="100"
+        height="600" hidden="hidden"
+        src="">
+</iframe>

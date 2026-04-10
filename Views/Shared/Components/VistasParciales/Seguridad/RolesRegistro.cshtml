@@ -1,0 +1,149 @@
+﻿<div class="modal fade" id="modalRegistroRoles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Roles</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtNombreRol">Nombre Rol</label>
+                            <input type="text" class="form-control campo" id="txtNombreRol" required>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a href="#TabPanelModulos" class="nav-link active" id="TabModulos" data-toggle="tab" data-target="#TabPanelModulos" role="tab" aria-controls="TabPanelModulos" aria-selected="true">Módulos</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a href="#TabPanelPermisos" class="nav-link" id="TabPermisos" data-toggle="tab" data-target="#TabPanelPermisos" role="tab" aria-controls="TabPanelPermisos" aria-selected="false">Permisos</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a href="#TabPanelReportes" class="nav-link" id="TabReportes" data-toggle="tab" data-target="#TabPanelReportes" role="tab" aria-controls="TabPanelReportes" aria-selected="false">Reportes</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content border p-1" id="myTabContent">
+                            <div class="tab-pane fade active in" id="TabPanelModulos" role="tabpanel" aria-labelledby="TabModulos">
+                                <div class="row">
+                                    <div class="col-md-6 opciones">
+                                        <div class="form-group">
+                                            <label for="cboModulos">Módulos / Submódulos</label>
+                                            <div class="input-group">
+                                                <select class="chzn-select campo" id="cboModulos" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 opciones">
+                                        <div style="margin-top: 22px;">
+                                            <button type="button" class="btn btn-success" id="btnAgregarModulo">Agregar</button>
+                                            <button type="button" class="btn btn-danger" id="btnQuitarModulo">Eliminar</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <table id="tblModulosRoles" width="100%" class="table table-sm table-bordered table-content-md mt-1">
+                                            <thead style="color: white;background: #3e6184;">
+                                                <tr>
+                                                    <th style="width:40%">Submódulos</th>
+                                                    <th style="width:20%">Módulos</th>
+                                                    <th style="width:10%" class="text-sm-center">Agregar</th>
+                                                    <th style="width:10%" class="text-sm-center">Modificar</th>
+                                                    <th style="width:10%" class="text-sm-center">Consultar</th>
+                                                    <th style="width:10%" class="text-sm-center">Eliminar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="TabPanelPermisos" role="tabpanel" aria-labelledby="TabPermisos">
+                                <div class="row">
+                                    <div class="col-md-6 opciones">
+                                        <div class="form-group">
+                                            <label for="cboPermisos">Permisos</label>
+                                            <div class="input-group">
+                                                <select class="chzn-select campo" id="cboPermisos" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 opciones">
+                                        <div style="margin-top: 22px;">
+                                            <button type="button" class="btn btn-success" id="btnAgregarPermiso">Agregar</button>
+                                            <button type="button" class="btn btn-danger" id="btnQuitarPermiso">Eliminar</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <table id="tblPermisosRoles" width="100%" class="table table-sm table-bordered table-content-md mt-1">
+                                            <thead style="color: white;background: #3e6184;">
+                                                <tr>
+                                                    <th style="width:100%">Permisos</th>                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="TabPanelReportes" role="tabpanel" aria-labelledby="TabReportes">
+                                <div class="row">
+                                    <div class="col-md-6 opciones">
+                                        <div class="form-group">
+                                            <label for="cboReportes">Reportes</label>
+                                            <div class="input-group">
+                                                <select class="chzn-select campo" id="cboReportes" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 opciones">
+                                        <div style="margin-top: 22px;">
+                                            <button type="button" class="btn btn-success" id="btnAgregarReporte">Agregar</button>
+                                            <button type="button" class="btn btn-danger" id="btnQuitarReporte">Eliminar</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <table id="tblReportesRoles" width="100%" class="table table-sm table-bordered table-content-md mt-1">
+                                            <thead style="color: white;background: #3e6184;">
+                                                <tr>
+                                                    <th style="width:60%">Reporte</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-secondary mr-1" id="btnCancelarRol" style="width: 120px;">CERRAR</button>
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarRol" style="width: 120px;">GUARDAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .chosen-container {
+        width: 100% !important;
+    }
+</style>

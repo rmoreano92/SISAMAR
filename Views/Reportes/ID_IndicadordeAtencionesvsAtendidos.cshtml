@@ -1,0 +1,387 @@
+﻿
+<div class="modal-header modal-header bg-info">
+    <h5 class="modal-title text-white" id="titulo">Evaluación recién nacido<label id="txtDatos" class="form-control-label"></label></h5>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card  m-t-5" style="padding-bottom: 0px;">
+                <div class="card-header bg-white">Datos del Paciente</div>
+                <div class="card-block m-t-5" style="padding-bottom: 0px;">
+                    <input hidden="hidden" id="hdnIdCuentaAtencion" type="text" class="form-control">
+                    <input hidden="hidden" id="hdnIdEvaluacionRN" type="text" class="form-control" />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Nombres:</h5>
+                            <p>
+                                <input id="txtPaciente" type="text" disabled class="form-control">
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>Fec. Nacimiento:</h5>
+                            <p>
+                                <input id="txtFecNac" type="text" disabled class="form-control">
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>Hora. Nac.:</h5>
+                            <p>
+                                <input id="txtHoraNac" type="text" class="form-control" readonly>
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>Sexo:</h5>
+                            <p>
+                                <input id="txtSexoPac" type="text" class="form-control" readonly>
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>Nro Hijo:</h5>
+                            <p>
+                                <input id="txtNroHijo" type="text" disabled class="form-control">
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card  m-t-5" style="padding-bottom: 0px;">
+                <div class="card-header bg-white">Datos de la Madre</div>
+                <div class="card-block m-t-5" style="padding-bottom: 0px;">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Nombres:</h5>
+                            <p>
+                                <input id="txtNombreMadre" disabled type="text" disabled class="form-control" autocomplete="off">
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>Nro. Doc.:</h5>
+                            <p>
+                                <input id="txtNroDocMadre" disabled type="text" class="form-control solo-numero" autocomplete="off">
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>Nro. Historia:</h5>
+                            <p>
+                                <input id="txtNroHistoriaMadre" disabled type="text" class="form-control solo-numero" autocomplete="off">
+                            </p>
+                        </div>
+
+                        <div class="col-md-2">
+                            <h5>Edad:</h5>
+                            <p>
+                                <input id="txtEdadMadre" disabled type="text" class="form-control solo-numero" autocomplete="off">
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card  m-t-5">
+                <div class="card-header bg-white">Datos de Triaje</div>
+                <div class="card-block m-t-5" style="padding-bottom: 0px;">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h5>Peso (Gr):</h5>
+                            <p>
+                                <input id="txtPeso" type="text" class="form-control solo-numero" maxlength="4" autocomplete="off">
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>Talla (cm):</h5>
+                            <p>
+                                <input id="txtTalla" type="text" class="form-control solo-numero" maxlength="2" autocomplete="off">
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>Per.torácico(cm):</h5>
+                            <p>
+                                <input id="txtPerToracico" type="text" class="form-control solo-numero" maxlength="2" autocomplete="off">
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>
+                                Per.cefálico(cm):
+                            </h5>
+                            <p>
+                                <input id="txtPerCefalico" type="text" class="form-control solo-numero" maxlength="2" autocomplete="off">
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>
+                                Observación:
+                            </h5>
+                            <p>
+                                <textarea rows="2" class="form-control" id="txtObservacion"></textarea>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card  m-t-5">
+                <div class="card-header bg-white">Datos del Parto</div>
+                <div class="card-block m-t-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Profesional Repsonsable:</h5>
+                            <p>
+                                <select id="cboProfResponsable" class="chzn-select"></select>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Tipo Parto:</h5>
+                            <p>
+                                <select id="cboTipoParto" class="hide_search"></select>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h5>Condición:</h5>
+                            <p>
+                                <select id="cboCondicion" class="hide_search"></select>
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Riesgo:</h5>
+                            <p>
+                                <select id="cboRiesgo" class="hide_search"></select>
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>Nro. Gemelar:</h5>
+                            <p>
+                                <input id="txtNroGemelar" type="text" class="form-control solo-numero" maxlength="1" autocomplete="off">
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>
+                                Edad Gesta.:
+                            </h5>
+                            <p>
+                                <input id="txtEdadGestacional" type="text" class="form-control solo-numero" autocomplete="off">
+                            </p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h5>Contacto piel a piel:</h5>
+                            <p>
+                                <select id="cboContactoPiel" class="hide_search"></select>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    @*  paneles *@
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="card  m-t-5">
+                                @*<div class="card-header bg-white">Datos de Triaje</div>*@
+                                <div class="card-block m-t-5">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group custom-controls-stacked">
+                                                <div class="row">
+                                                    <div class="col-lg-7"></div>
+                                                    <div class="col-lg-2" style="text-align:center"><label><strong>SI</strong></label></div>
+                                                    <div class="col-lg-2" style="text-align:center"><label><strong>NO</strong></label></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-7">
+                                                        <label><strong>Clamp.Tardio</strong></label>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label class="custom-control custom-radio">
+                                                            <input type="radio" name="rdbTardio" id="rdbTardioSi" class="custom-control-input">
+                                                            <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label class="custom-control custom-radio">
+                                                            <input type="radio" name="rdbTardio" id="rdbTardioNO" class="custom-control-input">
+                                                            <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-7">
+                                                        <label><strong>Lac.1ra Hora</strong></label>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label class="custom-control custom-radio">
+                                                            <input type="radio" name="rdbLacthora" id="rdbLacthoraSi" class="custom-control-input">
+                                                            <span class="custom-control-indicator custom_checkbox_default"></span>
+
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label class="custom-control custom-radio">
+                                                            <input type="radio" name="rdbLacthora" id="rdbLacthoraNO" class="custom-control-input">
+                                                            <span class="custom-control-indicator custom_checkbox_danger"></span>
+
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="card  m-t-5">
+                                <div class="card-header bg-white">Fórmula Obstétrica</div>
+                                <div class="card-block m-t-5">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group custom-controls-stacked">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label><strong>Gestas</strong></label>
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <input id="txtGestas" type="text" class="form-control solo-numero" autocomplete="off">
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label><strong>Paridad</strong></label>
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <input id="txtParidad" type="text" class="form-control solo-numero" autocomplete="off">
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="card  m-t-5">
+                                <div class="card-header bg-white">Apgar</div>
+                                <div class="card-block m-t-5">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group custom-controls-stacked">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label><strong>al Minuto</strong></label>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input id="txtMinuto" type="text" class="form-control solo-numero" autocomplete="off">
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label><strong>A los 5 Min.</strong></label>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input id="txt5Minuto" type="text" class="form-control solo-numero" autocomplete="off">
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="row ">
+                                <div class="col-lg-12 ">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" id="chkConAcompaniante" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Con Acompañante</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" id="chkConAnalgesia" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Con Analgesia</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="card  m-t-5">
+                                <div class="card-header bg-white">Posición del parto</div>
+                                <div class="card-block m-t-5">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group custom-controls-stacked">
+
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label class="custom-control custom-radio">
+                                                            <input type="radio" name="rdbTipoParto" id="rdbTipoPartoH" class="custom-control-input">
+                                                            <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                            <span class="custom-control-description text-default">Horizontal.</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label class="custom-control custom-radio">
+                                                            <input type="radio" name="rdbTipoParto" id="rdbTipoPartoV" class="custom-control-input">
+                                                            <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                            <span class="custom-control-description text-danger">Vertical.</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button id="btnGuardar" type="button" class="btn btn-primary" onclick="Guardar();">Guardar</button>
+        <button type="button" onclick="cerrarModal();" class="btn btn-secondary">Cancelar</button>
+    </div>
+
+
+</div>

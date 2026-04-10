@@ -1,0 +1,269 @@
+﻿@page
+@model WebAppMaternidad.Views.Shared.Components.VistasParciales.Imagenologia.EcografiaBasicaVaginalModel
+@{
+}
+
+<input id="tipoModulo" value="@ViewBag.TipoModulo" hidden />
+
+<div class="row">
+    <div class="col-md-6 mb-1">
+        <div class="card bg-blue">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="form-group m-0">
+                            <label for="txtFechaFUR" class="d-block text-truncate">FUR</label>
+                            <div class="input-group form-group input-group-sm m-0">
+                                <input type="text" class="form-control form_val_popup_dp3 campoRes" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFUR" autocomplete="off">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="form-group m-0">
+                            <label for="txtFechaFPP" class="d-block text-truncate">FPP</label>
+                            <div class="input-group form-group input-group-sm m-0">
+                                <input type="text" class="form-control form_val_popup_dp3 campoRes" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFPP" autocomplete="off">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="cboRealizaPrueba">Edad Gestacional</label>
+                            <input id="txtEdadGestacional" class="form-control  form-control-sm" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-lg-12 mb-1">
+
+                        <ul class="nav nav-tabs jerarquiaA" id="AltaMed-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom active" id="embrionUno-tab-link" data-toggle="tab" href="#embrionUno-tab" role="tab" aria-controls="home" aria-selected="true" style="padding: 0.4em .8em !important;" @*aria-expanded="true"*@>EMBRIÓN 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" id="embrionDos-tab-link" data-toggle="tab" href="#embrionDos-tab" role="tab" aria-controls="home" aria-selected="false" style="padding: 0.4em .8em !important; display: none;" @*aria-expanded="false"*@>EMBRIÓN 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" id="embrionTres-tab-link" data-toggle="tab" href="#embrionTres-tab" role="tab" aria-controls="home" aria-selected="false" style="padding: 0.4em .8em !important; display: none;" @*aria-expanded="false"*@>EMBRIÓN 3</a>
+                            </li>
+
+                            <li class="nav-item" style="float: right">
+                                <input type="radio" name="rdbEmbrion" id="rdbEmbrion1" value="1" checked /> <label for="rdbEmbrion1">Embrión 1</label>
+                                <input type="radio" name="rdbEmbrion" id="rdbEmbrion2" value="2" /> <label for="rdbEmbrion2">Embrión 2</label>
+                                <input type="radio" name="rdbEmbrion" id="rdbEmbrion3" value="3" /> <label for="rdbEmbrion3">Embrión 3</label>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-6">
+
+                        <div class="card bg-yellow">
+                            <div class="card-block">
+                                <div class="tab-content" id="AltaMedTabContent">
+                                    <div class="tab-pane fade active in" id="embrionUno-tab" role="tabpanel" aria-labelledby="embrionUno-tab-link" @*aria-expanded="true"*@>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtLcnEmbrion1">LCN</label>
+                                                <input id="txtLcnEmbrion1" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtSacoGEmbrion1">Saco G</label>
+                                                <input id="txtSacoGEmbrion1" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtSvitelinoEmbrion1">Svitelino</label>
+                                                <input id="txtSvitelinoEmbrion1" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtFcfEmbrion1">FCF</label>
+                                                <input id="txtFcfEmbrion1" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="embrionDos-tab" role="tabpanel" aria-labelledby="embrionDos-tab-link" @*aria-expanded="true"*@>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtLcnEmbrion2">LCN</label>
+                                                <input id="txtLcnEmbrion2" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtSacoGEmbrion2">Saco G</label>
+                                                <input id="txtSacoGEmbrion2" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtSvitelinoEmbrion2">Svitelino</label>
+                                                <input id="txtSvitelinoEmbrion2" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtFcfEmbrion2">FCF</label>
+                                                <input id="txtFcfEmbrion2" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="embrionTres-tab" role="tabpanel" aria-labelledby="embrionTres-tab-link" @*aria-expanded="true"*@>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtLcnEmbrion3">LCN</label>
+                                                <input id="txtLcnEmbrion3" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtSacoGEmbrion3">Saco G</label>
+                                                <input id="txtSacoGEmbrion3" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtSvitelinoEmbrion3">Svitelino</label>
+                                                <input id="txtSvitelinoEmbrion3" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group m-0">
+                                                <label for="txtFcfEmbrion3">FCF</label>
+                                                <input id="txtFcfEmbrion3" class="form-control  form-control-sm" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+
+
+                        <div class="card bg-yellow">
+                            <div class="card-block">
+                                <div class="col-lg-12">
+                                    <div class="form-group m-0">
+                                        <label for="txtUterno">Uterno</label>
+                                        <input id="txtUterno" class="form-control  form-control-sm" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group m-0">
+                                        <label for="txtCuerpoLuteo">Cuerpo Lúteo</label>
+                                        <input id="txtCuerpoLuteo" class="form-control  form-control-sm" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group m-0">
+                                        <label for="txtHematomas">Hematomas</label>
+                                        <input id="txtHematomas" class="form-control  form-control-sm" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group m-0">
+                                        <label for="txtFsd">FSD</label>
+                                        <input id="txtFsd" class="form-control  form-control-sm" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group m-0">
+                                    <label for="cboAnatomia">Anatomia</label>
+                                    <select id="cboAnatomia" class="chzn-select w-100 campoRes" style="width 100% !important;" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <textarea style="overflow:scroll;" class="form-control campoRes campoResultado mt-1" id="txtAnatomia" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-1">
+        <div class="card bg-pink">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12">
+                        @* <div class="card bg-green"> *@
+                        @* <div class="card-header bg-white">Datos de Paciente</div> *@
+                        @* <div class="card-block"> *@
+                        <div class="form-group m-0">
+                            <label for="txtResObservaciones" class="form-control-label font-weight-bold">OBSERVACIONES</label>
+                            <textarea style="overflow:scroll;" class="form-control campoRes campoResultado" id="txtResObservaciones" rows="4"></textarea>
+                        </div>
+                        @* </div> *@
+                        @* </div> *@
+                    </div>
+
+                    <div class="col-md-12 mt-1">
+                        @* <div class="card bg-green"> *@
+                        @* <div class="card-header bg-white">Datos de Paciente</div> *@
+                        @* <div class="card-block"> *@
+                        <div class="form-group m-0">
+                            <label for="txtResConclusion" class="form-control-label font-weight-bold">CONCLUSION</label>
+                            <textarea style="overflow:scroll;" class="form-control campoRes campoResultado" id="txtResConclusion" rows="4"></textarea>
+                        </div>
+                        @* </div> *@
+                        @* </div> *@
+                    </div>
+
+                    <div class="col-md-12 mt-1">
+                        @* <div class="card bg-green"> *@
+                        @* <div class="card-header bg-white">Datos de Paciente</div> *@
+                        @* <div class="card-block"> *@
+                        <div class="form-group m-0">
+                            <label for="txtResSugerencia" class="form-control-label font-weight-bold">SUGERENCIA</label>
+                            <textarea style="overflow:scroll;" class="form-control campoRes campoResultado" id="txtResSugerencia" rows="4"></textarea>
+                        </div>
+                        @* </div> *@
+                        @* </div> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    EcografiaVaginalBasica.Init();
+</script>

@@ -1,0 +1,131 @@
+﻿<div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalTransferencias" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-deep-teal">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Transferencias de Pacientes</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card bg-blue mb-1">
+                    <div class="card-header bg-white">Datos del Paciente</div>
+                    <div class="card-block pb-0">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="txtNroCuentaTransferencia">N° Cuenta</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNroCuentaTransferencia" placeholder="" autocomplete="off" disabled="">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="txtHistoriaTransferencia">Historia</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtHistoriaTransferencia" placeholder="" autocomplete="off" disabled="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="txtPacienteNombreTransferencia">Nombres</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtPacienteNombreTransferencia" placeholder="" autocomplete="off" disabled="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="txtNroDocumentoTransferencia">N° Documento</label>
+                                    <div class="d-flex">
+                                        <input type="text" class="form-control form-control-sm m-r-5" id="txtTipoDocumentoTransferencia" placeholder="" autocomplete="off" disabled="">
+                                        <input type="text" class="form-control form-control-sm m-l-5" id="txtNroDocumentoTransferencia" placeholder="" autocomplete="off" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-yellow mb-1">
+                    <div class="card-header bg-white">Lista de Transferencias</div>
+                    <div class="card-block pb-0">
+                        <table id="tblTransferencias" width="100%" class="table table-sm table-bordered table-content-sm" style="cursor: default; ">
+                            <thead style="color: white;background: #434343;">
+                                <tr>
+                                    <th style="width:10%">Fecha Transf.</th>
+                                    <th style="width:10%">Hora</th>
+                                    <th style="width:10%">Nro Cama</th>
+                                    <th style="width:20%">Servicio</th>
+                                    <th style="width:25%">Medico Ordena</th>
+                                    <th style="width:25%">Medico Recibe</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                               
+                <div class="card bg-green">
+                    <div class="card-header bg-white">Transferencia a otro Servicio</div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group m-0">
+                                    <label for="cboMedicoOrdenaTransferencia" class="form-control-label">Médico ordena</label>
+                                    <select class="chzn-select w-100" id="cboMedicoOrdenaTransferencia" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group m-0">
+                                    <label for="cboServicioRecibeTransferencia" class="form-control-label">Servicio recibe</label>
+                                    <select class="chzn-select w-100" id="cboServicioRecibeTransferencia" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group m-0">
+                                    <label for="cboMedicoRecibeTransferencia" class="form-control-label">Médico recibe</label>
+                                    <select class="chzn-select w-100" id="cboMedicoRecibeTransferencia" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group m-0">
+                                    <label for="txtFechaRecepcionTransferencia" class="form-control-label">Fecha Recepción</label>
+                                    <div class="row">
+                                        <div class="col-sm-4" style="min-width: 150px;">
+                                            <div class="form-group m-0">
+                                                @*<label for="txtFechaRecepcionTransferencia" class="form-control-label">Fecha Recepción</label>*@
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaRecepcionTransferencia">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar "></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" style="min-width: 100px;">
+                                            <div class="form-group m-0">
+                                                @*<label for="txtHoraRecepcionTransferencia" class="form-control-label">Hora Recepción</label>*@
+                                                <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtHoraRecepcionTransferencia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="CamasDestino">
+                                <div class="form-group m-0">
+                                    <label for="cboCamaDestinoTransferencia" class="form-control-label">Cama destino</label>
+                                    <select class="chzn-select w-100" id="cboCamaDestinoTransferencia" data-placeholder="Seleccione una opción"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <button id="btnGuardarTransferencias" target="_blank" class="btn btn-info " style="width: 100px;">Guardar</button>
+                                <button id="btnCerrarTransferencias" target="_blank" class="btn btn-secondary " style="width: 100px;">Cerrar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                                
+            </div>
+            @*<div class="modal-footer">
+                <button id="btnGuardarTransferencias" target="_blank" class="btn btn-lg btn-primary ">Guardar</button>
+                <button id="btnCerrarTransferencias" target="_blank" class="btn btn-lg btn-secondary ">Cerrar</button>                
+            </div>*@
+        </div>
+    </div>
+</div>

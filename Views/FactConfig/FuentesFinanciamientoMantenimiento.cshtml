@@ -1,0 +1,319 @@
+﻿        @using System.Data
+
+@* <div class="modal-dialog modal-lg" role="document"> *@
+
+<div class="modal fade" id="modalFuenteFinanciamiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true" data-backdrop="static">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-primary">
+				<h5 class="modal-title text-white" id="exampleModalLabel">FUENTE FINANCIAMIENTO</h5>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-xl-12 mb-1">
+						<div class="card bg-blue">
+							<div class="card-block">
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<label for="txtId">ID</label>
+
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<input type="text" class="form-control form-control-sm writing reading"
+												   autocomplete="off" id="txtId">
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<label for="txtId">TIPO FINANCIADOR</label>
+
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<select id="cboTipoFinanciador" class="chzn-select-deselect writing reading"
+													 data-placeholder="Seleccione una opción">
+											</select>
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<label for="txtCodigo">CODIGO</label>
+
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<input type="text" class="form-control form-control-sm writing reading"
+												   autocomplete="off" id="txtCodigo">
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<label for="txtFuenteFinanciamiento">FUENTE FINANCIAMIENTO IAFA</label>
+
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<input type="text" class="form-control form-control-sm writing reading"
+												   autocomplete="off" id="txtFuenteFinanciamiento">
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<label for="cboTipoConceptoF">TIPO CONCEPTO FARMACIA (FORM.ICI)</label>
+
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<select id="cboTipoConceptoF" class="chzn-select-deselect writing reading"
+													data-placeholder="Seleccione una opción">
+											</select>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<label for="cboUtilizadoEn">UTILIZADO EN</label>
+
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<select id="cboUtilizadoEn" class="chzn-select-deselect writing reading"
+													data-placeholder="Seleccione una opción">
+											</select>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<label for="cboAreaTramitaSeguro">AREA TRAMITA SEGURO (REEMBOLSOS)</label>
+
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<select id="cboAreaTramitaSeguro" class="chzn-select-deselect writing reading"
+													data-placeholder="Seleccione una opción">
+											</select>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<label for="txtCodigoSEM">CODIGO SISTEMA SEM</label>
+
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<input type="text" class="form-control form-control-sm writing reading"
+												   autocomplete="off" id="txtCodigoSEM">
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<label for="chkUsadoCaja">USADO EN CAJA (PACIENTES EXTERNOS)</label>
+
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<input type="checkbox" name="opciones" value="1" id="chkUsadoCaja">
+											<span class="checkmark"></span>
+											
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<label for="txtCodigoHIS">TIPO CODIGO SISTEMA HIS</label>
+
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="form-group m-0">
+											<input type="text" class="form-control form-control-sm writing reading"
+												   autocomplete="off" id="txtCodigoHIS">
+										</div>
+									</div>
+								</div>
+
+								<div class="card bg-blue">
+									<div class="card-header bg-white">TARIFARIO:</div>
+									<div class="card-block">
+
+
+
+
+
+										<div class="row">
+											<div class="col-xl-8">
+												<select id="cboTarifario" class="chzn-select-deselect writing reading"
+														data-placeholder="Seleccione una opción">
+												</select>
+											</div>
+											<div class="col-xl-4">
+												<button type="button" class="btn btn-sm btn-primary" id="btnAgregarFilaPlan">AGREGAR</button>
+												<button type="button" class="btn btn-sm btn-secondary" id="btnEliminarFilaPlan">ELIMINAR</button>
+
+
+											</div>
+
+
+										</div>
+
+
+
+
+
+
+									</div>
+
+								</div>
+								<table id="tblDetalleFuente"
+									   class="table table-sm table-content-sm table-bordered table-striped w-100"
+									   style="cursor: default;">
+									<thead style="color: white; background: #434343; width: 100%;">
+										<tr>
+											<th width="20%">ID</th>
+											<th width="80%">PRODUCTO/PLAN</th>
+										</tr>
+									</thead>
+									<tbody id="tbodyDetalleFuente"></tbody>
+									<!-- ↑↑↑ CAMBIA EL ID ↑↑↑ -->
+								</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+									@* <div class="row">
+
+									<div class="col-xl-6">
+										<button class="btn btn-danger layout_btn_prevent"
+												id="btnQuitarProductoDetalle">
+											Eliminar
+										</button>
+									</div>
+
+									<div class="col-xl-12">
+										<table id="tblDetallePaquete"
+											   class="table table-sm table-content-sm table-bordered table-striped w-100"
+											   style="cursor: default;">
+											<thead style="color: white; background: #434343; width: 100%;">
+												<tr>
+													<th width="85%">Descripcion</th>
+													<th width="5%">Cantidad</th>
+													<th width="5%">Precio</th>
+													<th width="5%">Importe</th>
+												</tr>
+											</thead>
+											<tbody></tbody>
+										</table>
+									</div>
+								</div> *@
+								</div>
+							</div>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-lg btn-primary" id="btnGuardar">GUARDAR</button>
+					<button type="button" class="btn btn-lg btn-secondary" id="btnCerrarModal">CERRAR</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+@* @section Scripts
+{
+
+	<script>
+		$(document).ready(function () {
+			 // cargarCombo('/Paquetes/GetEspecialidades', 'IdEspecialidad', '-- Seleccione --', 'Id', 'Nombre');
+			 // cargarCombo('/Paquetes/GetProductos', 'IdProducto', '-- Seleccione producto --', 'Id', 'Descripcion');
+
+			 //cargarCombo('/ProductoPlan(controller)/FactConfigProductoPlan_ListarTipoConceptos', 'idCombo', '-- Seleccione --', 'Id', 'Nombre');
+			 cargarCombo('/ProductoPlan/FactConfigProductoPlan_ListarTipoConceptos', 'cboTipoConcepto', 'Seleccione', 'IdTipoConcepto', 'Concepto');
+		});
+
+	</script>
+
+
+
+
+
+} *@
+
+

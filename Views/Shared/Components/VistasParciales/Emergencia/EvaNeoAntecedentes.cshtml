@@ -1,0 +1,314 @@
+﻿<div class="row">
+    <div class="col-md-12 mt-1">
+        <div class="form-group">
+            <label for="txtAntecedentesGenerales">Atecedentes Generales</label>
+            <textarea class="form-control" id="txtAntecedentesGenerales" rows="3"></textarea>
+        </div>
+    </div>
+
+    <div class="col-md-12 mt-1">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="atencion-tab-link" data-toggle="tab" href="#atencion-tab" role="tab" aria-controls="profile" aria-selected="false" aria-expanded="false">Antecedentes Perinatales</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="nacimiento-tab-link" data-toggle="tab" href="#nacimiento-tab" role="tab" aria-controls="home" aria-selected="true" aria-expanded="true">Nacimiento</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade" id="nacimiento-tab" role="tabpanel" aria-labelledby="nacimiento-tab-link" aria-expanded="true">
+                <div class="row">
+                    <div class="col-lg-5 mb-1">
+                        <div class="card  m-t-5 bg-yellow" style="padding-bottom: 0px;">
+                            <div class="card-header bg-white">Nacimiento</div>
+                            <div class="card-block m-t-5 custom-form" style="padding-bottom: 0px;">
+                                <div class="row pb-1">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtFecNac">Fecha Nacimiento</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtFecNac" placeholder="" autocomplete="off" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtHoraNac">Hora. Nacimiento</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtHoraNac" placeholder="" autocomplete="off" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="cboSexo">Sexo</label>
+                                                    <select id="cboSexo" class="chzn-select" disabled></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtNroHijo">Nro. de Hijo(a)</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtNroHijo" autocomplete="off" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group campo">
+                                            <label for="txtEdadGestacional">Edad Gest. al Nacer (sem)</label>
+                                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txtEdadGestacional" maxlength="2" autocomplete="off">
+                                        </div>
+
+
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group campo">
+                                            <label for="txtPesoRn">Peso al Nacer (gr)</label>
+                                            <input type="text" class="form-control form-control-sm solo-decimal campo" id="txtPesoRn" maxlength="10" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group campo">
+                                            <label for="txtTallaRn">Talla al Nacer (cm)</label>
+                                            <input type="text" class="form-control form-control-sm solo-decimal campo" id="txtTallaRn" maxlength="10" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group campo">
+                                            <label for="txtPerCefalico">Périmetro Cefálico</label>
+                                            <input type="text" class="form-control form-control-sm solo-decimal campo" id="txtPerCefalico" maxlength="10" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group campo">
+                                            <label for="txtPerToracico">Périmetro Toráxico</label>
+                                            <input type="text" class="form-control form-control-sm solo-decimal campo" id="txtPerToracico" maxlength="10" autocomplete="off">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-7 mb-1 campo">
+                        <div class="card  m-t-5 bg-blue" style="padding-bottom: 0px;">
+                            <div class="card-header bg-white">Respiración y Llanto al Nacer</div>
+                            <div class="card-block m-t-5 custom-form" style="padding-bottom: 0px;">
+                                <div class="row pb-1">
+                                    <div class="col-md-12">
+
+                                        <div class="form-group">
+                                            <label style="width: 100%;">Inmediato</label>
+                                            <div class="switch-field">
+                                                <input type="radio" id="rdbInmediatoSi" name="rdbInmediato" class="rdbInmediato campo">
+                                                <label for="rdbInmediatoSi" class="pl-3 pr-3">Si</label>
+                                                <input type="radio" id="rdbInmediatoNO" name="rdbInmediato" class="rdbInmediato campo">
+                                                <label for="rdbInmediatoNO" class="pl-3 pr-3">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtMinuto">APGAR 1 min</label>
+                                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txtMinuto" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txt5Minuto">APGAR 5 min</label>
+                                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txt5Minuto" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label style="width: 100%;">Reanimación</label>
+                                            <div class="switch-field">
+                                                <input type="radio" id="rdbReanimacionSi" name="rdbReanimacion" class="rdbReanimacion campo">
+                                                <label for="rdbReanimacionSi" class="pl-3 pr-3">Si</label>
+                                                <input type="radio" id="rdbReanimacionNO" name="rdbReanimacion" class="rdbReanimacion campo">
+                                                <label for="rdbReanimacionNO" class="pl-3 pr-3">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label style="width: 100%;">Patología Neonatal</label>
+                                            <div class="switch-field">
+                                                <input type="radio" id="rdbPatNeoSi" name="rdbPatNeo" class="rdbPatNeo campo">
+                                                <label for="rdbPatNeoSi" class="pl-3 pr-3">Si</label>
+                                                <input type="radio" id="rdbPatNeoNo" name="rdbPatNeo" class="rdbPatNeo campo">
+                                                <label for="rdbPatNeoNo" class="pl-3 pr-3">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtEspecificar">Especificar Patología Neonatal</label>
+                                            <input type="text" class="form-control form-control-sm campo" id="txtEspecificar" autocomplete="off">
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label style="width: 100%;">Hospitalización</label>
+                                            <div class="switch-field">
+                                                <input type="radio" id="rdbHospSi" name="rdbHosp" class="rdbHosp campo">
+                                                <label for="rdbHospSi" class="pl-3 pr-3">Si</label>
+                                                <input type="radio" id="rdbHospNo" name="rdbHosp" class="rdbHosp campo">
+                                                <label for="rdbHospNo" class="pl-3 pr-3">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtTiempoHosp">Tiempo Hospitalización (días)</label>
+                                            <input type="text" class="form-control form-control-sm solo-numero" id="txtTiempoHosp" autocomplete="off">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!---------------------------------TAB 2----------------------------------------------->
+            <div class="tab-pane fade show active in campo" id="atencion-tab" role="tabpanel" aria-labelledby="atencion-tab-link" aria-expanded="false">
+                <div class="row">
+                    <div class="col-lg-6 mb-1">
+                        <div class="card  m-t-5 bg-blue" style="padding-bottom: 0px;">
+                            <div class="card-header bg-white">Embarazo</div>
+                            <div class="card-block m-t-5 custom-form" style="padding-bottom: 0px;">
+                                <div class="row pb-1">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label style="width: 100%;">Embarazo</label>
+                                            <div class="switch-field">
+                                                <input type="radio" id="rdbEmbarazoN" name="rdbEmbarazo" class="rdbEmbarazo campo">
+                                                <label for="rdbEmbarazoN" class="pl-2 pr-2">Normal</label>
+                                                <input type="radio" id="rdbEmbarazoC" name="rdbEmbarazo" class="rdbEmbarazo campo">
+                                                <label for="rdbEmbarazoC" class="pl-2 pr-2">Complicado</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="txtPatGest">Patología(s) durante la Gestación</label>
+                                            <textarea class="form-control" id="txtPatGest" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtNroEmbarazo">Nro Embarazo</label>
+                                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txtNroEmbarazo" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label style="width: 100%;">Atención Prenatal</label>
+                                            <div class="switch-field">
+                                                <input type="radio" id="rdbAtPreNatalSi" name="rdbAtPreNatal" class="rdbAtPreNatal campo">
+                                                <label for="rdbAtPreNatalSi" class="pl-3 pr-3">Si</label>
+                                                <input type="radio" id="rdbAtPreNatalNo" name="rdbAtPreNatal" class="rdbAtPreNatal campo">
+                                                <label for="rdbAtPreNatalNo" class="pl-3 pr-3">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtNroAPN">Nro APN</label>
+                                            <input type="text" class="form-control form-control-sm solo-numero campo" id="txtNroAPN" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtLugarAPN">Lugar del APN</label>
+                                            <input type="text" class="form-control form-control-sm campo" id="txtLugarAPN" autocomplete="off">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mb-1">
+                        <div class="card  m-t-5 bg-lightindigo" style="padding-bottom: 0px;">
+                            <div class="card-header bg-white">Parto</div>
+                            <div class="card-block m-t-5 custom-form" style="padding-bottom: 0px;">
+                                <div class="row pb-1">
+                                    <div class="col-md-12">
+
+                                        <div class="form-group">
+                                            <label style="width: 100%;">Parto</label>
+                                            <div class="switch-field">
+                                                <input type="radio" id="rdbEutocito" name="rdbParto" class="rdbParto campo">
+                                                <label for="rdbEutocito" class="pl-3 pr-3">Eutócito</label>
+                                                <input type="radio" id="rdbComplicado" name="rdbParto" class="rdbParto campo">
+                                                <label for="rdbComplicado" class="pl-3 pr-3">Complicado</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="txtComplicaciones">Complicaciones del Parto</label>
+                                            <textarea class="form-control" id="txtComplicaciones" rows="2"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label style="width: 100%;">Lugar Parto</label>
+                                            <select id="cboLugarParto" class="chzn-select" data-placeholder="Seleccione una opción">
+                                                <option value="1">EESS</option>
+                                                <option value="2">Domicilio</option>
+                                                <option value="3">Consulta Particular</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label style="width: 100%;">Atendido por</label>
+                                            <select id="cboAtendidoPor" class="chzn-select" data-placeholder="Seleccione una opción">
+                                                <option value="1">Profesional de la Salud</option>
+                                                <option value="2">Técnico</option>
+                                                <option value="3">ACS</option>
+                                                <option value="4">Familiar</option>
+                                                <option value="5">Otro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtNombreAtendio">Nombre</label>
+                                            <input type="text" class="form-control form-control-sm campo" id="txtNombreAtendio" autocomplete="off">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

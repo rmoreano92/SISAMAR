@@ -1,0 +1,247 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var AppVistaOrdenesMedica = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:TipoVistaOrdenesMedica");
+    string VistaOrdenesMedica = AppVistaOrdenesMedica.ToString();
+}
+@* @VistaOrdenesMedica *@
+
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalReceta" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Registro de Receta Unidosis</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-block pb-0">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtNroCuentaRegistro" class="form-control-label">N° Cuenta</label>
+                                            <input id="txtNroCuentaRegistro" autocomplete="off" type="tel" placeholder="" class="solo-numero form-control form-control-sm searchCuentaReceta">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="txtPacienteRegistro" class="form-control-label">Datos del Paciente</label>
+                                            <input id="txtPacienteRegistro" disabled autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="txtDesFuenteFinan" class="form-control-label">Fte. Finaciamiento</label>
+                                            <input id="txtDesPlan" disabled="disabled" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="cboProcedencia" class="form-control-label">Servicio Actual</label>
+                                            <select class="chzn-select campo" id="cboProcedencia" data-placeholder="Seleccione una opción" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row mt-1">
+                    <div class="col-md-12">
+
+                        <div class="card bg-pink" style="padding-bottom: 0px;" id="ContOrdenesMedicas">
+                            @* <div class="card-header bg-white">Receta Unidosis</div> *@
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group m-0">
+                                                    <label for="cboMedicoReceta">Médico</label>
+                                                    <select class="chzn-select campo" id="cboMedicoReceta" data-placeholder="Seleccione una opción" required></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group m-0">
+                                                    <label for="cboFarmacia">Farmacia</label>
+                                                    <select class="chzn-select" id="cboFarmacia" data-placeholder="Seleccione una opción" disabled required></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaVigencia">Fecha de Vigencia</label>
+                                                    <div class="input-group input-group-sm" style="max-width: 130px;">
+                                                        <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campo" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaVigencia">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroPreUnidosis" class="form-control-label">N° Pre-Unidosis</label>
+                                            <input id="txtNroPreUnidosis" autocomplete="off" type="tel" placeholder="" class="form-control form-control-sm" disabled readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <form>
+                                            <fieldset class="m-0 mb-1 pb-1 m-t-5" style="border-color: #d5d5d5;">
+                                                <legend class="mb-0">
+                                                    <i class="fa fi fi-ss-humidity m-r-5" style="color: #ccc;"></i>
+                                                    <label id="lblFarmacia" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 15px;" class="form-control-label"></label>
+                                                </legend>
+                                                @* <div class="row m-0 OpcionesOrdenes">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="cboMedicamento" class="m-0">Medicamento/Insumo</label>
+                                                            <select class="chzn-select" id="cboMedicamento" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row m-0 OpcionesOrdenes">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="txtCAntidadFarmacia">Cantidad</label>
+                                                            <input id="txtCAntidadFarmacia" autocomplete="off" placeholder="Cantidad" class="solo-numero form-control form-control-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="cboDosis">Dosis</label>
+                                                            <select class="chzn-select" id="cboDosis" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="cboVia">Via</label>
+                                                            <select class="chzn-select" id="cboVia" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="txtFrecuencia">Frecuencia</label>
+                                                            <input id="txtFrecuencia" autocomplete="off" placeholder="Frecuencia" class="form-control form-control-sm" data-placeholder="Seleccione una opción">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="d-flex align-items-end" style="height: 50px;">
+                                                            <button id="btnAgregaFarmacia" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                                                <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                                Agregar
+                                                            </button>
+                                                            <button id="btnQuitarFarmacia" type="button" class="btn btn-sm btn-danger" style="width: 100px;">
+                                                                <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                                                Eliminar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div> *@
+                                                <div class="row m-0">
+                                                    @*<div class="col-md-6"><label id="lblFarmacia" style="color:red" class="form-control-label"></label></div>*@
+                                                    <div class="col-md-6"><input hidden="hidden" id="hdIdRecetaFarmacia" name="hdIdRecetaFarmacia" type="text" class="form-control form-control-sm"></div>
+
+                                                    <div class="col-md-12">
+                                                        <table id="tblCatalogoFarmacia" class="table table-sm table-bordered table-striped table-content-sm" style=" width:100%">
+                                                            <thead style="color: white;background: #51537a;">
+                                                                <tr>
+                                                                    <th>Codigo</th>
+                                                                    <th>Medicamento/Insumo</th>
+                                                                    <th>Cantidad</th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    
+
+                                    @* <div class="col-md-12">
+                                        <ul id="clothing-nav" class="nav nav-tabs jerarquia2A" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="#farmacia" role="tab" id="farmacia-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Farmacia</a>
+                                            </li>
+                                        </ul>
+
+                                        <div id="clothing-nav-content" class="tab-content fade in active">
+                                            <div role="tabpanel" class="tab-pane fade  in active" id="farmacia" aria-labelledby="farmacia-tab">
+                                                
+                                            </div>
+
+                                        </div>
+                                    </div> *@
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnImprimeRecetas" target="_blank" class="btn btn-lg btn-cyan float-lg-left"><i class="fa fa-note-medical mr-1"></i>Rec. Médicas</button>
+                <button id="btnguardar" class="btn btn-lg btn-info">Guardar</button>
+                <button id="btnCerrarRecetasGeneral" type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalBusquedaCatalogo" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+
+    <div class="modal-dialog modal-lg" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-white" id="titulo">Busqueda de Catalogo</h4>
+            </div>
+            <div class="modal-body p-t-5">
+                <div class="card-block p-t-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-success" id="btnAgregarProductoCalogo"><i class="fa fa-plus"></i>&nbsp;&nbsp;Agregar</button>&nbsp;&nbsp;
+                        </div>
+                    </div>
+
+
+                    <table id="tblCatalogo" class="table table-bordered">
+                        <thead style="color: white;background: #3e6184;">
+                            <tr>
+                                <th align="center">Codigo</th>
+                                <th align="center">Descripcion</th>
+                                <th style="display:none" align="center">precio</th>
+                                <th style="display:none" align="center">total</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnCerrar">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<input hidden="hidden" id="hdIdTipoFuenteFian" name="hdIdFuente" type="text" class="form-control">

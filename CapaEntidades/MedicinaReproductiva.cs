@@ -1,0 +1,86 @@
+﻿namespace WebAppMaternidad.CapaEntidades
+{
+    public class MedicinaReproductiva
+    {
+        public int IdMedicinaReproductiva { get; set; }
+        public string Codigo { get; set; }
+        public int IdOrden { get; set; }
+        public int IdProducto { get; set; }
+        public int IdCuentaAtencion { get; set; }
+        public int IdAtencion { get; set; }
+        public string NombrePareja { get; set; }
+        public int EdadPareja { get; set; }
+        public string NombrePaciente { get; set; }
+        public int EdadPaciente { get; set; }
+        public string VihRprPaciente { get; set; }
+        public string FechaExamen { get; set; }
+        public string HoraRecoleccion { get; set; }
+        public string HoraEvaluacion { get; set; }
+        public int MetodoObtencion { get; set; }
+        public string OtroMetodoObtencion { get; set; }
+        public int DiasAbstineciaSexual { get; set; }        
+        public string Dificultad { get; set; }
+        public int LugarObtencion { get; set; }
+        public string OtroLugarObtencion { get; set; }
+        public int IdMedReproMacroscopica { get; set; }
+        public int TipoColor { get; set; }
+        public string TipoOtroColor { get; set; }
+        public int TipoOlor { get; set; }
+        public int TipoAspecto { get; set; }
+        public int TipoLicuefaccion { get; set; }
+        public int TipoViscocidad { get; set; }
+        public double Volumen{ get; set; }
+        public double PesoUno { get; set; }
+        public double PesoDos { get; set; }
+        public string Ph { get; set; }
+        public int IdMedReproMicroscopica { get; set; }
+        public double MovPreProgresionRapida { get; set; }
+        public double MovPreProgresionLenta { get; set; }
+        public double MovPreNoProgresiva { get; set; }
+        public double MovPreProgresiva { get; set; }
+        public double MovPreInmoviles { get; set; }
+        public double MovPreTotal { get; set; }
+        public double MovPreNumeroNumerador { get; set; }
+        public double MovPreNumeroDenominador { get; set; }
+        public double MovPreLineas { get; set; }
+        public double MovPreCantidad { get; set; }
+        public double MovPreCantidadTotal { get; set; }
+        public double MovPostProgresionRapida { get; set; }
+        public double MovPostProgresionLenta { get; set; }
+        public double MovPostNoProgresiva { get; set; }
+        public double MovPostProgresiva { get; set; }
+        public double MovPostInmoviles { get; set; }
+        public double MovPostTotal { get; set; }
+        public double MovPostNumeroNumerador { get; set; }
+        public double MovPostNumeroDenominador { get; set; }
+        public double MovPostLineas { get; set; }
+        public double MovPostCantidad { get; set; }
+        public double MovPostCantidadTotal { get; set; }
+        public double MovPostRem { get; set; }
+        public int MetodoGradienteDensidad { get; set; }
+        public int MetodoSwinUp { get; set; }
+        public int MetodoCompactacion { get; set; }
+        public double VitEspermaVivos { get; set; }
+        public double VitEspermaMuertos { get; set; }
+        public double VitEspermaTotal { get; set; }
+        public double ConcNumeroNumerador { get; set; }
+        public double ConcNumeroDenominador { get; set; }
+        public double ConcNumeroTotal { get; set; }
+        public double ConcCantidad { get; set; }
+        public double ConcCantidadTotal { get; set; }
+        public double MorfNormalNumero { get; set; }
+        public double MorfNormalPorcentaje { get; set; }
+        public double MorfAnormalNumero { get; set; }
+        public double MorfAnormalPorcentaje { get; set; }
+        public double MorfTotal { get; set; }
+        public double ExaDirLeucocitos { get; set; }
+        public double ExaDirLeucocitosTotal { get; set; }
+        public double ExaDirCelEspInmaduras { get; set; }
+        public double ExaDirCelEspInmadurasTotal { get; set; }
+        public double ExaDirCelEspRedondas { get; set; }
+        public int TipoAglutinacion { get; set; }
+        public int TipoAgregacion { get; set; }
+        public string Observacion { get; set; }
+        public int IdProfesionalBiologo { get; set; }
+    }
+}

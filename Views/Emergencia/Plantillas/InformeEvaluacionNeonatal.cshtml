@@ -1,0 +1,1369 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hoja de Evaluación</title>
+    @*<link type="text/css" rel="stylesheet" href="~/AdmiRE/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/util.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/select2/css/select2.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/scroller.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/colReorder.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/dataTables.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" />*@
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">*@
+    <style>
+        /*=====================CSS=======================*/
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 9px;
+            color: black !important;
+            font-family: helvetica;
+            letter-spacing: 0.4px;
+            line-height: 9px;
+        }
+
+        hr {
+            margin: 1rem 0;
+            color: inherit;
+            background-color: currentColor;
+            border: 0;
+            opacity: .25
+        }
+
+        .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            margin-bottom: .5rem;
+            font-weight: 500;
+            line-height: 1.2
+        }
+
+        .h1, h1 {
+            font-size: calc(1.375rem + 1.5vw)
+        }
+
+        .h2, h2 {
+            font-size: calc(1.325rem + .9vw)
+        }
+
+        .h3, h3 {
+            font-size: calc(1.3rem + .6vw)
+        }
+
+        .h4, h4 {
+            font-size: calc(1.275rem + .3vw)
+        }
+
+        .h5, h5 {
+            font-size: 1.25rem
+        }
+
+        .h6, h6 {
+            font-size: 1rem
+        }
+
+        .small, small {
+            font-size: .6rem;
+        }
+
+        .bg-secondary {
+            background-color: #ebeced !important
+        }
+
+        .text-secondary {
+            color: #ebeced !important
+        }
+
+        .row {
+            display: flex !important;
+            flex-wrap: wrap;
+        }
+
+        .col-1 {
+            flex: 0 0 auto;
+            width: 8.33333333%
+        }
+
+        .col-2 {
+            flex: 0 0 auto;
+            width: 16.66666667%
+        }
+
+        .col-3 {
+            flex: 0 0 auto;
+            width: 25%
+        }
+
+        .col-4 {
+            flex: 0 0 auto;
+            width: 33.33333333%
+        }
+
+        .col-5 {
+            flex: 0 0 auto;
+            width: 41.66666667%
+        }
+
+        .col-6 {
+            flex: 0 0 auto;
+            width: 50%
+        }
+
+        .col-7 {
+            flex: 0 0 auto;
+            width: 58.33333333%
+        }
+
+        .col-8 {
+            flex: 0 0 auto;
+            width: 66.66666667%
+        }
+
+        .col-9 {
+            flex: 0 0 auto;
+            width: 75%
+        }
+
+        .col-10 {
+            flex: 0 0 auto;
+            width: 83.33333333%
+        }
+
+        .col-11 {
+            flex: 0 0 auto;
+            width: 91.66666667%
+        }
+
+        .col-12 {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+
+        .d-flex {
+            display: flex !important;
+        }
+
+        .position-absolute {
+            position: absolute;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            vertical-align: top;
+            border-color: #dee2e6 ;
+            caption-side: bottom;
+            border-collapse: collapse;
+        }
+
+        .table-bordered {
+            border: solid 1px #4c4c4c ;
+        }
+
+        .table-bordered td, .table-bordered th {
+            border: solid 1px #4c4c4c ;
+            padding: 3px 5px !important;
+        }
+
+        button, input, optgroup, select, textarea {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit
+        }
+
+        .border {
+            border: 1px solid #dee2e6 !important
+        }
+
+        .border-0 {
+            border: 0 !important
+        }
+
+        .border-top {
+            border-top: 1px solid #dee2e6 !important
+        }
+
+        .border-top-0 {
+            border-top: 0 !important
+        }
+
+        .border-end {
+            border-right: 1px solid #dee2e6 !important
+        }
+
+        .border-end-0 {
+            border-right: 0 !important
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #dee2e6 !important
+        }
+
+        .border-bottom-0 {
+            border-bottom: 0 !important
+        }
+
+        .border-start {
+            border-left: 1px solid #dee2e6 !important
+        }
+
+        .border-start-0 {
+            border-left: 0 !important
+        }
+
+        .border-secondary {
+            border-color: #6c757d !important
+        }
+
+        .w-100 {
+            width: 100% !important;
+        }
+
+        .m-0 {
+            margin: 0 !important
+        }
+
+        .m-1 {
+            margin: .25rem !important
+        }
+
+        .m-2 {
+            margin: .5rem !important
+        }
+
+        .m-3 {
+            margin: 1rem !important
+        }
+
+        .m-4 {
+            margin: 1.5rem !important
+        }
+
+        .m-5 {
+            margin: 3rem !important
+        }
+
+        .m-auto {
+            margin: auto !important
+        }
+
+        .mx-0 {
+            margin-right: 0 !important;
+            margin-left: 0 !important
+        }
+
+        .mx-1 {
+            margin-right: .25rem !important;
+            margin-left: .25rem !important
+        }
+
+        .mx-2 {
+            margin-right: .5rem !important;
+            margin-left: .5rem !important
+        }
+
+        .mx-3 {
+            margin-right: 1rem !important;
+            margin-left: 1rem !important
+        }
+
+        .mx-4 {
+            margin-right: 1.5rem !important;
+            margin-left: 1.5rem !important
+        }
+
+        .mx-5 {
+            margin-right: 3rem !important;
+            margin-left: 3rem !important
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important
+        }
+
+        .my-0 {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important
+        }
+
+        .my-1 {
+            margin-top: .25rem !important;
+            margin-bottom: .25rem !important
+        }
+
+        .my-2 {
+            margin-top: .5rem !important;
+            margin-bottom: .5rem !important
+        }
+
+        .my-3 {
+            margin-top: 1rem !important;
+            margin-bottom: 1rem !important
+        }
+
+        .my-4 {
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.5rem !important
+        }
+
+        .my-5 {
+            margin-top: 3rem !important;
+            margin-bottom: 3rem !important
+        }
+
+        .my-auto {
+            margin-top: auto !important;
+            margin-bottom: auto !important
+        }
+
+        .mt-0 {
+            margin-top: 0 !important
+        }
+
+        .mt-1 {
+            margin-top: .25rem !important
+        }
+
+        .mt-2 {
+            margin-top: .5rem !important
+        }
+
+        .mt-3 {
+            margin-top: 1rem !important
+        }
+
+        .mt-4 {
+            margin-top: 1.5rem !important
+        }
+
+        .mt-5 {
+            margin-top: 3rem !important
+        }
+
+        .mt-auto {
+            margin-top: auto !important
+        }
+
+        .me-0 {
+            margin-right: 0 !important
+        }
+
+        .me-1 {
+            margin-right: .25rem !important
+        }
+
+        .me-2 {
+            margin-right: .5rem !important
+        }
+
+        .me-3 {
+            margin-right: 1rem !important
+        }
+
+        .me-4 {
+            margin-right: 1.5rem !important
+        }
+
+        .me-5 {
+            margin-right: 3rem !important
+        }
+
+        .me-auto {
+            margin-right: auto !important
+        }
+
+        .mb-0 {
+            margin-bottom: 0 !important
+        }
+
+        .mb-1 {
+            margin-bottom: .25rem !important
+        }
+
+        .mb-2 {
+            margin-bottom: .5rem !important
+        }
+
+        .mb-3 {
+            margin-bottom: 1rem !important
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem !important
+        }
+
+        .mb-5 {
+            margin-bottom: 3rem !important
+        }
+
+        .mb-auto {
+            margin-bottom: auto !important
+        }
+
+        .ms-0 {
+            margin-left: 0 !important
+        }
+
+        .ms-1 {
+            margin-left: .25rem !important
+        }
+
+        .ms-2 {
+            margin-left: .5rem !important
+        }
+
+        .ms-3 {
+            margin-left: 1rem !important
+        }
+
+        .ms-4 {
+            margin-left: 1.5rem !important
+        }
+
+        .ms-5 {
+            margin-left: 3rem !important
+        }
+
+        .ms-auto {
+            margin-left: auto !important
+        }
+
+        .p-0 {
+            padding: 0 !important
+        }
+
+        .p-1 {
+            padding: .25rem !important
+        }
+
+        .p-2 {
+            padding: .5rem !important
+        }
+
+        .p-3 {
+            padding: 1rem !important
+        }
+
+        .p-4 {
+            padding: 1.5rem !important
+        }
+
+        .p-5 {
+            padding: 3rem !important
+        }
+
+        .px-0 {
+            padding-right: 0 !important;
+            padding-left: 0 !important
+        }
+
+        .px-1 {
+            padding-right: .25rem !important;
+            padding-left: .25rem !important
+        }
+
+        .px-2 {
+            padding-right: .5rem !important;
+            padding-left: .5rem !important
+        }
+
+        .px-3 {
+            padding-right: 1rem !important;
+            padding-left: 1rem !important
+        }
+
+        .px-4 {
+            padding-right: 1.5rem !important;
+            padding-left: 1.5rem !important
+        }
+
+        .px-5 {
+            padding-right: 3rem !important;
+            padding-left: 3rem !important
+        }
+
+        .py-0 {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important
+        }
+
+        .py-1 {
+            padding-top: .25rem !important;
+            padding-bottom: .25rem !important
+        }
+
+        .py-2 {
+            padding-top: .5rem !important;
+            padding-bottom: .5rem !important
+        }
+
+        .py-3 {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important
+        }
+
+        .py-4 {
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important
+        }
+
+        .py-5 {
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important
+        }
+
+        .pt-0 {
+            padding-top: 0 !important
+        }
+
+        .pt-1 {
+            padding-top: .25rem !important
+        }
+
+        .pt-2 {
+            padding-top: .5rem !important
+        }
+
+        .pt-3 {
+            padding-top: 1rem !important
+        }
+
+        .pt-4 {
+            padding-top: 1.5rem !important
+        }
+
+        .pt-5 {
+            padding-top: 3rem !important
+        }
+
+        .pe-0 {
+            padding-right: 0 !important
+        }
+
+        .pe-1 {
+            padding-right: .25rem !important
+        }
+
+        .pe-2 {
+            padding-right: .5rem !important
+        }
+
+        .pe-3 {
+            padding-right: 1rem !important
+        }
+
+        .pe-4 {
+            padding-right: 1.5rem !important
+        }
+
+        .pe-5 {
+            padding-right: 3rem !important
+        }
+
+        .pb-0 {
+            padding-bottom: 0 !important
+        }
+
+        .pb-1 {
+            padding-bottom: .25rem !important
+        }
+
+        .pb-2 {
+            padding-bottom: .5rem !important
+        }
+
+        .pb-3 {
+            padding-bottom: 1rem !important
+        }
+
+        .pb-4 {
+            padding-bottom: 1.5rem !important
+        }
+
+        .pb-5 {
+            padding-bottom: 3rem !important
+        }
+
+        .ps-0 {
+            padding-left: 0 !important
+        }
+
+        .ps-1 {
+            padding-left: .25rem !important
+        }
+
+        .ps-2 {
+            padding-left: .5rem !important
+        }
+
+        .ps-3 {
+            padding-left: 1rem !important
+        }
+
+        .ps-4 {
+            padding-left: 1.5rem !important
+        }
+
+        .ps-5 {
+            padding-left: 3rem !important
+        }
+
+        .my-2 {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem !important;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem !important;
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+        
+        .align-baseline {
+            vertical-align: baseline !important
+        }
+
+        .align-top {
+            vertical-align: top !important
+        }
+
+        .align-middle {
+            vertical-align: middle !important
+        }
+
+        .align-bottom {
+            vertical-align: bottom !important
+        }
+
+        .white-space {
+            white-space: pre-line;
+            line-height: 11px !important;
+        }
+        /*===============================================*/
+               
+        .item {
+            display: flex;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-box {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #535353;
+            margin-right: 5px;
+        }
+
+        .item-cabecera {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            text-align: center;
+        }
+
+        .item-label {
+            height: 15px;
+            vertical-align: middle;
+        }
+
+        .item.Si .item-Si {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .item.Si .item-Si::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        .item.No .item-No {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .item.No .item-No::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        .Si .item-Si {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .Si .item-Si::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        .No .item-No {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .No .item-No::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        #cajaTitulo {
+            width: 45%;
+            border: 1px solid black;
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            font-size: 13px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 5px 5px #8d8d8d;
+            margin-bottom: 20px;
+            line-height:10px;
+        }
+
+        .subtitulo {
+            writing-mode: vertical-lr;
+            /*-webkit-writing-mode: vertical-lr;
+            -ms-writing-mode: vertical-lr;
+            filter: flipH() flipV();*/
+            margin: 0 auto;
+            /*transform: rotate(270deg);*/
+        }
+
+        textarea{
+            resize: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            line-height: 14px;
+        }
+
+        .qr-code{
+            position: absolute;
+            width: 75px;
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+
+<body style="background: white; width:793px; height:1145px; position:relative; /*border: 1px solid red;*/" class="pt-2 m-0">
+    @*<body style="background: white">*@
+    @*<img src="~/images/Logo.png" style="width: 80px; position:absolute; top:0;" />*@
+    @*<table class="table table-bordered border-secondary m-0" style="width: 60px; position:absolute; right: 198px; top: 7px; border: none;">
+        <tbody>
+            <tr style="">
+                <td class="border-secondary text-center fw-bold py-1">FN-004</td>
+            </tr>
+        </tbody>
+    </table>*@
+
+    <div id="cajaTitulo">
+        <p style="" class="fw-bold m-0">ATENCIÓN DE EMERGENCIA NEONATAL</p>
+        <small class="fw-bold" style="color:lightgray">FN-004</small>
+    </div>
+
+    @if (ViewBag.CodigoQR != null)
+    {
+        <img class="qr-code" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.CodigoQR))" />
+    }
+    
+
+    @*<div class="d-flex" style="margin-bottom: 3px;">
+
+    </div>*@
+
+    <div class="d-flex mb-1">
+        <table class="table table-bordered border-secondary m-0 me-2" style="width: 150px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-center fw-bold p-0" style="width:60px;">FECHA</th>
+                    <td class="border-secondary text-center p-0">@ViewBag.FechaEvaluacion</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-secondary m-0" style="width: 150px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-center fw-bold p-0" style="width:60px;">HORA</th>
+                    <td class="border-secondary text-center p-0">@ViewBag.HoraEvaluacion</td>
+                </tr>
+            </tbody>
+        </table>
+
+        @*<div class="ms-auto" style="font-size: 9px;">
+                Impreso por: @ViewBag.Usuario - @ViewBag.FechaImpresion
+            </div>*@
+    </div>
+
+
+    @*==================================RESUMEN HISTORIA CLINICA======================================*@
+    @*<table class="table table-bordered border-secondary">
+            <tbody>
+                <tr>
+                    <th scope="row" class="border-secondary text-left align-middle table-active">ANAMNESIS</th>
+                </tr>
+            </tbody>
+        </table>*@
+
+    @*<table  class="table table-bordered border-secondary">
+            <tbody>
+                <tr style="height: 50px">
+                    <th scope="row" style="width: 50px;" class="border-secondary text-center align-middle subtitulo">MOTIVO</th>
+                    <td class="border-secondary align-top">---</td>
+                </tr>
+            </tbody>
+        </table>*@
+
+
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th colspan="6" scope="row" class="border-secondary text-center table-active align-middle p-0 bg-secondary">ENFERMEDAD ACTUAL</th>
+            </tr>
+            <tr>
+                @*<th scope="row" style="width: 100px;" class="border-secondary text-center align-middle">ENFERMEDAD<br /> ACTUAL</th>*@
+                <th class="text-center table-active align-middle border-secondary pt-0 pb-0 bg-secondary" style="width:100px;">TIEMPO ENF.</th>
+                <td style="width:164px;" class="border-secondary pt-0 pb-0">@ViewBag.TiempoEnfermedad</td>
+                <th class="text-center table-active align-middle border-secondary pt-0 pb-0 bg-secondary" style="width:100px;">INICIO</th>
+                <td style="width:164px;" class="border-secondary pt-0 pb-0">@ViewBag.Inicio</td>
+                <th class="text-center table-active align-middle border-secondary pt-0 pb-0 bg-secondary" style="width:100px;">CURSO</th>
+                <td  style="width:164px;" class="border-secondary pt-0 pb-0">@ViewBag.Curso</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th scope="row" rowspan="2" style="width:115px;" class="border-secondary text-center table-active align-middle bg-secondary">SINTOMAS <br />Y<br /> SIGNOS</th>
+                <td class="border-secondary align-top" style="width:677px;">
+                    <div class="row m-0">
+                        <div class="col-3">
+                            <div class="item">
+                                <div class="item-cabecera">SI</div>
+                                <div class="item-cabecera">NO</div>
+                            </div>
+                            <div class="item @ViewBag.DificultadRespiratoria">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Dificultad Respiratoria</div>
+                            </div>
+                            <div class="item @ViewBag.Diarrea">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Diarrea</div>
+                            </div>
+                            <div class="item @ViewBag.DistensionAbdominal">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Distension Abdominal</div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-3">
+                            <div class="item">
+                                <div class="item-cabecera">SI</div>
+                                <div class="item-cabecera">NO</div>
+                            </div>
+                            <div class="item @ViewBag.Cianosis">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Cianosis</div>
+                            </div>
+                            <div class="item @ViewBag.MalOlorOmbligo">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Mal olor Ombligo</div>
+                            </div>
+                            <div class="item @ViewBag.Ictericia">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Ictericia</div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-3">
+                            <div class="item">
+                                <div class="item-cabecera">SI</div>
+                                <div class="item-cabecera">NO</div>
+                            </div>
+                            <div class="item @ViewBag.Dolor">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Dolor</div>
+                            </div>
+                            <div class="item @ViewBag.Convulsiones">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Convulsiones</div>
+                            </div>
+                            <div class="item @ViewBag.Fiebre">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Fiebre</div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-3">
+                            <div class="item">
+                                <div class="item-cabecera">SI</div>
+                                <div class="item-cabecera">NO</div>
+                            </div>
+                            <div class="item @ViewBag.Vomitos">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Vomitos</div>
+                            </div>
+                            <div class="item @ViewBag.Hemorragia">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Hemorragia</div>
+                            </div>
+                            <div class="item @ViewBag.Otros">
+                                <div class="item-box item-Si"></div>
+                                <div class="item-box item-No"></div>
+                                <div class="item-label">Otros</div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <label class="fw-bold mr-1">Otros Sintomas: </label>@ViewBag.OtrosSintomas
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr >
+                <th scope="row" style="width: 115px;" class="border-secondary text-center table-active align-middle bg-secondary">RELATO</th>
+                <td class="border-secondary align-top" style="height: 50px; width: 677px"><div class="white-space">@ViewBag.Relato</div></td>
+                @*<td class="border-secondary align-top"><textarea id="relato" class="w-100">@ViewBag.Relato</textarea></td>*@
+            </tr>
+        </tbody>
+    </table>
+    
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th rowspan="2" scope="row" style="width: 115px;" class="border-secondary text-center table-active align-middle bg-secondary">ANTECEDENTES DE NACIMIENTO</th>
+                <th colspan="2" class="border-secondary p-0 table-active  text-center  bg-secondary">FECHA NACIMIENTO</th>
+                <td colspan="3" class="border-secondary pt-0 pb-0">@ViewBag.FechaNacimiento</td>
+                <th colspan="2" class="border-secondary p-0 table-active  text-center bg-secondary">HORA NACIMIENTO</th>
+                <td colspan="3" class="border-secondary pt-0 pb-0">@ViewBag.HoraNacimiento</td>
+            </tr>
+            <tr>
+                <th style="width:66px;" class="border-secondary p-0 table-active align-middle text-center bg-secondary">PESO</th>
+                <td style="width:66px;" class="border-secondary pt-0 pb-0">@ViewBag.PesoNacer</td>
+                <th style="width:66px;" class="border-secondary p-0 table-active align-middle text-center bg-secondary">TALLA</th>
+                <td style="width:66px;" class="border-secondary pt-0 pb-0">@ViewBag.TallaNacer</td>
+                <th style="width:66px;" class="border-secondary p-0 table-active align-middle text-center bg-secondary">PER. CEF.</th>
+                <td style="width:66px;" class="border-secondary pt-0 pb-0">@ViewBag.PerimetroCefalicoNacer</td>
+                <th style="width:66px;" class="border-secondary p-0 table-active align-middle text-center bg-secondary">APGAR</th>
+                <td style="width:66px;" class="border-secondary pt-0 pb-0">@ViewBag.ApgarNacer</td>
+                <th style="width:66px;" class="border-secondary p-0 table-active align-middle text-center bg-secondary">EG</th>
+                <td class="border-secondary">@ViewBag.EdadGestacionalNacer</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr >
+                <th scope="row" style="width: 115px;" class="border-secondary text-center table-active align-middle bg-secondary">ANTECEDENTES PATOLÓGICOS</th>
+                <td class="border-secondary align-top" style="height: 50px; width:677px"><div class="white-space">@ViewBag.AntecedentesPatlogicosNacer</div></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th colspan="8" scope="row" style="width: 50px;" class="border-secondary text-center align-middle table-active p-0 bg-secondary">EXÁMEN FÍSICO</th>
+            </tr>
+            <tr>
+                @*<th rowspan="2" scope="row" style="width: 50px;" class="border-secondary text-center align-middle subtitulo">EXÁMEN FÍSICO</th>*@
+                <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center bg-secondary">(FC)</th>
+                <td style="width: 98px;" class="border-secondary pt-0 pb-0">@ViewBag.FrecuenciaCardiaca</td>
+                <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center bg-secondary">(FR)</th>
+                <td style="width: 98px;" class="border-secondary pt-0 pb-0">@ViewBag.FrecuenciaRespiratoria</td>
+                <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center bg-secondary">(T°)</th>
+                <td style="width: 98px;" class="border-secondary pt-0 pb-0">@ViewBag.Temperatura</td>
+                <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center bg-secondary">(Peso)</th>
+                <td class="border-secondary pt-0 pb-0">@ViewBag.Peso</td>
+            </tr>
+            <tr style="height: 50px">
+                <td colspan="8" class="border-secondary align-top">
+                    <div class="row m-0">
+
+                        <div class="col-4 ps-0">
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="item-cabecera p-0 border-0">N</th>
+                                        <th class="item-cabecera p-0 border-0">A</th>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.EstadoGeneralSensorio"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.EstadoGeneralSensorio"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Est. Gen. y Sen.</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DEstadoGeneralSensorio - <b>(Edemas: </b>@ViewBag.EEstadoGeneralSensorio<b>)</b></div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.Piel"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.Piel"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Piel</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DPiel</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.Craneo"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.Craneo"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Craneo</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DCraneo</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.PabellonAuricular"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.PabellonAuricular"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Pab. Auricular</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DPabellonAuricular</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.Cara"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.Cara"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Cara</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DCara</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.BocaORL"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.BocaORL"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Boca y ORL</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DBocaORL</div></td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+
+                        <div class="col-4 ps-0 pe-0">
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="item-cabecera p-0 border-0">N</th>
+                                        <th class="item-cabecera p-0 border-0">A</th>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.Cuello"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.Cuello"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Cuello</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DCuello</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.Clavicula"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.Clavicula"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Clavicula</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DClavicula</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.ToraxSilv"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.ToraxSilv"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Tórax Silv.</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DToraxSilv</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.AparatoCardioVascular"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.AparatoCardioVascular"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Ap. Cardio Vas.</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DAparatoCardioVascular - <b>(Reflejos: </b>@ViewBag.RAparatoCardioVascular<b>)</b></div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.Abdomen"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.Abdomen"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Abdomen</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DAbdomen</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.Ombligo"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.Ombligo"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Ombligo</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DOmbligo</div></td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                        <div class="col-4 pe-0">
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="item-cabecera p-0 border-0">N</th>
+                                        <th class="item-cabecera p-0 border-0">A</th>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.Ano"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.Ano"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Ano</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DAno</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.Genitales"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.Genitales"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Genitales</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DGenitales</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.ExtSuperiores"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.ExtSuperiores"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Ext. Superiores</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DExtSuperiores</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.ExtInferiores"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.ExtInferiores"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Ext. Inferiores</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DExtInferiores</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.Columna"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.Columna"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Columna</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DColumna</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle @ViewBag.SistemaNervioso"><div class="item-box item-Si"></div></th>
+                                        <td class="border-0 p-0 align-middle @ViewBag.SistemaNervioso"><div class="item-box item-No"></div></td>
+                                        <td class="border-0 pt-1 pb-1">Sis. Nervioso</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DSistemaNervioso</div></td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0 col-6 bg-secondary">DIAGNÓSTICO</th>
+                <th class="border-secondary table-active text-center p-0 col-6 bg-secondary">EVALUACIÓN/IMPRESIÓN DIAGNÓSTICA</th>
+            </tr>
+            <tr>
+                <td class="border-secondary align-top" style="height: 50px">
+                    @{
+                        int index = 1;
+                    }
+                    @foreach (System.Data.DataRow row in ViewBag.DxEvaluacion.Rows)
+                    {
+                        <span style="font-weight: bold;">DX @index</span>
+                        <span>@row["codigoCIE10"] - @row["descripcion"] <b>(@row["tipoDiagnostico"])</b></span>
+                        <br />
+                        index++;
+                    }
+                </td>
+                <td class="border-secondary align-top" style="height: 50px">
+                    <div class="white-space">@ViewBag.ImpresionDiagnostica</div>
+                    @*<textarea id="impresionDiagnostica" class="w-100">@ViewBag.ImpresionDiagnostica</textarea>*@
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th scope="row" class="border-secondary table-active text-center p-0 col-6 bg-secondary">TRATAMIENTO</th>
+                <th scope="row" class="border-secondary table-active text-center p-0 col-6 bg-secondary">PLAN DE TRABAJO</th>
+            </tr>
+            <tr>
+                @*<td class="border-secondary align-top" style="height: 50px">
+                    @ViewBag.Tratamiento
+                </td>
+                <td class="border-secondary align-top">
+                    @ViewBag.PlanTrabajo
+                </td>*@
+                <td class="border-secondary align-top" style="height: 50px">
+                    <div class="white-space">@ViewBag.Tratamiento</div>
+                    @*<textarea id="tratamiento" class="w-100">@ViewBag.Tratamiento</textarea>*@
+                </td>
+                <td class="border-secondary align-top" style="height: 50px">
+                    <div class="white-space">@ViewBag.PlanTrabajo</div>
+                    @*<textarea id="plan" class="w-100">@ViewBag.PlanTrabajo</textarea>*@
+                </td>
+                
+                
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary">
+        <tbody>
+            @*<tr>
+                    <th colspan="6" scope="row" class="border-secondary text-center table-active align-middle p-0">ENFERMEDAD ACTUAL</th>
+                </tr>*@
+            <tr>
+                @*<th scope="row" style="width: 100px;" class="border-secondary text-center align-middle">ENFERMEDAD<br /> ACTUAL</th>*@
+                <th class="text-center table-active align-middle border-secondary pt-0 pb-0 bg-secondary" style="width:131px; min-width: 110px;">DESTINO</th>
+                <td style="width:110px; min-width: 131px;" class="border-secondary pt-0 pb-0">@ViewBag.TipoDestino</td>
+                <th class="text-center table-active align-middle border-secondary pt-0 pb-0 bg-secondary" style="width:131px; min-width: 110px;">TIPO ALTA</th>
+                <td style="width:110px; min-width: 131px;" class="border-secondary pt-0 pb-0">@ViewBag.TipoAlta</td>
+                <th class="text-center table-active align-middle border-secondary pt-0 pb-0 bg-secondary" style="width:131px; min-width: 110px;">CONDICIÓN ALTA</th>
+                <td class="border-secondary pt-0 pb-0">@ViewBag.TipoCondicionAlta</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class=" ms-auto mt-3 pt-5 mb-2" style="width: 250px;">
+        <div class="border-top border-secondary text-center p-1">
+            @ViewBag.Medico
+        </div>
+    </div>
+
+
+    <table class="table table-bordered border-secondary m-0">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">NOMBRES Y APELLIDOS</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">SERVICIO</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">CAMA</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">HISTORIA</th>
+            </tr>
+            <tr>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.Paciente
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.Servicio
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    0
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.NroHistoriaClinica
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="line-height: 10px;font-size: 9px;text-align: justify;" class="mt-2">
+        Esta es una copia auténtica imprimible de un documento electrónico almacenado en <b class="">INSTITUTO NACIONAL MATERNO PERINATAL</b>,
+        aplicando lo dispuesto por el <b class="">Art. 25 de D.S. 070-2013-PCM</b> y la Tercera Disposición Complementaria Final del <b class="">D.S. 026-2016-PCM</b>.
+        Su autenticidad e integridad pueden ser contrastadas a través de la siguiente dirección web: <b class="">https://mgp.gob.pe/verifica</b>
+    </div>
+    
+
+
+
+
+   @* <script src="/AdmiRE/js/jquery.min.js"></script>
+    <script src="/BootstrapV5.1.3/bootstrap.bundle.min.js"></script>*@
+    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>*@
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    $("#relato").height($("#relato")[0].scrollHeight);            
+        //    $("#impresionDiagnostica").height($("#impresionDiagnostica")[0].scrollHeight);
+        //    $("#tratamiento").height($("#tratamiento")[0].scrollHeight);
+        //    $("#plan").height($("#plan")[0].scrollHeight);
+        // });
+    </script>
+
+</body>
+
+
+
+</html>

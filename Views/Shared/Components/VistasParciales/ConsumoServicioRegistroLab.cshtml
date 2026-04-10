@@ -1,0 +1,374 @@
+﻿<div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46);overflow-y: scroll; z-index: 1050 !important;" data-keyboard="false" class="modal fade" id="modalConsumoServicio" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header btn-success">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Consumo en el servicio</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bg-green">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroOrden">N° Orden</label>
+                                            <input id="txtNroOrden" disabled autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroOrdenPago">Orden de Pago</label>
+                                            <input id="txtNroOrdenPago" disabled autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaRegistro">Fecha de Registro</label>
+                                            <input id="txtFechaRegistro" disabled autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtEstado">Estado</label>
+                                            <input id="txtEstado" disabled autocomplete="off" placeholder="" class=" form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaRealiza" class="form-control-label">Fecha Realiza</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtFechaRealiza" autocomplete="off" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" class=" form-control">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="casilla mt-1" style="padding: 0.5rem 1rem;">                                            
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <h5 style="margin-top: 10px;">Tipo de Venta</h5>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="radioButtonStyleLabel">
+                                                        <input type="radio" name="rbdTipoVenta" class="radioButtonStyleInput" id="rbdTipoVentaDirecta" value="true">
+                                                        <span class="radioButtonStyleSpan w-100">Directa</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="radioButtonStyleLabel">
+                                                        <input type="radio" name="rbdTipoVenta" class="radioButtonStyleInput" id="rbdTipoVentaPreVenta">
+                                                        <span class="radioButtonStyleSpan w-100">PreVenta</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    @* <div class="col-lg-6" style=" border: solid 1px #3e6184;">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="" class="form-control-label">Tipo de Venta</label>
+                                            </div>
+                                            <div class="col-lg-8">
+
+                                                <div class="form-group custom-controls-stacked">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <label class="custom-control custom-radio">
+                                                                <input disabled type="radio" name="rbdTipoVenta" id="rbdTipoVentaDirecta" value="true" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_default"></span>
+                                                                <span class="custom-control-description text-default">Directa</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label class="custom-control custom-radio">
+                                                                <input disabled type="radio" name="rbdTipoVenta" id="rbdTipoVentaPreVenta" class="custom-control-input">
+                                                                <span class="custom-control-indicator custom_checkbox_danger"></span>
+                                                                <span class="custom-control-description text-danger">PreVenta</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> *@
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group m-0">
+                                            <label for="cboPuntoCargaRegistro">Punto de Carga</label>
+                                            <select disabled class="chzn-select" id="cboPuntoCargaRegistro" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroCuentaRegistro">N° Cuenta</label>
+                                            <input id="txtNroCuentaRegistro" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtPacienteRegistro">Datos del Paciente</label>
+                                            <input id="txtPacienteRegistro" disabled autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="check__toggle" style="margin-top: 30px;">
+                                            <label class="toggle">
+                                                <input class="toggle__input campo" type="checkbox" id="chkPlanCubre">
+                                                <span class="toggle__label">
+                                                    <span class="toggle__text">Plan no cubre</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        @* <div class="form-group">
+                                            <br>
+                                            <div class="input-group">
+                                                <label><input id="chkPlanCubre" class="checkbox-inout" type="checkbox"><span>Plan no cubre</span></label>
+                                            </div>
+                                        </div> *@
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtDesFuenteFinan">Fte. Finaciamiento</label>
+                                            <input id="txtDesFuenteFinan" disabled="disabled" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group m-0">
+                                            <label for="cboPlan">Plan</label>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <select disabled class="chzn-select" id="cboPlan" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input id="txtDesPlan" disabled="disabled" style="font-size: x-small" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    @* <div class="col-lg-3">
+                                        <div class="form-group m-0">
+                                            <br>
+                                            <div class="input-group">
+
+                                                
+
+                                            </div>
+                                        </div>
+                                    </div> *@
+                                    <div class="col-lg-6">
+                                        <div class="form-group m-0">
+                                            <label for="cboProcedencia">Procedencia</label>
+                                            <select class="chzn-select" id="cboProcedencia" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="row">
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label for="txtFechaDespacho" class="form-control-label">Fecha Despacho</label>
+                                                <div class="input-group">
+
+                                                    <input id="txtFechaDespacho" disabled autocomplete="off" placeholder="" class=" form-control">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label for="txtHoraDespacho" class="form-control-label">Hora Despacho</label>
+                                                <div class="input-group">
+
+                                                    <input id="txtHoraDespacho" disabled autocomplete="off" placeholder="" class=" form-control">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="row">
+
+                    <div class="col-lg-5">
+                        <div class="form-group m-0">
+                            <label for="cboProductoServicio">Producto</label>
+                            <select class="chzn-select" id="cboProductoServicio" data-placeholder="Seleccione una opción"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group m-0">
+                            <label for="txtCantidadCpt">Cantidad</label>
+                            <input id="txtCantidadCpt" autocomplete="off" placeholder="Cantidad" class="form-control form-control-sm solo-numero">
+                        </div>                        
+                    </div>
+
+                    <div class="col-lg-2" id="contCondicionIngreso">
+                        @*Quitar esto para despues JDELGADO*@
+                        <div class="form-group m-0">
+                            <label for="cboCondicionIngreso">Cond. Ingreso</label>
+                            <select class="chzn-select" id="cboCondicionIngreso" data-placeholder="Seleccione una opción">
+                                <option value="0">Seleccione una opción</option>
+                                <option value="1">Nuevo</option>
+                                <option value="2">Continuador</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-2" id="contRelDx">
+                        @*Quitar esto para despues JDELGADO*@
+                        <div class="form-group m-0">
+                            <label for="cboDxCpt">Dx</label>
+                            <select class="chzn-select" id="cboDxCpt" data-placeholder="Seleccione una opción"></select>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-2" id="contLabCpt" style="display: none;">
+                        @*Quitar esto para despues JDELGADO*@
+                        <div class="form-group m-0">
+                            <label for="cbolabCpt">Lab</label>
+                            <select class="chzn-select" id="cbolabCpt" data-placeholder="Seleccione una opción">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="A">A</option>
+                                <option value="N">N</option>
+                            </select>
+                        </div>
+                       
+                    </div>
+
+                    <div class="col-lg-2" @* style="max-width: 300px;" *@ id="contUsaLabCpt">
+                        @*Quitar esto para despues JDELGADO*@
+                        <div class="form-group m-0">
+                            <label for="txtLabCpt">Lab</label>
+                            <input id="txtLabCpt" autocomplete="off" type="text" class="form-control form-control-sm">
+                        </div>
+                                   
+
+                    </div>
+
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-lg-4">
+                        <button id="btnAgregarPS" class="btn btn-success">Agregar</button>
+                        <button id="btnEliminarPS" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <table id="tblDetalleConsumo" class="table table-sm table-content-md table-bordered table-striped">
+                            <thead style="color: white;background: #3e6184;">
+                                <tr>
+
+                                    <th style="display:none">idProducto</th>
+                                    <th>Descripcion</th>
+                                    <th>Cantidad</th>
+                                    <th>P.U.(S/.)</th>
+                                    <th>Sub Total</th>
+                                    <th>Cond.Ingreso</th>
+                                    <th>lab</th>
+                                    <th>dx</th>
+
+                                </tr>
+                            </thead>
+
+                        </table>
+
+                        <button id="btnAgregarIntervenciones" title="Agregar Actividades" data-toggle="tooltip"
+                                type="button" class="btn btn-sm btn-success mr-1"
+                                style="background-color: #27b6d5 !important; border-color: #27b6d5 !important;" class="mt-1">
+                            <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                            Agregar Intervencion Enf.
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="mb-0 float-sm-right">
+                            <tbody>
+                                <tr>
+                                    <th width="60" class="text-sm-right border pr-1" style="background: #e6e6e6;">Total:</th>
+                                    <th id="lblTotal" width="150" class="border px-1"></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bg-green">
+                            <div class="card-header" style="background: #fff;">Historial</div>
+                            <div class="card-block">
+                                <table id="tblHistorialDetalleConsumo" class="table table-sm table-content-md table-bordered table-striped mt-2">
+                                    <thead style="color: white;background: #3e6184;">
+                                        <tr>
+
+                                            <th style="display:none">Cuenta</th>
+                                            <th>codigo</th>
+                                            <th>nombre</th>
+                                            <th>cantidad</th>
+                                            <th>Fecha</th>
+
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+                <button id="btnguardarConsumo" class="btn  btn-info">Guardar</button>
+                <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<input hidden="hidden" id="hdIdTipoFuenteFianConsumo" name="hdIdFuente" type="text" class="form-control">
+<input hidden="hidden" id="hdIdCuentaAtencion" name="hdIdFuente" type="text" class="form-control">
+<input hidden="hidden" id="hdIdPuntoCarga" name="hdIdFuente" type="text" class="form-control">
+<input hidden="hidden" id="hdIdPaciente" name="hdIdFuente" type="text" class="form-control">
+<input hidden="hidden" id="hdIdServicioPaciente" name="hdIdFuente" type="text" class="form-control">
+<input hidden="hidden" id="hIdTipoFinanciamiento" name="hdIdFuente" type="text" class="form-control">
+<input hidden="hidden" id="hIdFuenteFinanciamiento" name="hdIdFuente" type="text" class="form-control">
+<input hidden="hidden" id="hIdEstadoFac" name="hdIdFuente" type="text" class="form-control">
+<input hidden="hidden" id="hdIdOrden" name="hdIdFuente" type="text" class="form-control">
+<input hidden="hidden" id="hdIdOrdenPago" name="hdIdFuente" type="text" class="form-control">
+<input hidden="hidden" id="hdIdEstadoCuenta" name="hdIdFuente" type="text" class="form-control">
+
+<input hidden="hidden" id="hIdPermiso" name="hdIdFuente" type="text" class="form-control">
+

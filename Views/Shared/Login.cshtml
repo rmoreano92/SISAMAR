@@ -1,0 +1,518 @@
+﻿@{
+    Layout = null;
+}
+@model CapaEntidades.User
+@using CapaDatos
+@using System.Data
+@using Microsoft.Extensions.Configuration;
+
+@{
+    ViewData["Title"] = "--SISGALEN--";
+    DataSet lsParametros;
+    DalParametros dalParametros = new DalParametros();
+    string facebook, instagram, tipoBD;
+
+    lsParametros = await dalParametros.SeleccionaFilaParametro2(1002); //facebook
+    facebook = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
+
+    lsParametros = await dalParametros.SeleccionaFilaParametro2(1003); //instagram
+    instagram = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
+
+    lsParametros = await dalParametros.SeleccionaParametroPorCodigo("TIPO_VERSION_DB"); //version BD
+    tipoBD = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
+
+    ViewBag.facebook = facebook;
+    ViewBag.instagram = instagram;
+    ViewBag.tipoBD = tipoBD;
+
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    ViewBag.version = version;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SISAMAR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="~/favicon.ico" />
+
+    <!--Global styles -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/custom.css" />
+
+    <!--Plugin styles-->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/toastr/css/toastr.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/toastr.css" />
+
+    <style>
+        html, body { height: 100%; }
+        body { margin:0; background:#fff; overflow:hidden; font-family: "Segoe UI", Arial, sans-serif; }
+
+        /* ===== Layout split ===== */
+        .login-split{
+            display:flex;
+            height:100vh;
+            width:100%;
+        }
+
+        /* LEFT PANEL (como landing) */
+        .login-left{
+            width: 620px;
+            max-width: 100%;
+            background:#fff;
+            display:flex;
+            align-items:center;
+            justify-content:center;height: calc
+            padding: 28px 26px;
+            position:relative;
+            z-index: 2;
+        }
+
+        /* Contenido del panel (NO tarjeta) */
+        .login-panel{
+            width:100%;
+            max-width: 420px;
+        }
+
+        .brand{
+            text-align:center;
+            margin-bottom: 24px;
+        }
+        .brand img{ width: 150px; }
+        .brand .brand-title{
+            margin: 10px 0 6px;
+            font-size: 40px;
+            letter-spacing: .5px;
+            font-weight: 700;
+            color:#0a2a43;
+            line-height:1.2;
+        }
+        .brand .brand-sub{
+            margin:0;
+            color:#0a2a43;
+            font-size: 18px;
+            line-height: 1.1;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Form */
+        .form-control-label2{ letter-spacing: .25px; color:#5f6b7a; font-size: 13px; font-weight: 500;}
+
+        .login_section input, .login_section select{
+            color:#334155;
+            border: 1px solid #d8dee6;
+            background: #f7f8fb;
+            border-radius: 22px;
+        }
+        .login_section input::placeholder{ color:#98a3af; }
+
+        .login_section .form-control{ padding: .65rem .9rem; height: calc(3rem - 2px) !important;}
+
+
+        .form-control:hover, .form-control:focus{
+            background:#fff !important;
+            box-shadow:none !important;
+            border:1px solid rgba(102,175,233,.65) !important;
+        }
+
+        .login_section .input-group-addon {
+            background-color: rgba(170, 177, 185, 0.5);
+            border: none;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .btn-login{
+            padding: .75rem;
+            font-size: 14px;
+            background: #0a2a43;
+            border-color: #0a2a43;
+            border-radius: 26px;
+            letter-spacing: .3px;
+        }
+        .btn-login:hover, .btn-login:focus{
+            background:#124e7c;
+            border-color:#124e7c;
+        }
+
+        .version-pill{
+            margin-top: 14px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            text-align:center;
+            background:#c1c2c3;
+            color:#fff;
+            font-size: 12px;
+            opacity:.9;
+        }
+
+
+        /* RIGHT SLIDER */
+        .login-right{
+            flex:1;
+            position:relative;
+            overflow:hidden;
+            background:#071a2a;
+        }
+
+        .slide{
+            position:absolute;
+            inset:0;
+            background-size:cover;
+            background-position:center;
+            opacity:0;
+            transform: scale(1.04);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+        .slide.active{
+            opacity:1;
+            transform: scale(1);
+        }
+
+        /* Overlay + blur feeling */
+        .slide::after{
+            content:"";
+            position:absolute;
+            inset:0;
+            background: radial-gradient(circle at 30% 40%, rgba(0,0,0,.25), rgba(0,0,0,.60));
+        }
+
+        .hero{
+            position:absolute;
+            inset:0;
+            z-index:2;
+            display:flex;
+            align-items:center;
+            padding: 0 70px;
+        }
+        .hero-inner{
+            max-width: 640px;
+            color:#fff;
+        }
+
+        .hero-title{
+            margin:0 0 14px;
+            font-size: 62px;
+            line-height: 1.03;
+            font-weight: 300;
+            color: white;
+        }
+        .hero-title b{ font-weight: 800; }
+        .hero-desc{
+            margin:0;
+            font-size: 18px;
+            line-height:1.5;
+            opacity:.92;
+            max-width: 540px;
+        }
+
+        .dots{
+            margin-top: 26px;
+            display:flex;
+            gap: 12px;
+            align-items:center;
+        }
+        .dot{
+            padding: 0;
+            width: 12px;
+            height: 12px;
+            border-radius:50%;
+            border: 1px solid rgba(255,255,255,.7);
+            background: transparent;
+            opacity: .9;
+            cursor:pointer;
+        }
+        .dot.active{
+            background:#fff;
+            border-color:#fff;
+        }
+
+        /* Preloader */
+        .preloader{
+            position:fixed; inset:0;
+            z-index:100000;
+            background:#fff;
+        }
+        .preloader_img{
+            width:200px; height:200px;
+            position:absolute;
+            left:48%; top:48%;
+            z-index:999999;
+        }
+        .preloader_img img{ width:40px; }
+
+        .text-gray{
+            color: #808080;
+        }
+
+        /* Responsive */
+        @@media (max-width: 992px){
+            body{ overflow:auto; }
+            .login-split{ flex-direction:column; height:auto; min-height:100vh; }
+            .login-left{ width:100%; padding: 20px 14px; }
+            .login-right{ height: 360px; }
+            .hero{ padding: 0 18px; }
+            .hero-title{ font-size: 36px; }
+        }
+
+    </style>
+</head>
+
+<body class="login_backimg">
+    <div class="bg-mascara"></div>
+
+    <div class="preloader">
+        <div class="preloader_img">
+            <img src="~/AdmiRE/img/loader.gif" alt="loading...">
+        </div>
+    </div>
+
+    <div class="login-split">
+
+        <!-- LEFT -->
+        <div class="login-left">
+            <div class="login_section login-panel">
+
+                <div class="brand">
+                    <img src="~/images/Logo.png" alt="logo" />
+                    <div class="brand-title">SISAMAR</div>
+                    <p class="brand-sub">
+                        Sistema de Salud de la Marina
+                    </p>
+                </div>
+
+                <form id="login_validator" method="post" asp-action="Index" asp-controller="Home">
+                    <div class="form-group">
+                        <label class="form-control-label2" for="username">Usuario</label>
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.USERID, new { @class = "form-control text-gray", @required = "required", @id = "username", @placeholder = "Ingrese su usuario" })
+                            <span class="input-group-addon">
+                                <i class="fa fa-user text-gray"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label2" for="password">Contraseña</label>
+                        <div class="input-group">
+                            @Html.PasswordFor(m => m.PASSWORD, new { @class = "form-control text-gray", @required = "required", @id = "password", @placeholder = "Ingrese su contraseña" })
+                            <span class="input-group-addon">
+                                <i class="fa fa-key text-gray"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label2" for="ipress">Hospital IPress</label>
+                        <div class="input-group">
+                            @Html.DropDownListFor(m => m.IdIPress,
+                                new List<SelectListItem>(),
+                                "Seleccione Hospital IPress",
+                                new { @class = "form-control text-gray py-0", @id = "ipress", @required = "required" }
+                            )
+                            <span class="input-group-addon">
+                                <i class="fa fa-hospital-o text-gray"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    @Html.Hidden("NombreIPress", "", new { id = "NombreIPress" })
+
+                    <button type="submit" class="btn btn-block btn-login text-white" id="btnLogin">
+                        INGRESAR
+                    </button>
+
+                    <h5 class="text-danger mt-1" id="msgError" style="margin-top:12px;">@ViewBag.Error</h5>
+
+                    @if (ViewBag.tipoBD != "")
+                    {
+                        <div class="version-pill">
+                            VERSIÓN @ViewBag.tipoBD
+                        </div>
+                    }
+                </form>
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="login-right" id="slider">
+            <!-- Slide 1 -->
+            <div class="slide active" data-img="/images/IMAGEN-SLIDER-01.jpg"
+                 data-title="Atención clínica <b>segura</b> y <b>oportuna</b>"
+                 data-desc="Accede a la Historia Clínica Electrónica de forma rápida y confiable para apoyar decisiones médicas con información completa.">
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide" data-img="/images/IMAGEN-SLIDER-02.jpg"
+                 data-title="<b>Continuidad</b> asistencial, siempre"
+                 data-desc="Consulta antecedentes, evoluciones, diagnósticos y procedimientos para dar seguimiento clínico sin perder el hilo de la atención.">
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide" data-img="/images/IMAGEN-SLIDER-03.jpg"
+                 data-title="Trazabilidad y <b>responsabilidad</b> clínica"
+                 data-desc="Registros claros, auditables y ordenados. La información correcta, en el momento correcto, para una atención de calidad.">
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide" data-img="/images/IMAGEN-SLIDER-04.jpg"
+                 data-title="Trabajo en equipo, <b>mejor</b> atención"
+                 data-desc="Facilita la coordinación entre servicios y áreas asistenciales con datos centralizados y disponibles para el personal autorizado.">
+            </div>
+
+            <div class="hero">
+                <div class="hero-inner">
+                    <h1 class="hero-title" id="heroTitle"></h1>
+                    <p class="hero-desc" id="heroDesc"></p>
+
+                    <div class="dots" id="slideDots">
+                        <button type="button" class="dot active" data-idx="0"></button>
+                        <button type="button" class="dot" data-idx="1"></button>
+                        <button type="button" class="dot" data-idx="2"></button>
+                        <button type="button" class="dot" data-idx="3"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <span class="runner btn-danger" data-layout="topCenter" data-type="error" style="display:none;">Error</span>
+
+    <script type="text/javascript">
+        var VersionApp = '@ViewBag.version';
+    </script>
+
+    <!-- global js -->
+    <script type="text/javascript" src="~/AdmiRE/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/tether.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/bootstrap.min.js"></script>
+
+    <!--Plugin js-->
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/moment/js/moment.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/noty/js/jquery.noty.packaged.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/toastr/js/toastr.min.js"></script>
+
+    <script type="text/javascript" src="~/AdmiRE/js/pages/toastr_notifications.js"></script>
+
+    <script>
+        // ====== IMPORTANTE: esto llena el hidden correctamente ======
+        $(document).on('change', '#ipress', function () {
+            $('#NombreIPress').val($('#ipress option:selected').text());
+        });
+
+        $(document).ready(function () {
+
+            // Mensajes error server
+            if ($('#msgError').text().trim() !== "") {
+                $('.runner').click();
+                $('.noty_text').html($('#msgError').html());
+                $('#msgError').html("");
+                setTimeout(function () { $('.noty_text').click(); }, 5000);
+            }
+
+            // Preloader
+            $(window).on("load", function () {
+                $('.preloader img').fadeOut();
+                $('.preloader').fadeOut(800);
+            });
+
+            // ====== Slider ======
+            initSlider();
+
+            // ====== Validación ======
+            $('#login_validator').bootstrapValidator({
+                fields: {
+                    USERID: { validators: { notEmpty: { message: 'Ingrese el usuario por favor.' } } },
+                    PASSWORD: { validators: { notEmpty: { message: 'Ingrese la contraseña por favor.' } } },
+                    IdIPress: { validators: { notEmpty: { message: 'Seleccione Hospital IPress por favor.' } } }
+                }
+            });
+
+            // ====== Cargar IPress ======
+            cargarIPress();
+        });
+
+        function cargarIPress() {
+            $.ajax({
+                url: "/Home/ListarIPress",
+                dataType: "json",
+                type: "get",
+                success: function (r) {
+                    if (!r || r.ok === false) {
+                        toastr.error("Error al listar IPress:<br>" + (r && r.mensaje ? r.mensaje : "No se pudo listar IPress"));
+                        return;
+                    }
+                    var $ipress = $('#ipress');
+                    $ipress.empty().append('<option value="">Seleccione Hospital IPress</option>');
+
+                    $(r.table || []).each(function (i, obj) {
+                        $ipress.append('<option value="' + obj.valor + '">' + obj.descripcion + '</option>');
+                    });
+
+                    // setea hidden si ya hay selección
+                    $('#NombreIPress').val($('#ipress option:selected').text());
+                },
+                error: function () {
+                    toastr.error("Error al llamar /Home/ListarIPress");
+                }
+            });
+        }
+
+        function initSlider() {
+            var $slides = $('#slider .slide');
+            var $dots = $('#slideDots .dot');
+            var $title = $('#heroTitle');
+            var $desc = $('#heroDesc');
+
+            if ($slides.length === 0) return;
+
+            // set background images
+            $slides.each(function () {
+                var img = $(this).data('img');
+                if (img) $(this).css('background-image', 'url(' + img + ')');
+            });
+
+            var idx = 0;
+            var timer = null;
+            var intervalMs = 3200; // suave pero rápido
+
+            function applyText(i) {
+                var $s = $slides.eq(i);
+                $title.html($s.data('title') || '');
+                $desc.text($s.data('desc') || '');
+            }
+
+            function go(i) {
+                idx = i;
+                $slides.removeClass('active').eq(idx).addClass('active');
+                $dots.removeClass('active').eq(idx).addClass('active');
+                applyText(idx);
+            }
+
+            function start() {
+                stop();
+                timer = setInterval(function () {
+                    go((idx + 1) % $slides.length);
+                }, intervalMs);
+            }
+
+            function stop() {
+                if (timer) { clearInterval(timer); timer = null; }
+            }
+
+            $dots.on('click', function () {
+                go(parseInt($(this).data('idx'), 10) || 0);
+                start();
+            });
+
+            // init first
+            go(0);
+            start();
+        }
+    </script>
+</body>
+</html>

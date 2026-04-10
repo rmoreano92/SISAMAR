@@ -1,0 +1,388 @@
+﻿@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/inputlimiter/css/jquery.inputlimiter.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/daterangepicker/css/daterangepicker.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datepicker/css/bootstrap-datepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-timepicker/css/bootstrap-timepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-switch/css/bootstrap-switch.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jasny-bootstrap/css/jasny-bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datetimepicker/css/DateTimePicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/j_timepicker/css/jquery.timepicker.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/clockpicker/css/jquery-clockpicker.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/fullcalendar/css/fullcalendar.min.css" />
+
+    <!--Page level styles-->
+}
+
+<link type="text/css" rel="stylesheet" href="#" id="skin_change" />
+
+    <header class="head">
+        <div class="main-bar row">
+            <div class="col-lg-6 col-md-4 col-sm-4">
+                <h4 class="nav_top_align">
+                    <i class="fa fa-th"></i>
+                    Consulta de Citas
+                </h4>
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-8">
+                <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                    <li class="breadcrumb-item">
+                        <a href="Citas">
+                            <i class="fa fa-home" data-pack="default" data-tags=""></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Paciente</a>
+                    </li>
+                    <li class="breadcrumb-item active">Citas</li>
+                </ol>
+            </div>
+        </div>
+    </header>
+    <div class="outer">
+        <div class="inner bg-container">
+            <div class="row">
+                <div class="col-lg-12 ">
+                    <div class="card">
+
+                        
+                        <div class="card-block">
+                            <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-12 col-lg-4">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-xs-12">
+                                                <b> <label for="cboMedicos" class="control-label">Medicos</label></b>
+                                            </div>
+                                            <div class="col-lg-6 col-xs-12">
+
+                                                <select class="chzn-select" id="cboMedicos"></select>
+                                            </div>
+                                            <div class="col-lg-4 col-xs-12">
+                                                <!--  <br>
+                                                      <b> <label for="cboMedicos" class="control-label"></label></b>-->
+                                                <button id="btnLimpiar" type="button" class="btn btn-labeled btn-success">
+                                                    <span class="btn-label">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </span>
+                                                    Limpiar 
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <br>
+
+
+                                        <table class="table table-striped table-bordered table-hover" id="tblCitas" style="height: 50%">
+                                            <thead style="color: white;background: #3e6184;">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Medico</th>
+                                                    <th>Servicio</th>
+
+
+                                                </tr>
+                                            </thead>
+
+                                        </table>
+                                    </div>
+                                    <div class="col-xs-12 col-lg-4">
+                                        <b><label for="" class="control-label">CUPOS</label></b>
+                                        <br>
+                                        <b><h5><label id="lblFechaCupo" style="color: brown" for="" class="control-label"></label></h5></b>
+                                        <b><h5><label id="lblMedico" style="color: brown" for="" class="control-label">Medico:</label></h5></b>
+
+                                        <br>
+                                        <table class="table table-striped table-bordered table-hover" id="tblCupos" style="height: 50%">
+                                            <thead style="color: white;background: #3e6184;">
+                                                <tr>
+                                                    <th>CUPOS</th>
+
+                                                </tr>
+                                            </thead>
+
+                                        </table>
+                                    </div>
+                                    <div class="col-xs-12 col-lg-4">
+                                        <div id="idCalendarioWeb">
+
+                                        </div>
+                                        <br>
+
+                                        <b><label for="" class="control-label" style="color: #0041b4">LEYENDA</label></b>
+                                        <ul>
+                                            <li>
+                                                <b><label for="" class="control-label">&nbsp; + DISPONIBLE: &nbsp; &nbsp; </label><label id="lblDispo" for="" class="control-label">0</label></b>
+                                            </li>
+                                            <li>
+                                                <b> <label for="" class="control-label">&nbsp; + PAGADO: &nbsp; &nbsp; </label><label id="lblPag" for="" class="control-label">0</label></b>
+                                            </li>
+                                            <li>
+                                                <b><label for="" class="control-label">&nbsp; + RESERVADO: &nbsp; &nbsp; </label><label id="lblRes" for="" class="control-label">0</label></b>
+                                            </li>
+                                        </ul>
+                                        <br>
+                                        <table id='tblAnexos' class="table table-bordered table-hover ">
+                                            <thead style="color: white;background: #0880d7;">
+                                                <tr>
+                                                    <th>Area</th>
+                                                    <th>Telefono</th>
+                                                    <th>Anexo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Admision de CE</td>
+                                                    <td>(51) 1-328-1370</td>
+                                                    <td>1228</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Admision de Emergencia</td>
+                                                    <td>(51) 1-328-1012</td>
+                                                    <td>1226</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Central Telefonica</td>
+                                                    <td>(51) 1-328-1012</td>
+                                                    <td>1</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-4">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+<div class="modal fade" id="modalCita" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Solicitud de Cita</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal  login_validator" id="formAreasEd">
+                    <div class="form-group row">
+                        <div class="col-lg-4  text-lg-right">
+                            <label for="txtdocumentoEd" style="color: red" class="form-control-label"><b>Consultorio:</b></label>
+                        </div>
+                        <div class="col-lg-6 ">
+                            <label for="" id="lblConsultorio" class="form-control-label"></label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4  text-lg-right">
+                            <label for="txtdocumentoEd" style="color: red" class="form-control-label"><b>Medico:</b></label>
+                        </div>
+                        <div class="col-lg-6 ">
+                            <label for="" id="lblMedicoSolicitud" class="form-control-label"></label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4  text-lg-right">
+                            <label for="txtdocumentoEd" style="color: red" class="form-control-label"><b>Fecha y hora:</b></label>
+                        </div>
+                        <div class="col-lg-6 ">
+                            <label for="" id="lblFecha" class="form-control-label"></label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4  text-lg-right">
+                            <label for="txtCelular" style="color: red" class="form-control-label"><b>Celular:</b></label>
+                        </div>
+                        <div class="col-lg-6 ">
+                            <input autocomplete="off" placeholder="Celular" style="text-transform: uppercase " type="text" id="txtCelular" name="txtCelular" class="solo-numero form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4  text-lg-right">
+                            <label for="txtdocumentoEd" style="color: red" class="form-control-label"><b>Plan:</b></label>
+                        </div>
+                        <div class="col-lg-6 ">
+                            <select class="chzn-select" id="cboPlan">
+                                <option value="1">MGP</option>
+                                <option value="3">SIS</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4  text-lg-right">
+                            <label for="txtdocumentoEd" style="color: red" class="form-control-label"><b>Adjunta Archivos:</b></label>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="txtReferencia" class="form-control-label">Referencia</label>
+                            <div class="input-group">
+                                <input accept="image/* application/pdf" id="txtReferencia" type="file">
+                            </div>
+
+                            <label for="txtInterCon" class="form-control-label"> InterConsulta</label>
+                            <div class="input-group">
+                                <input accept="image/* application/pdf" id="txtInterCon" type="file">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!--<button class="btn  btn-primary" data-dismiss="modal">Close me!</button>-->
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                    <button id="btnguardar" class="btn  btn-info" data-dismiss="modal">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalRecetas" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Receta y Ordenes Medicas - <label id="lblCuentaRecta" style="color: white" class="form-control-label"></label></h4>
+            </div>
+            <div class="modal-body">
+                <h5 class="m-t-20">Receta y ordenes medicas</h5><br><br>
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <table class="table table-bordered table-hover  " id="tblRecetas">
+                            <thead style="color: white;background: #3e6184;">
+                                <tr>
+                                    <th>IdReceta</th>
+                                    <th>Fecha</th>
+                                    <th>Pto. Carga</th>
+                                    <th>Nombre</th>
+                                    <th>Ver</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <!--<button class="btn  btn-primary" data-dismiss="modal">Close me!</button>-->
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--End of Global scripts-->
+<!--Plugin scripts-->
+
+<label id="hdVerifica" style="display: none"></label>
+<label id="hdServicio" style="display: none"></label>
+<label id="hdIdProgramacion" style="display: none"></label>
+<label id="hdHora" style="display: none"></label>
+<label id="hdIdInforme" style="display: none"></label>
+<style>
+    .chosen-container chosen-container-single {
+        width: 100%;
+    }
+</style>
+
+@section Scripts
+    {
+    <script type="text/javascript" src="js/form.js"></script>
+
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/validval/js/jquery.validVal.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/inputmask/js/jquery.inputmask.bundle.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/fullcalendar/js/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/fullcalendar/js/locale-all.js"></script>
+    <script src="<?php echo base_url('js/Citas/citas.js'); ?>"></script>
+    <script type="text/javascript" src=@Href("~/js/ConsultaExterna/Citas.js")></script>
+  
+}
+
+
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        citas.init();
+        $(".dataTables_scrollHeadInner .table").addClass("table-responsive");
+        $(".dataTables_wrapper .dt-buttons .btn").addClass('btn-secondary').removeClass('btn-default');
+
+    });
+
+</script>
+<style>
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .outer {
+        padding: 0px important;
+        margin-top: 0px important;
+    }
+
+    #tblCitas tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    .ui-datatable-even {
+        background: #FFFFA2;
+    }
+
+    .fc th {
+        padding: 10px 0px;
+        vertical-align: middle;
+        background-color: #d6e8f8 !important;
+    }
+
+    /*            #tblRecetas {
+                            table-layout: fixed;
+                            text-overflow: ellipsis;
+                        }
+
+                        #tblRecetas td {
+                            text-overflow: ellipsis;
+                        }*/
+
+    #tblRecetas_wrapper {
+        overflow-x: auto;
+    }
+</style>
+
+

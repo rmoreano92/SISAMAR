@@ -1,0 +1,234 @@
+﻿@section Css
+{
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+@using CapaEntidades
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa-solid @ViewBag.Icono mr-1"></i>
+                @ViewBag.Modulo @*- @ViewBag.Area*@
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Modulo</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="row m-0">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+            <li class="nav-item m-0" role="presentation">
+                <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Registro Triaje Recién Nacido</a>
+            </li>
+        </ul>
+        <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContent">
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <div class="card">
+                            <div class="card-block pb-1">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="form-group m-0">
+                                            <label for="cboVentanillasBusq">Ventanilla</label>
+                                            <select id="cboVentanillasBusq" class="chzn-select search" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaBusq">Fecha</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaBusq">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 d-flex align-items-end" style="height: 55px;">
+                                        <button class="btn btn-sm btn-primary layout_btn_prevent mr-2" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscar">Buscar</button>
+                                        @* <button class="btn btn-sm btn-default layout_btn_prevent    " style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiar">Limpiar</button> *@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        @* @{
+                            if (@ViewBag.Agregar)
+                            {
+                                <button class="btn btn-success layout_btn_prevent" id="btnAgregar">Agregar</button>
+                            }
+                            if (@ViewBag.Modificar)
+                            {
+                                <button class="btn btn-info layout_btn_prevent" id="btnModificar">Modificar</button>
+                            }
+                            if (@ViewBag.Eliminar)
+                            {
+                                <button class="btn btn-danger layout_btn_prevent" id="btnEliminar">Eliminar</button>
+                            }
+                            if (@ViewBag.Consultar)
+                            {
+                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultar">Consultar</button>
+                            }
+                        } *@
+                        <div class="text-sm-right">
+                            <button class="btn btn-success layout_btn_prevent" id="btnReporteMonitoreoColas" data-toggle="modal" style="margin: 2px;"><i class="fa-solid fa-file-excel mr-1"></i>Reporte</button>
+                        </div>                       
+
+                        <table id="tblMonitoreo" class="table table-sm table-content-sm table-bordered table-hover w-100" style="cursor: default;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th>#</th>
+                                    <th>CUPO</th>
+                                    <th>VENTANILLA</th>
+                                    <th>DNI</th>
+                                    <th>PACIENTE</th>
+                                    <th>ESTADO</th>
+                                    <th>FEC. SOLICITUD</th>
+                                    <th>FEC. LLAMADA</th>
+                                    <th>FEC. ATENCIÓN</th>
+                                    <th>FEC. FIN</th>                                    
+                                    <th>T. LLAMADO</th>
+                                    <th>T. ATENCION</th>
+                                    <th>T. TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade" id="TabPanelRegistro" role="tabpanel" aria-labelledby="TabRegistro">
+                <div id="modulo">
+                    <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/TriajeNeonatal/RegistroTriajeRn.cshtml" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+ 
+
+</div>
+
+<div class="modal fade" id="modalReporteMonitoreoColas" tabindex="-1" role="dialog" aria-labelledby="mmodalReporteMonitoreoColasLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Monitoreo Colas</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboRptVentanilla">Ventanilla</label>
+                            <select id="cboRptVentanilla" class="chzn-select"></select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtRptFechaInicio">Fecha Inicio</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtRptFechaInicio" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtRptFechaFin">Fecha Fin</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtRptFechaFin" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCerrarReporteMonitoreoColas">Cerrar</button>
+                    <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnGenerarReporteMonitoreoColas">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+
+    <script type="text/javascript" src=@Href("~/js/SistemaColas/SGCMonitoreo.js")></script>
+    @* <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script> *@
+
+}
+
+<style>
+    .chzn-select{
+        width: 100%;
+    }
+
+    .switch-field input:checked + .rdbAbierto {
+        background-color: #009688;
+        box-shadow: none;
+        color: white;
+        border-color: #009688;
+    }
+
+    .switch-field input:checked + .rdbCerrado {
+        background-color: #607d8b;
+        box-shadow: none;
+        color: white;
+        border-color: #607d8b;
+    }
+
+
+</style>
+
+

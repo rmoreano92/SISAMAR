@@ -1,0 +1,1815 @@
+﻿<div class="card">
+    <div class="card-header">Odontograma</div>
+    <div class="card-block p-1 bg-yellow">
+
+        <div class="row m-0">
+            <div class="card">
+                @* <div class="card-header">ANTECEDENTES Y SINTOMAS</div>*@
+                <div class="card-block pt-1 bg-green">
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group m-0">
+                                <div class="d-flex" style="margin-bottom: 5px;">
+                                    <label for="txtDentalAlergia" class="m-0 mr-2">ALERGIA A MEDICAMENTOS</label>
+                                    <div class="switch-field">
+                                        <input type="radio" id="rdbDentalAlergiaSi" name="rdbDentalAlergia" class="campo" value="1">
+                                        <label for="rdbDentalAlergiaSi" class="pl-2 pr-2">Si</label>
+                                        <input type="radio" id="rdbDentalAlergiaNo" name="rdbDentalAlergia" class="campo" value="0">
+                                        <label for="rdbDentalAlergiaNo" class="pl-2 pr-2 mr-auto">No</label>
+                                    </div>
+                                </div>
+                                <textarea class="form-control" id="txtDentalAlergia" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group m-0">
+                                <div class="d-flex" style="margin-bottom: 5px;">
+                                    <label for="txtDentalEnfermedad" class="m-0 mr-2">PADECE ALGUNA ENFERMEDAD</label>
+                                    <div class="switch-field">
+                                        <input type="radio" id="rdbDentalEnfermedadSi" name="rdbDentalEnfermedad" class="campo" value="1">
+                                        <label for="rdbDentalEnfermedadSi" class="pl-2 pr-2">Si</label>
+                                        <input type="radio" id="rdbDentalEnfermedadNo" name="rdbDentalEnfermedad" class="campo" value="0">
+                                        <label for="rdbDentalEnfermedadNo" class="pl-2 pr-2 mr-auto">No</label>
+                                    </div>
+                                </div>
+                                <textarea class="form-control" id="txtDentalEnfermedad" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-lg-12 text-sm-center">
+                <button id="btnCaries" target="_blank" class="btn btn-sm btn-outline-success m-1 font-weight-bold btnDisposicion">CARIES</button>
+                <button id="btnCoronaTemporal" target="_blank" class="btn btn-sm btn-outline-success m-1 font-weight-bold btnDisposicion">CORONA TEMP.</button>
+                <button id="btnRemanenteRadicular" target="_blank" class="btn btn-sm btn-outline-success m-1 font-weight-bold btnDisposicion">REMANEN. RAD.</button>
+                <button id="btnRestauracion" target="_blank" class="btn btn-sm btn-outline-success m-1 font-weight-bold btnDisposicion">RESTAURACIÓN</button>
+                <button id="btnCoronaDefinitiva" target="_blank" class="btn btn-sm btn-outline-success m-1 font-weight-bold btnDisposicion">CORONA DEF.</button>
+                <button id="btnAusencia" target="_blank" class="btn btn-sm btn-outline-success m-1 font-weight-bold btnDisposicion">AUSENCIA</button>
+                <button id="btnClavija" target="_blank" class="btn btn-sm btn-outline-success m-1 font-weight-bold btnDisposicion">CLAVIJA</button>
+                <button id="btnExtruido" target="_blank" class="btn btn-sm btn-outline-success m-1 font-weight-bold btnDisposicion">DIENTE EXTR.</button>
+                <button id="btnIntruido" target="_blank" class="btn btn-sm btn-outline-success m-1 font-weight-bold btnDisposicion">DIENTE INTR.</button>
+                <button id="btnGeminacion" target="_blank" class="btn btn-sm btn-outline-success m-1 font-weight-bold btnDisposicion">GEMINACIÓN</button>
+                <button id="btnFusion" target="_blank" class="btn btn-sm btn-outline-success m-1 font-weight-bold btnDisposicion">FUSIÓN</button>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div id="odontograma" class="mx-auto" style="width: 650px;">
+                <table class="FacetFormTABLE mx-auto my-0" bgcolor="#FFFFFF" border="0" style="border-collapse:collapse">
+                    <tbody>
+                        @*<tr>
+                        <td width="">
+                        <input type="hidden" name="odontograma" id="odontograma" value="(1_1_3_)(17_1_3_)(56_1_3_)(40_1_3_)(2_1_35_11)(2_1_35_)(3_1_35_12)(3_1_35_)(41_1_35_11)(41_1_35_)(54_1_35_11)(54_1_35_)(55_1_35_12)(55_1_35_)(15_1_35_12)(15_1_35_)(16_1_35_19)(16_1_35_)(42_2_21_)">
+                        </td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-1"></td>
+                        <td width="-1"></td>
+                        <td width="0"></td>
+                        <td width="1"></td>
+                        <td width="4"></td>
+                        <td width="11"></td>
+                        </tr>*@
+                        <tr>
+                            <td class="FacetTdInput d-none"><input name="txt_1_2" type="text" class="FacetInput" id="txt_1_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_2_2" type="text" class="FacetInput" id="txt_2_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_3_2" type="text" class="FacetInput" id="txt_3_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_4_2" type="text" class="FacetInput" id="txt_4_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_5_2" type="text" class="FacetInput" id="txt_5_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_6_2" type="text" class="FacetInput" id="txt_6_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_7_2" type="text" class="FacetInput" id="txt_7_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_8_2" type="text" class="FacetInput" id="txt_8_2" value="" style="" maxlength="5"></td>
+                            <td class="divisor-central d-none"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_10_2" type="text" class="FacetInput" id="txt_10_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_11_2" type="text" class="FacetInput" id="txt_11_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_12_2" type="text" class="FacetInput" id="txt_12_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_13_2" type="text" class="FacetInput" id="txt_13_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_14_2" type="text" class="FacetInput" id="txt_14_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_15_2" type="text" class="FacetInput" id="txt_15_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_16_2" type="text" class="FacetInput" id="txt_16_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_17_2" type="text" class="FacetInput" id="txt_17_2" value="" style="" maxlength="5"></td>
+                        </tr>
+                        <tr>
+                            <td class="FacetTdInput"><input name="txt_1_1" type="text" class="FacetInput" id="txt_1_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_2_1" type="text" class="FacetInput" id="txt_2_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_3_1" type="text" class="FacetInput" id="txt_3_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_4_1" type="text" class="FacetInput" id="txt_4_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_5_1" type="text" class="FacetInput" id="txt_5_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_6_1" type="text" class="FacetInput" id="txt_6_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_7_1" type="text" class="FacetInput" id="txt_7_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_8_1" type="text" class="FacetInput" id="txt_8_1" value="" style="" maxlength="5"></td>
+                            <td class="divisor-central"></td>
+                            <td class="FacetTdInput"><input name="txt_10_1" type="text" class="FacetInput" id="txt_10_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_11_1" type="text" class="FacetInput" id="txt_11_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_12_1" type="text" class="FacetInput" id="txt_12_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_13_1" type="text" class="FacetInput" id="txt_13_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_14_1" type="text" class="FacetInput" id="txt_14_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_15_1" type="text" class="FacetInput" id="txt_15_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_16_1" type="text" class="FacetInput" id="txt_16_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_17_1" type="text" class="FacetInput" id="txt_17_1" value="" style="" maxlength="5"></td>
+                        </tr>
+                        <tr>
+                            <td style=" border-bottom:solid  1px #ffffff;">&nbsp;</td>
+                            <td style=" border-bottom:solid  1px #ffffff;">&nbsp;</td>
+                            <td style=" border-bottom:solid  1px #ffffff;">&nbsp;</td>
+                            <td class="FacetTdInput"><input name="txt_18_1" type="text" class="FacetInput" id="txt_18_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_19_1" type="text" class="FacetInput" id="txt_19_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_20_1" type="text" class="FacetInput" id="txt_20_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_21_1" type="text" class="FacetInput" id="txt_21_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_22_1" type="text" class="FacetInput" id="txt_22_1" value="" style="" maxlength="5"></td>
+                            <td class="divisor-central"></td>
+                            <td class="FacetTdInput"><input name="txt_24_1" type="text" class="FacetInput" id="txt_24_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_25_1" type="text" class="FacetInput" id="txt_25_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_26_1" type="text" class="FacetInput" id="txt_26_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_27_1" type="text" class="FacetInput" id="txt_27_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_28_1" type="text" class="FacetInput" id="txt_28_1" value="" style="" maxlength="5"></td>
+                            <td style=" border-bottom:solid  1px #ffffff;">&nbsp;</td>
+                            <td style=" border-bottom:solid  1px #ffffff;">&nbsp;</td>
+                            <td style=" border-bottom:solid  1px #ffffff;">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="FacetFormTABLE mx-auto my-0" bgcolor="#FFFFFF" border="0" style="border-collapse:collapse">
+                    <tbody>
+                        <tr>
+                            <td><div id="superior1" style="height:11px"></div></td>
+                            <td><div id="superior2" style="height:11px"></div></td>
+                            <td><div id="superior3" style="height:11px"></div></td>
+                            <td><div id="superior4" style="height:11px"></div></td>
+                            <td><div id="superior5" style="height:11px"></div></td>
+                            <td><div id="superior6" style="height:11px"></div></td>
+                            <td><div id="superior7" style="height:11px"></div></td>
+                            <td><div id="superior8" style="height:11px"></div></td>
+                            <td class="divisor-central"><div id="superior9" style="height:11px"></div></td>
+                            <td><div id="superior10" style="height:11px"></div></td>
+                            <td><div id="superior11" style="height:11px"></div></td>
+                            <td><div id="superior12" style="height:11px"></div></td>
+                            <td><div id="superior13" style="height:11px"></div></td>
+                            <td><div id="superior14" style="height:11px"></div></td>
+                            <td><div id="superior15" style="height:11px"></div></td>
+                            <td><div id="superior16" style="height:11px"></div></td>
+                            <td><div id="superior17" style="height:11px"></div></td>
+                        </tr>
+                        <tr>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente1" onclick="agregacorona('1')">
+                                    <div id="titulo1" class="diente-tituloS">18</div>
+
+                                    <div class="diente-capa" id="capa1">
+                                        <img src="../../images/odonto/modelodiente2.gif" border="0" align="middle" usemap="#diente1" width="38" height="65">
+                                    </div>
+                                    @*<div id="1_1_3_" class="disposicion"><img src="../../images/odonto/sausentea.gif" border="0" width="38" height="65" style="padding-top:5px;"></div>*@
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente2" onclick="agregacorona('2')">
+                                    <div id="titulo2" class="diente-tituloS">17</div>
+
+                                    <div class="diente-capa" id="capa2">
+                                        <img src="../../images/odonto/modelodiente3.gif" border="0" usemap="#diente2" width="38" height="65">
+                                    </div>
+                                    @*<div id="2_1_35_11" class="disposicion"><img src="../../images/odonto/smodelo3_1a.gif" width="38" height="65" style="padding-top:5px; " border="0"></div><div id="2_1_35_" class="disposicion"></div>*@
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente3" onclick="agregacorona('3')">
+                                    <div id="titulo3" class="diente-tituloS">16</div>
+                                    <div class="diente-capa" id="capa3">
+                                        <img src="../../images/odonto/modelodiente3.gif" border="0" width="38" height="65" usemap="#diente3">
+                                    </div>
+                                    @*<div id="3_1_35_12" class="disposicion"><img src="../../images/odonto/smodelo3_2a.gif" width="38" height="65" style="padding-top:5px; " border="0"></div><div id="3_1_35_" class="disposicion"></div>*@
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente4" onclick="agregacorona('4')">
+                                    <div id="titulo4" class="diente-tituloS">15</div>
+                                    <div class="diente-capa" id="capa4">
+                                        <img src="../../images/odonto/modelodiente6.gif" border="0" width="38" height="65" usemap="#diente4">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente5" onclick="agregacorona('5')">
+                                    <div id="titulo5" class="diente-tituloS">14</div>
+                                    <div class="diente-capa" id="capa5">
+                                        <img src="../../images/odonto/modelodiente4.gif" border="0" width="38" height="65" usemap="#diente5">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente6" onclick="agregacorona('6')">
+                                    <div id="titulo6" class="diente-tituloS">13</div>
+                                    <div class="diente-capa" id="capa6">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente6">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente7" onclick="agregacorona('7')">
+                                    <div id="titulo7" class="diente-tituloS">12</div>
+                                    <div class="diente-capa" id="capa7">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente7">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente8" onclick="agregacorona('8')">
+                                    <div id="titulo8" class="diente-tituloS">11</div>
+                                    <div class="diente-capa" id="capa8">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente8">
+                                    </div>
+                                </div>
+                            </td>
+                            <td width="1" class="divisor-central">
+                                <div class="diente" id="diente9">
+                                    <div id="titulo9" class="diente-tituloS"></div>
+                                    <div class="diente-capa" id="capa9"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente10" onclick="agregacorona('10')">
+                                    <div id="titulo10" class="diente-tituloS">21</div>
+                                    <div class="diente-capa" id="capa10">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente10">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente11" onclick="agregacorona('11')">
+                                    <div id="titulo11" class="diente-tituloS">22</div>
+                                    <div class="diente-capa" id="capa11">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente11">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente12" onclick="agregacorona('12')">
+                                    <div id="titulo12" class="diente-tituloS">23</div>
+                                    <div class="diente-capa" id="capa12">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente12">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente13" onclick="agregacorona('13')">
+                                    <div id="titulo13" class="diente-tituloS">24</div>
+                                    <div class="diente-capa" id="capa13">
+                                        <img src="../../images/odonto/modelodiente5.gif" border="0" width="38" height="65" usemap="#diente13">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente14" onclick="agregacorona('14')">
+                                    <div id="titulo14" class="diente-tituloS">25</div>
+                                    <div class="diente-capa" id="capa14">
+                                        <img src="../../images/odonto/modelodiente6.gif" border="0" width="38" height="65" usemap="#diente14">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente15" onclick="agregacorona('15')">
+                                    <div id="titulo15" class="diente-tituloS">26</div>
+                                    <div class="diente-capa" id="capa15">
+                                        <img src="../../images/odonto/modelodiente3.gif" border="0" width="38" height="65" usemap="#diente15">
+                                    </div>
+                                    @*<div id="15_1_35_12" class="disposicion"><img src="../../images/odonto/smodelo3_2a.gif" width="38" height="65" style="padding-top:5px; " border="0"></div><div id="15_1_35_" class="disposicion"></div>*@
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente16" onclick="agregacorona('16')">
+                                    <div id="titulo16" class="diente-tituloS">27</div>
+                                    <div class="diente-capa" id="capa16">
+                                        <img src="../../images/odonto/modelodiente3.gif" border="0" width="38" height="65" usemap="#diente16">
+                                    </div>
+                                    @*<div id="16_1_35_19" class="disposicion"><img src="../../images/odonto/smodelo4_3a.gif" width="38" height="65" style="padding-top:5px; " border="0"></div><div id="16_1_35_" class="disposicion"></div>*@
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente17" onclick="agregacorona('17')">
+                                    <div id="titulo17" class="diente-tituloS">28</div>
+                                    <div class="diente-capa" id="capa17">
+                                        <img src="../../images/odonto/modelodiente2.gif" border="0" width="38" height="65" usemap="#diente17">
+                                    </div>
+                                    @*<div id="17_1_3_" class="disposicion"><img src="../../images/odonto/sausentea.gif" border="0" width="38" height="65" style="padding-top:5px;"></div>*@
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><div id="inferior1" style="height:11px"></div></td>
+                            <td><div id="inferior2" style="height:11px"></div></td>
+                            <td><div id="inferior3" style="height:11px"></div></td>
+                            <td><div id="inferior4" style="height:11px"></div></td>
+                            <td><div id="inferior5" style="height:11px"></div></td>
+                            <td><div id="inferior6" style="height:11px"></div></td>
+                            <td><div id="inferior7" style="height:11px"></div></td>
+                            <td><div id="inferior8" style="height:11px"></div></td>
+                            <td class="divisor-central"><div id="inferior9" style="height:11px"></div></td>
+                            <td><div id="inferior10" style="height:11px"></div></td>
+                            <td><div id="inferior11" style="height:11px"></div></td>
+                            <td><div id="inferior12" style="height:11px"></div></td>
+                            <td><div id="inferior13" style="height:11px"></div></td>
+                            <td><div id="inferior14" style="height:11px"></div></td>
+                            <td><div id="inferior15" style="height:11px"></div></td>
+                            <td><div id="inferior16" style="height:11px"></div></td>
+                            <td><div id="inferior17" style="height:11px"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div id="superior18" style="height:11px"></div></td>
+                            <td><div id="superior19" style="height:11px"></div></td>
+                            <td><div id="superior20" style="height:11px"></div></td>
+                            <td><div id="superior21" style="height:11px"></div></td>
+                            <td><div id="superior22" style="height:11px"></div></td>
+                            <td class="divisor-central"><div id="superior23" style="height:11px"></div></td>
+                            <td><div id="superior24" style="height:11px"></div></td>
+                            <td><div id="superior25" style="height:11px"></div></td>
+                            <td><div id="superior26" style="height:11px"></div></td>
+                            <td><div id="superior27" style="height:11px"></div></td>
+                            <td><div id="superior28" style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloS"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloS"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloS"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente18" onclick="agregacorona('18')">
+                                    <div id="titulo18" class="diente-tituloS">55</div>
+                                    <div class="diente-capa" id="capa18">
+                                        <img src="../../images/odonto/modelodiente3.gif" border="0" width="38" height="65" usemap="#diente18">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente19" onclick="agregacorona('19')">
+                                    <div id="titulo19" class="diente-tituloS">54</div>
+                                    <div class="diente-capa" id="capa19">
+                                        <img src="../../images/odonto/modelodiente3.gif" border="0" width="38" height="65" usemap="#diente19">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente20" onclick="agregacorona('20')">
+                                    <div id="titulo20" class="diente-tituloS">53</div>
+                                    <div class="diente-capa" id="capa20">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente20">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente21" onclick="agregacorona('21')">
+                                    <div id="titulo21" class="diente-tituloS">52</div>
+                                    <div class="diente-capa" id="capa21">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente21">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente22" onclick="agregacorona('22')">
+                                    <div id="titulo22" class="diente-tituloS">51</div>
+                                    <div class="diente-capa" id="capa22">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente22">
+                                    </div>
+                                </div>
+                            </td>
+                            <td width="1" class="divisor-central">
+                                <div class="diente" id="diente23">
+                                    <div id="titulo23" class="diente-tituloS"></div>
+                                    <div class="diente-capa" id="capa23"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente24" onclick="agregacorona('24')">
+                                    <div id="titulo24" class="diente-tituloS">61</div>
+                                    <div class="diente-capa" id="capa24">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente24">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente25" onclick="agregacorona('25')">
+                                    <div id="titulo25" class="diente-tituloS">62</div>
+                                    <div class="diente-capa" id="capa25">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente25">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente26" onclick="agregacorona('26')">
+                                    <div id="titulo26" class="diente-tituloS">63</div>
+                                    <div class="diente-capa" id="capa26">
+                                        <img src="../../images/odonto/modelodiente7.gif" border="0" width="38" height="65" usemap="#diente26">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente27" onclick="agregacorona('27')">
+                                    <div id="titulo27" class="diente-tituloS">64</div>
+                                    <div class="diente-capa" id="capa27">
+                                        <img src="../../images/odonto/modelodiente3.gif" border="0" width="38" height="65" usemap="#diente27">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente28" onclick="agregacorona('28')">
+                                    <div id="titulo28" class="diente-tituloS">65</div>
+                                    <div class="diente-capa" id="capa28">
+                                        <img src="../../images/odonto/modelodiente3.gif" border="0" width="38" height="65" usemap="#diente28">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloS"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloS"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloS"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div id="inferior18" style="height:11px"></div></td>
+                            <td><div id="inferior19" style="height:11px"></div></td>
+                            <td><div id="inferior20" style="height:11px"></div></td>
+                            <td><div id="inferior21" style="height:11px"></div></td>
+                            <td><div id="inferior22" style="height:11px"></div></td>
+                            <td class="divisor-central"><div id="inferior23" style="height:11px"></div></td>
+                            <td><div id="inferior24" style="height:11px"></div></td>
+                            <td><div id="inferior25" style="height:11px"></div></td>
+                            <td><div id="inferior26" style="height:11px"></div></td>
+                            <td><div id="inferior27" style="height:11px"></div></td>
+                            <td><div id="inferior28" style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan=8><div style="height:11px"></div></td>
+                            <td class="divisor-central"><div style="height:11px"></div></td>
+                            <td colspan=8><div style="height:11px"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div id="superior29" style="height:11px"></div></td>
+                            <td><div id="superior30" style="height:11px"></div></td>
+                            <td><div id="superior31" style="height:11px"></div></td>
+                            <td><div id="superior32" style="height:11px"></div></td>
+                            <td><div id="superior33" style="height:11px"></div></td>
+                            <td class="divisor-central"><div id="superior34" style="height:11px"></div></td>
+                            <td><div id="superior35" style="height:11px"></div></td>
+                            <td><div id="superior36" style="height:11px"></div></td>
+                            <td><div id="superior37" style="height:11px"></div></td>
+                            <td><div id="superior38" style="height:11px"></div></td>
+                            <td><div id="superior39" style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloS"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloS"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloS"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente29" onclick="agregacorona('29')">
+                                    <div id="titulo29" class="diente-tituloI">85</div>
+                                    <div class="diente-capa" id="capa29">
+                                        <img src="../../images/odonto/modelodiente3b.gif" border="0" width="38" height="65" usemap="#diente29">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente30" onclick="agregacorona('30')">
+                                    <div id="titulo30" class="diente-tituloI">84</div>
+                                    <div class="diente-capa" id="capa30">
+                                        <img src="../../images/odonto/modelodiente3b.gif" border="0" width="38" height="65" usemap="#diente30">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente31" onclick="agregacorona('31')">
+                                    <div id="titulo31" class="diente-tituloI">83</div>
+                                    <div class="diente-capa" id="capa31">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente31">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente32" onclick="agregacorona('32')">
+                                    <div id="titulo32" class="diente-tituloI">82</div>
+                                    <div class="diente-capa" id="capa32">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente32">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente33" onclick="agregacorona('33')">
+                                    <div id="titulo33" class="diente-tituloI">81</div>
+                                    <div class="diente-capa" id="capa33">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente33">
+                                    </div>
+                                </div>
+                            </td>
+                            <td width="1" class="divisor-central">
+                                <div class="diente" id="diente34">
+                                    <div id="titulo34" class="diente-tituloI"></div>
+                                    <div class="diente-capa" id="capa34"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente35" onclick="agregacorona('35')">
+                                    <div id="titulo35" class="diente-tituloI">71</div>
+                                    <div class="diente-capa" id="capa35">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente35">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente36" onclick="agregacorona('36')">
+                                    <div id="titulo36" class="diente-tituloI">72</div>
+                                    <div class="diente-capa" id="capa36">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente36">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente37" onclick="agregacorona('37')">
+                                    <div id="titulo37" class="diente-tituloI">73</div>
+                                    <div class="diente-capa" id="capa37">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente37">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente38" onclick="agregacorona('38')">
+                                    <div id="titulo38" class="diente-tituloI">74</div>
+                                    <div class="diente-capa" id="capa38">
+                                        <img src="../../images/odonto/modelodiente3b.gif" border="0" width="38" height="65" usemap="#diente38">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente39" onclick="agregacorona('39')">
+                                    <div id="titulo39" class="diente-tituloI">75</div>
+                                    <div class="diente-capa" id="capa39">
+                                        <img src="../../images/odonto/modelodiente3b.gif" border="0" width="38" height="65" usemap="#diente39">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloI"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloI"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente">
+                                    <div class="diente-tituloI"></div>
+                                    <div class="diente-capa"></div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div id="inferior29" style="height:11px"></div></td>
+                            <td><div id="inferior30" style="height:11px"></div></td>
+                            <td><div id="inferior31" style="height:11px"></div></td>
+                            <td><div id="inferior32" style="height:11px"></div></td>
+                            <td><div id="inferior33" style="height:11px"></div></td>
+                            <td class="divisor-central"><div id="inferior34" style="height:11px"></div></td>
+                            <td><div id="inferior35" style="height:11px"></div></td>
+                            <td><div id="inferior36" style="height:11px"></div></td>
+                            <td><div id="inferior37" style="height:11px"></div></td>
+                            <td><div id="inferior38" style="height:11px"></div></td>
+                            <td><div id="inferior39" style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                            <td><div style="height:11px"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td><div id="superior40" style="height:11px"></div></td>
+                            <td><div id="superior41" style="height:11px"></div></td>
+                            <td><div id="superior42" style="height:11px"></div></td>
+                            <td><div id="superior43" style="height:11px"></div></td>
+                            <td><div id="superior44" style="height:11px"></div></td>
+                            <td><div id="superior45" style="height:11px"></div></td>
+                            <td><div id="superior46" style="height:11px"></div></td>
+                            <td><div id="superior47" style="height:11px"></div></td>
+                            <td class="divisor-central"><div id="superior48" style="height:11px"></div></td>
+                            <td><div id="superior49" style="height:11px"></div></td>
+                            <td><div id="superior50" style="height:11px"></div></td>
+                            <td><div id="superior51" style="height:11px"></div></td>
+                            <td><div id="superior52" style="height:11px"></div></td>
+                            <td><div id="superior53" style="height:11px"></div></td>
+                            <td><div id="superior54" style="height:11px"></div></td>
+                            <td><div id="superior55" style="height:11px"></div></td>
+                            <td><div id="superior56" style="height:11px"></div></td>
+                        </tr>
+
+                        <tr>
+
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente40" onclick="agregacorona('40')">
+                                    <div id="titulo40" class="diente-tituloI">48</div>
+                                    <div class="diente-capa" id="capa40">
+                                        <img src="../../images/odonto/modelodiente2b.gif" border="0" width="38" height="65" usemap="#diente40">
+                                    </div>
+                                    @*<div id="40_1_3_" class="disposicion"><img src="../../images/odonto/iausentea.gif" border="0" width="38" height="65" style="padding-top:5px;"></div>*@
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente41" onclick="agregacorona('41')">
+                                    <div id="titulo41" class="diente-tituloI">47</div>
+                                    <div class="diente-capa" id="capa41">
+                                        <img src="../../images/odonto/modelodiente3b.gif" border="0" width="38" height="65" usemap="#diente41">
+                                    </div>
+                                    @*<div id="41_1_35_11" class="disposicion"><img src="../../images/odonto/imodelo3_1a.gif" width="38" height="65" style="padding-top:5px; " border="0"></div><div id="41_1_35_" class="disposicion"></div>*@
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente42" onclick="agregacorona('42')">
+                                    <div id="titulo42" class="diente-tituloI">46</div>
+                                    <div class="diente-capa" id="capa42">
+                                        <img src="../../images/odonto/modelodiente3b.gif" border="0" width="38" height="65" usemap="#diente42">
+                                    </div>
+                                    @*<div id="42_2_21_" class="disposicion"><img src="../../images/odonto/doblerer.gif" border="0" width="38" height="65" style="padding-top:5px;"></div>*@
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente43" onclick="agregacorona('43')">
+                                    <div id="titulo43" class="diente-tituloI">45</div>
+                                    <div class="diente-capa" id="capa43">
+                                        <img src="../../images/odonto/modelodiente6b.gif" width="38" height="65" border="0" usemap="#diente43">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente44" onclick="agregacorona('44')">
+                                    <div id="titulo44" class="diente-tituloI">44</div>
+                                    <div class="diente-capa" id="capa44">
+                                        <img src="../../images/odonto/modelodiente4b.gif" border="0" width="38" height="65" usemap="#diente44">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente45" onclick="agregacorona('45')">
+                                    <div id="titulo45" class="diente-tituloI">43</div>
+                                    <div class="diente-capa" id="capa45">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente45">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente46" onclick="agregacorona('46')">
+                                    <div id="titulo46" class="diente-tituloI">42</div>
+                                    <div class="diente-capa" id="capa46">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente46">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente47" onclick="agregacorona('47')">
+                                    <div id="titulo47" class="diente-tituloI">41</div>
+                                    <div class="diente-capa" id="capa47">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente47">
+                                    </div>
+                                </div>
+                            </td>
+                            <td width="1" class="divisor-central">
+                                <div class="diente" id="diente48">
+                                    <div id="titulo48" class="diente-tituloI"></div>
+                                    <div class="diente-capa" id="capa48"></div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente49" onclick="agregacorona('49')">
+                                    <div id="titulo49" class="diente-tituloI">31</div>
+                                    <div class="diente-capa" id="capa49">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente49">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente50" onclick="agregacorona('50')">
+                                    <div id="titulo50" class="diente-tituloI">32</div>
+                                    <div class="diente-capa" id="capa50">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente50">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente51" onclick="agregacorona('51')">
+                                    <div id="titulo51" class="diente-tituloI">33</div>
+                                    <div class="diente-capa" id="capa51">
+                                        <img src="../../images/odonto/modelodiente7b.gif" border="0" width="38" height="65" usemap="#diente51">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente52" onclick="agregacorona('52')">
+                                    <div id="titulo52" class="diente-tituloI">34</div>
+                                    <div class="diente-capa" id="capa52">
+                                        <img src="../../images/odonto/modelodiente5b.gif" border="0" width="38" height="65" usemap="#diente52">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente53" onclick="agregacorona('53')">
+                                    <div id="titulo53" class="diente-tituloI">35</div>
+                                    <div class="diente-capa" id="capa53">
+                                        <img src="../../images/odonto/modelodiente6b.gif" border="0" width="38" height="65" usemap="#diente53">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente54" onclick="agregacorona('54')">
+                                    <div id="titulo54" class="diente-tituloI">36</div>
+                                    <div class="diente-capa" id="capa54">
+                                        <img src="../../images/odonto/modelodiente3b.gif" border="0" width="38" height="65" usemap="#diente54">
+                                    </div>
+                                    @*<div id="54_1_35_11" class="disposicion"><img src="../../images/odonto/imodelo3_1a.gif" width="38" height="65" style="padding-top:5px; " border="0"></div><div id="54_1_35_" class="disposicion"></div>*@
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente55" onclick="agregacorona('55')">
+                                    <div id="titulo55" class="diente-tituloI">37</div>
+                                    <div class="diente-capa" id="capa55">
+                                        <img src="../../images/odonto/modelodiente3b.gif" border="0" width="38" height="65" usemap="#diente55">
+                                    </div>
+                                    @*<div id="55_1_35_12" class="disposicion"><img src="../../images/odonto/imodelo3_2a.gif" width="38" height="65" style="padding-top:5px; " border="0"></div><div id="55_1_35_" class="disposicion"></div>*@
+                                </div>
+                            </td>
+                            <td class="FacetDiente">
+                                <div class="diente" id="diente56" onclick="agregacorona('56')">
+                                    <div id="titulo56" class="diente-tituloI">38</div>
+                                    <div class="diente-capa" id="capa56">
+                                        <img src="../../images/odonto/modelodiente2b.gif" border="0" width="38" height="65" usemap="#diente56">
+                                    </div>
+                                    @*<div id="56_1_3_" class="disposicion"><img src="../../images/odonto/iausentea.gif" border="0" width="38" height="65" style="padding-top:5px;"></div>*@
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><div id="inferior40" style="height:11px"></div></td>
+                            <td><div id="inferior41" style="height:11px"></div></td>
+                            <td><div id="inferior42" style="height:11px"></div></td>
+                            <td><div id="inferior43" style="height:11px"></div></td>
+                            <td><div id="inferior44" style="height:11px"></div></td>
+                            <td><div id="inferior45" style="height:11px"></div></td>
+                            <td><div id="inferior46" style="height:11px"></div></td>
+                            <td><div id="inferior47" style="height:11px"></div></td>
+                            <td class="divisor-central" div id="inferior48" style="height:11px">
+                            <td><div id="inferior49" style="height:11px"></div></td>
+                            <td><div id="inferior50" style="height:11px"></div></td>
+                            <td><div id="inferior51" style="height:11px"></div></td>
+                            <td><div id="inferior52" style="height:11px"></div></td>
+                            <td><div id="inferior53" style="height:11px"></div></td>
+                            <td><div id="inferior54" style="height:11px"></div></td>
+                            <td><div id="inferior55" style="height:11px"></div></td>
+                            <td><div id="inferior56" style="height:11px"></div></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <table class="FacetFormTABLE mx-auto" bgcolor="#FFFFFF" border="0" style="border-collapse:collapse">
+                    <tbody>
+                        @*<tr>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-2"></td>
+                        <td width="-1"></td>
+                        <td width="-1"></td>
+                        <td width="0"></td>
+                        <td width="1"></td>
+                        <td width="4"></td>
+                        <td width="11"></td>
+                        </tr>*@
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td class="FacetTdInput"><input name="txt_29_1" type="text" class="FacetInput" id="txt_29_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_30_1" type="text" class="FacetInput" id="txt_30_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_31_1" type="text" class="FacetInput" id="txt_31_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_32_1" type="text" class="FacetInput" id="txt_32_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_33_1" type="text" class="FacetInput" id="txt_33_1" value="" style="" maxlength="5"></td>
+                            <td class="divisor-central"></td>
+                            <td class="FacetTdInput"><input name="txt_35_1" type="text" class="FacetInput" id="txt_35_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_36_1" type="text" class="FacetInput" id="txt_36_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_37_1" type="text" class="FacetInput" id="txt_37_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_38_1" type="text" class="FacetInput" id="txt_38_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_39_1" type="text" class="FacetInput" id="txt_39_1" value="" style="" maxlength="5"></td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="FacetTdInput"><input name="txt_40_1" type="text" class="FacetInput" id="txt_40_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_41_1" type="text" class="FacetInput" id="txt_41_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_42_1" type="text" class="FacetInput" id="txt_42_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_43_1" type="text" class="FacetInput" id="txt_43_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_44_1" type="text" class="FacetInput" id="txt_44_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_45_1" type="text" class="FacetInput" id="txt_45_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_46_1" type="text" class="FacetInput" id="txt_46_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_47_1" type="text" class="FacetInput" id="txt_47_1" value="" style="" maxlength="5"></td>
+                            <td class="divisor-central"></td>
+                            <td class="FacetTdInput"><input name="txt_49_1" type="text" class="FacetInput" id="txt_49_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_50_1" type="text" class="FacetInput" id="txt_50_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_51_1" type="text" class="FacetInput" id="txt_51_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_52_1" type="text" class="FacetInput" id="txt_52_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_53_1" type="text" class="FacetInput" id="txt_53_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_54_1" type="text" class="FacetInput" id="txt_54_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_55_1" type="text" class="FacetInput" id="txt_55_1" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput"><input name="txt_56_1" type="text" class="FacetInput" id="txt_56_1" value="" style="" maxlength="5"></td>
+                        </tr>
+                        <tr>
+                            <td class="FacetTdInput d-none"><input name="txt_40_2" type="text" class="FacetInput" id="txt_40_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_41_2" type="text" class="FacetInput" id="txt_41_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_42_2" type="text" class="FacetInput" id="txt_42_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_43_2" type="text" class="FacetInput" id="txt_43_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_44_2" type="text" class="FacetInput" id="txt_44_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_45_2" type="text" class="FacetInput" id="txt_45_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_46_2" type="text" class="FacetInput" id="txt_46_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_47_2" type="text" class="FacetInput" id="txt_47_2" value="" style="" maxlength="5"></td>
+                            <td class="divisor-central d-none"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_49_2" type="text" class="FacetInput" id="txt_49_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_50_2" type="text" class="FacetInput" id="txt_50_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_51_2" type="text" class="FacetInput" id="txt_51_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_52_2" type="text" class="FacetInput" id="txt_52_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_53_2" type="text" class="FacetInput" id="txt_53_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_54_2" type="text" class="FacetInput" id="txt_54_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_55_2" type="text" class="FacetInput" id="txt_55_2" value="" style="" maxlength="5"></td>
+                            <td class="FacetTdInput d-none"><input name="txt_56_2" type="text" class="FacetInput" id="txt_56_2" value="" style="" maxlength="5"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div>
+                    <map name="diente1">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','1')">
+                        <area shape="poly" coords="14,30,17,18,22,29,21,33,18,38,15,32" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','2')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','3')">
+
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','19')">
+
+                        <area shape="poly" coords="15,52,15,45,11,46,9,50,11,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','5')">
+                        <area shape="poly" coords="16,50,21,52,22,46,18,45,17,45,16,47" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','6')">
+                        <area shape="poly" coords="23,51,23,47,27,47,27,50,27,53,25,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','7')">
+                        <area shape="poly" coords="14,52,9,51,11,55,13,57,16,55" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','8')">
+                        <area shape="poly" coords="15,52,16,55,20,55,23,52,18,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','9')">
+                        <area shape="poly" coords="23,52,20,56,25,56,26,53,25,51,23,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('1','10')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente2">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','1')">
+                        <area shape="poly" coords="14,30,17,18,22,29,21,33,18,38,15,32" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','2')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','3')">
+
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','19')">
+
+                        <area shape="poly" coords="18,45,18,50,10,51,9,47,13,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','11')">
+                        <area shape="poly" coords="19,51,18,46,22,46,26,46,27,50,26,52,22,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','12')">
+                        <area shape="poly" coords="18,51,18,56,14,56,10,56,10,53,10,52,14,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','13')">
+                        <area shape="poly" coords="19,52,19,56,23,57,26,57,27,54,27,53,22,53,20,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('2','14')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente3">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','1')">
+                        <area shape="poly" coords="14,30,17,18,22,29,21,33,18,38,15,32" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','2')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','3')">
+
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','19')">
+
+                        <area shape="poly" coords="18,45,18,50,10,51,9,47,13,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','11')">
+                        <area shape="poly" coords="19,51,18,46,22,46,26,46,27,50,26,52,22,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','12')">
+                        <area shape="poly" coords="18,51,18,56,14,56,10,56,10,53,10,52,14,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','13')">
+                        <area shape="poly" coords="19,52,19,56,23,57,26,57,27,54,27,53,22,53,20,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('3','14')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente16">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','1')">
+                        <area shape="poly" coords="14,30,17,18,22,29,21,33,18,38,15,32" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','2')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','3')">
+
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','19')">
+
+                        <area shape="poly" coords="18,45,18,50,10,51,9,47,13,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','11')">
+                        <area shape="poly" coords="19,51,18,46,22,46,26,46,27,50,26,52,22,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','12')">
+                        <area shape="poly" coords="18,51,18,56,14,56,10,56,10,53,10,52,14,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','13')">
+                        <area shape="poly" coords="19,52,19,56,23,57,26,57,27,54,27,53,22,53,20,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('16','14')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente17">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','1')">
+                        <area shape="poly" coords="14,30,17,18,22,29,21,33,18,38,15,32" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','2')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','3')">
+
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','19')">
+
+                        <area shape="poly" coords="15,52,15,45,11,46,9,50,11,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','5')">
+                        <area shape="poly" coords="16,50,21,52,22,46,18,45,17,45,16,47" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','6')">
+                        <area shape="poly" coords="23,51,23,47,27,47,27,50,27,53,25,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','7')">
+                        <area shape="poly" coords="14,52,9,51,11,55,13,57,16,55" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','8')">
+                        <area shape="poly" coords="15,52,16,55,20,55,23,52,18,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','9')">
+                        <area shape="poly" coords="23,52,20,56,25,56,26,53,25,51,23,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('17','10')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente18">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','1')">
+                        <area shape="poly" coords="14,30,17,18,22,29,21,33,18,38,15,32" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','2')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','3')">
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','19')">
+
+                        <area shape="poly" coords="18,45,18,50,10,51,9,47,13,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','11')">
+                        <area shape="poly" coords="19,51,18,46,22,46,26,46,27,50,26,52,22,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','12')">
+                        <area shape="poly" coords="18,51,18,56,14,56,10,56,10,53,10,52,14,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','13')">
+                        <area shape="poly" coords="19,52,19,56,23,57,26,57,27,54,27,53,22,53,20,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('18','14')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente19">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','1')">
+                        <area shape="poly" coords="14,30,17,18,22,29,21,33,18,38,15,32" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','2')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','3')">
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','19')">
+
+                        <area shape="poly" coords="18,45,18,50,10,51,9,47,13,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','11')">
+                        <area shape="poly" coords="19,51,18,46,22,46,26,46,27,50,26,52,22,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','12')">
+                        <area shape="poly" coords="18,51,18,56,14,56,10,56,10,53,10,52,14,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','13')">
+                        <area shape="poly" coords="19,52,19,56,23,57,26,57,27,54,27,53,22,53,20,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('19','14')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente27">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','1')">
+                        <area shape="poly" coords="14,30,17,18,22,29,21,33,18,38,15,32" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','2')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','3')">
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','19')">
+
+                        <area shape="poly" coords="18,45,18,50,10,51,9,47,13,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','11')">
+                        <area shape="poly" coords="19,51,18,46,22,46,26,46,27,50,26,52,22,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','12')">
+                        <area shape="poly" coords="18,51,18,56,14,56,10,56,10,53,10,52,14,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','13')">
+                        <area shape="poly" coords="19,52,19,56,23,57,26,57,27,54,27,53,22,53,20,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('27','14')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente28">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','1')">
+                        <area shape="poly" coords="14,30,17,18,22,29,21,33,18,38,15,32" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','2')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','3')">
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','19')">
+
+                        <area shape="poly" coords="18,45,18,50,10,51,9,47,13,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','11')">
+                        <area shape="poly" coords="19,51,18,46,22,46,26,46,27,50,26,52,22,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','12')">
+                        <area shape="poly" coords="18,51,18,56,14,56,10,56,10,53,10,52,14,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','13')">
+                        <area shape="poly" coords="19,52,19,56,23,57,26,57,27,54,27,53,22,53,20,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('28','14')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente4">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('4','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('4','15')">
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('4','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('4','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('4','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('4','19')">
+                        <area shape="poly" coords="9,50,27,51,28,47,23,47,16,47,10,47,8,48" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('4','20')">
+                        <area shape="poly" coords="9,51,27,51,27,55,20,55,13,55,9,54" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('4','21')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente14">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('14','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('14','15')">
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('14','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('14','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('14','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('14','19')">
+                        <area shape="poly" coords="9,50,27,51,28,47,23,47,16,47,10,47,8,48" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('14','20')">
+                        <area shape="poly" coords="9,51,27,51,27,55,20,55,13,55,9,54" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('14','21')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente15">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','1')">
+                        <area shape="poly" coords="14,30,17,18,22,29,21,33,18,38,15,32" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','2')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','3')">
+
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','19')">
+
+                        <area shape="poly" coords="18,45,18,50,10,51,9,47,13,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','11')">
+                        <area shape="poly" coords="19,51,18,46,22,46,26,46,27,50,26,52,22,51" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','12')">
+                        <area shape="poly" coords="18,51,18,56,14,56,10,56,10,53,10,52,14,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','13')">
+                        <area shape="poly" coords="19,52,19,56,23,57,26,57,27,54,27,53,22,53,20,52" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('15','14')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente5">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('5','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('5','1')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('5','3')">
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('5','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('5','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('5','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('5','19')">
+                        <area shape="poly" coords="9,50,27,51,28,47,23,47,16,47,10,47,8,48" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('5','20')">
+                        <area shape="poly" coords="9,51,27,51,27,55,20,55,13,55,9,54" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('5','21')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente13">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('13','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="4,15,5,34,5,42,11,41,17,40,11,29,6,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('13','1')">
+                        <area shape="poly" coords="19,40,24,30,31,18,31,40,21,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('13','3')">
+                        <area shape="poly" coords="6,42,10,46,27,46,31,43,27,41,7,41" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('13','16')">
+                        <area shape="poly" coords="27,46,28,55,31,58,32,43,30,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('13','17')">
+                        <area shape="poly" coords="7,60,30,59,27,55,19,55,11,55,7,59" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('13','18')">
+                        <area shape="poly" coords="9,46,10,56,5,60,5,53,5,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('13','19')">
+                        <area shape="poly" coords="9,50,27,51,28,47,23,47,16,47,10,47,8,48" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('13','20')">
+                        <area shape="poly" coords="9,51,27,51,27,55,20,55,13,55,9,54" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('13','21')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente6">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('6','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('6','15')">
+
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('6','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('6','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('6','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('6','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente7">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('7','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('7','15')">
+
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('7','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('7','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('7','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('7','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente8">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('8','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('8','15')">
+
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('8','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('8','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('8','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('8','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente10">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('10','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('10','15')">
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('10','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('10','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('10','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('10','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente11">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('11','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('11','15')">
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('11','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('11','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('11','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('11','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente12">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('12','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('12','15')">
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('12','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('12','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('12','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('12','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente20">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('20','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('20','15')">
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('20','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('20','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('20','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('20','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente21">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('21','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('21','15')">
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('21','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('21','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('21','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('21','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente22">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('22','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('22','15')">
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('22','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('22','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('22','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('22','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente24">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('24','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('24','15')">
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('24','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('24','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('24','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('24','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente25">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('25','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('25','15')">
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('25','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('25','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('25','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('25','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente26">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('26','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="18,17,8,40,30,40,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('26','15')">
+                        <area shape="poly" coords="5,44,12,51,25,51,32,45,29,41,9,41,5,44" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('26','22')">
+                        <area shape="poly" coords="26,53,32,58,33,43,26,50" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('26','23')">
+                        <area shape="poly" coords="6,59,9,60,29,60,31,58,25,51,13,52,7,57" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('26','24')">
+                        <area shape="poly" coords="5,58,12,52,5,46,5,58" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('26','25')">
+
+                        <area shape="rect" coords="0,0,41,11" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente40">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','1')">
+                        @*<area shape="poly" coords="13,34,18,45,23,34,19,25,13,35"  style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','2')">*@
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','19')">
+                        <area shape="rect" coords="9,13,16,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','5')">
+                        <area shape="rect" coords="15,13,22,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','6')">
+                        <area shape="rect" coords="21,14,28,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','7')">
+                        <area shape="rect" coords="8,7,15,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','8')">
+                        <area shape="rect" coords="15,8,22,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','9')">
+                        <area shape="rect" coords="21,7,28,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('40','10')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente56">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','1')">
+                        @*<area shape="poly" coords="13,34,18,45,23,34,19,25,13,35"  style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','2')">*@
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','19')">
+                        <area shape="rect" coords="9,13,16,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','5')">
+                        <area shape="rect" coords="15,13,22,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','6')">
+                        <area shape="rect" coords="21,14,28,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','7')">
+                        <area shape="rect" coords="8,7,15,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','8')">
+                        <area shape="rect" coords="15,8,22,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','9')">
+                        <area shape="rect" coords="21,7,28,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('56','10')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente41">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','1')">
+                        @*<area shape="poly" coords="13,34,18,45,23,34,19,25,13,35"  style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','2')">*@
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','19')">
+                        <area shape="rect" coords="9,13,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','11')">
+                        <area shape="rect" coords="18,14,27,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','12')">
+                        <area shape="rect" coords="8,8,18,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','13')">
+                        <area shape="rect" coords="18,8,27,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('41','14')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente42">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','1')">
+                        @*<area shape="poly" coords="13,34,18,45,23,34,19,25,13,35"  style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','2')">*@
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','19')">
+                        <area shape="rect" coords="9,13,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','11')">
+                        <area shape="rect" coords="18,14,27,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','12')">
+                        <area shape="rect" coords="8,8,18,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','13')">
+                        <area shape="rect" coords="18,8,27,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('42','14')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente54">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','1')">
+                        @*<area shape="poly" coords="13,34,18,45,23,34,19,25,13,35"  style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','2')">*@
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','19')">
+                        <area shape="rect" coords="9,13,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','11')">
+                        <area shape="rect" coords="18,14,27,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','12')">
+                        <area shape="rect" coords="8,8,18,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','13')">
+                        <area shape="rect" coords="18,8,27,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('54','14')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente55">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','1')">
+                        @*<area shape="poly" coords="13,34,18,45,23,34,19,25,13,35"  style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','2')">*@
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','19')">
+                        <area shape="rect" coords="9,13,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','11')">
+                        <area shape="rect" coords="18,14,27,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','12')">
+                        <area shape="rect" coords="8,8,18,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','13')">
+                        <area shape="rect" coords="18,8,27,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('55','14')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente29">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','1')">
+                        @*<area shape="poly" coords="13,34,18,45,23,34,19,25,13,35"  style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','2')">*@
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','19')">
+                        <area shape="rect" coords="9,13,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','11')">
+                        <area shape="rect" coords="18,14,27,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','12')">
+                        <area shape="rect" coords="8,8,18,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','13')">
+                        <area shape="rect" coords="18,8,27,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('29','14')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente30">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','1')">
+                        @*<area shape="poly" coords="13,34,18,45,23,34,19,25,13,35"  style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','2')">*@
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','19')">
+                        <area shape="rect" coords="9,13,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','11')">
+                        <area shape="rect" coords="18,14,27,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','12')">
+                        <area shape="rect" coords="8,8,18,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','13')">
+                        <area shape="rect" coords="18,8,27,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('30','14')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente38">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','1')">
+                        @*<area shape="poly" coords="13,34,18,45,23,34,19,25,13,35"  style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','2')">*@
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','19')">
+                        <area shape="rect" coords="9,13,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','11')">
+                        <area shape="rect" coords="18,14,27,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','12')">
+                        <area shape="rect" coords="8,8,18,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','13')">
+                        <area shape="rect" coords="18,8,27,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('38','14')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente39">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','1')">
+                        @*<area shape="poly" coords="13,34,18,45,23,34,19,25,13,35"  style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','2')">*@
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','19')">
+                        <area shape="rect" coords="9,13,18,18" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','11')">
+                        <area shape="rect" coords="18,14,27,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','12')">
+                        <area shape="rect" coords="8,8,18,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','13')">
+                        <area shape="rect" coords="18,8,27,13" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('39','14')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente43">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('43','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('43','15')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('43','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('43','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('43','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('43','19')">
+                        <area shape="rect" coords="9,13,28,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('43','20')">
+                        <area shape="rect" coords="10,9,29,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('43','21')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente53">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('53','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('53','15')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('53','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('53','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('53','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('53','19')">
+                        <area shape="rect" coords="9,13,28,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('53','20')">
+                        <area shape="rect" coords="10,9,29,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('53','21')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente44">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('44','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('44','1')">
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('44','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('44','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('44','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('44','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('44','19')">
+                        <area shape="rect" coords="9,13,28,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('44','20')">
+                        <area shape="rect" coords="10,9,29,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('44','21')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+
+                    <map name="diente52">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('52','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="5,46,18,24,6,23,5,45" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('52','1')">
+                        <area shape="poly" coords="32,46,32,24,19,23,30,43" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('52','3')">
+                        <area shape="poly" coords="26,18,10,18,7,22,29,24,30,22,25,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('52','16')">
+                        <area shape="poly" coords="27,10,27,18,31,22,31,7,28,10" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('52','17')">
+                        <area shape="poly" coords="10,8,10,9,27,9,31,5,27,4,10,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('52','18')">
+                        <area shape="poly" coords="10,9,10,18,6,22,5,7,8,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('52','19')">
+                        <area shape="rect" coords="9,13,28,19" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('52','20')">
+                        <area shape="rect" coords="10,9,29,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('52','21')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+
+                    <map name="diente45">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('45','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('45','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('45','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('45','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('45','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('45','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente46">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('46','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('46','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('46','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('46','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('46','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('46','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente47">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('47','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('47','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('47','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('47','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('47','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('47','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente49">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('49','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('49','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('49','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('49','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('49','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('49','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente50">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('50','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('50','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('50','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('50','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('50','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('50','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente51">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('51','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('51','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('51','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('51','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('51','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('51','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente31">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('31','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('31','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('31','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('31','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('31','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('31','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente32">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('32','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('32','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('32','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('32','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('32','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('32','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente33">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('33','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('33','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('33','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('33','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('33','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('33','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente35">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('35','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('35','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('35','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('35','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('35','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('35','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente36">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('36','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('36','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('36','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('36','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('36','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('36','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                    <map name="diente37">
+                        <area shape="rect" coords="0,0,0,0" class="diente-area" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('37','30')">        @*========AREA TOTAl DIENTE =========*@
+                        <area shape="poly" coords="8,23,30,23,19,46,9,25" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('37','15')">
+                        <area shape="poly" coords="31,21,23,13,13,13,5,21,6,23,28,23" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('37','22')">
+                        <area shape="poly" coords="31,6,24,13,31,20,32,7" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('37','23')">
+                        <area shape="poly" coords="6,6,12,13,23,13,30,6,27,4,8,4,6,6" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('37','24')">
+                        <area shape="poly" coords="5,6,5,20,12,14" style="cursor: pointer;" onclick="Odonto.GenerarAccionDental('37','25')">
+
+                        <area shape="rect" coords="0,50,41,61" style="cursor: pointer;">        @*========AREA TITULO=========*@
+                        <area shape="rect" coords="0,0,41,70" style="cursor: pointer;">        @*========AREA FONDO=========*@
+                    </map>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="row m-0">
+            <div class="card mb-1">
+                <div class="card-header bg-white">OBSERVACIONES</div>
+                <div class="card-block pt-1 bg-green">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group m-0">
+                                        <div class="d-flex" style="margin-bottom: 5px;">
+                                            <label for="" class="m-0 mr-2">Sarro Dental</label>
+                                            <div class="switch-field">
+                                                <input type="radio" id="rdbDentalSarroSi" name="rdbDentalSarro" class="campo" value="1">
+                                                <label for="rdbDentalSarroSi" class="pl-2 pr-2">Si</label>
+                                                <input type="radio" id="rdbDentalSarroNo" name="rdbDentalSarro" class="campo" value="0">
+                                                <label for="rdbDentalSarroNo" class="pl-2 pr-2 mr-auto">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group m-0">
+                                        <div class="d-flex" style="margin-bottom: 5px;">
+                                            <label for="" class="m-0 mr-2">Placa Bacteriana</label>
+                                            <div class="switch-field">
+                                                <input type="radio" id="rdbDentalPlacaBacterianaSi" name="rdbDentalPlacaBacteriana" class="campo" value="1">
+                                                <label for="rdbDentalPlacaBacterianaSi" class="pl-2 pr-2">Si</label>
+                                                <input type="radio" id="rdbDentalPlacaBacterianaNo" name="rdbDentalPlacaBacteriana" class="campo" value="0">
+                                                <label for="rdbDentalPlacaBacterianaNo" class="pl-2 pr-2 mr-auto">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 ">
+                            <div class="form-group m-0">
+                                <label for="txtDentalOtrasObservaciones">Observaciones</label>
+                                <textarea class="form-control" id="txtDentalOtrasObservaciones" rows="4"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2" hidden>
+                            <div class="form-group m-0">
+                                <label for="txtDentalCaries">Caries Dental</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtDentalCaries">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2" hidden>
+                            <div class="form-group m-0">
+                                <label for="txtDentalPiezasAusentes">Piezas Ausentes</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtDentalPiezasAusentes">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2" hidden>
+                            <div class="form-group m-0">
+                                <label for="txtDentalRemanenteRadicular">Remanente Radicular</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtDentalRemanenteRadicular">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2" hidden>
+                            <div class="form-group m-0">
+                                <label for="txtDentalNecrosisPulpar">Necrosis Pulpar</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtDentalNecrosisPulpar">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2" hidden>
+                            <div class="form-group m-0">
+                                <label for="txtDentalAbcesos">Abcesos Dentales</label>
+                                <input type="text" class="form-control form-control-sm solo-numero campo" autocomplete="off" id="txtDentalAbcesos">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group m-0">
+                    <label for="txtDentalRecomendaciones">Especificaciones</label>
+                    <textarea class="form-control" id="txtDentalRecomendaciones" rows="4"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div id="output"></div>
+
+    </div>
+</div>

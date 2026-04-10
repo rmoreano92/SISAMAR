@@ -1,0 +1,1164 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+
+@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen1.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<style>
+
+
+    .CalculatorPane table td{
+        display: table-cell;
+        line-height: 1.125rem;
+        padding: 0.5625rem 0.625rem;
+        font-size: .875rem;
+        color: #222;
+    }
+
+    .SectionHeader {
+        background-color: #1F497D;
+        font-weight: bold;
+        text-align: center;
+        color: #FFF !important;
+        padding: 5px 0 !important
+    }
+
+    .panel {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #d7d7d7;
+        margin-bottom: 1.25rem;
+        padding: 1.25rem;
+        background: #f2f2f2;
+    }
+
+    section.ClinCalcRadioSmall input[type="radio"] {
+        display: none;
+    }
+
+        section.ClinCalcRadioSmall input[type="radio"]:checked + label {
+            background: #1f497d;
+            color: white;
+        }
+
+    section.ClinCalcRadioSmall input[type="radio"]:not(:disabled) ~ label {
+        cursor: pointer;
+    }
+
+    section.ClinCalcRadioSmall label:first-of-type {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+
+    section.ClinCalcRadioSmall label {
+        text-align: center;
+        background: #fff;
+        border: 1px solid #1f497d;
+        padding: 0.3em 1em;
+        margin: 0;
+        margin-right: -0.3em;
+        font-weight: bold;
+        color: #1f497d;
+        position: relative;
+    }
+
+    section.ClinCalcRadioSmall input[type="radio"]:checked + label::after {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 0;
+        height: 0;
+        background-clip: padding-box;
+        background: #1f497d;
+        position: absolute;
+        transform: translateX(-50%);
+        top: -5px;
+        left: 10px;
+        height: 10px;
+        width: 10px;
+        text-align: center;
+        border-radius: 50%;
+    }
+
+</style>
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-bed-pulse"></i>
+                @*@ViewBag.Area*@
+                Evaluaciones UCI
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Evaluaciones UCI</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<input type="text" id="hdNroEvaluacion" hidden />
+<input type="text" id="hdIdTipoServicio" hidden />
+<input type="hidden" value="@ViewBag.idMedico" id="idMedicotxt" />
+<input type="hidden" value="@ViewBag.idUsuario" id="idUsuariotxt" />
+<input type="hidden" value="1" id="idAltaUCIMaterno" />
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="card-block p-t-5">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+                    </li>
+                    <li class="nav-item m-0" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Nota de ingreso</a>
+                    </li>
+                </ul>
+
+                <div class="card">
+                    <div class="card-block">
+                        <div id="clothing-nav-content" class="tab-content pt-1">
+
+                            <div role="tabpanel" class="tab-pane fade in active" id="TabPanelBusqueda" aria-labelledby="TabBusqueda-tab">
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card bg-green m-t-5">
+                                            <div class="card-block pb-0">
+                                                <div class="row mt-1 mb-1">
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtNroCuentaBusqueda" class="form-control-label">N° Cuenta</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtNroCuentaBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtNroHistoriaBusqueda" class="form-control-label">N° Historia</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtNroHistoriaBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtAPaternoBusqueda" class="form-control-label">A. Paterno</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtAPaternoBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtAMaternoBusqueda" class="form-control-label">A. Materno</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtAMaternoBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtNombresBusqueda" class="form-control-label">Nombres</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtNombresBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtFechaAtencion" class="form-control-label">Fecha Ingreso</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencion">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="cboConsultorio" class="form-control-label">Servicio</label>
+                                                        <div class="input-group">
+                                                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboConsultorio"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg-3 col-md-3 d-flex align-items-end" style="height: 50px;">
+                                                        <div>
+                                                            <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarAtenciones">Buscar</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 pt-2 pb-0">
+                                        @{
+                                            if (@ViewBag.Agregar)
+                                            {
+                                                @*<button class="btn btn-primary layout_btn_prevent" id="btnAgregar">Agregar</button>*@
+                                            }
+                                            if (@ViewBag.Modificar)
+                                            {
+                                                <button class="btn btn-info layout_btn_prevent" id="btnModificarAtencion">Modificar</button>
+                                            }
+                                            if (@ViewBag.Eliminar)
+                                            {
+                                                <button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtencion">Eliminar</button>
+                                            }
+                                            if (@ViewBag.Consultar)
+                                            {
+                                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtencion">Consultar</button>
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="col-md-6 pt-2 pb-0">
+                                        @{
+                                            if (@ViewBag.Modificar)
+                                            {
+                                                <button class="btn btn-sm btn-light-green layout_btn_prevent float-xs-right" id="btnAltaMedica"><i class="fa fa-hands-heart mr-1"></i>ALTA MÉDICA</button>
+                                                <button class="btn btn-sm btn-teal layout_btn_prevent float-xs-right mr-1" id="btnTransferencia"><i class="fa fa-right-left mr-1"></i>TRANSFERENCIAS</button>
+                                                <button class="btn btn-sm btn-deep-purple layout_btn_prevent float-xs-right mr-1" id="btnTransferenciaRecepcion"><i class="fa fa-bed mr-1"></i>RECEPCIÓN Y CAMA</button>
+                                            }
+                                        }
+                                        @*<label for="" class="titulo mr-1" style=" font-size: medium; color: #0095ff !important;">Parte Diario: </label>
+                                        <div>
+                                        <button class="btn btn-danger layout_btn_prevent" id="btnGeneraParte" title="Genera Parte" data-toggle="tooltip" style="margin: 2px;"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-success layout_btn_prevent" id="btnDescargaParte" title="Imprime Parte Firmado" data-toggle="tooltip" style="margin: 2px;"><i class="fa fa-print"></i></button>
+                                        <button class="btn btn-warning layout_btn_prevent" id="btnDescargaParteSF" title="Visualiza Parte" data-toggle="tooltip" style="margin: 2px;"><i class="fa fa-eye"></i></button>
+                                        </div>*@
+                                        @*
+                                        <div class="row">
+                                        <div class="col-lg-4">
+                                        <br>
+                                        <label for="" class="form-control-label titulo" style=" font-size: medium;">Parte Diario: </label>
+                                        </div>
+                                        <div class="col-lg-2">
+                                        <br>
+                                        <button class="btn btn-default layout_btn_prevent" id="btnGeneraParte" title="Genera Parte" data-toggle="tooltip"><i class="fa fa-pencil"></i></button>
+
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                        <br>
+                                        <button class="btn btn-success layout_btn_prevent" id="btnDescargaParte" title="Imprime Parte Firmado" data-toggle="tooltip"><i class="fa fa-print"></i></button>
+                                        </div>
+                                        <div class="col-lg-2">
+                                        <br>
+                                        <button class="btn btn-warning layout_btn_prevent" id="btnDescargaParteSF" title="Visualiza Parte" data-toggle="tooltip"><i class="fa fa-eye"></i></button>
+                                        </div>
+                                        </div>*@
+                                    </div>
+
+                                    <div class="col-lg-12 mt-1">
+                                        <button class="btn btn-success" id="btnAbrirModalReporteUCI"><i class="fa-solid fa-file-excel"></i> Generar Reporte UCI</button>
+                                        <table id="tblAtencionesUCI" width="100%" class="table table-sm table-content-sm table-bordered">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th>N° Cuenta</th>
+                                                    <th>N° Historia.</th>
+                                                    <th>Paciente</th>
+                                                    <th>Cama</th>
+                                                    <th>Fecha Ingreso</th>
+                                                    <th>F.Egre.Adm.</th>
+                                                    <th>Servicio Ing.</th>
+                                                    <th>Servicio Actual.</th>
+                                                    <th>Plan</th>
+                                                    <th>Cant.Eval</th>
+                                                    <th>Estado</th>
+                                                    <th>Informe</th>
+                                                    <th>I. Médico</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="TabPanelRegistro" aria-labelledby="TabPanelRegistro-tab">
+                                <div id="modulo"></div>
+                            </div>
+
+
+
+                            <input type="hidden" value="@ViewBag.idEmpleado" id="idEmpleadotxt" /> @*JDELGADO001*@
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            @*<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistro.cshtml" />*@
+
+            <partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroConDescripcion.cshtml" />
+
+            @* =======================BUSQUEDA DE DIAGNOSTICOS (KHOYOSI)================================== *@
+            <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticos.cshtml" />
+            @* ================================================================================= *@
+
+
+
+            <div class="modal fade" id="modalBusquedaOtrasPatologias" role="dialog" aria-hidden="false" style="background-color: #00000075; z-index: 9999" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-lg" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 class="modal-title text-white" id="titulo">Busqueda de Otras Patologias</h4>
+                        </div>
+                        <div class="modal-body p-t-5">
+                            <div class="card-block p-t-5">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Código</label>
+                                            <input id="txtCodigoOtrasPatFiltro" autocomplete="off" type="text" class="form-control" maxlength="7">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Descripción</label>
+                                            <input id="txtDescripcionOtrasPatFiltro" autocomplete="off" type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-top: 30px;">
+                                            <button type="button" class="btn btn-primary mr-1" onclick="RegistroEvaluacionesUCI.BuscarOtrasPatBusqueda();">Buscar</button>
+                                            <button type="button" class="btn btn-default" onclick="RegistroEvaluacionesUCI.LimpiarFiltros();">limpiar</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <table id="tblOtrasPatBusqueda" class="table table-bordered" @*data-source="/PlanificacionFamiliar/ObtenerDiagnostico?area=Comun"*@>
+                                    <thead style="color: white;background: #3e6184;">
+                                        <tr>
+                                            <th data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                                            <th data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                                            <th data-columna="Codigo" valign="middle" align="center" style="width: 10%">Código</th>
+                                            <th data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                                            <th data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                                            <th data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" onclick="RegistroEvaluacionesUCI.CerrarModalBusquedaOtrasPat();">Cancelar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalNotaAdicional" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+                <div class="modal-dialog" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h4 class="modal-title text-white">Nota Adicional</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label for="txtFechaRegistroNotaAdicional" class="form-control-label">Fecha Registro</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" autocomplete="off" class="form-control campoRegistro form_val_popup_dp3 bloquear" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaRegistroNotaAdicional">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar "></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label for="txtHoraRegistroNotaAdicional" class="font-weight-bold text-info">Hora</label>
+                                    <div class="form-group m-0">
+                                        <div class="d-flex">
+                                            <div style="max-width:80px;">
+                                                <input type="text" name="txtHoraAtencionUCI" id="txtHoraRegistroNotaAdicional" onblur="valida_hora(value)" class="form-control campoRegistro form-control-sm" placeholder="" autocomplete="off">
+                                            </div>
+                                            <div class="ml-1 mr-1">
+                                                <label class="m-0 text-info">24 Horas</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-1">
+                                <div class="col-lg-12 mb-1">
+                                    <label for="txtComentarioApreciacion" class="form-control-label">APRECIACION</label>
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="txtComentarioApreciacion" rows="3"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 mb-1">
+                                    <label for="txtPlan" class="form-control-label">PLAN</label>
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="txtPlan" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-1">
+                                @*<div class="col-lg-4">
+                                <div class="row">
+                                <div class="col-lg-3">
+                                <span>Organo Afectado</span>
+                                </div>
+                                <div class="col-lg-8">
+                                <div class="form-group">
+                                <div class="input-group">
+                                <select class="chzn-select bloquear-campos" id="cboOrganoAfectado">
+                                <option value="0">--Seleccionar--</option>
+                                <option value="1">RENAL</option>
+                                <option value="2">CIRCULATORIO</option>
+                                <option value="3">HEPATICA</option>
+                                <option value="4">HEMATOLOGICO</option>
+                                <option value="5">NEUROLOGICO</option>
+                                <option value="6">METABOLICO</option>
+                                <option value="7">RESPIRATORIO</option>
+                                <option value="8">DIGESTIVO</option>
+                                </select>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>*@
+
+                                <div class="col-lg-5">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <label for="cboMedicoComentario" class="form-control-label">Medico </label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="input-group mb-1">
+                                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMedicoComentario"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <label for="cboDestinoComentario" class="form-control-label">Destino</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="input-group mb-1">
+                                                <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboDestinoComentario">
+                                                    <option value="0">--Seleccionar--</option>
+                                                    <option value="1">Permanece</option>
+                                                    <option value="2">Alta de UCI</option>
+                                                    <option value="3">Fallecida</option>
+                                                    <option value="4">Transferencia a otro EESS</option>
+                                                    <option value="5">Pasa a UCIM1</option>
+                                                    <option value="6">Pasa a UCIM2</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" data-dismiss="modal" class="btn btn-secondary mr-1">Cancelar</button>
+                                <button id="btnGuardarComentarioApreciacion" class="btn btn-info float-lg-right">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalInformeEvaluacion" role="dialog" aria-labelledby="modalLabelsuccess">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <fieldset class="m-0 pr-1 pl-1 pb-1">
+                                        <legend class="mb-0">Evaluaciones del Paciente</legend>
+                                        <table id="tblInformeEvaluaciones" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                                            <thead style="color: white;">
+                                                <tr style="background-color: #434343;">
+                                                    <th style="width:10% !important; text-align:center;">Eval.</th>
+                                                    <th style="width:30% !important; text-align:center;">Fecha</th>
+                                                    <th style="width:40% !important;">Médico</th>
+                                                    <th style="width:20% !important; text-align:center;">Informe</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+
+                                        @*<div class="row mt-1" id="divFirma">
+                                        <div class="col-xs-12 text-xs-center">
+                                        <button type="button" style="width: 60px;" class="btn btn-sm btn-success" id="ImprimirEvalEmerCF"><i class="fa fa-print"></i></button>
+                                        <button type="button" style="width: 60px;" class="btn btn-sm btn-info" id="FirmarEvalEmer"><i class="fa fa-pencil"></i></button>
+                                        <button type="button" style="width: 60px;" class="btn btn-sm btn-warning" id="ImprimirEvalEmerSF"><i class="fa fa-eye"></i></button>
+                                        </div>
+                                        </div>*@
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnCerrarInformeEvaluacion" target="_blank" class="btn btn-secondary "> Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* <partial name="~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml" /> *@
+            <!-- Modal-->
+            <div data-backdrop="static" style="background-color: rgba(0,0,0,0.5); overflow-y: scroll; z-index: 9999;" data-keyboard="false" class="modal fade" id="modalEstablecimientosUciBuscar" role="dialog" aria-labelledby="modalLabelsuccess">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h4 class="modal-title text-white" id="modalLabelsuccess">Busqueda de Establecimientos</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group m-0">
+                                        <label for="codigoEstUciBuscar">Cod. IPRESS</label>
+                                        <input type="text" class="form-control form-control-sm searchEstab" id="codigoEstUciBuscar" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group m-0">
+                                        <label for="nombreEstUciBuscar">Nombre</label>
+                                        <input type="text" class="form-control form-control-sm searchEstab" id="nombreEstUciBuscar" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group m-0">
+                                        <label for="cmbdepEstUcibuscar">Departamento</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select searchEstab" id="cmbdepEstUcibuscar" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group m-0">
+                                        <label for="cmbprovEstUciBuscar">Provincia</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select searchEstab" id="cmbprovEstUciBuscar" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group m-0">
+                                        <label for="cmbdistEstUciBuscar">Distrito</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select searchEstab" id="cmbdistEstUciBuscar" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="margin-top: 28px;">
+                                    <button class="btn btn-sm btn-outline-primary layout_btn_prevent" id="btnBuscarEstablecimientoUci" style="width:70px;">Buscar</button>
+                                    <button class="btn btn-sm btn-outline-secondary layout_btn_prevent" id="btnLimpiarBusquedaEstablecimientoUci" style="width:70px;">Limpiar</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive mt-1">
+                                        <table id="tblEstSaludUci" width="100%" class="table table-sm table-bordered table-content-md">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th style="width:5%">Codigo</th>
+                                                    <th style="width:15%">Nombre</th>
+                                                    <th style="width:15%">Distrito</th>
+                                                    <th style="width:15%">Provincia</th>
+                                                    <th style="width:15%">Departamento</th>
+                                                    <th style="width:10%;text-align:center">Acción</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+
+
+                            <!--<button id="btnRegistrarPaciente" class="btn  btn-primary "> Registrar</button>-->
+                            <button id="btnCerraEstablecimientoBuscarUci" target="_blank" class="btn  btn-secondary"> Cerrar</button>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <partial name="~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml" />
+            <partial name="~/Views/Shared/Components/VistasParciales/Recetas/VisorRecetas.cshtml" />
+
+            <partial name="~/Views/Shared/Components/VistasParciales/Seguimiento/VisorSeguimientoPaciente.cshtml" />
+
+
+            @* ======================= TRANSFERENCIAS =========================================== *@
+            <partial name="~/Views/Comun/Transferencias.cshtml" />
+            <partial name="~/Views/Comun/TransferenciasConfirmacion.cshtml" />
+            @* ================================================================================= *@
+
+            @* ======================ALTA MEDICA=================================================================== *@
+            <div id="ModuloAlta"></div>
+            @* ===================================================================================================== *@
+
+            @* =======================VISOR RESULTADOS LABORATORIO E IMAGENOLOGIA================================== *@
+            <partial name="~/Views/Shared/Components/VistasParciales/VisorResultadosLabImg.cshtml" />
+            @* ==================================================================================================== *@
+
+
+            @* ======================RECETAS Y ORDENES==================================================== *@
+            <partial name="~/Views/Shared/Components/VistasParciales/Recetas/Paquetes.cshtml" />
+            <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticosSolicitudCQx.cshtml" />
+            @* ===================================================================================================== *@
+
+            @section Scripts
+                {
+                <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen1.jquery.min.js"></script>
+                @* <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script> *@
+                <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment-with-locales.js"></script>
+
+
+                <script src="~/AdmiRE/js/date.format.js"></script>
+
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/SeguimientoPaciente.js?v=" + version)></script>
+
+                <script type="text/javascript" src=@Href("~/js/Hospitalizacion/EvaluacionesUCI.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/Hospitalizacion/RegistroEvaluacionesUCI.js?v=" + version)></script>
+
+
+                <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/BusquedaDiagnosticos.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/Diagnosticos.js?v=" + version)></script>
+
+                <script type="text/javascript" src=@Href("~/js/Facturacion/ConsumoServicioConDescripcion.js?v=" + version)></script>
+
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenMedica.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV3.js?v=" + version)></script>
+
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/OrdenesYResultados.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/VisorRecetas.js?v=" + version)></script>
+
+
+                <script type="text/javascript" src=@Href("~/js/Comun/Variables.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/VistasParciales/AltaMedica.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientosSaludV2.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/Comun/Transferencias.js?v=" + version)></script>
+
+                <script type="text/javascript" src=@Href("~/js/Comun/Resultados.js?v=" + version)></script>
+
+                <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js")></script>
+                <script type="text/javascript" src=@Href("~/js/Comun/ReferenciaV2.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientoSalud.js?v=" + version)></script>
+
+            }
+
+            <style>
+                body {
+                    padding-right: 0px !important;
+                }
+
+                nav.navbar {
+                    background-color: #CC1414;
+                }
+
+                #clothing-nav-content2 .form-group {
+                    margin-bottom: 0 !important;
+                }
+
+                #tblAtencion tr.over td {
+                    background: #D6E8F8;
+                    font-weight: bold;
+                }
+
+                .chosen-container {
+                    width: 100% !important;
+                }
+
+                .modal-lg {
+                    max-width: 1100px !important;
+                }
+
+                /*==============REFCON===============*/
+                .chosen-disabled {
+                    opacity: 1 !important;
+                }
+
+                    .chosen-disabled .chosen-single {
+                        background: #eceeef !important;
+                        border-color: rgba(0, 0, 0, 0.15) !important;
+                    }
+
+                .custom-control-indicator {
+                    border: 1px solid darkgrey;
+                }
+
+                .text-right {
+                    text-align: right !important;
+                }
+
+                .bg-light {
+                    background-color: #f8f9fa !important;
+                    color: #434343 !important;
+                }
+
+                .border-x-0 {
+                    border-right: 0 !important;
+                    border-left: 0 !important;
+                }
+
+                .btn-sm {
+                    padding: 0.4rem 0.5rem !important;
+                }
+
+                legend {
+                    width: auto !important;
+                    padding: 0 5px !important;
+                    font-size: 1.2rem !important;
+                    margin-left: 5px !important;
+                }
+
+                fieldset {
+                    border: 1px solid #ccc !important;
+                    margin: 0px 10px !important;
+                }
+
+                .nav-link:hover {
+                    border-color: whitesmoke !important;
+                    background-color: whitesmoke !important;
+                }
+
+                .btn-outline-secondary {
+                    color: #999 !important;
+                    border-color: #999 !important;
+                }
+
+                    .btn-outline-secondary:hover {
+                        color: #fff !important;
+                        border-color: #ccc !important;
+                    }
+
+                #clothing-nav-content2 .form-group {
+                    margin-bottom: 0 !important;
+                }
+
+                #tblAtencion tr.over td {
+                    background: #D6E8F8;
+                    font-weight: bold;
+                }
+
+                /*  .chosen-container chosen-container-single {
+                                                                                                                    width: 100% !important;
+                                                                                                                }*/
+
+
+                .chosen-container {
+                    width: 100% !important;
+                }
+
+                .modal-lg {
+                    max-width: 1100px !important;
+                }
+
+                .titleAntecedentes {
+                    color: #5353f9;
+                    font-size: 15px;
+                    font-weight: bold;
+                }
+            </style>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalReporteUCI" tabindex="-1" role="dialog" aria-labelledby="modalReporteUCILabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Generar Reporte</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+
+                    <div class="row mt-2">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                
+                                <div class="col-md-6">
+                                    <label for="txtFechaInicioReporte">Fecha Inicio</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioReporte" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="txtFechaFinReporte">Fecha Fin</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinReporte" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                @* <div class="col-md-2 d-flex align-items-end mb-1" style="height: 50px;">
+                                    <div>
+                                        <button type="button" class="btn btn-sm btn-default" style="padding-left: 1rem !important; padding-right: 1rem !important;">limpiar</button>
+                                    </div>
+                                </div> *@
+                                @*<div class="col-lg-12 mt-2">
+                                <button class="btn btn-success btn-sm float-lg-right" id="btnGenerarSaldosPorAlmacen">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+                                </div>*@
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" id="btnDescargarReporteUCI">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalReporteUCI" tabindex="-1" role="dialog" aria-labelledby="modalReporteUCILabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Saldos por Almacén Por Fecha</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+
+                    <div class="row mt-2">
+                        <div class="col-lg-12">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label for="txtFechaInicioReporte">Fecha Inicio</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioReporte" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="txtFechaFinReporte">Fecha Fin</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinReporte" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" id="btnDescargarReporteUCI">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalSofa" tabindex="-1" role="dialog" aria-labelledby="modalSofaLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Saldos por Almacén Por Fecha</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+
+                    <div class="row mt-2">
+                        <div class="col-lg-12">
+                            <div class="panel CalculatorPane radius">
+
+                                <table style="width: 100%">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="3" class="SectionHeader">
+                                                Respiration
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><abbr data-hasqtip="0" oldtitle="Fraction of inspired oxygen" title="" aria-describedby="qtip-0">FiO<sub>2</sub></abbr></td>
+                                            <td colspan="2"><input name="ctl00$cphMainContent$txtFiO2" type="text" value="" id="cphMainContent_txtFiO2" class="inline" style="width: 55px; min-width: 55px; max-width: 454.844px;" autocomplete="off"> <label for="cphMainContent_txtFiO2" class="inline">%</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td>PaO<sub>2</sub></td>
+                                            <td colspan="2"><input name="ctl00$cphMainContent$txtPaO2" type="text" value="" id="cphMainContent_txtPaO2" class="inline" style="width: 55px; min-width: 55px; max-width: 454.844px;" autocomplete="off"> <label for="cphMainContent_txtPaO2" class="inline">mmHg</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Mechanical ventilation
+                                            </td>
+                                            <td colspan="2">
+                                                <section class="ClinCalcRadioSmall">
+                                                    <input value="0" name="ctl00$cphMainContent$rdoMechVent" type="radio" id="cphMainContent_rdoMechVentNo" checked="checked">
+                                                    <label for="cphMainContent_rdoMechVentNo">No</label>
+
+                                                    <input value="1" name="ctl00$cphMainContent$rdoMechVent" type="radio" id="cphMainContent_rdoMechVentYes">
+                                                    <label for="cphMainContent_rdoMechVentYes">Yes</label>
+                                                </section>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="3" class="SectionHeader">
+                                                Coagulation
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Platelets</td>
+                                            <td colspan="2"><input name="ctl00$cphMainContent$txtPlatelets" type="text" value="210" id="cphMainContent_txtPlatelets" class="inline" style="width: 55px; min-width: 55px; max-width: 454.844px;" autocomplete="off"> <label for="cphMainContent_txtPlatelets" class="inline">x10<sup>3</sup>/mm<sup>3</sup></label></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="3" class="SectionHeader">
+                                                Liver
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bilirubin</td>
+                                            <td colspan="2">
+                                                <input name="ctl00$cphMainContent$txtBilirubin" type="text" value="0.5" id="cphMainContent_txtBilirubin" class="inline" style="width: 55px; min-width: 55px; max-width: 454.844px;" autocomplete="off">
+                                                <select name="ctl00$cphMainContent$drpBilirubinUnits" id="cphMainContent_drpBilirubinUnits" class="ChangeUnitsDropdown">
+                                                    <option selected="selected" value="1">mg/dL</option>
+                                                    <option value="17.1">µmol/L</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="3" class="SectionHeader">
+                                                Neurological
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="white-space: nowrap;">Glasgow coma score</td>
+                                            <td colspan="2">
+                                                <input name="ctl00$cphMainContent$txtGCS" type="text" value="" id="cphMainContent_txtGCS" style="width:55px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="SectionHeader">
+                                                Cardiovascular
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><abbr data-hasqtip="1" oldtitle="Mean Arterial Pressure" title="">MAP</abbr></td>
+                                            <td colspan="2"><input name="ctl00$cphMainContent$txtMAP" type="text" value="66" id="cphMainContent_txtMAP" class="inline" style="width: 55px; min-width: 55px; max-width: 454.844px;" autocomplete="off"> <label for="cphMainContent_txtMAP" class="inline">mmHg</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vasopressors</td>
+                                            <td colspan="2">
+                                                <section class="ClinCalcRadioSmall">
+                                                    <input value="0" name="ctl00$cphMainContent$rdoPressors" type="radio" id="cphMainContent_rdoPressorsNo" checked="checked" onchange="VasopressorChanged();">
+                                                    <label for="cphMainContent_rdoPressorsNo">No</label>
+
+                                                    <input value="1" name="ctl00$cphMainContent$rdoPressors" type="radio" id="cphMainContent_rdoPressorsYes" onchange="VasopressorChanged();">
+                                                    <label for="cphMainContent_rdoPressorsYes">Yes</label>
+                                                </section>
+                                            </td>
+                                        </tr>
+                                        <tr id="trDopamine" style="">
+                                            <td>Dopamine</td>
+                                            <td colspan="2"><input name="ctl00$cphMainContent$txtDopamine" type="text" value="0" id="cphMainContent_txtDopamine" class="inline" style="width: 65px; min-width: 65px; max-width: 454.844px;" autocomplete="off"> <label for="cphMainContent_txtDopamine" class="inline">mcg/kg/min</label></td>
+                                        </tr>
+                                        <tr id="trDobutamine" style="">
+                                            <td>Dobutamine</td>
+                                            <td colspan="2"><input name="ctl00$cphMainContent$txtDobutamine" type="text" value="0" id="cphMainContent_txtDobutamine" class="inline" style="width: 65px; min-width: 65px; max-width: 454.844px;" autocomplete="off"> <label for="cphMainContent_txtDobutamine" class="inline">mcg/kg/min</label></td>
+                                        </tr>
+                                        <tr id="trEpi" style="">
+                                            <td>Epinephrine</td>
+                                            <td>
+                                                <input name="ctl00$cphMainContent$txtEpi" type="text" value="0" id="cphMainContent_txtEpi" onchange="PressorUnitsChanged();" onkeyup="PressorUnitsChanged();" style="width:65px;">
+                                            </td>
+                                            <td>
+                                                <section class="ClinCalcRadioSmall">
+                                                    <input value="rdoEpiFlat" name="ctl00$cphMainContent$rdoEpi" type="radio" id="cphMainContent_rdoEpiFlat" checked="checked" onchange="PressorUnitsChanged();">
+                                                    <label for="cphMainContent_rdoEpiFlat">mcg/min</label>
+
+                                                    <input value="rdoEpiWeight" name="ctl00$cphMainContent$rdoEpi" type="radio" id="cphMainContent_rdoEpiWeight" onchange="PressorUnitsChanged();">
+                                                    <label for="cphMainContent_rdoEpiWeight">mcg/kg/min</label>
+                                                </section>
+                                            </td>
+                                        </tr>
+                                        <tr id="trNorepi" style="">
+                                            <td>Norepinephrine</td>
+                                            <td>
+                                                <input name="ctl00$cphMainContent$txtNorepi" type="text" value="0" id="cphMainContent_txtNorepi" onchange="PressorUnitsChanged();" onkeyup="PressorUnitsChanged();" style="width:65px;">
+                                            </td>
+                                            <td>
+                                                <section class="ClinCalcRadioSmall">
+                                                    <input value="rdoNorepiFlat" name="ctl00$cphMainContent$rdoNorepi" type="radio" id="cphMainContent_rdoNorepiFlat" checked="checked" onchange="PressorUnitsChanged();">
+                                                    <label for="cphMainContent_rdoNorepiFlat">mcg/min</label>
+
+                                                    <input value="rdoNorepiWeight" name="ctl00$cphMainContent$rdoNorepi" type="radio" id="cphMainContent_rdoNorepiWeight" onchange="PressorUnitsChanged();">
+                                                    <label for="cphMainContent_rdoNorepiWeight">mcg/kg/min</label>
+                                                </section>
+                                            </td>
+                                        </tr>
+                                        <tr id="trWeight" style="display: none;">
+                                            <td>Weight</td>
+                                            <td>
+                                                <input name="ctl00$cphMainContent$txtWeight" type="text" id="cphMainContent_txtWeight" style="width:65px;">
+                                            </td>
+                                            <td>
+                                                <section class="ClinCalcRadioSmall">
+                                                    <input value="rdoKg" name="ctl00$cphMainContent$rdoWeight" type="radio" id="cphMainContent_rdoKg" checked="checked">
+                                                    <label for="cphMainContent_rdoKg">kg</label>
+
+                                                    <input value="rdoLbs" name="ctl00$cphMainContent$rdoWeight" type="radio" id="cphMainContent_rdoLbs">
+                                                    <label for="cphMainContent_rdoLbs">lbs</label>
+                                                </section>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="3" class="SectionHeader">
+                                                Renal
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Creatinine</td>
+                                            <td colspan="2">
+                                                <input name="ctl00$cphMainContent$txtCreatinine" type="text" value="" id="cphMainContent_txtCreatinine" class="inline" style="width: 55px; min-width: 55px; max-width: 454.844px;" autocomplete="off">
+                                                <select name="ctl00$cphMainContent$drpCreatinineUnits" id="cphMainContent_drpCreatinineUnits" class="ChangeUnitsDropdown">
+                                                    <option selected="selected" value="1">mg/dL</option>
+                                                    <option value="88.4">µmol/L</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Urine output</td>
+                                            <td colspan="2">
+                                                <select name="ctl00$cphMainContent$drpUOP" id="cphMainContent_drpUOP">
+                                                    <option selected="selected" value="gt500">Greater than 500 mL/day</option>
+                                                    <option value="lt500">200 - 500 mL/day</option>
+                                                    <option value="lt200">Less than 200 mL/day</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="3" style="padding-top: 15px; text-align: center;">
+                                                @* <input type="submit" name="ctl00$cphMainContent$cmdResetAll" value="Reset" id="cphMainContent_cmdResetAll" class="button secondary"> *@
+
+                                                <button id="btnCalcularSofa" class="btn btn-primary">Calcular</button>
+
+                                                @* <input type="submit" name="ctl00$cphMainContent$cmdCalculate" value="Calculate" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$cphMainContent$cmdCalculate&quot;, &quot;&quot;, false, &quot;&quot;, &quot;SOFA.aspx&quot;, false, false))" id="cphMainContent_cmdCalculate" class="button" style="width:150px;"> *@
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            @* <div class="row mt-1">
+                                <div class="col-lg-3">
+                                    <label for="cboAnatomiaPatologica" class="form-control-label">Anatomia Patolgica</label>
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select" id="cboAnatomiaPatologica"></select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <label for="txtTejidoOrganoExaminar" class="form-control-label">Tejido u órgano a examinar</label>
+                                    <div class="input-group input-group-sm">
+                                        <input id="txtTejidoOrganoExaminar" autocomplete="off" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <label for="cboDestino" class="form-control-label">Destino</label>
+                                    <div class="input-group input-group-sm">
+                                        <select class="chzn-select" id="cboDestino"></select>
+                                    </div>
+                                </div>
+                            </div> *@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                @* <button type="button" class="btn btn-success" id="btnDescargarReporteUCI">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button> *@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

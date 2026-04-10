@@ -1,0 +1,135 @@
+﻿@*=========================================================MODAL BUSQUEDA RECETAS PACIENTES==================================================================*@
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalBusquedaRecetas" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xxl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-unique">
+                <h4 class="modal-title text-white">Busqueda de Recetas</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12 mb-1">
+                        @* <div class="row">
+                        <div class="col-lg-12">
+                        <b>Busqueda</b>
+                        </div>
+                        </div> *@
+                        <div class="card bg-blue">
+                            <div class="card-block">
+                                <div class="row">
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaRecetaDNI" class="form-control-label">DNI</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos searchRecetaPaciente" id="txtBusquedaRecetaDNI" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaRecetaNroHistoria" class="form-control-label">N° Historia</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos searchRecetaPaciente" id="txtBusquedaRecetaNroHistoria" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaRecetaApPaterno" class="form-control-label">Apellido Paterno</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos searchRecetaPaciente" id="txtBusquedaRecetaApPaterno" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaRecetaFechaInicio" class="">Fecha Inicio</label>
+                                            <div class="input-group form-group input-group-sm m-0">
+                                                <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtBusquedaRecetaFechaInicio" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaRecetaFechaFinal" class="">Fecha Fin</label>
+                                            <div class="input-group form-group input-group-sm m-0">
+                                                <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtBusquedaRecetaFechaFinal" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @* <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaPacienteApMaterno" class="form-control-label">Apellido Materno</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos searchRecetaPaciente" id="txtBusquedaCAPacienteApMaterno" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtBusquedaPacientePrimerNombre" class="form-control-label">Nombres</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control bloquear-campos searchRecetaPaciente" id="txtBusquedaCAPacientePrimerNombre" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div> *@
+
+                                    <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                                        <div>
+                                            <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarRecetaPacientes">Buscar</button>
+                                            <button class="btn btn-secondary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiarBusquedaRecetaPaciente">Limpiar</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 mb-1">
+                        @* <h5 class="text-sm-center mb-0 font-weight-bold" style="color: #20295e;">Productos a devolver</h5> *@
+                        <table class="table table-sm table-bordered" id="tblBusquedaRecetasPacientes" width="100%" style="font-size: 12px;">
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th>Nº. Receta</th>
+                                    <th>Nº Cuenta</th>
+                                    <th>N° Historia</th>
+                                    <th>Ap .Paterno</th>
+                                    <th>Ap .Materno</th>
+                                    <th>1er Nombre</th>
+                                    <th>2do Nombre</th>                                    
+                                    <th>F. Receta</th>
+                                    <th>Punto Carga</th>
+                                    <th>Tipo Serv.</th>
+                                    <th>Servicio</th>
+                                    <th>Receta</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                                       
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-unique" id="btnAceptarRecetaPaciente">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" id="btnCerrarModalBusquedaRecetaPaciente">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

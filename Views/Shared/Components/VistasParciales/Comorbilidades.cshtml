@@ -1,0 +1,48 @@
+﻿
+<div class="card m-t-10">
+    <input hidden="hidden" id="idGrupoComorbilidad" name="idGrupoComorbilidad" type="text" class="form-control" value="@ViewBag.Vista">
+    <div class="card-block">
+        <br />
+        <div class="row">
+            <div class="col-lg-2" style="padding-right: 0px; width: 100px;">
+                <h5 style="margin-top: 10px;">Comorbilidad</h5>
+            </div>
+            <div class="col-lg-4">
+                <select class="hide_search" id="cboTipoComorbilidad" name="cboTipoComorbilidad">
+                    <option value="-1">---Seleccione---</option>
+                    @foreach (var item in @ViewBag.ListComorbilidad)
+                    {
+                        <option value="@item.IdComorbilidad"> @item.Descripcion  </option>
+                    }
+                </select>
+            </div>
+            <div class="col-lg-3" style="padding: 0px;padding-left: 15px;">
+                <button id="btnAñadirComorbilidad" type="button" class="btn btn-labeled btn-success" onclick="ComorbilidadPlani.AgregarComorbilidad();">
+                    <span class="btn-label">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    Agregar
+                </button>
+                <button id="btnQuitarComorbilidad" type="button" class="btn btn-labeled btn-danger" onclick="ComorbilidadPlani.QuitarComorbilidad();">
+                    <span class="btn-label">
+                        <i class="fa fa-trash"></i>
+                    </span>
+                    Quitar
+                </button>
+            </div>
+        </div>
+        <div class="row">
+                <table id="lstComorbilidadsPlani" class="table table-bordered">
+                    <thead style="color: white;background: #3e6184;">
+                        <tr>
+                            <th data-columna="Codigo" valign="middle" align="center">Codigo</th>
+                            <th data-columna="Nombre" valign="middle" align="center">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+            </div>
+
+    </div>
+</div>

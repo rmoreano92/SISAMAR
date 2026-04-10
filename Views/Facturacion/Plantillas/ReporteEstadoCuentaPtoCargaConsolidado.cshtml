@@ -1,0 +1,372 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Registro de Ventas</title>
+    <style>
+        body {
+            font-size: 10px;
+            color: black !important;
+            font-family: helvetica;
+            letter-spacing: 0.4px;
+            font-weight: bolder;
+        }
+
+        td, th {
+            padding: 0.10rem !important;
+        }
+
+        .font-sm {
+            font-size: 8px;
+        }
+
+        .font-md {
+            font-size: 11px;
+        }
+
+        .font-lg {
+            font-size: 12px;
+        }
+
+        .table {
+            border-color: #607d8b !important;
+        }
+
+        /*=====================MI CSS=======================*/
+        .d-flex {
+            display: flex !important;
+        }
+
+        .position-absolute {
+            position: absolute;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .border {
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .border-secondary {
+            border-color: #6c757d !important;
+        }
+
+        .w-100 {
+            width: 100% !important;
+        }
+
+        .h-100 {
+            width: 100% !important;
+        }
+
+        .my-2 {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .my-1 {
+            margin-top: 0.25rem !important;
+            margin-bottom: 0.25rem !important;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem !important;
+        }
+
+        .mb-0 {
+            margin-bottom: 0 !important;
+        }
+
+        .mb-1 {
+            margin-bottom: 0.25rem !important;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem !important;
+        }
+
+        .me-2 {
+            margin-right: 0.5rem !important;
+        }
+
+        .ms-2 {
+            margin-left: 0.5rem !important;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem !important;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem !important;
+        }
+
+        .mt-4 {
+            margin-top: 1rem !important;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem !important;
+        }
+
+        .m-1 {
+            margin: 0.25rem !important;
+        }
+
+        .m-2 {
+            margin: 0.5rem !important;
+        }
+
+        .m-0 {
+            margin: 0 !important;
+        }
+
+        .p-1 {
+            padding: 0.25rem !important;
+        }
+
+        .py-2 {
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+
+        .py-1 {
+            padding-top: 0.25rem !important;
+            padding-bottom: 0.25rem !important;
+        }
+
+        .pt-2 {
+            padding-top: 0.5rem !important;
+        }
+
+        .pb-0 {
+            padding-bottom: 0 !important;
+        }
+
+        .pb-1 {
+            padding-bottom: 0.25rem !important;
+        }
+
+        .pb-2 {
+            padding-bottom: 0.5rem !important;
+        }
+
+        .pe-2 {
+            padding-right: 0.5rem !important;
+        }
+
+        .ps-2 {
+            padding-left: 0.5rem !important;
+        }
+
+        .pt-3 {
+            padding-top: 0.75rem !important;
+        }
+
+        .pb-3 {
+            padding-bottom: 0.75rem !important;
+        }
+
+        .pt-4 {
+            padding-top: 1rem !important;
+        }
+
+        .pb-4 {
+            padding-bottom: 1rem !important;
+        }
+
+        .px-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .table {
+            caption-side: bottom;
+            border-collapse: collapse;
+        }
+
+        @* .table-bordered {
+            border: solid 1px #4c4c4c;
+        } *@
+
+            .table-bordered td, .table-bordered th {
+                border: solid 1px #4c4c4c;
+            }
+
+        .table td {
+            font-weight: lighter;
+        }
+        /*=================================================*/
+
+
+        .qr-code {
+            width: 90px;
+            text-align: center;
+            margin: auto;
+        }
+
+    </style>
+</head>
+
+
+<body style="background: white; width: 780px; height: 800px;" class="">
+
+    @* <img src="~/images/Logo.png" style="width: 80px; position:absolute; top: 0px;" />
+    <table class="table" style="width: 200px; position:absolute; right: 0; top: 0px; border: none;">
+        <tbody>
+            <tr style="">
+                <td class="border-secondary text-right">Usuario: @ViewBag.Usuario</td>
+            </tr>
+            <tr style="">
+                <td class="border-secondary text-right">F. Impresión: @ViewBag.FechaImpresion</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row text-center mx-auto mb-3" style="width: 100%;">
+        <div class="col-12"><span class="fw-bold" style="font-size: 11px;">@ViewBag.NombreInstitucion</span></div>
+        <div class="col-12"><span style="font-size: 9px;">@ViewBag.DireccionInstitucion</span></div>
+        <div class="col-12"><span style="font-size: 9px;">Telefono: @ViewBag.TelefonoInstitucion</span></div>
+    </div>
+
+
+
+    <div class="d-flex mb-1">
+        <table class="table me-2" style="width: 750px;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:100px;">CONSUMOS CONSOLIDADOS de la Cuenta Nª: @ViewBag.RegistroRptCabecera["IdCuentaAtencion"]</th>
+                </tr>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:100px;">Estado de Cuenta al @ViewBag.FechaImpresion.ToString().Substring(0, 10)</th>
+                </tr>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:100px;">Paciente @ViewBag.RegistroRptCabecera["NroHistoriaClinica"] - @ViewBag.RegistroRptCabecera["Paciente"]</th>
+                </tr>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:100px;">Cuenta: (@ViewBag.RegistroRptCabecera["estadoCta"]) IAFA: @ViewBag.RegistroRptCabecera["dFuenteFinanciamiento"] (PP: @ViewBag.RegistroRptCabecera["dTipoFinanciamiento"])</th>
+                </tr>
+                <tr>
+                    <th class="border-secondary text-left fw-bold" style="width:100px;">Serv.Egreso: @ViewBag.RegistroRptCabecera["ServEgreso"]</th>
+                </tr>
+            </tbody>
+        </table>
+
+    </div> *@
+
+
+
+    @{
+        // Variables para subtotales
+        decimal subTotal = 0;
+        decimal TotalGeneral = 0;
+    }
+
+    <table class="table table-bordered border-secondary w-100  mt-2">
+        <tbody>
+
+            @{
+                int index = 1;
+                bool mostrarPuntoCarga = true;
+
+                var tablaServicios = ViewBag.RegistroRptPtoCargaConsolidado.Rows;
+                string puntoCargaActual = tablaServicios[0]["DesPuntoCarga"].ToString();
+                string puntoCargaAnterior = "";
+
+                index = 1;
+                mostrarPuntoCarga = true;
+
+            }
+
+
+            <tr style="font-weight: bold;">
+                <td class="border-secondary align-top" style="font-size: 8px;">Punto Carga</td>
+                <td class="border-secondary align-top" style="font-size: 8px;">Codigo</td>
+                <td class="border-secondary align-top" style="font-size: 8px;">Producto</td>
+                <td class="border-secondary align-top" style="font-size: 8px;">Cantidad</td>
+                <td class="border-secondary align-top" style="font-size: 8px;">Precio</td>
+                <td class="border-secondary align-top" style="font-size: 8px; text-align: left;">Total</td>
+            </tr>
+
+            @foreach (System.Data.DataRow row in tablaServicios)
+            {
+                puntoCargaAnterior = row["DesPuntoCarga"].ToString();
+
+                // Si cambia el punto de carga (y no es la primera fila), mostramos el subtotal acumulado
+                if (puntoCargaAnterior != puntoCargaActual && index > 1)
+                {
+                    <tr style="font-weight: bold;">
+                        <td colspan="5" class="text-end" style="font-size: 8px; text-align: right;  border: none;">Total:</td>
+                        <td class="text-center" style="font-size: 8px; text-align: left;  border: none;">@subTotal.ToString("N2")</td>
+                    </tr>
+
+                    // Reiniciar acumuladores
+                    subTotal = 0;
+
+                    puntoCargaActual = puntoCargaAnterior;
+                    mostrarPuntoCarga = true;
+                }
+                else
+                {
+                    mostrarPuntoCarga = false;
+                }
+
+                // Acumuladores
+                subTotal += Convert.ToDecimal(row["Total"]);
+                TotalGeneral += Convert.ToDecimal(row["Total"]);
+
+
+
+                <tr>
+                    <td class="border-secondary align-top" style="font-size: 8px; border: none;">@(mostrarPuntoCarga || index == 1 ? row["DesPuntoCarga"].ToString() : "")</td>
+                    <td class="border-secondary align-top" style="font-size: 8px;">@row["Codigo"]</td>
+                    <td class="border-secondary align-top" style="font-size: 8px;">@row["Nombre"]</td>
+                    <td class="border-secondary align-top" style="font-size: 8px;">@row["Cantidad"]</td>
+                    <td class="border-secondary align-top" style="font-size: 8px;">@row["PrecioUnitario"]</td>
+                    <td class="border-secondary align-top" style="font-size: 8px; text-align: left;">@row["Total"]</td>
+                </tr>
+
+                index++;
+            }
+
+            <tr style="font-weight: bold;">
+                <td colspan="5" class="text-end" style="font-size: 8px; text-align: right; border: none;">Total:</td>
+                <td class="text-center" style="font-size: 8px; text-align: left; border: none;">@subTotal.ToString("N2")</td>
+            </tr>
+
+            <tr style="font-weight: bold; height: 20px;">
+                <td colspan="6" class="text-end" style="font-size: 8px;  border: none;"></td>
+            </tr>
+
+            <tr style="font-weight: bold;">
+                <td colspan="5" class="text-end" style="font-size: 8px; text-align: right;">Total:</td>
+                <td class="text-center" style="font-size: 8px; text-align: left;">@TotalGeneral.ToString("N2")</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</body>
+
+
+
+</html>

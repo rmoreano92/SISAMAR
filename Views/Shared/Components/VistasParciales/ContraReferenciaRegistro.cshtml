@@ -1,0 +1,335 @@
+﻿<div class="modal fade modalRefCon" id="modalConRef" tabindex="-1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static" style="overflow-y: scroll;background-color: rgba(0, 0, 0, 0.46);">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header bg-info" id="modalHeader">
+                <h5 class="modal-title text-white">
+                    <i style="width: 30px; text-align:center;" class="fa fa-memo-circle-check"></i>
+                    <label class="form-control-label txtTituloRefCon"></label>
+                </h5>
+            </div>
+            <div class="modal-body">
+
+
+
+                <div class="row mb-1">
+                    <div class="col-lg-12">
+                        <div class="card bg-green" style="padding-bottom: 0px;">
+                            <div class="card-header bg-white">Datos Generales</div>
+                            <div class="card-block pt-1 pb-1" style="padding-bottom: 0px;">
+                                <input hidden="hidden" id="hdnAnio" type="text" class="form-control" />
+                                <input hidden="hidden" id="hdnIdPaciente" type="text" class="form-control" />
+                                <input hidden="hidden" id="hdnNroHistoria" type="text" class="form-control" />
+                                <input hidden="hidden" id="hdnBd" type="text" class="form-control" />
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <form>
+                                            <fieldset class="pb-1">
+                                                <legend>Orígen</legend>
+                                                <div class="row m-0">
+                                                    <div class="col-md-4 col-lg-4 col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="ipressorigen">Cod. IPRESS</label>
+                                                            <input type="text" class="form-control form-control-sm" id="ipressorigenCR" placeholder="" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-lg-6 col-xl-7">
+                                                        <div class="form-group m-0">
+                                                            <label for="cboOrigen">Establecimiento de Salud Origen</label>
+                                                            <input type="text" class="form-control form-control-sm" id="origenCR" placeholder="" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                                        @*<a class="btn btn-success mt-2" title="Seleccionar Origen" id="btnEstablecimientoOrigen" data-toggle="tooltip"> <i class="fa fa-search-plus text-white"></i> </a>*@
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group m-0">
+                                                            <label for="servicioorigen">Servicio Origen de la Contrareferencia</label>
+                                                            <select class="chzn-select" id="cboServicioOrigenCR" data-placeholder="Seleccione una opción"></select>
+                                                            @*<input type="text" class="form-control form-control-sm" id="servicioorigenCR" placeholder="" disabled>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <form>
+                                            <fieldset class="pb-1">
+                                                <legend>Destino</legend>
+                                                <div class="row m-0">
+                                                    <div class="col-md-4 col-lg-4 col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="ipressdestino">Cod. IPRESS</label>
+                                                            <input type="text" class="form-control form-control-sm" id="ipressdestinoCR" placeholder="" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-lg-6 col-xl-7">
+                                                        <div class="form-group m-0">
+                                                            <label for="destino">Establecimiento de Salud Destino</label>
+                                                            <input type="text" class="form-control form-control-sm" id="destinoCR" placeholder="" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                                        <a class="btn btn-success mt-2" title="Seleccionar Destino" id="btnEstablecimientoDestinoCR" data-toggle="tooltip"> <i class="fa fa-search-plus text-white"></i> </a>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group m-0">
+                                                            <label for="serviciodestino">Servicio Destino de la Contrareferencia</label>
+                                                            <select class="chzn-select campo" id="cboServicioDestinoCR"  data-placeholder="Seleccione una opción"></select>
+                                                            @*<input type="text" class="form-control form-control-sm" id="serviciodestino" placeholder="">*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row  mt-1 mb-1">
+                    <div class="col-lg-12">
+                        <div class="card bg-blue" style="padding-bottom: 0px;">
+                            <div class="card-header bg-white">Datos del Paciente</div>
+                            <div class="card-block pt-1 pb-1" style="padding-bottom: 0px;">
+                                <div class="row m-0 pb-2">
+                                    <div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtTipoDoc">Tipo Doc.</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtTipoDocCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtNumDoc">N° Doc.</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNumDocCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                    @*
+                                        <div class="col-md-2">
+                                            <div class="form-check mt-2">
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" id="chkRn" class="custom-control-input" disabled>
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">RN</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    *@
+                                    <div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtFinanciador">Financiador</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtFinanciadorCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtNumAfiliacion">N° Afiliación</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNumAfiliacionCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtNumHistoria">N° Historia Clínica</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNumHistoriaCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <div class="form-group m-0">
+                                            <label for="txtSexo">Sexo</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtSexoCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <div class="form-group m-0">
+                                            <label for="txtEdad">Edad</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtEdadCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtApPaterno">Apellido Paterno</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtApPaternoCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtApmaterno">Apellido Materno</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtApMaternoCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtNombres">Nombres</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNombresCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaNacimiento">Fecha Nacimiento</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtFechaNacimientoCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtDepartamento">Departamento</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtDepartamentoCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtProvincia">Provincia</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtProvinciaCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtDistrito">Distrito</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtDistritoCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtDomicilio">Domicilio</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtDomicilioCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1 mb-1">
+                    <div class="col-lg-12">
+                        <div class="card bg-orange" style="padding-bottom: 0px;">
+                            <div class="card-header bg-white">Resumen Historia Clínica</div>
+                            <div class="card-block pt-1 pb-1" style="padding-bottom: 0px;">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtDxOrigenCR">Diagnóstico de Origen</label>
+                                            <textarea type="text" class="form-control form-control-sm" id="txtDxOrigenCR" placeholder="" rows="4" disabled></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtDxIngresoCR">Diagnóstico de Ingreso</label>
+                                            <textarea type="text" class="form-control form-control-sm" id="txtDxIngresoCR" placeholder="" rows="4" disabled></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtDxEgresoCR">Diagnóstico de Egreso</label>
+                                            <textarea type="text" class="form-control form-control-sm" id="txtDxEgresoCR" placeholder="" rows="4" disabled></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtTratamientoCR">Tratamiento Realizado</label>
+                                            <textarea type="text" class="form-control form-control-sm" id="txtTratamientoCR" placeholder="" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-1 mb-1">
+                    <div class="col-lg-12">
+                        <div class="card bg-purple" style="padding-bottom: 0px;">
+                            <div class="card-header bg-white">Datos de la Referencia</div>
+                            <div class="card-block pt-1 pb-2" style="padding-bottom: 0px;">
+                                <div class="row">
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtOrigenRef">Origen de la Referencia</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtOrigenRefCR" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtServContraRef">Servicio que Contrarefiere</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtServContraRefCR" placeholder="" disabled>                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtEspContraRef">Especialidad que Ordena la Contrareferencia</label>
+                                            @*<input type="text" class="form-control form-control-sm" id="txtEspContraRefCR" placeholder="" disabled>*@
+                                            <select class="chzn-select" id="cboEspecialidadCR" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtCalificaRef">Calificación de la Referencia</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtCalificaRefCR" placeholder="" disabled>
+                                        </div>
+
+                                        <div class="form-group m-0">
+                                            <label for="cboCondicionUsuario">Condición del Usuario</label>
+                                            <select class="chzn-select campo" id="cboCondicionUsuario" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+
+                                        <div class="form-group m-0">
+                                            <label for="txtRecomendaciones">Recomendaciones e Indicaciones para el Seguimiento</label>
+                                            <textarea type="text" class="form-control form-control-sm campo" id="txtRecomendaciones" placeholder="" rows="5"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 mt-1">
+                                        <div class="card">
+                                            <div class="card-body p-1">
+                                                <h5 class="card-title">Responsable de la Contrareferencia</h5>
+                                                <div class="form-group m-0">
+                                                    <label for="txtMedico">Nombres(s) y Apellidos</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtMedicoCR" placeholder="" disabled>
+                                                </div>
+                                                <div class="form-group m-0">
+                                                    <label for="txtProfesionMedico">Profesión</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtProfesionMedicoCR" placeholder="" disabled>
+                                                </div>
+                                                <div class="form-group m-0">
+                                                    <label for="txtColegioProfesional">Colegio Prof.</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtColegioProfesionalCR" placeholder="" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                @*
+                    <div class="modal-footer">
+                        <button id="btnGuardar" type="button" class="btn btn-primary" onclick="SolicitudConstanciaRn.GuardarConstancia();">Guardar</button>
+                        <button type="button" onclick="SolicitudConstanciaRn.cerrarModal();" class="btn btn-secondary">Cancelar</button>
+                    </div>*@
+                <div class="modal-footer d-flex justify-content-end pb-0">
+                    <button id="btnGuardarRefCon" onclick="Referencias.GuardarConRef();" type="button" class="btn btn-info btn-lg mb-1 pl-3 pr-3" style="max-width: 140px">Aceptar</button>
+                    <button id="btnCerrarRefCon" onclick="Referencias.CerrarModal();" class="btn btn-secondary btn-lg mb-1 ml-2 pl-3 pr-3" style="max-width: 140px">Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

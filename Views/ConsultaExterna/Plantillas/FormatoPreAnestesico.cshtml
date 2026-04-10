@@ -1,0 +1,2677 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>PreAnestesio</title>
+    @*<link type="text/css" rel="stylesheet" href="~/AdmiRE/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/util.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/select2/css/select2.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/scroller.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/colReorder.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/dataTables.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" />*@
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">*@
+    <style>
+        @*==========================CSS BOOTSTRAP====================================*@
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 9px;
+            color: black !important;
+            font-family: helvetica;
+            letter-spacing: 0.4px;
+            line-height: 9px;
+        }
+
+        hr {
+            margin: 1rem 0;
+            color: inherit;
+            background-color: currentColor;
+            border: 0;
+            opacity: .25
+        }
+
+        .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            margin-bottom: .5rem;
+            font-weight: 500;
+            line-height: 1.2
+        }
+
+        .h1, h1 {
+            font-size: calc(1.375rem + 1.5vw)
+        }
+
+        .h2, h2 {
+            font-size: calc(1.325rem + .9vw)
+        }
+
+        .h3, h3 {
+            font-size: calc(1.3rem + .6vw)
+        }
+
+        .h4, h4 {
+            font-size: calc(1.275rem + .3vw)
+        }
+
+        .h5, h5 {
+            font-size: 1.25rem
+        }
+
+        .h6, h6 {
+            font-size: 1rem
+        }
+
+        .small, small {
+            font-size: .6rem;
+        }
+
+        .bg-secondary {
+            background-color: #ebeced !important
+        }
+
+        .text-secondary {
+            color: #ebeced !important
+        }
+
+        .row {
+            display: flex !important;
+            flex-wrap: wrap;
+        }
+
+        .col-1 {
+            flex: 0 0 auto;
+            width: 8.33333333%
+        }
+
+        .col-2 {
+            flex: 0 0 auto;
+            width: 16.66666667%
+        }
+
+        .col-3 {
+            flex: 0 0 auto;
+            width: 25%
+        }
+
+        .col-4 {
+            flex: 0 0 auto;
+            width: 33.33333333%
+        }
+
+        .col-5 {
+            flex: 0 0 auto;
+            width: 41.66666667%
+        }
+
+        .col-6 {
+            flex: 0 0 auto;
+            width: 50%
+        }
+
+        .col-7 {
+            flex: 0 0 auto;
+            width: 58.33333333%
+        }
+
+        .col-8 {
+            flex: 0 0 auto;
+            width: 66.66666667%
+        }
+
+        .col-9 {
+            flex: 0 0 auto;
+            width: 75%
+        }
+
+        .col-10 {
+            flex: 0 0 auto;
+            width: 83.33333333%
+        }
+
+        .col-11 {
+            flex: 0 0 auto;
+            width: 91.66666667%
+        }
+
+        .col-12 {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+
+        .d-flex {
+            display: flex !important;
+        }
+
+        .align-items-start {
+            align-items: flex-start!important
+        }
+
+        .align-items-end {
+            align-items: flex-end!important
+        }
+
+        .align-items-center {
+            align-items: center!important
+        }
+
+        .align-items-baseline {
+            align-items: baseline!important
+        }
+
+        .align-items-stretch {
+            align-items: stretch!important
+        }
+
+        .align-content-start {
+            align-content: flex-start!important
+        }
+
+        .align-content-end {
+            align-content: flex-end!important
+        }
+
+        .align-content-center {
+            align-content: center!important
+        }
+
+        .align-content-between {
+            align-content: space-between!important
+        }
+
+        .align-content-around {
+            align-content: space-around!important
+        }
+
+        .align-content-stretch {
+            align-content: stretch!important
+        }
+
+        .align-self-auto {
+            align-self: auto!important
+        }
+
+        .align-self-start {
+            align-self: flex-start!important
+        }
+
+        .align-self-end {
+            align-self: flex-end!important
+        }
+
+        .align-self-center {
+            align-self: center!important
+        }
+
+        .align-self-baseline {
+            align-self: baseline!important
+        }
+
+        .align-self-stretch {
+            align-self: stretch!important
+        }
+
+        .w-20 {
+            width: 20% !important;
+        }
+
+        .w-25 {
+            width: 25% !important
+        }
+
+        .w-30 {
+            width: 30% !important;
+        }
+
+        .w-50 {
+            width: 50% !important
+        }
+
+        .w-70 {
+            width: 70% !important;
+        }
+
+        .w-75 {
+            width: 75% !important
+        }
+
+        .w-80 {
+            width: 80% !important;
+        }
+
+        .w-90 {
+            width: 90% !important;
+        }
+
+        .w-100 {
+            width: 100% !important
+        }
+        
+        
+
+        .w-auto {
+            width: auto !important
+        }
+
+        .position-absolute {
+            position: absolute;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            vertical-align: top;
+            border-color: #dee2e6;
+            caption-side: bottom;
+            border-collapse: collapse;
+        }
+
+        .table th{
+            font-weight: bold;
+        }
+
+        .table-bordered {
+            border: solid 1px #4c4c4c;
+        }
+
+        .table-bordered td, .table-bordered th {
+            border: solid 1px #4c4c4c;
+            padding: 3px 5px ;
+        }
+
+        button, input, optgroup, select, textarea {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit
+        }
+
+        .card {
+            position: relative;
+            /*display: flex;
+                    flex-direction: column;*/
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0,0,0,.125);
+            /*border-radius: .25rem*/
+        }
+
+            .card > hr {
+                margin-right: 0;
+                margin-left: 0
+            }
+
+            .card > .list-group {
+                border-top: inherit;
+                border-bottom: inherit
+            }
+
+                /*.card > .list-group:first-child {
+                    border-top-width: 0;
+                    border-top-left-radius: calc(.25rem - 1px);
+                    border-top-right-radius: calc(.25rem - 1px)
+                }
+
+                .card > .list-group:last-child {
+                    border-bottom-width: 0;
+                    border-bottom-right-radius: calc(.25rem - 1px);
+                    border-bottom-left-radius: calc(.25rem - 1px)
+                }*/
+
+                .card > .card-header + .list-group, .card > .list-group + .card-footer {
+                    border-top: 0
+                }
+
+        .card-body {
+            flex: 1 1 auto;
+            padding: 1rem 1rem
+        }
+
+        .card-title {
+            margin-bottom: .5rem
+        }
+
+        .card-subtitle {
+            margin-top: -.25rem;
+            margin-bottom: 0
+        }
+
+        .card-text:last-child {
+            margin-bottom: 0
+        }
+
+        .card-link + .card-link {
+            margin-left: 1rem
+        }
+
+        .card-header {
+            padding: .5rem 1rem;
+            margin-bottom: 0;
+            background-color: rgba(0,0,0,.03);
+            border-bottom: 1px solid rgba(0,0,0,.125)
+        }
+
+        /*.card-header:first-child {
+                    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0
+                }*/
+
+        .card-footer {
+            padding: .5rem 1rem;
+            background-color: rgba(0,0,0,.03);
+            border-top: 1px solid rgba(0,0,0,.125)
+        }
+
+        /*.card-footer:last-child {
+                    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px)
+                }*/
+
+        .card-header-tabs {
+            margin-right: -.5rem;
+            margin-bottom: -.5rem;
+            margin-left: -.5rem;
+            border-bottom: 0
+        }
+
+        .card-header-pills {
+            margin-right: -.5rem;
+            margin-left: -.5rem
+        }
+
+        /*.card-img-overlay {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    padding: 1rem;
+                    border-radius: calc(.25rem - 1px)
+                }*/
+
+        .card-img, .card-img-bottom, .card-img-top {
+            width: 100%
+        }
+
+        /*.card-img, .card-img-top {
+                    border-top-left-radius: calc(.25rem - 1px);
+                    border-top-right-radius: calc(.25rem - 1px)
+                }
+
+                .card-img, .card-img-bottom {
+                    border-bottom-right-radius: calc(.25rem - 1px);
+                    border-bottom-left-radius: calc(.25rem - 1px)
+                }*/
+
+        .card-group > .card {
+            margin-bottom: .75rem
+        }
+
+        .border {
+            border: 1px solid #dee2e6 !important
+        }
+
+        .border-0 {
+            border: 0 !important
+        }
+
+        .border-top {
+            border-top: 1px solid #dee2e6 !important
+        }
+
+        .border-top-0 {
+            border-top: 0 !important
+        }
+
+        .border-end {
+            border-right: 1px solid #dee2e6 !important
+        }
+
+        .border-end-0 {
+            border-right: 0 !important
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #dee2e6 !important
+        }
+
+        .border-bottom-0 {
+            border-bottom: 0 !important
+        }
+
+        .border-start {
+            border-left: 1px solid #dee2e6 !important
+        }
+
+        .border-start-0 {
+            border-left: 0 !important
+        }
+
+        .border-secondary {
+            border-color: #2c2c2c !important
+        }
+
+        .w-100 {
+            width: 100% !important;
+        }
+
+        .m-0 {
+            margin: 0 !important
+        }
+
+        .m-1 {
+            margin: .25rem !important
+        }
+
+        .m-2 {
+            margin: .5rem !important
+        }
+
+        .m-3 {
+            margin: 1rem !important
+        }
+
+        .m-4 {
+            margin: 1.5rem !important
+        }
+
+        .m-5 {
+            margin: 3rem !important
+        }
+
+        .m-auto {
+            margin: auto !important
+        }
+
+        .mx-0 {
+            margin-right: 0 !important;
+            margin-left: 0 !important
+        }
+
+        .mx-1 {
+            margin-right: .25rem !important;
+            margin-left: .25rem !important
+        }
+
+        .mx-2 {
+            margin-right: .5rem !important;
+            margin-left: .5rem !important
+        }
+
+        .mx-3 {
+            margin-right: 1rem !important;
+            margin-left: 1rem !important
+        }
+
+        .mx-4 {
+            margin-right: 1.5rem !important;
+            margin-left: 1.5rem !important
+        }
+
+        .mx-5 {
+            margin-right: 3rem !important;
+            margin-left: 3rem !important
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important
+        }
+
+        .my-0 {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important
+        }
+
+        .my-1 {
+            margin-top: .25rem !important;
+            margin-bottom: .25rem !important
+        }
+
+        .my-2 {
+            margin-top: .5rem !important;
+            margin-bottom: .5rem !important
+        }
+
+        .my-3 {
+            margin-top: 1rem !important;
+            margin-bottom: 1rem !important
+        }
+
+        .my-4 {
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.5rem !important
+        }
+
+        .my-5 {
+            margin-top: 3rem !important;
+            margin-bottom: 3rem !important
+        }
+
+        .my-auto {
+            margin-top: auto !important;
+            margin-bottom: auto !important
+        }
+
+        .mt-0 {
+            margin-top: 0 !important
+        }
+
+        .mt-1 {
+            margin-top: .25rem !important
+        }
+
+        .mt-2 {
+            margin-top: .5rem !important
+        }
+
+        .mt-3 {
+            margin-top: 1rem !important
+        }
+
+        .mt-4 {
+            margin-top: 1.5rem !important
+        }
+
+        .mt-5 {
+            margin-top: 3rem !important
+        }
+
+        .mt-auto {
+            margin-top: auto !important
+        }
+
+        .me-0 {
+            margin-right: 0 !important
+        }
+
+        .me-1 {
+            margin-right: .25rem !important
+        }
+
+        .me-2 {
+            margin-right: .5rem !important
+        }
+
+        .me-3 {
+            margin-right: 1rem !important
+        }
+
+        .me-4 {
+            margin-right: 1.5rem !important
+        }
+
+        .me-5 {
+            margin-right: 3rem !important
+        }
+
+        .me-auto {
+            margin-right: auto !important
+        }
+
+        .mb-0 {
+            margin-bottom: 0 !important
+        }
+
+        .mb-1 {
+            margin-bottom: .25rem !important
+        }
+
+        .mb-2 {
+            margin-bottom: .5rem !important
+        }
+
+        .mb-3 {
+            margin-bottom: 1rem !important
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem !important
+        }
+
+        .mb-5 {
+            margin-bottom: 3rem !important
+        }
+
+        .mb-auto {
+            margin-bottom: auto !important
+        }
+
+        .ms-0 {
+            margin-left: 0 !important
+        }
+
+        .ms-1 {
+            margin-left: .2rem !important
+        }
+
+        .ms-2 {
+            margin-left: .4rem !important
+        }
+
+        .ms-3 {
+            margin-left: .9rem !important
+        }
+
+        .ms-4 {
+            margin-left: 1.4rem !important
+        }
+
+        .ms-5 {
+            margin-left: 2.5rem !important
+        }
+
+        .ms-auto {
+            margin-left: auto !important
+        }
+
+        .p-0 {
+            padding: 0 !important
+        }
+
+        .p-1 {
+            padding: .2rem !important
+        }
+
+        .p-2 {
+            padding: .4rem !important
+        }
+
+        .p-3 {
+            padding: .90rem !important
+        }
+
+        .p-4 {
+            padding: 1.4rem !important
+        }
+
+        .p-5 {
+            padding: 2.5rem !important
+        }
+
+        .px-0 {
+            padding-right: 0 !important;
+            padding-left: 0 !important
+        }
+
+        .px-1 {
+            padding-right: .25rem !important;
+            padding-left: .25rem !important
+        }
+
+        .px-2 {
+            padding-right: .5rem !important;
+            padding-left: .5rem !important
+        }
+
+        .px-3 {
+            padding-right: 1rem !important;
+            padding-left: 1rem !important
+        }
+
+        .px-4 {
+            padding-right: 1.5rem !important;
+            padding-left: 1.5rem !important
+        }
+
+        .px-5 {
+            padding-right: 3rem !important;
+            padding-left: 3rem !important
+        }
+
+        .py-0 {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important
+        }
+
+        .py-1 {
+            padding-top: .25rem !important;
+            padding-bottom: .25rem !important
+        }
+
+        .py-2 {
+            padding-top: .5rem !important;
+            padding-bottom: .5rem !important
+        }
+
+        .py-3 {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important
+        }
+
+        .py-4 {
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important
+        }
+
+        .py-5 {
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important
+        }
+
+        .pt-0 {
+            padding-top: 0 !important
+        }
+
+        .pt-1 {
+            padding-top: .25rem !important
+        }
+
+        .pt-2 {
+            padding-top: .5rem !important
+        }
+
+        .pt-3 {
+            padding-top: 1rem !important
+        }
+
+        .pt-4 {
+            padding-top: 1.5rem !important
+        }
+
+        .pt-5 {
+            padding-top: 3rem !important
+        }
+
+        .pe-0 {
+            padding-right: 0 !important
+        }
+
+        .pe-1 {
+            padding-right: .25rem !important
+        }
+
+        .pe-2 {
+            padding-right: .5rem !important
+        }
+
+        .pe-3 {
+            padding-right: 1rem !important
+        }
+
+        .pe-4 {
+            padding-right: 1.5rem !important
+        }
+
+        .pe-5 {
+            padding-right: 3rem !important
+        }
+
+        .pb-0 {
+            padding-bottom: 0 !important
+        }
+
+        .pb-1 {
+            padding-bottom: .25rem !important
+        }
+
+        .pb-2 {
+            padding-bottom: .5rem !important
+        }
+
+        .pb-3 {
+            padding-bottom: 1rem !important
+        }
+
+        .pb-4 {
+            padding-bottom: 1.5rem !important
+        }
+
+        .pb-5 {
+            padding-bottom: 3rem !important
+        }
+
+        .ps-0 {
+            padding-left: 0 !important
+        }
+
+        .ps-1 {
+            padding-left: .25rem !important
+        }
+
+        .ps-2 {
+            padding-left: .5rem !important
+        }
+
+        .ps-3 {
+            padding-left: 1rem !important
+        }
+
+        .ps-4 {
+            padding-left: 1.5rem !important
+        }
+
+        .ps-5 {
+            padding-left: 3rem !important
+        }
+
+        .my-2 {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem !important;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem !important;
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-end {
+            text-align: right;
+        }
+
+        .text-start {
+            text-align: left;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .align-baseline {
+            vertical-align: baseline !important
+        }
+
+        .align-top {
+            vertical-align: top !important
+        }
+
+        .align-middle {
+            vertical-align: middle !important
+        }
+
+        .align-bottom {
+            vertical-align: bottom !important
+        }
+
+        .float-none {
+            float: none !important;
+        }
+
+        .font-weight-bold {
+            font-weight: bold;
+        }
+
+        .fixed-top {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1030
+        }
+
+        .fixed-bottom {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1030
+        }
+
+
+        .white-space {
+            white-space: pre-line;
+            line-height: 11px !important;
+        }
+        /*===============================================*/
+        .item {
+            display: flex;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-box {
+            width: 12px;
+            height: 12px;
+            border: 1px solid #535353;
+            margin-right: 5px;
+            text-align: center;
+            font-weight: bolder;
+            position: relative;
+        }
+
+        .item-cabecera {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            text-align: center;
+        }
+
+        .item-label {
+            height: 15px;
+            vertical-align: middle;
+        }
+
+        .item.Si .item-Si {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .item.Si .item-Si::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        .item.No .item-No {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .item.No .item-No::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        .Si .item-Si {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .Si .item-Si::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        .No .item-No {
+            text-align: center;
+            vertical-align: middle;
+            background-color: yellow;
+        }
+
+        .No .item-No::before {
+            font-weight: bold;
+            content: "X";
+        }
+
+        #cajaTitulo {
+            width: 40%;
+            border: 1px solid black;
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 5px 5px #8d8d8d;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+
+        .subtitulo {
+            writing-mode: vertical-lr;
+            -webkit-writing-mode: vertical-lr;
+            -ms-writing-mode: vertical-lr;
+            filter: flipH() flipV();
+            margin: 0 auto;
+            /*transform: rotate(270deg);*/
+        }
+
+        textarea {
+            resize: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            line-height: 14px;
+        }
+
+        .table-active{
+            background-color: #ebe9e9;
+        }
+
+        .table th, .table td {
+            padding: 3px 2px !important;
+        }
+
+        /*body {
+            font-size: 9px;
+        }*/
+
+        .item span {
+            margin-top: 1px;
+            display: block;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .qr-code {
+            position: absolute;
+            width: 75px;
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+
+@*<body style="background: white; width:793px; height:1145px; position:relative; padding-top: 30px; /*border: 1px solid red;*/" class="">*@
+<body style="background: transparent; width:698px; height:1015px; padding-bottom:180px; position:relative;">
+
+    @*<body style="background: white">*@
+    @*<img src="~/images/Logo.png" style="width: 80px; position:absolute; top:0;" />*@
+    <table class="table table-bordered border-secondary" style="width: 80px; position:absolute; right: 90px; top: 5px; border: none;">
+        <tbody>
+            <tr style="">
+                <td class="border-secondary text-center fw-bold">FO - 021</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p style="" id="cajaTitulo">EVALUACIÓN PRE-ANESTÉSICA</p>
+
+    @*<div class="d-flex" style="margin-bottom: 3px;">
+
+    </div>*@
+
+    @if (ViewBag.CodigoQR != null)
+    {
+        <img class="qr-code" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.CodigoQR))" />
+    }
+
+    <div class="d-flex mb-1 w-90">
+        <table class="table table-bordered border-secondary m-0 me-2" style="width: 25%;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-center fw-bold p-0" style="width:60px;">Fecha: </th>
+                    <td class="border-secondary text-center p-0">@ViewBag.FechaEvaluacion</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-secondary m-0 me-3" style="width: 25%;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-center fw-bold p-0" style="width:60px;">Hora: </th>
+                    <td class="border-secondary text-center p-0">@ViewBag.HoraEvaluacion</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-secondary m-0 me-2" style="width: 50%;">
+            <tbody>
+                <tr>
+                    <th class="border-secondary text-center fw-bold p-0" style="width:120px;">Anestesiólogo: </th>
+                    <td class="border-secondary text-center p-0">@ViewBag.Anestesiologo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-90">
+        <div class="row">
+            <div class="col-8">
+                 <div class="d-flex mb-1">
+                    <table class="table table-bordered border-secondary m-0 me-2" style="width: 120px;">
+                        <tbody>
+                            <tr>
+                                <th class="border-secondary text-center fw-bold p-0" style="width:60px;">Edad: </th>
+                                <td class="border-secondary text-center p-0">@ViewBag.Edad  Años</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-bordered border-secondary m-0 me-2" style="width: 120px;">
+                        <tbody>
+                            <tr>
+                                <th class="border-secondary text-center fw-bold p-0" style="width:60px;">Sexo: </th>
+                                <td class="border-secondary text-center p-0">@ViewBag.Sexo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-bordered border-secondary m-0 me-3" style="width: 120px;">
+                        <tbody>
+                            <tr>
+                                <th class="border-secondary text-center fw-bold p-0" style="width:60px;">Peso: </th>
+                                <td class="border-secondary text-center p-0">@ViewBag.TriajePeso</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="d-flex">
+                    <div class="item">
+                        <div class="item-label me-2">Emergencia</div>
+
+                        <div class="item-box item-Si">
+                            @if (@ViewBag.TipoEvaluacionAnestesiaAA == "2")
+                            {<span>X</span>}
+                        </div>
+                    </div>
+                    <div class="item ms-3">
+                        <div class="item-label me-2">Programada</div>
+
+                        <div class="item-box item-Si">
+                            @if (@ViewBag.TipoEvaluacionAnestesiaAA == "1")
+                            {<span>X</span>}
+                        </div>
+                    </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th scope="row" class="border-secondary text-center table-active align-middle p-0">INTERVENCIÓN QUIRÚRGICA PROPUESTA</th>
+            </tr>
+            <tr style="padding: 2px !important;">
+                @*<td class="border-secondary align-top">@ViewBag.Relato</td>*@
+                <td class="border-secondary align-top" style="padding: 2px !important;"><div class="white-space"><@ViewBag.IntervencionQuirurgicaPropuestaAA</div>@*<textarea id="IntervencionQuirurgicaPropuestaAA" class="w-100" style="height: 10px;">@ViewBag.IntervencionQuirurgicaPropuestaAA</textarea>*@</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th colspan="6" scope="row" class="border-secondary text-center table-active align-middle p-0">RESUMEN DE LA ENFERMEDAD ACTUAL</th>
+            </tr>
+            <tr>
+                @*<th scope="row" style="width: 100px;" class="border-secondary text-center align-middle">ENFERMEDAD<br /> ACTUAL</th>*@
+                <th class="text-center table-active align-middle border-secondary pt-0 pb-0" style="width:131px; min-width: 110px;">ENFERMEDAD ACTUAL</th>
+                <td style="width:110px; min-width: 131px;" class="border-secondary pt-0 pb-0">@ViewBag.EnfermedadActualAA</td>
+                <th class="text-center table-active align-middle border-secondary pt-0 pb-0" style="width:131px; min-width: 110px;">TIEMPO ENFERMEDAD</th>
+                <td style="width:110px; min-width: 131px;" class="border-secondary pt-0 pb-0">@ViewBag.TiempoEnfermedadAA</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr style="height: 50px;">
+                <th scope="row" style="width: 125px;" class="border-secondary text-center table-active align-middle">RELATO (SÍNTOMAS PRINCIPALES)</th>
+                @*<td class="border-secondary align-top">@ViewBag.Relato</td>*@
+                <td class="border-secondary align-top"><div class="white-space">@ViewBag.RelatoAA</div>@*<textarea id="RelatoAA" class="w-100">@ViewBag.RelatoAA</textarea>*@</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr style="height: 50px;">
+                <th scope="row" rowspan="2" style="width:125px;" class="border-secondary text-center table-active align-middle">SIGNOS<br />Y<br /> SÍNTOMAS </th>
+                <td class="border-secondary align-top">
+                    <div class="row m-0">
+                        <div class="col-3">
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.DisneaAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Disnea</div>
+                            </div>
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.OrtopneaAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Ortopnea</div>
+                            </div>
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.ConvulsionesAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Convulsiones</div>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.FotopsiasAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Fotopsias</div>
+                            </div>
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.CianosisAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Cianosis</div>
+                            </div>
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.CefaleaAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Cefalea</div>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.HemorragiasAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Hemorragias</div>
+                            </div>
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.FiebreAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Fiebre</div>
+                            </div>
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.DolorAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Dolor</div>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.Nausea_VomitoAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Náusea/Vómito</div>
+                            </div>
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.OtrosAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Otros</div>
+                            </div>
+                            <div class="item">
+                                <div class="item-box item-Si">
+                                    @if (@ViewBag.NingunoAA == "1")
+                                    {<span>X</span>}
+                                </div>
+                                <div class="item-label">Ninguno</div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-12">
+                        <label class="fw-bold me-1">Otros Síntomas: </label>@ViewBag.DescripcionOtrosAA
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th colspan="8" scope="row" style="width: 50px;" class="border-secondary text-center align-middle table-active p-0">ANTECEDENTES PERSONALES</th>
+            </tr>
+            <tr style="height: 50px">
+                <td colspan="8" class="border-secondary align-top">
+                    <div class="row m-0">
+
+                        <div class="col-4 ps-0">
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="item-cabecera p-0 border-0">SI</th>
+                                        <th class="item-cabecera p-0 border-0">NO</th>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.DiabetesP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.DiabetesP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Diabetes</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DiabetesDescP</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.TBCP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.TBCP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">TBC</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.TBCDescP</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.AsmaP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.AsmaP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Asma</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.AsmaDescP</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.HipertensionP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.HipertensionP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Hipertensión (HTA)</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.HipertensionDescP</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.OtrosP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.OtrosP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Otros</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.OtrosDescP</div></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+
+                        <div class="col-4 ps-0 pe-0">
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="item-cabecera p-0 border-0">SI</th>
+                                        <th class="item-cabecera p-0 border-0">NO</th>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.PatologiaTiroideaP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.PatologiaTiroideaP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Patología Tiroidea</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.PatologiaTiroideaDescP</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.CirugiaPreviaP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.CirugiaPreviaP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Cirugía Previa</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.CirugiaPreviaDescP</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.AlcoholP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.AlcoholP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Consumo Alcohol</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.AlcoholDescP</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.TabacoP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.TabacoP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Consumo Tabaco</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.TabacoDescP</div></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                        <div class="col-4 pe-0">
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="item-cabecera p-0 border-0">SI</th>
+                                        <th class="item-cabecera p-0 border-0">NO</th>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.DrogasP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.DrogasP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Consume Drogas</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DrogasDescP</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.TransfusionesP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.TransfusionesP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Transfusiones</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.TransfusionesDescP</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.AnestesiasPreviasP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.AnestesiasPreviasP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Anestesias Previas</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.AnestesiasPreviasDescP</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.TendenciaHemorragiasP == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.TendenciaHemorragiasP == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Tendencia a Hemorragia</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.TendenciaHemorragiasDescP</div></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th colspan="8" scope="row" style="width: 50px;" class="border-secondary text-center align-middle table-active p-0">ANTECEDENTES FAMILIARES</th>
+            </tr>
+            <tr style="height: 50px">
+                <td colspan="8" class="border-secondary align-top">
+                    <div class="row m-0">
+
+                        <div class="col-4 ps-0">
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="item-cabecera p-0 border-0">SI</th>
+                                        <th class="item-cabecera p-0 border-0">NO</th>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.DiabetesF == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.DiabetesF == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Diabetes (DM)</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DiabetesDescF</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.TBCF == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.TBCF == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">TBC</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.TBCDescF</div></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="col-4 ps-0 pe-0">
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="item-cabecera p-0 border-0">SI</th>
+                                        <th class="item-cabecera p-0 border-0">NO</th>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.AsmaF == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.AsmaF == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Asma</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.AsmaDescF</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.HipertensionF == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.HipertensionF == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Hipertensión (HTA)</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.HipertensionDescF</div></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                        <div class="col-4 pe-0">
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="item-cabecera p-0 border-0">SI</th>
+                                        <th class="item-cabecera p-0 border-0">NO</th>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.OtrosF == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.OtrosF == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Otros</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.OtrosDescF</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.AnestesiasFamiliaresF == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.AnestesiasFamiliaresF == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        @*<td class="border-0 pt-1 pb-1">Anestesias Fam.</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.AnestesiasFamiliaresDescF</div></td>*@
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th colspan="8" scope="row" style="width: 50px;" class="border-secondary text-center align-middle table-active p-0">ALERGIAS</th>
+            </tr>
+            <tr style="height: 50px">
+                <td colspan="8" class="border-secondary align-top">
+                    <div class="row m-0">
+
+                        <div class="col-4 ps-0">
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="item-cabecera p-0 border-0">SI</th>
+                                        <th class="item-cabecera p-0 border-0">NO</th>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.FarmacologicasALER == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.FarmacologicasALER == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Farmacológicas</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.FarmacologicasDescALER</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.AlimentacionALER == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.AlimentacionALER == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Alimentación</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.AlimentacionDescALER</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.EosinofiliaALER == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.EosinofiliaALER == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Eosinofilia</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.EosinofiliaDescALER</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.BroncoespasmosALER == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.BroncoespasmosALER == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Broncoespasmos</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.BroncoespasmosDescALER</div></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="col-4 ps-0 pe-0">
+
+                            <table class="table" style="background-color: transparent;border: 0; margin-bottom: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="item-cabecera p-0 border-0">SI</th>
+                                        <th class="item-cabecera p-0 border-0">NO</th>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 170px; width: 170px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+                                    <tr>
+                                        <th class="border-0 p-0 align-middle">
+                                            <div class="item-box item-Si">
+                                                @if (@ViewBag.OtrosALER == "1")
+                                                {<span>X</span>}
+                                            </div>
+                                        </th>
+                                        <td class="border-0 p-0 align-middle">
+                                            <div class="item-box item-No">
+                                                @if (@ViewBag.OtrosALER == "0")
+                                                {<span>X</span>}
+                                            </div>
+                                        </td>
+                                        <td class="border-0 pt-1 pb-1">Otros</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.OtrosDescALER</div></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <tbody class="border-0">
+
+                                    <tr>
+                                        <td class="border-0 pt-1 pb-1">Signos y Síntomas</td>
+                                        <td class="border-0 pt-1 pb-1" style="min-width: 170px; width:170px;"><div class="border-bottom border-secondary">@ViewBag.SignosSintomasALER</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border-0 pt-1 pb-1">Shock</td>
+                                        <td class="border-0 pt-1 pb-1" style="min-width: 170px; width:170px;"><div class="border-bottom border-secondary">@ViewBag.ShockALER</div></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-4 pe-0">
+                            <table class="table" style="background-color: transparent;border: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0"></th>
+                                        <th class="border-0" style="min-width: 170px; width:170px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0">
+
+                                    <tr>
+                                        <td class="border-0 pt-1 pb-1">RASH</td>
+                                        <td class="border-0 pt-1 pb-1" style="min-width: 170px; width:170px;"><div class="border-bottom border-secondary">@ViewBag.RASHALER</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border-0 pt-1 pb-1">Edema</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.EdemaALER</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border-0 pt-1 pb-1">Glotis</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.GlotisALER</div></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border-0 pt-1 pb-1">Prurito</td>
+                                        <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.PruritoALER</div></td>
+                                    </tr>
+
+                                    @*<tr>
+                                            <td class="border-0 pt-1 pb-1">Observación</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.ObservacionALER</div></td>
+                                        </tr>*@
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table class="table table-bordered border-secondary mb-1">
+        <thead>
+            <tr>
+                <th colspan="8" style="width: 50px;" class="border-secondary text-center align-middle table-active p-0">MEDICACIÓN SUMINISTRADA DURANTE LOS ÚLTIMOS 30 DÍAS</th>
+            </tr>
+            <tr>
+                @*<th rowspan="2" scope="row" style="width: 50px;" class="border-secondary text-center align-middle subtitulo">EXÁMEN FÍSICO</th>*@
+                <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center">Drogas</th>
+                <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center">Dosis</th>
+                <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center">Vía</th>
+                <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center">Duración</th>
+            </tr>
+        </thead>
+        <tbody class="border-secondary">
+
+            @if (ViewBag.MedicacionSuministrada.Rows.Count < 1)
+            {
+                <tr class="border-secondary" style="height: 60px">
+                    <td class="border-secondary"></td>
+                    <td class="border-secondary"></td>
+                    <td class="border-secondary"></td>
+                    <td class="border-secondary"></td>
+                </tr>
+            }
+            else
+            {
+                @foreach (System.Data.DataRow row in ViewBag.MedicacionSuministrada.Rows)
+                {
+                    <tr>
+                        <td class="border-secondary">@row["Droga"]</td>
+                        <td class="border-secondary">@row["Dosis"]</td>
+                        <td class="border-secondary">@row["Via"]</td>
+                        <td class="border-secondary">@row["Duracion"]</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+
+
+
+    <table class="table table-bordered border-secondary">
+        <thead>
+            <tr>
+                <th colspan="8" style="width: 50px;" class="border-secondary text-center align-middle table-active p-0">EXAMENES AUXILIARES</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th class="border-secondary text-center fw-bold p-0" style="width: 120px">Hb: (g/dL) </th>
+                <td class="border-secondary text-center p-0" style="width: 60px">@ViewBag.Hb</td>
+
+                <th class="border-secondary text-center fw-bold p-0" style="width: 120px">Hto: (%) </th>
+                <td class="border-secondary text-center p-0">@ViewBag.Hto</td>
+
+                <th class="border-secondary text-center fw-bold p-0" style="width: 120px">Creatinina: (mg/dL)</th>
+                <td class="border-secondary text-center p-0">@ViewBag.Creatinina</td>
+
+                <th class="border-secondary text-center fw-bold p-0" style="width: 120px">Urea: (mg/dL)</th>
+                <td class="border-secondary text-center p-0">@ViewBag.Urea</td>
+
+            </tr>
+
+            <tr>
+                <th class="border-secondary text-center fw-bold p-0" style="width:60px;">Glucosa: </th>
+                <td class="border-secondary text-center p-0">@ViewBag.Glucosa </td>
+
+                <th class="border-secondary text-center fw-bold p-0">T. Prot: </th>
+                <td class="border-secondary text-center p-0">@ViewBag.TProt</td>
+
+                <th class="border-secondary text-center fw-bold p-0">VDRL: </th>
+                <td class="border-secondary text-center p-0">@ViewBag.VDRL</td>
+
+                <th class="border-secondary text-center fw-bold p-0">HIV: </th>
+                <td class="border-secondary text-center p-0">@ViewBag.HIV</td>
+
+
+            </tr>
+
+            <tr>
+
+
+                <th class="border-secondary text-center fw-bold p-0">T. Trombiop: </th>
+                <td class="border-secondary text-center p-0">@ViewBag.TTrombiop</td>
+
+                <th class="border-secondary text-center fw-bold p-0">Grupo y Rh: </th>
+                <td class="border-secondary text-center p-0">@ViewBag.GrupoyRh</td>
+
+                <th class="border-secondary text-center fw-bold p-0">Fibrogeno: (mg/dL)</th>
+                <td class="border-secondary text-center p-0">@ViewBag.Fibrogeno</td>
+
+                <th class="border-secondary text-center fw-bold p-0" style="width:60px;">Rx.Tórax: </th>
+                <td class="border-secondary text-center p-0">@ViewBag.RxTorax</td>
+
+
+            </tr>
+
+            <tr>
+                <th class="border-secondary text-center fw-bold p-0">Rect.Plaquetas: (mcL) </th>
+                <td class="border-secondary text-center p-0">@ViewBag.RectPlaquetas</td>
+
+                <th class="border-secondary text-center fw-bold p-0">RQ: </th>
+                <td class="border-secondary text-center p-0">@ViewBag.Rq</td>
+
+                <th class="border-secondary text-center fw-bold p-0">Orina: </th>
+                <td class="border-secondary text-center p-0">@ViewBag.Orina</td>
+
+                <th class="border-secondary text-center fw-bold p-0">Covid-19: </th>
+                <td class="border-secondary text-center p-0">@ViewBag.Covid19</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+    <table class="table table-bordered border-secondary mb-1">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0 col-12">DIAGNÓSTICO</th>
+                @*<th class="border-secondary table-active text-center p-0 col-6">PLAN DE TRABAJO</th>*@
+            </tr>
+            <tr style="height: 60px">
+                <td class="border-secondary align-top">
+                    @{
+                        int index = 1;
+                    }
+                    @foreach (System.Data.DataRow row in ViewBag.Diagnosticos.Rows)
+                    {
+                        <span><b>DX @index: </b> @row["codigoCIE10"] - @row["descripcion"] <b>(@row["tipoDiagnostico"])</b></span>
+
+                        index++;
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    @* <table class="table table-bordered border-secondary">
+        <tbody>
+            <tr>
+                <th class="border-secondary table-active text-center p-0">NOMBRES Y APELLIDOS</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">SERVICIO</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">CAMA</th>
+                <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">HISTORIA</th>
+            </tr>
+            <tr>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.Paciente
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.Servicio
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.Cama
+                </td>
+                <td class="border-secondary text-center align-top p-1">
+                    @ViewBag.NroHistoria
+                </td>
+            </tr>
+        </tbody>
+    </table> *@
+
+@*
+    <br />
+    <br />
+    <br />
+*@
+    <div style="page-break-before: always; padding-top: 40px;">
+        <table class="table table-bordered border-secondary mb-1">
+            <tbody>
+                <tr>
+                    <th colspan="11" scope="row" style="width: 50px;" class="border-secondary text-center align-middle table-active p-0">EXÁMEN FÍSICO</th>
+                </tr>
+                <tr>
+                    <th rowspan="2" scope="row" style="width: 50px;" class="border-secondary text-center align-middle subtitulo">EXÁMEN FÍSICO</th>
+                    <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center">(PA)</th>
+                    <td style="width: 98px;" class="border-secondary pt-0 pb-0">@ViewBag.TriajePresion</td>
+                    <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center">(FC)</th>
+                    <td style="width: 98px;" class="border-secondary pt-0 pb-0">@ViewBag.TriajeFrecCardiaca</td>
+                    <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center">(FR)</th>
+                    <td style="width: 98px;" class="border-secondary pt-0 pb-0">@ViewBag.TriajeFrecRespiratoria</td>
+                    <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center">(T°)</th>
+                    <td style="width: 98px;" class="border-secondary pt-0 pb-0">@ViewBag.TriajeTemperatura</td>
+                    <th style="width: 98px;" class="border-secondary pt-0 pb-0 table-active  text-center">(SO2)</th>
+                    <td style="width: 98px;" class="border-secondary pt-0 pb-0">@ViewBag.TriajeSaturacionOxigeno</td>
+                </tr>
+                <tr style="height: 50px">
+                    <td colspan="11" class="border-secondary align-top">
+                        <div class="row m-0">
+
+                            <div class="col-4 ps-0">
+                                <table class="table" style="background-color: transparent;border: 0;">
+                                    <thead>
+                                        <tr>
+                                            <th class="item-cabecera p-0 border-0">N</th>
+                                            <th class="item-cabecera p-0 border-0">A</th>
+                                            <th class="border-0"></th>
+                                            <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-0">
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.EstadoGeneralSensorioEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.EstadoGeneralSensorioEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Est. Gen. y Sensorio</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.EstadoGeneralSensorioDescEF - <b>(Edemas: </b>@ViewBag.EstadoGeneralSensorioEdemasEF<b>)</b></div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.CardiovascularEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.CardiovascularEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Cardiovascular</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.CardiovascularDescEF - <b>(Reflejos: </b>@ViewBag.CardiovascularEdemasEF<b>)</b></div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.AbdomenEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.AbdomenEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Abdomen</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.AbdomenDescEF</div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.PielEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.PielEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Piel: Zona Venosa</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.PielDescEF</div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.OjosEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.OjosEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Ojos: Pupilas</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.OjosDescEF</div></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div class="col-4 ps-0 pe-0">
+                                <table class="table" style="background-color: transparent;border: 0;">
+                                    <thead>
+                                        <tr>
+                                            <th class="item-cabecera p-0 border-0">N</th>
+                                            <th class="item-cabecera p-0 border-0">A</th>
+                                            <th class="border-0"></th>
+                                            <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-0">
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.MovCervicalEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.MovCervicalEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Mov. Cervical</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.MovCervicalDescEF</div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.NeurologicoEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.NeurologicoEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Neurológico</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.NeurologicoDescEF</div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.ColumnaVertebralEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.ColumnaVertebralEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Columna Vertebral</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.ColumnaVertebralDescEF</div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.EstadoGeneralEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.EstadoGeneralEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Estado General</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.EstadoGeneralDescEF</div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.EstadoNutricionalEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.EstadoNutricionalEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Estado Nutricional</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.EstadoNutricionalDescEF</div></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+                            <div class="col-4 pe-0">
+                                <table class="table" style="background-color: transparent;border: 0;">
+                                    <thead>
+                                        <tr>
+                                            <th class="item-cabecera p-0 border-0">N</th>
+                                            <th class="item-cabecera p-0 border-0">A</th>
+                                            <th class="border-0"></th>
+                                            <th class="border-0" style="min-width: 110px; width:110px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-0">
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.VenasEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.VenasEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Venas</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.VenasDescEF</div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.ViasAereasEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.ViasAereasEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Vía Aérea</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.ViasAereasDescEF</div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.DentaduraEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.DentaduraEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Dentadura</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.DentaduraDescEF</div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.TraqueaEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.TraqueaEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Tráquea</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.TraqueaDescEF</div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="border-0 p-0 align-middle">
+                                                <div class="item-box item-Si">
+                                                    @if (@ViewBag.ToraxEF == "1")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </th>
+                                            <td class="border-0 p-0 align-middle">
+                                                <div class="item-box item-No">
+                                                    @if (@ViewBag.ToraxEF == "2")
+                                                    {<span>X</span>}
+                                                </div>
+                                            </td>
+                                            <td class="border-0 pt-1 pb-1">Tórax</td>
+                                            <td class="border-0 pt-1 pb-1"><div class="border-bottom border-secondary">@ViewBag.ToraxDescEF</div></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-secondary">
+            <tbody>
+                <tr>
+                    @*<th scope="row" style="width: 100px;" class="border-secondary text-center align-middle">ENFERMEDAD<br /> ACTUAL</th>*@
+                    <th class="text-center table-active align-middle border-secondary pt-0 pb-0" style="width:131px; min-width: 110px;">MALLAMPATI</th>
+                    <td style="width:110px; min-width: 131px;" class="border-secondary pt-0 pb-0">@ViewBag.DMallampatiEF</td>
+                    <th class="text-center table-active align-middle border-secondary pt-0 pb-0" style="width:131px; min-width: 110px;">DISTANCIA MENTO TIROIDEA</th>
+                    <td style="width:110px; min-width: 131px;" class="border-secondary pt-0 pb-0">@ViewBag.DDistanciaMentoTiroideaEF</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <table class="table table-bordered border-secondary mb-1">
+            <tbody>
+                <tr>
+                    @*<th scope="row" style="width: 100px;" class="border-secondary text-center align-middle">ENFERMEDAD<br /> ACTUAL</th>*@
+                    <th class="text-center table-active align-middle border-secondary pt-0 pb-0" style="width:131px; min-width: 110px;">CLASIFICACIÓN A.S.A.</th>
+                    <td style="width:110px; min-width: 131px;" class="border-secondary pt-0 pb-0">
+                        @ViewBag.DClasificacionASAAA - @if (@ViewBag.TipoEvaluacionAnestesiaAA == "2")
+                        {<span>E</span>}
+                    </td>
+                    <th class="text-center table-active align-middle border-secondary pt-0 pb-0" style="width:131px; min-width: 110px;">TIPO DE ANESTESIA PREVISTA</th>
+                    <td style="width:110px; min-width: 131px;" class="border-secondary pt-0 pb-0">@ViewBag.DTipoAnestesiaPrevistaAA</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-secondary mb-1">
+            <tbody>
+                <tr style="height: 50px;">
+                    <th scope="row" style="width: 125px;" class="border-secondary text-center table-active align-middle">CONCLUSIONES</th>
+                    @*<td class="border-secondary align-top">@ViewBag.Relato</td>*@
+                    <td class="border-secondary align-top"><div class="white-space">@ViewBag.ConclusionAA</div>@*<textarea id="ConclusionAA" class="w-100">@ViewBag.ConclusionAA</textarea>*@</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <div class="ms-auto mt-3 pt-5 mb-2" style="width: 250px;">
+            <div class="border-top border-secondary text-center">
+                @*@ViewBag.Anestesiologo*@
+                <p style="font-weight: bolder; font-size: 11px;">Firma y Sello del Anestesiólogo</p>
+            </div>
+        </div>
+
+
+        <div class="d-flex border-top border-secondary" style="margin-bottom: 3px;">
+
+        </div>
+
+        <br />
+
+        <h6 class="text-black text-center border-bottom border-secondary m-auto" style="width: 50%; font-weight: bolder;">VISITA Y MEDICACIÓN PRE-ANESTÉSICA</h6>
+
+        <br />
+        <br />
+
+        <div class="d-flex mb-1">
+            <table class="table table-bordered border-secondary m-0 me-2" style="width: 150px;">
+                <tbody>
+                    <tr>
+                        <th class="border-secondary text-center fw-bold p-0" style="width:60px;">Fecha: </th>
+                        <td class="border-secondary text-center p-0"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-bordered border-secondary m-0 me-3" style="width: 150px;">
+                <tbody>
+                    <tr>
+                        <th class="border-secondary text-center fw-bold p-0" style="width:60px;">Hora: </th>
+                        <td class="border-secondary text-center p-0"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <table class="table table-bordered border-secondary mb-1">
+            <tbody>
+                <tr style="height: 50px;">
+                    <th scope="row" style="width: 125px;" class="border-secondary text-center table-active align-middle">EXAMEN CLÍNICO</th>
+                    @*<td class="border-secondary align-top">@ViewBag.Relato</td>*@
+                    <td class="border-secondary align-top"><textarea id="" class="w-100"></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-secondary mb-1">
+            <tbody>
+                <tr style="height: 70px;">
+                    <th scope="row" style="width: 125px;" class="border-secondary text-center table-active align-middle">DROGA</th>
+                    @*<td class="border-secondary align-top">@ViewBag.Relato</td>*@
+                    <td class="border-secondary align-top"><textarea id="" class="w-100"></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-secondary mb-1">
+            <tbody>
+                <tr style="height: 50px;">
+                    <th scope="row" style="width: 125px;" class="border-secondary text-center table-active align-middle">OBSERVACIONES</th>
+                    @*<td class="border-secondary align-top">@ViewBag.Relato</td>*@
+                    <td class="border-secondary align-top"><textarea id="" class="w-100"></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br />
+        <br />
+
+        <div class="d-flex mb-1">
+            <div class="col-4">
+                <p style="font-size: 13px;">Autorización Operatorio: (SI)    (NO)</p>
+            </div>
+            <div class="col-8">
+                Porque: .............................................................................................................................................................................
+                ..............................................................................................................................................................................................
+                ..............................................................................................................................................................................................
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+
+        @* <div class="ms-auto mt-3 pt-5 mb-2" style="width: 250px;">
+            <div class="border-top border-secondary text-center">
+                
+                <p style="font-weight: bolder; font-size: 11px;">Firma y Sello del Anestesiólogo</p>
+            </div>
+        </div>
+ *@
+
+        @* <table class="table table-bordered border-secondary">
+            <tbody>
+                <tr>
+                    <th class="border-secondary table-active text-center p-0">NOMBRES Y APELLIDOS</th>
+                    <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">SERVICIO</th>
+                    <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">CAMA</th>
+                    <th class="border-secondary table-active text-center p-0" style="background-color: #ebe9e9;">HISTORIA</th>
+                </tr>
+                <tr>
+                    <td class="border-secondary text-center align-top p-1">
+                        @ViewBag.Paciente
+                    </td>
+                    <td class="border-secondary text-center align-top p-1">
+                        @ViewBag.Servicio
+                    </td>
+                    <td class="border-secondary text-center align-top p-1">
+                        @ViewBag.Cama
+                    </td>
+                    <td class="border-secondary text-center align-top p-1">
+                        @ViewBag.NroHistoria
+                    </td>
+                </tr>
+            </tbody>
+        </table> *@
+    </div>
+
+    
+
+
+
+    @*<script src="/AdmiRE/js/jquery.min.js"></script>
+    <script src="/BootstrapV5.1.3/bootstrap.bundle.min.js"></script>    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#RelatoAA").height($("#RelatoAA")[0].scrollHeight);
+            $("#ConclusionAA").height($("#ConclusionAA")[0].scrollHeight);
+            $("#IntervencionQuirurgicaPropuestaAA").height($("#IntervencionQuirurgicaPropuestaAA")[0].scrollHeight);
+            //$("#plan").height($("#plan")[0].scrollHeight);
+        });
+    </script>*@
+
+</body>
+
+
+
+</html>

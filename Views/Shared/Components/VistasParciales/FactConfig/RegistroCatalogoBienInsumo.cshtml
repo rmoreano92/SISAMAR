@@ -1,0 +1,351 @@
+﻿@using System.Data
+<div class="modal fade" id="modalRegistroCatalogoBienInsumo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Registro Bien e Insumo</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-6 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Datos Generales</div>
+                            <div class="card-block">                                
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtCodigoBI">Código</label>
+                                            <input type="text" class="form-control form-control-sm writing reading" autocomplete="off" id="txtCodigoBI">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="form-group m-0">
+                                            <label for="txtxNombreBI">Nombre (d+p+c+f)</label>
+                                            <input type="text" class="form-control form-control-sm reading" autocomplete="off" id="txtxNombreBI" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="form-group m-0">
+                                            <label for="txtxNombreComercialBI">Nombre Comercial</label>
+                                            <input type="text" class="form-control form-control-sm writing reading" autocomplete="off" id="txtxNombreComercialBI">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="form-group m-0">
+                                            <label for="txtxDenominacionBI">Denominación (d)</label>
+                                            <input type="text" class="form-control form-control-sm writing reading" autocomplete="off" id="txtxDenominacionBI">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtxPresentacionBI">Presentación (p)</label>
+                                            <input type="text" class="form-control form-control-sm writing reading" autocomplete="off" id="txtxPresentacionBI">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="txtxConcentracionBI">Concentración (c)</label>
+                                            <input type="text" class="form-control form-control-sm writing reading" autocomplete="off" id="txtxConcentracionBI">
+                                        </div>
+                                    </div>                                    
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-7">
+                                        <div class="form-group m-0">
+                                            <label for="txtFormaFarmaceuticaBI">Forma Farmaceutica (f)</label>
+                                            <input type="text" class="form-control form-control-sm writing reading" autocomplete="off" id="txtFormaFarmaceuticaBI">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboPaisOrigenBI">País Origen</label>
+                                            <select id="cboPaisOrigenBI" class="chzn-select-deselect writing reading" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow pais in ViewBag.Paises.Rows)
+                                                {
+                                                    <option value="@pais["IdPais"]">@pais["Nombre"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <div class="form-group m-0">
+                                            <label for="txtMaterialEnvaseBI">Material de Envase</label>
+                                            <input type="text" class="form-control form-control-sm writing reading" autocomplete="off" id="txtMaterialEnvaseBI">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5">
+                                        <div class="form-group m-0">
+                                            <label for="txtPresentacionEnvaseBI">Presentación de Envase</label>
+                                            <input type="text" class="form-control form-control-sm writing reading" autocomplete="off" id="txtPresentacionEnvaseBI">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8">
+                                        <div class="form-group m-0">
+                                            <label for="txtFabricanteBI">Fabricante</label>
+                                            <input type="text" class="form-control form-control-sm writing reading" autocomplete="off" id="txtFabricanteBI">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="check__toggle" style="margin-top: 32px;">
+                                            <label class="toggle">
+                                                <input class="toggle__input writing reading" type="checkbox" id="chkPetitorioBI">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Petitorio</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboTipoProductoSismedBI">Tipo Producto SISMED</label>
+                                            <select id="cboTipoProductoSismedBI" class="chzn-select-deselect writing reading" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow tpsismed in ViewBag.TipoProductosSismed.Rows)
+                                                {
+                                                    <option value="@tpsismed["TipoProductoSismed"]">@tpsismed["Descripcion"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboTipoProductoBI">Tipo Producto</label>
+                                            <select id="cboTipoProductoBI" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                <option value="0">Medicamento</option>
+                                                <option value="1">Insumo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboTipoSalidaBI">Tipo Salida</label>
+                                            <select id="cboTipoSalidaBI" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow salida in ViewBag.TipoSalidaBienInsumo.Rows)
+                                                {
+                                                    <option value="@salida["idTipoSalidaBienInsumo"]">@salida["tipo"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="check__toggle">
+                                            <label class="toggle">
+                                                <input class="toggle__input writing" type="checkbox" id="chkEsUnidosisBI">
+                                                <span class="toggle__label mr-2">
+                                                    <span class="toggle__text">Es Unidosis</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="row">
+                                            <div class="col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtCodigoUnidosisBI">Código Unidosis</label>
+                                                    <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtCodigoUnidosisBI">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtPresentacionUnidosisBI">Presentación</label>
+                                                    <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtPresentacionUnidosisBI">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtEquivalenciaUnidosisBI">Equivalencia</label>
+                                                    <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtEquivalenciaUnidosisBI">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtUnidadMedidaUnidosisBI">Unidad de Medida</label>
+                                                    <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtUnidadMedidaUnidosisBI">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="col-xl-6">
+                        
+                        <div class="card bg-green mb-1">
+                            <div class="card-header bg-white">Precios</div>
+                            <div class="card-block">
+                                <div class="row mb-1">
+                                    <div class="col-xl-3">
+                                        <div class="form-group mb-0">
+                                            <label for="txtPrecioCompraBI" class="d-block text-truncate"><b>Precio Compra</b></label>
+                                            <div class="input-group input-group-sm d-flex">
+                                                <input id="txtPrecioCompraBI" autocomplete="off" placeholder="" class="solo-decimal form-control writing">
+                                                <div class="input-group-append" style="margin-left: -2px;">
+                                                    <button class="btn btn-indigo" type="button" id="btnCalcularPrecios"><i class="fas fa-calculator"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-0">
+                                            <label for="txtPrecioVentaBI" class="d-block text-truncate">Precio Venta</label>
+                                            <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtPrecioVentaBI">
+                                        </div>
+                                        <div class="form-group m-0">
+                                            <label for="txtPrecioDistribucionBI" class="d-block text-truncate">Precio Distr.</label>
+                                            <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtPrecioDistribucionBI">
+                                        </div>
+                                        <div class="form-group m-0">
+                                            <label for="txtPrecioDonacionBI" class="d-block text-truncate">Precio Dona.</label>
+                                            <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtPrecioDonacionBI">
+                                        </div>
+                                        <div class="form-group m-0">
+                                            <label for="txtPrecioUltimaCompraBI" class="d-block text-truncate">Pr. Ult. Compra</label>
+                                            <input type="text" class="form-control form-control-sm reading" autocomplete="off" id="txtPrecioUltimaCompraBI" disabled>
+                                        </div>
+                                        <div class="form-group m-0">
+                                            <label for="txtStockMinimoBI" class="d-block text-truncate">Stock Minimo</label>
+                                            <input type="text" class="form-control form-control-sm writing" autocomplete="off" id="txtStockMinimoBI">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-9">
+                                        <table id="tblPreciosBieneInsumo" class="table table-sm table-content-sm table-bordered table-striped w-100 m-0 mt-2" style="cursor: default;">
+                                            <thead style="color: white; background: #007368;">
+                                                <tr>
+                                                    <th width="45%">Producto/Plan</th>
+                                                    <th width="25%">Pr. Venta</th>
+                                                    <th width="30%">Activo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (DataRow tfsp in ViewBag.TiposFinanciamientoSoloIngresaPrecios.Rows)
+                                                {
+                                                    <tr>
+                                                        <td>@tfsp["Descripcion"]</td>
+                                                        <td>
+                                                            <input type="text" class="form-control form-control-sm solo-decimal tipoPrecio writing" data-tipoprecio="precioVenta" autocomplete="off" id="txtPrecioVenta_@tfsp["IdTipoFinanciamiento"]">
+                                                        </td>
+                                                        <td>
+                                                            <div class="switch-field">
+                                                                <input type="radio" id="rdbHabilitarSi_@tfsp["IdTipoFinanciamiento"]" name="rdbHabilitar_@tfsp["IdTipoFinanciamiento"]" class="rdbHabilitar rdbHabilitarSi writing">
+                                                                <label for="rdbHabilitarSi_@tfsp["IdTipoFinanciamiento"]" class="px-1">Si</label>
+                                                                <input type="radio" id="rdbHabilitarNo_@tfsp["IdTipoFinanciamiento"]" name="rdbHabilitar_@tfsp["IdTipoFinanciamiento"]" class="rdbHabilitar rdbHabilitarNo writing">
+                                                                <label for="rdbHabilitarNo_@tfsp["IdTipoFinanciamiento"]" class="px-1">No</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                        <div class="text-sm-center mt-1">
+                                            <button id="btnIgualarPrecios" class="btn btn-teal text-sm-center">Iguala precios en los demás Producto/Plan</button>
+                                        </div>
+
+                                        <div id="dataTiposFinan" data-financiamiento='@Html.Raw(Json.Serialize(ViewBag.TiposFinanciamientoSoloIngresaPrecios))' class="d-none"></div>
+                                    </div>                                    
+                                </div>                                                              
+                            </div>
+                            
+                        </div>     
+                        
+                        <div class="card bg-orange mb-1">
+                            <div class="card-header bg-white">Grupo Farmacológico</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboGrupoFarmacologicoBI">Grupo</label>
+                                            <select id="cboGrupoFarmacologicoBI" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow grupo in ViewBag.GrupoFarmocologico.Rows)
+                                                {
+                                                    <option value="@grupo["IdGrupoFarmacologico"]">@grupo["Descripcion"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboSubGrupoFarmacologicoBI">Sub Grupo</label>
+                                            <select id="cboSubGrupoFarmacologicoBI" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card bg-purple">
+                            <div class="card-header bg-white">Presupuesto</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboCentroCostoBI">Centro de Costo</label>
+                                            <select id="cboCentroCostoBI" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow costo in ViewBag.CentroCosto.Rows)
+                                                {
+                                                    <option value="@costo["IdCentroCosto"]">@costo["Descripcion"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group campo m-0">
+                                            <label for="cboPartidaBI">Partida</label>
+                                            <select id="cboPartidaBI" class="chzn-select-deselect writing" data-placeholder="Seleccione una opción">
+                                                <option value=""></option>
+                                                @foreach (DataRow partida in ViewBag.PartidasPresupuestales.Rows)
+                                                {
+                                                    <option value="@partida["IdPartidaPresupuestal"]">@partida["Descripcion"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>                
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarBienInsumo">GUARDAR</button>
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCancelarBienInsumo">CERRAR</button>                
+            </div>
+        </div>
+    </div>
+</div>
+@* 
+<script>
+    var tiposFinanciamientoBI = @Html.Raw(Json.Serialize(ViewBag.TiposFinanciamientoSoloIngresaPrecios.Rows));
+</script> *@
+
+
+

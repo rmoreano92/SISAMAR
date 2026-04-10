@@ -1,0 +1,98 @@
+﻿<input id="TipoModulo" type="text" value="@ViewBag.TipoModulo" disabled hidden />
+<ul id="idtbAtencion" class="nav nav-tabs jerarquiaB" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link bg-whitesmoke border-bottom active" href="#entrevista" role="tab" id="entrevista-tab" data-toggle="tab" aria-controls="entrevista" aria-expanded="true" >Entrevista/Anam./Exam. Fisico</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link bg-whitesmoke border-bottom" href="#examenEvalAnest" role="tab" id="examenEvalAnest-tab" data-toggle="tab" aria-controls="examenEvalAnest">Examen Evaluación</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link bg-whitesmoke border-bottom" href="#resultadosAnest" role="tab" id="resultadosAnest-tab" data-toggle="tab" aria-controls="resultadosAnest">Resultados</a>
+    </li>
+</ul>
+
+<div id="clothing-nav-contentEspecialidades" class="tab-content pt-1">
+
+    <div role="tabpanel" class="tab-pane fade in active" id="entrevista" aria-labelledby="entrevista-tab">
+        
+        <div class="row" id="divClasificacionPaciente">
+            <div class="col-md-12" style="display: none;">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group campo">
+                            <label for="cboClasisifcacion" class="form-control-label">Clasificacion de Paciente</label>
+                            <div class="input-group">
+                                <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboClasisifcacion"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="cboDestino" class="form-control-label">Controles MGP</label>
+                            <div class="input-group">
+                                <input id="txtControles" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="txtEdadGestacional" class="form-control-label">Edad Gestacional</label>
+                            <div class="input-group">
+                                <input id="txtEdadGestacional" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="txtGestas" class="form-control-label">Nro. Gestas</label>
+                            <div class="input-group">
+                                <input id="txtGestas" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contenedorPreAnestesica" class="campo">
+            <partial name="~/Views/Shared/Components/VistasParciales/AtencionMedica/EntrevistaAnestesiologia.cshtml" />
+        </div>
+
+    </div>
+
+    <div role="tabpanel" class="tab-pane fade campo" id="examenEvalAnest" aria-labelledby="examenEvalAnest-tab">
+        <partial name="~/Views/Shared/Components/VistasParciales/AtencionMedica/ExamenEvaluacionAnestesiologia.cshtml" />
+    </div>
+
+    <div role="tabpanel" class="tab-pane fade campo" id="resultadosAnest" aria-labelledby="resultadosAnest-tab">
+        <partial name="~/Views/Shared/Components/VistasParciales/AtencionMedica/ResultadosAnestesiologia.cshtml" />
+    </div>
+
+    <div id="contenedorEspecialidades" class="campo" hidden>
+        <partial name="~/Views/Shared/Components/VistasParciales/ConsultaExterna/EspecialidadesMedicas/Entrevista.cshtml" />
+    </div>
+
+
+
+</div>
+
+@*<script type="text/javascript" src=@Href("~/js/ConsultaExterna/AtencionMedicaV2.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Anestesiologia.js")></script>
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV2.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos.js")></script>*@
+
+@*<script>
+        $(document).ready(() => {
+            AtencionMedica.ParcialEvents()
+            AtencionMedica.ListaTiposConsulta()
+            AtencionMedica.TiposClasificacionPaciente()
+
+            Anestesiologia.Iniciar()
+            if (AtencionMedica.permisoClasiPaciente == '0') { // jdelgado para el control de versiones
+                $('#divClasificacionPaciente').hide()
+            } else {
+                $('#divClasificacionPaciente').show()
+            }
+        })
+    </script>*@

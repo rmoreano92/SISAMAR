@@ -1,0 +1,300 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hoja de Evaluación</title>
+    @*<link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />*@
+    <link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" />
+    <link href="~/BootstrapV5.1.3/font.roboto.css" rel="stylesheet">
+    <style>
+        body {
+            font-size: 10px;
+            color: black !important;
+            font-family: 'Roboto', sans-serif;
+            letter-spacing: 0.4px;
+        }
+
+        td, th {
+            padding: 0.25rem !important;
+        }
+
+        .font-sm {
+            font-size: 8px;
+        }
+
+        .font-md {
+            font-size: 11px;
+        }
+
+        .font-lg {
+            font-size: 12px;
+        }
+
+        .table {
+            border-color: #607d8b !important;
+        }
+    </style>
+</head>
+
+
+<body style="background: white;  width: 793px; height: 900px; position: relative;  /*border: 1px solid red;*/" >
+
+    <div class="row mt-4" style="width: 95%; margin-left: 15px">
+        <div class="col-12 position-relative">
+            @*<div class="position-absolute" style="width: 40px; left:0px; top: 0px;">
+                <img src="~/images/Logo.png" width="100%" />
+            </div>*@
+
+            <div class="row text-center mx-auto" style="width: 95%;">
+                <div class="col-12"><span class="fw-bold" style="font-size: 12px;">@ViewBag.NombreInstitucion</span></div>
+                <div class="col-12"><span style="font-size: 10px;">@ViewBag.DireccionInstitucion</span></div>
+                <div class="col-12"><span style="font-size: 10px;">Telefono: @ViewBag.TelefonoInstitucion</span></div>
+            </div>
+
+            <div class="position-absolute text-center" style="width: 100px; right: 0px; top: 0px;">
+                <div class="fw-bold w-100" style="font-size: 12px;">@ViewBag.FechaImpresion</div>
+            </div>
+
+             @*<div class="position-absolute text-center" style="width: 60px; left: 0px; top: 0px;">
+                <div class="fw-bold border border-secondary w-100" style="font-size: 12px;">CUPO: Logo</div>
+            </div>*@
+
+            <div class="position-absolute" style="width: 90px; left:0px; top: 0px;">
+                <img src="~/images/Logo.png" width="100%" />
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+            <div class="row text-center mx-auto" style="width: 100%;">
+                <div class="col-12 my-2"><span class="fw-bold font-md" style="font-size: 20px;">HOJA DE FILIACION DE PACIENTE</span></div>
+            </div>
+
+            <div class="row m-0" style="font-size: 14px">
+                <div class="col-12 p-0">
+                    <div class="fw-bold" style="padding-left: 5px; ;"> </div>
+                </div>
+            </div>
+            <div class="row m-0" style="height: 30px; line-height: 30px;">
+                <div class="col-12 p-0" style="font-size: 14px;"><div class="fw-bold" style="padding-left: 5px; text-align: end;">N° Historia: <span style="font-size: 20px">@ViewBag.NroHistoria</span></div></div>
+            </div>
+            
+
+            <div class="row m-0" style="height: 70px; line-height: 70px;">
+                <div class="col-3 p-0" style="font-size: 14px;"><div class="fw-bold" style="padding-left: 5px;">Apellidos Y Nombres: </div></div>
+                <div class="col-9 p-0" style="font-size: 20px"><div class="fw-bold" style="padding-left: 5px;">@ViewBag.PacienteNombres</div></div>
+            </div>
+
+
+            <div class="row" style="margin-top: 20px;">
+
+                <div class="col-8">
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Fecha Ingreso: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.FechaCita</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Hora Ingreso: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.HoraCita</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Consultorio: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.ServicioCita</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Estado Civil: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.EstadoCivilDes</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Médico: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.Medico</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Especialidad: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.Especialidad</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Dirección: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.DireccionDomicilio</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Departamento: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.NombreDepartamentoDomicilio</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Distrito: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.NombreDistritoDomicilio</div></div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Edad (@ViewBag.TipoEdad):</div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.Edad</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Fecha Nacimiento: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.FechaNacimiento</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Sexo: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.Sexo</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">N° Documento: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.NroDocumento</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Ocupacion: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.Ocupacion</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Telefono: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.Telefono</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px; color: #fff;">.</div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;"></div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Provincia: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.NombreProvinciaDomicilio</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Centro Poblado: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.NombreCentroPobladoDomicilio</div></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-lg-12"><hr></div>
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+
+                <div class="col-8">
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-12 p-0"><div class="fw-bold" style="padding-left: 5px;">Datos de Procedencia: </div></div>
+                    </div>
+
+                    <br>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Departamento: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.NombreDepartamentoProcedencia</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Provincia: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.NombreProvinciaProcedencia</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Distrito: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.NombreDistritoProcedencia</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Centro Poblado: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.NombreCentroPobladoProcedencia</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">Pais: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.NombrePaisProcedencia</div></div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-12 p-0"><div class="fw-bold" style="padding-left: 5px;">Datos de Nacimiento: </div></div>
+                    </div>
+
+                    <br>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Departamento: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.NombreDepartamentoNacimiento</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Provincia: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.NombreProvinciaNacimiento</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Distrito: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.NombreDistritoNacimiento</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Centro Poblado: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.NombreCentroPobladoNacimiento</div></div>
+                    </div>
+
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">Pais: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.NombrePaisNacimiento</div></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-lg-12"><hr></div>
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+
+                <div class="col-8">
+                    
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-4 p-0"><div class="fw-bold" style="padding-left: 5px;">N° Cuenta: </div></div>
+                        <div class="col-8 p-0"><div style="padding-left: 5px;">@ViewBag.NroCuenta</div></div>
+                    </div>
+
+                </div>
+
+                <div class="col-4">
+                    
+                    <div class="row m-0" style="font-size: 14px">
+                        <div class="col-8 p-0"><div class="fw-bold" style="padding-left: 5px;">N° Orden Pago: </div></div>
+                        <div class="col-4 p-0"><div style="padding-left: 5px;">@ViewBag.OrdenPago</div></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="~/BootstrapV5.1.3/bootstrap.bundle.min.js"></script>
+
+</body>
+
+
+
+</html>

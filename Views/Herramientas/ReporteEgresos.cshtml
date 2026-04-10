@@ -1,0 +1,196 @@
+﻿@* <div class="modal fade" id="modalReprogramacionMedica" style="background-color: rgba(0, 0, 0, 0.46);" data-backdrop="static"> *@
+<div class="modal fade" id="modalReporteEgresos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="false" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog modal-md">
+
+        <div class="modal-content">
+            <div class="modal-header bg-brown">
+                <h5 class="text-white m-0">Reporte Egresos</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group m-0">
+                            <label for="cboTiposServicioEgresos">Tipo Especialidad</label>
+                            <select class="chzn-select w-100" id="cboTiposServicioEgresos"
+                                data-placeholder="Seleccione una opción">
+                                <option value="3">Hospitalización</option>
+                                <option value="2">Emergencia</option>
+                                <option value="1">Consultorio Externo</option>
+                                @* @foreach (var item in ViewBag.LstTiposServicio)
+                                {
+                                    <option value="@item.IdTipoServicio">@item.Descripcion.ToString()</option>
+                                } *@
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="cboDepartamentoEgresos">Departamento Egreso</label>
+                            <select class="chzn-select w-100" id="cboDepartamentoEgresos"
+                                data-placeholder="Seleccione una opción">
+                                @foreach (var item in ViewBag.LstDepartamentos)
+                                {
+                                    <option value="@item.IdDepartamento">@item.Nombre.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="cboEspecialidadEgresos">Especialidad Egreso</label>
+                            <select class="chzn-select w-100" id="cboEspecialidadEgresos"
+                                data-placeholder="Seleccione una opción">
+                                @foreach (var item in ViewBag.LstEspecialidades)
+                                {
+                                    <option value="@item.IdEspecialidad">@item.Nombre.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="cboServicioEgresos">Servicio Egreso</label>
+                            <select class="chzn-select w-100" id="cboServicioEgresos"
+                                data-placeholder="Seleccione una opción">
+                                @foreach (var item in ViewBag.LstServicios)
+                                {
+                                    <option value="@item.IdServicio">@item.Nombre.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+
+
+                    <div class="col-lg-12">
+                        <div class="form-group m-0">
+                            <label for="cboFuenteFinanciamientoEgresos">Fuente Financiamiento</label>
+                            <select class="chzn-select w-100" id="cboFuenteFinanciamientoEgresos"
+                                data-placeholder="Seleccione una opción">
+                                @foreach (var item in ViewBag.LstFuentesFinanciamiento)
+                                {
+                                    <option value="@item.IdFuenteFinanciamiento">@item.Descripcion.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="form-group m-0">
+                            <label for="txtFechaInicioEgresos">Fecha Inicio</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3"
+                                    placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioEgresos">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar "></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group m-0">
+                            <label for="txtFechaFinEgresos">Fecha Fin</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3"
+                                    placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinEgresos">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar "></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" hidden>
+                    <div class="col-lg-12">
+                        <div class="check__toggle mt-1">
+                            <label class="toggle">
+                                <input class="toggle__input campo bloquear camposRegistro" type="checkbox"
+                                    id="chkConsiderarCPT">
+                                <span class="toggle__label mr-2">
+                                    <span class="toggle__text">Considerar CPT</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="check__toggle mt-1">
+                            <label class="toggle">
+                                <input class="toggle__input campo bloquear camposRegistro" type="checkbox"
+                                    id="chkConsiderarDx">
+                                <span class="toggle__label mr-2">
+                                    <span class="toggle__text">Considerar Dx</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="check__toggle mt-1">
+                            <label class="toggle">
+                                <input class="toggle__input campo bloquear camposRegistro" type="checkbox"
+                                    id="chkEstancia24h">
+                                <span class="toggle__label mr-2">
+                                    <span class="toggle__text">Sólo los que pasaron de 24 hr de ESTANCIA</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="radioButtonStyleLabel">
+                            <input type="radio" name="rdbTipoReporteEgresos" class="radioButtonStyleInput"
+                                id="rdbTipoReporteEgresosReporteGeneral" value="1" checked>
+                            <span class="radioButtonStyleSpan w-100">Reporte General</span>
+                        </label>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label class="radioButtonStyleLabel">
+                            <input type="radio" name="rdbTipoReporteEgresos" class="radioButtonStyleInput"
+                                id="rdbTipoReporteEgresosCeProcedimientos" value="2">
+                            <span class="radioButtonStyleSpan w-100">CE Procedimientos</span>
+                        </label>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label class="radioButtonStyleLabel">
+                            <input type="radio" name="rdbTipoReporteEgresos" class="radioButtonStyleInput"
+                                id="rdbTipoReporteEgresosCeTerapia" value="3">
+                            <span class="radioButtonStyleSpan w-100">CE Terapia</span>
+                        </label>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="row">
+                    <div class="col-xl-3">
+                        <button class="btn btn-brown mt-2" id="btnGenerarReporteEgresos">GENERAR REPORTE</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrarHerrReporteEgresos" class="btn btn-secondary">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

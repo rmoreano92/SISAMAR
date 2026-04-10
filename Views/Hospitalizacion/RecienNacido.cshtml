@@ -1,0 +1,1158 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+    <!--Page level styles-->
+
+    <style>
+        /*-------------------Paridad 1---------------------------------*/
+        .paridad1 {
+        border-width: medium;
+        border-color: #009688;
+        color: #009688;
+        font-weight: bold;
+        }
+
+        .paridad1:hover, .paridad1:focus {           
+        color: #009688;
+        border-color: #009688;
+        background-color: #0096881a;
+        outline: none;
+        }
+
+        .paridad1:focus {           
+        box-shadow: 1px 1px 5px #009688;
+        outline: none;
+        }
+
+
+        /*--------------------Paridad 2--------------------------------*/
+        .paridad2 {
+        border-width: medium;
+        border-color: #E91E63;
+        color: #e91e63;
+        font-weight: bold;
+        }
+
+        .paridad2:hover, .paridad2:focus {
+        color: #e91e63;
+        border-color: #E91E63;
+        background-color: #E91E631a;
+        outline: none;
+        }
+
+        .paridad2:focus {
+        box-shadow: 1px 1px 5px #E91E63;
+        outline: none;
+        }
+
+        /*----------------------Paridad 3------------------------------*/
+        .paridad3 {
+        border-width: medium;
+        border-color: #2196F3;
+        color: #2196f3;
+        font-weight: bold;
+        }
+
+        .paridad3:hover, .paridad3:focus {
+        color: #2196f3;
+        border-color: #2196F3;
+        background-color: #2196F31a;
+        outline: none;
+        }
+
+        .paridad3:focus {
+        box-shadow: 1px 1px 5px #2196F3;
+        outline: none;
+        }
+
+        /*-------------------Paridad 4---------------------------------*/
+        .paridad4 {
+        border-width: medium;
+        border-color: #795548;
+        color: #795548;
+        font-weight: bold;
+        }
+
+        .paridad4:hover, .paridad4:focus {
+        color: #795548;
+        border-color: #795548;
+        background-color: #7955481a;
+        outline: none;
+        }
+
+        .paridad4:focus {
+        box-shadow: 1px 1px 5px #795548;
+        outline: none;
+        }
+
+        /*-----------------------------------------------------------------------*/
+        .align-items-center {
+        -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+        align-items: center !important;
+        }
+
+        .justify-content-between {
+        -webkit-box-pack: justify !important;
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+        }
+    </style>
+}
+@using CapaEntidades
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa-solid fa-baby-carriage mr-1"></i>
+                Datos del Parto  @*- @ViewBag.Area*@
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Datos del Parto</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+
+<div class="row m-0">
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+            <li class="nav-item m-0" role="presentation" hidden>
+                <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Registro RN</a>
+            </li>
+        </ul>
+        <div class="tab-content border p-1" id="myTabContent">
+
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <input hidden="hidden" id="idGrupo" name="idGrupo" type="text" class="form-control" value="@ViewBag.Vista">
+                <input hidden="hidden" id="idServicio" name="idServicio" type="text" class="form-control" value="@ViewBag.Servicio">
+
+                <div class="row">
+                    <div class="col-lg-12 mb-2">
+                        <div class="card">
+                            <div class="card-block pb-0">
+                                <div class="row">
+                                    <div class="col-md-2" style="max-width: 160px">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroCuentaFiltro" class="d-block text-truncate">Nro.Cuenta</label>
+                                            <input id="txtNroCuentaFiltro" type="text" class="form-control form-control-sm solo-numero search" min="0" autocomplete="off">
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-md-2" style="max-width: 160px">
+                                        <div class="form-group m-0">
+                                            <label for="txtDniFiltro" class="d-block text-truncate">DNI</label>
+                                            <input id="txtDniFiltro" type="text" class="form-control form-control-sm solo-numero search" min="0" autocomplete="off">
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-md-2" style="max-width: 160px">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroHistoriaFiltro" class="d-block text-truncate">Nro.Historia</label>
+                                            <input id="txtNroHistoriaFiltro" type="text" class="form-control form-control-sm solo-numero search" min="0" autocomplete="off">
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-md-2">                                        
+                                        <div class="form-group m-0">
+                                            <label for="txtApPaternoFiltro" class="d-block text-truncate">Ap.Paterno</label>
+                                            <input id="txtApPaternoFiltro" type="text" class="form-control form-control-sm search" autocomplete="off">
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtApMaternoFiltro" class="d-block text-truncate">Ap.Materno</label>
+                                            <input id="txtApMaternoFiltro" type="text" class="form-control form-control-sm search" autocomplete="off">
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-md-2" style="max-width: 160px">
+                                        <div class="form-group m-0">
+                                            <label for="txtDniMadreFiltro" class="d-block text-truncate">DNI Madre</label>
+                                            <input id="txtDniMadreFiltro" type="text" class="form-control form-control-sm solo-numero search" min="0" autocomplete="off">
+                                        </div>                                        
+                                    </div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-2" style="max-width: 150px">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaFiltro" class="d-block text-truncate">Fecha</label>
+                                            <div class="input-group form-group input-group-sm">
+                                                <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFiltro" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-md-5 col-lg-4" style="max-width: 250px">
+                                        <div class="form-group mb-0">
+                                            <label style="width: 100%;" class="d-block text-truncate">Tipo Fecha</label>
+                                            <div class="switch-field">
+                                                <input type="radio" id="rdbFechaNacimientoFiltro" name="rdbFechaFiltro" class="rdbFechaFiltro" value="1" checked>
+                                                <label for="rdbFechaNacimientoFiltro" class="">F. Nacimiento</label>
+                                                <input type="radio" id="rdbFechaFiliacionFiltro" name="rdbFechaFiltro" class="rdbFechaFiltro" value="2">
+                                                <label for="rdbFechaFiliacionFiltro" class="">F. Filiación</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-6  d-flex align-items-end" style="height: 54px;">
+                                        <div>
+                                            <button type="button" class="btn btn-sm btn-primary px-2 mr-1" onclick="RegistroRN.ListarPacientesRegistroRN();" id="btnBuscarPacientesRegistrRN">Buscar</button>
+                                            <button type="button" class="btn btn-sm btn-secondary px-2" onclick="RegistroRN.LimpiarFiltros();">Limpiar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @{
+                                    if (@ViewBag.Agregar)
+                                    {
+                                        <button class="btn btn-success layout_btn_prevent" onclick="RegistroRN.BuscarPacienteRegistroRn();" id="btnCambiarGrafico">Agregar</button>
+                                    }
+                                    if (@ViewBag.Modificar)
+                                    {
+                                        <button class="btn btn-info layout_btn_prevent" onclick="RegistroRN.ModificarRegistroRn();" id="btnCambiarGrafico">Modificar</button>
+                                    }
+                                    if (@ViewBag.Eliminar)
+                                    {
+                                        <button class="btn btn-danger layout_btn_prevent" onclick="RegistroRN.EliminarRegistroRN();" id="btnCambiarGrafico">Eliminar</button>
+                                    }
+                                    if (@ViewBag.Consultar)
+                                    {
+                                        <button class="btn btn-warning layout_btn_prevent" onclick="RegistroRN.ConsultarRegistroRn();" id="btnCambiarGrafico">Consultar</button>
+                                    }
+                                }
+                            </div>
+                            @* <div class="col-lg-4 text-xs-center">
+                                @{
+                                    if (@ViewBag.Agregar)
+                                    {
+                                        <button class="btn btn-success layout_btn_prevent" onclick="" id="btnAgregarLibroNacimiento">Paciente Sin Historia</button>
+                                    }
+                                }
+                            </div> *@
+                            <div class="col-lg-6">
+                                <div class="text-sm-right" >
+                                    @* @if (ViewBag.PermisoFiliacionRn > 0)
+                                    {
+                                        <button class="btn btn-teal layout_btn_prevent" id="btnAbrirModalFiliacionRn"><i class="fa fi fi-ss-hospital-user text-sm-left" style="width: 23px;"></i>Filiación Rn</button>
+                                    }
+                                    @if (ViewBag.PermisoRegistroNacimiento > 0)
+                                    {
+                                        <button class="btn btn-teal layout_btn_prevent" id="btnAbrirModalRegistroNacimiento"><i class="fa fi fi-ss-baby text-sm-left" style="width: 23px;"></i>Registro Nacimiento</button>
+                                    } *@
+
+                                    @if (ViewBag.PermisoFiliacionRn > 0)
+                                    {
+                                        <button class="btn btn-teal layout_btn_prevent" id="btnAbrirModalFiliacionRn"><i class="fa fi fi-ss-hospital-user text-sm-left" style="width: 23px;"></i>DATOS DE NACIMIENTO DEL NEONATO</button>
+                                    }
+                                    @if (ViewBag.PermisoRegistroNacimiento > 0)
+                                    {
+                                        <button class="btn btn-teal layout_btn_prevent" id="btnAbrirModalRegistroNacimiento"><i class="fa fi fi-ss-baby text-sm-left" style="width: 23px;"></i>Registro Nacimiento</button>
+                                    }
+                                    <button class="btn btn-success layout_btn_prevent" id="btnReporte" data-toggle="modal" style="margin: 2px;" onclick="RegistroRN.AbrirModalReporte();"><i class="fa-solid fa-file-excel mr-1"></i>Reportes</button>
+                                    <button class="btn btn-brown layout_btn_prevent" id="btnMigracion" data-toggle="modal" style="margin: 2px;" onclick="RegistroRN.AbrirModalMigracion();"><i class="fas fa-paper-plane mr-1"></i>Migración</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <table id="lstRnHospitalizados" width="100%" class="table table-sm table-bordered table-content-sm" @*data-source="/RecienNacido/ListaAtencionesDelDia?area=Hospitalizacion"*@>
+                            <thead style="color: white; background: #434343;">
+                                <tr>
+                                    <th data-columna="" valign="middle" align="center" width="5%">Cuenta</th>
+                                    <th data-columna="" valign="middle" align="center" width="5%">Historia</th>
+                                    <th data-columna="" valign="middle" align="center" width="13%">Paciente</th>
+                                    <th data-columna="" valign="middle" align="center" width="5%">N° Doc.</th>
+                                    <th data-columna="" valign="middle" align="center" width="6%">Fec. Naci.</th>
+                                    <th data-columna="" valign="middle" align="center" width="7%">Sexo</th>
+                                    <th data-columna="" valign="middle" align="center" width="7%">Doc. Madre</th>
+                                    <th data-columna="" valign="middle" align="center" width="13%">Madre</th>                                    
+                                    <th data-columna="" valign="middle" align="center" width="10%">Serv. Ingreso</th>
+                                    <th data-columna="" valign="middle" align="center" width="10%">Serv. Actual</th>
+                                    <th data-columna="" valign="middle" align="center" width="7%">Base</th>
+                                    <th data-columna="" valign="middle" align="center" width="6%">Brazalete</th>
+                                    <th data-columna="" valign="middle" align="center" width="6%">Filiación</th>
+                                    @*<th data-columna="servicioIngreso" valign="middle" align="center">Servicio Origen</th>
+                                        <th data-columna="fechaIngreso" valign="middle" align="center">Fecha.Ingreso</th>*@
+                                    @*<th data-columna="plann" valign="middle" align="center">Plan</th>*@
+                                    @*<th data-columna="direccion" valign="middle" align="center">Direccion</th>
+                                        <th data-columna="estado" valign="middle" align="center">Estado</th>
+                                        <th data-columna="horaIngreso" valign="middle" align="center">HoraIgreso</th>*@
+                                </tr>
+                            </thead>
+                            <tbody style="cursor: pointer;"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!--=============================================Panel Registro==================================================================-->
+            <div class="tab-pane fade" id="TabPanelRegistro" role="tabpanel" aria-labelledby="TabRegistro">                                
+                <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/RegistroRecienNacido.cshtml" />
+                @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Hospitalizacion/RegistroRecienNacido.cshtml")*@
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/RegistroLibroNacimientos.cshtml" />
+
+<partial name="~/Views/Shared/Components/VistasParciales/Paciente/PacienteBusqueda.cshtml" />
+
+
+<!--- MODAL REGISTRO RN -------------------------SE COMENTO PORQUE YA NO SE USARA ESTA VISTA PARA EL REGISTRO-->
+
+@*<div class="modal fade in display_none" id="modalRegistroRN" tabindex="-1" role="dialog" aria-hidden="false" style="overflow-y: scroll;">
+
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header bg-info">
+
+                <div style="display:inline-flex">
+                    <div id="BadgeEvaluacion" style="max-width: 280px;" class="m-auto">
+                        <div class="msc-hotline bg-blue" style="background-color: #f7f7f7 !important;">
+                            <div class="msc-hotline-icon bg-secondary">
+                                <i class="fa-solid fa-baby"></i>
+                            </div>
+                            <div class="msc-hotline-content m-auto">
+                                <div class="msc-hotline-title">
+                                    <span id="lblMedicoProgramado" class="text-info">REGISTRO RECIÉN NACIDO</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div style="display:inline-flex; margin-top:0.5rem">
+                    <span class="chip secondary" id="CuentaHeaderModal" style="font-size: 14px;font-weight: normal;letter-spacing: 1px;"></span>
+                    <span class="chip secondary" id="HistoriaHeaderModal" style="font-size: 14px;font-weight: normal;letter-spacing: 1px;"></span>
+                </div>
+                <div style="display:inline-flex; margin-top:0.5rem;">
+                    <span class="chip secondary" id="PacienteHeaderModal" style="font-size: 14px;font-weight: normal;letter-spacing: 1px;"></span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/RegistroRecienNacido.cshtml" />
+
+                <div class="modal-footer d-flex justify-content-end pb-0">
+                    <div>
+                        <button id="btnGuardar" onclick="RegistroRN.Guardar();" type="button" class="btn btn-primary btn-lg mb-1 pl-3 pr-3" style="max-width: 140px">Guardar</button>
+                        <button type="button" onclick="RegistroRN.cerrarModal();" class="btn btn-secondary btn-lg mb-1 ml-2 pl-3 pr-3" style="max-width: 140px">Cancelar</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>*@
+<!-- END modal-->
+
+
+
+@*===============CONSUMO EN EL SERVICIO (SE RETIRO EL MODULO SEGUN ACUEROD REUNION - SE HARA EL REGISTRO EN NOTA DE INGRESO)======================*@
+@*<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistro.cshtml" />
+<input hidden="hidden" id="hdIdTipoServicio" name="hdIdTipoServicio" type="text" class="form-control" value="@ViewBag.Servicio">*@
+@*==================================================================================================================================================*@
+
+
+@*=======================================================MODAL TRIAJE RN=========================================================================================== *@
+<div class="modal fade display_none in" id="modalTriajeRn" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static">
+
+    <div class="modal-dialog modal-xxl">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header bg-deep-teal">
+                <h5 class="modal-title text-white" id="tituloRpt">Triajes relacionados al neonato</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="tblTriajeRn" class="table table-sm table-content-sm table-bordered w-100" style="cursor: default;">
+                                            <thead style="color: white; background: #434343;">
+                                                <tr>
+                                                    <th style="width:7%">N° Triaje</th>
+                                                    <th style="width:7%">N° Cuenta</th>
+                                                    <th style="width:7%">N° Historia</th>
+                                                    <th style="width:20%">Paciente Rn</th>
+                                                    <th style="width:9%">Fec. Nac. Rn</th>
+                                                    <th style="width:8%">Sexo Rn</th>
+                                                    <th style="width:9%">Tipo Gest.</th>
+                                                    <th style="width:7%">Fetos</th>
+                                                    <th style="width:8%">Gemelar</th>
+                                                    <th style="width:9%">Condición</th>
+                                                    <th style="width:9%">Fecha Triaje</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-teal" id="btnAgregarTriajeRn"><i class="fa-solid fa-baby"></i><i class="fa-solid fa-check-double mr-1"></i>Cargar</button>
+                    <button type="button" class="btn btn-secondary" id="btnCancelarTriajeRn">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* ============================================================================================================================================================= *@
+
+
+
+
+@*=======================================================MODAL DIAGNOSTICOS RN=========================================================================================== *@
+<div class="modal fade display_none in" id="modalDiagnosticosRn" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header bg-success">
+                <h5 class="modal-title text-white" id="tituloRpt">Diagnósticos</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group m-0">
+                                            <label for="cboConjuntoDiagnosticos" class=" form-control-label">Tipo Diagnóstico</label>
+                                            <select id="cboConjuntoDiagnosticos" class="chzn-select" data-placeholder="Seleccione una opción">
+                                            </select>
+                                        </div>                                        
+                                    </div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group m-0">
+                                            <label for="cboDiagnosticosRn" class=" form-control-label">Diagnóstico</label>
+                                            <select id="cboDiagnosticosRn" class="chzn-select" data-placeholder="Seleccione una opción">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-sm btn-success layout_btn_prevent" id="btnAgregarDiagnosticoRn" style="margin-top: 30px;"><i class="fa-solid fa-plus"></i> Agregar</button>                                        
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="tblDiagnosticosRn" width="100%" class="table table-sm table-bordered table-content-sm" >
+                                            <thead style="color: white; background: #434343;">
+                                                <tr>                                                    
+                                                    <th data-columna="" valign="middle" width="25%">Grupo</th>
+                                                    @* <th data-columna="" valign="middle" align="center" width="10%">CIE10</th> *@
+                                                    <th data-columna="" valign="middle" width="60%">Diagnostico</th>
+                                                    <th data-columna="" valign="middle" align="center" width="15%">Accion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="cursor: pointer;"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">                    
+                    <button type="button" class="btn btn-secondary" id="btnCancelarDiagnosticosRn">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* ============================================================================================================================================================= *@
+
+
+@* =======================================================MODAL REPORTE=========================================================================================== *@
+<div class="modal fade display_none in" id="modalReporte" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static">
+
+    <div class="modal-dialog modal-sm">
+
+        <div class="modal-content" id="Reporte">
+            <div class="modal-header modal-header bg-success">
+                <h5 class="modal-title text-white" id="tituloRpt">Reportes</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="name4" class=" form-control-label">Tipo Reporte</label>
+                                            <select id="cboTipoReporte" class="chzn-select" style="display: none;">
+                                                <option value="1">Parte Diario de Partos y Nacimientos</option>
+                                                <option value="2">Reporte Registro de Nacimientos</option>
+                                                <option value="3">Reporte Estadístico de Nacimientos</option>
+                                                @*<option value="3">Reporte Anual de Parto y Nacimientos</option>*@
+                                            </select>
+                                        </div>
+                                        <div class="form-group FechaIniRpt">
+                                            <label for="name4" class=" form-control-label">Fecha Inicio</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioRpt" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group FechaFinRpt">
+                                            <label for="name4" class=" form-control-label">Fecha Fin</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinRpt" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnGenerarReporte" type="button" class="btn btn-success" onclick="RegistroRN.GenerarReporteRegistroRn();">Generar Reporte</button>
+                    <button type="button" class="btn btn-secondary" onclick="RegistroRN.CerrarModalReporte();">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* ============================================================================================================================================================= *@
+
+@if (ViewBag.PermisoFiliacionRn > 0)
+{
+    @*=======================================================MODAL FILIACION RN=========================================================================================== *@
+    <div class="modal fade" id="modalFiliacionRn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header modal-header bg-deep-teal">
+                    <h5 class="modal-title text-white" id="tituloRpt">DATOS DE NACIMIENTO DEL NEONATO</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xl-12 mb-1">
+                            <div class="card bg-orange">
+                                <div class="card-header bg-white">Datos de la Madre</div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group mb-0">
+                                                <label for="txtNroCuentaMadreFiliacion" class="form-control-label"><b>Nro. Cuenta</b></label>
+                                                <div class="input-group input-group-sm d-flex">
+                                                    <input id="txtNroCuentaMadreFiliacion" autocomplete="off" placeholder="" class="solo-numero form-control writing buscarMadreFiliacion">
+                                                    <div class="input-group-append" style="margin-left: -2px;">
+                                                        <button class="btn btn-primary buscarMadreFiliacion" type="button" id="btnBuscarMadreFiliacion"><i class="fas fa-search"></i></button>
+                                                        <button class="btn btn-secondary " type="button" id="btnCambiarMadreFiliacion"><i class="fas fa-rotate-right"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtNroHistoriaMadreFiliacion">Historia Clinica</label>
+                                                        <input type="text" class="form-control form-control-sm reading" id="txtNroHistoriaMadreFiliacion" disabled autocomplete="off">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtNombreMadreFiliacion">Datos Personales</label>
+                                                        <input type="text" class="form-control form-control-sm reading" id="txtNombreMadreFiliacion" disabled autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtEdadMadreFiliacion">Edad (años)</label>
+                                                        <input type="text" class="form-control form-control-sm reading" id="txtEdadMadreFiliacion" disabled autocomplete="off">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtTipoDocMadreFiliacion">Tipo Documento</label>
+                                                        <input type="text" class="form-control form-control-sm reading" id="txtTipoDocMadreFiliacion" disabled autocomplete="off">
+                                                        @*<select id="cboTipoDocMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select> *@
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtNroDocMadreFiliacion">Nro Documento</label>
+                                                        <input type="text" class="form-control form-control-sm reading" id="txtNroDocMadreFiliacion" disabled autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <div class="card bg-yellow">
+                                <div class="card-header bg-white">Datos de Nacimiento del Neonato</div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-sm-7">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtFechaNacimientoFiliacion" class="text-info">Fecha Nacimiento</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 writing" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNacimientoFiliacion">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtHoraNacimientoFiliacion" class="text-info">Hora Nac. </label>
+                                                        <input type="text" class="form-control form-control-sm writing" id="txtHoraNacimientoFiliacion" placeholder="__:__" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group mb-0">
+                                                <label for="cboTipoSexoFiliacion" class="text-info">Sexo</label>
+                                                <select id="cboTipoSexoFiliacion" class="chzn-select campo-select writing" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+
+                                            <div class="casilla mt-1">
+                                                <h5>N° Gemelar</h5>
+                                                <div class="form-group mb-0">
+                                                    <label for="cboTipoGestacionFiliacion" class="text-info">Tipo de Gestación</label>
+                                                    <select id="cboTipoGestacionFiliacion" class="chzn-select campo-select writing" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mb-0">
+                                                            <label for="txtNroFetosFiliacion" class="text-info">N° de Fetos</label>
+                                                            <input type="text" class="form-control form-control-sm solo-numero writing" id="txtNroFetosFiliacion" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mb-0">
+                                                            <label for="cboNumeroGemelarFiliacion" class="text-info">Gemelar</label>
+                                                            <select id="cboNumeroGemelarFiliacion" class="chzn-select writing" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group mb-0" hidden>
+                                                <label for="cboRiesgoFiliacion">Riesgo del RN</label>
+                                                <select id="cboRiesgoFiliacion" class="chzn-select writing" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            @* <div class="row">
+                                            <div class="col-xxl-8 col-md-12">
+                                                <div class="form-group mb-0">
+                                                    <label for="cboCondicion" class="text-info">Condición del Neonato</label>
+                                                    <select id="cboCondicion" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-12 col-md-12" id="ObitoPeso">
+                                                <div class="form-group mb-0">
+                                                    <label style="width: 100%;">Óbito</label>
+                                                    <div class="switch-field">
+                                                        <input type="radio" id="rdbObitoNo" name="rdbObito" class="rdbObito field" />                                                        
+                                                        <input type="radio" id="rdbObitoSiMenor" name="rdbObito" class="rdbObito field" />
+                                                        <label for="rdbObitoSiMenor" class="pl-1 pr-1">&#60 500 GR</label>
+                                                        <input type="radio" id="rdbObitoSiMayor" name="rdbObito" class="rdbObito field" />
+                                                        <label for="rdbObitoSiMayor" class="pl-1 pr-1">&#62; 500 GR</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> *@
+
+                                            <div class="form-group mb-0">
+                                                <label for="cboServicioIngresoFiliacion" class="text-info">Servicio de Ocurrencia del Parto</label>
+                                                <select id="cboServicioIngresoFiliacion" class="chzn-select writing" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+
+                                            <div class="form-group mb-0">
+                                                <label for="cboProcedenciaFiliacion">Otra Procedencia</label>
+                                                <select id="cboProcedenciaFiliacion" class="chzn-select campo" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+
+                                            <div class="form-group mb-0" hidden>
+                                                <label for="cboDiagnosticoIngresoFiliacion" class="text-info">Diagnóstico Ingreso</label>
+                                                <select id="cboDiagnosticoIngresoFiliacion" class="chzn-select writing" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+
+                                            <div class="form-group mb-0">
+                                                <label for="cboMedicoIngresoFiliacion" class="text-info">Profesional Atendio el Parto</label>
+                                                <select id="cboMedicoIngresoFiliacion" class="chzn-select writing" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-teal" id="btnGuardarFiliacionRn" style="width: 80px;">Guardar</button>
+                    <button type="button" class="btn btn-secondary" id="btnCerrarModalFiliacionRn" style="width: 80px;">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* ============================================================================================================================================================= *@
+
+}
+
+
+@if (ViewBag.PermisoRegistroNacimiento > 0)
+{
+    @*=======================================================MODAL FILIACION RN=========================================================================================== *@
+    <div class="modal fade" id="modalRegistroNacimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog modal-xxl">
+
+            <div class="modal-content">
+                <div class="modal-header modal-header bg-deep-teal">
+                    <h5 class="modal-title text-white" id="tituloRpt">Registro de Nacimiento</h5>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="myTabRegistroNacimientos" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a href="#" class="nav-link nav-link-custom active" id="TabRegistroNacimiento" data-toggle="tab" data-target="#TabPanelRegistroNacimiento" role="tab" aria-controls="TabPanelRegistroNacimiento" aria-selected="true">Registro</a>
+                        </li>
+                        <li class="nav-item m-0" role="presentation">
+                            <a href="#" class="nav-link nav-link-custom" id="TabListaRegistrosNacimientos" data-toggle="tab" data-target="#TabPanelListaRegistrosNacimientos" role="tab" aria-controls="TabPanelListaRegistrosNacimientos" aria-selected="false">Lista</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border p-1" id="myTabContentRegistroNacimientos">
+
+                        <!--=============================================Panel Busqueda==================================================================-->
+                        <div class="tab-pane fade active in" id="TabPanelRegistroNacimiento" role="tabpanel" aria-labelledby="TabRegistroNacimiento">
+                            <div class="row">
+                                <div class="col-xl-12 mb-1">
+                                    <div class="card bg-orange">
+                                        <div class="card-header bg-white">Datos de la Madre</div>
+                                        <div class="card-block">
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtNroCuentaMadreRegistroNacimiento" class="form-control-label"><b>Nro. Cuenta</b></label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input id="txtNroCuentaMadreRegistroNacimiento" autocomplete="off" placeholder="" class="solo-numero form-control writing buscarMadreRegistroNacimiento">
+                                                            <div class="input-group-append" style="margin-left: -2px;">
+                                                                <button class="btn btn-primary buscarMadreFiliacion" type="button" id="btnBuscarMadreRegistroNacimiento"><i class="fas fa-search"></i></button>
+                                                                <button class="btn btn-secondary " type="button" id="btnCambiarMadreRegistroNacimiento"><i class="fas fa-rotate-right"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <div class="form-group mb-0">
+                                                                <label for="txtNroHistoriaMadreRegistroNacimiento">Nº Historia</label>
+                                                                <input type="text" class="form-control form-control-sm reading" id="txtNroHistoriaMadreRegistroNacimiento" disabled autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <div class="form-group mb-0">
+                                                                <label for="txtNombreMadreRegistroNacimiento">Datos Personales</label>
+                                                                <input type="text" class="form-control form-control-sm reading" id="txtNombreMadreRegistroNacimiento" disabled autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <div class="form-group mb-0">
+                                                                <label for="txtEdadMadreRegistroNacimiento">Edad (años)</label>
+                                                                <input type="text" class="form-control form-control-sm reading" id="txtEdadMadreRegistroNacimiento" disabled autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="form-group mb-0">
+                                                                <label for="txtTipoDocMadreRegistroNacimiento">Tipo Documento</label>
+                                                                <input type="text" class="form-control form-control-sm reading" id="txtTipoDocMadreRegistroNacimiento" disabled autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="form-group mb-0">
+                                                                <label for="txtNroDocMadreRegistroNacimiento">Nro Documento</label>
+                                                                <input type="text" class="form-control form-control-sm reading" id="txtNroDocMadreRegistroNacimiento" disabled autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-12">
+                                    <div class="card bg-yellow">
+                                        <div class="card-header bg-white">Datos de Nacimiento</div>
+                                        <div class="card-block">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="row">
+                                                        <div class="col-sm-7">
+                                                            <div class="form-group mb-0">
+                                                                <label for="txtFechaNacimientoRegistroNacimiento" class="text-info">Fecha Nacimiento</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 writing" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNacimientoRegistroNacimiento">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar "></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="form-group mb-0">
+                                                                <label for="txtHoraNacimientoRegistroNacimiento" class="text-info">Hora Nac. </label>
+                                                                <input type="text" class="form-control form-control-sm writing" id="txtHoraNacimientoRegistroNacimiento" placeholder="__:__" autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group mb-0">
+                                                        <label for="cboTipoSexoRegistroNacimiento" class="text-info">Sexo</label>
+                                                        <select id="cboTipoSexoRegistroNacimiento" class="chzn-select campo-select writing" data-placeholder="Seleccione una opción"></select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-5">
+                                                    <div class="casilla mt-1">
+                                                        <h5>N° Gemelar</h5>
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <div class="form-group mb-0">
+                                                                    <label for="cboTipoGestacionRegistroNacimiento" class="text-info">Tipo de Gestación</label>
+                                                                    <select id="cboTipoGestacionRegistroNacimiento" class="chzn-select campo-select writing" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="form-group mb-0">
+                                                                    <label for="txtNroFetosRegistroNacimiento" class="text-info">N° de Fetos</label>
+                                                                    <input type="text" class="form-control form-control-sm solo-numero writing" id="txtNroFetosRegistroNacimiento" autocomplete="off">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="form-group mb-0">
+                                                                    <label for="cboNumeroGemelarRegistroNacimiento" class="text-info">Gemelar</label>
+                                                                    <select id="cboNumeroGemelarRegistroNacimiento" class="chzn-select writing" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="casilla mt-1 pt-0">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group mb-0">
+                                                                    <label for="cboCondicionRegistroNacimiento">Condición del Neonato</label>
+                                                                    <select id="cboCondicionRegistroNacimiento" class="chzn-select field" data-placeholder="Seleccione una opción"></select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12" id="ObitoPesoRegistroNacimiento">
+                                                                <div class="form-group mb-0">
+                                                                    <label style="width: 100%;">Óbito</label>
+                                                                    <div class="switch-field">
+                                                                        <input type="radio" id="rdbObitoRegistroNacimientoNo" name="rdbObito" class="rdbObito field" />
+                                                                        @*<label for="rdbObitoNo" class="pl-2 pr-2">No</label>*@
+                                                                        <input type="radio" id="rdbObitoRegistroNacimientoSiMenor" name="rdbObitoRegistroNacimiento" class="rdbObitoRegistroNacimiento field" />
+                                                                        <label for="rdbObitoRegistroNacimientoSiMenor" class="pl-1 pr-1">&#60 500 GR</label>
+                                                                        <input type="radio" id="rdbObitoRegistroNacimientoSiMayor" name="rdbObitoRegistroNacimiento" class="rdbObitoRegistroNacimiento field" />
+                                                                        <label for="rdbObitoRegistroNacimientoSiMayor" class="pl-1 pr-1">&#62; 500 GR</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--=============================================Panel Registro==================================================================-->
+                        <div class="tab-pane fade" id="TabPanelListaRegistrosNacimientos" role="tabpanel" aria-labelledby="TabListaRegistrosNacimientos">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table id="tblRegistroNacimientos" class="table table-sm table-content-sm table-bordered w-100" style="cursor: default;">
+                                        <thead style="color: white; background: #434343;">
+                                            <tr>
+                                                <th style="width:7%">N° Nacimiento</th>
+                                                <th style="width:7%">N° Cuenta Madre</th>
+                                                <th style="width:7%">N° Historia Madre</th>
+                                                <th style="width:20%">Madre</th>
+                                                <th style="width:9%">Fec. Nac. Rn</th>
+                                                <th style="width:8%">Sexo Rn</th>
+                                                <th style="width:9%">Tipo Gest.</th>
+                                                <th style="width:7%">Fetos</th>
+                                                <th style="width:8%">Gemelar</th>
+                                                <th style="width:8%">Condición</th>
+                                                <th style="width:8%">Opciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-teal" id="btnGuardarRegistroNacimiento" style="width: 80px;">Guardar</button>
+                    <button type="button" class="btn btn-secondary" id="btnCerrarModalRegistroNacimiento" style="width: 80px;">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* ============================================================================================================================================================= *@
+
+}
+
+
+
+@* =======================================================MODAL MIGRACION HISTORIAS=========================================================================================== *@
+
+
+<div class="modal fade display_none in" id="modalMigracionHistorias" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static">
+
+    <div class="modal-dialog modal-xxl">
+
+        <div class="modal-content" id="Reporte">
+            <div class="modal-header modal-header bg-brown">
+                <h5 class="modal-title text-white" id="tituloRpt">Migración de Historias</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">
+
+                                <div class="row">
+                                    <div class="col-md-2" style="max-width: 150px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtAnioMigrar" class="form-control-label">Año</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtAnioMigrar" autocomplete="off" placeholder="" class=" solo-numero form-control search3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" style="max-width: 230px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtAnioMigrar" class="form-control-label">Tipo Busqueda</label>
+                                            <div class="input-group input-group-sm">
+                                                <div class="form-check form-check-inline pl-0">
+                                                    <input class="" type="radio" name="TipoFiltroMigracion" id="TipoFiltroMigracionFecha" value="1">
+                                                    <label class="pl-1" for="TipoFiltroMigracionFecha">Fecha</label>
+                                                </div>
+                                                <div class="form-check form-check-inline mt-0">
+                                                    <input class="" type="radio" name="TipoFiltroMigracion" id="TipoFiltroMigracionHistoria" value="2">
+                                                    <label class="pl-1" for="TipoFiltroMigracionHistoria">Historia</label>
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-md-2" id="FiltroFechaMigracion" style="max-width: 170px;">
+                                        <div class="form-group">
+                                            <label for="txtFechaMigrar" class=" form-control-label">Fecha</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaMigrar" autocomplete="off">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2" id="FiltroHistoriaMigracion" style="max-width: 170px;">
+                                        <div class="form-group">
+                                            <label for="txtNroHistoriaMigrar" class="form-control-label">N° Historia</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtNroHistoriaMigrar" autocomplete="off" placeholder="" class=" solo-numero form-control search3">
+                                            </div>
+                                        </div>
+                                    </div>      
+                                    <div class="col-md-3 d-flex align-items-end" style="height: 54px;">
+                                        <div>
+                                            <button type="button" class="btn btn-sm btn-primary" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="RegistroRN.ListarMigracionPacientesRecienNacido();" id="btnBuscarMigracionPacientesRN">Buscar</button>&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-sm btn-secondary" style="padding-left: 2rem !important; padding-right: 2rem !important;" onclick="RegistroRN.LimpiarFiltrosMigracion();">limpiar</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="tblPacientesMigrar" width="100%" class="table table-sm table-bordered">
+                                            <thead style="color: white; background: #434343;">
+                                                <tr>
+                                                    <th data-columna="" valign="middle" align="center" width="5%">Fec. Nac.</th>
+                                                    <th data-columna="" valign="middle" align="center" width="5%">Hora Nac.</th>
+                                                    <th data-columna="" valign="middle" align="center" width="5%">Talla</th>
+                                                    <th data-columna="" valign="middle" align="center" width="5%">Peso</th>
+                                                    <th data-columna="" valign="middle" align="center" width="6%">Per. Cef.</th>
+                                                    <th data-columna="" valign="middle" align="center" width="7%">APGAR 1</th>
+                                                    <th data-columna="" valign="middle" align="center" width="7%">APGAR 5</th>
+                                                    <th data-columna="" valign="middle" align="center" width="5%">HC Mat</th>
+                                                    <th data-columna="" valign="middle" align="center" width="3%">HC Neo</th>
+                                                    <th data-columna="" valign="middle" align="center" width="1%">Tipo Parto</th>                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody style="cursor: pointer;"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnGuardar" type="button" class="btn btn-brown pl-2 pr-2" onclick="RegistroRN.MigrarHistoriaPacientes();">Migrar</button>
+                    <button type="button" class="btn btn-secondary" onclick="RegistroRN.CerrarModalMigracion();">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* ============================================================================================================================================================= *@
+
+
+<style>
+    .max-w-150 {
+        max-width: 150px !important;
+    }
+
+    .max-w-250 {
+        max-width: 250px !important;
+    }
+
+    .max-w-350 {
+        max-width: 350px !important;
+    }
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+    .chosen-disabled .chosen-single {
+        background: #eceeef !important;
+        border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+</style>
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/sortable/js/Sortable.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/slimscroll/js/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Facturacion/ConsumoServicioV2.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Brazalete.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Hospitalizacion/RecienNacido.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Hospitalizacion/FiliacionRecienNacido.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+    
+
+}

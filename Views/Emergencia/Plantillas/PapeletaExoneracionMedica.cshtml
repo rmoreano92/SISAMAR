@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Papeleta de Exoneración Médica</title>
+
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        margin: -10px 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .line {
+        border-bottom: 1px dotted black;
+        display: inline-block;
+        height: 14px;
+    }
+
+    .titulo {
+        text-align: center;
+        font-weight: bold;
+        margin: 15px 0;
+        font-size: 14px;
+    }
+
+    .small {
+        font-size: 8px;
+    }
+	
+	.grid{
+		margin: auto;
+	}
+    .grid div{
+		margin: auto;
+        border: 1px solid black;
+        height: 18px;
+        width: 25px;
+		text-align:center;
+    }
+
+</style>
+</head>
+
+<body>
+
+    <!-- CABECERA -->
+    <table>
+        <tr>
+            <td style="width:180px; vertical-align:top;text-align:center;margin-top:-40px;position:absolute;top:0">
+                <img src="@($"{Context.Request.Scheme}://{Context.Request.Host}/images/logo.png")" style="width:50px;" /><br>
+                <span class="small">
+                    DIRECCIÓN DEL CENTRO MÉDICO NAVAL<br>
+                    "CIRUJANO MAYOR SANTIAGO TÁVARA"
+                </span>
+            </td>
+
+            <td style="text-align:right;">
+                N° <span class="line" style="width:120px;"></span><br><br>
+                FECHA <span class="line" style="width:120px;"></span>
+            </td>
+        </tr>
+    </table>
+
+    <div class="titulo">
+        PAPELETA DE EXONERACIÓN MÉDICA TEMPORAL
+    </div>
+
+    <!-- DATOS -->
+    <table>
+        <tr>
+            <td>
+                GRADO, NOMBRES Y APELLIDOS:
+                <span class="line" style="width:70%;">@ViewBag.Grado - @ViewBag.Paciente</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                CIP:
+                <span class="line" style="width:25%;">@ViewBag.FichaFamiliar</span>
+                &nbsp;&nbsp;
+                DNI:
+                <span class="line" style="width:40%;">@ViewBag.NroDocumento</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                CÓDIGO INTERNACIONAL DE ENFERMEDADES (CIE-10):
+                <span class="line" style="width:55%;"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                JUNTA MÉDICA (INSTITUCIONAL O INTERINSTITUCIONAL) N°
+                <span class="line" style="width:120px;"></span>
+                DE FECHA:
+                <span class="line" style="width:120px;"></span>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <strong>EL PACIENTE DEBERÁ REALIZAR LO SIGUIENTE:</strong>
+
+    <br><br>
+
+    <!-- LISTA + CUADRÍCULA -->
+    <table>
+	    <tr>
+            <td></td>
+            <td style="text-align:center;">SI</td>
+            <td style="text-align:center;">NO</td>        
+        </tr>
+		    <tr>
+                <td> 1. Ejercicios Físicos Militares</td>
+                <td class="grid"><div></div></td><td class="grid"><div></div></td>
+            </tr>
+		    <tr>
+                <td> 2. Formaciones</td>
+                <td class="grid"><div></div></td><td class="grid"><div></div></td>
+            </tr>
+		    <tr>
+                <td> 3. Guardias sin restricciones</td>
+                <td class="grid"><div></div></td><td class="grid"><div></div></td>
+            </tr>
+		    <tr>
+                <td> 4. Guardias, realizando solo actividades administrativas</td>
+                <td class="grid"><div></div></td><td class="grid"><div></div></td>
+            </tr>
+		    <tr>
+                <td> 5. Comisiones, realizando actividades castrenses</td>
+                <td class="grid"><div></div></td><td class="grid"><div></div></td>
+            </tr>
+		    <tr>
+                <td> 6. Comisiones, realizando solo actividades administrativas</td>
+                <td class="grid"><div></div></td><td class="grid"><div></div></td>
+            </tr>
+		    <tr>
+                <td> 7. Conducir vehículos (militar y particular)</td>
+                <td class="grid"><div></div></td><td class="grid"><div></div></td>
+            </tr>
+		    <tr>
+                <td> 8. Uso de uniforme</td>
+                <td class="grid"><div></div></td><td class="grid"><div></div></td>
+            </tr>
+		    <tr>
+                <td> 9. Uso de prenda de vestir civil en las actividades laborales</td>
+                <td class="grid"><div></div></td><td class="grid"><div></div></td>
+            </tr>
+		    <tr>
+                <td> 10. Laborar en Unidades (Buques)</td>
+                <td class="grid"><div></div></td><td class="grid"><div></div></td>
+            </tr>
+		    <tr>
+                <td> 11. Otros (debidamente justificados): <span class="line" style="width:60%;"></span></td>
+                <td class="grid"><div></div></td><td class="grid"><div></div></td>
+            </tr>    
+    </table>
+
+    <br>
+
+    <!-- TEXTO FINAL -->
+    <table>
+        <tr>
+            <td>
+                Se expide la presente exoneración por el periodo de
+                <span class="line" style="width:200px;"></span>
+                (EN LETRAS Y NÚMEROS)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                a partir de la fecha de la presente.
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <div class="small">
+        NOTA:<br>
+        * La numeración y fecha correlativa deberá ser registrado por el Servicio tratante.
+    </div>
+
+    <br><br>
+
+    <!-- FIRMAS -->
+    <table>
+        <tr>
+            <td style="width:50%; text-align:center;">
+                <span class="line" style="width:250px;"></span><br>
+                Servicio de <span class="line" style="width:150px;"></span><br>
+                Grado/Médico Cirujano<br>
+                Nombres y Apellidos<br>
+                CIP <span class="line" style="width:120px;"></span><br>
+                C.M.P <span class="line" style="width:80px;"></span>
+                R.N.E <span class="line" style="width:80px;"></span>
+            </td>
+
+            <td style="width:50%; text-align:center;">
+                <span class="line" style="width:250px;"></span><br>
+                V° B°<br>
+                Grado<br>
+                Jefe del Servicio de <span class="line" style="width:120px;"></span><br>
+                Nombres y Apellidos<br>
+                CIP <span class="line" style="width:120px;"></span>
+            </td>
+        </tr>
+    </table>
+
+    <br><br>
+
+    <!-- DISTRIBUCION -->
+    <div class="small">
+        DISTRIBUCIÓN:<br>
+        Copia: Historia Clínica<br>
+        Archivo
+    </div>
+
+</body>
+</html>

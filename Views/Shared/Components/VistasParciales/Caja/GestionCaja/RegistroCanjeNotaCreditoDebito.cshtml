@@ -1,0 +1,154 @@
+﻿<div class="row mb-1">
+    <div class="col-xl-12">
+        <div class="card bg-blue">
+            @* <div class="card-header bg-white">XXXXXX</div> *@
+            <div class="card-block">
+                <div class="row">   
+                    <div class="col-xl-12">
+                        <div class="d-flex mt-1">
+                            <label id="optTipoNotaCredito" class="radioButtonStyleLabel mr-1" style="display: flex;">
+                                <input type="radio" name="rdbTipoNota" class="radioButtonStyleInput" id="rdbTipoNotaCredito" value="2" checked>
+                                <span class="radioButtonStyleSpan w-100">DEVOLUCIÓN DE DINERO POR NOTA DE CRÉDITO</span>
+                            </label>
+                            <label id="optTipoNotaDebito" class="radioButtonStyleLabel mr-1" style="display: flex;">
+                                <input type="radio" name="rdbTipoNota" class="radioButtonStyleInput" id="rdbTipoNotaDebito" value="1">
+                                <span class="radioButtonStyleSpan w-100">CANJEAR NOTA DE DÉBITO</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="row">
+                            <div class="col-xl-5">
+                                <div class="form-group m-0">
+                                    <label for="txtNroSerieNotaCreditoDebitoBuscar" class="form-label d-block text-truncate">Nº Serie</label>
+                                    <input id="txtNroSerieNotaCreditoDebitoBuscar" autocomplete="off" placeholder="" class="form-control form-control-sm solo-numero searchNota">
+                                </div>
+                            </div>
+                            <div class="col-xl-7">
+                                <div class="form-group m-0">
+                                    <label for="txtNroDocumentoNotaCreditoDebitoBuscar" class="form-label d-block text-truncate">Nº Documento</label>
+                                    <input id="txtNroDocumentoNotaCreditoDebitoBuscar" autocomplete="off" placeholder="" class="form-control form-control-sm solo-numero searchNota">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div style="margin-top: 28px;">
+                            <button id="btnBuscarNotaCreditoDebito" class="btn btn-sm btn-indigo layout_btn_prevent" style="min-width: 70px; display: inline-block;" type="button">Buscar</button>
+                            <button id="btnLimpiarNotaCreditoDebito" class="btn btn-sm btn-secondary layout_btn_prevent" style="min-width: 70px; display: inline-block;" type="button">Limpiar</button>
+                        </div>
+                    </div>                    
+                </div>                                         
+            </div>
+        </div>        
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card bg-teal">
+            <div class="card-header bg-white">Detalle de la Nota</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="form-group m-0">
+                            <label for="txtTipoNotaCreditoDebito" class="form-label d-block text-truncate">Tipo Nota</label>
+                            <input id="txtTipoNotaCreditoDebito" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="row">
+                            <div class="col-xl-5">
+                                <div class="form-group m-0">
+                                    <label for="txtNroSerieNotaCreditoDebito" class="form-label d-block text-truncate">Nº Serie</label>
+                                    <input id="txtNroSerieNotaCreditoDebito" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                </div>
+                            </div>
+                            <div class="col-xl-7">
+                                <div class="form-group m-0">
+                                    <label for="txtNroDocumentoNotaCreditoDebito" class="form-label d-block text-truncate">Nº Documento</label>
+                                    <input id="txtNroDocumentoNotaCreditoDebito" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="form-group m-0">
+                            <label for="txtEstadoNotaCreditoDebito" class="form-label d-block text-truncate">Estado</label>
+                            <input id="txtEstadoNotaCreditoDebito" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="form-group m-0">
+                            <label for="txtFechaEmisionNotaCreditoDebito" class="form-label d-block text-truncate">Fecha Emisión</label>
+                            <input id="txtFechaEmisionNotaCreditoDebito" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="form-group m-0">
+                            <label for="txtTipoDocumentoIdentidadNotaCreditoDebito" class="form-label d-block text-truncate">Tipo Documento</label>
+                            <input id="txtTipoDocumentoIdentidadNotaCreditoDebito" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="form-group m-0">
+                            <label for="txtNroDocumentoIdentidadNotaCreditoDebito" class="form-label d-block text-truncate">Nº Documento</label>
+                            <input id="txtNroDocumentoIdentidadNotaCreditoDebito" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="form-group m-0">
+                            <label for="txtRazonSocialNotaCreditoDebito" class="form-label d-block text-truncate">Razón Social ó Apellidos y Nombres</label>
+                            <input id="txtRazonSocialNotaCreditoDebito" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="form-group m-0">
+                            <label for="txtDireccionNotaCreditoDebito" class="form-label d-block text-truncate">Dirección</label>
+                            <input id="txtDireccionNotaCreditoDebito" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3">
+                        <div class="form-group m-0">
+                            <label for="txtMotivoNotaCreditoDebito" class="form-label d-block text-truncate">Motivo</label>
+                            <input id="txtMotivoNotaCreditoDebito" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="form-group m-0">
+                            <label for="txtResponableAprobacionNotaCreditoDebito" class="form-label d-block text-truncate">Responable de la Aprobación</label>
+                            <input id="txtResponableAprobacionNotaCreditoDebito" autocomplete="off" placeholder="" class="form-control form-control-sm reading" disabled>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group m-0">
+                            <label for="txtConceptoNotaCreditoDebito" class="form-label d-block text-truncate">Concepto</label>
+                            <textarea id="txtConceptoNotaCreditoDebito" style="overflow:scroll;" class="form-control reading" rows="4" disabled></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-10"></div>
+                    <div class="col-xl-2">
+                        <div class="form-group m-0">
+                            <label for="txtImporteNotaCreditoDebito" class="form-label d-block text-truncate font-weight-bold">IMPORTE</label>
+                            <div class="input-group">
+                                <input id="txtImporteNotaCreditoDebito" type="text" autocomplete="off" class="form-control reading" disabled>
+                                <span class="input-group-addon">S/.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarCanjeNotaCreditoDebito" style="min-width: 150px;" disabled>DEVOLUCIÓN</button>                
+            </div>
+        </div>
+    </div>
+</div>

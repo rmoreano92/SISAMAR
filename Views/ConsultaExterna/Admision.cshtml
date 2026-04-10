@@ -1,0 +1,446 @@
+﻿@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-th"></i>
+                @ViewBag.Area
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Admisión</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <i class="fa fa-pencil-square-o"></i> Admisión
+                    </div>
+
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card m-t-5">
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <form id="frmAdmisionFiltro" autocomplete="off" onsubmit="return false;">
+                                                    <div class="row">
+
+                                                        <div class="col-lg-2">
+                                                            <label for="txtNroCuentaBusq" class="form-control-label">N° Cuenta</label>
+                                                            <div class="form-group">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtNroCuentaBusq" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <label for="txtNroDniBusq" class="form-control-label">N° Dni</label>
+                                                            <div class="form-group">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtNroDniBusq" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <label for="txtNroHistoriaBusq" class="form-control-label">N° Historia</label>
+                                                            <div class="form-group">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtNroHistoriaBusq" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <label for="txtApPaternoBusq" class="form-control-label">Apellido Paterno</label>
+                                                            <div class="form-group">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtApPaternoBusq" autocomplete="off" placeholder="" class=" form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <label for="txtApMaternoBusq" class="form-control-label">Apellido Materno</label>
+                                                            <div class="form-group">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtApMaternoBusq" autocomplete="off" placeholder="" class=" form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <label for="txtFechaAdmBusq" class="form-control-label">Fecha Cita</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAdmBusq" name="FechaAdmBusq">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                                                <button class="btn btn-sm btn-primary layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscar">Buscar</button>
+                                                <button class="btn btn-sm btn-default layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiar">Limpiar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-lg-12">
+                                @{
+                                                @*if (@ViewBag.Agregar)
+                                                {
+                                    <button class="btn btn-success layout_btn_prevent" id="btnAgregar">Agregar</button>
+                                                }
+                                                if (@ViewBag.Modificar)
+                                                {
+                                    <button class="btn btn-primary layout_btn_prevent" id="btnModificar">Modificar</button>
+                                                }*@
+                                                @*if (@ViewBag.Eliminar)
+                                        {
+                                    <button class="btn btn-danger layout_btn_prevent" id="btnEliminar">Eliminar</button>
+                                                }*@
+                                                @*if (@ViewBag.Consultar)
+                                                {
+                                    <button class="btn btn-warning layout_btn_prevent" id="btnConsultar">Consultar</button>
+                                                }*@
+                                                if (@ViewBag.Modificar)
+                                                {
+                                    <button class="btn btn-success layout_btn_prevent" id="btnLlegoPaciente">Confirmar Llegada</button>
+                                                }
+                                }
+
+                                <table id="tblTriajeCE" class="table table-sm table-bordered ">
+                                    <thead style="color: white; background: #434343;">
+                                        <tr >
+                                            <th class="text-nowrap">N° Cuenta</th>
+                                            <th class="text-nowrap">N° Historia</th>
+                                            <th class="text-nowrap">Paciente</th>
+                                            <th class="text-nowrap">Ap. Paterno</th>
+                                            <th class="text-nowrap">Ap. Materno</th>
+                                            <th class="text-nowrap">1er Nombre</th>
+                                            <th class="text-nowrap">Estado Cola</th>
+                                            <th class="text-nowrap">Consultorio</th>
+                                            <th class="text-nowrap">Fecha Cita</th>
+                                            <th class="text-nowrap">Hora Cita</th>
+                                            <th class="text-nowrap">Ticket</th>
+                                            <th class="text-nowrap">Id Cita</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+
+                                <div id="leyendaColaCita" class="cola-legend text-center mt-2">
+                                    <span class="cola-legend__title">Estados de cola:</span>
+
+                                    <span class="cola-legend__item">
+                                        <span class="cola-legend__dot dot-blue"></span> Citado
+                                    </span>
+                                    <span class="cola-legend__item">
+                                      <span class="cola-legend__dot dot-info"></span> Llegó
+                                    </span>
+                                    <span class="cola-legend__item">
+                                      <span class="cola-legend__dot dot-warning"></span> Triaje
+                                    </span>
+                                    <span class="cola-legend__item">
+                                      <span class="cola-legend__dot dot-danger"></span> Llamando
+                                    </span>
+                                    <span class="cola-legend__item">
+                                        <span class="cola-legend__dot dot-primary"></span> En Atención
+                                    </span>
+                                    <span class="cola-legend__item">
+                                      <span class="cola-legend__dot dot-success"></span> Atendido
+                                    </span>
+                                    <span class="cola-legend__item">
+                                        <span class="cola-legend__dot dot-secondary"></span> No se presentó
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalTriaje" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Triaje</h4>
+            </div>
+            <div class="modal-body">
+                <partial name="~/Views/Shared/Components/VistasParciales/TriajeV2.cshtml" />
+            </div>
+            <div class="modal-footer">
+
+                <button id="btnguardarTriaje" class="btn  btn-primary "> Registrar</button>
+                <button id="btnCerrarModalTriaje" target="_blank" class="btn  btn-secondary "> Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+*@
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalTicket" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Cita</h4>
+            </div>
+            <div class="modal-body" style="background-color:#b4c6d6">
+
+                <iframe id="ifrmTicketCita"
+                        title="Inline Frame Example"
+                        width="100%"
+                        height="600"
+                        src=""></iframe>
+
+            </div>
+            <div class="modal-footer" style="background-color:#ced8e1">
+                <button id="btnCerrarTicket" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalLlegada" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Registro de Llegada</h4>
+            </div>
+            <div class="modal-body">
+                <partial name="~/Views/ConsultaExterna/AdmisionLlegada.cshtml" />
+            </div>
+            <div class="modal-footer">
+
+                <button id="btnGuardarLlegada" class="btn btn-success"> Confirmar llegada</button>
+                <button id="btnCerrarModalLlegada" target="_blank" class="btn  btn-secondary "> Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<iframe id="ifrmReporte"
+        title="Inline Frame Example"
+        width="100"
+        height="600" hidden="hidden"
+        src=""></iframe>
+
+
+@section Scripts
+            {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/moment/js/moment-with-locales.js"></script>
+    
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    @*<script type="text/javascript" src=@Href("~/js/VistasParciales/Triaje.js")></script>*@
+    <script type="text/javascript" src=@Href("~/js/ConsultaExterna/Admision.js")></script>
+
+    @*COMENTADO POR KHOYOSI - (DESCOMENTAR DESPUES)
+        <script type="text/javascript" src=@Href("~/js/Comun/Referencia.js")></script>
+        <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientosSalud.js")></script>*@
+
+
+
+}
+
+<style>
+    body {
+        padding-right: 0px !important;
+    }
+
+    nav.navbar {
+        background-color: #CC1414;
+    }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+    /*==============REFCON===============*/
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff !important;
+            border-color: #ccc !important;
+        }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                        width: 100% !important;
+                    }*/
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+    /*==============Leyenda Estado Cola Cita - inicio ===============*/
+    .cola-legend{
+        font-size: .78rem;
+        color: #6c757d;
+        padding-top: .35rem;
+        margin-top: .35rem;
+        border-top: 1px solid rgba(0,0,0,.08);
+    }
+
+    .cola-legend__title{
+        margin-right: .6rem;
+        font-weight: 600;
+        color: #7a7a7a;
+    }
+
+    .cola-legend__item{
+        display: inline-flex;
+        align-items: center;
+        margin: 0 .55rem .25rem 0;
+        white-space: nowrap;
+    }
+
+    .cola-legend__dot{
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: .35rem;
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,.12);
+    }
+
+    /* Colores (ajusta si tus chips usan otros tonos) */
+    .dot-blue{ background:#4e73df; }
+    .dot-info{ background:#36b9cc; }       /* Llegó (cian) */
+    .dot-warning{ background:#f6c23e; }    /* Triaje */
+    .dot-danger{ background:#e74a3b; }     /* Llamando */
+    .dot-primary{ background:#007bff; }
+    .dot-success{ background:#1cc88a; }    /* Atendido */
+    .dot-secondary{ background:#6c757d; }
+
+    /* Chips (si tu .chip es custom) */
+    .chip.info{ background:#36b9cc; }
+    .chip.warning{ background:#f6c23e; color:#111; } /* opcional: texto oscuro */
+    .chip.danger{ background:#e74a3b; }
+    .chip.success{ background:#1cc88a; }
+    /*==============Leyenda Estado Cola Cita - fin ===============*/
+</style>

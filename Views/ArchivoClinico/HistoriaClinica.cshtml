@@ -1,0 +1,250 @@
+﻿@using Microsoft.Extensions.Configuration;
+@using System.Data
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/context-menu.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa @ViewBag.Icono"></i>
+                @ViewBag.Modulo
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Modulo</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+                    </li>
+                    <li class="nav-item m-0" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Registro Resultados</a>
+                    </li>
+                </ul>
+                <div class="tab-content border p-1" id="myTabContent">
+                    <!--=============================================Panel Busqueda==================================================================-->
+                    <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                        <div class="row">
+                            <div class="col-xl-12 mb-2">
+                                <div class="card">
+                                    <div class="card-block pb-1">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-xl-2 col-xxl-1">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroHistoriaHcBusq" class="d-block text-truncate">Nº Historia</label>
+                                                    <input id="txtNroHistoriaHcBusq" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-5 col-xxl-5">
+                                                <div class="row">
+                                                    <div class="col-xl-4">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtApPaternoHcBusq" class="d-block text-truncate">Ap. Paterno</label>
+                                                            <input id="txtApPaternoHcBusq" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtApMaternoHcBusq" class="d-block text-truncate">Ap. Materno</label>
+                                                            <input id="txtApMaternoHcBusq" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtNombresHcBusq" class="d-block text-truncate">Nombre</label>
+                                                            <input id="txtNombresHcBusq" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-xxl-3">
+                                                <div class="d-flex" style="margin-top: 30px;">
+                                                    <button class="btn btn-sm btn-primary layout_btn_prevent mr-2" style="min-width: 70px;" id="btnBuscar">Buscar</button>
+                                                    <button class="btn btn-sm btn-secondary layout_btn_prevent" style="min-width: 70px;" id="btnLimpiar">Limpiar</button>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6">
+                                @{
+                                    if (@ViewBag.Agregar)
+                                    {
+                                        // <button class="btn btn-success layout_btn_prevent" id="btnAgregar">Agregar</button>
+                                    }
+                                    if (@ViewBag.Modificar)
+                                    {
+                                        <button class="btn btn-info layout_btn_prevent" id="btnModificar">Modificar</button>
+                                    }
+                                    if (@ViewBag.Eliminar)
+                                    {
+                                        // <button class="btn btn-danger layout_btn_prevent" id="btnEliminar">Eliminar</button>
+                                    }
+                                    if (@ViewBag.Consultar)
+                                    {
+                                        // <button class="btn btn-warning layout_btn_prevent" id="btnConsultar">Consultar</button>
+                                    }
+                                }
+                            </div>
+
+                            <div class="col-xl-12">
+                                <table id="tblHistorias" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                    <thead style="color: white; background: #434343;">
+                                        <tr>
+                                            <th>N° Historia</th>
+                                            <th>Apellido Paterno</th>
+                                            <th>Apellido Materno</th>
+                                            <th>Nombres</th>
+                                            <th>Fecha Creación</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/ArchivoClinico/HistoriaClinica/RegistroHistoria.cshtml" />
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalPacientesBusqueda" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered" id="tblPacientesBusqueda" width="100%">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th>Ap.Paterno</th>
+                                        <th>Ap.Materno</th>
+                                        <th>1erNombre</th>
+                                        <th>2doNombre</th>
+                                        <th>Nro.Historia</th>
+                                        <th>FechaNac.</th>
+                                        <th>Ult.Tipo</th>
+                                        <th>Ult.Serv.Ing.</th>
+                                        <th>UltFechaIng.</th>
+                                        <th>Ult.FechaEgr.</th>
+                                        <th>EstadoHistoria</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+
+    @* <script type="text/javascript" src="~/AdmiRE/js/ProgressBar.js"></script> *@
+
+
+    <script type="text/javascript" src=@Href("~/js/ArchivoClinico/HistoriaClinica.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Variables.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js?v=" + version)></script>
+
+
+
+}
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .tabListEvaluacion h6 {
+        background-color: #394273;
+    }
+
+    .tabListEvaluacion .nav-link.active, .tabListEvaluacion .nav-link.active:focus {
+        background: #878fbb !important;
+    }
+
+    /* .nav-tabs {
+                    width: 250px;
+                } */
+
+    /* /* .nav-link {
+                    cursor: pointer;
+                } */
+
+    /* .submenu {
+                    padding-left: 20px;
+                } */
+
+    /* Mostrar el submenú cuando está activo */
+    .submenu .nav-link.active {
+        background-color: transparent !important;
+        color: inherit !important;
+    }
+</style>

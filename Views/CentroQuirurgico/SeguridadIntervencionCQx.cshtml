@@ -1,0 +1,1681 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen1.css
+                                " />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-bed-pulse"></i>
+                @*@ViewBag.Area*@
+                Lista de Verificación en Cirugía
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Lista de Verificación en Cirugía</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<input type="text" id="hdNroEvaluacion" hidden />
+<input type="text" id="hdIdTipoServicio" hidden />
+<input type="hidden" value="@ViewBag.idMedico" id="idMedicotxt" />
+<input type="hidden" value="@ViewBag.idUsuario" id="idUsuariotxt" />
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="card-block p-t-5">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+                    </li>
+                    <li class="nav-item m-0" role="presentation">
+                        @* <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Nota de ingreso</a> *@
+                        <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Registro</a>
+                    </li>
+                </ul>
+
+                <div class="card">
+                    <div class="card-block">
+                        <div id="clothing-nav-content" class="tab-content pt-1">
+
+                            <div role="tabpanel" class="tab-pane fade in active" id="TabPanelBusqueda" aria-labelledby="TabBusqueda-tab">
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card bg-green m-t-5">
+                                            <div class="card-block pb-0">
+                                                <div class="row mt-1 mb-1">
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtNroCuentaBusqueda" class="form-control-label">N° Cuenta</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtNroCuentaBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtNroHistoriaBusqueda" class="form-control-label">N° Historia</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtNroHistoriaBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtNroDocumentoBusqueda" class="form-control-label">N° Documento</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtNroDocumentoBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtAPaternoBusqueda" class="form-control-label">A. Paterno</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtAPaternoBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtAMaternoBusqueda" class="form-control-label">A. Materno</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtAMaternoBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtNombresBusqueda" class="form-control-label">Nombres</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control" id="txtNombresBusqueda">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtFechaInicioBusqueda" class="form-control-label">Fecha Inicio</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioBusqueda">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3" style="max-width: 180px;">
+                                                        <label for="txtFechaFinBusqueda" class="form-control-label">Fecha Fin</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 maskFecha" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinBusqueda">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3">
+                                                        <label for="cboServicioBusqueda" class="form-control-label">Servicio</label>
+                                                        <div class="input-group">
+                                                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboServicioBusqueda"></select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg-3 col-md-3 d-flex align-items-end" style="height: 50px;">
+                                                        <div>
+                                                            <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarAtenciones">Buscar</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 pt-2 pb-0">
+                                        @{
+                                            if (@ViewBag.Agregar)
+                                            {
+                                                @*<button class="btn btn-primary layout_btn_prevent" id="btnAgregar">Agregar</button>*@
+                                            }
+                                            if (@ViewBag.Modificar)
+                                            {
+                                                <button class="btn btn-info layout_btn_prevent" id="btnModificarAtencion">Modificar</button>
+                                            }
+                                            if (@ViewBag.Eliminar)
+                                            {
+                                                @* <button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtencion">Eliminar</button> *@
+                                            }
+                                            if (@ViewBag.Consultar)
+                                            {
+                                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtencion">Consultar</button>
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="col-lg-12 mt-1">
+                                        <button class="btn btn-success" id="btnAbrirModalReporte"><i class="fa-solid fa-file-excel"></i> Generar Reporte</button>
+                                        <table id="tblAtenciones" width="100%" class="table table-sm table-content-sm table-striped table-bordered w-100">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th style="width:5%">N° Cuenta</th>
+                                                    <th style="width:5%">N° Historia.</th>
+                                                    <th style="width:25%">Paciente</th>
+                                                    <th style="width:10%">Fecha Ingreso</th>
+                                                    <th style="width:10%">Fecha Egreso</th>
+                                                    <th style="width:15%">Servicio Ing.</th>
+                                                    <th style="width:15%">Servicio Actual.</th>
+                                                    <th style="width:15%">Plan</th>
+                                                    <th style="width:5%; text-align: center;" align="center">Informe</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="TabPanelRegistro" aria-labelledby="TabPanelRegistro-tab">
+                                @* <div id="modulo"></div> *@
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card m-t-5 bg-blue">
+                                            <div class="card-header bg-white">Datos generales</div>
+                                            <div class="card-block m-t-5">
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <label for="txtNroCuenta">N° Cuenta</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtNroCuenta" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtNroHistoria">N° Historia</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtNroHistoria" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtNroDocumento">N° Documento</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtNroDocumento" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label for="txtApellidosNombrePaciente">Nombres</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtApellidosNombrePaciente" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtSexo">Sexo</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtSexo" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="form-control-label">Edad</label>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" class="form-control" placeholder="Año" aria-describedby="basic-addon2" id="txtEdadAnio" disabled>
+                                                                    <span class="input-group-addon" id="basic-addon2">A</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" class="form-control" placeholder="Mes" aria-describedby="basic-addon2" id="txtEdadMes" disabled>
+                                                                    <span class="input-group-addon" id="basic-addon2">M</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" class="form-control" placeholder="Mes" aria-describedby="basic-addon2" id="txtEdadDia" disabled>
+                                                                    <span class="input-group-addon" id="basic-addon2">D</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtTipoAtencion">Tipo de Atención</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtTipoAtencion" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtServicioActual">Servicio Actual</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtServicioActual" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtFechaIngreso" class="form-control-label">Fecha de Ingreso</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off" class="form-control campoRegistro form_val_popup_dp3 bloquear maskFecha" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIngreso" disabled>
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        <label for="txtCodigoCama">Cama</label>
+                                                        <div class="form-group m-0">
+                                                            <input type="text" class="form-control campoRegistro form-control-sm" id="txtCodigoCama" placeholder="" autocomplete="off" disabled="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*<div class="row">
+                                <div class="col-md-12">
+                                <partial name="~/Views/Shared/Components/VistasParciales/Triaje.cshtml" />
+                                </div>
+                                </div>*@
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card m-t-10">
+                                                    <div class="card">
+                                                        <ul id="ListaOpcionesEval" class="nav nav-tabs tabs-left" role="tablist">
+
+                                                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                <a class="nav-link active" href="#entradaInduccionAnestesia" role="tab" id="entradaInduccionAnestesia-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>Entrada (Inducción Anestesia)</a>
+                                                            </li>
+
+                                                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                <a class="nav-link" href="#pausaQuirurgica" role="tab" id="pausaQuirurgica-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>Pausa Quirurgica (Incision)</a>
+                                                            </li>
+
+                                                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                <a class="nav-link " href="#salida" role="tab" id="salida-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>Salida (Anterior)</a>
+                                                            </li>
+
+                                                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                                                <a class="nav-link" href="#profesionalSaludAsignados" role="tab" id="profesionalSaludAsignados-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>Prof. Salud Asignados</a>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mt-1" id="PanelEvaluaciones">
+                                            <div class="col-lg-12">
+                                                <form>
+                                                    <fieldset class="m-0 pr-1 pl-1 pb-1">
+                                                        <legend class="mb-0">Evaluaciones del Paciente</legend>
+                                                        <table id="tblEvaluaciones" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                                                            <thead style="color: white;">
+                                                                <tr style="background-color: #434343;">
+                                                                    <th style="width:30% !important; text-align:center;">Eval.</th>
+                                                                    <th style="width:70% !important;">Médico</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+
+                                                        <div class="row mt-1" id="divFirma">
+                                                            <div class="col-xs-12 text-xs-center">
+                                                                <button type="button" style="width: 60px;" class="btn btn-sm btn-success" id="ImprimirEvalEmerCF"><i class="fa fa-print"></i></button>
+                                                                <button type="button" style="width: 60px;" class="btn btn-sm btn-info" id="FirmarEvalEmer"><i class="fa fa-pencil"></i></button>
+                                                                <button type="button" style="width: 60px;" class="btn btn-sm btn-warning" id="ImprimirEvalEmerSF"><i class="fa fa-eye"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-2">
+                                            <div class="col-lg-12">
+                                                <button style="width:100%;letter-spacing: 1px;" class="btn btn-success font-weight-bold layout_btn_prevent" id="btnNuevaEvaluacion"><i style="width: 20px; text-align:center;" class="fa-solid fa-file-plus"></i> NUEVA EVALUACIÓN</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div id="BadgeEvaluacion" style="max-width: 280px;" class="">
+                                                    <div class="msc-hotline bg-blue mt-1">
+                                                        <div class="msc-hotline-icon bg-info">
+                                                            <i class="fa-solid fa-baby"></i>
+                                                        </div>
+                                                        <div class="msc-hotline-content m-auto">
+                                                            <div class="msc-hotline-title">
+                                                                <span id="lblNumeroEvaluacion" class="text-info"></span>
+                                                            </div>
+                                                            <div class="msc-hotline-text" id="lblTipoEvaluacion"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="d-flex" style="float: right;">
+                                                    <div class="form-group text-right mr-2" style="width: 200px;">
+                                                        <label for="FechaInicioAtencion" class="form-control-label" style="font-weight: bold;">Fecha Evaluación</label>
+                                                        <div class="input-group">
+                                                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 text-info entrada" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="FechaInicioAtencion" style="font-weight: bold;border-color:#ff9900;" readonly>
+                                                            <span class="input-group-addon " for="FechaInicioAtencion" id="FechaInicioAtencionIcon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group text-right" style="width: 200px;">
+                                                        <label for="HoraInicioAtencion" class="form-control-label" style="font-weight: bold;">Hora Inicio Atención (24 h)</label>
+                                                        <div class="input-group">
+                                                            <input type="text" autocomplete="off" class="form-control text-info text-right entrada" name="HoraInicioAtencion" id="HoraInicioAtencion" onblur="valida_hora(value)" style="font-weight: bold;border-color:#ff9900;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card m-t-10">
+                                            <div class="card">
+
+                                                <div class="card-block" id="CardEva">
+                                                    <div id="clothing-nav1-content" class="tab-content fade in active">
+
+                                                        @*============================== INDUCCION ANESTESIA =======================================*@
+                                                        <div role="tabpanel" class="tab-pane fade show in active" id="entradaInduccionAnestesia" aria-labelledby="entradaInduccionAnestesia-tab">
+                                                            <div class="card-header text-center mb-1" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">ENTRADA (Inducción Anestesia)</div>
+
+                                                            <div class="card bg-yellow">
+                                                                <div class="card-block">
+
+
+                                                                    <div class="card bg-blue mb-1 mt-1" style="padding-bottom: 0px;">
+                                                                        <div class="card-block">
+                                                                            <div class="row">
+                                                                                <div class="col-xl-2 col-lg-6 col-md-12">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label for="cboTipoPaciente">Tipo de paciente</label>
+                                                                                        <select id="cboTipoPaciente" class="chzn-select campo-select field" data-placeholder="Seleccione una opción"></select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-xl-3 col-lg-6 col-md-12">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Estado Paciente</label>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbEstadoPacienteConsciente" name="rdbEstadoPaciente" value="1" class="rdbEstadoPaciente field" />
+                                                                                            <label for="rdbEstadoPacienteConsciente" class="pl-2 pr-2">Consciente</label>
+                                                                                            <input type="radio" id="rdbEstadoPacienteInconsciente" name="rdbEstadoPaciente" value="2" class="rdbEstadoPaciente field" />
+                                                                                            <label for="rdbEstadoPacienteInconsciente" class="pl-2 pr-2">Inconsciente</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-xl-3 col-lg-6 col-md-12">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Conoce a su Cirujano</label>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbPacienteConoceCirujanoSi" name="rdbPacienteConoceCirujano" value="1" class="rdbPacienteConoceCirujano field" />
+                                                                                            <label for="rdbPacienteConoceCirujanoSi" class="pl-2 pr-2">Si</label>
+                                                                                            <input type="radio" id="rdbPacienteConoceCirujanoNo" name="rdbPacienteConoceCirujano" value="2" class="rdbPacienteConoceCirujano field" />
+                                                                                            <label for="rdbPacienteConoceCirujanoNo" class="pl-2 pr-2">No</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-xl-3 col-lg-6 col-md-12">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Se marcó el sitio quirúrgico</label>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbSeMarcoSitioQuirurgicoSi" name="rdbSeMarcoSitioQuirurgico" value="1" class="rdbSeMarcoSitioQuirurgico field" />
+                                                                                            <label for="rdbSeMarcoSitioQuirurgicoSi" class="pl-2 pr-2">Si</label>
+                                                                                            <input type="radio" id="rdbSeMarcoSitioQuirurgicoNo" name="rdbSeMarcoSitioQuirurgico" value="2" class="rdbSeMarcoSitioQuirurgico field" />
+                                                                                            <label for="rdbSeMarcoSitioQuirurgicoNo" class="pl-2 pr-2">No</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="card bg-blue mb-1" style="padding-bottom: 0px;">
+                                                                        <div class="card-header bg-white">Confirmación de datos Adultos</div>
+                                                                        <div class="card-block">
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkConfirmacionNombreAdultos">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Nombre</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkConfirmacionZonaOperatoriaAdultos">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Zona Operatoria</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkConfirmacionProcedimientoAdultos">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Procedimiento</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkConfirmacionConsentimientoAdultos">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Consentimiento Informado</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="card bg-blue mb-1" style="padding-bottom: 0px;">
+                                                                        <div class="card-header bg-white">Confirmación de datos Neonatos Inconscientes</div>
+                                                                        <div class="card-block">
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkConfirmacionNombreNeonatos">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Nombre</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkConfirmacionZonaOperatoriaNeonatos">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Zona Operatoria</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkConfirmacionProcedimientoNeonatos">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Procedimiento</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkConfirmacionConsentimientoNeonatos">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Consentimiento Informado</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="card bg-blue" style="padding-bottom: 0px;">
+                                                                        <div class="card-header bg-white">Seguridad Anestésica</div>
+                                                                        <div class="card-block">
+                                                                            <div class="row mt-1">
+
+                                                                                <div class="col-lg-6">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkOximetroPulsoColocadoFuncionando">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Oximetro de pulso colocado en el paciente y funcionando</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkAspirador">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Aspirador</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkEquipoViaArea">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Equipo de vía Aérea</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-lg-6">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkMaquinaAnestesiaOperativa">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Maquina de Anestesia Operativa</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkDrogasEmergencia">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Drogas de Emergencia</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-3">
+                                                                                    <div class="check__toggle mt-04">
+                                                                                        <label class="toggle">
+                                                                                            <input class="toggle__input campo" type="checkbox" id="chkOxigeno">
+                                                                                            <span class="toggle__label mr-2">
+                                                                                                <span class="toggle__text">Oxigeno</span>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="card bg-blue mt-1" style="padding-bottom: 0px;">
+                                                                        <div class="card-block">
+
+                                                                            <div class="row">
+                                                                                <div class="col-lg-4">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="row">
+                                                                                            <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12">
+
+                                                                                                <label style="width: 100%;">Alergia conocida del paciente</label>
+                                                                                            </div>
+                                                                                            <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12">
+                                                                                                <div class="switch-field mt-1">
+                                                                                                    <input type="radio" id="rdbAlergiaConocidaSi" name="rdbAlergiaConocida" value="1" class="rdbPacienteConoceCirujano field" />
+                                                                                                    <label for="rdbAlergiaConocidaSi" class="pl-2 pr-2">Si</label>
+                                                                                                    <input type="radio" id="rdbAlergiaConocidaNo" name="rdbAlergiaConocida" value="2" class="rdbPacienteConoceCirujano field" />
+                                                                                                    <label for="rdbAlergiaConocidaNo" class="pl-2 pr-2">No</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="row">
+                                                                                            <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12">
+                                                                                                <label style="width: 100%;">Riesgo pérdida de sangre</label>
+                                                                                            </div>
+                                                                                            <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12">
+                                                                                                <div class="switch-field mt-1">
+                                                                                                    <input type="radio" id="rdbRiesgoPerdidaSangreSi" name="rdbRiesgoPerdidaSangre" value="1" class="rdbPacienteConoceCirujano field" />
+                                                                                                    <label for="rdbRiesgoPerdidaSangreSi" class="pl-2 pr-2">Si</label>
+                                                                                                    <input type="radio" id="rdbRiesgoPerdidaSangreNo" name="rdbRiesgoPerdidaSangre" value="2" class="rdbPacienteConoceCirujano field" />
+                                                                                                    <label for="rdbRiesgoPerdidaSangreNo" class="pl-2 pr-2">No</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="row">
+                                                                                            <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12">
+                                                                                                <label style="width: 100%;">Dificultades en via aérea y/o Riesgo de Aspiración</label>
+                                                                                            </div>
+                                                                                            <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12">
+                                                                                                <div class="switch-field mt-1">
+                                                                                                    <input type="radio" id="rdbDificultadesViaAreaSi" name="rdbDificultadesViaArea" value="1" class="rdbPacienteConoceCirujano field" />
+                                                                                                    <label for="rdbDificultadesViaAreaSi" class="pl-2 pr-2">Si</label>
+                                                                                                    <input type="radio" id="rdbDificultadesViaAreaNo" name="rdbDificultadesViaArea" value="2" class="rdbPacienteConoceCirujano field" />
+                                                                                                    <label for="rdbDificultadesViaAreaNo" class="pl-2 pr-2">No</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="row">
+                                                                                            <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12">
+                                                                                                <label style="width: 100%;">Dispone de reposición sanguínea</label>
+                                                                                            </div>
+                                                                                            <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12">
+                                                                                                <div class="switch-field mt-1">
+                                                                                                    <input type="radio" id="rdbDisponeReposicionSanguineaSi" name="rdbDisponeReposicionSanguinea" value="1" class="rdbPacienteConoceCirujano field" />
+                                                                                                    <label for="rdbDisponeReposicionSanguineaSi" class="pl-2 pr-2">Si</label>
+                                                                                                    <input type="radio" id="rdbDisponeReposicionSanguineaNo" name="rdbDisponeReposicionSanguinea" value="2" class="rdbPacienteConoceCirujano field" />
+                                                                                                    <label for="rdbDisponeReposicionSanguineaNo" class="pl-2 pr-2">No</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="row">
+                                                                                            <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12">
+                                                                                                <label style="width: 100%;">Ha previsto 02 vías de acceso venoso</label>
+                                                                                            </div>
+                                                                                            <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 mt-1">
+                                                                                                <div class="switch-field">
+                                                                                                    <input type="radio" id="rdbPrevisoDosViasSi" name="rdbPrevisoDosVias" value="1" class="rdbPacienteConoceCirujano field" />
+                                                                                                    <label for="rdbPrevisoDosViasSi" class="pl-2 pr-2">Si</label>
+                                                                                                    <input type="radio" id="rdbPrevisoDosViasNo" name="rdbPrevisoDosVias" value="2" class="rdbPacienteConoceCirujano field" />
+                                                                                                    <label for="rdbPrevisoDosViasNo" class="pl-2 pr-2">No</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-lg-3" style="color: blue">
+                                                                            <div class="form-group mb-0">
+                                                                                <label for="">Leyenda: Pérdida de Sangre</label>
+                                                                            </div>
+                                                                            <div class="form-group mb-0">
+                                                                                <label for="">1. Obstétrica > 1000 ml</label>
+                                                                            </div>
+                                                                            <div class="form-group mb-0">
+                                                                                <label for="">2. Ginecólogico > 500 ml</label>
+                                                                            </div>
+                                                                            <div class="form-group mb-0">
+                                                                                <label for="">3. Niños > 7ml/kg</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        @*============================== PAUSA QUIRURGICA =======================================*@
+                                                        <div role="tabpanel" class="tab-pane fade" id="pausaQuirurgica" aria-labelledby="pausaQuirurgica-tab">
+                                                            <div class="card-header text-center mb-1" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">PAUSA QUIRÚRGICA (Incision))</div>
+
+                                                            <div class="card bg-yellow">
+                                                                @* <div class="card-header bg-white">Datos de Nacimiento del Neonato</div> *@
+                                                                <div class="card-block">
+
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group mb-0">
+                                                                                <label style="width: 100%;">Todos los miembros del equipo cumplieron con Protocolo de asepsia quirúrgica</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group mb-0">
+                                                                                <div class="switch-field">
+                                                                                    <input type="radio" id="rdbCumplieronProtocoloAsepsiaQuirurgicaSi" name="rdbCumplieronProtocoloAsepsiaQuirurgica" value="1" class="rdbCumplieronProtocoloAsepsiaQuirurgica field" />
+                                                                                    <label for="rdbCumplieronProtocoloAsepsiaQuirurgicaSi" class="pl-2 pr-2">Si</label>
+                                                                                    <input type="radio" id="rdbCumplieronProtocoloAsepsiaQuirurgicaNo" name="rdbCumplieronProtocoloAsepsiaQuirurgica" value="2" class="rdbCumplieronProtocoloAsepsiaQuirurgica field" />
+                                                                                    <label for="rdbCumplieronProtocoloAsepsiaQuirurgicaNo" class="pl-2 pr-2">No</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group mb-0">
+                                                                                <label style="width: 100%;">Todos los miembros del equipo se han presentado por su nombre completo y función</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group mb-0">
+                                                                                <div class="switch-field">
+                                                                                    <input type="radio" id="rdbSePresentaronPorNombreFuncionSi" name="rdbSePresentaronPorNombreFuncion" value="1" class="rdbSePresentaronPorNombreFuncion field" />
+                                                                                    <label for="rdbSePresentaronPorNombreFuncionSi" class="pl-2 pr-2">Si</label>
+                                                                                    <input type="radio" id="rdbSePresentaronPorNombreFuncionNo" name="rdbSePresentaronPorNombreFuncion" value="2" class="rdbSePresentaronPorNombreFuncion field" />
+                                                                                    <label for="rdbSePresentaronPorNombreFuncionNo" class="pl-2 pr-2">No</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-md-12">
+                                                                            <div class="card bg-blue" style="padding-bottom: 0px;">
+                                                                                <div class="card-header bg-white">Confirmación del Cirujano</div>
+                                                                                <div class="card-block">
+                                                                                    <div class="row mt-1">
+                                                                                        <div class="col-lg-4">
+                                                                                            <div class="check__toggle mt-04">
+                                                                                                <label class="toggle">
+                                                                                                    <input class="toggle__input campo" type="checkbox" id="chkNombresPaciente">
+                                                                                                    <span class="toggle__label mr-2">
+                                                                                                        <span class="toggle__text">Nombres del Paciente</span>
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-4">
+                                                                                            <div class="check__toggle mt-04">
+                                                                                                <label class="toggle">
+                                                                                                    <input class="toggle__input campo" type="checkbox" id="chkTiempoOperatorio">
+                                                                                                    <span class="toggle__label mr-2">
+                                                                                                        <span class="toggle__text">Tiempo Operatorio</span>
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-4">
+                                                                                            <div class="check__toggle mt-04">
+                                                                                                <label class="toggle">
+                                                                                                    <input class="toggle__input campo" type="checkbox" id="chkZonaOperatoria">
+                                                                                                    <span class="toggle__label mr-2">
+                                                                                                        <span class="toggle__text">Zona Operatoria</span>
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-4">
+                                                                                            <div class="check__toggle mt-04">
+                                                                                                <label class="toggle">
+                                                                                                    <input class="toggle__input campo" type="checkbox" id="chkPerdidaSanguineaEstimada">
+                                                                                                    <span class="toggle__label mr-2">
+                                                                                                        <span class="toggle__text">Pérdida Sanguínea estimada</span>
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-4">
+                                                                                            <div class="check__toggle mt-04">
+                                                                                                <label class="toggle">
+                                                                                                    <input class="toggle__input campo" type="checkbox" id="chkProcedimiento">
+                                                                                                    <span class="toggle__label mr-2">
+                                                                                                        <span class="toggle__text">Procedimiento</span>
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-md-6">
+                                                                            <div class="card bg-blue" style="padding-bottom: 0px;">
+                                                                                <div class="card-header bg-white">Anticipación a Evento Crítico</div>
+                                                                                <div class="card-block">
+                                                                                    <div class="row mt-1">
+                                                                                        <div class="col-md-9">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <label style="width: 100%;">Tuvo situación inesperada durante acto Anestésico</label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-3">
+                                                                                            <div class="form-group mb-0">
+                                                                                                <div class="switch-field">
+                                                                                                    <input type="radio" id="rdbTuvoSituacionInesperadaActoAnestesicoSi" name="rdbTuvoSituacionInesperadaActoAnestesico" value="1" class="rdbTuvoSituacionInesperadaActoAnestesico field" />
+                                                                                                    <label for="rdbTuvoSituacionInesperadaActoAnestesicoSi" class="pl-2 pr-2">Si</label>
+                                                                                                    <input type="radio" id="rdbTuvoSituacionInesperadaActoAnestesicoNo" name="rdbTuvoSituacionInesperadaActoAnestesico" value="2" class="rdbTuvoSituacionInesperadaActoAnestesico field" />
+                                                                                                    <label for="rdbTuvoSituacionInesperadaActoAnestesicoNo" class="pl-2 pr-2">No</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="card bg-blue" style="padding-bottom: 0px;">
+                                                                                <div class="card-header bg-white">Equipo de Enfermeria Confirma</div>
+                                                                                <div class="card-block">
+                                                                                    <div class="row mt-1">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="check__toggle mt-04">
+                                                                                                <label class="toggle">
+                                                                                                    <input class="toggle__input campo" type="checkbox" id="chkResultadosIndicadoresEsterilizacion">
+                                                                                                    <span class="toggle__label mr-2">
+                                                                                                        <span class="toggle__text">Resultados de los indicadores de la esterilización</span>
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="check__toggle mt-04">
+                                                                                                <label class="toggle">
+                                                                                                    <input class="toggle__input campo" type="checkbox" id="chkInstrumentalGrasasCompresasAgujas">
+                                                                                                    <span class="toggle__label mr-2">
+                                                                                                        <span class="toggle__text">Instrumental grasas compresas y agujas</span>
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="check__toggle mt-04">
+                                                                                                <label class="toggle">
+                                                                                                    <input class="toggle__input campo" type="checkbox" id="chkMaterialInstrumentalEquipoAdicional">
+                                                                                                    <span class="toggle__label mr-2">
+                                                                                                        <span class="toggle__text">Material instrumental y7o equipos adicionales</span>
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Consideracion especial</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbConsideracionEspecialSi" name="rdbConsideracionEspecial" value="1" class="rdbConsideracionEspecial field" />
+                                                                                            <label for="rdbConsideracionEspecialSi" class="pl-2 pr-2">Sí</label>
+                                                                                            <input type="radio" id="rdbConsideracionEspecialNo" name="rdbConsideracionEspecial" value="2" class="rdbConsideracionEspecial field" />
+                                                                                            <label for="rdbConsideracionEspecialNo" class="pl-2 pr-2">No</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        <div class="col-lg-12">
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Administró profilaxis con Antibióticos en últimos 60</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbAdministroProfilaxisConAntibioticosUltimos60Si" name="rdbAdministroProfilaxisConAntibioticosUltimos60" value="1" class="rdbAdministroProfilaxisConAntibioticosUltimos60 field" />
+                                                                                            <label for="rdbAdministroProfilaxisConAntibioticosUltimos60Si" class="pl-2 pr-2">Sí</label>
+                                                                                            <input type="radio" id="rdbAdministroProfilaxisConAntibioticosUltimos60No" name="rdbAdministroProfilaxisConAntibioticosUltimos60" value="2" class="rdbAdministroProfilaxisConAntibioticosUltimos60 field" />
+                                                                                            <label for="rdbAdministroProfilaxisConAntibioticosUltimos60No" class="pl-2 pr-2">No</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        <div class="col-lg-12">
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Tiene Ex. Radiograficos para Exhibir</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbTieneExamenRadiograficoParaExhibirSi" name="rdbTieneExamenRadiograficoParaExhibir" value="1" class="rdbTieneExamenRadiograficoParaExhibir field" />
+                                                                                            <label for="rdbTieneExamenRadiograficoParaExhibirSi" class="pl-2 pr-2">Sí</label>
+                                                                                            <input type="radio" id="rdbTieneExamenRadiograficoParaExhibirNo" name="rdbTieneExamenRadiograficoParaExhibir" value="2" class="rdbTieneExamenRadiograficoParaExhibir field" />
+                                                                                            <label for="rdbTieneExamenRadiograficoParaExhibirNo" class="pl-2 pr-2">No</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                        @*============================== SALIDA =======================================*@
+                                                        <div role="tabpanel" class="tab-pane fade" id="salida" aria-labelledby="salida-tab">
+                                                            <div class="card-header text-center mb-1" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">SALIDA (Anterior)</div>
+
+                                                            <div class="card bg-yellow">
+                                                                @* <div class="card-header bg-white">Datos de Nacimiento del Neonato</div> *@
+                                                                <div class="card-block">
+
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-md-12">
+                                                                            <div class="card bg-blue" style="padding-bottom: 0px;">
+                                                                                <div class="card-header bg-white">Equipo de Enfermería Confirma con Equipo de la IQx</div>
+                                                                                <div class="card-block">
+                                                                                    <div class="row mt-1">
+                                                                                        <div class="col-lg-4">
+                                                                                            <div class="check__toggle mt-04">
+                                                                                                <label class="toggle">
+                                                                                                    <input class="toggle__input campo" type="checkbox" id="chkNombreProcedimientoQuirurgico">
+                                                                                                    <span class="toggle__label mr-2">
+                                                                                                        <span class="toggle__text">Nombre del procedimiento quirúrgico</span>
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-4">
+                                                                                            <div class="check__toggle mt-04">
+                                                                                                <label class="toggle">
+                                                                                                    <input class="toggle__input campo" type="checkbox" id="chkRecuentoInstrumentosGasasCompresasAgujas">
+                                                                                                    <span class="toggle__label mr-2">
+                                                                                                        <span class="toggle__text">Recuento de instrumentos, gasas, compresas y agujas</span>
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-4">
+                                                                                            <div class="check__toggle mt-04">
+                                                                                                <label class="toggle">
+                                                                                                    <input class="toggle__input campo" type="checkbox" id="chkRecomendacionesPostOperatorioInmediata">
+                                                                                                    <span class="toggle__label mr-2">
+                                                                                                        <span class="toggle__text">Recomendaciones Post Operatorio inmediata</span>
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+
+                                                                        <div class="col-lg-12">
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Muestra para Anatomía Patológica rotulada</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbMuestraAnatomiaPatologicaRotuladaSi" name="rdbMuestraAnatomiaPatologicaRotulada" value="1" class="rdbMuestraAnatomiaPatologicaRotulada field" />
+                                                                                            <label for="rdbMuestraAnatomiaPatologicaRotuladaSi" class="pl-2 pr-2">Sí</label>
+                                                                                            <input type="radio" id="rdbMuestraAnatomiaPatologicaRotuladaNo" name="rdbMuestraAnatomiaPatologicaRotulada" value="2" class="rdbMuestraAnatomiaPatologicaRotulada field" />
+                                                                                            <label for="rdbMuestraAnatomiaPatologicaRotuladaNo" class="pl-2 pr-2">No</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-lg-12">
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Problemas con la Máquina de Anestesia y/o Monitoreo</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbProblemasConMaquinaAnestesiaMonitoreoSi" name="rdbProblemasConMaquinaAnestesiaMonitoreo" value="1" class="rdbProblemasConMaquinaAnestesiaMonitoreo field" />
+                                                                                            <label for="rdbProblemasConMaquinaAnestesiaMonitoreoSi" class="pl-2 pr-2">Sí</label>
+                                                                                            <input type="radio" id="rdbProblemasConMaquinaAnestesiaMonitoreoNo" name="rdbProblemasConMaquinaAnestesiaMonitoreo" value="2" class="rdbProblemasConMaquinaAnestesiaMonitoreo field" />
+                                                                                            <label for="rdbProblemasConMaquinaAnestesiaMonitoreoNo" class="pl-2 pr-2">No</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-lg-12">
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Eventos intraoperatorios importantes</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbEventosIntraoperatoriosImportantesSi" name="rdbEventosIntraoperatoriosImportantes" value="1" class="rdbEventosIntraoperatoriosImportantes field" />
+                                                                                            <label for="rdbEventosIntraoperatoriosImportantesSi" class="pl-2 pr-2">Sí</label>
+                                                                                            <input type="radio" id="rdbEventosIntraoperatoriosImportantesNo" name="rdbEventosIntraoperatoriosImportantes" value="2" class="rdbEventosIntraoperatoriosImportantes field" />
+                                                                                            <label for="rdbEventosIntraoperatoriosImportantesNo" class="pl-2 pr-2">No</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-lg-12">
+                                                                            <div class="row mt-1">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <label style="width: 100%;">Problemas con algún Instrumento</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group mb-0">
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbProblemasConInstrumentoSi" name="rdbProblemasConInstrumento" value="1" class="rdbProblemasConInstrumento field" />
+                                                                                            <label for="rdbProblemasConInstrumentoSi" class="pl-2 pr-2">Sí</label>
+                                                                                            <input type="radio" id="rdbProblemasConInstrumentoNo" name="rdbProblemasConInstrumento" value="2" class="rdbProblemasConInstrumento field" />
+                                                                                            <label for="rdbProblemasConInstrumentoNo" class="pl-2 pr-2">No</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-md-12">
+                                                                            <label for="txtObservacionesSalida" style="width: 100%;">Observaciones</label>
+                                                                            <div class="form-group mb-0">
+                                                                                <textarea class="form-control" col-span="3" id="txtObservacionesSalida"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                        @*============================== PROF SALUD ASIGNADOS =======================================*@
+                                                        <div role="tabpanel" class="tab-pane fade" id="profesionalSaludAsignados" aria-labelledby="profesionalSaludAsignados-tab">
+                                                            <div class="card-header text-center mb-1" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">PROFESIONAL DE SALUD ASIGNADOS</div>
+
+                                                            <div class="card bg-yellow">
+                                                                @* <div class="card-header bg-white">Datos de Nacimiento del Neonato</div> *@
+                                                                <div class="card-block">
+
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-md-3">
+                                                                            <label for="txtNumeroSolicitud" style="width: 100%;">N° Solicitud</label>
+                                                                            <div class="form-group mb-0">
+                                                                                <input class="form-control form-control-sm" id="txtNumeroSolicitud">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-md-12">
+                                                                            <div class="card bg-blue" style="padding-bottom: 0px;">
+                                                                                <div class="card-header bg-white">Profesionales de Salud Asignados</div>
+                                                                                <div class="card-block">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="cboMedicoPrincipal" class="form-control-label">Medico Principal</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMedicoPrincipal"></select>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="cboCirujanoII" class="form-control-label">Cirujano II</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboCirujanoII"></select>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="cboMedicoAyudanteI" class="form-control-label">Medico Ayudante I</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMedicoAyudanteI"></select>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="cboMedicoAyudanteII" class="form-control-label">Medico Ayudante II</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboMedicoAyudanteII"></select>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="cboAnestesiologo" class="form-control-label">Anestesiólogo</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboAnestesiologo"></select>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="cboAyudanteAnestesiologo" class="form-control-label">Anestesiólogo II</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboAyudanteAnestesiologo"></select>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="cboInstrumentistaI" class="form-control-label">Instrumentista I</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboInstrumentistaI"></select>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="cboInstrumentistaII" class="form-control-label">Instrumentista II</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboInstrumentistaII"></select>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6" hidden>
+                                                                                            <div class="form-group">
+                                                                                                <label for="cboTecEnfermeria" class="form-control-label">Téc. Enfermería</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboTecEnfermeria"></select>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-lg-6">
+                                        @*<button class="btn btn-cyan btn-lg layout_btn_prevent mr-1 float-lg-left" id="btnVisorRecetasEmer"><i class="fa fa-note-medical mr-1"></i>Rec. Médicas</button>*@
+                                        <button class="btn btn-light-blue btn-lg layout_btn_prevent float-lg-left" id="btnSeguimiento"><i class="fa fa-wheelchair-move mr-1"></i>Seguimiento</button>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button id="btnCerrarAtencion" type="button" data-dismiss="modal" class="btn btn-lg btn-secondary float-lg-right mr-1 mb-1">Cerrar</button>
+                                        <button id="btnGuardar" class="btn btn-lg  btn-info float-lg-right mr-1 mb-1">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" value="@ViewBag.idEmpleado" id="idEmpleadotxt" /> @*JDELGADO001*@
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            @*<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistro.cshtml" />*@
+
+            @* <partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroConDescripcion.cshtml" /> *@
+
+            @* =======================BUSQUEDA DE DIAGNOSTICOS (KHOYOSI)================================== *@
+            <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticos.cshtml" />
+            @* ================================================================================= *@
+
+
+
+            <div class="modal fade" id="modalIntervencionEnfermeria" role="dialog" aria-hidden="false" style="background-color: #00000075; z-index: 9999" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-lg" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 class="modal-title text-white" id="titulo">intervenciones de Enfermeria</h4>
+                        </div>
+                        <div class="modal-body p-t-5">
+                            <div class="card-block p-t-5">
+                                <div class="row">
+                                    <div class="col-xl-2">
+                                        <label for="txtCodigoCptIntervencion" class="form-control-label">Codigo</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control" id="txtCodigoCptIntervencion" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-10">
+                                        <label for="txtDescripcionIntervencion" class="form-control-label">Decripcion</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" autocomplete="off" class="form-control" id="txtDescripcionIntervencion" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-8">
+                                        <label for="cboIntervencionesEnfermeria" class="form-control-label">Servicio</label>
+                                        <div class="input-group">
+                                            <select class="chzn-select" data-placeholder="Seleccionar una opcion" id="cboIntervencionesEnfermeria"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4" style="height: 50px;">
+                                        <div>
+                                            <button class="btn btn-primary btn-sm layout_btn_prevent mt-2" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnAgregarIntervencion">Agregar</button>
+                                            <button class="btn btn-danger btn-sm layout_btn_prevent mt-2" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnEliminarIntervencion">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table id="tblIntervencionesEnfemeria" width="100%" class="table table-sm table-content-sm table-striped table-bordered w-100 mt-1">
+                                    <thead style="color: white;background: #434343;">
+                                        <tr>
+                                            <th style="width:20%">id</th>
+                                            <th style="width:80%">Descripcion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            @* <button id="btnGuardarIntervenciones" type="button" class="btn btn-default">Guardar</button> *@
+                            <button id="btnCerrarModalIntervencion" type="button" class="btn btn-default">Cancelar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroLab.cshtml" />
+
+            @section Scripts
+            {
+
+                <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen1.jquery.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment.min.js"></script>
+                <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment-with-locales.js"></script>
+
+
+                <script src="~/AdmiRE/js/date.format.js"></script>
+
+                <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+                <script type="text/javascript" src=@Href("~/js/Comun/Variables.js?v=" + version)></script>
+
+                <script type="text/javascript" src=@Href("~/js/CentroQuirurgico/SeguridadIntervencionCQx.js?v=" + version)></script>
+
+                @*  <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/BusquedaDiagnosticos.js?v=" + version)></script>
+            <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/Diagnosticos.js?v=" + version)></script> *@
+
+
+            }
+
+            <style>
+                body {
+                    padding-right: 0px !important;
+                }
+
+                nav.navbar {
+                    background-color: #CC1414;
+                }
+
+                #clothing-nav-content2 .form-group {
+                    margin-bottom: 0 !important;
+                }
+
+                #tblAtencion tr.over td {
+                    background: #D6E8F8;
+                    font-weight: bold;
+                }
+
+                .chosen-container {
+                    width: 100% !important;
+                }
+
+                .modal-lg {
+                    max-width: 1100px !important;
+                }
+
+                /*==============REFCON===============*/
+                .chosen-disabled {
+                    opacity: 1 !important;
+                }
+
+                    .chosen-disabled .chosen-single {
+                        background: #eceeef !important;
+                        border-color: rgba(0, 0, 0, 0.15) !important;
+                    }
+
+                .custom-control-indicator {
+                    border: 1px solid darkgrey;
+                }
+
+                .text-right {
+                    text-align: right !important;
+                }
+
+                .bg-light {
+                    background-color: #f8f9fa !important;
+                    color: #434343 !important;
+                }
+
+                .border-x-0 {
+                    border-right: 0 !important;
+                    border-left: 0 !important;
+                }
+
+                .btn-sm {
+                    padding: 0.4rem 0.5rem !important;
+                }
+
+                legend {
+                    width: auto !important;
+                    padding: 0 5px !important;
+                    font-size: 1.2rem !important;
+                    margin-left: 5px !important;
+                }
+
+                fieldset {
+                    border: 1px solid #ccc !important;
+                    margin: 0px 10px !important;
+                }
+
+                .nav-link:hover {
+                    border-color: whitesmoke !important;
+                    background-color: whitesmoke !important;
+                }
+
+                .btn-outline-secondary {
+                    color: #999 !important;
+                    border-color: #999 !important;
+                }
+
+                    .btn-outline-secondary:hover {
+                        color: #fff !important;
+                        border-color: #ccc !important;
+                    }
+
+                #clothing-nav-content2 .form-group {
+                    margin-bottom: 0 !important;
+                }
+
+                #tblAtencion tr.over td {
+                    background: #D6E8F8;
+                    font-weight: bold;
+                }
+
+                /*  .chosen-container chosen-container-single {
+                                                                                                                                                                                                                                                                                                                                        width: 100% !important;
+                                                                                                                                                                                                                                                                                                                                    }*/
+
+
+                .chosen-container {
+                    width: 100% !important;
+                }
+
+                .modal-lg {
+                    max-width: 1100px !important;
+                }
+
+                .titleAntecedentes {
+                    color: #5353f9;
+                    font-size: 15px;
+                    font-weight: bold;
+                }
+
+                .dataTables_scrollHead {
+                    padding-right: 10px !important;
+                }
+
+                .dataTables_scrollBody {
+                    overflow: scroll !important;
+                }
+            </style>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalReporte" tabindex="-1" role="dialog" aria-labelledby="modalReporteUCILabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Generar Reporte</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+
+                    <div class="row mt-2">
+                        <div class="col-lg-12">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label for="txtFechaInicioReporte">Fecha Inicio</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search maskFecha" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioReporte" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="txtFechaFinReporte">Fecha Fin</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search maskFecha" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinReporte" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                @* <div class="col-md-2 d-flex align-items-end mb-1" style="height: 50px;">
+                                <div>
+                                <button type="button" class="btn btn-sm btn-default" style="padding-left: 1rem !important; padding-right: 1rem !important;">limpiar</button>
+                                </div>
+                                </div> *@
+                                @*<div class="col-lg-12 mt-2">
+                                <button class="btn btn-success btn-sm float-lg-right" id="btnGenerarSaldosPorAlmacen">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+                                </div>*@
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" id="btnDescargarReporte">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalInformeEvaluacion" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <fieldset class="m-0 pr-1 pl-1 pb-1">
+                            <legend class="mb-0">Evaluaciones del Paciente</legend>
+                            <table id="tblInformeEvaluaciones" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                                <thead style="color: white;">
+                                    <tr style="background-color: #434343;">
+                                        <th style="width:10% !important; text-align:center;">Eval.</th>
+                                        <th style="width:30% !important; text-align:center;">Fecha</th>
+                                        <th style="width:40% !important;">Responsable</th>
+                                        <th style="width:20% !important; text-align:center;">Informe</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                            @*<div class="row mt-1" id="divFirma">
+                            <div class="col-xs-12 text-xs-center">
+                            <button type="button" style="width: 60px;" class="btn btn-sm btn-success" id="ImprimirEvalEmerCF"><i class="fa fa-print"></i></button>
+                            <button type="button" style="width: 60px;" class="btn btn-sm btn-info" id="FirmarEvalEmer"><i class="fa fa-pencil"></i></button>
+                            <button type="button" style="width: 60px;" class="btn btn-sm btn-warning" id="ImprimirEvalEmerSF"><i class="fa fa-eye"></i></button>
+                            </div>
+                            </div>*@
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrarInformeEvaluacion" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

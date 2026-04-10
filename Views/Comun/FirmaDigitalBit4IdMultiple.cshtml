@@ -1,0 +1,119 @@
+﻿@*
+    Pagina que se encarga de levantar el servicio de Firma Digital
+*@
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Servicio Firma Digital</title>
+    <link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css"  />
+
+    <style>
+        .bit4id-signReq, .bit4-link, #btnFirmar, #bit4id-status
+        /*, #nroFirma, #codigoFirma*/ {
+            display: none;
+        }
+    </style>
+</head>
+
+<body style="background-color: #e0edf5;">
+    <div class="ro mx-autow mb-3">
+        <div class="col-12">
+            <div class="card shadow-lg bg-body rounded mx-auto mt-3" style="max-width: 300px;">
+                <div class="card-header h5">
+                    Servicio Firma Digital
+                    <img src="~/images/icon_sign.png" class="" style="max-width: 30px; float:right; " alt="Cargando Servicio Firma Digital">
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        <img src="~/images/loading_gif.gif" class="card-img-top" style="max-width: 90px;" alt="Cargando Servicio Firma Digital"><br />
+                        <small class="text-secondary" id="EstadoServicio">Iniciando servicio ...</small>
+                    </div>
+                    @*<h5 class="card-title">Special title treatment</h5>*@
+                    <p class="card-text" style="text-align: justify;">
+                        @*El servicio de Firma Digital se esta ejecutando, se esta procediendo con la carga el documento para que pueda realizar la firma digital del mismo.<br />*@
+                        Por favor espere, no cierre esta ventana mientras el servicio de firma digital se esta ejecutando. La ventana actual se cerrara automaticamente luego de que haya finalizado la firma del documento.
+                    </p>
+                    @*<a href="#" class="btn btn-primary">Boton</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="nroFirma" style="display: none;">@ViewBag.IdFirma</div>
+    <div id="codigoFirma" style="display: none;">@ViewBag.CodigoFirma</div>
+
+    @*------------------------------------firma multiple-------------------------------------------------*@
+    <form class="bit4id-sign mx-auto" method="post" action="/FirmaDigital/FirmaMultipleComponent?area=Comun">
+        <div class="bit4id-signReq" style="display: none;">
+            <div class="bit4id-localFile">NO</div>
+            <div class="bit4id-document">@ViewBag.Document</div>
+            <div class="bit4id-documentName">@ViewBag.DocumentName</div>
+            <div class="bit4id-documentID">@ViewBag.DocumentID</div>
+            <div class="bit4id-signatureType">PAdES</div>
+            <div class="bit4id-editpagepos">YES</div>
+            <div class="bit4id-image">@ViewBag.Image</div>
+            <div class="bit4id-signingAlgorithm">RSASHA256</div>
+            <div class="bit4id-preview">NO</div>
+            <div class="bit4id-page">ALL</div>
+            <div class="bit4id-editpagepos">NO</div>
+            <div class="bit4id-position">[@ViewBag.X1,@ViewBag.Y1,@ViewBag.X2,@ViewBag.Y2]</div>
+            <div class="bit4id-bundle">YES</div> @*Si dicho valor se pone a �YES� estamos indicando que se va a firmar m�ltiples documentos. El archivo de salida estar� comprimido en un zip donde se encontraran todos los documentos firmados.*@
+            <div class="bit4id-paragraphFormat">[{
+                 "font" : [
+                    "Universal",
+                    @ViewBag.LetraTamanio
+                ],
+                "align" : "right",
+                "data_format": {
+                "timezone": "America/Lima",
+                "strtime": "%d.%m.%Y  %H:%M:%S%z"
+                },
+                "format" : [
+                    "Firmado digitalmente por: $(CN)s",                    
+                    "@ViewBag.TipoEmpleado @ViewBag.DatosMedico", 
+                    "@ViewBag.Motivo",                    
+                    "Fecha: $(date)s",
+                ]
+                }]</div>
+        </div>
+        <div id="bit4id-status" style="display: none;">wait</div>
+        <input disabled="disabled" type="submit" class="btn btn-primary" value="Firmar Documento" id="btnFirmar" style="display: none;" />
+    </form>
+
+
+    <input type="text" id="idCuenta" value="@ViewBag.DocumentID" hidden>
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="~/AdmiRE/js/components.js"></script>
+    <script type="text/javascript" src="~/js/Comun/FirmaDigitalMultipleBit4id.js"></script>
+    <script src="~/BootstrapV5.1.3/bootstrap.bundle.min.js"></script>
+
+    <script src=@ViewBag.ApiFirmaDigital></script>
+
+
+    <script>
+        $(document).ready(function () {
+            //let evento = null;
+            //let servicio = null;
+            //const proceso = false;
+            //var control = false;
+
+            FirmaDigital.Iniciar();
+
+        });
+    </script>
+
+</body>
+</html>

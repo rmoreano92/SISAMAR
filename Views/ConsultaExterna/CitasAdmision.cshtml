@@ -1,0 +1,1040 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+}
+
+<input type="text" id="hdIdSiaSis" hidden />
+<input type="text" id="hdCodigo" hidden />
+<input type="text" id="hdAfiliacionDisa" hidden />
+<input type="text" id="hdAfiliacionTipoFormato" hidden />
+<input type="text" id="hdAfiliacionNroFormato" hidden />
+<input type="text" id="hdAfiliacionNroIntegrante" hidden />
+<input type="text" id="hdDocumentoTipo" hidden />
+<input type="text" id="hdCodigoEstablAdscripcion" hidden />
+<input type="text" id="hdAfiliacionFecha" hidden />
+<input type="text" id="hdPaterno" hidden />
+<input type="text" id="hdMaterno" hidden />
+<input type="text" id="hdPnombre" hidden />
+<input type="text" id="hdOnombres" hidden />
+<input type="text" id="hdGenero" hidden />
+<input type="text" id="hdFnacimiento" hidden />
+<input type="text" id="hdIdDistritoDomicilio" hidden />
+<input type="text" id="hdEstado" hidden />
+<input type="text" id="hdFbaja" hidden />
+<input type="text" id="hdDocumentoNumero" hidden />
+<input type="text" id="hdMotivoBaja" hidden />
+<input type="text" id="hdtipoCondicionPaciente" hidden />
+
+
+@*JDELGADO010*@
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/inputlimiter/css/jquery.inputlimiter.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/daterangepicker/css/daterangepicker.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datepicker/css/bootstrap-datepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-timepicker/css/bootstrap-timepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-switch/css/bootstrap-switch.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jasny-bootstrap/css/jasny-bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datetimepicker/css/DateTimePicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/j_timepicker/css/jquery.timepicker.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/clockpicker/css/jquery-clockpicker.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/fullcalendar/css/fullcalendar.min.css" />
+
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/fullcalendar_1/fullcalendar.min.css" />
+
+    @*<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" />
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" />*@
+
+    @*<link href="https://fullcalendar.io/releases/fullcalendar/3.10.0/fullcalendar.min.css" rel="stylesheet">*@
+    
+    
+
+    <style id="compiled-css" type="text/css">
+
+        .day-text {
+            font-weight: bold;
+    font-size: 12px;
+    /* color: red; */
+        }
+
+        .day-highlight {
+            background-color: #4bb9ff !important;
+            color: #fff !important;
+        }
+
+        .table tr.over td {
+            background: #D6E8F8;
+            font-weight: bold;
+        }
+
+        .table th, .table td {
+            padding: 0.4rem;
+            vertical-align: top;
+            border-top: 1px solid #eceeef;
+            font-size: .85em;
+        }
+
+        .fc-basic-view .fc-body .fc-row {
+            min-height: 2px;
+        }
+
+        .fc button, .fc table, body .fc {
+            font-size: .95em;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 0.2em;
+        }
+
+        .fc-toolbar.fc-header-toolbar {
+            margin-bottom: 10px;
+        }
+
+        .fc-center h2, .h2 {
+            font-size: 1.4rem;
+        }
+
+        .chosen-container {
+            font-size: 11px;
+        }
+
+        .context-menu {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            background-color: #FFFFFF;
+            box-sizing: border-box;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2), 0 0 0 1px #EEEEEE;
+            border-radius: 2px;
+            white-space: nowrap;
+            vertical-align: top;
+            overflow: hidden;
+            user-select: none;
+            animation: 0.1s context-popup;
+        }
+
+        .context-menu-options {
+            padding: 3px 7px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            flex: 1;
+            text-decoration: none;
+        }
+
+        .context-menu-option {
+            cursor: pointer;
+            color: #3e6184;
+            margin-bottom: 3px;
+            border-bottom: solid #3e61845c 1px;
+            text-decoration: none;
+        }
+
+            .context-menu-option:hover {
+                background-color: rgba(67, 147, 230, .1);
+                text-decoration: none;
+            }
+
+        .context-menu-option-base {
+            position: relative;
+            padding: 6px 30px 6px 14px;
+            font-size: 11pt;
+            font-weight: 300;
+            color: #616161;
+        }
+
+        .option-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            user-select: none;
+        }
+
+        .option-text, .option-arrow {
+            display: inline-flex;
+            align-items: center;
+            user-select: none;
+        }
+
+        .option-separator {
+            height: 1px;
+            border: none;
+            border-top: 1px solid #EEEEEE;
+        }
+    </style>
+
+    <!--Page level styles-->
+}
+
+<link type="text/css" rel="stylesheet" href="#" id="skin_change" />
+
+<header class="head" id="header">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-th"></i>
+                Citas y Admisión <label id="lblNombreVentanilla" style="color: #9c27b0; font-weight: bolder;" class="control-label"></label>
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="Citas">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">Consulta Externa</a>
+                </li>
+                <li class="breadcrumb-item active">Citas y Admision</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div @* class="card" *@>
+    <div @* class="card-block" *@>
+        <div class="row m-0">
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="col-lg-12" id="filtroProgramacion">
+                        <div class="card bg-blue">
+                            <div class="card-block" style="padding-bottom: 10px;">
+                                <div class="input-group mb-0">
+                                    <label class="input-group-text form-label" for="cboDepartamentoHospital">Departamento:  </label>
+                                    <select class="chzn-select" id="cboDepartamentoHospital"></select>
+                                </div>
+                                <div class="input-group mb-0">
+                                    <label class="input-group-text form-label" for="cboEspecialidad">Especialidad:  </label>
+                                    <select class="chzn-select" id="cboEspecialidad"></select>
+                                </div>
+                                <div class="input-group mb-0">
+                                    <label class="input-group-text form-label" for="cboMedico">Médico:  </label>
+                                    <select class="chzn-select" id="cboMedico"></select>
+                                </div>
+                                <div class="input-group mb-1">
+                                    <label class="input-group-text form-label" for="cboDepartamentosHospital">Consultorio:  </label>
+                                    <select class="chzn-select" id="cboDepartamentosHospital"></select>
+                                </div>
+                                <button class="btn btn-secondary layout_btn_prevent btn-sm px-2" id="btnLimpiarBusqueda">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                    @* <div class="col-lg-12">
+                        
+                    </div>
+
+                    <div class="col-lg-12">
+                       
+                    </div> *@
+
+                    @* <div class="col-lg-12 mb--0"> *@
+                        
+                        @*<button class="btn btn-primary layout_btn_prevent btn-sm">Busc. Esp.</button>
+                        <button class="btn btn-primary layout_btn_prevent btn-sm">Cupo proximo. Esp.</button>*@
+                    @* </div> *@
+
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table" id="tblMedicosProgramados" width="100%">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th style="width:70%;">Medico</th>
+                                        <th style="width:30%;">Servicio</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                @*COMENTADO POR KHOYOSI*@
+                @* <b><label for="" class="control-label">CUPOS</label></b>
+                <br>
+                <h5><label id="lblFechaCupo" style="color: brown" for="" class="control-label"></label></h5>
+                <h5><label id="lblMedico" style="color: brown" for="" class="control-label">Medico:</label></h5>
+
+                <br>
+                *@
+                <button class="btn btn-warning layout_btn_prevent btn-sm" style="float: right;" id="btnCitaAdicional">Cita Adicional CA</button>
+
+
+                <table class="table table-striped table-bordered table-hover" id="tblCupos">
+                    <thead style="color: white; background: #434343;">
+                        <tr>
+                            <th>CUPOS</th>
+                        </tr>
+                    </thead>
+                    <tbody style="color: black;"></tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="row mb-1">                    
+                    <div class="col-lg-3">
+                        <div class="input-group mb-1">
+                            <label class="input-group-text form-label" for="cboMes">Mes:  </label>
+                            <select class="chzn-select" id="cboMes">
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="input-group mb-1">
+                            <label class="input-group-text form-label" for="cboAnio">Año:  </label>
+                            <select class="chzn-select" id="cboAnio"></select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-flex align-items-end flex-column" style="height: 50px;">
+                        <h4 class="mt-auto mb-0" id="MesCalendario"></h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id='calendar'></div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-12 mb-1">
+                        <div class="casilla" style="padding: 5px 10px;">
+                            <label id="lblNombreMedico" style="color: #009688; font-weight: bolder;" class="control-label"></label>
+                            <label id="lblEspecialidadMedica" style="color: #673ab7; /* font-weight: bolder; */" class="control-label"></label>
+                            <label id="lblTurnoMedico" style="color: #607d8b; /* font-weight: bolder; */" class="control-label"></label>
+                        </div>                        
+                    </div>
+
+                    @* <div class="col-lg-12">
+                        <hr />
+                    </div> *@
+
+                    <div class="col-lg-6">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex align-items-center p-0 mb-1" style="background: transparent;">
+                                <span class="chip text-sm-center" style="width:32px;background-color: #ffa571;padding: 2px 5px;" id="spNroCuposAsignados"></span>
+                                <span><b>Cupos asigandos.</b></span>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center p-0 mb-1" style="background: transparent;">
+                                <span class="chip text-sm-center" style="width:32px;background-color: #22c791;padding: 2px 5px;" id="spNroCuposLibres"></span>
+                                <span><b>Cupos libres.</b></span>
+                            </li>
+                            <li class="list-group-item p-0 mb-1" style="background: transparent;">
+                                <button type="button" class="btn btnPacienteEnCola d-flex" id="btnPacientesEnCola">
+                                    <span class="chip text-white text-sm-center m-0" style="width:32px;background-color: #e38100;padding: 2px 5px;margin-right: 10px !important;" id="NroPacienteEnCola">0</span>
+                                    Paciente(s) en cola 
+                                </button>                         
+                            </li>
+                        </ul>
+                       @*  <div class="row">
+                            <div class="col-lg-12">
+                                <span id="spCuposAsignados" style="font-size: 15px; font-weight: bolder;">Cupos Asignados: </span>
+                            </div>
+                            <div class="col-lg-12">
+                                <span id="spCuposLibres" style="font-size: 15px; font-weight: bolder;">Cupos Libres: </span>
+                            </div>
+                        </div> *@
+                    </div>
+
+                    <div class="col-lg-6">
+                        <ul class="list-group" style="max-width: 200px;">
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-0 mb-1" style="background: transparent;">
+                                <span><b>Nro de Continuadores</b></span>
+                                <span class="chip text-white text-sm-center" style="width:32px;background-color: #dd3e6e;padding: 2px 5px;" id="spNroPacContinuadores"></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-0 mb-1" style="background: transparent;">
+                                <span><b>Nro de Nuevos</b></span>
+                                <span class="chip text-white text-sm-center" style="width:32px;background-color: #3F51B5;padding: 2px 5px;" id="spNroPacNuevos"></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-0 mb-1" style="background: transparent;">
+                                <span><b>Nro de Reingresantes</b></span>
+                                <span class="chip text-white text-sm-center" style="width:32px;background-color: #795548;padding: 2px 5px;" id="spNroPacReingresantes"></span>
+                            </li>
+                        </ul>
+                        @* <div class="row">
+                            <div class="col-lg-12">
+                                <span id="spNroContinuadores" style="font-size: 15px; font-weight: bolder; color: red;">Nro de Continuadores: </span>
+                            </div>
+                            <div class="col-lg-12">
+                                <span id="spNroNuevos" style="font-size: 15px; font-weight: bolder; color: blue;">Nro de Nuevos: </span>
+                            </div>
+                            <div class="col-lg-12">
+                                <span id="spNroReingresantes" style="font-size: 15px; font-weight: bolder; color: orangered;">Nro de Reingresantes: </span>
+                            </div>
+                        </div> *@
+                    </div>
+
+                   @*  <div class="col-lg-12">
+                        <hr />
+                    </div> *@
+
+                </div>
+
+
+                @* <hr style="margin-top:5px; margin-bottom:5px;" /> *@
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered table-content-sm" id="tblPacientesCitas" width="100%">
+                                <thead style="color: white; background: #3e6184;">
+                                    <tr>
+                                        @*<th>ID</th>*@
+                                        <th width="10%">HI</th>
+                                        <th width="10%">HF</th>
+                                        <th width="20%">ApPaterno</th>
+                                        <th width="20%">ApMaterno</th>
+                                        <th width="40%">Nombre</th>
+                                        <th width="20%">FechaSolicitud</th>
+                                        <th width="20%">NroCuenta</th>
+                                        <th width="20%">Financiamiento</th>
+                                        <th width="20%">ProductoPlan</th>
+                                        <th width="20%">NumGarante</th>
+                                        <th width="20%">Atendido</th>
+                                        <th width="20%">EstadoCita</th>
+                                        <th width="20%">HoraSolicitud</th>
+                                        <th width="20%">Especialidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="modalCita" role="dialog" aria-labelledby="modalCita" style="overflow-y: scroll;">
+    <div class="modal-dialog modal-xxl" role="document" id="modalcitastyle">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Solicitud de Cita</h4>
+            </div>
+            <div class="modal-body">
+                <partial name="~/Views/Shared/Components/VistasParciales/Citas/RegistroCita.cshtml" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalInterConsulta" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-white">Busqueda interconsulta</h4>
+            </div>
+            <div class="modal-body" style="background-color: #fff;">
+
+                <div class="row">
+                    <div class="col-lg-3 mb-1">
+                        <div class="input-group input-group-sm">
+                            <label class="form-label">N° de Orden:</label>
+                            <input type="text" class="form-control" id="txtNroOrden">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-9 mb-1">
+                        <div class="input-group input-group-sm">
+                            <label class="form-label">Paciente:</label>
+                            <input type="text" class="form-control" id="txtNombrePaciente" disabled>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <button id="btnBuscarInterconsulta" class="btn btn-info btn-sm">Buscar</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="tblProcedimientosInterconsulta" width="100%">
+                                <thead style="color: white; background: #000;">
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnSeleccionarInterconsulta">Aceptar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-default" id="btnCerrarModalInterconsulta">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml" />
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalPacientesBusqueda" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered" id="tblPacientesBusqueda" width="100%">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th>Ap.Paterno</th>
+                                        <th>Ap.Materno</th>
+                                        <th>1erNombre</th>
+                                        <th>2doNombre</th>
+                                        <th>Nro.Historia</th>
+                                        <th>FechaNac.</th>
+                                        <th>Ult.Tipo</th>
+                                        <th>Ult.Serv.Ing.</th>
+                                        <th>UltFechaIng.</th>
+                                        <th>Ult.FechaEgr.</th>
+                                        <th>EstadoHistoria</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalBusquedaSis" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente SIS</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered" id="tblBusquedaSis" width="100%">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th>ApPaterno</th>
+                                        <th>ApMaterno</th>
+                                        <th>PNombre</th>
+                                        <th>SNombre</th>
+                                        <th>Fnacimiento</th>
+                                        <th>cAfiliacion</th>
+                                        <th>estado</th>
+                                        <th>fBajaOK</th>
+                                        <th>DNI</th>
+                                        <th>sexo</th>
+                                        <th>distritoDomicilio</th>
+                                        <th>cDisa</th>
+                                        <th>cFormato</th>
+                                        <th>cNumero</th>
+                                        <th>AfiliacionNroIntegrante</th>
+                                        <th>codigo</th>
+                                        <th>idSiaSis</th>
+                                        <th>MotivoBaja</th>
+                                        <th>CodigoEstablAdscripcion</th>
+                                        <th>AfiliacionFecha</th>
+                                        <th>IdTipoDoc</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contextMenu" class="context-menu"
+     style="display: none">
+    <ul>
+        <li><a href="#">Agregar Cita</a></li>
+        <li><a href="#">Modificar Cita</a></li>
+        <li><a href="#">Consultar Cita</a></li>
+        <li><a href="#">Eliminar Cita</a></li>
+    </ul>
+</div>
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalTicket" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Cita</h4>
+            </div>
+            <div class="modal-body" style="background-color:#b4c6d6">
+
+                <iframe id="ifrmTicketCita"
+                        title="Inline Frame Example"
+                        width="100%"
+                        height="600"
+                        src=""></iframe>
+
+            </div>
+            <div class="modal-footer" style="background-color:#ced8e1">
+                <button id="btnCerrarTicket" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--====================================KHOYOSI==========================================================-->
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalVentanilla" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-sm" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white">Ventanilla</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="font-weight-bold">Por favor seleccione la ventanilla en la que encuentra.</p>
+                        <div class="form-group">
+                            <label>Ventanilla</label>
+                            <select class="chzn-select" id="cboVentanillas"></select>
+                        </div>                        
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="btnAceptarVentanilla" class="btn btn-info">Aceptar</button>
+                    <button type="button" id="btnCancelarVentanilla" class="btn btn-secondary">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalPacienteseEnCola" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-lg" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary" style="background-color: #25306e !important;">
+                <h4 class="modal-title text-white">Pacientes en cola</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                       @*  <div class="row m-0" style="color: white; background: #434343;">
+                            <div class="col-sm-1 border">#</div>
+                            <div class="col-sm-2 border">CUPO</div>
+                            <div class="col-sm-2 border">FECHA SOLICITUD</div>
+                            <div class="col-sm-3 border">ESTADO</div>
+                            <div class="col-sm-4 border">OPCIONES</div>
+                        </div> *@
+
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered table-hover" id="tblPacientesEnCola" width="100%">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th style="width: 5%">#</th>
+                                        <th style="width: 15%">CUPO</th>                                        
+                                        <th style="width: 20%">ESTADO</th>
+                                        <th style="width: 20%">FEC. SOLICITUD</th>
+                                        <th style="width: 40%" text-align:center">OPCIONES</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalLlamadoPaciente" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-deep-teal">
+                <h4 class="modal-title text-white text-sm-center" id="modalLabelsuccess">Llamando Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <div class="card bg-blue">
+                            @*<div class="card-header bg-white">Datos del Paciente</div>*@
+                            <div class="card-block p-1">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="text-sm-center border-bottom" style="color:#6f6f6f !important">CUPO</h4>
+                                        <h2 class="text-sm-center mb-0" id="txtLlamadoCupo"></h2>
+                                        @* <div class="form-group m-0">
+                                            <label for="txtLlamadoCupo">CUPO</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtLlamadoCupo" placeholder="" autocomplete="off" disabled="">
+                                        </div> *@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-sm-center" style="height:70px;">
+                        <div style="font-size: 25px">
+                            <i class="fa-solid fa-circle zoom-icon-loading" style="color:teal;"></i>
+                        </div>
+                        <div style="font-size: 15px">
+                            <i class="fa-solid fa-volume-high zoom-icon-loading text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer text-sm-center">
+                <button class="btn btn-lg btn-secondary w-100" onclick="CitasAdmision.CancelarLlamadoPaciente()">CANCELAR LLAMADO</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==============================================================================================-->
+
+
+
+
+<!--End of Global scripts-->
+<!--Plugin scripts-->
+
+<label id="hdVerifica" style="display: none"></label>
+<label id="hdServicio" style="display: none"></label>
+<label id="hdIdProgramacion" style="display: none"></label>
+<label id="hdHora" style="display: none"></label>
+<label id="hdIdInforme" style="display: none"></label>
+<style>
+    .chosen-container chosen-container-single {
+        width: 100%;
+    }
+
+    .selected {
+        color: black !important;
+    }
+
+    /*.nav-tabs .nav-link {
+            display: block;
+            padding: 0.2em 8em;
+            border: 1px solid transparent;
+            border-top-right-radius: 0.25rem;
+            border-top-left-radius: 0.25rem;
+        }*/
+</style>
+
+@*@section Scripts
+        {
+        <script type="text/javascript" src="js/form.js"></script>
+
+        <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/validval/js/jquery.validVal.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/inputmask/js/jquery.inputmask.bundle.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/fullcalendar/js/fullcalendar.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/fullcalendar/js/locale-all.js"></script>
+        <script src="<?php echo base_url('js/Citas/citas.js'); ?>"></script>
+        <script type="text/javascript" src=@Href("~/js/ConsultaExterna/Citas.js")></script>
+
+    }*@
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+
+    <script type="text/javascript" src="~/AdmiRE/vendors/fullcalendar_1/moment.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/fullcalendar_1/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/fullcalendar_1/es.js"></script>
+    
+    @*<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/locales-all.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/locales-all.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>*@
+
+    @*<script src='https://fullcalendar.io/releases/fullcalendar/3.10.0/lib/jquery.min.js'></script>
+    <script src='https://fullcalendar.io/releases/fullcalendar/3.10.0/lib/moment.min.js'></script>
+    <script src='https://fullcalendar.io/releases/fullcalendar/3.10.0/fullcalendar.min.js'></script>
+    <script src='https://fullcalendar.io/releases/fullcalendar/3.10.0/locale/es.js'></script>*@
+
+
+    <script type="text/javascript" src=@Href("~/js/ConsultaExterna/CitasAdmision.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/RegistroPacienteV2.js?v=" + version)></script>
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+
+
+    <script type="text/javascript">
+
+
+
+        $(document).ready(function () {
+            REGISTROPACIENTE.init()
+
+            $('.search').keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#btnBuscar").click();
+                }
+            });
+        })
+
+    </script>
+
+}
+
+
+
+<script type="text/javascript">
+
+    //$(document).ready(function () {
+    //    //citas.init();
+    //    $(".dataTables_scrollHeadInner .table").addClass("table-responsive");
+    //    $(".dataTables_wrapper .dt-buttons .btn").addClass('btn-secondary').removeClass('btn-default');
+
+    //});
+
+</script>
+<style>
+    
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .outer {
+        padding: 0px;
+        margin-top: 0px;
+    }
+
+    #tblCitas tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    .ui-datatable-even {
+        background: #FFFFA2;
+    }
+
+    .fc th {
+        padding: 10px 0px;
+        vertical-align: middle;
+        background-color: #d6e8f8 !important;
+    }
+
+    #tblRecetas_wrapper {
+        overflow-x: auto;
+    }
+
+    /*#modalcitastyle {
+            max-width: 70%;
+            margin: 30px auto;
+        }*/
+
+    .form-label {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .input-group {
+        font-size: 11px;
+    }
+
+    .lbltitle {
+        margin-top: 10px;
+        font-weight: bolder;
+        color: blue;
+    }
+
+    .mb-1 {
+        margin-bottom: 5px !important;
+    }
+
+    /*#modalcitastyle {
+            max-width: 80%;
+            margin: 30px auto;
+        }*/
+
+    .nav-item-header {
+        float: left;
+        margin-bottom: -1px;
+        width: 50%;
+        text-align: center;
+    }
+
+    .nav-tabs .nav-item + .nav-item {
+        margin-left: 0rem;
+    }
+
+    fieldset.scheduler-border {
+        border: 1px groove #ddd !important;
+        padding: 0 1.4em 1.4em 1.4em !important;
+        margin: 0 0 1.5em 0 !important;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+
+    legend.scheduler-border {
+        width: inherit; /* Or auto */
+        padding: 0 10px; /* To give a bit of padding on the left and right */
+        border-bottom: none;
+        font-size: 15px;
+    }
+
+    .border {
+        border: 1px solid #dee2e6 !important;
+    }
+
+    .tipo-busqueda {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: #f7f7f7;
+    }
+
+    .nav-tabs .nav-link:hover {
+        background-color: #3d668208;
+        /*border-bottom-color: #3d668254;*/
+    }
+
+    .btn:hover, .btn:focus {
+        color: #fff;
+    }
+
+    .btn-default {
+        background-color: #f4f4f4;
+    }
+
+        .btn-default:hover {
+            color: #333;
+        }
+
+
+    .day-highlight {
+        color: black !important;
+    }
+</style>
+
+
+@*<script>
+        Cargando(1)
+        let resCuenta, resAten, resAtenDatosAdi, insertFactCatalogo, datoPaciente
+        let citaAgregada, citaModificada, citasEliminar, idPaciente
+
+        /
+
+        // Eliminar
+        if (tipoAccion == 3) {
+            idPaciente = $('#txtIdPaciente').val()
+            citasEliminar =
+        }
+
+
+        resCuenta = await CitasAdmision.CrearModificarFacturacionCuentasAtencion(idPaciente, estadoAtencion)
+
+        if (resCuenta.estado) {
+            resAten = await CitasAdmision.CrearModificarAtenciones(resCuenta.idCuentaAtencion, idPaciente, estadoAtencion)
+
+            if (resAten.estado) {
+                resAtenDatosAdi = await CitasAdmision.CrearModificarAtencionesDatosAdicionales(resAten.idAtencion)
+
+                if (estadoAtencion == 1) {
+                    insertFactCatalogo = await CitasAdmision.InsertFactCatalogo(resCuenta.idCuentaAtencion, idPaciente)
+
+                    if (insertFactCatalogo.msjReceta == "") {
+
+                        datoPaciente = await CitasAdmision.PacientesSeleccionarPorId(idPaciente)
+
+                        if (tipoAccion == 1) {
+                            citaModificada = await CitasAdmision.CitasModificar(resAten.idAtencion, idPaciente)
+
+                            if (citaModificada.estado) {
+                                swal({
+                                    title: 'Datos agregados: ',
+                                    text: 'Los datos se agregaron correctamente para \n N° Historia:' + datoPaciente[0].nroHistoriaClinica + "\n " +
+                                        'N° Cuenta: ' + resCuenta.idCuentaAtencion + "\n ",
+                                    //+ 'N° Cuenta: ' + insertFactCatalogo.ordenPago + "\n ",
+
+
+                                    type: 'info',
+                                    confirmButtonColor: '#4fb7fe',
+                                    cancelButtonColor: '#EF6F6C',
+                                    confirmButtonText: 'Aceptar'
+                                })
+
+                                Cargando(0)
+                            }
+                        }
+
+                    }
+                    else {
+                        alerta('2', insertFactCatalogo.msjReceta);
+                        Cargando(0)
+                        return false;
+                    }
+                }
+
+                Cargando(0)
+            }
+        }
+    </script>*@

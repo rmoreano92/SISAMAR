@@ -1,0 +1,718 @@
+﻿<div class="row">
+    <div class="col-lg-12 mb-1">
+        <div class="card">
+            <div class="card-block pb-1 bg-blue">
+                <div class="row">                    
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="txtNroCuentaFarmacoVigilancia" class="form-control-label">N° Cuenta</label>
+                                            <div class="input-group input-group-sm">
+                                                <input id="txtNroCuentaFarmacoVigilancia" autocomplete="off" placeholder="" class="solo-numero form-control">
+                                                <span class="input-group-btn " id="btnNroCuentaFarmacoVigilancia">
+                                                    <button class="btn btn-indigo" type="button" id="btnmodalBusquedaCuentasAtenciones"><i class="fa fa-search-plus"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="txtNroHistoriaFarmacoVigilancia" class="form-control-label">Historia</label>
+                                            <input id="txtNroHistoriaFarmacoVigilancia" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="txtPacienteFarmacoVigilancia" class="form-control-label">Paciente</label>
+                                    <input id="txtPacienteFarmacoVigilancia" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="txtEdadFarmacoVigilancia" class="form-control-label">Edad</label>
+                                    <input id="txtEdadFarmacoVigilancia" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="txtSexoFarmacoVigilancia" class="form-control-label">Sexo</label>
+                                    <input id="txtSexoFarmacoVigilancia" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="txtDesPlanFarmacoVigilancia" class="form-control-label">Fte. Finaciamiento</label>
+                                    <input id="txtDesPlanFarmacoVigilancia" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">                   
+                    
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label for="txtTipoServicioFarmacoVigilancia" class="form-control-label">Tipo Servicio</label>
+                            <input id="txtTipoServicioFarmacoVigilancia" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="txtServicioFarmacoVigilancia" class="form-control-label">Servicio</label>
+                            <input id="txtServicioFarmacoVigilancia" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label for="txtCamaFarmacoVigilancia" class="form-control-label">Cama</label>
+                            <input id="txtCamaFarmacoVigilancia" autocomplete="off" placeholder="" class="form-control form-control-sm" disabled>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 mb-1">
+        <div class="row">
+            <div class="col-lg-4">
+                <form>
+                    <fieldset class="m-0 pr-1 pl-1 pb-1">
+                        <legend class="mb-0">Notificaciones FV</legend>
+                        <table id="tblNotificacionesFarmacoVigilancia" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                            <thead style="color: white;">
+                                <tr style="background-color: #434343;">
+                                    <th style="width:25% !important;">Fecha</th>
+                                    <th style="width:15% !important;">Notif.</th>
+                                    <th style="width:60% !important;">Q. Farmac.</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                        @* <div class="row" id="divFirma">
+                            <div class="col-xs-12">
+                                <button type="button" class="btn btn-sm btn-danger" id="btnEliminarNotificacion"><i class="fa fa-trash"></i> Eliminar</button>
+                            </div>
+                        </div> *@
+
+                        @* <div class="row mt-1" id="divFirma">
+                            <div class="col-xs-12 text-xs-center">
+                                <button type="button" style="width: 60px;" class="btn btn-sm btn-success" id="ImprimirEvalEmerCF"><i class="fa fa-print"></i></button>
+                                <button type="button" style="width: 60px;" class="btn btn-sm btn-info" id="FirmarEvalEmer"><i class="fa fa-pencil"></i></button>
+                                <button type="button" style="width: 60px;" class="btn btn-sm btn-warning" id="ImprimirEvalEmerSF"><i class="fa fa-eye"></i></button>
+                            </div>
+                        </div> *@
+                    </fieldset>
+                </form>
+
+                <div class="row mt-2">
+                    <div class="col-lg-12 text-sm-center mb-1">
+                        <button style="letter-spacing: 1px;" class="btn btn-success font-weight-bold layout_btn_prevent" id="btnNuevaNotificacionFV"><i style="width: 20px; text-align: center;" class="fa-solid fa-file-plus"></i> AGREGAR NOTIFICACIÓN</button>
+                    </div>
+                    <div class="col-lg-12 text-sm-center">
+                        <button style="letter-spacing: 1px;" class="btn btn-primary font-weight-bold layout_btn_prevent" id="btnHistorialFV"><i style="width: 20px; text-align: center;" class="fa-solid fa-file-plus"></i> HISTORIAL FARMACO VIGILANCIA</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+
+                <div class="card">
+                    <div id="TituloNotificacionFV"  class="card-header bg-deep-teal">NOTIFICACIÓN</div>
+                    <div class="card-block p-1">
+                        <ul class="nav nav-tabs" id="NotiFV-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="ReacAdverSospechosas-tab-link" data-toggle="tab" href="#ReacAdverSospechosas-tab" role="tab" aria-controls="home" aria-selected="true" aria-expanded="true">Reaciones Adversas Sospechosas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="ProdSospechosos-tab-link" data-toggle="tab" href="#ProdSospechosos-tab" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">Productos Sospechosos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="ProdConcomitantes-tab-link" data-toggle="tab" href="#ProdConcomitantes-tab" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">Productos Concomitantes</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content border p-1" id="NotiFVTabContent">
+                            <div class="tab-pane fade show active in" id="ReacAdverSospechosas-tab" role="tabpanel" aria-labelledby="ReacAdverSospechosas-tab-link" aria-expanded="true">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card bg-green">
+                                            <div class="card-block">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="cboTipoReaccionAdversasFV">Tipo Reacción Adversas</label>
+                                                            <select class="chzn-select campoFV" id="cboTipoReaccionAdversasFV" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <div class="form-group">
+                                                            <label for="txtEspecificarReaccionAdversaFV">Especificar</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtEspecificarReaccionAdversaFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label for="txtDescripcionReaccionAdversaFV">Descripción de la Reacción Adversa</label>
+                                                            <textarea class="form-control campoFV" id="txtDescripcionReaccionAdversaFV" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtFechaInicioRamFV">Fecha Inicio RAM</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoFecha campoFV" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioRamFV">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtFechaFinRamFV">Fecha Final RAM</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoFecha campoFV" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinRamFV">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="cboGravedadRamFV">Gravedad RAM</label>
+                                                            <select class="chzn-select campoFV" id="cboGravedadRamFV" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="cboConcecuenciaGravedadFV">Consecuencia de gravedad</label>
+                                                            <select class="chzn-select campoFV" id="cboConcecuenciaGravedadFV" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group">
+                                                            <label for="cboFallecioFV">Falleció ?</label>
+                                                            <select class="chzn-select campoFV" id="cboFallecioFV" data-placeholder="Seleccione una opción">
+                                                                <option value="1">Si</option>
+                                                                <option value="0">No</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="cboDescenlaceFV">Descenlace</label>
+                                                            <select class="chzn-select campoFV" id="cboDescenlaceFV" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtFechaFalleceFV">Fecha Fallece</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoFV" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFalleceFV">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label for="txtResRelExLabFV">Resultados Relevantes de Ex. Laboratorio</label>
+                                                            <textarea class="form-control campoFV" id="txtResRelExLabFV" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label for="txtOtrosDatosHcFV">Otros Datos de Historia Clinica</label>
+                                                            <textarea class="form-control campoFV" id="txtOtrosDatosHcFV" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-pane fade" id="ProdSospechosos-tab" role="tabpanel" aria-labelledby="ProdSospechosos-tab-link" aria-expanded="false">
+                                <div class="row mb-1">
+                                    <div class="col-lg-12">
+                                        <div class="card bg-yellow">
+                                            <div class="card-block pb-0">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="txtNombreComercialProdSosFV">Nombre Comercial o Generico</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtNombreComercialProdSosFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="txtLaboratorioProdSosFV">Laboratorio</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtLaboratorioProdSosFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtLoteProdSosFV">Lote</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtLoteProdSosFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtDosisFrecuenciaProdSosFV">Dosis/Frecuencia</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtDosisFrecuenciaProdSosFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtViaAdministracionProdSosFV">Via Administración</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtViaAdministracionProdSosFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtFechaInicioProdSosFV">Fecha Inicio</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoFecha campoFV" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioProdSosFV">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtFechaFinalProdSosFV">Fecha Final</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoFecha campoFV" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinalProdSosFV">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtNroRecetaAsociadoProdSosFV">Nª Receta Asociado</label>
+                                                            <input type="text" class="form-control form-control-sm solo-numero campoFV" id="txtNroRecetaAsociadoProdSosFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <div class="form-group">
+                                                            <label for="txtMotivoPrescripcionProdSosFV">Motivo Prescripción</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtMotivoPrescripcionProdSosFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-7">
+                                                        <div class="form-group">
+                                                            <label for="cboDiagnosticoProdSosFV">Diagnóstico</label>
+                                                            <select class="chzn-select campoFV" id="cboDiagnosticoProdSosFV" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-1">
+                                                    <div class="col-lg-12 text-sm-right">
+                                                        <button id="btnAgregarProdSosFV" class="btn btn-success mr-1"><i class="fa-solid fa-plus"></i> Agregar</button>
+                                                        <button id="btnQuitarProdSosFV" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Agregar</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <table id="tblProductosSospechososFV" class="table table-sm table-bordered table-content-sm table-striped" width="100%">
+                                                            <thead style="color: white;background: #51717a;">
+                                                                <tr>
+                                                                    <th>Nombre Comercial</th>
+                                                                    <th>Laboratorio</th>
+                                                                    <th>Lote</th>
+                                                                    <th>Dosis/Frecuencia</th>
+                                                                    <th>Via de Adm.</th>
+                                                                    <th>Fecha Inicio</th>
+                                                                    <th>Fecha Final</th>
+                                                                    <th>Nº Receta Asoc.</th>
+                                                                    <th>Motivo de Prescripción</th>
+                                                                    <th>CIE 10</th>
+                                                                    <th>IdDiagnostico</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <div class="col-lg-6">
+                                        <div class="card bg-orange">
+                                            <div class="card-header">
+                                                SUSPENSIÓN
+                                            </div>
+                                            <div class="card-block">
+                                                <div class="mb-1">
+                                                    <span>1. Desapareció reacción adversa suspendiendo el producto</span>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAlSuspenderProductoFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAlSuspenderProductoSiFV" value="1">
+                                                                <span class="radioButtonStyleSpan w-100">SI</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAlSuspenderProductoFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAlSuspenderProductoNoFV" value="2">
+                                                                <span class="radioButtonStyleSpan w-100">NO</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAlSuspenderProductoFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAlSuspenderProductoNoAplicaFV" value="3">
+                                                                <span class="radioButtonStyleSpan w-100">NO APLICA</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <span>2. Desapareció reacción adversa al disminuir la dosis</span>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAlDisminuirDosisFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAlDisminuirDosisSiFV" value="1">
+                                                                <span class="radioButtonStyleSpan w-100">SI</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAlDisminuirDosisFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAlDisminuirDosisNoFV" value="2">
+                                                                <span class="radioButtonStyleSpan w-100">NO</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAlDisminuirDosisFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAlDisminuirDosisNoAplicaFV" value="3">
+                                                                <span class="radioButtonStyleSpan w-100">NO APLICA</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="card bg-orange">
+                                            <div class="card-header">
+                                                REEXPOSICIÓN
+                                            </div>
+                                            <div class="card-block">
+                                                <div class="mb-1">
+                                                    <span>1. Reapareció la reacción adversa al administrar el producto</span>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAlAdministrarProductoFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAlAdministrarProductoSiFV" value="1">
+                                                                <span class="radioButtonStyleSpan w-100">SI</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAlAdministrarProductoFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAlAdministrarProductoNoFV" value="2">
+                                                                <span class="radioButtonStyleSpan w-100">NO</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAlAdministrarProductoFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAlAdministrarProductoNoAplicaFV" value="3">
+                                                                <span class="radioButtonStyleSpan w-100">NO APLICA</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <span>2. Paciente ha presentado anteriormente la reacción adversa al producto</span>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAnteriormenteReacionoFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAnteriormenteReacionoSiFV" value="1">
+                                                                <span class="radioButtonStyleSpan w-100">SI</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAnteriormenteReacionoFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAnteriormenteReacionoNoFV" value="2">
+                                                                <span class="radioButtonStyleSpan w-100">NO</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="radioButtonStyleLabel">
+                                                                <input type="radio" name="rdbAnteriormenteReacionoFV" class="radioButtonStyleInput rdbCampoFV" id="rdbAnteriormenteReacionoNoAplicaFV" value="3">
+                                                                <span class="radioButtonStyleSpan w-100">NO APLICA</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <div class="col-lg-12">
+                                        <form>
+                                            <fieldset class="m-0 px-1 pb-1 bg-blue">
+                                                <legend class="mb-0">Paciente recibió tratamiento para reacción adversa</legend>
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group">
+                                                            <label for="cboRecibioTratamientoProdSosFV">Indicar</label>
+                                                            <select class="chzn-select campoFV" id="cboRecibioTratamientoProdSosFV" data-placeholder="Seleccione una opción">
+                                                                <option value="1">Si</option>
+                                                                <option value="0">No</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <div class="form-group">
+                                                            <label for="txtEspecificarTratamientoProdSosFV">Especificar</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtEspecificarTratamientoProdSosFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form>
+                                            <fieldset class="m-0 px-1 pb-1 bg-blue">
+                                                <legend class="mb-0">Sospecha de problema de Calidad</legend>
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group">
+                                                            <label for="cboProblemaCalidadProdSosFV">Indicar</label>
+                                                            <select class="chzn-select campoFV" id="cboProblemaCalidadProdSosFV" data-placeholder="Seleccione una opción">
+                                                                <option value="1">Si</option>
+                                                                <option value="0">No</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtProblemaRegistroSanitarioProdSosFV">Registro Sanitario</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtProblemaRegistroSanitarioProdSosFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtProblemaFechaVencimientoProdSosFV">Fecha Vencimiento</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoFV" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtProblemaFechaVencimientoProdSosFV">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-pane fade" id="ProdConcomitantes-tab" role="tabpanel" aria-labelledby="ProdConcomitantes-tab-link" aria-expanded="false">
+                                <div class="row mb-1">
+                                    <div class="col-lg-12">
+                                        <div class="card bg-yellow">
+                                            <div class="card-block pb-0">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="txtNombreComercialProdConFV">Nombre Comercial o Generico</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtNombreComercialProdConFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtDosisFrecuenciaProdConFV">Dosis/Frecuencia</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtDosisFrecuenciaProdConFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtViaAdministracionProdConFV">Via Administración</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtViaAdministracionProdConFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtFechaInicioProdConFV">Fecha Inicio</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoFecha campoFV" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioProdConFV">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtFechaFinalProdConFV">Fecha Final</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoFecha campoFV" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinalProdConFV">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="txtMotivoPrescripcionProdConFV">Motivo Prescripción</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtMotivoPrescripcionProdConFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-1">
+                                                    <div class="col-lg-12 text-sm-right">
+                                                        <button id="btnAgregarProdConFV" class="btn btn-success mr-1"><i class="fa-solid fa-plus"></i> Agregar</button>
+                                                        <button id="btnQuitarProdConFV" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Agregar</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <table id="tblProductosConcomitantesFV" class="table table-sm table-bordered table-content-sm table-striped" width="100%">
+                                                            <thead style="color: white;background: #51717a;">
+                                                                <tr>
+                                                                    <th>Nombre Comercial</th>
+                                                                    <th>Dosis/Frecuencia</th>
+                                                                    <th>Via de Adm.</th>
+                                                                    <th>Fecha Inicio</th>
+                                                                    <th>Fecha Final</th>
+                                                                    <th>Motivo de Prescripción</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card bg-pink">
+                                            <div class="card-header">DATOS DEL NOTIFICADOR</div>
+                                            <div class="card-block">
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <div class="form-group">
+                                                            <label for="txtNombreNotificadorProdConFV">Nombres y Apellidos</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtNombreNotificadorProdConFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtCelularNotificadorProdConFV">Celular</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtCelularNotificadorProdConFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="txtCorreoNotificadorProdConFV">Correo Electronico</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtCorreoNotificadorProdConFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="cboProfesionNotificadorProdConFV">Profesión</label>
+                                                            <select class="chzn-select campoFV" id="cboProfesionNotificadorProdConFV" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtFechaNotificacionProdConFV">Fecha Notificación</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3 campoFecha campoFV" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNotificacionProdConFV">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtNumeroNotificacionProdConFV">Número de Notificación</label>
+                                                            <input type="text" class="form-control form-control-sm campoFV" id="txtNumeroNotificacionProdConFV" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 border-top py-1 text-sm-right">
+        <button id="btnGuardarNotificacion" class="btn btn-lg btn-info">Guardar</button>
+        <button id="btnCerrarFarmacoVigilancia" class="btn btn-lg btn-secondary">Cerrar</button>
+    </div>
+
+</div>

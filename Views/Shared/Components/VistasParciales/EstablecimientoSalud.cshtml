@@ -1,0 +1,82 @@
+﻿<!-- Modal-->
+<div data-backdrop="static" style="background-color: rgba(0,0,0,0.5); overflow-y: scroll; z-index: 9999;" data-keyboard="false" class="modal fade" id="modalEstablecimientosBuscar" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Busqueda de Establecimientos</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group m-0">
+                            <label for="codigoEstBuscar">Cod. IPRESS</label>
+                            <input type="text" class="form-control form-control-sm searchEstab" id="codigoEstBuscar" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group m-0">
+                            <label for="nombreEstBuscar">Nombre</label>
+                            <input type="text" class="form-control form-control-sm searchEstab" id="nombreEstBuscar" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group m-0">
+                            <label for="cmbdepEstbuscar">Departamento</label>
+                            <div class="input-group">
+                                <select class="chzn-select searchEstab" id="cmbdepEstbuscar" data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group m-0">
+                            <label for="cmbprovEstBuscar">Provincia</label>
+                            <div class="input-group">
+                                <select class="chzn-select searchEstab" id="cmbprovEstBuscar" data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group m-0">
+                            <label for="cmbdistEstBuscar">Distrito</label>
+                            <div class="input-group">
+                                <select class="chzn-select searchEstab" id="cmbdistEstBuscar" data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="margin-top: 28px;">
+                        <button class="btn btn-sm btn-outline-primary layout_btn_prevent" id="btnBuscarEstablecimiento" style="width:70px;">Buscar</button>
+                        <button class="btn btn-sm btn-outline-secondary layout_btn_prevent" id="btnLimpiarBusquedaEstablecimiento" style="width:70px;">Limpiar</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive mt-1">
+                            <table id="tblEstSalud" width="100%" class="table table-sm table-bordered table-content-md">
+                                <thead style="color: white;background: #434343;">
+                                    <tr>
+                                        <th style="width:5%">Codigo</th>
+                                        <th style="width:15%">Nombre</th>
+                                        <th style="width:15%">Distrito</th>
+                                        <th style="width:15%">Provincia</th>
+                                        <th style="width:15%">Departamento</th>
+                                        <th style="width:10%;text-align:center">Acción</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+
+                <!--<button id="btnRegistrarPaciente" class="btn  btn-primary "> Registrar</button>-->
+                <button id="btnCerraEstablecimientoBuscar" target="_blank" class="btn  btn-secondary"> Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+
+</div>

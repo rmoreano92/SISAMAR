@@ -1,0 +1,1059 @@
+﻿<div class="modal fade" id="modalRegistroFichaEpidemiologica" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Ficha de Vigilancia de Infecciones Intra-Hospitalarias</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group campo">
+                            <label for="cboTipoPaciente">Responsable de Registrar Ficha</label>
+                            <select id="cboTipoPaciente" class="chzn-select"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtNroCuenta">Fecha Registro</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar "></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtNroCuenta">N° Cuenta</label>
+                            <input type="text" class="form-control form-control-sm" id="txtNroCuenta" placeholder="" autocomplete="off" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtHistoria">Historia</label>
+                            <input type="text" class="form-control form-control-sm" id="txtHistoria" placeholder="" autocomplete="off" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="txtPacienteNombre">Nombres</label>
+                            <input type="text" class="form-control form-control-sm" id="txtPacienteNombre" placeholder="" autocomplete="off" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="txtNroDocumento">N° Documento</label>
+                            <div class="d-flex">
+                                <input type="text" class="form-control form-control-sm m-r-5" id="txtTipoDocumentoEmer" placeholder="" autocomplete="off" disabled>
+                                <input type="text" class="form-control form-control-sm m-l-5" id="txtNroDocumentoEmer" placeholder="" autocomplete="off" disabled>
+                            </div>
+                        </div>
+                    </div>
+                   @* <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="">Edad (A|M|D)</label>
+                            <div class="d-flex">
+                                <input type="text" class="form-control form-control-sm" id="txtEdadAnio" placeholder="" autocomplete="off" disabled>
+                                <span style="margin: 0 2px;font-weight: bold;">|</span>
+                                <input type="text" class="form-control form-control-sm" id="txtEdadMes" placeholder="" autocomplete="off" disabled>
+                                <span style="margin: 0 2px;font-weight: bold;">|</span>
+                                <input type="text" class="form-control form-control-sm" id="txtEdadDia" placeholder="" autocomplete="off" disabled>
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="col-md-2">
+                        <div class="form-group campo">
+                            <label for="cboTipoPaciente">Tipo Paciente</label>
+                            <select id="cboTipoPaciente" class="chzn-select"></select>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card m-t-5 bg-orange">
+                            <div class="card-header bg-white">Datos de la Madre</div>
+                            <div class="card-block m-t-5 custom-form">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtNroHistoriaMadre">Historia Clinica</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNroHistoriaMadre" disabled autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtNombreMadre">Datos Personales</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNombreMadre" disabled autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtEdadMadre">Fecha Nac.</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="cboTipoDocMadre">Tipo Documento</label>
+                                            <select id="cboTipoDocMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtNroDocMadre">Nro Documento</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNroDocMadre" disabled autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="cboEstadoCivilMadre">Sexo</label>
+                                            <select id="cboEstadoCivilMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="cboEstadoCivilMadre">Estado Civil</label>
+                                            <select id="cboEstadoCivilMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="cboGradoInstruccionMadre">Grado de Instrucción</label>
+                                            <select id="cboGradoInstruccionMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>*@
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="">Edad (A|M|D)</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control form-control-sm" id="txtEdadAnio" placeholder="" autocomplete="off" disabled>
+                                                <span style="margin: 0 2px;font-weight: bold;">|</span>
+                                                <input type="text" class="form-control form-control-sm" id="txtEdadMes" placeholder="" autocomplete="off" disabled>
+                                                <span style="margin: 0 2px;font-weight: bold;">|</span>
+                                                <input type="text" class="form-control form-control-sm" id="txtEdadDia" placeholder="" autocomplete="off" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card m-t-5 bg-blue">
+                            <div class="card-header bg-white">Datos del RN</div>
+                            <div class="card-block m-t-5 custom-form">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtNroHistoriaMadre">Historia Clinica</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNroHistoriaMadre" disabled autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtNombreMadre">Datos Personales</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNombreMadre" disabled autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtEdadMadre">Fecha Nac.</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="cboTipoDocMadre">Tipo Documento</label>
+                                            <select id="cboTipoDocMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtNroDocMadre">Nro Documento</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtNroDocMadre" disabled autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="cboEstadoCivilMadre">Sexo</label>
+                                            <select id="cboEstadoCivilMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-3">
+                                    <div class="form-group">
+                                    <label for="cboEstadoCivilMadre">Estado Civil</label>
+                                    <select id="cboEstadoCivilMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                    <div class="form-group">
+                                    <label for="cboGradoInstruccionMadre">Grado de Instrucción</label>
+                                    <select id="cboGradoInstruccionMadre" class="chzn-select" disabled data-placeholder="Seleccione una opción"></select>
+                                    </div>
+                                    </div>*@
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="">Edad (A|M|D)</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control form-control-sm" id="txtEdadAnio" placeholder="" autocomplete="off" disabled>
+                                                <span style="margin: 0 2px;font-weight: bold;">|</span>
+                                                <input type="text" class="form-control form-control-sm" id="txtEdadMes" placeholder="" autocomplete="off" disabled>
+                                                <span style="margin: 0 2px;font-weight: bold;">|</span>
+                                                <input type="text" class="form-control form-control-sm" id="txtEdadDia" placeholder="" autocomplete="off" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                @*==================================================CONDICIONES DE INGRESO=================================================================================*@
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card m-t-5 bg-blue">
+                            <div class="card-header bg-white">Condiciones de Ingreso</div>
+                            <div class="card-block m-t-5 custom-form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group" style="max-width: 200px;">
+                                            <label for="txtNroCuenta">Fecha Ingreso al MGP</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group" style="max-width: 200px;">
+                                            <label for="txtNroCuenta">Fecha Ingreso al MGP</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtEdadMadre">Edad Gest. (Madre)</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtEdadMadre">Servicio Ingreso</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtEdadMadre">Quirofano/Sala</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtEdadMadre">Condición al Egreso</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group" style="max-width: 200px;">
+                                                    <label for="txtNroCuenta">Fecha Ingreso Servicio</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="max-width: 200px;">
+                                                    <label for="txtNroCuenta">Fecha Egreso</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtEdadMadre">Peso del RN</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtEdadMadre">Servicio Ingreso RN</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtEdadMadre">Quirofano/Sala</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtEdadMadre">Condición al Egreso</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtEdadMadre" disabled autocomplete="off">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group" style="max-width: 200px;">
+                                                    <label for="txtNroCuenta">Fecha Ingreso Servicio RN</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="max-width: 200px;">
+                                                    <label for="txtNroCuenta">Fecha Egreso</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <ul id="idtbAtencion" class="nav nav-tabs jerarquiaA" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom active" href="#DatosIAAS" role="tab" id="DatosIAAS-tab" data-toggle="tab" aria-controls="DatosIAAS" aria-expanded="true">DATOS DE LA IAAS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" href="#FactIntrinsecos" role="tab" id="FactIntrinsecos-tab" data-toggle="tab" aria-controls="FactIntrinsecos">FACTORES INTRÍNSECOS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" href="#AgtBiologico" role="tab" id="AgtBiologico-tab" data-toggle="tab" aria-controls="AgtBiologico">AGENTE BIOLOGICO</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" href="#Tratamiento" role="tab" id="Tratamiento-tab" data-toggle="tab" aria-controls="Tratamiento">TRATAMIENTO</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" href="#Antibiograma" role="tab" id="Antibiograma-tab" data-toggle="tab" aria-controls="Antibiograma">ANTIBIOGRAMA</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" href="#TomaMuestra" role="tab" id="TomaMuestra-tab" data-toggle="tab" aria-controls="TomaMuestra">CONDICIONES TOMA DE MUESTRA</a>
+                            </li>                            
+                        </ul>
+                        <div id="clothing-nav-contentDatosIAAS" class="tab-content p-1 border-right border-left border-bottom">
+                            <div role="tabpanel" class="tab-pane fade active in" id="DatosIAAS" aria-labelledby="DatosIAAS-tab" aria-expanded="true">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">ITS Catéter VC</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Instalación</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Retiro</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">Catéter VP</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Instalación</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Retiro</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">Catéter VPC</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Instalación</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Retiro</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">Catéter Umbilical V</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Instalación</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Retiro</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">Catéter Umbilical A</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Instalación</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Retiro</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">ITU Catéter Vesical</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Instalación</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Retiro</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">Ventriculitis DVP</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Instalación</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Retiro</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">NAVM</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Instalación</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Retiro</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info"></label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Nombre de Cirugía</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtEdadMadre" autocomplete="off">   
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Procedimiento Médico</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtEdadMadre" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">Otro Procedimiento</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Descripción O.P.</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtEdadMadre" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha Ejecución O.P.</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info"></label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Cirugía Neonatal</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtEdadMadre" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Fecha de Cirugía</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencionBuscar">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">IR de ISQ</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Total de Puntos</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtEdadMadre" autocomplete="off">
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="card bg-green">
+                                            <div class="card-block pb-0">
+                                                <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info"></label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="txtEdadMadre">Duración Cirugía (min)</label>
+                                                            <input type="text" class="form-control form-control-sm" id="txtEdadMadre" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="FactIntrinsecos" aria-labelledby="FactIntrinsecos-tab" aria-expanded="true">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card bg-green">
+                                            <div class="card-header bg-white">Relacionadas con la gestante</div>
+                                            <div class="card-block pt-1">
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">Edad &#60; 15 años</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">Linfocitos &#62; 40%</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">Desnutrición crónica</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">Anemia</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">ITU en el embarazo</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">Vaginosis bacteriana</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">RPM &#60; 18 horas</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">Corioamnionitis</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">Placenta previa</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">Trabajo parto prolongado</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">Mas de 4 tactos</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">Inducción del parto</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card bg-green">
+                                            <div class="card-header bg-white">Relacionadas con el RN</div>
+                                            <div class="card-block pt-1">
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">AAAAAAAAAA</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">AAAAAAAAAA</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">AAAAAAAAAA</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="txtAnioMigrar" class="form-control-label">AAAAAAAAAA</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="form-check form-check-inline pl-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="XXXXXXX" value="1">
+                                                            <label class="pl-1 m-0" for="XXXXXXX">SI</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mt-0">
+                                                            <input class="" type="radio" name="YYYYYY" id="ZZZZZZZ" value="2">
+                                                            <label class="pl-1 m-0" for="ZZZZZZZ">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4">
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="card-block pb-0">
+                                    <label for="txtMotivoConsultaPeri" class="form-control-label font-weight-bold text-info">Relacionadas con la genstante</label>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group m-0">
+                                                <label for="txtAnioMigrar" class="form-control-label">Edad &#60; 15 años</label>
+                                                <div class="input-group input-group-sm">
+                                                    <div class="form-check form-check-inline pl-0">
+                                                        <input class="" type="radio" name="TipoFiltroMigracion" id="TipoFiltroMigracionFecha" value="1">
+                                                        <label class="pl-1" for="TipoFiltroMigracionFecha">SI</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mt-0">
+                                                        <input class="" type="radio" name="TipoFiltroMigracion" id="TipoFiltroMigracionHistoria" value="2">
+                                                        <label class="pl-1" for="TipoFiltroMigracionHistoria">NO</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            
+                                        </div>
+                                        <div class="col-md-4">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="AgtBiologico" aria-labelledby="AgtBiologico-tab" aria-expanded="true">
+                                3
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Tratamiento" aria-labelledby="Tratamiento-tab" aria-expanded="true">
+                                4
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Antibiograma" aria-labelledby="Antibiograma-tab" aria-expanded="true">
+                                5
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="TomaMuestra" aria-labelledby="TomaMuestra-tab" aria-expanded="true">
+                                6
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtEdadMadre">Observación (Indicar si se atendió en otra IPRESS)</label>
+                            <input type="text" class="form-control form-control-sm" id="txtEdadMadre" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-secondary" id="btnCancelarFichaEpidemiologica">CERRAR</button>
+                <button type="button" class="btn btn-lg btn-primary" id="btnGuardarFichaEpidemiologica">GUARDAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .chosen-container, .chzn-select {
+        width: 100% !important;
+    }
+</style>
+
+

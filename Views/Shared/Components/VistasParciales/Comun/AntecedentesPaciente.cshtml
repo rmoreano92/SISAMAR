@@ -1,0 +1,1102 @@
+﻿@using CapaDatos
+@using System.Data
+@{
+    DalAtenciones dalAtenciones = new DalAtenciones();
+    DataSet lsCatalogo = await dalAtenciones.ListaCatalogoCombo(0);
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <ul id="ulPerinatal1" class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" href="#anteceFamili" role="tab" id="anteceFamili-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true">Antecedentes Familiares </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#antecePerson" role="tab" id="antecePerson-tab" data-toggle="tab" aria-controls="hats">Antecedentes Personales</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#antecePeriMat" role="tab" id="antecePeriMat-tab" data-toggle="tab" aria-controls="hats">Antecedentes Perinatales/Maternos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#anteceObst" role="tab" id="anteceObst-tab" data-toggle="tab" aria-controls="hats">Antecedentes Obstétricos</a>
+            </li>
+        </ul>
+
+        <div id="clothing-nav-content2" class="tab-content pt-1 campo">
+            <div role="tabpanel" class="tab-pane fade in active" id="anteceFamili" aria-labelledby="anteceFamili-tab">
+                <div class="card bg-orange">
+                    <div class="card-block">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>TBC</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbTbcSi" name="rdbTbc">
+                                            <label for="rdbTbcSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbTbcNo" name="rdbTbc" class="">
+                                            <label for="rdbTbcNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtTbc" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Diabetes</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbDiabSi" name="rdbDiab">
+                                            <label for="rdbDiabSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbDiabNo" name="rdbDiab" class="">
+                                            <label for="rdbDiabNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtDiabe" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Hipertensión</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbHiperSi" name="rdbHiper">
+                                            <label for="rdbHiperSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbHiperNo" name="rdbHiper">
+                                            <label for="rdbHiperNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtHiper" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <span>Pre/Eclampsia</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbPreeSi" name="rdbPree">
+                                            <label for="rdbPreeSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbPreeNo" name="rdbPree">
+                                            <label for="rdbPreeNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtPree" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <span>Gemelares</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbGemelaresSi" name="rdbGemelares">
+                                            <label for="rdbGemelaresSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbGemelaresNo" name="rdbGemelares">
+                                            <label for="rdbGemelaresNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtGemelares" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <span>Malformaciones</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbMalformacionesSi" name="rdbMalformaciones">
+                                            <label for="rdbMalformacionesSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbMalformacionesNo" name="rdbMalformaciones">
+                                            <label for="rdbMalformacionesNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtMalformaciones" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Otros</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbOtrosSi" name="rdbOtros">
+                                            <label for="rdbOtrosSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbOtrosNo" name="rdbOtros">
+                                            <label for="rdbOtrosNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtOtrosFam" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="antecePerson" aria-labelledby="antecePerson-tab">
+                <div class="card bg-blue">
+                    <div class="card-block">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>TBC</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbTbcPAntePerSi" name="rdbTbcPAntePer">
+                                            <label for="rdbTbcPAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbTbcPAntePerNo" name="rdbTbcPAntePer">
+                                            <label for="rdbTbcPAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtTbcPAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Diabetes</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbPDiabAntePerSi" name="rdbPDiabAntePer">
+                                            <label for="rdbPDiabAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbPDiabAntePerNo" name="rdbPDiabAntePer">
+                                            <label for="rdbPDiabAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtPDiabeAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Hipertensión</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="d-flex justify-content-start">
+                                            <div>
+                                                <div class="switch-field">
+                                                    <input type="radio" id="rdbHiperPAntePerSi" name="rdbHiperPAntePer">
+                                                    <label for="rdbHiperPAntePerSi" class="pl-2 pr-2">Si</label>
+                                                    <input type="radio" id="rdbHiperPAntePerNo" name="rdbHiperPAntePer">
+                                                    <label for="rdbHiperPAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtHiperPAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Pree/Eclampsia</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbPreePAntePerSi" name="rdbPreePAntePer">
+                                            <label for="rdbPreePAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbPreePAntePerNo" name="rdbPreePAntePer">
+                                            <label for="rdbPreePAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtPreePAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>VIH</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbVIHAntePerSi" name="rdbVIHAntePer">
+                                            <label for="rdbVIHAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbVIHAntePerNo" name="rdbVIHAntePer">
+                                            <label for="rdbVIHAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtVihPAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Alergia</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbAlergAntePerSi" name="rdbAlergAntePer">
+                                            <label for="rdbAlergAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbAlergAntePerNo" name="rdbAlergAntePer">
+                                            <label for="rdbAlergAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtAlergiaPAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Cirugía mayor</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbCMAntePerSi" name="rdbCMAntePer">
+                                            <label for="rdbCMAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbCMAntePerNo" name="rdbCMAntePer">
+                                            <label for="rdbCMAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtCMAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Violencia</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbVioAntePerSi" name="rdbVioAntePer">
+                                            <label for="rdbVioAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbVioAntePerNo" name="rdbVioAntePer">
+                                            <label for="rdbVioAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtVioAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Vacuna Previa</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbVacunaPreAntePerSi" name="rdbVacunaPreAntePer">
+                                            <label for="rdbVacunaPreAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbVacunaPreAntePerNo" name="rdbVacunaPreAntePer">
+                                            <label for="rdbVacunaPreAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtVacunaPreAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Otros</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbOtrosAntePerSi" name="rdbOtrosAntePer">
+                                            <label for="rdbOtrosAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbOtrosAntePerNo" name="rdbOtrosAntePer">
+                                            <label for="rdbOtrosAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtOtrosPAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="antecePeriMat" aria-labelledby="antecePeriMat-tab">
+                <div class="row">
+                    <div class="col-lg-12 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Infecciones Maternas</div>
+                            <div class="card-block">
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Lúes</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbLuesAntePerSi" name="rdbLuesAntePer">
+                                            <label for="rdbLuesAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbLuesAntePerNo" name="rdbLuesAntePer">
+                                            <label for="rdbLuesAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtLuesAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>TORCH</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbTorchAntePerSi" name="rdbTorchAntePer">
+                                            <label for="rdbTorchAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbTorchAntePerNo" name="rdbTorchAntePer">
+                                            <label for="rdbTorchAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtTorchAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>ITU III Trim</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbITUtrimAntePerSi" name="rdbITUtrimAntePer">
+                                            <label for="rdbITUtrimAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbITUtrimAntePerNo" name="rdbITUtrimAntePer">
+                                            <label for="rdbITUtrimAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtITUtrimAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Urocultivo +</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbUrocultivoAntePerSi" name="rdbUrocultivoAntePer">
+                                            <label for="rdbUrocultivoAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbUrocultivoAntePerNo" name="rdbUrocultivoAntePer">
+                                            <label for="rdbUrocultivoAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtUrocultivoAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Germen</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbGermenAntePerSi" name="rdbGermenAntePer">
+                                            <label for="rdbGermenAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbGermenAntePerNo" name="rdbGermenAntePer">
+                                            <label for="rdbGermenAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtGermenAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>COVID</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbCovidAntePerSi" name="rdbCovidAntePer">
+                                            <label for="rdbCovidAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbCovidAntePerNo" name="rdbCovidAntePer">
+                                            <label for="rdbCovidAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtCovidAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Dengue</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbDengueAntePerSi" name="rdbDengueAntePer">
+                                            <label for="rdbDengueAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbDengueAntePerNo" name="rdbDengueAntePer">
+                                            <label for="rdbDengueAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtDengueAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Otras Infec.</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbOtrosInfeccionesAntePerSi" name="rdbOtrosInfeccionesAntePer">
+                                            <label for="rdbOtrosInfeccionesAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbOtrosInfeccionesAntePerNo" name="rdbOtrosInfeccionesAntePer">
+                                            <label for="rdbOtrosInfeccionesAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtOtrosInfeccionesAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Enfermedades Maternas</div>
+                            <div class="card-block">
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Pre-Eclampsia</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbPreClampsiaAntePerSi" name="rdbPreClampsiaAntePer">
+                                            <label for="rdbPreClampsiaAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbPreClampsiaAntePerNo" name="rdbPreClampsiaAntePer">
+                                            <label for="rdbPreClampsiaAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtPreClampsiaAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Eclampsia</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbEclampsiaAntePerSi" name="rdbEclampsiaAntePer">
+                                            <label for="rdbEclampsiaAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbEclampsiaAntePerNo" name="rdbEclampsiaAntePer">
+                                            <label for="rdbEclampsiaAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtEclampsiaAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>HTT</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbHttAntePerSi" name="rdbHttAntePer">
+                                            <label for="rdbHttAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbHttAntePerNo" name="rdbHttAntePer">
+                                            <label for="rdbHttAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtHttAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Desnutrición</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbDesnutricionAntePerSi" name="rdbDesnutricionAntePer">
+                                            <label for="rdbDesnutricionAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbDesnutricionAntePerNo" name="rdbDesnutricionAntePer">
+                                            <label for="rdbDesnutricionAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtDesnutricionAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Diabetes Mellitus</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbDiabetesMellitusAntePerSi" name="rdbDiabetesMellitusAntePer">
+                                            <label for="rdbDiabetesMellitusAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbDiabetesMellitusAntePerNo" name="rdbDiabetesMellitusAntePer">
+                                            <label for="rdbDiabetesMellitusAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtDiabetesMellitusAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Anemia</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbAnemiaAntePerSi" name="rdbAnemiaAntePer">
+                                            <label for="rdbAnemiaAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbAnemiaAntePerNo" name="rdbAnemiaAntePer">
+                                            <label for="rdbAnemiaAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtAnemiaAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Hipo-Hipertiroides</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbHipoHipertiroidesAntePerSi" name="rdbHipoHipertiroidesAntePer">
+                                            <label for="rdbHipoHipertiroidesAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbHipoHipertiroidesAntePerNo" name="rdbHipoHipertiroidesAntePer">
+                                            <label for="rdbHipoHipertiroidesAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtHipoHipertiroidesAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <span>Otras Enfer.</span>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="switch-field">
+                                            <input type="radio" id="rdbOtrosEnfermedadesAntePerSi" name="rdbOtrosEnfermedadesAntePer">
+                                            <label for="rdbOtrosEnfermedadesAntePerSi" class="pl-2 pr-2">Si</label>
+                                            <input type="radio" id="rdbOtrosEnfermedadesAntePerNo" name="rdbOtrosEnfermedadesAntePer">
+                                            <label for="rdbOtrosEnfermedadesAntePerNo" class="pl-2 pr-2 mr-auto">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-sm" id="txtOtrosEnfermedadesAntePer" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="anteceObst" aria-labelledby="anteceObst-tab">
+                <div class="row">
+                    <div class="col-lg-12 col-xl-7">
+                        <div class="card bg-purple">
+                            <div class="card-block" id="CardFormulaObstetrica">
+                                <div class="row">
+                                    <div class="col-lg-2"></div> @*ESPACIO*@
+                                    <div class="col-lg-2">
+                                        @* <div class="form-group mt-2">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">Gestas</span>
+                                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txtGestasP">                                            
+                                            </div>
+                                        </div> *@
+                                        <div class="form-group" id="form_GestasP">
+                                            <label for="txtGestasP" class="form-control-label font-weight-bold position-relative d-block text-truncate" style="z-index: 10;">Gestas</label>
+                                            <div class="input-group">
+                                                <input tabindex="101" type="text" style="background-color:beige" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtGestasP">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        @* <div class="form-group mt-2">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">Abortos</span>
+                                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txtAbortos">                                            
+                                            </div>
+                                        </div> *@
+                                        <div class="form-group" id="form_Abortos">
+                                            <label for="txtAbortos" class="form-control-label font-weight-bold position-relative d-block text-truncate" style="z-index: 10;">Abortos</label>
+                                            <div class="input-group">
+                                                <input tabindex="102" type="text" style="background-color:beige" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtAbortos">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        @* <div class="form-group mt-2">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">Vaginales</span>
+                                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txtVaginales">                                            
+                                            </div>
+                                        </div> *@
+                                        <div class="form-group" id="form_Vaginales">
+                                            <label for="txtVaginales" class="form-control-label font-weight-bold position-relative d-block text-truncate" style="z-index: 10;">Vaginales</label>
+                                            <div class="input-group">
+                                                <input tabindex="104" type="text" style="background-color:beige" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtVaginales">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        @* <div class="form-group mt-2">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">Nac. Vivos</span>
+                                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txtNacidosVivos">                                            
+                                            </div>
+                                        </div> *@
+                                        <div class="form-group" id="form_NacidosVivos">
+                                            <label for="txtNacidosVivos" class="form-control-label font-weight-bold position-relative d-block text-truncate" style="z-index: 10;">Nac. Vivos</label>
+                                            <div class="input-group">
+                                                <input tabindex="106" type="text" style="background-color:#b2e2e5" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtNacidosVivos">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        @* <div class="form-group mt-2">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">Viven</span>
+                                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txtViven">                                            
+                                            </div>
+                                        </div> *@
+                                        <div class="form-group" id="form_Viven">
+                                            <label for="txtViven" class="form-control-label font-weight-bold position-relative d-block text-truncate" style="z-index: 10;">Viven</label>
+                                            <div class="input-group">
+                                                <input tabindex="108" type="text" style="background-color:#b2e2e5" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtViven">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <div class="check__toggle">
+                                                <label class="toggle mt-2">
+                                                    <input class="toggle__input" type="checkbox" id="ch2500" tabindex="111">
+                                                    <span class="toggle__label mr-2 position-relative" style="z-index: 10;">
+                                                        <span id="form_ch2500" class="toggle__text font-weight-bold d-block text-truncate">< 2500g</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            @*<label style="text-align: left" class="custom-control custom-checkbox">
+                                                    <input tabindex="111" id="ch2500" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description"> < 2500g </span>
+                                                </label>*@
+                                            @*<div class="input-group"></div>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2"></div> @*ESPACIO*@
+                                    <div class="col-lg-2"></div> @*ESPACIO*@
+                                    <div class="col-lg-2"></div> @*ESPACIO*@
+                                    <div class="col-lg-2"></div> @*ESPACIO*@
+                                    <div class="col-lg-2">
+                                        @* <div class="form-group mt-2">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">Muert. 1 S</span>
+                                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txt1Sem">                                            
+                                            </div>
+                                        </div> *@
+                                        <div class="form-group" id="form_1Sem">
+                                            <label for="txt1Sem" class="form-control-label font-weight-bold position-relative d-block text-truncate" style="z-index: 10;">Muert. 1 S</label>
+                                            <div class="input-group">
+                                                <input tabindex="109" type="text" style="background-color:#b2e2e5" autocomplete="off" class="form-control form-control-sm solo-numero" id="txt1Sem">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <div class="check__toggle">
+                                                <label class="toggle mt-2">
+                                                    <input class="toggle__input" type="checkbox" id="chMult">
+                                                    <span class="toggle__label mr-2 position-relative" style="z-index: 10;">
+                                                        <span id="form_chMult" class="toggle__text font-weight-bold d-block text-truncate">Múltiple</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            @*<label style="text-align: left" class="custom-control custom-checkbox">
+                                                    <input id="chMult" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">Múltiple</span>
+                                                </label>*@
+                                            @*<div class="input-group"></div>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2"> </div> @*ESPACIO*@
+                                    <div class="col-lg-2">
+                                        @* <div class="form-group mt-2">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">Partos</span>
+                                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txtPartos">                                            
+                                            </div>
+                                        </div> *@
+                                        <div class="form-group" id="form_Partos">
+                                            <label for="txtPartos" class="form-control-label font-weight-bold position-relative d-block text-truncate" style="z-index: 10;">Partos</label>
+                                            <div class="input-group">
+                                                <input tabindex="103" type="text" style="background-color:beige" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtPartos">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        @* <div class="form-group mt-2">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">Cesáreas</span>
+                                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txtCesareas">
+                                            </div>
+                                        </div> *@
+                                        <div class="form-group" id="form_Cesareas">
+                                            <label for="txtCesareas" class="form-control-label font-weight-bold position-relative d-block text-truncate" style="z-index: 10;">Cesáreas</label>
+                                            <div class="input-group">
+                                                <input tabindex="105" type="text" style="background-color:beige" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtCesareas">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        @* <div class="form-group mt-2">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">Nac. Muertos</span>
+                                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txtNacMuertos">
+                                            </div>
+                                        </div> *@
+                                        <div class="form-group" id="form_NacMuertos">
+                                            <label for="txtNacMuertos" class="form-control-label font-weight-bold position-relative d-block text-truncate" style="z-index: 10;">Nac.Muertos</label>
+                                            <div class="input-group">
+                                                <input tabindex="107" type="text" style="background-color:beige" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtNacMuertos">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        @* <div class="form-group mt-2">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">Desp. 1 S</span>
+                                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txtDesp1Sem">
+                                            </div>
+                                        </div> *@
+                                        <div class="form-group" id="form_Desp1Sem">
+                                            <label for="txtDesp1Sem" class="form-control-label font-weight-bold position-relative d-block text-truncate" style="z-index: 10;">Desp. 1 S</label>
+                                            <div class="input-group">
+                                                <input tabindex="110" type="text" style="background-color:#b2e2e5" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtDesp1Sem">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2"></div> @*ESPACIO*@
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <div class="check__toggle">
+                                                <label class="toggle mt-2">
+                                                    <input class="toggle__input" type="checkbox" id="ch37Sem">
+                                                    <span class="toggle__label mr-2 position-relative" style="z-index: 10;">
+                                                        <span id="form_ch37Sem" class="toggle__text font-weight-bold d-block text-truncate">< 37 S</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            @*<label style="text-align: left" class="custom-control custom-checkbox">
+                                                    <input id="ch37Sem" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">< 37 S </span>
+                                                </label>*@
+                                            @*<div class="input-group"></div>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2"></div> @*ESPACIO*@
+                                    @*<div class="col-lg-2"></div>*@ @*ESPACIO*@
+                                    <div class="col-lg-4">
+                                        <div class="form-group" id="form_Preterminos">
+                                            <label for="txtPreterminos" class="form-control-label solo-numero d-block text-truncate">Nº Preterminos</label>
+                                            <div class="input-group" style="max-width: 150px;">
+                                                <input type="text" style="background: #d8e9f5;" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtPreterminos">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        @* <div class="form-group mt-2">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">Peso Pregestacional- kg</span>
+                                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txtPesoPregesta">
+                                            </div>
+                                        </div> *@
+                                        <div class="form-group" id="form_PesoPregesta">
+                                            <label for="txtPesoPregesta" class="form-control-label solo-numero d-block text-truncate">Peso Pregestacional (kg)</label>
+                                            <div class="input-group" style="max-width: 150px;">
+                                                <input type="text" style="background: #d8e9f5;" autocomplete="off" class="form-control form-control-sm solo-decimal" id="txtPesoPregesta">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-2">
+
+                                        <div class="form-group">
+                                            <div class="check__toggle">
+                                                <label class="toggle mt-2">
+                                                    <input class="toggle__input" type="checkbox" id="ch4000g">
+                                                    <span class="toggle__label mr-2 position-relative" style="z-index: 10;">
+                                                        <span id="form_ch4000g" class="toggle__text font-weight-bold d-block text-truncate">> 4000g</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            @*<label style="text-align: left" class="custom-control custom-checkbox">
+                                                    <input id="ch4000g" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description"> > 4000g </span>
+                                                </label>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group" id="form_EdadGestMasPrematuro">
+                                            <label for="txtEdadGestMasPrematuro" class="form-control-label solo-numero d-block text-truncate">Edad gestacional del más prematuro</label>
+                                            <div class="input-group" style="max-width: 150px;">
+                                                <input type="text" autocomplete="off" class="form-control form-control-sm solo-decimal" id="txtEdadGestMasPrematuro" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xl-5">
+                        <div class="row">
+                            <div class="col-lg-6 col-xl-12">
+                                <div class="card bg-pink mb-1">
+                                    <div class="card-block p-1">
+                                        <div class="row">
+                                            <div class="col-sm-4" style="text-align:right">
+                                                <div class="form-group">
+                                                    <label for="" class="form-control-label"><strong>PARIDAD</strong></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group m-0">
+                                                    @* <label for="txtParidad">Paridad</label> *@
+                                                    <div class="d-flex">
+                                                        <input type="text" class="form-control form-control-sm solo-numero paridad1 campo" id="txtPar1" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                                        <input type="text" class="form-control form-control-sm solo-numero paridad2 campo" id="txtPar2" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                                        <input type="text" class="form-control form-control-sm solo-numero paridad3 campo" id="txtPar3" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                                        <input type="text" class="form-control form-control-sm solo-numero paridad4 campo" id="txtPar4" minlength="1" maxlength="2" autocomplete="off" style="max-width: 70px; margin-right: 5px;">
+                                                    </div>
+                                                </div>
+                                                @* <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group mt-2">
+                                                            <input type="text" style="background: #99f5de;" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtPar1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group mt-2">
+                                                            <input type="text" style="background: #99f5de;" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtPar2">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group mt-2">
+                                                            <input type="text" style="background: #99f5de;" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtPar3">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group mt-2">
+                                                            <input type="text" style="background: #99f5de;" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtPar4">
+                                                        </div>
+                                                    </div>
+                                                </div> *@
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <form>
+                                                    <fieldset class="m-0 px-1 pb-1">
+                                                        <legend class="mb-0" style="font-size: 1.0rem !important;">Leyenda Paridad</legend>
+                                                        <div class="">
+                                                            <ul class="list-group d-flex">
+                                                                <li class="list-group-item d-flex align-items-center p-0" style="background: transparent; line-height: normal;">
+                                                                    <span class="chip" style="background-color: #009688"></span>
+                                                                    Emb. a término.
+                                                                </li>
+                                                                <li class="list-group-item d-flex align-items-center p-0" style="background: transparent; line-height: normal;">
+                                                                    <span class="chip" style="background-color: #E91E63"></span>
+                                                                    Pre-término.
+                                                                </li>
+                                                                <li class="list-group-item d-flex align-items-center p-0" style="background: transparent; line-height: normal;">
+                                                                    <span class="chip" style="background-color: #2196F3"></span>
+                                                                    Abortos.
+                                                                </li>
+                                                                <li class="list-group-item d-flex align-items-center p-0" style="background: transparent; line-height: normal;">
+                                                                    <span class="chip" style="background-color: #795548"></span>
+                                                                    Vivos actualmente.
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-12">
+                                <div class="card bg-yellow">
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="txtFinEmb" class="form-control-label d-block text-truncate">Fin de Embarazo anterior</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFinEmb">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+
+                                                <div class="form-group">
+                                                    <label for="cboTerminacion" class="form-control-label d-block text-truncate">Terminación</label>
+                                                    <div class="input-group">
+                                                        <select class="chzn-select" id="cboTerminacion">
+                                                            <option value=""></option>
+                                                            @foreach (DataRow catalogo in lsCatalogo.Tables[0].Rows)
+                                                            {
+                                                                @if (Int32.Parse(catalogo["IdCatalogo"].ToString()) == 43)
+                                                                {
+                                                                    <option value="@catalogo["id"]">@catalogo["Descripcion"]</option>
+                                                                }                                                                
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="row d-none">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="cboAborto" class="form-control-label d-block text-truncate">Aborto</label>
+                                                    <div class="input-group">
+                                                        <select class="chzn-select" id="cboAborto">
+                                                            <option value=""></option>
+                                                            @foreach (DataRow catalogo in lsCatalogo.Tables[0].Rows)
+                                                            {
+                                                                @if (Int32.Parse(catalogo["IdCatalogo"].ToString()) == 44)
+                                                                {
+                                                                    <option value="@catalogo["id"]">@catalogo["Descripcion"]</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="cbofracaso" class="form-control-label d-block text-truncate">Fracaso Método</label>
+                                                    <div class="input-group">
+                                                        <select class="chzn-select" id="cbofracaso">
+                                                            <option value=""></option>
+                                                            @foreach (DataRow catalogo in lsCatalogo.Tables[0].Rows)
+                                                            {
+                                                                @if (Int32.Parse(catalogo["IdCatalogo"].ToString()) == 45)
+                                                                {
+                                                                    <option value="@catalogo["id"]">@catalogo["Descripcion"]</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="cboEmbplaneado" class="form-control-label d-block text-truncate">Embarazo Planeado</label>
+                                                    <div class="input-group">
+                                                        <select class="chzn-select" id="cboEmbplaneado">
+                                                            <option value=""></option>
+                                                            @foreach (DataRow catalogo in lsCatalogo.Tables[0].Rows)
+                                                            {
+                                                                @if (Int32.Parse(catalogo["IdCatalogo"].ToString()) == 46)
+                                                                {
+                                                                    <option value="@catalogo["id"]">@catalogo["Descripcion"]</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="check__toggle mt-2">
+                                                        <label class="toggle" style="line-height: normal;">
+                                                            <input class="toggle__input" type="checkbox" id="chEtopico">
+                                                            <span class="toggle__label mr-2">
+                                                                <span class="toggle__text">Embarazo ectópico</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    @*<label style="text-align: left" class="custom-control custom-checkbox">
+                                                    <input id="chEtopico" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">Embarazo ectópico</span>
+                                                </label>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*  <div class="row">
+
+                                </div> 
+
+                                <div class="row">
+
+                                </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

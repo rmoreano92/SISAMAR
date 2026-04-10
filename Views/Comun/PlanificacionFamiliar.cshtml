@@ -1,0 +1,593 @@
+﻿@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+    <!--Page level styles-->
+}
+@using CapaEntidades
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h5 class="nav_top_align">
+                <i class="fa fa-family"></i>
+                Planificación Familiar @*- @ViewBag.Area*@
+            </h5>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Registro de Planificación Familiar</li>
+            </ol>
+        </div>
+    </div>
+</header>
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    @*<div class="card-header bg-white">
+                    <i class="fa fa-table"></i> Planificación Familiar - @ViewBag.Area
+
+                    </div>*@
+                    <input hidden="hidden" id="idGrupo" name="idGrupo" type="text" class="form-control form-control-sm" value="@ViewBag.Vista">
+                    <input hidden="hidden" id="idServicio" name="idServicio" type="text" class="form-control form-control-sm" value="@ViewBag.Servicio">
+                    <div class="card-block p-t-5">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card m-t-5">
+                                    <div class="card-block pb-0">
+                                        <div class="row">
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="txtNroCuentaFiltro" class="form-control-label">Nro.Cuenta</label>
+                                                    <div class="input-group">
+
+                                                        <input id="txtNroCuentaFiltro" type="number" class="form-control form-control-sm">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="txtDniFiltro" class="form-control-label">DNI</label>
+                                                    <div class="input-group">
+
+                                                        <input id="txtDniFiltro" type="number" class="form-control form-control-sm">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="txtNroHistoriaFiltro" class="form-control-label">Nro.Historia</label>
+                                                    <div class="input-group">
+
+                                                        <input id="txtNroHistoriaFiltro" type="number" class="form-control form-control-sm">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="txtApPaternoFiltro" class="form-control-label">Ap.Paterno</label>
+                                                    <div class="input-group">
+
+                                                        <input id="txtApPaternoFiltro" type="text" class="form-control form-control-sm">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="txtApPaternoFiltro" class="form-control-label">Fecha</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFiltro" autocomplete="off">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <br>
+                                                <button type="button" class="btn btn-primary" onclick="ListarAtencionesPlan();">Buscar</button>&nbsp;&nbsp;
+                                                <button type="button" class="btn btn-default" onclick="LimpiarFiltros();">limpiar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12 pt-2 pb-0">
+                                @{
+                                    if (@ViewBag.Agregar)
+                                    {
+                                        <button class="btn btn-success layout_btn_prevent" onclick="ListarSolicitud();" id="btnCambiarGrafico">Agregar</button>
+                                    }
+                                    if (@ViewBag.Modificar)
+                                    {
+                                        <button class="btn btn-info layout_btn_prevent" onclick="ModificarPlanificacion();" id="btnCambiarGrafico">Modificar</button>
+                                    }
+                                    if (@ViewBag.Eliminar)
+                                    {
+                                        <button class="btn btn-danger layout_btn_prevent" onclick="EliminarPlanificacionFamiliar();" id="btnCambiarGrafico">Eliminar</button>
+                                    }
+                                    if (@ViewBag.Consultar)
+                                    {
+                                        <button class="btn btn-warning layout_btn_prevent" onclick="ConsultarPlanificacion();" id="btnCambiarGrafico">Consultar</button>
+                                    }
+                                }
+                            </div>
+
+                            <div class="col-lg-12">
+                                <table id="lstPlanificacion" class="table table-sm table-bordered" data-source="/PlanificacionFamiliar/ListaAtencionesDelDia?area=Comun" width="100%">
+                                    <thead style="color: white; background: #434343;">
+                                        <tr>
+                                            <th style="width: 10%;" data-columna="nroCuenta" valign="middle" align="center">N° Cuenta</th>
+                                            <th style="width: 30%;" data-columna="paciente" valign="middle" align="center">Paciente</th>
+                                            <th style="width: 10%;" data-columna="nroHistoriaClinica" valign="middle" align="center">N°.Historia</th>
+                                            <th style="width: 10%;" data-columna="fecNac" valign="middle" align="center">Fec.Nacimiento</th>
+                                            <th style="width: 20%;" data-columna="servicioIngreso" valign="middle" align="center">Consultorio</th>
+                                            <th style="width: 10%;" data-columna="fechaIngreso" valign="middle" align="center">Fecha.Ingreso</th>
+                                            <th style="width: 10%;" data-columna="plann" valign="middle" align="center">Plan</th>
+                                            <th style="width: 0%;" data-columna="direccion" valign="middle" align="center">Direccion</th>
+                                            <th style="width: 0%;" data-columna="estado" valign="middle" align="center">Estado</th>
+                                            <th style="width: 0%;" data-columna="horaEgreso" valign="middle" align="center">HoraEgreso</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.outer -->
+<!-- Modal -->
+<!--- responsive model -->
+<div class="modal fade in display_none" id="modalPlanificacion" tabindex="-1" role="dialog" aria-hidden="false" style="overflow-y: scroll;">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header bg-info">
+                <h5 class="modal-title text-white" id="titulo">Atención de Planificación Familiar <label id="txtDatos" class="form-control-label"></label></h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-control-label">Nro Cuenta:</label>
+                            <input id="txtNroCuenta" type="text" class="form-control form-control-sm" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-control-label">Nro Historia:</label>
+                            <input id="txtNroHistoria" type="text" disabled class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-control-label">Paciente:</label>
+                            <input id="txtPaciente" type="text" disabled class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-control-label">Dirección:</label>
+                            <input id="txtDireccion" type="text" disabled class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-control-label">Condición Servicio:</label>
+                            <input id="txtCondServicio" type="text" disabled class="form-control form-control-sm">
+                            <input id="hdnCondServicio" type="hidden" disabled class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-control-label">Condición MGP:</label>
+                            <input id="txtCondEstablecimiento" type="text" disabled class="form-control form-control-sm">
+                            <input id="hdnCondEstablecimiento" type="hidden" disabled class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card  m-t-5">
+                            <div class="card-header bg-white">Atención/Actividad:</div>
+                            <div class="card-block m-t-5">
+                                <div class="row mt-1">
+                                    <div class="col-md-6">
+                                        <h5>Tipo Atención/Actividad:</h5>
+                                        <p>
+                                            <select class="hide_search" id="cboTipoAtencion"></select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h5> &nbsp; &nbsp;</h5>
+                                        <p>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="chkUsuaria" class="custom-control-input" checked="">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Usuaria Captada</span>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="chkConDiscapacidad" class="custom-control-input" checked="">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Con discapacidad</span>
+                                            </label>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <h5>Riesgo reproductivo:</h5>
+                                        <p>
+                                            <select class="hide_search" id="cboRiesgoReproductivo"></select>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card m-t-5">
+                            <div class="card-header bg-white">Consejería y Orientación:</div>
+
+                            <div class="card-block m-t-5">
+
+                                <div class="row mt-1">
+                                    <div class="col-md-8">
+                                        <h5>Tipo de consejería y orientación:</h5>
+                                        <p>
+                                            <select class="hide_search" id="cboTipoConsejeria"></select>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <h5>N°.Consejerías:</h5>
+                                        <p>
+                                            <input id="txtNroConsejerias" type="text" class="form-control form-control-sm solo-numero" autocomplete="off">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-md-4">
+                                        <p>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="chkEsPacienteProtegida" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">¿Es paciente protegida?</span>
+                                            </label>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <p>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="chkEsGestante" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">¿Es gestante?</span>
+                                            </label>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mt-1">
+                                   
+                                    <div class="col-md-8">
+                                        <h5>Profesional de consejería:</h5>
+                                        <p>
+                                            <select class="hide_search" id="cboProfesionalConsejeria"></select>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <h5> &nbsp; &nbsp;</h5>
+                                        <p>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="chkNoAceptaMetodo" class="custom-control-input" checked="">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">No acepta metodo</span>
+                                            </label>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row" style="display: none;">
+                    <div class="col-lg-12">
+                        <div class="card  m-t-5">
+                            <div class="card-header bg-white">Tamizaje de Violencia:</div>
+                            <div class="card-block m-t-5">
+                                <div class="col-md-4">
+                                    <h5>Tipo de tamizaje:</h5>
+                                    <p>
+                                        <select class="hide_search" id="cboTamizajeViolencia"></select>
+                                    </p>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5>Lab:</h5>
+                                    <p>
+                                        <select class="hide_search" id="cboLabTamizajeViolencia"></select>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card m-t-15">
+                    <div class="card-header bg-white">Actividad y Diagnosticos del Metodo:</div>
+                    <ul id="idtbAtencion" class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#administracion" role="tab" id="administracion-tab" data-toggle="tab" aria-controls="administracion" aria-expanded="true">Administración</a>
+                        </li>
+                        @{
+                            if (@ViewBag.Servicio != (int)Enumerados.TiposServicio.Hospitalización)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link " href="#retiro" role="tab" id="retiro-tab" data-toggle="tab" aria-controls="comorbilidades">Retiro</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="#EfectoSecundario" role="tab" id="EfectoSecundario-tab" data-toggle="tab" aria-controls="EfectoSecundario">Efectos Secundarios/Complicaciones</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="#FallaMetodo" role="tab" id="FallaMetodo-tab" data-toggle="tab" aria-controls="FallaMetodo">Falla de método</a>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                    <div class="card-block">
+                        <div id="clothing-nav-content" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="administracion" aria-labelledby="administracion-tab">
+                                <div class="row">
+                                    <div class="col-lg-6">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">Estado de Usuaria:</label>
+                                                    <select class="hide_search" id="cboEstadoUsuaria"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">Método:</label>
+                                                    <select class="hide_search" id="cboMetodo"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">Tipo de método:</label>
+                                                    <select class="hide_search" id="cboTipoMetodo"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">N°.Insumos:</label>
+                                                    <input id="txtNroInsumos" type="text" class="form-control form-control-sm solo-numero" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">Profesional de método:</label>
+                                                    <select class="hide_search" id="cboProfesionalMetodo"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <h5> &nbsp; &nbsp;</h5>
+                                                <p>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" id="chkControl" class="custom-control-input" checked="">
+                                                        <span class="custom-control-indicator"></span>
+                                                        <span class="custom-control-description">Es Control</span>
+                                                    </label>
+                                                </p>
+                                                @* <div class="form-group">
+                                                <label class="form-control-label">Método:</label>
+                                                <select class="hide_search" id="cboMetodo"></select>
+                                                </div> *@
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">N°.Control:</label>
+                                                    <input id="txtNroControl" type="text" maxlength="2" class="form-control form-control-sm solo-numero" autocomplete="off">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <h5> &nbsp; &nbsp;</h5>
+                                                <p>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" id="chkControlDIU" class="custom-control-input" checked="">
+                                                        <span class="custom-control-indicator"></span>
+                                                        <span class="custom-control-description">Control DIU</span>
+                                                    </label>
+                                                </p>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <h5> &nbsp; &nbsp;</h5>
+                                                <p>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" id="chkControlImplante" class="custom-control-input" checked="">
+                                                        <span class="custom-control-indicator"></span>
+                                                        <span class="custom-control-description">Control implante</span>
+                                                    </label>
+                                                </p>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="retiro" aria-labelledby="retiro-tab">
+
+                                <div class="row  m-t-15">
+                                    <div class="col-md-4">
+                                        <h5>Método retirado:</h5>
+                                        <p>
+                                            <select class="hide_search" id="cboMetodoRetirado"></select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5>Profesional de retiro método:</h5>
+                                        <p>
+                                            <select class="hide_search" id="cboProfesionalRetiroMetodo"></select>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="EfectoSecundario" aria-labelledby="EfectoSecundario-tab">
+                                <div class="row  m-t-15">
+                                    <div class="col-md-4">
+                                        <h5>Método:</h5>
+                                        <p>
+                                            <select class="hide_search" id="cboMetodoEfectoSec"></select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h5>Tipo:</h5>
+                                        <p>
+                                            <select class="hide_search" id="cboTipoEfectoSec"></select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5>Efecto Sec./Complicaciones:</h5>
+                                        <p>
+                                            <select class="hide_search" id="cboEfectoSec"></select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h5>Tipo Efecto:</h5>
+                                        <p>
+                                            <select class="hide_search" id="cboTipoEfecto"></select>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="FallaMetodo" aria-labelledby="FallaMetodo-tab">
+                                <div class="row m-t-15">
+                                    <div class="col-md-4">
+                                        <h5>Falla:</h5>
+                                        <p>
+                                            <select class="hide_search" id="cboFalla"></select>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnGuardarPlani" type="button" class="btn btn-lg btn-primary" onclick="Guardar();">Guardar</button>
+                    <button type="button" onclick="cerrarModal();" class="btn btn-lg btn-secondary">Cancelar</button>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- END modal-->
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PlanificacionFamiliar.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/DiagnosticosPlanificacion.js")></script>
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Comorbilidades.js")></script>
+
+    <!--Plugin scripts-->
+    <script type="text/javascript" src="~/AdmiRE/vendors/sortable/js/Sortable.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/slimscroll/js/jquery.slimscroll.min.js"></script>
+    <!--End of Plugin scripts-->
+    <!--Page level scripts-->
+    <!-- end of Page level scripts-->
+}

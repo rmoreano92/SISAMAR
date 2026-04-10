@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Papeleta de Hospitalización para Familiares</title>
+
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        margin: -10px 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .line {
+        border-bottom: 1px dotted black;
+        display: inline-block;
+        height: 14px;
+        vertical-align: bottom;
+    }
+
+    .titulo {
+        text-align: center;
+        font-weight: bold;
+        margin: 20px 0;
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- CABECERA -->
+    <table>
+        <tr>
+            <td style="width:150px; vertical-align:top;text-align:center;margin-top:-40px;position:absolute;top:0">
+                <img src="@($"{Context.Request.Scheme}://{Context.Request.Host}/images/logo.png")" style="width:60px;" /><br/>
+                <span style="font-size:8px;">
+                    CENTRO MEDICO NAVAL
+                </span>
+            </td>
+
+            <td style="text-align:right; vertical-align:top;">
+                @*<span style="color:red; font-weight:bold;">TOPICO DE EMERGENCIA</span><br>
+                <span style="color:red; font-weight:bold;">PEDIATRIA</span><br>
+                Forma N°133*@
+            </td>
+        </tr>
+    </table>
+
+    <!-- TITULO -->
+    <div class="titulo">
+        PAPELETA DE HOSPITALIZACION PARA FAMILIARES
+    </div>
+
+    <br>
+
+    <!-- NOMBRE PACIENTE -->
+    <table>
+        <tr>
+            <td>
+                Nombre del (o la) paciente:
+                    <span class="line" style="width:65%;"> @ViewBag.Paciente</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <span class="line" style="width:100%;"></span>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!-- RELACION -->
+    <table>
+        <tr>
+            <td>
+                Relación Familiar:
+                <span class="line" style="width:70%;">@ViewBag.Parentesco</span>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!-- NOMBRE OFICIAL -->
+    <table>
+        <tr>
+            <td>
+                Nombre y Grado del Oficial:
+                <span class="line" style="width:65%;"> @ViewBag.Titular - @ViewBag.GradoTitular </span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <span class="line" style="width:100%;"></span>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!-- DIAGNOSTICO -->
+    <table>
+        <tr>
+            <td>
+                Diagnóstico de Ingreso:
+                <span class="line" style="width:65%;">@ViewBag.diagnostico</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <span class="line" style="width:100%;"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <span class="line" style="width:100%;"></span>
+            </td>
+        </tr>
+    </table>
+
+    <br><br><br>
+
+    <!-- EL .... (MC) -->
+    <table>
+        <tr>
+            <td style="width:50%;"></td>
+            <td style="width:50%; text-align:right;">
+                El
+                <span class="line" style="width:200px;"></span>
+                (MC)
+            </td>
+        </tr>
+    </table>
+
+    <br><br><br>
+
+    <!-- V°B° -->
+    <table>
+        <tr>
+            <td style="width:50%;">
+                V° B°<br>
+                El Jefe Militar
+            </td>
+            <td style="width:50%;"></td>
+        </tr>
+    </table>
+
+    <br><br><br>
+
+    <!-- NOTA -->
+    <table>
+        <tr>
+            <td style="font-size:11px;">
+                <strong>NOTA:</strong>
+                Antes de extender la papeleta de hospitalización, el Médico firmante debe cerciorarse
+                sobre la existencia de departamentos o camas disponibles.
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

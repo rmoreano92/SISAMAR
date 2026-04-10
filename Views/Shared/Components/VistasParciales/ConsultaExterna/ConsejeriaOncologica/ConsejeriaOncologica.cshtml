@@ -1,0 +1,503 @@
+﻿<input id="TipoModulo" type="text" value="@ViewBag.TipoModulo" disabled hidden />
+
+@* <div class="row" id="divClasificacionPaciente">
+    <div class="col-md-12" style="display: none;">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group campo">
+                    <label for="cboClasisifcacion"  class="form-control-label">Clasificacion de Paciente</label>
+                    <div class="input-group">
+                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboClasisifcacion"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="cboDestino" class="form-control-label">Controles MGP</label>
+                    <div class="input-group">
+                        <input id="txtControles" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="txtEdadGestacional" class="form-control-label">Edad Gestacional</label>
+                    <div class="input-group">
+                        <input id="txtEdadGestacional" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="txtGestas" class="form-control-label">Nro. Gestas</label>
+                    <div class="input-group">
+                        <input id="txtGestas" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+<div id="contenedorEspecialidades" class="campo" hidden>
+    <partial name="~/Views/Shared/Components/VistasParciales/ConsultaExterna/EspecialidadesMedicas/Entrevista.cshtml" />
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card bg-teal">
+            <div class="card-header bg-white" id="TituloCardDiagnostico">Diagnósticos de ultimo Control/Cita</div>
+            <div class="card-block custom-form pt-1">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="tblDiagnosticosUltimoControlCita" class="table table-sm table-bordered" width="100%">
+                            <thead style="color: white;background: #51717a;">
+                                <tr>
+                                    <th style="width: 0%;" data-columna="Iddiagnostico" valign="middle" align="center">Iddiagnostico</th>
+                                    <th style="width: 0%;" data-columna="codigoCIEsinPto" valign="middle" align="center">codigoCIEsinPto</th>
+                                    <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Código</th>
+                                    <th style="width: 80%;" data-columna="Descripcion" valign="middle" align="center">Descripcion</th>
+                                    <th style="width: 0%;" data-columna="EsActivo" valign="middle" align="center">EsActivo</th>
+                                    <th style="width: 0%;" data-columna="FechaInicioVigencia" valign="middle" align="center">FechaInicioVigencia</th>
+                                    <th style="width: 0%;" data-columna="idTipoDiagnostico" valign="middle" align="center">idTipoDiagnostico</th>
+                                    <th style="width: 10%;" data-columna="TipoDiagnostico" valign="middle" align="center">TipoDiagnostico</th>
+                                    <th style="width: 10%;" data-columna="Intrahospitalario" valign="middle" align="center">IntraHospitalario</th>
+                                    <th style="width: 10%;" data-columna="lab" valign="middle" align="center">Lab</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group campo">
+                    <label for="cboClasisifcacion" class="form-control-label">Tipo de Paciente</label>
+                    <div class="input-group">
+                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboClasisifcacion"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="cboDestino" class="form-control-label">Controles MGP</label>
+                    <div class="input-group">
+                        <input id="txtControles" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="txtEdadGestacional" class="form-control-label">Edad Gestacional</label>
+                    <div class="input-group">
+                        <input id="txtEdadGestacional" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="txtGestas" class="form-control-label">Nro. Gestas</label>
+                    <div class="input-group">
+                        <input id="txtGestas" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*  <div class="col-md-12">
+    <div class="row">
+    <div class="col-lg-3">
+    <div class="form-group">
+    <label for="txtNroCPN" class="form-control-label">N° de CPN</label>
+    <div class="input-group">
+    <input id="txtNroCPN" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+    </div>
+    </div>
+    </div>
+    </div>
+    </div> *@
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group campo">
+                    <label for="cboMotivoConsejeriaOnco" class="form-control-label">Motivo de Consejeria</label>
+                    <div class="input-group">
+                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboMotivoConsejeriaOnco">
+                            <option value="0">Seleccionar una opción</option>
+                            <option value="1">Pre-Operatorio</option>
+                            <option value="2">Post-Operatorio</option>
+                            <option value="3">Preventiva</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="form-group campo">
+                    <label for="cboTemaConsejeriaOnco" class="form-control-label">Tema de Consejeria</label>
+                    <div class="input-group">
+                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboTemaConsejeriaOnco">
+                            <option value="0">Seleccionar una opción</option>
+                            <option value="1">Cáncer de Mama</option>
+                            <option value="2">Cáncer de Cérvix</option>
+                            <option value="3">Cáncer de Vulva</option>
+                            <option value="4">Cáncer de Ovario</option>
+                            <option value="5">Cáncer de Endometrio</option>
+                            <option value="6">Cáncer de Vagina</option>
+                            <option value="7">VPH</option>
+                            <option value="8">ENFERMEDAD TROFOBLASTICA GESTACIONAL</option>
+                            <option value="99">Otros</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-6">
+        <div class="card bg-teal">
+            <div class="card-header bg-white" id="TituloCardDiagnostico">Datos Epidemiológicos</div>
+            <div class="card-block custom-form pt-1">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group campo">
+                                    <label for="cboAntecedenteFamiliarCoOnco" class="form-control-label">Antecedente Familiar</label>
+                                    <div class="input-group">
+                                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboAntecedenteFamiliarCoOnco">
+                                            <option value="0">No</option>
+                                            <option value="1">Si</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label for="txtAntecedenteFamiliarDescripcionCoOnco" class="form-control-label">Descripcion</label>
+                                    <div class="input-group">
+                                        <input id="txtAntecedenteFamiliarDescripcionCoOnco" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group campo">
+                                    <label for="cboGestacionOnco" class="form-control-label">Gestacion</label>
+                                    <div class="input-group">
+                                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboGestacionOnco">
+                                            <option value="0">No</option>
+                                            <option value="1">Si</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group campo">
+                                    <label for="cboPerdidas" class="form-control-label">Pérdidas</label>
+                                    <div class="input-group">
+                                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboPerdidas">
+                                            <option value="0">No</option>
+                                            <option value="1">Si</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="txtParidadOnco" class="form-control-label">Paridad</label>
+                                    <div class="input-group">
+                                        <input id="txtParidadOnco" autocomplete="off" placeholder="" class="form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="txtAndriaOnco" class="form-control-label">Andria</label>
+                                    <div class="input-group">
+                                        <input id="txtAndriaOnco" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group campo">
+                                    <label for="cboUsoAnticonceptivoOnco" class="form-control-label">Uso Anticonceptivo</label>
+                                    <div class="input-group">
+                                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboUsoAnticonceptivoOnco">
+                                            <option value="0">No</option>
+                                            <option value="1">Si</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="txtEdadPrimeraMenstruacionOnco" class="form-control-label">Edad Primera Menstruación</label>
+                                    <div class="input-group">
+                                        <input id="txtEdadPrimeraMenstruacionOnco" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="txtEdadPrimerEmbarazoOnco" class="form-control-label">Edad Primer Embarazo</label>
+                                    <div class="input-group">
+                                        <input id="txtEdadPrimerEmbarazoOnco" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="txtEdadPrimeraRelacionSexual" class="form-control-label">Edad 1ra Relación Sexual</label>
+                                    <div class="input-group">
+                                        <input id="txtEdadPrimeraRelacionSexual" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="txtFechaUltimaMenstruacionOnco" class="form-control-label">Fecha Ultima Menstruación</label>
+                                    <div class="input-group input-group-sm m-0">
+                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaUltimaMenstruacionOnco">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                               
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="cboTerapiaReemplazoRenalOnco" class="form-control-label">Terapia Reemplazo Hormonal</label>
+                                <div class="form-group campo">
+
+                                    <div class="input-group">
+                                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboTerapiaReemplazoRenalOnco">
+                                            <option value="0">No</option>
+                                            <option value="1">Si</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row pb-1">
+                            
+                            <div class="col-lg-4">
+                                <div class="check__toggle mt-04">
+                                    <label class="toggle">
+                                        <input class="toggle__input campo bloquear-campos bloquear-campos-lactancia" type="checkbox" id="chkConsumoTabacoOnco">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Consumo Tabaco</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="check__toggle mt-04">
+                                    <label class="toggle">
+                                        <input class="toggle__input campo bloquear-campos bloquear-campos-lactancia" type="checkbox" id="chkConsumoAlcoholOnco">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Consumo Alcohol</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="check__toggle mt-04">
+                                    <label class="toggle">
+                                        <input class="toggle__input campo bloquear-campos bloquear-campos-lactancia" type="checkbox" id="chkObesidadOnco">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Obesidad</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="check__toggle mt-04">
+                                    <label class="toggle">
+                                        <input class="toggle__input campo bloquear-campos bloquear-campos-lactancia" type="checkbox" id="chkSedentarismoOnco">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Sedentarismo</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="check__toggle mt-04">
+                                    <label class="toggle">
+                                        <input class="toggle__input campo bloquear-campos bloquear-campos-lactancia" type="checkbox" id="chkComportamientoSexualInadecuado">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Comportamiento Sexual inadecuado</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="check__toggle mt-04">
+                                    <label class="toggle">
+                                        <input class="toggle__input campo bloquear-campos bloquear-campos-lactancia" type="checkbox" id="chkTratamientoParaFertilidad">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Tratamiento para Fertilidad</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="check__toggle mt-04">
+                                    <label class="toggle">
+                                        <input class="toggle__input campo bloquear-campos bloquear-campos-lactancia" type="checkbox" id="chkLactanciaMaterna">
+                                        <span class="toggle__label mr-2">
+                                            <span class="toggle__text">Lactancia Materna</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card bg-teal">
+            <div class="card-header bg-white" id="TituloCardDiagnostico">Tipos Consejería</div>
+            <div class="card-block custom-form pt-1">
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+
+                            <div class="col-lg-10">
+                                <div class="form-group campo">
+                                    <label for="cboTipoConsejeria" class="form-control-label">Tipo de Consejeria</label>
+                                    <div class="input-group">
+                                        <select class="chzn-select" data-placeholder="Seleccione una opción" id="cboTipoConsejeria"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="txtNroConsejeria" class="form-control-label">Nro. Consejeria</label>
+                                    <div class="input-group">
+                                        <input id="txtNroConsejeria" autocomplete="off" placeholder="" class=" solo-numero form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-end" style="height: 55px;">
+                                    <button id="btnAgregaTipoConsejeria" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px; visibility: visible;">
+                                        <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                        Agregar
+                                    </button>
+                                    <button id="btnQuitarFarmacia" type="button" class="btn btn-sm btn-danger" style="width: 100px; visibility: visible;">
+                                        <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <table id="tblTiposConsejeria" class="table table-sm table-bordered" width="100%">
+                                    <thead style="color: white;background: #51717a;">
+                                        <tr>
+                                            <th style="width: 0%;" data-columna="Iddiagnostico" valign="middle" align="center">IdTipoConsejeria</th>
+                                            <th style="width: 10%;" data-columna="codigoCIEsinPto" valign="middle" align="center">CPT/CPMS</th>
+                                            <th style="width: 80%;" data-columna="Codigo" valign="middle" align="center">Descripcion</th>
+                                            <th style="width: 10%;" data-columna="Descripcion" valign="middle" align="center">N°Consejeria</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <b><label for="txtRecomendacionesSugerenciasOnco" class="form-control-label text-info titulo ">Recomendaciones y sugerencias</label></b>
+                                    <div class="input-group">
+                                        <textarea class="form-control" id="txtRecomendacionesSugerenciasOnco" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+
+@*<script type="text/javascript" src=@Href("~/js/ConsultaExterna/AtencionMedicaV2.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Anestesiologia.js")></script>
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV2.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos.js")></script>*@
+
+@*<script>
+        $(document).ready(() => {
+            AtencionMedica.ParcialEvents()
+            AtencionMedica.ListaTiposConsulta()
+            AtencionMedica.TiposClasificacionPaciente()
+
+            Anestesiologia.Iniciar()
+            if (AtencionMedica.permisoClasiPaciente == '0') { // jdelgado para el control de versiones
+                $('#divClasificacionPaciente').hide()
+            } else {
+                $('#divClasificacionPaciente').show()
+            }
+        })
+    </script>*@

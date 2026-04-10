@@ -1,0 +1,1037 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="GestionActual-tab-link" data-toggle="tab" href="#GestionActual-tab"
+                    role="tab" aria-controls="profile" aria-selected="false" aria-expanded="false">Gestion Actual</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="ExAuxiliarMadre-tab-link" data-toggle="tab" href="#ExAuxiliarMadre-tab"
+                    role="tab" aria-controls="home" aria-selected="true" aria-expanded="true">Ex. Aux de Madre</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="ControlPrenatal-tab-link" data-toggle="tab" href="#ControlPrenatal-tab"
+                    role="tab" aria-controls="home" aria-selected="true" aria-expanded="true">Control Prenatal MGP</a>
+            </li>
+        </ul>
+
+        <div class="tab-content pt-1" id="myTabContent">
+            <!---------------------------------TAB 1----------------------------------------------->
+            <div class="tab-pane fade show active in campo mb-1" id="GestionActual-tab" role="tabpanel"
+                aria-labelledby="GestionActual-tab-link" aria-expanded="true">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="card mb-1">
+                                    <div class="card-block" style="background-color: #fffbca;">
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="d-flex">
+                                                    <div class="form-group">
+                                                        <label for="txtFechaFURGA"
+                                                            class="form-control-label">FUR</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" autocomplete="off"
+                                                                class="form-control form_val_popup_dp3 search"
+                                                                placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy"
+                                                                id="txtFechaFURGA">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">Edad Gestacional</label>
+                                                    <div class="row">
+                                                        <div class="col-md-7">
+                                                            <div class="d-flex">
+                                                                <input type="text"
+                                                                    class="form-control form-control-sm bg-blue"
+                                                                    id="txtEGsemanasGA" placeholder=""
+                                                                       autocomplete="off">
+                                                                <span
+                                                                    style="margin: 0 10px;font-weight: bold;">semanas</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="d-flex">
+                                                                <input type="text"
+                                                                    class="form-control form-control-sm bg-blue"
+                                                                    id="txtEGdiasGA" placeholder="" autocomplete="off">
+                                                                <span
+                                                                    style="margin: 0 10px;font-weight: bold;">dias</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group mb-0" style="max-width: 170px;">
+                                                    <label for="txtFechaFPPGA" class="form-control-label">FPP</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off"
+                                                            class="form-control form_val_popup_dp3 search bg-blue"
+                                                            placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy"
+                                                            id="txtFechaFPPGA">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-lg-2">
+                                                <div class="form-group campo">
+                                                    <br>
+                                                    <div class="check__toggle">
+                                                        <label class="toggle">
+                                                            <input class="toggle__input" type="checkbox"
+                                                                id="chkMuestraEcoGA">
+                                                            <span class="toggle__label mr-2">
+                                                                <span class="toggle__text">Muestra Ecografía</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-5">
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <div class="form-group">
+                                                            <label for="txtFEcogGA">Fecha de ecografía</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" autocomplete="off"
+                                                                    class="form-control form_val_popup_dp3"
+                                                                    placeholder="dd/mm/yyyy"
+                                                                    data-date-format="dd/mm/yyyy" id="txtFEcogGA">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar "></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtSemasEcoGA">Sem. Eco.</label>
+                                                            <input type="text" autocomplete="off"
+                                                                class="form-control form-control-sm solo-numero"
+                                                                id="txtSemasEcoGA">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label for="txtDiasEcoGA">Días Eco.</label>
+                                                            <input type="text" autocomplete="off"
+                                                                class="form-control form-control-sm solo-numero"
+                                                                id="txtDiasEcoGA">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group campo">
+                                                    <br>
+                                                    <div class="check__toggle">
+                                                        <label class="toggle">
+                                                            <input class="toggle__input" type="checkbox"
+                                                                id="chkCalculaFechaEcoGA">
+                                                            <span class="toggle__label mr-2">
+                                                                <span class="toggle__text">Calcula con ecografía</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboEdadGestConfiableCA">Edad Gest. Confiable</label>
+                                                    <select id="cboEdadGestConfiableCA" class="chzn-select">
+                                                        <option value="1">No confiable</option>
+                                                        <option value="2">Sólo FUM</option>
+                                                        <option value="3">Eco &#60; 20 Sem</option>
+                                                        <option value="4">FUM y Eco &#60; 20 Sem</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <div class="form-group">
+                                                    <label for="txtPesoAntGA">Peso Anterior</label>
+                                                    <input type="text" autocomplete="off"
+                                                        class="form-control form-control-sm" id="txtPesoAntGA">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                                <div class="form-group">
+                                                    <label for="txtTallaAntGA">Talla</label>
+                                                    <input type="text" autocomplete="off"
+                                                        class="form-control form-control-sm" id="txtTallaAntGA">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboAlcoholDrogaGA">Alcohol/droga</label>
+                                                    <select id="cboAlcoholDrogaGA" class="chzn-select">
+                                                        <option value="0">Ninguno</option>
+                                                        <option value="1">Sólo Alcohol</option>
+                                                        <option value="2">Sólo Drogas</option>
+                                                        <option value="3">Alcohol y Drogas</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                                <div class="form-group">
+                                                    <label for="txtTipoDrogaGA">Tipo Droga</label>
+                                                    <input type="text" autocomplete="off"
+                                                        class="form-control form-control-sm" id="txtTipoDrogaGA">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboTrimestreGA">Trimestre A/D</label>
+                                                    <select id="cboTrimestreGA" class="chzn-select">
+                                                        <option value="0">Ninguno</option>
+                                                        <option value="1">1° Trimestre</option>
+                                                        <option value="2">2° Trimestre</option>
+                                                        <option value="3">3° Trimestre</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboExOdontoGA">Ex. Odontológico</label>
+                                                    <select id="cboExOdontoGA" class="chzn-select">
+                                                        <option value="0">falta dato</option>
+                                                        <option value="1">No</option>
+                                                        <option value="2">Si</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboExCervixGA">Ex. Cérvix</label>
+                                                    <select id="cboExCervixGA" class="chzn-select">
+                                                        <option value="0">falta dato</option>
+                                                        <option value="1">No</option>
+                                                        <option value="2">Si</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboPreparacionPartoGA">Preparación Parto</label>
+                                                    <select id="cboPreparacionPartoGA" class="chzn-select">
+                                                        <option value="0">falta dato</option>
+                                                        <option value="1">No</option>
+                                                        <option value="2">Si</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboViolenciaGA">Violencia</label>
+                                                    <select id="cboViolenciaGA" class="chzn-select">
+                                                        <option value="0">falta dato</option>
+                                                        <option value="1">No</option>
+                                                        <option value="2">Si</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboTrimestreVGA">Trimestre V</label>
+                                                    <select id="cboTrimestreVGA" class="chzn-select">
+                                                        <option value="0">Ninguno</option>
+                                                        <option value="1">1° Trimestre</option>
+                                                        <option value="2">2° Trimestre</option>
+                                                        <option value="3">3° Trimestre</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboExMamasGA">Ex. Mamas</label>
+                                                    <select id="cboExMamasGA" class="chzn-select">
+                                                        <option value="0">falta dato</option>
+                                                        <option value="1">No</option>
+                                                        <option value="2">Si</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cboConsejeriaLMGA">Consejería L.M.</label>
+                                                    <select id="cboConsejeriaLMGA" class="chzn-select">
+                                                        <option value="0">falta dato</option>
+                                                        <option value="1">No</option>
+                                                        <option value="2">Si</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cbTamizajeHepatitisBGA">Tamizaje Hepatitits B</label>
+                                                    <select id="cbTamizajeHepatitisBGA" class="chzn-select">
+                                                        <option value="0">falta dato</option>
+                                                        <option value="1">No</option>
+                                                        <option value="2">Si</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="card bg-blue mt-1">
+
+                                    <div class="card-header bg-white">
+                                        VACUNAS
+                                    </div>
+
+                                    <div class="card-block">
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="row mt-1">
+                                                    <div class="col-lg-12 mb-1">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <span>Tétano/Difteria</span>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="form-group">
+                                                                    <select id="cboTetanoGA" class="chzn-select"
+                                                                        style="display: none;">
+                                                                        <option value="0">No</option>
+                                                                        <option value="1">Si previa al Embarazo</option>
+                                                                        <option value="2">Si durante embarazo</option>
+                                                                        <option value="3">Si postparto/aborto</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="form-group">
+                                                                    <div class="input-group input-group-sm">
+                                                                        <input type="text" autocomplete="off"
+                                                                            class="form-control form_val_popup_dp3"
+                                                                            placeholder="dd/mm/yyyy"
+                                                                            data-date-format="dd/mm/yyyy"
+                                                                            id="txtFechaTetanoGA">
+                                                                        <span class="input-group-addon">
+                                                                            <i class="fa fa-calendar "></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    id="txtDosisTetanoGA" autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12 mb-1">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <span>TDAP</span>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="form-group">
+                                                                    <select id="cboTDAPGA" class="chzn-select"
+                                                                        style="display: none;">
+                                                                        <option value="0">No</option>
+                                                                        <option value="1">Si previa al Embarazo</option>
+                                                                        <option value="2">Si durante embarazo</option>
+                                                                        <option value="3">Si postparto/aborto</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="form-group">
+                                                                    <div class="input-group input-group-sm">
+                                                                        <input type="text" autocomplete="off"
+                                                                            class="form-control form_val_popup_dp3"
+                                                                            placeholder="dd/mm/yyyy"
+                                                                            data-date-format="dd/mm/yyyy"
+                                                                            id="txtFechaTDAPGA">
+                                                                        <span class="input-group-addon">
+                                                                            <i class="fa fa-calendar "></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    id="txtDosisTDAPGA" autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12 mb-1">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <span>Influenza</span>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <select id="cboInfluenzaGA" class="chzn-select"
+                                                                    style="display: none;">
+                                                                    <option value="0">No</option>
+                                                                    <option value="1">Si previa al Embarazo</option>
+                                                                    <option value="2">Si durante embarazo</option>
+                                                                    <option value="3">Si postparto/aborto</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="form-group">
+                                                                    <div class="input-group input-group-sm">
+                                                                        <input type="text" autocomplete="off"
+                                                                            class="form-control form_val_popup_dp3"
+                                                                            placeholder="dd/mm/yyyy"
+                                                                            data-date-format="dd/mm/yyyy"
+                                                                            id="txtFechaInfluenzaGA">
+                                                                        <span class="input-group-addon">
+                                                                            <i class="fa fa-calendar "></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    id="txtDosisInfluenzaGA" autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="row mt-1">
+                                                    <div class="col-lg-12 mb-1">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <span>Antirubiola</span>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <select id="cboAntirubiolaGA" class="chzn-select"
+                                                                    style="display: none;">
+                                                                    <option value="0">No</option>
+                                                                    <option value="1">Si previa al Embarazo</option>
+                                                                    <option value="2">Si durante embarazo</option>
+                                                                    <option value="3">Si postparto/aborto</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="form-group">
+                                                                    <div class="input-group input-group-sm">
+                                                                        <input type="text" autocomplete="off"
+                                                                            class="form-control form_val_popup_dp3"
+                                                                            placeholder="dd/mm/yyyy"
+                                                                            data-date-format="dd/mm/yyyy"
+                                                                            id="txtFechaAntirubiolaGA">
+                                                                        <span class="input-group-addon">
+                                                                            <i class="fa fa-calendar "></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    id="txtDosisAntirubiolaGA" autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12 mb-1">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <span>Hepatitis B</span>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <select id="cboHepatitisBGA" class="chzn-select"
+                                                                    style="display: none;">
+                                                                    <option value="0">No</option>
+                                                                    <option value="1">Si previa al Embarazo</option>
+                                                                    <option value="2">Si durante embarazo</option>
+                                                                    <option value="3">Si postparto/aborto</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="form-group">
+                                                                    <div class="input-group input-group-sm">
+                                                                        <input type="text" autocomplete="off"
+                                                                            class="form-control form_val_popup_dp3"
+                                                                            placeholder="dd/mm/yyyy"
+                                                                            data-date-format="dd/mm/yyyy"
+                                                                            id="txtFechaHepatitisBGA">
+                                                                        <span class="input-group-addon">
+                                                                            <i class="fa fa-calendar "></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    id="txtDosisHepatitisBGA" autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12 mb-1">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <span>Hepatitis A</span>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <select id="cboHepatitisAGA" class="chzn-select"
+                                                                    style="display: none;">
+                                                                    <option value="0">No</option>
+                                                                    <option value="1">Si previa al Embarazo</option>
+                                                                    <option value="2">Si durante embarazo</option>
+                                                                    <option value="3">Si postparto/aborto</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="form-group">
+                                                                    <div class="input-group input-group-sm">
+                                                                        <input type="text" autocomplete="off"
+                                                                            class="form-control form_val_popup_dp3"
+                                                                            placeholder="dd/mm/yyyy"
+                                                                            data-date-format="dd/mm/yyyy"
+                                                                            id="txtFechaHepatitisAGA">
+                                                                        <span class="input-group-addon">
+                                                                            <i class="fa fa-calendar "></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    id="txtDosisHepatitisAGA" autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!---------------------------------TAB 2----------------------------------------------->
+            <div class="tab-pane fade in campo mb-1" id="ExAuxiliarMadre-tab" role="tabpanel"
+                aria-labelledby="ExAuxiliarMadre-tab-link" aria-expanded="false">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="card mb-1">
+                            <div class="card-block" style="background-color: #fffbca;">
+
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtSemanas">Grupo Sanguíneo</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                                id="txtGrupoSanguineoGA">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtSemanas">Factor RH</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                                id="txtFactorRhGA">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboToxoplasmosisGA">Toxoplasmosis</label>
+                                            <select id="cboToxoplasmosisGA" class="chzn-select" style="display: none;">
+                                                <option value="0">No se hizo</option>
+                                                <option value="1">&#60; 20 Sem IgG +</option>
+                                                <option value="2">&#60; 20 Sem IgG –</option>
+                                                <option value="3">>= 20 Sem IgG +</option>
+                                                <option value="4">>= 20 Sem IgG –</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboPapanicolauGA">Papanicolau</label>
+                                            <select id="cboPapanicolauGA" class="chzn-select" style="display: none;">
+                                                <option value="0">No se hizo</option>
+                                                <option value="1">Negativo</option>
+                                                <option value="2">Positivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboVihSolicitadoGA">VIH solicitado</label>
+                                            <select id="cboVihSolicitadoGA" class="chzn-select" style="display: none;">
+                                                <option value="0">No</option>
+                                                <option value="1">Si</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboVdrlRprMenor20GA">VDRL/RPR &#60; 20</label>
+                                            <select id="cboVdrlRprMenor20GA" class="chzn-select" style="display: none;">
+                                                <option value="0">Falta dato</option>
+                                                <option value="1">Negativo</option>
+                                                <option value="2">Positivo</option>
+                                                <option value="3">No se hizo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboVdrlRprMayor20GA">VDRL/RPR >20</label>
+                                            <select id="cboVdrlRprMayor20GA" class="chzn-select" style="display: none;">
+                                                <option value="0">Falta dato</option>
+                                                <option value="1">Negativo</option>
+                                                <option value="2">Positivo</option>
+                                                <option value="3">No se hizo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboSifilisFtaGA">SIFILIS X FTA</label>
+                                            <select id="cboSifilisFtaGA" class="chzn-select" style="display: none;">
+                                                <option value="0">Falta dato</option>
+                                                <option value="1">Negativo</option>
+                                                <option value="2">Positivo</option>
+                                                <option value="3">No se hizo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtHbMenor20GA">HB &#60; 20</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                                id="txtHbMenor20GA">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtHbMayor20GA">HB > 20</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                                id="txtHbMayor20GA">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboFolatosGA">FE/Folatos</label>
+                                            <select id="cboFolatosGA" class="chzn-select" style="display: none;">
+                                                <option value="0">Ninguno</option>
+                                                <option value="1">Sólo Fe</option>
+                                                <option value="2">Sólo Folatos</option>
+                                                <option value="3">Fe y Folatos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboVersExterGA">Vers Exter</label>
+                                            <select id="cboVersExterGA" class="chzn-select" style="display: none;">
+                                                <option value="0">Falta dato</option>
+                                                <option value="1">No</option>
+                                                <option value="2">Si</option>
+                                                <option value="3">No se hizo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboBacteriuriaGA">Bacteriuria</label>
+                                            <select id="cboBacteriuriaGA" class="chzn-select" style="display: none;">
+                                                <option value="0">No se hizo</option>
+                                                <option value="1">Negativo</option>
+                                                <option value="2">Positivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboChagasGA">Chagas</label>
+                                            <select id="cboChagasGA" class="chzn-select" style="display: none;">
+                                                <option value="0">No se hizo</option>
+                                                <option value="1">Negativo</option>
+                                                <option value="2">Positivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboPaludismoMalariaGA">Paludismo/Malaria</label>
+                                            <select id="cboPaludismoMalariaGA" class="chzn-select"
+                                                style="display: none;">
+                                                <option value="0">No se hizo</option>
+                                                <option value="1">Negativo</option>
+                                                <option value="2">Positivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboEstreptococoGA">Estreptococo</label>
+                                            <select id="cboEstreptococoGA" class="chzn-select" style="display: none;">
+                                                <option value="0">No se hizo</option>
+                                                <option value="1">Negativo</option>
+                                                <option value="2">Positivo</option>
+                                                <option value="3">Falta dato</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtGlausemiaMenor20GA">Glusemia &#60;20 en Ayunas</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                                id="txtGlausemiaMenor20GA">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtGlausemiaMayor20GA">Glusemia >20 en Ayunas</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                                id="txtGlausemiaMayor20GA">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!---------------------------------TAB 3----------------------------------------------->
+            <div class="tab-pane fade in campo mb-1" id="ControlPrenatal-tab" role="tabpanel"
+                aria-labelledby="ControlPrenatal-tab-link" aria-expanded="false">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="card mb-1">
+                            <div class="card-block" style="background-color: #fffbca;">
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cboControlInmpGA">Controles MGP</label>
+                                            <select id="cboControlInmpGA" class="chzn-select" style="display: none;">
+                                                <option value="0">No</option>
+                                                <option value="1">Si</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtNumControlesInmpGA">CPN MGP</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero"
+                                                id="txtNumControlesInmpGA">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6" id="contProcedenciaHospital">
+                                        <label for="" class="form-label" id="lblEstabRefCon">Nombre EE.SS</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control campoRegistro"
+                                                id="txtIdReferenciaEESSGA" style="width: 70px;" disabled="" hidden>
+                                            <input type="text" class="form-control campoRegistro"
+                                                id="txtCodigoReferenciaEESSGA" style="width: 70px;" disabled="">
+
+                                            <input type="text" class="form-control campoRegistro"
+                                                id="txtDescripcionReferenciaEESSGA" disabled="" style="width: 320px;">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-info bloquear" type="button"
+                                                    id="btnOpenModalReferenciaEESSGA">Buscar</button>
+                                            </span>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-secondary bloquear" type="button"
+                                                    id="btnLimpiarReferenciaEESSGA">Limpiar</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtNumControlesOtroESSGA">CPN Otro EE.SS.</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                                id="txtNumControlesOtroESSGA">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="txtFechaPrimerControlGA">Fecha Primer Control</label>
+                                            <input type="text" autocomplete="off"
+                                                   class="form-control form-control-sm form_val_popup_dp3"
+                                                   placeholder="dd/mm/yyyy"
+                                                   data-date-format="dd/mm/yyyy"
+                                                   id="txtFechaPrimerControlGA">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="txtFechaUltimoControlGA">Fecha Ultimo Control</label>
+                                            <input type="text" autocomplete="off"
+                                                   class="form-control form-control-sm form_val_popup_dp3"
+                                                   placeholder="dd/mm/yyyy"
+                                                   data-date-format="dd/mm/yyyy"
+                                                   id="txtFechaUltimoControlGA">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <button id="btnImprimeSeguimientoCPN" target="_blank" style="display:none"
+                                            class="btn btn-lg  btn-yellow  float-lg-left mr-1 mb-1"><i
+                                                class="fa fa-baby mr-1"></i>Seguimiento CPN</button>
+
+                                        @* <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Fecha Control</th>
+                                                    <th>Consultorio</th>
+                                                    <th>Edad Gestacional</th>
+                                                    <th>Peso Control (Kg)</th>
+                                                    <th>PA(PAS/PAD)</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody></tbody>
+                                        </table> *@
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6" id="contProcedenciaHospital">
+                                        <label for="" class="form-label" id="lblEstabRefCon">Referencia Otro
+                                            EE.SS</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control campoRegistro"
+                                                id="txtIdReferenciaOtroEESSGA" style="width: 70px;" disabled="" hidden>
+                                            <input type="text" class="form-control campoRegistro"
+                                                id="txtCodigoReferenciaOtroEESSGA" style="width: 70px;" disabled="">
+
+                                            <input type="text" class="form-control campoRegistro"
+                                                id="txtDescripcionReferenciaOtroEESSGA" disabled=""
+                                                style="width: 320px;">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-info bloquear" type="button"
+                                                    id="btnOpenModalReferenciaOtroEESSGA">Buscar</button>
+                                            </span>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-secondary bloquear" type="button"
+                                                    id="btnLimpiarReferenciaOtroEESSGA">Limpiar</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="txtMotivoReferenciaGA">Motivo para Referir</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                                id="txtMotivoReferenciaGA">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="cboRequirioHospitalizacionGA">Requirió Hospitalizarse Durante
+                                                Gestación</label>
+                                            <select id="cboRequirioHospitalizacionGA" class="chzn-select"
+                                                style="display: none;">
+                                                <option value="0">No</option>
+                                                <option value="1">Si</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="txtDiasHospitalizacionCpnGA">Dias</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                                id="txtDiasHospitalizacionCpnGA">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-8" hidden>
+                                        <div class="form-group">
+                                            <label for="txtObservacionesCpnGA">Observaciones</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                                id="txtObservacionesCpnGA">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<div data-backdrop="static" style="background-color: rgba(0,0,0,0.5); overflow-y: scroll; z-index: 9999;"
+    data-keyboard="false" class="modal fade" id="modalEstablecimientosUciBuscar" role="dialog"
+    aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Busqueda de Establecimientos</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group m-0">
+                            <label for="codigoEstUciBuscar">Cod. IPRESS</label>
+                            <input type="text" class="form-control form-control-sm searchEstab" id="codigoEstUciBuscar"
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group m-0">
+                            <label for="nombreEstUciBuscar">Nombre</label>
+                            <input type="text" class="form-control form-control-sm searchEstab" id="nombreEstUciBuscar"
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group m-0">
+                            <label for="cmbdepEstUcibuscar">Departamento</label>
+                            <div class="input-group">
+                                <select class="chzn-select searchEstab" id="cmbdepEstUcibuscar"
+                                    data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group m-0">
+                            <label for="cmbprovEstUciBuscar">Provincia</label>
+                            <div class="input-group">
+                                <select class="chzn-select searchEstab" id="cmbprovEstUciBuscar"
+                                    data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group m-0">
+                            <label for="cmbdistEstUciBuscar">Distrito</label>
+                            <div class="input-group">
+                                <select class="chzn-select searchEstab" id="cmbdistEstUciBuscar"
+                                    data-placeholder="Seleccione una opción"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="margin-top: 28px;">
+                        <button class="btn btn-sm btn-outline-primary layout_btn_prevent"
+                            id="btnBuscarEstablecimientoUci" style="width:70px;">Buscar</button>
+                        <button class="btn btn-sm btn-outline-secondary layout_btn_prevent"
+                            id="btnLimpiarBusquedaEstablecimientoUci" style="width:70px;">Limpiar</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive mt-1">
+                            <table id="tblEstSaludUci" width="100%"
+                                class="table table-sm table-bordered table-content-md">
+                                <thead style="color: white;background: #434343;">
+                                    <tr>
+                                        <th style="width:5%">Codigo</th>
+                                        <th style="width:15%">Nombre</th>
+                                        <th style="width:15%">Distrito</th>
+                                        <th style="width:15%">Provincia</th>
+                                        <th style="width:15%">Departamento</th>
+                                        <th style="width:10%;text-align:center">Acción</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+
+                <!--<button id="btnRegistrarPaciente" class="btn  btn-primary "> Registrar</button>-->
+                <button id="btnCerraEstablecimientoBuscarUci" target="_blank" class="btn  btn-secondary">
+                    Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+
+</div>

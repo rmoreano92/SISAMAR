@@ -1,0 +1,296 @@
+﻿@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-validation-engine/css/validationEngine.jquery.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" />
+}
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-th"></i>
+                Mantenimiento de Visitas
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Call Center
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">Paciente</a>
+                </li>
+                <li class="breadcrumb-item active">Mantenimiento de Visitas</li>
+            </ol>
+        </div>
+    </div>
+</header>
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <i class="fa fa-table"></i> Lista de hospitalizados &nbsp;   &nbsp; <button class="btn btn-primary layout_btn_prevent" onclick="ListarVisitas();" id="btnCambiarGrafico">Actualizar</button>&nbsp;
+                        |&nbsp;<a class="btn btn-info layout_btn_prevent" href="~/Visitas/ReporteVisitas?area=CallCenter" target="_blank">Lista de Visitas</a>&nbsp;
+                        |&nbsp;<a class="btn btn-warning layout_btn_prevent" href="~/Visitas/ReporteAltas?area=CallCenter" target="_blank">Lista de Altas</a>
+                    </div>
+                    <div class="card-block p-t-5">
+                        <table id="lstVisita" class="table  table-bordered " data-source="/Visitas/ListadoHospitalizados?area=CallCenter">
+                            <thead style="color: white;background: #3e6184;">
+                                <tr>
+                                    <th data-columna="nroHistoria" valign="middle" align="center">N°.Historia</th>
+                                    <th data-columna="Paciente" valign="middle" align="center">Paciente</th>
+                                    @*<th data-columna="FecIngreso">Fec.Ingreso</th>*@
+                                    @*<th data-columna="HoraIng" valign="middle" align="center">Hora Ing.</th>*@
+                                    <th data-columna="Serv.Ing" valign="middle" align="center">Serv.Ingreso</th>
+                                    <th data-columna="DatosAdicionales" valign="middle" align="center">Cel. Familiar</th>
+                                    @*<th data-columna="Respuesta" valign="middle" align="center">Respuesta</th>*@
+                                    <th data-columna="Operaciones" valign="middle" align="center">Operaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.outer -->
+<!-- Modal -->
+<!--- responsive model -->
+<div class="modal fade in display_none" id="modalVisita" tabindex="-1" role="dialog" aria-hidden="false">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title text-white" id="titulo">Registro de Visita.</h4>
+            </div>
+            <div class="modal-body" >
+                <form method="post" id="formVisita">
+                    <div class="row">
+                        <input hidden="hidden" id="idCuenta" name="idCuenta" type="text" class="form-control">
+                        <input hidden="hidden" id="idVisita" name="idVisita" type="text" class="form-control">
+                        <input hidden="hidden" id="idPaciente" name="idPaciente" type="text" class="form-control">
+                        <div class="col-md-3">
+                            <h4>Nro Historia:</h4>
+                            <p>
+                                <input id="txtNroHistoria" type="text" disabled class="form-control">
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Paciente:</h4>
+                            <p>
+                                <input id="txtPaciente" type="text" disabled class="form-control">
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Cel.Familiar:</h4>
+                            <p>
+                                <input id="txtTelefono" type="text" disabled class="form-control">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Servicio</h4>
+                            <p>
+                                <select class="hide_search" id="cboServicio"></select>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Cama:</h4>
+                            <p>
+                                <input id="txtCama" name="txtCama" type="text" class="form-control">
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Fecha Evaluación:</h4>
+                            <p>
+                                <div class="input-group form-group">
+                                    <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaEvaluacion">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Condición:</h4>
+                            <p>
+                                <select class="hide_search"  id="cboCondicion"></select>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Tipo Parto</h4>
+                            <p>
+                                <select class="hide_search" id="cboTipoParto">
+                                    <option value="-1">--Seleccione--</option>
+                                    <option value="1">Cesarea</option>
+                                    <option value="2">Vaginal</option>
+                                    <option value="3">Ninguno</option>
+
+                                </select>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Fecha Parto:</h4>
+                            <p>
+                                <div class="input-group form-group input-append date form_datetime">
+                                    <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaParto">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Sexo RN:</h4>
+                            <p>
+                                <select class="hide_search" id="cboSexoRn">
+                                    <option value="-1">--Seleccione--</option>
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Femenino</option>
+                                    <option value="0">Ninguno</option>
+
+                                </select>
+                            </p>
+                        </div>
+                        <div class="col-lg-3">
+                            <h4>Fecha Alta:</h4>
+                            <p>
+                                <div class="input-group form-group">
+                                    <input type="text" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="FechaAlta">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </p>
+                        </div>
+                        @*<div class="col-md-3">
+                <h4>Estado de LLamada:</h4>
+                <p>
+                    <select class="chzn-select" id="cboEstadoLlamada">
+                        <option value="-1">--Seleccione--</option>
+                        <option value="1">Informado</option>
+                        <option value="2">No informado</option>
+                    </select>
+                </p>
+            </div>*@
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <h4>Observaciones:</h4>
+                            <p>
+                                <textarea id="txtComplicaciones" type="text" class="form-control" rows="3"></textarea>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 class="sub_title">¿Necesita acudir a MGP?</h5>
+                            <div class="left_align">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="necesitaVisita" value="1" id="SiVisita">
+                                        <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="necesitaVisita" value="0" id="NoVisita">
+                                        <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                                        No
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 class="sub_title">Sale de Alta?</h5>
+                            <div class="left_align">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="altaMedica" value="1" id="SiAlta">
+                                        <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="altaMedica" value="0" id="NoAlta">
+                                        <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                                        No
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Clave de Pase:</h4>
+                            <p>
+                                <input id="txtPase" name="txtPase" type="text" class="form-control">
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="Guardar();">Guardar</button>
+                        <button type="button" onclick="cerrarModal();" class="btn btn-secondary">Cancelar</button>
+                    </div>
+                </form>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!-- END modal-->
+
+<div class="modal fade" role="dialog" id="modalEliminar" aria-labelledby="modalLabeldanger">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title text-white" id="modalLabeldanger">Eliminar Visita</h4>
+            </div>
+            <input hidden="hidden" id="idVisita" name="idVisitaEliminar" type="text" class="form-control">
+            <div class="modal-body" style="text-align:center;">
+                <p>
+                    <h3>¿Desea eliminar la visita medica del paciente <label id="DatosPaciente"></label>?</h3>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="DesactivarVisita();">SI</button>
+                <button type="button" onclick="cerrarModal();" class="btn btn-secondary">NO</button>
+            </div>
+        </div>
+    </div>
+    <!--- end modals-->
+</div>
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src=@Href("~/js/VisitasMedicas.js")></script>
+}

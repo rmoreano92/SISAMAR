@@ -1,0 +1,230 @@
+﻿@using Microsoft.Extensions.Configuration;
+@using System.Data
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/context-menu.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-briefcase-medical"></i>
+                @ViewBag.Modulo
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Modulo</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+                    </li>
+                    <li class="nav-item m-0" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Registro Resultados</a>
+                    </li>
+                </ul>
+                <div class="tab-content border p-1" id="myTabContent">
+                    <!--=============================================Panel Busqueda==================================================================-->
+                    <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                        <div class="row">
+                            <div class="col-xl-12 mb-2">
+                                <div class="card">
+                                    <div class="card-block pb-1">
+                                        <div class="row">
+                                            <div class="col-xl-7">
+                                                <div class="row">
+                                                    <div class="col-xl-3">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtCodigoPaqueteBusq">Codigo</label>
+                                                            <input id="txtCodigoPaqueteBusq" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-5">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtDescripcionPaqueteBusq">Nombre</label>
+                                                            <input id="txtDescripcionPaqueteBusq" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-5 d-flex align-items-end" style="height: 55px;">
+                                                <button class="btn btn-sm btn-primary layout_btn_prevent mr-2" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscar">Buscar</button>
+                                                <button class="btn btn-sm btn-secondary layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiar">Limpiar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6">
+                                @{
+                                    if (@ViewBag.Agregar)
+                                    {
+                                        <button class="btn btn-success layout_btn_prevent" id="btnAgregar">Agregar</button>
+                                    }
+                                    if (@ViewBag.Modificar)
+                                    {
+                                        <button class="btn btn-info layout_btn_prevent" id="btnModificar">Modificar</button>
+                                    }
+                                    if (@ViewBag.Eliminar)
+                                    {
+                                        <button class="btn btn-danger layout_btn_prevent" id="btnEliminar">Eliminar</button>
+                                    }
+                                    if (@ViewBag.Consultar)
+                                    {
+                                        <button class="btn btn-warning layout_btn_prevent" id="btnConsultar">Consultar</button>
+                                    }
+                                }
+                            </div>
+
+                            @* @if (ViewBag.ActualizaCatalogo)
+                            {
+                            <div class="col-xl-6">
+                            <div class="form-group m-0">
+                            <input type="file" class="form-control form-control-sm campoRes" accept=".zip" id="catalogoBI" hidden>
+                            <button id="btnSubirCatalogoBI" type="button" class="btn btn-indigo mr-1"><i class="fa fa-file-upload" style="width: 20px; text-align:center;"></i> Subir Catalogo</button>
+                            </div>
+                            </div>
+                            } *@
+
+                            <div class="col-xl-12">
+                                <table id="tblPaquetes" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                    <thead style="color: white; background: #434343;">
+                                        <tr>
+                                            <th width="10%">Código</th>
+                                            <th>Descripcion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/FactConfig/RegistroPaquetes.cshtml" />
+
+
+@* <partial name="~/Views/Shared/Components/VistasParciales/ProgressBar.cshtml" /> *@
+
+
+@*
+<iframe id="ifrmReporte"
+        title="Inline Frame Example"
+        width="100"
+        height="600" hidden="hidden"
+        src=""></iframe>
+ *@
+
+@section Scripts
+{
+
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+
+    @* <script type="text/javascript" src="~/AdmiRE/js/ProgressBar.js"></script> *@
+
+
+    <script type="text/javascript" src=@Href("~/js/FactConfig/Paquetes.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Variables.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js?v=" + version)></script>
+
+
+
+}
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .tabListEvaluacion h6 {
+        background-color: #394273;
+    }
+
+    .tabListEvaluacion .nav-link.active, .tabListEvaluacion .nav-link.active:focus {
+        background: #878fbb !important;
+    }
+
+    /* .nav-tabs {
+                width: 250px;
+            } */
+
+    /* /* .nav-link {
+                cursor: pointer;
+            } */
+
+    /* .submenu {
+                padding-left: 20px;
+            } */
+
+    /* Mostrar el submenú cuando está activo */
+    .submenu .nav-link.active {
+        background-color: transparent !important;
+        color: inherit !important;
+    }
+
+    .input-table {
+        border: none;
+        background-color: none;
+        outline: 0;
+        font-size: 12px;
+        width: 50px;
+        height: 12px;
+        background-color: #fffabd !important
+    }
+
+        .input-table:focus {
+            border: none;
+            background-color: none;
+            outline: 0;
+            font-size: 12px;
+            width: 50px;
+            height: 12px;
+            background-color: #fffabd !important
+        }
+</style>

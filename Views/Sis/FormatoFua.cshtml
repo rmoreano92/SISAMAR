@@ -1,0 +1,1387 @@
+﻿@using System.Data
+@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa-solid fa-file-invoice"></i>
+                @*@ViewBag.Area*@
+                Formato FUA
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Formato Fua</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="card-block p-t-5">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+                    </li>
+                    <li class="nav-item m-0" role="presentation">
+                        @* <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Nota de ingreso</a> *@
+                        <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false">Formato FUA</a>
+                    </li>
+                </ul>
+
+                <div class="card">
+                    <div class="card-block">
+                        <div id="clothing-nav-content" class="tab-content pt-1">
+
+                            <div role="tabpanel" class="tab-pane fade in active" id="TabPanelBusqueda" aria-labelledby="TabBusqueda-tab">
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtNroCuentaBuscar" class="form-control-label">N° Cuenta</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero search" id="txtNroCuentaBuscar" value="1169827">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-lg-4 col-xl-2 col-xxl-1">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtNroDniBuscar" class="form-control-label">Dni</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero search" id="txtNroDniBuscar">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtNroHistoriaBuscar" class="form-control-label">Historia</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero search" id="txtNroHistoriaBuscar">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-lg-3 col-xl-2 col-xxl-2">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtApPaternoBuscar" class="form-control-label">Ap. Paterno</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtApPaternoBuscar">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-lg-3 col-xl-2 col-xxl-2">
+                                                        <div class="form-group m-0">
+                                                            <label for="txtApMaternoBuscar" class="form-control-label">Ap. Materno</label>
+                                                            <input type="text" autocomplete="off" class="form-control form-control-sm search" id="txtApMaternoBuscar">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                                                        <div class="d-flex align-items-end" style="height: 55px;">
+                                                            <button class="btn btn-sm btn-primary layout_btn_prevent" id="btnBuscarAtenciones" style="padding-left: 2rem !important; padding-right: 2rem !important;">Buscar</button>
+                                                            <button class="btn btn-sm btn-secondary layout_btn_prevent ml-1" id="btnLimpiarBusqueda" style="padding-left: 2rem !important; padding-right: 2rem !important;">Limpiar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 pt-2 pb-0">
+                                        @{
+                                            if (@ViewBag.Agregar)
+                                            {
+                                                <button class="btn btn-success layout_btn_prevent" id="btnAgregar">Agregar</button>
+                                            }
+                                            if (@ViewBag.Modificar)
+                                            {
+                                                <button class="btn btn-info layout_btn_prevent" id="btnModificar">Modificar</button>
+                                            }
+                                            if (@ViewBag.Eliminar)
+                                            {
+                                                @*<button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtenciones">Eliminar</button>*@
+                                            }
+                                            if (@ViewBag.Consultar)
+                                            {
+                                                @*<button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtenciones" onclick="EvaluacionEmergencia.Consultar();">Consultar</button>*@
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <table id="tblAtencion" width="100%" class="table table-sm table-bordered" style="cursor: default;">
+                                            <thead style="color: white;background: #434343;">
+                                                <tr>
+                                                    <th>Cuenta</th>
+                                                    <th>Ap. Paterno</th>
+                                                    <th>Ap. Materno</th>
+                                                    <th>Nombres</th>
+                                                    <th>Historia</th>
+                                                    <th>Fec. Nac.</th>
+                                                    @*<th style="width:10%">Tipo Paciente</th>*@
+                                                    <th>Fec. Ing.</th>
+                                                    <th>Hor. Ing.</th>
+                                                    <th>Servicio</th>
+                                                    <th>Plan</th>
+                                                    <th style="text-align:center">FUA</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="TabPanelRegistro" aria-labelledby="TabPanelRegistro-tab">
+
+
+                                <div class="card m-t-5">
+                                    <div class="card-block m-t-5">
+                                        <h3 class="mt-2">Número de Formato FUA <span class="chip bg-green" style="font-size: 20px;">350</span> <span class="chip bg-green" style="font-size: 20px;">350</span> <span class="chip bg-green" style="font-size: 20px;">12345678</span></h3>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1 mt-1">
+                                    <div class="col-lg-12">
+                                        <div class="card m-t-5 bg-blue">
+                                            <div class="card-header bg-white">Datos Institución Educativa</div>
+                                            <div class="card-block m-t-5">
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <label for="txtCodigoInstitucionEducativa">Código</label>
+                                                        <div class="input-group input-group-sm d-flex">
+                                                            <input type="text" class="form-control form-control-sm" id="txtCodigoInstitucionEducativa" disabled />
+                                                            <div class="input-group-append" style="margin-left: -2px;">
+                                                                <button class="btn btn-indigo" type="button" id="btnModalInstitucionEducativa"><i class="fas fa-search"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label for="txtDescripcionInstitucionEducativa">Institución Educativa</label>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control form-control-sm" id="txtDescripcionInstitucionEducativa" disabled />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label for="cboNivelInstitucionEducativa">Nivel</label>
+                                                        <div class="form-group mb-0">
+                                                            <select id="cboNivelInstitucionEducativa" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                <option value="0">Seleccione una opción</option>
+                                                                @foreach (DataRow partida in ViewBag.Nivel.Rows)
+                                                                {
+                                                                    <option value="@partida["IdNivel"]">@partida["Nivel"]</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label for="cboGradoInstitucionEducativa">Grado</label>
+                                                        <div class="form-group mb-0">
+                                                            <select id="cboGradoInstitucionEducativa" class="chzn-select campo-select field" data-placeholder="Seleccione una opción"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label for="txtSeccionInstitucionEducativa">Sección</label>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control form-control-sm" id="txtSeccionInstitucionEducativa" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label for="cboTurnoInstitucionEducativa">Turno</label>
+                                                        <div class="form-group mb-0">
+                                                            <select id="cboTurnoInstitucionEducativa" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                <option value="0">Seleccione una opción</option>
+                                                                @foreach (DataRow partida in ViewBag.Turnos.Rows)
+                                                                {
+                                                                    <option value="@partida["IdTurno"]">@partida["Turno"]</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#TabCabecera" class="nav-link nav-link-custom active" id="TabCabecera-tab" data-toggle="tab" data-target="#TabCabecera" role="tab" aria-controls="TabCabecera" aria-selected="true">Cabecera</a>
+                                    </li>
+                                    <li class="nav-item m-0" role="presentation">
+                                        <a href="#TabNroHojaReferencia" class="nav-link nav-link-custom" id="TabNroHojaReferencia-tab" data-toggle="tab" data-target="#TabNroHojaReferencia" role="tab" aria-controls="TabNroHojaReferencia" aria-selected="false">N° Hoja Refer/Cont</a>
+                                    </li>
+                                    <li class="nav-item m-0" role="presentation">
+                                        <a href="#TabMedicamentosCpt" class="nav-link nav-link-custom" id="TabMedicamentosCpt-tab" data-toggle="tab" data-target="#TabMedicamentosCpt" role="tab" aria-controls="TabMedicamentosCpt" aria-selected="false">Medicamentos/Cpt</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content border p-1" id="myTabContent">
+                                    <!--=============================================Panel Busqueda==================================================================-->
+                                    <div class="tab-pane fade active in" id="TabCabecera" role="tabpanel" aria-labelledby="TabCabecera">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card m-t-5 bg-blue">
+                                                    <div class="card-header bg-white">De la Institución Prestadora de Salud (IPRESS)</div>
+                                                    <div class="card-block m-t-5">
+                                                        <div class="row">
+
+                                                            <div class="col-lg-2">
+                                                                <label>Codigo</label>
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtCodigoIpress" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-10">
+                                                                <label>Nombre</label>
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtNombreIpress" />
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card m-t-5 bg-blue">
+                                                    <div class="card-header bg-white">DATOS DEL ASEGURADO</div>
+                                                    <div class="card-block m-t-5">
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="cboComponenteRegimen">Componente / Régimen</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboComponenteRegimen" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="0">Seleccione una opción</option>
+                                                                        @foreach (DataRow partida in ViewBag.Componentes.Rows)
+                                                                        {
+                                                                            <option value="@partida["com_IdComponente"]">@partida["com_Descripcion"]</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtDisaFormatoAsegurado">Codigo del Asegurado SIS</label>
+                                                                <div class="input-group input-group-sm w-auto">
+                                                                    <input type="text" autocomplete="off" class="form-control" style="max-width:100px;" id="txtDisaFormatoAsegurado" />
+                                                                    <span class="input-group-addon">-</span>
+                                                                    <input type="text" class="form-control form-control-sm w-auto" style="max-width:100px;" id="txtTipoFormatoAsegurado" />
+                                                                    <span class="input-group-addon">-</span>
+                                                                    <input type="text" class="form-control form-control-sm w-auto" style="min-width:20px;" id="txtNroFormatoAsegurado" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtNroHistoriaClinica">N° Historia Clínica</label>
+                                                                <div class="">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtNroHistoriaClinica" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="cboTipoDocumentoPaciente">Tipo Documento</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboTipoDocumentoPaciente" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="0">Seleccione una opción</option>
+                                                                        @foreach (DataRow partida in ViewBag.TiposDocumento.Rows)
+                                                                        {
+                                                                            <option value="@partida["ide_IdTipoDocumento"]">@partida["ide_Descripcion"]</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtNroDocumentoPaciente">N° Documento</label>
+                                                                <div class="">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtNroDocumentoPaciente" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-6">
+                                                                <label for="txtApellidosNombresPaciente">Apellidos y Nombres del Aegurado</label>
+                                                                <div class="">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtApellidosNombresPaciente" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtFechaNacimientoPaciente">Fecha de Nacimiento</label>
+                                                                <div class="input-group input-group-sm w-auto">
+                                                                    <input type="text" autocomplete="off" class="maskFecha form-control form_val_popup_dp3 w-auto" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNacimientoPaciente">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtEdadPaciente">Edad</label>
+                                                                <div class="">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtEdadPaciente" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="cboSexoPaciente">Sexo</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboSexoPaciente" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="-1">Seleccione una opción</option>
+                                                                        @foreach (DataRow partida in ViewBag.TipoSexo.Rows)
+                                                                        {
+                                                                            <option value="@partida["sex_IdSexo"]">@partida["sex_Descripcion"]</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="cboEtniaPaciente">Etnia</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboEtniaPaciente" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="0">Seleccione una opción</option>
+                                                                        @foreach (DataRow partida in ViewBag.Etnia.Rows)
+                                                                        {
+                                                                            <option value="@partida["codetni"]">@partida["codetni"] @partida["desetni"]</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="cboAseguradoOtrasIafas">Asegurado de Otra IAFAS</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboAseguradoOtrasIafas" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="0">Seleccione una opción</option>
+                                                                        <option value="1">ESSALUD</option>
+                                                                        <option value="2">FFAA</option>
+                                                                        <option value="3">SALUDPOL</option>
+                                                                        <option value="4">OTRO</option>
+                                                                        <option value="5">SIN SEGURO</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtCodigoAseguradoOtraIafa">Cod de Seguro de Otra IAFAS</label>
+                                                                <div class="">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtCodigoAseguradoOtraIafa" />
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="cboSaludMaterna">Salud Materna</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboSaludMaterna" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="0">Seleccione una opción</option>
+                                                                        @foreach (DataRow partida in ViewBag.CondicionMaterna.Rows)
+                                                                        {
+                                                                            <option value="@partida["cdm_IdCondicion"]">@partida["cdm_Descripcion"]</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtFechaParto">Fecha Parto/Prob</label>
+                                                                <div class="input-group input-group-sm w-auto">
+                                                                    <input type="text" autocomplete="off" class="maskFecha form-control form_val_popup_dp3 w-auto" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaParto">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtNroAutorizacion">N° Autorización</label>
+                                                                <div class="">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtNroAutorizacion" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtMonto">Monto</label>
+                                                                <div class="">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtMonto" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtCodigoAcreditacion">Codigo de Acreditación</label>
+                                                                <div class="">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtCodigoAcreditacion" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="card m-t-5 bg-blue">
+                                                    <div class="card-header bg-white">DNI / CNV / AFILIACION DEL RN</div>
+                                                    <div class="card-block m-t-5">
+                                                        <div class="row">
+
+                                                            <div class="col-lg-12">
+                                                                <table id="tblAtenciones" width="100%" class="table table-sm table-content-sm table-striped table-bordered w-100">
+                                                                    <thead style="color: white;background: #434343;">
+                                                                        <tr>
+                                                                            <th style="width:10%">N° Documento</th>
+                                                                            <th style="width:10%">Contrato</th>
+                                                                            <th style="width:80%">Nombres y Apellidos</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card m-t-5 bg-blue">
+                                                    <div class="card-header bg-white">DATOS DE LA ATENCIÓN</div>
+                                                    <div class="card-block m-t-5">
+
+                                                        <div class="row">
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label>Fecha y Hora de la Atención</label>
+                                                                <div class="input-group input-group-sm w-auto">
+                                                                    <input type="text" autocomplete="off" class="maskFecha form-control form_val_popup_dp3 w-auto" style="min-width:80px;" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAtencion">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+                                                                    <input type="text" class="maskHora form-control form-control-sm w-auto" style="min-width:20px;" placeholder="hh:mm" id="txtHoraAtencion" />
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-clock"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtFechaAlta">Fecha de Alta</label>
+                                                                <div class="input-group input-group-sm w-auto">
+                                                                    <input type="text" autocomplete="off" class="maskFecha form-control form_val_popup_dp3 w-auto" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaAlta">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label>Fecha y Hora de Ingreso</label>
+                                                                <div class="input-group input-group-sm w-auto">
+                                                                    <input type="text" autocomplete="off" class="maskFecha form-control form_val_popup_dp3 w-auto" style="min-width:80px;" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIngreso">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+                                                                    <input type="text" class="maskHora form-control form-control-sm w-auto" style="min-width:20px;" placeholder="hh:mm" id="txtHoraIngreso" />
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-clock"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="cboTipoAtencion">Tipo Atención</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboTipoAtencion" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="0">Seleccione una opción</option>
+                                                                        @foreach (DataRow partida in ViewBag.TipoAtencion.Rows)
+                                                                        {
+                                                                            <option value="@partida["tat_IdTipoAtencion"]">@partida["tat_Descripcion"]</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="cboConceptoPrestacional">Concepto Prestacional</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboConceptoPrestacional" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="0">Seleccione una opción</option>
+                                                                        @foreach (DataRow partida in ViewBag.ConceptoPrestacional.Rows)
+                                                                        {
+                                                                            <option value="@partida["mod_IdModalidad"]">@partida["mod_Descripcion"]</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="cboLugarAtencion">Lugar de atención</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboLugarAtencion" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="0">Seleccione una opción</option>
+                                                                        <option value="1">Intramural</option>
+                                                                        <option value="2">Extramural</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="cboPersonalAtiende">Personal que atiende</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboPersonalAtiende" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="0">Seleccione una opción</option>
+                                                                        <option value="1">Del Establecimiento</option>
+                                                                        <option value="2">Itinerante</option>
+                                                                        <option value="3">Plan mas Salud</option>
+                                                                        <option value="4">Oferta Flexible</option>
+                                                                        <option value="5">Telesalud</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtCodigoOfertaFlexible">Codigo Oferta Flexible</label>
+                                                                <div class="">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtCodigoOfertaFlexible" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-xl-4 col-lg-8">
+                                                                <label for="cboUps">UPS</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboUps" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                    <option value="0">Seleccione una opción</option>
+                                                                    @foreach (DataRow partida in ViewBag.Ups.Rows)
+                                                                    {
+                                                                        <option value="@partida["ups"]">(@partida["ups"]) @partida["descripcion"]</option>
+                                                                    }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label>Código Prestación (SIS)</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboTipoSexo" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="0">Seleccione una opción</option>
+                                                                        @foreach (DataRow partida in ViewBag.CodigoPrestacional.Rows)
+                                                                        {
+                                                                            <option value="@partida["ser_CodSer"]">@partida["ser_CodSer"] - @partida["ser_Descripcion"]</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-xl-4 col-lg-8">
+                                                                <label for="txtCodigoEstablecimientoReferencia">Se Refiere / Contrarefiere A</label>
+                                                                <div class="input-group input-group-sm d-flex">
+                                                                    <input type="text" class="form-control form-control-sm" style="max-width:120px;" id="txtCodigoEstablecimientoReferencia" disabled />
+                                                                    <div class="input-group-append" style="margin-left: -2px;">
+                                                                        <button class="btn btn-indigo" type="button" id="btnModalEstablecimientos"><i class="fas fa-search"></i></button>
+                                                                    </div>
+                                                                    <input type="text" style="min-width:150px;" class="form-control form-control-sm" id="txtNombreEstablecimientoReferencia" disabled />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtNroHojaRefConVincular">N° Hoja Refer/Cont</label>
+                                                                <div class="">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtNroHojaRefConVincular" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="cboDestinoAsegurado">Destino del Asegurado</label>
+                                                                <div class="form-group mb-0">
+                                                                    <select id="cboDestinoAsegurado" class="chzn-select campo-select field" data-placeholder="Seleccione una opción">
+                                                                        <option value="-1">Seleccione una opción</option>
+                                                                        <option value="0">Sin destino</option>
+                                                                        <option value="1">Alta</option>
+                                                                        <option value="2">Citado</option>
+                                                                        <option value="3">Ref. Emergencia</option>
+                                                                        <option value="4">Ref. Consulta Externa</option>
+                                                                        <option value="5">Ref Apoyo al Dx</option>
+                                                                        <option value="6">Contrareferido</option>
+                                                                        <option value="7">Fallecido</option>
+                                                                        <option value="8">Hospitalizado</option>
+                                                                        <option value="9">Corte Administrativo</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtFechaCorteAdministrativo">Fecha Corte Administrativo</label>
+                                                                <div class="input-group input-group-sm w-auto">
+                                                                    <input type="text" autocomplete="off" class="maskFecha form-control form_val_popup_dp3 w-auto" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaCorteAdministrativo">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtFechaFallecimiento">Fecha Fallecimiento</label>
+                                                                <div class="input-group input-group-sm w-auto">
+                                                                    <input type="text" autocomplete="off" class="maskFecha form-control form_val_popup_dp3 w-auto" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFallecimiento">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtDisaFuaVincular">N° de FUA a Vincular</label>
+                                                                <div class="input-group input-group-sm w-auto">
+                                                                    <input type="text" autocomplete="off" class="form-control" style="max-width:100px;" id="txtDisaFuaVincular" />
+                                                                    <span class="input-group-addon">
+                                                                        -
+                                                                    </span>
+                                                                    <input type="text" class="form-control form-control-sm w-auto" style="max-width:100px;" id="txtLoteFuaVincular" />
+                                                                    <span class="input-group-addon">
+                                                                        -
+                                                                    </span>
+                                                                    <input type="text" class="form-control form-control-sm w-auto" style="min-width:20px;" id="txtNumeroFuaVincular" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-4 col-lg-8">
+                                                                <label for="txtCodigoEstablecimientoReferenciaVincular">Se Refiere / Contrarefiere A</label>
+                                                                <div class="input-group input-group-sm d-flex">
+                                                                    <input type="text" class="form-control form-control-sm" style="max-width:120px;" id="txtCodigoEstablecimientoReferenciaVincular" disabled />
+                                                                    <div class="input-group-append" style="margin-left: -2px;">
+                                                                        <button class="btn btn-indigo" type="button" id="btnModalEstablecimientosVincular"><i class="fas fa-search"></i></button>
+                                                                    </div>
+                                                                    <input type="text" style="min-width:150px;" class="form-control form-control-sm" id="txtNombreEstablecimientoReferenciaVincular" disabled />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label>N° Hoja Refer/Cont</label>
+                                                                <div class="">
+                                                                    <input type="text" class="form-control form-control-sm" id="" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-2 col-lg-4">
+                                                                <label for="txtCodigoAutorizacionVinculado">Cód. Autorizacion Reporte Vinculado</label>
+                                                                <div class="input-group input-group-sm w-auto">
+                                                                    <input type="text" autocomplete="off" class="form-control" style="max-width:120px;" id="txtCodigoAutorizacionVinculado" />
+                                                                    <span class="input-group-addon">
+                                                                        -
+                                                                    </span>
+                                                                    <input type="text" class="form-control form-control-sm w-auto" style="max-width:100px;" id="txtLoteAutorizacionVinculado" />
+                                                                    <span class="input-group-addon">
+                                                                        -
+                                                                    </span>
+                                                                    <input type="text" class="form-control form-control-sm w-auto" style="min-width:20px;" id="txtSecuenciaAutorizacionVinculado" />
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane fade" id="TabNroHojaReferencia" role="tabpanel" aria-labelledby="TabNroHojaReferencia">
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card m-t-5 bg-blue">
+                                                    <div class="card-header bg-white">Responsable de la atención</div>
+                                                    <div class="card-block m-t-5">
+                                                        <div class="row">
+
+                                                            <div class="col-lg-2">
+                                                                <label>DNI</label>
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtDniResponsable" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-4">
+                                                                <label>Nombre</label>
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtNombreResponsable" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-2">
+                                                                <label>Colegiatura</label>
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtColegiaturaResponsable" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-2">
+                                                                <label>Especialidad</label>
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtEspecialidadResponsable" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-2">
+                                                                <label>RNE</label>
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control form-control-sm" id="txtRneResponsable" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-xl-8 col-lg-12">
+                                                <div class="card m-t-5 bg-blue">
+                                                    <div class="card-header bg-white">Servicios Preventivos</div>
+                                                    <div class="card-block m-t-5">
+
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <div class="card m-t-5 bg-blue">
+                                                                    <div class="card-header bg-white">Otras Actividades</div>
+                                                                    <div class="card-block m-t-5">
+                                                                        <table id="tblOtrasActividades" class="table table-sm table-content-sm table-striped table-bordered w-100 mt-1">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <th>Peso (Kg)</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtPeso" /></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th>Talla (cm)</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtTalla" /></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th>P.A. (mmHg)</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtPA" /></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="col-lg-8">
+                                    
+                                                                <div class="card m-t-5 bg-blue">
+                                                                    <div class="card-header bg-white">De la Gestante</div>
+                                                                    <div class="card-block m-t-5">
+                                                                        <table id="tblGestante" class="table table-sm table-content-sm table-striped table-bordered w-100 mt-1">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <th>CPM (N°)</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtCpm" /></td>
+                                                                                    
+                                                                                    <th>Edad Gest (Sem)</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtEdadGestSemana" /></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th>Altu. Uterina (cm)</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtAlturaUterina" /></td>
+                                                                                    
+                                                                                    <th>Control de puerperio</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtControlPuerperio" /></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th>Parto Vertical</th>
+                                                                                    <td colspan="3">
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbPartoVerticalSi" name="rdbPartoVertical" value="1" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalSi" class="pl-3 pr-3">Si</label>
+                                                                                            <input type="radio" id="rdbPartoVerticalNo" name="rdbPartoVertical" value="2" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalNo" class="pl-3 pr-3">No</label>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-12">
+                                                                <div class="card m-t-5 bg-blue">
+                                                                    <div class="card-header bg-white">Gestante / RN / Niño / Adolescencia, Etc.</div>
+                                                                    <div class="card-block m-t-5">
+
+                                                                        
+                                                                        <table id="tblGestanteRn" class="table table-sm table-content-sm table-striped table-bordered w-100">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <th>Cred (N°)</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtCred" /></td>
+                                                                                    <th>RN Prematuro</th>
+                                                                                    <td>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbPartoVerticalSi" name="rdbPartoVertical" value="1" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalSi" class="pl-3 pr-3">Si</label>
+                                                                                            <input type="radio" id="rdbPartoVerticalNo" name="rdbPartoVertical" value="2" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalNo" class="pl-3 pr-3">No</label>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <th>EEDP/TEPSI</th>
+                                                                                    <td>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbPartoVerticalSi" name="rdbPartoVertical" value="1" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalSi" class="pl-3 pr-3">Si</label>
+                                                                                            <input type="radio" id="rdbPartoVerticalNo" name="rdbPartoVertical" value="2" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalNo" class="pl-3 pr-3">No</label>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                
+                                                                                <tr>
+                                                                                    <th>PAB (cm)</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtPab" /></td>
+                                                                                    <th>Bajo Peso al Nacer</th>
+                                                                                    <td>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbPartoVerticalSi" name="rdbPartoVertical" value="1" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalSi" class="pl-3 pr-3">Si</label>
+                                                                                            <input type="radio" id="rdbPartoVerticalNo" name="rdbPartoVertical" value="2" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalNo" class="pl-3 pr-3">No</label>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <th>Evaluacion Integral</th>
+                                                                                    <td>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbPartoVerticalSi" name="rdbPartoVertical" value="1" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalSi" class="pl-3 pr-3">Si</label>
+                                                                                            <input type="radio" id="rdbPartoVerticalNo" name="rdbPartoVertical" value="2" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalNo" class="pl-3 pr-3">No</label>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                
+                                                                                <tr>
+                                                                                    <th>N° Fam. Gest/Puerp</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtNroFamGestPuerp" /></td>
+                                                                                    <th>Consejeria Nutricional</th>
+                                                                                    <td>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbPartoVerticalSi" name="rdbPartoVertical" value="1" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalSi" class="pl-3 pr-3">Si</label>
+                                                                                            <input type="radio" id="rdbPartoVerticalNo" name="rdbPartoVertical" value="2" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalNo" class="pl-3 pr-3">No</label>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <th>Secuela al Nacer</th>
+                                                                                    <td>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbPartoVerticalSi" name="rdbPartoVertical" value="1" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalSi" class="pl-3 pr-3">Si</label>
+                                                                                            <input type="radio" id="rdbPartoVerticalNo" name="rdbPartoVertical" value="2" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalNo" class="pl-3 pr-3">No</label>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                
+                                                                                <tr>
+                                                                                    <th>IMC (Kg/m2)</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtImc" /></td>
+                                                                                    <th>Consejeria Integral</th>
+                                                                                    <td>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbPartoVerticalSi" name="rdbPartoVertical" value="1" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalSi" class="pl-3 pr-3">Si</label>
+                                                                                            <input type="radio" id="rdbPartoVerticalNo" name="rdbPartoVertical" value="2" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalNo" class="pl-3 pr-3">No</label>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <th>Tamizaje Salud M.</th>
+                                                                                    <td>
+                                                                                        <div class="switch-field">
+                                                                                            <input type="radio" id="rdbPartoVerticalSi" name="rdbPartoVertical" value="1" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalSi" class="pl-3 pr-3">Si</label>
+                                                                                            <input type="radio" id="rdbPartoVerticalNo" name="rdbPartoVertical" value="2" class="rdbPartoVertical field" />
+                                                                                            <label for="rdbPartoVerticalNo" class="pl-3 pr-3">No</label>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                
+                                                                                <tr>
+                                                                                    <th>VACAM</th>
+                                                                                    <td><input type="text" class="form-control form-control-sm" id="txtVacam" /></td>
+                                                                                    
+                                                                                </tr>
+
+                                                                            </tbody>
+                                                                        </table>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                
+                                                                <div class="card m-t-5 bg-blue">
+                                                                    <div class="card-header bg-white">Del Recien Nacido</div>
+                                                                    <div class="card-block m-t-5">
+
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3">
+                                                                                <label>Edad Gest RN (Sem)</label>
+                                                                                <div class="">
+                                                                                    <input type="text" class="form-control form-control-sm" id="txtEdadGestRn" />
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-lg-3">
+                                                                                <div class="form-group mb-0">
+                                                                                    <label style="width: 100%;">Corte Tardio de Cordón (2 a 3 min)</label>
+                                                                                    <div class="switch-field">
+                                                                                        <input type="radio" id="rdbPartoVerticalSi" name="rdbPartoVertical" value="1" class="rdbPartoVertical field" />
+                                                                                        <label for="rdbPartoVerticalSi" class="pl-3 pr-3">Si</label>
+                                                                                        <input type="radio" id="rdbPartoVerticalNo" name="rdbPartoVertical" value="2" class="rdbPartoVertical field" />
+                                                                                        <label for="rdbPartoVerticalNo" class="pl-3 pr-3">No</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-lg-3">
+                                                                                <label>Apgar 1</label>
+                                                                                <div class="">
+                                                                                    <input type="text" class="form-control form-control-sm" id="txtApgar1" />
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="col-lg-3">
+                                                                                <label>Apgar 5</label>
+                                                                                <div class="">
+                                                                                    <input type="text" class="form-control form-control-sm" id="txtApgar5" />
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4 col-lg-12">
+                                                <div class="card m-t-5 bg-blue">
+                                                    <div class="card-header bg-white">Vacunas N° Dosis</div>
+                                                    <div class="card-block m-t-5">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+
+                                                                <table id="tblVacunas" class="table table-sm table-content-sm table-striped table-bordered w-100">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th>BCG</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtBCG" /></td>
+                                                                            <th>INFLUENZA</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtINFLUENZA" /></td>
+                                                                        </tr>
+                                                                        
+                                                                        <tr>
+                                                                            <th>ANTIAMARILICA</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtANTIAMARILICA" /></td>
+                                                                            <th>DPT</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtDPT" /></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>PAROTID</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtPAROTID" /></td>
+                                                                            <th>ROTAVIRUS</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtROTAVIRUS" /></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>SPR</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtSPR" /></td>
+                                                                            <th>ANTINEUMOC</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtANTINEUMOC" /></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>APO</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtAPO" /></td>
+                                                                            <th>RUBEOLA</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtRUBEOLA" /></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>ANTITETANICA</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtANTITETANICA" /></td>
+                                                                            <th>ASA</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtASA" /></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>COMPLETAS P. EDAD</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtCOMPLETAS_PEDAD" /></td>
+                                                                            <th>DT ADULTO (N° DOSIS)</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtDTADULTO" /></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>VHP</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtVHP" /></td>
+                                                                            <th>SR</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtSR" /></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>IPV</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtIPV" /></td>
+                                                                            <th>OTRA VACUNA</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtOTRAVACUNA" /></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>HVB</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtHVB" /></td>
+                                                                            <th>PENTAVAL</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtPENTAVAL" /></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                             <th>GRUPO RIESGO HVB</th>
+                                                                            <td><input type="text" class="form-control form-control-sm" id="txtGRUPORIESGOHVB" /></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-12">
+                                                <table id="tblAtenciones" width="100%" class="table table-sm table-content-sm table-striped table-bordered w-100">
+                                                    <thead style="color: white;background: #434343;">
+                                                        <tr>
+                                                            <th style="width:5%">Dx. N°</th>
+                                                            <th style="width:25%">Descripcion</th>
+                                                            <th style="width:10%">Tipo</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="col-xl-12">
+                                                <table id="tblAtenciones" width="100%" class="table table-sm table-content-sm table-striped table-bordered w-100">
+                                                    <thead style="color: white;background: #434343;">
+                                                        <tr>
+                                                            <th style="width:5%">Dx. N°</th>
+                                                            <th style="width:25%">Descripcion</th>
+                                                            <th style="width:10%">Tipo</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane fade" id="TabMedicamentosCpt" role="tabpanel" aria-labelledby="TabMedicamentosCpt">
+
+                                        <div class="card bg-blue mt-1">
+                                            <div class="card-header bg-white">Farmacia</div>
+                                            <div class="card-block">
+                                                <table id="tblPaquetes" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th width="10%">Código</th>
+                                                            <th>Descripcion</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="card bg-blue mt-1">
+                                            <div class="card-header bg-white">Procedimientos</div>
+                                            <div class="card-block">
+                                                <table id="tblPaquetes" class="table table-sm table-content-sm table-bordered table-striped w-100" style="cursor: default;">
+                                                    <thead style="color: white; background: #434343;">
+                                                        <tr>
+                                                            <th width="10%">Código</th>
+                                                            <th>Descripcion</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="card bg-blue mt-1">
+                                            <div class="card-header bg-white">Observaciones</div>
+                                            <div class="card-block">
+                                                <textarea id="txtObservacionLaboratorio" class="form-control bloquear"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalInstitucionEducativa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Instituciones Educativas</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12 mb-1">
+
+                        <div class="card bg-blue">
+                            <div class="card-block">
+                                <div class="row mb-1">
+                                    <div class="col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtCodigoInstitucionEducativaBuscar">Código</label>
+                                            <input type="text" class="form-control form-control-sm writing reading"
+                                                autocomplete="off" id="txtCodigoInstitucionEducativaBuscar">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-9">
+                                        <div class="form-group m-0">
+                                            <label for="txtNombreInstitucionEducativaBuscar">Institución Educativa</label>
+                                            <input type="text" class="form-control form-control-sm reading"
+                                                autocomplete="off" id="txtNombreInstitucionEducativaBuscar">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <div class="col-xl-6">
+                                        <button class="btn btn-sm btn-info layout_btn_prevent"
+                                            id="btnBuscarInstitucionEducativa">Buscar</button>
+                                        <button class="btn btn-sm btn-seconday layout_btn_prevent"
+                                            id="btnLimpiarBusquedaInstitucionEducativa">Limpiar</button>
+                                    </div>
+                                        
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <table id="tblListaInstitucionesEducativas"
+                            class="table table-sm table-content-sm table-bordered table-striped w-100"
+                            style="cursor: default;">
+                            <thead style="color: white; background: #434343; width: 100%;">
+                                <tr>
+                                    <th width="5%">Código</th>
+                                    <th width="35%">Institución Educativa</th>
+                                    <th width="25%">Ubigeo</th>
+                                    <th width="35%">Dirección</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" id="btnCerrarModalInstitucionesEducativas">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+
+    
+    <script type="module" src=@Href("~/js/Sis/FormatoFua.js?v=" + version)></script>
+
+
+}
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff !important;
+            border-color: #ccc !important;
+        }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    #tblVacunas th {
+        text-align: right !important;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                                                                        width: 100% !important;
+                                                                    }*/
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+</style>
+
+

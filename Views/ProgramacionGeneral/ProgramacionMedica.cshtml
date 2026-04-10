@@ -1,0 +1,259 @@
+﻿@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/fullcalendar/3.10.0/fullcalendar.min.css">
+
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-calendar-range"></i>
+                @ViewBag.Modulo
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Modulo</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+
+        <div class="row m-0">
+            <div class="col-lg-4">
+
+                <div class="card bg-blue">
+                    @* <div class="card-header">Filtro</div> *@
+                    <div class="card-block p-1 pb-0">
+                        <div class="row">
+                            <div class="col-lg-12">
+
+                                <div class="card bg-green mb-1">
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group m-0">
+                                                    <label for="cboDepartamentoHospProgramacionFiltro">Departamento</label>
+                                                    <select class="chzn-select-deselect" id="cboDepartamentoHospProgramacionFiltro" data-placeholder="Seleccione una opción"><option value=""></option></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group m-0">
+                                                    <label for="cboEspecialidadHospProgramacionFiltro">Especialidad</label>
+                                                    <select class="chzn-select-deselect" id="cboEspecialidadHospProgramacionFiltro" data-placeholder="Seleccione una opción"><option value=""></option></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group m-0">
+                                                    <label for="cboMedicoProgramacionFiltro">Medico</label>
+                                                    <select class="chzn-select-deselect" id="cboMedicoProgramacionFiltro" data-placeholder="Seleccione una opción"><option value=""></option></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <div class="col-lg-4">
+                                        <div class="form-group m-0">
+                                            <label class="input-group-text form-label" for="cboMesCalendario">Mes</label>
+                                            <select class="chzn-select-deselect" id="cboMesCalendario">
+                                                <option value="1">Enero</option>
+                                                <option value="2">Febrero</option>
+                                                <option value="3">Marzo</option>
+                                                <option value="4">Abril</option>
+                                                <option value="5">Mayo</option>
+                                                <option value="6">Junio</option>
+                                                <option value="7">Julio</option>
+                                                <option value="8">Agosto</option>
+                                                <option value="9">Setiembre</option>
+                                                <option value="10">Octubre</option>
+                                                <option value="11">Noviembre</option>
+                                                <option value="12">Diciembre</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group m-0">
+                                            <label class="input-group-text form-label" for="cboAnioCalendario">Año</label>
+                                            <select class="chzn-select-deselect" id="cboAnioCalendario"></select>
+                                        </div>
+                                    </div>
+                                    @* <div class="col-lg-6 d-flex align-items-end flex-column" style="height: 50px;">
+                                        <h4 class="mt-auto mb-0" id="MesCalendario"></h4>
+                                    </div> *@
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div id='calendar'></div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 text-sm-right">
+                                        @if (@ViewBag.Agregar)
+                                        {
+                                            <button class="btn btn-success layout_btn_prevent px-3" id="btnAgregarProgramacion">Agregar</button>
+                                        }
+                                    </div>
+                                </div>
+
+                                @* <div class="table-responsive">
+                                    <table class="table table-sm table-content-md table-striped" id="tblMedicosFiltro" width="100%">
+                                        <thead style="color: white; background: #434343;">
+                                            <tr>
+                                                <th style="width:70%;">Medico</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div> *@
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                               
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card bg-green">
+                    <div class="card-header">Programación Médica</div>
+                    <div class="card-block pb-0 pt-1">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                @if (@ViewBag.Modificar)
+                                {
+                                <button class="btn btn-primary layout_btn_prevent" id="btnModificarProgramacion">Modificar</button>
+                                }
+                                @if (@ViewBag.Eliminar)
+                                {
+                                <button class="btn btn-danger layout_btn_prevent" id="btnEliminarProgramacion">Eliminar</button>
+                                }
+                                @if (@ViewBag.Consultar)
+                                {
+                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultarProgramacion">Consultar</button>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-sm table-content-md table-striped" id="tblProgramacionMedica" width="100%">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th>Prog.</th>
+                                        <th>Servicio</th>
+                                        <th>Medico</th>
+                                        <th>Fecha</th>
+                                        <th>Hora Inicio</th>
+                                        <th>Hora Fin</th>
+                                        <th>Tiempo</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/ProgramacionGeneral/RegistroProgramacion.cshtml" />
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/fullcalendar/3.10.0/lib/moment.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/fullcalendar/3.10.0/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/fullcalendar/3.10.0/locale/es.js"></script>
+
+    <script type="text/javascript" src=@Href("~/js/ProgramacionGeneral/ProgramacionMedica.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script>
+
+    
+}
+
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+    .chosen-disabled .chosen-single {
+        background: #eceeef !important;
+        border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .fc-header-toolbar .fc-left h2 {
+        font-size: 1.6rem !important;
+    }
+
+    .fc-head {
+        background-color: lightgreen !important;
+    }
+
+    .fc-unthemed td.fc-today {
+        background: #d8f9dc;
+    }
+
+    .day-highlight {
+        background-color: #c0ffce !important;
+        color: #fff !important;
+    }
+
+    .fc-widget-header table {
+        margin: 0 !important;
+    }
+
+    .fc-event {
+        background: #7291ff !important;
+    }
+
+    .fc-day-grid-event .fc-time {
+        display: none;
+    }
+
+    .fc-day-grid-event .fc-title {
+        color: white !important;
+    }
+
+    .fc-content-skeleton > table {
+        margin-bottom: 0;
+    }
+
+    .highlighted-day {
+        background-color: #03dda6 !important;
+        color: #000 !important;
+        border-radius: 50%;
+    }
+
+    .fc-selected-day {
+        background-color: #81ccff !important;
+    } 
+</style>

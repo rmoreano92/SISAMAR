@@ -1,0 +1,1461 @@
+﻿@section Css
+                {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+
+
+
+<input class="form-control" id="hdIdRegistro" rows="4">
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-hand-holding-medical"></i>
+                @*@ViewBag.Area*@
+                Registro de Atenciones
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Registro de Atenciones</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="row m-0">
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+            <li class="nav-item m-0" role="presentation">
+                <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" @*style="display:none;"*@>Registro Atención</a>
+            </li>
+        </ul>
+        <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContent">
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card m-t-5">
+                            <div class="card-block pb-0">
+                                <div class="row mt-1 mb-1">
+
+                                    <div class="col-lg-2">
+                                        <div class="input-group input-group-sm">
+                                            <label for="txtDniBusqueda" class="form-control-label">N° DNI</label>
+                                            <input type="text" autocomplete="off" class="form-control" id="txtDniBusqueda">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="input-group input-group-sm">
+                                            <label for="txtApellPaternoBusqueda" class="form-control-label">Apell. Paterno</label>
+                                            <input type="text" autocomplete="off" class="form-control" id="txtApellPaternoBusqueda">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="input-group input-group-sm">
+                                            <label for="txtFechaIngresoBusqueda" class="form-control-label">F. Ingreso</label>
+                                            <input type="date" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIngresoBusqueda">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="input-group">
+                                            <label for="cboServicioBusqueda" class="form-control-label">Servicio</label>
+                                            <select class="chzn-select" id="cboServicioBusqueda"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2 d-flex align-items-end" style="height: 50px;">
+                                        <div>
+                                            <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscar">Buscar</button>
+                                            <button class="btn btn-secondary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiar">Limpiar</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 pt-2 pb-0">
+                        @{
+                            if (@ViewBag.Agregar)
+                            {
+                                <button class="btn btn-primary layout_btn_prevent" id="btnAgregarServSocial">Agregar</button>
+                            }
+                            if (@ViewBag.Modificar)
+                            {
+                                <button class="btn btn-info layout_btn_prevent" id="btnModificarServSocial">Modificar</button>
+                            }
+                            @*if (@ViewBag.Eliminar)
+                                {
+                                <button class="btn btn-danger layout_btn_prevent" id="btnEliminarServSocial">Eliminar</button>
+                                }*@
+                            if (@ViewBag.Consultar)
+                            {
+                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultarServSocial">Consultar</button>
+                            }
+                        }
+                    </div>
+
+                    <div class="col-lg-12">
+                        <table id="tblServicioSocial" width="100%" class="table table-sm table-bordered">
+                            <thead style="color: white;background: #434343;">
+                                <tr>
+                                    <th style="width: 10%">N° DNI</th>
+                                    <th style="width: 10%">Apell. Paterno</th>
+                                    <th style="width: 10%">Apell. Materno</th>
+                                    <th style="width: 10%">Primer Nombre</th>
+                                    <th style="width: 10%">F. Ingreso</th>
+                                    <th style="width: 10%">H. Ingreso</th>
+                                    <th style="width: 40%">Servicio</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--=============================================Panel Registro==================================================================-->
+            <div class="tab-pane fade" id="TabPanelRegistro" role="tabpanel" aria-labelledby="TabRegistro">
+
+                <form>
+                    <fieldset style="border: none !important; margin: 0;">
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="card">
+                                    <div class="card-block">
+
+                                        <div class="row mt-1">
+                                            <div class="col-lg-2">
+                                                <div class="input-group input-group-sm">
+                                                    <label for="txtFechaIngresoServS" class="form-control-label">F. Ingreso</label>
+                                                    <input type="date" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIngresoServS">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                                <div class="input-group input-group-sm">
+                                                    <label for="cboServicioServS" class="form-control-label">Servicio</label>
+                                                    <select class="chzn-select" id="cboServicioServS"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="input-group input-group-sm">
+                                                    <label for="cboAsistentaServS" class="form-control-label">Asistenta</label>
+                                                    <select class="chzn-select" id="cboAsistentaServS"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-1">
+
+                                            <div class="col-lg-3">
+                                                <div class="input-group input-group-sm">
+                                                    <label for="cboTurnosLaboradosServS" class="form-control-label">Turnos Laborados</label>
+                                                    <select class="chzn-select" id="cboTurnosLaboradosServS"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="input-group input-group-sm">
+                                                    <label for="txtNroIngresosServS" class="form-control-label">N° Ingresos</label>
+                                                    <input id="txtNroIngresosServS" autocomplete="off" placeholder="" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="input-group input-group-sm">
+                                                    <label for="txtEntrevistaServS" class="form-control-label">Entrevistas</label>
+                                                    <input id="txtEntrevistaServS" autocomplete="off" placeholder="" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-12 mt-1">
+
+                                <div class="card">
+                                    <div class="card-block">
+
+                                        <div class="row mt-2">
+
+                                            <div class="col-lg-12">
+                                                <div class="card bg-blue">
+                                                    <div class="card-header bg-white">Tipo de Paciente</div>
+                                                    <div class="card-block mt-1">
+
+                                                        <div class="row">
+
+                                                            <div class="col-lg-3">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtPacientesNuevos" class="form-control-label">Nuevos</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtPacientesNuevos" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtPacientesContinuador" class="form-control-label">Continuador</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtPacientesContinuador" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtPacientesReingresante" class="form-control-label">Reingresantes</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtPacientesReingresante" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtTotalTipoPaciente" class="form-control-label">Total</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtTotalTipoPaciente" autocomplete="off" placeholder="" class="form-control" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row mt-2">
+
+                                            <div class="col-lg-3">
+                                                <div class="card bg-blue">
+                                                    <div class="card-header bg-white">Riesgo Social</div>
+                                                    <div class="card-block mt-1">
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-6">
+                                                                <label for="txtARSServS" class="form-control-label">ARS</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtARSServS" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-6">
+                                                                <label for="txtMRSServS" class="form-control-label">MRS</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtMRSServS" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-6">
+                                                                <label for="txtBRSServS" class="form-control-label">BRS</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtBRSServS" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-6">
+                                                                <label for="txtRExcpServS" class="form-control-label">R. Excp.</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtRExcpServS" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-6">
+                                                                <label for="txtTotalRiesgoSocialServS" class="form-control-label">Total</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtTotalRiesgoSocialServS" autocomplete="off" placeholder="" class="form-control" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+                                            <div class="col-lg-3">
+                                                <div class="card bg-blue">
+                                                    <div class="card-header bg-white">Etapa de vida %</div>
+                                                    <div class="card-block mt-1">
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-6">
+                                                                <label for="txtEtapaVidaNinio" class="form-control-label">Niño (0-11)</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtEtapaVidaNinio" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-6">
+                                                                <label for="txtEtapaVidaAdolescente" class="form-control-label">Adolesc (13-17)</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtEtapaVidaAdolescente" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-6">
+                                                                <label for="txtEtapaVidaJoven" class="form-control-label">Joven (18-21)</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtEtapaVidaJoven" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-6">
+                                                                <label for="txtEtapaVidaAdulto" class="form-control-label">Adulto (22-70)</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtEtapaVidaAdulto" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-6">
+                                                                <label for="txtEtapaVidaTotal" class="form-control-label">Total</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtEtapaVidaTotal" autocomplete="off" placeholder="" class="form-control" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="card bg-blue">
+                                                    <div class="card-header bg-white">Tipo Seguro</div>
+                                                    <div class="card-block mt-1">
+
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtTipoSeguroSIS" class="form-control-label">SIS</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtTipoSeguroSIS" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-4">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtTipoSeguroPagante" class="form-control-label">Pagante</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtTipoSeguroPagante" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-4">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtTipoSeguroTotal" class="form-control-label">Total</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtTipoSeguroTotal" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-12 text-lg-center">
+                                                                <b>DETALLE DE PAGANTES</b>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtDetallePaganteESSALUD" class="form-control-label">ESSALUD</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtDetallePaganteESSALUD" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-4">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtDetallePaganteFOSMAR" class="form-control-label">FOSMAR</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtDetallePaganteFOSMAR" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-4">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtDetallePaganteSALUDPOL" class="form-control-label">SALUDPOL</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtDetallePaganteSALUDPOL" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-4">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtDetallePaganteEPS" class="form-control-label">EPS</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtDetallePaganteEPS" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-4">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtDetallePaganteFOSPEME" class="form-control-label">FOSPEME</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtDetallePaganteFOSPEME" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-4">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtDetallePaganteOTROS" class="form-control-label">OTROS</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtDetallePaganteOTROS" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-4">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtDetallePaganteFOSFAP" class="form-control-label">FOSFAP</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtDetallePaganteFOSFAP" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-4">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-6">
+                                                                        <label for="txtDetallePaganteSINSEGURO" class="form-control-label">SIN SEGURO</label>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtDetallePaganteSINSEGURO" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-2">
+
+                                            <div class="col-lg-6 mt-1">
+                                                <div class="card bg-blue">
+                                                    <div class="card-header bg-white">Atenciones Sociales</div>
+                                                    <div class="card-block">
+
+                                                        <div class="row mt-1">
+
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="cboTipoAtencionesSociales" class="form-control-label">Tipo Atencion</label>
+                                                                    <select class="chzn-select" id="cboTipoAtencionesSociales">
+                                                                        <option value="">Acompañamiento (traslado de RN /Adolescente a UPE y/o Albergue en caso de traseuntes)</option>
+                                                                        <option value="">Acta de entrega Adolescente (interna)</option>
+                                                                        <option value="">Acta de entrega Adolescente Fiscalía - UPE</option>
+                                                                        <option value="">Acta de entrega RN (interna)</option>
+                                                                        <option value="">Acta de entrega RN Fiscalía - UPE</option>
+                                                                        <option value="">Acta de entrega discapacitados</option>
+                                                                        <option value="">Busqueda Ficha RENIEC</option>
+                                                                        <option value="">Coordinaciones intra y exra institucionales</option>
+                                                                        <option value="">Consejería Social</option>
+                                                                        <option value="">Entrevistas ingresadas al SISGALEMPLUS</option>
+                                                                        <option value="">Ficha de derivacion de caso (violencia)</option>
+                                                                        <option value="">Ficha de tamizaje de violencia </option>
+                                                                        <option value="">Gestiones administrativas (elaboracion y armado de expedientes: Fiscalía y UPE)</option>
+                                                                        <option value="">Gestiones / Coordinaciones</option>
+                                                                        <option value="">Informe de Banco de Sangre</option>
+                                                                        <option value="">Informe Social</option>
+                                                                        <option value="">Interconsulta</option>
+                                                                        <option value="">Llamadas telefónicas (ubicación de familiares)</option>
+                                                                        <option value="">Referencia</option>
+                                                                        <option value="">Reunión Pareja / Familia</option>
+                                                                        <option value="">Tramite de movilidad</option>
+                                                                        <option value="">Otros (especificar: ...............................................)</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="txtTipoAtencionesSocialesCantidad" class="form-control-label">Cantidad</label>
+                                                                    <input id="txtTipoAtencionesSocialesCantidad" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;" onclick="Diagnosticos.AgregarDiagnostico();">
+                                                                    <span class="btn-label">
+                                                                        <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                                    </span>
+                                                                    Agregar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-md-12">
+                                                                <table id="lstDiagnosticos" class="table table-sm table-bordered" width="100%">
+                                                                    <thead style="color: white;background: #51717a;">
+                                                                        <tr>
+                                                                            <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Item</th>
+                                                                            <th style="width: 60%;" data-columna="Descripcion" valign="middle" align="center">Atencion</th>
+                                                                            <th style="width: 20%;" data-columna="EsActivo" valign="middle" align="center">Cantidad</th>
+                                                                            <th style="width: 10%;" data-columna="EsActivo" valign="middle" align="center">Opcion</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 mt-1">
+                                                <div class="card bg-blue">
+                                                    <div class="card-header bg-white">Pacientes D%, Exonerados</div>
+                                                    <div class="card-block">
+
+                                                        <div class="row mt-1">
+
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="cboTipoAtencionesSociales" class="form-control-label">Tipo de Exo. D%</label>
+                                                                    <select class="chzn-select" id="cboTipoAtencionesSociales"></select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="txtTipoAtencionesSocialesCantidad" class="form-control-label">Cantidad</label>
+                                                                    <input id="txtTipoAtencionesSocialesCantidad" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;" onclick="Diagnosticos.AgregarDiagnostico();">
+                                                                    <span class="btn-label">
+                                                                        <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                                    </span>
+                                                                    Agregar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-md-12">
+                                                                <table id="lstDiagnosticos" class="table table-sm table-bordered" width="100%">
+                                                                    <thead style="color: white;background: #51717a;">
+                                                                        <tr>
+                                                                            <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Item</th>
+                                                                            <th style="width: 60%;" data-columna="Descripcion" valign="middle" align="center">Atencion</th>
+                                                                            <th style="width: 20%;" data-columna="EsActivo" valign="middle" align="center">Cantidad</th>
+                                                                            <th style="width: 10%;" data-columna="EsActivo" valign="middle" align="center">Opcion</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 mt-1">
+                                                <div class="card bg-blue">
+                                                    <div class="card-header bg-white">Condicion Clínica</div>
+                                                    <div class="card-block">
+
+                                                        <div class="row mt-1">
+
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="cboTipoAtencionesSociales" class="form-control-label">Tipo Cond. Clínica</label>
+                                                                    <select class="chzn-select" id="cboTipoAtencionesSociales">
+                                                                        <option value="">AMEU / LU</option>
+                                                                        <option value="">COVID 19</option>
+                                                                        <option value="">Gestante</option>
+                                                                        <option value="">Ginecológica</option>
+                                                                        <option value="">RN Alto Riesgo</option>
+                                                                        <option value="">Prematuro</option>
+                                                                        <option value="">Malformación congénita</option>
+                                                                        <option value="">Enf.: Cronicas, Terminales, Infecto cotagiosas</option>
+                                                                        <option value="">Discapacidad o diversidad funcional (especificar:….................................)</option>
+                                                                        <option value="">Otros (especificar: ..................................................)</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="txtTipoAtencionesSocialesCantidad" class="form-control-label">Cantidad</label>
+                                                                    <input id="txtTipoAtencionesSocialesCantidad" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;" onclick="Diagnosticos.AgregarDiagnostico();">
+                                                                    <span class="btn-label">
+                                                                        <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                                    </span>
+                                                                    Agregar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-md-12">
+                                                                <table id="lstDiagnosticos" class="table table-sm table-bordered" width="100%">
+                                                                    <thead style="color: white;background: #51717a;">
+                                                                        <tr>
+                                                                            <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Item</th>
+                                                                            <th style="width: 60%;" data-columna="Descripcion" valign="middle" align="center">Atencion</th>
+                                                                            <th style="width: 20%;" data-columna="EsActivo" valign="middle" align="center">Cantidad</th>
+                                                                            <th style="width: 10%;" data-columna="EsActivo" valign="middle" align="center">Opcion</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 mt-1">
+                                                <div class="card bg-blue">
+                                                    <div class="card-header bg-white">Intervencion Estratégica</div>
+                                                    <div class="card-block">
+
+                                                        <div class="row mt-1">
+
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="cboTipoAtencionesSociales" class="form-control-label">Tipo Intervencion</label>
+                                                                    <select class="chzn-select" id="cboTipoAtencionesSociales">
+                                                                        <option value="">TBC</option>
+                                                                        <option value="">Cancer</option>
+                                                                        <option value="">ETS</option>
+                                                                        <option value="">Tamizaje Neonatal</option>
+                                                                        <option value="">Mama Canguro</option>
+                                                                        <option value="">Lactancia Materna</option>
+                                                                        <option value="">Otros (especificar: ...........................................................................)</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="txtTipoAtencionesSocialesCantidad" class="form-control-label">Cantidad</label>
+                                                                    <input id="txtTipoAtencionesSocialesCantidad" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;" onclick="Diagnosticos.AgregarDiagnostico();">
+                                                                    <span class="btn-label">
+                                                                        <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                                    </span>
+                                                                    Agregar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-md-12">
+                                                                <table id="lstDiagnosticos" class="table table-sm table-bordered" width="100%">
+                                                                    <thead style="color: white;background: #51717a;">
+                                                                        <tr>
+                                                                            <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Item</th>
+                                                                            <th style="width: 60%;" data-columna="Descripcion" valign="middle" align="center">Atencion</th>
+                                                                            <th style="width: 20%;" data-columna="EsActivo" valign="middle" align="center">Cantidad</th>
+                                                                            <th style="width: 10%;" data-columna="EsActivo" valign="middle" align="center">Opcion</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 mt-1">
+                                                <div class="card bg-blue">
+                                                    <div class="card-header bg-white">Problemas Sociales</div>
+                                                    <div class="card-block">
+
+                                                        <div class="row mt-1">
+
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="cboTipoAtencionesSociales" class="form-control-label">Problema Social</label>
+                                                                    <select class="chzn-select" id="cboTipoAtencionesSociales">
+                                                                        <option value="">Abandono parcial</option>
+                                                                        <option value="">Abandono total</option>
+                                                                        <option value="">Alcoholismo</option>
+                                                                        <option value="">Farmaco dependiente</option>
+                                                                        <option value="">Toxico dependiente</option>
+                                                                        <option value="">Antecedentes penales</option>
+                                                                        <option value="">Otras adicciones (especificar: ..............)</option>
+                                                                        <option value="">Migrantes Extranjeros con SIS:</option>
+                                                                        <option value="">Migrantes Extranjeros sin SIS:</option>
+                                                                        <option value="">Migrantes del interior del país: </option>
+                                                                        <option value="">Indocumentadas</option>
+                                                                        <option value="">Reconocimiento de paternidad</option>
+                                                                        <option value="">Otros (especificar: ................)</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="txtTipoAtencionesSocialesCantidad" class="form-control-label">Cantidad</label>
+                                                                    <input id="txtTipoAtencionesSocialesCantidad" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;" onclick="Diagnosticos.AgregarDiagnostico();">
+                                                                    <span class="btn-label">
+                                                                        <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                                    </span>
+                                                                    Agregar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-md-12">
+                                                                <table id="lstDiagnosticos" class="table table-sm table-bordered" width="100%">
+                                                                    <thead style="color: white;background: #51717a;">
+                                                                        <tr>
+                                                                            <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Item</th>
+                                                                            <th style="width: 60%;" data-columna="Descripcion" valign="middle" align="center">Atencion</th>
+                                                                            <th style="width: 20%;" data-columna="EsActivo" valign="middle" align="center">Cantidad</th>
+                                                                            <th style="width: 10%;" data-columna="EsActivo" valign="middle" align="center">Opcion</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 mt-1">
+                                                <div class="card bg-blue">
+                                                    <div class="card-header bg-white">Actividades I.E.C</div>
+                                                    <div class="card-block">
+
+                                                        <div class="row mt-1">
+
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="cboTipoAtencionesSociales" class="form-control-label">Actividad</label>
+                                                                    <select class="chzn-select" id="cboTipoAtencionesSociales">
+                                                                        <option value="">Orientación e Información usuaria / familia </option>
+                                                                        <option value="">Educación Sanitaria al Paciente y Entorno Familiar</option>
+                                                                        <option value="">Diseño de Material Informativo / Educativo</option>
+                                                                        <option value="">Difusión de Material Informativo / Educativo</option>
+                                                                        <option value="">Feria Informativa </option>
+                                                                        <option value="">Charlas Educativas / Escuela para padres (ayuda paleativa NAR, lactancia materna y VIF)</option>
+                                                                        <option value="">Reuniones de equipo, organización y ejecución de programas </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="txtTipoAtencionesSocialesCantidad" class="form-control-label">Cantidad</label>
+                                                                    <input id="txtTipoAtencionesSocialesCantidad" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;" onclick="Diagnosticos.AgregarDiagnostico();">
+                                                                    <span class="btn-label">
+                                                                        <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                                    </span>
+                                                                    Agregar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-md-12">
+                                                                <table id="lstDiagnosticos" class="table table-sm table-bordered" width="100%">
+                                                                    <thead style="color: white;background: #51717a;">
+                                                                        <tr>
+                                                                            <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Item</th>
+                                                                            <th style="width: 60%;" data-columna="Descripcion" valign="middle" align="center">Atencion</th>
+                                                                            <th style="width: 20%;" data-columna="EsActivo" valign="middle" align="center">Cantidad</th>
+                                                                            <th style="width: 10%;" data-columna="EsActivo" valign="middle" align="center">Opcion</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 mt-1">
+                                                <div class="card bg-blue">
+                                                    <div class="card-header bg-white">Violencia Intrafamiliar</div>
+                                                    <div class="card-block">
+
+                                                        <div class="row mt-1">
+
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="cboTipoAtencionesSociales" class="form-control-label">Violencia Intrafamiliar</label>
+                                                                    <select class="chzn-select" id="cboTipoAtencionesSociales">
+                                                                        <option value="">Sexual</option>
+                                                                        <option value="">Fisica</option>
+                                                                        <option value="">Psicológica</option>
+                                                                        <option value="">Económica</option>
+                                                                        <option value="">Con denuncia</option>
+                                                                        <option value="">Sin denuncia</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <div class="input-group input-group-sm">
+                                                                    <label for="txtTipoAtencionesSocialesCantidad" class="form-control-label">Cantidad</label>
+                                                                    <input id="txtTipoAtencionesSocialesCantidad" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <button id="btnAñadirDiagnostico" type="button" class="btn btn-sm btn-labeled btn-success mr-1 mt-2" style="width: 100px;" onclick="Diagnosticos.AgregarDiagnostico();">
+                                                                    <span class="btn-label">
+                                                                        <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                                                    </span>
+                                                                    Agregar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-md-12">
+                                                                <table id="lstDiagnosticos" class="table table-sm table-bordered" width="100%">
+                                                                    <thead style="color: white;background: #51717a;">
+                                                                        <tr>
+                                                                            <th style="width: 10%;" data-columna="Codigo" valign="middle" align="center">Item</th>
+                                                                            <th style="width: 60%;" data-columna="Descripcion" valign="middle" align="center">Atencion</th>
+                                                                            <th style="width: 20%;" data-columna="EsActivo" valign="middle" align="center">Cantidad</th>
+                                                                            <th style="width: 10%;" data-columna="EsActivo" valign="middle" align="center">Opcion</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row mt-2">
+
+
+
+                                            @*<div class="col-lg-9">
+                <div class="card bg-blue">
+                    <div class="card-header bg-white">Atenciones Sociales</div>
+                    <div class="card-block mt-1">
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row mb-1">
+                                    <div class="col-lg-8">
+                                        <label for="txtGestionCoordinacionServS" class="form-control-label">Gestiones/Coordinaciones</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtGestionCoordinacionServS" autocomplete="off" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <div class="col-lg-8">
+                                        <label for="txtReunionParejaFamServS" class="form-control-label">Reunion Pareja/Familia</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtReunionParejaFamServS" autocomplete="off" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <div class="col-lg-8">
+                                        <label for="txtConsejeriaSocialServS" class="form-control-label">Consejeria Social</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtConsejeriaSocialServS" autocomplete="off" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <div class="col-lg-8">
+                                        <label for="txtInformeTramiteServS" class="form-control-label">Informe Social/Tramite Judicial</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtInformeTramiteServS" autocomplete="off" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="row mb-1">
+                                    <div class="col-lg-8">
+                                        <label for="txtActaEntregaServS" class="form-control-label">Acta de entrega</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtActaEntregaServS" autocomplete="off" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <div class="col-lg-8">
+                                        <label for="txtInterconsultaServS" class="form-control-label">Interconsulta</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtInterconsultaServS" autocomplete="off" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <div class="col-lg-8">
+                                        <label for="txtReferenciaServS" class="form-control-label">Referencia</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtReferenciaServS" autocomplete="off" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <div class="col-lg-8">
+                                        <label for="txtTotalAtencionesSocialesServS" class="form-control-label">Total</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtTotalAtencionesSocialesServS" autocomplete="off" placeholder="" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>*@
+
+                                        </div>
+
+                                        <div class="row mt-2">
+
+                                            @*<div class="col-lg-4">
+                                                <div class="card bg-pink">
+                                                    <div class="card-header bg-white">Seguro Integral de Salud</div>
+                                                    <div class="card-block mt-1">
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-8">
+                                                                <label for="txtInscripSegIntegSaludServS" class="form-control-label">Inscrip. Seg. Integ. Salud</label>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtInscripSegIntegSaludServS" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-8">
+                                                                <label for="txtRegularizacionSisServS" class="form-control-label">Regularizacion-SIS</label>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtRegularizacionSisServS" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-1">
+                                                            <div class="col-lg-8">
+                                                                <label for="txtValidacionSisServS" class="form-control-label">Validacion-SIS</label>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input id="txtValidacionSisServS" autocomplete="off" placeholder="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="card bg-pink">
+                                                    <div class="card-header bg-white">Actividades I.E.C</div>
+                                                    <div class="card-block mt-1">
+
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-8">
+                                                                        <label for="txtOrientacionInformacionServS" class="form-control-label">Orientacion e Informacion</label>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtOrientacionInformacionServS" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-8">
+                                                                        <label for="txtCharlaServS" class="form-control-label">Charla</label>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtCharlaServS" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-8">
+                                                                        <label for="txtEducacionSanitariaServS" class="form-control-label">Educacion Sanitaria</label>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtEducacionSanitariaServS" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-6">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-8">
+                                                                        <label for="txtDistMatInforEducServS" class="form-control-label">Dist Mat. Infor/Educ</label>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtDistMatInforEducServS" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mb-1">
+                                                                    <div class="col-lg-8">
+                                                                        <label for="txtDisenioMaterialInforEducServS" class="form-control-label">Diseño Material Infor/Educ</label>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="input-group input-group-sm">
+                                                                            <input id="txtDisenioMaterialInforEducServS" autocomplete="off" placeholder="" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>*@
+
+                                        </div>
+
+                                        <div class="row mt-1">
+
+                                            <div class="col-lg-4">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <label for="txtVisitaDomiciliariaRealizadaServS" class="form-control-label">Visita Domiciliaria Realizada</label>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="input-group input-group-sm">
+                                                            <input id="txtVisitaDomiciliariaRealizadaServS" autocomplete="off" placeholder="" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <label for="txtNroPacientesExoneradosServS" class="form-control-label">N° Pacientes Exonerados</label>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="input-group input-group-sm">
+                                                            <input id="txtNroPacientesExoneradosServS" autocomplete="off" placeholder="" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <label for="txtNroCasosViolenciaServS" class="form-control-label">N° Casos de Violencia</label>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="input-group input-group-sm">
+                                                            <input id="txtNroCasosViolenciaServS" autocomplete="off" placeholder="" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row mt-1">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="txtObservacionesServS" class="form-control-label font-weight-bold text-info">Observaciones</label>
+                                                    <textarea class="form-control" id="txtObservacionesServS" rows="4"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" value="@ViewBag.idEmpleado" id="idEmpleadotxt" /> @*JDELGADO001*@
+
+
+@section Scripts
+                {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+
+    <script type="text/javascript" src=@Href("~/js/Estadistica/ServicioSocial.js")></script>
+
+
+}
+
+<style>
+    body {
+        padding-right: 0px !important;
+    }
+
+    nav.navbar {
+        background-color: #CC1414;
+    }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+    /*==============REFCON===============*/
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff !important;
+            border-color: #ccc !important;
+        }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                        width: 100% !important;
+                    }*/
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+</style>
+
+
+
+
+
+<div>
+    <div>
+        <div>
+
+
+            <div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalRegistroServicioSocial" role="dialog" aria-labelledby="modalLabelsuccess">
+                <div class="modal-dialog modal-xxl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-light-blue">
+                            <h4 class="modal-title text-white" id="modalLabelsuccess">Registro Datos</h4>
+                        </div>
+                        <div class="modal-body">
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+
+                            <button id="btnGuardarRegistroServicioSocial" target="_blank" class="btn btn-primary"> Guardar</button>
+                            <button id="btnCerrarModalRegistroServicioSocial" target="_blank" class="btn btn-secondary"> Cerrar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

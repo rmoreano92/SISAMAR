@@ -1,0 +1,509 @@
+﻿@section Css
+{
+<!-- plugin css -->
+<link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+<link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+<link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+<link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+<link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-th"></i>
+                @ViewBag.Area
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Mantenimiento</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <i class="fa fa-pencil-square-o"></i> Mantenimiento
+                    </div>
+
+                    <div class="card-block">
+
+                        <div class="row mt-2">
+                            <div class="col-lg-12">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Modificar historia clínica <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalModificarHistoriaClinica"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Afiliacion Paciente SIS <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalModificarAfiliacion"><i class="fa-solid fa-eye"></i></button></li>
+                                    @* <li class="list-group-item">Formato ICI <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalICI"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Reporte de Consumo en el Servicio <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalActividadesConsumoServicio"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Productos en Desabastecimiento <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalProductosEnDesabastecimiento"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Productos en Sobrestock <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalProductosEnSobrestock"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Reporte Recetas Médicas <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalMovimientoRecetas"><i class="fa-solid fa-eye"></i></button></li> *@
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalModificarHistoriaClinica" tabindex="-1" role="dialog" aria-labelledby="modalModificarHistoriaClinicaLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modificar Historia Clínica</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="form-group form-group-sm">
+                            <label for="txtHistoriaActual">N° Historia Actual</label>
+                            <div class="input-group input-group-sm">
+                              <input class="form-control form-control-sm" id="txtHistoriaActual"/>
+                              <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button" id="btnBuscarHistoria">Buscar</button>
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group form-group-sm">
+                            <label for="txtDatosPaciente">Paciente</label>
+                            <input class="form-control form-control-sm" id="txtDatosPaciente" disabled/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                     <div class="col-lg-6">
+                        <div class="form-group form-group-sm">
+                            <label for="cboTipoHistoria">Tipo</label>
+                            <select id="cboTipoHistoria" class="chzn-select">
+                                <option value="0">Seleccione una opción</option>
+                                <option value="1">Automática</option>
+                                <option value="2">Manual</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group form-group-sm">
+                            <label for="txtHistoriaNuevo">N° Historia Nuevo</label>
+                            <input class="form-control form-control-sm" id="txtHistoriaNuevo"/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalModificarAfiliacion" tabindex="-1" role="dialog" aria-labelledby="modalModificarAfiliacionLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Afiliacion SIS</h4>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+
+                    <div class="col-lg-3 mb-1">
+                        <div class="form-group m-0">
+                            <label for="cboTipoAfiliacion" class="form-label">Tipo Afiliacion</label>
+                            <div class="input-group input-group-sm" style="max-width: 180px;">
+                                <select class="chzn-select bloquear" id="cboTipoAfiliacion"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6 mb-1">
+                        <div class="form-group m-0">
+                            <label class="form-label">Nº de Afiliacion SIS</label>
+                            <div class="input-group input-group-sm">
+                                <input id="txtDisa" type="text" required class="form-control bloquear search" placeholder="Disa" style="width: 30%;">
+                                <input id="txtTipo" type="text" required class="form-control bloquear search" placeholder="Tipo" style="width: 20%;">
+                                <input id="txtNroAfiliacion" type="text" required class="form-control bloquear search" placeholder="Nro Afiliacion" style="width: 50%;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 d-flex align-items-end" style="height: 55px;">
+                        <div>
+                            <button class="btn btn-primary btn-sm layout_btn_prevent bloquear" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarPacientes">Buscar</button>
+                            <button class="btn btn-secondary btn-sm layout_btn_prevent bloquear" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnLimpiarCampos">Limpiar</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="card bg-lightindigo">
+                            <div class="card-header bg-white">Datos del Paciente</div>
+                            <div class="card-block p-t-5 custom-form">
+
+                                <div class="row">
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtApellidoPaterno" class="form-label">Apellido Paterno</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtApellidoPaterno" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtApellidoMaterno" class="form-label">Apellido Materno</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtApellidoMaterno" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtPrimerNombre" class="form-label">Primer Nombre</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtPrimerNombre" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtSegundoNombre" class="form-label">Segundo Nombre</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtSegundoNombre" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="cboTipoSexo" class="form-label">Sexo</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <select class="chzn-select" id="cboTipoSexo" disabled></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtFechaNacimiento" class="form-label">Fecha Nacimiento</label>
+                                            </div>
+
+                                            <div class="col-lg-5">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtFechaNacimiento" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-1">
+                                                <label for="txtHoraNacimiento" class="form-label">Hora</label>
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtHoraNacimiento" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-12 mt-1">
+
+                        <div class="card bg-lightindigo">
+                            <div class="card-header bg-white">Centa asociada</div>
+                            <div class="card-block p-t-5 custom-form">
+
+                                <div class="row">
+
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="txtNroCuenta" class="form-label">N° Cuenta</label>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control search" id="txtNroCuenta">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" id="btnGuardarAfiliacion">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalBusquedaSis" role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente SIS</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered" id="tblBusquedaSis" width="100%">
+                                <thead style="color: white; background: #434343;">
+                                    <tr>
+                                        <th width="3%">ApPaterno</th>
+                                        <th width="3%">ApMaterno</th>
+                                        <th width="3%">PNombre</th>
+                                        <th width="3%">SNombre</th>
+                                        <th width="3%">Fnacimiento</th>
+                                        <th width="6%">cAfiliacion</th>
+                                        <th width="3%">estado</th>
+                                        <th width="3%">fBajaOK</th>
+                                        <th width="6%">DNI</th>
+                                        <th width="3%">sexo</th>
+                                        <th width="3%">distritoDomicilio</th>
+                                        <th width="3%">cDisa</th>
+                                        <th width="3%">cFormato</th>
+                                        <th width="5%">cNumero</th>
+                                        <th width="3%">AfiliacionNroIntegrante</th>
+                                        <th width="3%">codigo</th>
+                                        <th width="3%">idSiaSis</th>
+                                        <th width="3%">MotivoBaja</th>
+                                        <th width="5%">CodigoEstablAdscripcion</th>
+                                        <th width="5%">AfiliacionFecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts
+            {
+<script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+<script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+<script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+<script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+<script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+<script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+<script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+
+<script src="~/AdmiRE/js/date.format.js"></script>
+<script type="text/javascript" src=@Href("~/js/Comun/Mantenimiento.js")></script>
+
+}
+
+<style>
+    body {
+        padding-right: 0px !important;
+    }
+
+    nav.navbar {
+        background-color: #CC1414;
+    }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+    /*==============REFCON===============*/
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff !important;
+            border-color: #ccc !important;
+        }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                        width: 100% !important;
+                    }*/
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: -1px;
+        background-color: #fff;
+        border: 1px solid #ddd !important;
+    }
+</style>

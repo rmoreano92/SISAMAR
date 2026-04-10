@@ -1,0 +1,291 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var TipoFormatoTicket = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:TipoFormatoTicketCita");
+    var Siglas = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:Siglas");
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Nota de Débito</title>
+    @*<link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />*@
+    @*<link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" />
+    <link href="~/BootstrapV5.1.3/font.roboto.css" rel="stylesheet">*@
+    <style>
+        body {
+            font-size: 10px;
+            color: black !important;
+            font-family: helvetica;
+            letter-spacing: 0.4px;
+            font-weight: bolder;
+        }
+
+        td, th {
+            padding: 0.25rem !important;
+        }
+
+        .font-sm {
+            font-size: 8px;
+        }
+
+        .font-md {
+            font-size: 11px;
+        }
+
+        .font-lg {
+            font-size: 12px;
+        }
+
+        .table {
+            border-color: #607d8b !important;
+        }
+
+        /*=====================MI CSS=======================*/
+        .d-flex {
+            display: flex !important;
+        }
+
+        .position-absolute {
+            position: absolute;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .border {
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .border-secondary {
+            border-color: #6c757d !important;
+        }
+
+        .w-100 {
+            width: 100% !important;
+        }
+
+        .my-2 {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .my-1 {
+            margin-top: 0.25rem !important;
+            margin-bottom: 0.25rem !important;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem !important;
+        }
+
+        .mb-0 {
+            margin-bottom: 0 !important;
+        }
+
+        .mb-1 {
+            margin-bottom: 0.25rem !important;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem !important;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem !important;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem !important;
+        }
+
+        .p-1 {
+            padding: 0.25rem !important;
+        }
+
+        .m-1 {
+            margin: 0.25rem !important;
+        }
+
+        .m-2 {
+            margin: 0.5rem !important;
+        }
+
+        .m-0 {
+            margin: 0 !important;
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .table {
+            caption-side: bottom;
+            border-collapse: collapse;
+        }
+
+        .table-bordered {
+            border: solid 1px #4c4c4c;
+        }
+
+        .table-bordered td, .table-bordered th {
+            border: solid 1px #4c4c4c;
+        }
+
+        .table td {
+            font-weight: lighter;
+        }
+        /*=================================================*/
+
+
+        .qr-code {
+            width: 75px;
+            right: 0;
+            top: 0;
+        }
+
+    </style>
+</head>
+
+
+@*<body style="background: white;  width: 793px; height: 1145px; position: relative;  /*border: 1px solid red;*/" >*@
+<body style="background: white; width:900px; height:600px; position:relative; margin-top: -35px; /*padding-top: 30px; border: 1px solid red;*/">
+
+    @*<div class="row mt-4" style="width: 35%; margin-left: 15px">*@
+    <div class="position-relative" style="width: 270px; margin-left: -40px; page-break-before: always; /*border: 1px solid green;*/">
+        <div class="col-12 position-relative">
+            @*<div class="position-absolute" style="width: 40px; left:0px; top: 0px;">
+            <img src="~/images/Logo.png" width="100%" />
+            </div>*@
+
+            <div class="row text-center mx-auto mb-3" style="width: 95%;">
+                <div class="col-12"><span class="fw-bold" style="font-size: 12px;">@ViewBag.NotaDebito["EESS_Nombre"]</span></div>
+                <div class="col-12"><span class="fw-bold" style="font-size: 12px;">RUC: @ViewBag.NotaDebito["EESS_Ruc"]</span></div>                
+                <div class="col-12"><span style="font-size: 9px;">@ViewBag.NotaDebito["EESS_Direccion"]</span></div>
+                <div class="col-12"><span style="font-size: 9px;">Telefono: @ViewBag.NotaDebito["EESS_Telefono"]</span></div>
+            </div>
+
+            <h2 class="w-100 text-center m-0">NOTA DE DEBITO</h2>
+            <h2 class="w-100 text-center my-1">@ViewBag.NotaDebito["NroComprobante"]</h2>
+
+            <hr />
+
+            <table class="table font-md">
+                <tr>
+                    <th class="text-left" width="90">@ViewBag.NotaDebito["EtiquetaRazonSocialNota"]</th>
+                    <td>@ViewBag.NotaDebito["RazonSocialNota"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left">@ViewBag.NotaDebito["EtiquetaNroDocumentoIdentidadNota"]</th>
+                    <td>@ViewBag.NotaDebito["NroDocumentoIdentidadNota"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Dirección:</th>
+                    <td>@ViewBag.NotaDebito["DireccionNota"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Fecha Emisión:</th>
+                    <td>@ViewBag.NotaDebito["FechaHoraEmisionNota"]</td>
+                </tr>
+            </table>
+
+            <hr />
+
+            <h3 class="w-100 text-center">DOCUMENTO QUE MODIFICA</h3>
+
+            <table class="table font-md w-100 mb-1">
+                <tr>
+                    <th class="text-left" width="105">Denominación</th>
+                    <td>@ViewBag.NotaDebito["DenominacionComprobanteAfectado"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Nº Comprobante:</th>
+                    <td>@ViewBag.NotaDebito["NroComprobanteAfectado"]</td>
+                </tr>
+            </table>
+
+            <table class="table table-bordered font-md w-100 mb-1">
+                <tr>
+                    <th class="text-left" width="150">Descripción</th>
+                    <th>Valor de venta o servicio prestado</th>
+                </tr>
+                <tr>
+                    <td>@ViewBag.NotaDebito["ConceptoAfectado"]</td>
+                    <td align="center">@ViewBag.NotaDebito["Moneda"] @ViewBag.NotaDebito["ValorVenta"]</td>
+                </tr>
+            </table>
+
+            <table class="table font-md w-100 mb-2">
+                <tr>
+                    <th class="text-left" width="90">Exonerada</th>
+                    <td class="text-left" width="30">@ViewBag.NotaDebito["Moneda"]</td>
+                    <td align="right">@ViewBag.NotaDebito["MontoExonerado"]</td>
+                </tr>                
+                <tr>
+                    <th class="text-left" width="90">Inafecta</th>
+                    <td class="text-left" width="30">@ViewBag.NotaDebito["Moneda"]</td>
+                    <td align="right">@ViewBag.NotaDebito["MontoInafecto"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left" width="90">IGV</th>
+                    <td class="text-left" width="30">@ViewBag.NotaDebito["Moneda"]</td>
+                    <td align="right">@ViewBag.NotaDebito["MontoIgv"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left" width="90">Gravada</th>
+                    <td class="text-left" width="30">@ViewBag.NotaDebito["Moneda"]</td>
+                    <td align="right">@ViewBag.NotaDebito["MontoGravado"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left" width="90">Total</th>
+                    <td class="text-left" width="30">@ViewBag.NotaDebito["Moneda"]</td>
+                    <td align="right">@ViewBag.NotaDebito["MontoTotal"]</td>
+                </tr>
+            </table>
+
+            <table class="table font-md w-100 mb-1">
+                <tr>
+                    <th class="text-left">Motivo: </th>
+                    <td>@ViewBag.NotaDebito["MotivoAfectado"]</td>
+                </tr>
+            </table>
+
+            <h3>Recepción de la nota de débito</h3>
+
+            <h3 class="mb-0">Apellidos y Nombres</h3>
+            <div style="border-bottom: 1px dashed black;height:23px;"></div>
+            <div style="border-bottom: 1px dashed black;height:23px;"></div>
+            
+            <h3 class="mb-0">Fecha de Recepción</h3>
+            <div style="border-bottom: 1px dashed black;height:23px;"></div>
+                        
+
+        </div>
+
+    </div>
+
+
+
+</body>
+
+
+
+</html>

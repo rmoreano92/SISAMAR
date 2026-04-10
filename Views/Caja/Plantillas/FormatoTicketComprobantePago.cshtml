@@ -1,0 +1,371 @@
+﻿@using Microsoft.Extensions.Configuration;
+@using System.Data
+@{
+    var TipoFormatoTicket = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:TipoFormatoTicketCita");
+    var Siglas = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:Siglas");
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Nota de Crédito</title>
+    @*<link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />*@
+    @*<link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" />
+    <link href="~/BootstrapV5.1.3/font.roboto.css" rel="stylesheet">*@
+    <style>
+        body {
+        font-size: 10px;
+        color: black !important;
+        font-family: helvetica;
+        letter-spacing: 0.4px;
+        font-weight: bolder;
+        }
+
+        td, th {
+        padding: 0.25rem !important;
+        }
+
+        .font-sm {
+        font-size: 8px;
+        }
+
+        .font-md {
+        font-size: 11px;
+        }
+
+        .font-lg {
+        font-size: 12px;
+        }
+
+        .table {
+        border-color: #607d8b !important;
+        }
+
+        /*=====================MI CSS=======================*/
+        .d-flex {
+        display: flex !important;
+        }
+
+        .position-absolute {
+        position: absolute;
+        }
+
+        .position-relative {
+        position: relative;
+        }
+
+        .border {
+        border: 1px solid #dee2e6 !important;
+        }
+
+        .border-secondary {
+        border-color: #6c757d !important;
+        }
+
+        .w-100 {
+        width: 100% !important;
+        }
+
+        .my-2 {
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+        }
+
+        .my-1 {
+        margin-top: 0.25rem !important;
+        margin-bottom: 0.25rem !important;
+        }
+
+        .mt-2 {
+        margin-top: 0.5rem !important;
+        }
+
+        .mb-0 {
+        margin-bottom: 0 !important;
+        }
+
+        .mb-1 {
+        margin-bottom: 0.25rem !important;
+        }
+
+        .mb-2 {
+        margin-bottom: 0.5rem !important;
+        }
+
+        .mt-3 {
+        margin-top: 0.75rem !important;
+        }
+
+        .mb-3 {
+        margin-bottom: 0.75rem !important;
+        }
+
+        .p-1 {
+        padding: 0.25rem !important;
+        }
+
+        .m-1 {
+        margin: 0.25rem !important;
+        }
+
+        .m-2 {
+        margin: 0.5rem !important;
+        }
+
+        .m-0 {
+        margin: 0 !important;
+        }
+
+        .mx-auto {
+        margin-right: auto !important;
+        margin-left: auto !important;
+        }
+
+        .fw-bold {
+        font-weight: 700 !important;
+        }
+
+        .text-center {
+        text-align: center;
+        }
+
+        .text-left {
+        text-align: left;
+        }
+
+        .text-right {
+        text-align: right;
+        }
+
+        .table {
+        caption-side: bottom;
+        border-collapse: collapse;
+        }
+
+        .table-bordered {
+        border: solid 1px #4c4c4c;
+        }
+
+        .table-bordered td, .table-bordered th {
+        border: solid 1px #4c4c4c;
+        }
+
+        .table td {
+        font-weight: lighter;
+        }
+        /*=================================================*/
+
+
+        .qr-code {
+        width: 90px;
+        text-align: center;
+        margin: auto;
+        }
+
+    </style>
+</head>
+
+
+@*<body style="background: white;  width: 793px; height: 1145px; position: relative;  /*border: 1px solid red;*/" >*@
+<body style="background: white; width:900px; height:600px; position:relative; margin-top: -35px; /*padding-top: 30px; border: 1px solid red;*/">
+
+    @*<div class="row mt-4" style="width: 35%; margin-left: 15px">*@
+    <div class="position-relative" style="width: 270px; margin-left: -40px; page-break-before: always; /*border: 1px solid green;*/">
+        <div class="col-12 position-relative">
+            @*<div class="position-absolute" style="width: 40px; left:0px; top: 0px;">
+            <img src="~/images/Logo.png" width="100%" />
+            </div>*@
+
+            <div class="row text-center mx-auto mb-3" style="width: 95%;">
+                <div class="col-12"><span class="fw-bold" style="font-size: 12px;">@ViewBag.Comprobante["EESS_Nombre"]</span></div>
+                <div class="col-12"><span class="fw-bold" style="font-size: 12px;">RUC: @ViewBag.Comprobante["EESS_Ruc"]</span></div>
+                <div class="col-12"><span style="font-size: 9px;">@ViewBag.Comprobante["EESS_Direccion"]</span></div>
+                <div class="col-12"><span style="font-size: 9px;">Telefono: @ViewBag.Comprobante["EESS_Telefono"]</span></div>
+            </div>
+
+            <h2 class="w-100 text-center m-0">@ViewBag.Comprobante["DenominacionComprobante"] @ViewBag.Comprobante["NroComprobante"]</h2>
+            @* <h2 class="w-100 text-center my-1">@ViewBag.Comprobante["NroComprobante"]</h2> *@
+
+            <hr />
+
+            <table class="table font-md">
+                <tr>
+                    <th class="text-left" width="90">@ViewBag.Comprobante["EtiquetaRazonSocial"]</th>
+                    <td>@ViewBag.Comprobante["RazonSocial"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left">@ViewBag.Comprobante["EtiquetaNroDocumentoIdentidad"]</th>
+                    <td>@ViewBag.Comprobante["NroDocumentoIdentidad"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Nº Historia</th>
+                    <td>@ViewBag.Comprobante["NroHistoriaClinica"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Nº Cuenta</th>
+                    <td>@ViewBag.Comprobante["IdCuentaAtencion"]</td>
+                </tr>
+                @if (ViewBag.Comprobante["IdOrdenPagoS"] > 0)
+                {
+                    <tr>
+                        <th class="text-left">Nº Orden Pago</th>
+                        <td>@ViewBag.Comprobante["IdOrdenPagoS"]</td>
+                    </tr>
+                }
+                @if (ViewBag.Comprobante["IdOrdenF"] > 0)
+                {
+                    <tr>
+                        <th class="text-left">Nº Orden</th>
+                        <td>@ViewBag.Comprobante["IdOrdenF"]</td>
+                    </tr>
+                }
+                @if (ViewBag.Comprobante["IdPreventaF"] > 0)
+                {
+                    <tr>
+                        <th class="text-left">Nº Pre Venta</th>
+                        <td>@ViewBag.Comprobante["IdPreventaF"]</td>
+                    </tr>
+                }
+                @if (ViewBag.Comprobante["ServicioS"] != "-")
+                {
+                    <tr>
+                        <th class="text-left">Servicio</th>
+                        <td>@ViewBag.Comprobante["ServicioS"]</td>
+                    </tr>
+                }
+                @if (ViewBag.Comprobante["ServicioF"] != "-")
+                {
+                    <tr>
+                        <th class="text-left">Servicio</th>
+                        <td>@ViewBag.Comprobante["ServicioF"]</td>
+                    </tr>
+                }
+                @if (ViewBag.Comprobante["MedicoS"] != "-")
+                {
+                    <tr>
+                        <th class="text-left">Médico</th>
+                        <td>@ViewBag.Comprobante["MedicoS"]</td>
+                    </tr>
+                }
+                @if (ViewBag.Comprobante["MedicoF"] != "-")
+                {
+                    <tr>
+                        <th class="text-left">Médico</th>
+                        <td>@ViewBag.Comprobante["MedicoF"]</td>
+                    </tr>
+                }
+                <tr>
+                    <th class="text-left">Dirección:</th>
+                    <td>@ViewBag.Comprobante["Direccion"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Observaciones:</th>
+                    <td>@ViewBag.Comprobante["Observaciones"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Fecha Emisión:</th>
+                    <td>@ViewBag.Comprobante["FechaHoraEmision"]</td>
+                </tr>
+            </table>
+
+            <hr />
+               
+            <table class="table  font-md w-100 mb-2">
+                <tr>
+                    <th class="text-left border" width="170">Concepto</th>
+                    <td class="text-right border" width="30">Cant.</td>
+                    <td class="border" align="right">Importe</td>
+                </tr>
+                @foreach (DataRow drComprobanteDetalle in ViewBag.ComprobanteDetalle.Rows)
+                {
+                    <tr>
+                        <td class="text-left" width="170">@drComprobanteDetalle["Descripcion"]</td>
+                        <td class="text-right" width="30">@drComprobanteDetalle["Cantidad"]</td>
+                        <td align="right">@drComprobanteDetalle["Total"]</td>
+                    </tr>
+                }                
+            </table>
+
+            <hr />
+
+            <table class="table font-md w-100 mb-2">
+                <tr>
+                    <th class="text-left" width="90">Gravada</th>
+                    <td class="text-left" width="30">@ViewBag.Comprobante["Moneda"]</td>
+                    <td align="right">@ViewBag.Comprobante["MontoGravado"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left" width="90">Adelanto</th>
+                    <td class="text-left" width="30">@ViewBag.Comprobante["Moneda"]</td>
+                    <td align="right">@ViewBag.Comprobante["MontoAdelanto"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left" width="90">Descuento</th>
+                    <td class="text-left" width="30">@ViewBag.Comprobante["Moneda"]</td>
+                    <td align="right">@ViewBag.Comprobante["MontoDescuento"]</td>
+                </tr>
+                @* <tr>
+                    <th class="text-left" width="90">Inafecta</th>
+                    <td class="text-left" width="30">@ViewBag.Comprobante["Moneda"]</td>
+                    <td align="right">@ViewBag.Comprobante["MontoInafecto"]</td>
+                </tr> *@
+                <tr>
+                    <th class="text-left" width="90">Subtotal</th>
+                    <td class="text-left" width="30">@ViewBag.Comprobante["Moneda"]</td>
+                    <td align="right">@ViewBag.Comprobante["MontoSubTotal"]</td>
+                </tr>
+                <tr>
+                    <th class="text-left" width="90">IGV</th>
+                    <td class="text-left" width="30">@ViewBag.Comprobante["Moneda"]</td>
+                    <td align="right">@ViewBag.Comprobante["MontoIgv"]</td>
+                </tr>
+                
+                <tr>
+                    <th class="text-left" width="90">TOTAL</th>
+                    <td class="text-left" width="30">@ViewBag.Comprobante["Moneda"]</td>
+                    <td align="right">@ViewBag.Comprobante["MontoTotal"]</td>
+                </tr>
+            </table>
+            <hr />
+
+            
+            <h3 class="mb-0">@ViewBag.Comprobante["TotalDescripcion"]</h3>
+            <div>
+                <span class="fw-bold">Caja: </span>
+                <span>@ViewBag.Comprobante["Caja"]</span>
+            </div>            
+            <div>
+                <span class="fw-bold">Cajero(a): </span>
+                <span>@ViewBag.Comprobante["Cajero"] - @ViewBag.TipoCopia @ViewBag.EsCopia</span>
+            </div>
+            <div>
+                <span class="fw-bold">Impreso por: </span>
+                <span>@ViewBag.User</span>
+            </div>
+            <div>
+                <span class="fw-bold">Fecha impresión: </span>
+                <span>@ViewBag.FechaImpresion</span>
+            </div>
+
+            @if (ViewBag.CodigoQR != null)
+            {
+                <div class="text-center">
+                    <img class="qr-code" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.CodigoQR))" />
+                </div>
+                
+            }
+
+            <hr class="mt-3 mb-3" />
+
+        </div>
+
+    </div>
+
+
+
+</body>
+
+
+
+</html>

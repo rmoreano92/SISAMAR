@@ -1,0 +1,491 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+}
+
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet"
+        href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-th"></i>
+                @ViewBag.Area
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Referencias y Contrareferencias</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    <div class="card-block pt-1">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-block pb-0">
+                                        <div class="row mt-1 mb-1">
+                                            <div class="col-lg-2">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaAtencionRefCon"
+                                                        class="form-control-label m-0">Fecha de Atencion</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" autocomplete="off"
+                                                            class="form-control form_val_popup_dp3 searchRefCon"
+                                                            placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy"
+                                                            id="txtFechaAtencionRefCon">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group m-0">
+                                                    <label for="servicioorigen">Servicio Origen de la Referencia</label>
+                                                    <select class="chzn-select" id="cboServicioOrigen"
+                                                        data-placeholder="Seleccione una opción"></select>
+                                                    @*<input type="text" class="form-control form-control-sm" id="servicioorigen" placeholder="" disabled>*@
+                                                </div>
+                                            </div>
+
+                                            @*
+                                            <div class="col-lg-3">
+                                            <div class="form-group">
+                                            <label for="cboConsultorioRefCon" class="form-control-label">Consultorio</label>
+                                            <div class="input-group">
+                                            <select class="chzn-select" id="cboConsultorioRefCon" data-placeholder="Seleccione una opción"></select>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            *@
+
+                                            <div class="col-lg-2">
+                                                <div class="form-group m-0">
+                                                    <label for="cboTipoRef" class="form-control-label m-0">Tipo</label>
+                                                    <div class="input-group">
+                                                        <select class="chzn-select searchRefCon" id="cboTipoRef">
+                                                            <option value="1">Referencias</option>
+                                                            <option value="2">Contrareferencias</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2 d-flex align-items-end" style="height: 50px;">
+                                                <div>
+                                                    <button class="btn btn-sm btn-primary layout_btn_prevent"
+                                                        id="btnBuscarPacientesRefCon"
+                                                        style="padding-left: 2rem !important; padding-right: 2rem !important;">Buscar</button>
+                                                </div>
+                                            </div>
+
+                                            @*
+                                            <div class="col-lg-3 d-flex align-items-end justify-content-end" style="height: 50px;">
+                                            <div id="tagMedicoProgramado">
+                                            <div class="tag tag-primary d-flex" style="background-color: #758cff;padding: 6px;">
+                                            <i class="fa-solid fa-user-doctor fa-2x" style="margin: auto;margin-left: 5px;margin-right: 10px;"></i>
+                                            <strong><label style="font-size: medium;white-space: normal;text-align: left;" for="" id="lblMedicoProgramado"></label></strong>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            *@
+                                            @*
+                                            <div class="col-lg-3" style="padding-right:2px !important;padding-left:2px !important; ">
+                                            <br>
+
+                                            <div class="form-group">
+                                            <strong><label style=" color: brown; font-size: medium" for="" id="lblMedicoProgramado" class="form-control-label"></label></strong>
+                                            </div>
+
+                                            </div>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 pt-2 pb-0">
+                                @{
+                                    if (@ViewBag.Agregar)
+                                    {
+                                        @*<button class="btn btn-primary layout_btn_prevent" id="btnAgregar">Agregar</button>*@
+                                    }
+                                    if (@ViewBag.Modificar)
+                                    {
+                                        <button class="btn btn-primary layout_btn_prevent" id="btnModificarAtenciones"
+                                            onclick="Referencias.ModificarRefCon();">Modificar</button>
+                                    }
+
+                                    if (@ViewBag.Eliminar)
+                                    {
+                                        @*<button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtenciones">Eliminar</button>*@
+                                    }
+                                    if (@ViewBag.Consultar)
+                                    {
+                                        <button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtenciones"
+                                            onclick="Referencias.ConsultarRefCon();">Consultar</button>
+                                    }
+                                }
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="table-responsive">
+
+                                    <table id="tblAtencionRefConMinsa"
+                                        class="table table-sm table-content-sm table-bordered table-striped w-100"
+                                        style="cursor: default;">
+                                        <thead style="color: white; background: #434343;">
+                                            <tr>
+                                                <th style="width:5%">id_referencia</th>
+                                                <th style="width:5%">fecha_referencia</th>
+                                                <th style="width:5%">fecha_aceptacion</th>
+                                                <th style="width:10%">establecimiento_origen</th>
+                                                <th style="width:10%">especialidad</th>
+                                                <th style="width:5%">servicio_detino.</th>
+                                                <th style="width:10%">Paciente</th>
+                                                <th style="width:5%">tipo_documento</th>
+                                                <th style="width:5%">numero_documento</th>
+                                                <th style="width:5%">sexo</th>
+                                                <th style="width:5%;text-align:center">Citar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-xs-12 data_tables">
+
+                <div class="card">
+
+                    <div class="card-block pt-1">
+                        <div class="row">
+
+                            <div class="col-lg-1">
+                                <div>
+                                    <div style="width: 15px; height: 15px; background: #000000; display: inline-block;">
+                                    </div> <a style="font-size: 10px;">Solicitud Registrada</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <div>
+                                    <div style="width: 15px; height: 15px; background: #ff8033; display: inline-block;">
+                                    </div> <a style="font-size: 10px;">Solicitud Observada</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <div>
+                                    <div style="width: 15px; height: 15px; background: #990033; display: inline-block;">
+                                    </div> <a style="font-size: 10px;">Solicitud Pendiente</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <div>
+                                    <div style="width: 15px; height: 15px; background: #3a0; display: inline-block;">
+                                    </div> <a style="font-size: 10px;">Solicitud Aceptada</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <div>
+                                    <div style="width: 15px; height: 15px; background: #992b99; display: inline-block;">
+                                    </div> <a style="font-size: 10px;">Paciente Citado</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <div>
+                                    <div style="width: 15px; height: 15px; background: #a3a3a3; display: inline-block;">
+                                    </div> <a style="font-size: 10px;">Solicitud Rechazada</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <div>
+                                    <div
+                                        style="width: 15px; height: 15px; background: #0080ff; display: inline-block; ">
+                                    </div> <a style="font-size: 10px;">Solicitud Recibido</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div>
+                                    <div style="width: 15px; height: 15px; background: #ffaa00; display: inline-block;">
+                                    </div> <a style="font-size: 10px;">Paciente Contrareferido</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <div>
+                                    <div style="width: 15px; height: 15px; background: #ff2b33; display: inline-block;">
+                                    </div> <a style="font-size: 10px;">Solicitud Anulada</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <div>
+                                    <div style="width: 15px; height: 15px; background: #fff; display: inline-block;">
+                                    </div> <a style="font-size: 10px;">Solicitud de Baja</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/Shared/Components/VistasParciales/Citas/RegistroCitaRefcon.cshtml" />
+
+
+
+
+<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade"
+    id="modalMigracionRefCon" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Migracion Ref/Con</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row mt-1">
+                    <div class="col-lg-8">
+                        <div class="row">
+
+                            <div class="col-lg-4">
+                                <label for="txtNroReferenciaRespuestaRefCon" class="form-control-label">Nro
+                                    Referencia</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" autocomplete="off" class="form-control"
+                                        id="txtNroReferenciaRespuestaRefCon" disabled>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+
+                    <div class="col-lg-12">
+
+                        <div class="input-group input-group-sm">
+                            <label for="txtMensajeRespuestaRefCon" class="form-control-label">Mensaje Respuesta</label>
+                            <textarea type="text" autocomplete="off" class="form-control" id="txtMensajeRespuestaRefCon"
+                                disabled></textarea>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="input-group input-group-sm">
+                    @*<label for="txtCodRespuestaRefCon" class="form-control-label">Cod. Respuesta</label>*@
+                    <input type="text" autocomplete="off" class="form-control" id="txtCodRespuestaRefCon" hidden>
+                </div>
+
+                <div class="input-group input-group-sm">
+                    @*<label for="txtIdReferenciaRespuestaRefCon" class="form-control-label">Id Referencia</label>*@
+                    <input type="text" autocomplete="off" class="form-control" id="txtIdReferenciaRespuestaRefCon"
+                        hidden>
+                </div>
+
+                <div class="input-group input-group-sm">
+                    @*<label for="txtIdReferenciaRespuestaRefCon" class="form-control-label">Id Referencia</label>*@
+                    <input type="text" autocomplete="off" class="form-control" id="hdnIdCuentaAtencionMigracionRefCon"
+                        hidden>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-elegant" id="btnEnviarContraReferencia"><i
+                        class="fa-duotone fa-cloud-arrow-up mr-1"></i> Enviar Contrareferencia</button>
+                <button class="btn btn-elegant" id="btnEnviarReferencia"><i
+                        class="fa-duotone fa-cloud-arrow-up mr-1"></i> Enviar Referencia</button>
+                <button id="btnCerrarModalEnvioReferencia" target="_blank" class="btn btn-secondary"> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/Shared/Components/VistasParciales/ContraReferenciaRegistro.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/ReferenciaRegistro.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml" />
+
+@*@Html.Partial("~/Views/Shared/Components/VistasParciales/ContraReferenciaRegistro.cshtml")
+@Html.Partial("~/Views/Shared/Components/VistasParciales/ReferenciaRegistro.cshtml")
+
+@Html.Partial("~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml")
+*@
+
+
+@*<iframe id="ifrmReporteRefCon"
+    title="Inline Frame Example"
+    width="100"
+    height="600" hidden="hidden"
+    src=""></iframe>*@
+
+
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript"
+        src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+
+    @*<script type="text/javascript" src=@Href("~/js/ConsultaExterna/AtencionMedicaInit.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js")></script>
+    <script type="text/javascript" src=@Href("~/js/ConsultaExterna/AtencionMedica.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Anestesiologia.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV2.js")></script>*@
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/RegistroPacienteV2.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Referencia.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientosSalud.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //REFERENCIAS.init();
+            ESTABLECIMIENTOSSALUD.init();
+
+            REGISTROPACIENTE.init()
+
+            $('.search').keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#btnBuscar").click();
+                }
+            });
+        });
+    </script>
+
+}
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+    .chosen-disabled .chosen-single {
+        background: #eceeef !important;
+        border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+    .btn-outline-secondary:hover {
+        color: #fff !important;
+        border-color: #ccc !important;
+    }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                            width: 100% !important;
+                        }*/
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+</style>

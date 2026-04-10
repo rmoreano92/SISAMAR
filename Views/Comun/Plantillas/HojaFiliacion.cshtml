@@ -1,0 +1,508 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hoja de Evaluación</title>
+    @*<link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />*@
+    <link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" />
+    <link href="~/BootstrapV5.1.3/font.roboto.css" rel="stylesheet">
+    <style>
+        body {
+            font-size: 10px;
+            color: black !important;
+            font-family: 'Roboto', sans-serif;
+            letter-spacing: 0.4px;
+        }
+
+        td, th {
+            padding: 0.25rem !important;
+        }
+
+        .font-sm {
+            font-size: 8px;
+        }
+
+        .font-md {
+            font-size: 11px;
+        }
+
+        .font-lg {
+            font-size: 12px;
+        }
+
+        .table {
+            border-color: #607d8b !important;
+        }
+
+        textarea {
+            resize: none;
+            border: none;
+            padding: 0 10px;
+            margin: 0;
+        }
+
+        td {
+            padding: 0 !important;
+        }
+    </style>
+</head>
+
+
+<body style="background: white;  width:750px; height: 900px; position: relative; padding-left: 20px; /*border: 1px solid red;*/">
+
+    <div class="row" style="">
+        <div class="col-12 position-relative">
+
+            <div class="row text-center mx-auto" style="width: 95%;">
+                <div class="col-12"><span class="fw-bold" style="font-size: 9px;">@ViewBag.NombreInstitucion</span></div>
+                <div class="col-12"><span style="font-size: 8px;">@ViewBag.DireccionInstitucion</span></div>
+                <div class="col-12"><span style="font-size: 8px;">Telefono: @ViewBag.TelefonoInstitucion</span></div>
+            </div>
+
+            <div class="position-absolute text-center" style="width: 70px; right: 0px; top: 0px;">
+                <div class="fw-bold w-100" style="font-size: 8px;">@ViewBag.FechaImpresion</div>
+            </div>
+
+            <div class="position-absolute" style="width: 90px; left:0px; top: 0px;">
+                <img src="~/images/Logo.png" width="100%" />
+            </div>
+
+            <div class="position-absolute text-center" style="width: 200px; right: 35%; top: 80px; padding: 3px;">
+                <div class="col-12 my-2"><span class="fw-bold font-md" style="font-size: 16px;">HOJA DE FILIACION</span></div>
+            </div>
+
+            <div class="position-absolute text-center" style="width: 140px; right: 0px; top: 60px; border-radius: 10px; border: 2px solid black; padding: 5px;">
+                <div class="fw-bold w-100" style="font-size: 8px; border-bottom: solid black 1px; padding: 5px;">N° Historia Clínica</div>
+                <div class="fw-bold w-100" style="font-size: 14px;">@ViewBag.NroHistoria</div>
+            </div>
+
+
+
+            <div class="row m-0" style="margin-top: 100px !important;">
+                <div class="col-3" style="width: 140px; border-radius: 4px; border: 2px solid black; padding: 2px;"><div class="fw-bold">DATOS DE TITULAR </div></div>
+            </div>
+
+            <table style="width: 750px;" class="mt-3">
+                <tr>
+                    <td style="width: 120px;"><b>Nombre del Paciente:</b></td>
+                    <td style="width: 630px; text-align: center;">
+                        <table style="border-bottom: 1px solid black;">
+                            <tr>
+                                <td style="width: 160px;">@ViewBag.ApellidoPaterno</td>
+                                <td style="width: 160px;">@ViewBag.ApellidoMaterno</td>
+                                <td style="width: 310px;">@ViewBag.Nombres</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <table style=" text-align: center;">
+                            <tr>
+                                <td style="width: 160px;">Apellido Paterno</td>
+                                <td style="width: 160px;">Apellido Materno</td>
+                                <td style="width: 310px;">Nombre(s)</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <table style="width: 750px;" class="mt-3">
+                <tr>
+                    <td style="width: 120px;"><b>Fecha de Nacimiento:</b></td>
+                    <td style="width: 80px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.FechaNacimiento
+                    </td>
+
+                    <td style="width: 40px;"><b>Sexo:</b></td>
+                    <td style="width: 80px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.Sexo
+                    </td>
+
+                    <td style="width: 65px;"><b>Tipo de Doc:</b></td>
+                    <td style="width: 135px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.TipoDocumento
+                    </td>
+
+                    <td style="width: 10px;"></td>
+
+                    <td style="width: 30px;"><b>N°:</b></td>
+                    <td style="width: 190px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.NroDocumento
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width: 120px;"></td>
+                    <td style="width: 80px; text-align: center;">
+                        D/M/A
+                    </td>
+
+                    <td style="width: 40px;"></td>
+                    <td style="width: 80px; text-align: center;">
+                        F/M
+                    </td>
+
+                    <td style="width: 65px;"></td>
+                    <td style="width: 130px;">
+                    </td>
+
+                    <td style="width: 10px;"></td>
+
+                    <td style="width: 30px;"></td>
+                    <td style="width: 190px;">
+                    </td>
+                </tr>
+            </table>
+
+
+            <table style="width: 750px;" class="mt-2">
+                <tr>
+                    <td style="width: 120px;"><b>Grado.Instrucción:</b></td>
+                    <td style="width: 200px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.GradoInstruccion
+                    </td>
+
+                    <td style="width: 65px;"><b>Estado.Civil:</b></td>
+                    <td style="width: 75px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.EstadoCivilDes
+                    </td>
+
+                    <td style="width: 45px;"><b>Etnia:</b></td>
+                    <td style="width: 105px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.Etnia
+                    </td>
+
+                    <td style="width: 40px;"><b>Idioma:</b></td>
+                    <td style="width: 100px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.Idioma
+                    </td>
+                </tr>
+            </table>
+
+
+            <table style="width: 750px;" class="mt-3">
+                <tr>
+                    <td style="width: 40px;"><b>Email:</b></td>
+                    <td style="width: 280px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.Email
+                    </td>
+
+                    <td style="width: 65px;"><b>Telefono:</b></td>
+                    <td style="width: 75px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.Telefono
+                    </td>
+
+                    <td style="width: 100px;"><b>Grupo Sang.y RH:</b></td>
+                    <td style="width: 190px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.GrupoSanguineo
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width: 40px;"></td>
+                    <td style="width: 280px; text-align: center;">
+                        Ejemplo: ejemplo@cliente.com
+                    </td>
+
+                    <td style="width: 65px;"></td>
+                    <td style="width: 75px; text-align: center;">
+                    </td>
+
+                    <td style="width: 100px;"></td>
+                    <td style="width: 190px;">
+                    </td>
+                </tr>
+            </table>
+
+
+            <table style="width: 750px;" class="mt-3">
+                <tr>
+                    <td style="width: 120px;"><b>Ocupación:</b></td>
+                    <td style="width: 200px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.Ocupacion
+                    </td>
+
+                    <td style="width: 65px;"><b>Religión:</b></td>
+                    <td style="width: 135px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.Religion
+                    </td>
+
+                    <td style="width: 40px;"></td>
+
+                    <td style="width: 60px;"><b>Edad:</b></td>
+                    <td style="width: 130px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.Edad @ViewBag.TipoEdad
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="col-12">
+            <div class="row m-0 mt-3">
+                <div class="col-3" style="width: 230px; border-radius: 4px; border: 2px solid black; padding: 2px;"><div class="fw-bold">DOMICILIO DEL AFILIADO TITULAR </div></div>
+            </div>
+
+            <table style="width: 750px;" class="mt-3">
+                <tr>
+                    <td style="width: 120px;"><b>Lugar de Domicilio:</b></td>
+                    <td style="width: 630px; text-align: center;">
+                        <table style="border-bottom: 1px solid black;">
+                            <tr>
+                                <td style="width: 180px;">@ViewBag.NombrePaisDomicilio</td>
+                                <td style="width: 150px;">@ViewBag.NombreDepartamentoDomicilio</td>
+                                <td style="width: 150px;">@ViewBag.NombreProvinciaDomicilio</td>
+                                <td style="width: 150px;">@ViewBag.NombreDistritoDomicilio</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <table style=" text-align: center;">
+                            <tr>
+                                <td style="width: 180px;">País</td>
+                                <td style="width: 150px;">Departamento</td>
+                                <td style="width: 150px;">Provincia</td>
+                                <td style="width: 150px;">Distrito</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+            <table style="width: 750px;" class="mt-3">
+                <tr>
+                    <td style="width: 120px;"></td>
+                    <td style="width: 630px; text-align: center;">
+                        <table style="border-bottom: 1px solid black;">
+                            <tr>
+                                <td style="width: 330px;">@ViewBag.DireccionDomicilio</td>
+                                <td style="width: 300px;">@ViewBag.NombreCentroPobladoDomicilio</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <table style=" text-align: center;">
+                            <tr>
+                                <td style="width: 330px;">Dirección Domiciliaria</td>
+                                <td style="width: 300px;">Centro Poblado</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+            <table style="width: 750px;" class="mt-3">
+                <tr>
+                    <td style="width: 120px;"><b>Lugar de Nacimiento:</b></td>
+                    <td style="width: 630px; text-align: center;">
+                        <table style="border-bottom: 1px solid black;">
+                            <tr>
+                                <td style="width: 180px;">@ViewBag.NombrePaisNacimiento</td>
+                                <td style="width: 150px;">@ViewBag.NombreDepartamentoNacimiento</td>
+                                <td style="width: 150px;">@ViewBag.NombreProvinciaNacimiento</td>
+                                <td style="width: 150px;">@ViewBag.NombreDistritoNacimiento</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <table style=" text-align: center;">
+                            <tr>
+                                <td style="width: 180px;">País</td>
+                                <td style="width: 150px;">Departamento</td>
+                                <td style="width: 150px;">Provincia</td>
+                                <td style="width: 150px;">Distrito</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+            <table style="width: 750px;" class="mt-3">
+                <tr>
+                    <td style="width: 120px;"><b>Lugar de Procedencia:</b></td>
+                    <td style="width: 630px; text-align: center;">
+                        <table style="border-bottom: 1px solid black;">
+                            <tr>
+                                <td style="width: 180px;">@ViewBag.NombrePaisProcedencia</td>
+                                <td style="width: 150px;">@ViewBag.NombreDepartamentoProcedencia</td>
+                                <td style="width: 150px;">@ViewBag.NombreProvinciaProcedencia</td>
+                                <td style="width: 150px;">@ViewBag.NombreDistritoProcedencia</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <table style=" text-align: center;">
+                            <tr>
+                                <td style="width: 180px;">País</td>
+                                <td style="width: 150px;">Departamento</td>
+                                <td style="width: 150px;">Provincia</td>
+                                <td style="width: 150px;">Distrito</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+            <table style="width: 750px;" class="mt-3">
+                <tr>
+                    <td style="width: 120px;"><b>Datos Acompañante:</b></td>
+                    <td style="width: 280px; border-bottom: 1px solid black; text-align: center;">
+                        @ViewBag.Acompaniante
+                    </td>
+
+                    <td style="width: 60px;"></td>
+
+                    <td style="width: 150px;"><b>Telefono Acompañante:</b></td>
+                    <td style="width: 120px; border-bottom: 1px solid black; text-align: center;">
+                    </td>
+
+                    <td style="width: 20px;"></td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="col-12">
+            <div class="row m-0 mt-3">
+                <div class="col-3" style="width: 240PX; border-radius: 4px; border: 2px solid black; padding: 2px;"><div class="fw-bold">DATOS DEL TUTOR DEL AFILIADO MENOR </div></div>
+            </div>
+
+
+            <table style="width: 750px;" class="mt-3">
+                <tr>
+                    <td style="width: 120px;"><b>Nombre del Padre:</b></td>
+                    <td style="width: 630px; text-align: center;">
+                        <table style="border-bottom: 1px solid black;">
+                            <tr>
+                                <td style="width: 310px;"></td>
+                                <td style="width: 160px;"></td>
+                                <td style="width: 160px;">&ensp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 0;"></td>
+                    <td style="padding: 0;">
+                        <table style=" text-align: center;">
+                            <tr>
+                                <td style="width: 310px;">Apellido Paterno y Materno</td>
+                                <td style="width: 160px;">Nombres</td>
+                                <td style="width: 160px;">DNI</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <table style="width: 750px;" class="mt-3">
+                <tr>
+                    <td style="width: 120px;"><b>Nombre del Madre:</b></td>
+                    <td style="width: 630px; text-align: center;">
+                        <table style="border-bottom: 1px solid black;">
+                            <tr>
+                                <td style="width: 310px;">@ViewBag.ApellidosMadre</td>
+                                <td style="width: 160px;">@ViewBag.NombresMadre</td>
+                                <td style="width: 160px;">@ViewBag.MadreDocumento</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <table style=" text-align: center;">
+                            <tr>
+                                <td style="width: 310px;">Apellido Paterno y Materno</td>
+                                <td style="width: 160px;">Nombres</td>
+                                <td style="width: 160px;">DNI</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="col-12">
+            <div class="row m-0 mt-3">
+                <div class="col-3" style="width: 240PX; border-radius: 4px; border: 2px solid black; padding: 2px;"><div class="fw-bold">OBSERVACIONES</div></div>
+            </div>
+        </div>
+
+
+        <div class="col-12 mt-1" style="padding: 0px; margin-left: 10px;">
+            <div class="fw-bold" style="">
+                <textarea id="Observacion" class="w-100 border border-secondary" style="height: 85px;">@ViewBag.Observacion</textarea>
+            </div>
+        </div>
+
+
+        <br />
+        <br />
+
+        <div class="row m-0">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-2 p-0" style="max-width: 120px;"><div class="fw-bold" style="padding-left: 5px;">Creado por: </div></div>
+
+                    <div class="col-4 p-0">
+                        <div class="text-center">
+                            <span style="color: #fff;">.</span> @ViewBag.UsuarioCrea
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-2 p-0" style="max-width: 120px;"><div class="fw-bold" style="padding-left: 5px;">Impreso por: </div></div>
+
+                    <div class="col-4 p-0">
+                        <div class="text-center">
+                            <span style="color: #fff;">.</span> @ViewBag.Usuario
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+
+    </div>
+
+
+    <script src="/AdmiRE/js/jquery.min.js"></script>
+    <script src="/BootstrapV5.1.3/bootstrap.bundle.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Observacion").height($("#Observacion")[0].scrollHeight);
+            //$("#plan").height($("#plan")[0].scrollHeight);
+        });
+    </script>
+
+</body>
+
+
+
+</html>

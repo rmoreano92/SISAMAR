@@ -1,0 +1,264 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+
+    var AppUtilizaValidaciones = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UtilizaValidaciones");
+    string UtilizaValidaciones = AppUtilizaValidaciones.ToString();
+}
+
+@section Css
+    {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-book-medical"></i>
+                @*@ViewBag.Area*@
+                Libro Ocurrencias Médicas y Guardias
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Ocurrencias Médicas y Guardias</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="row m-0">
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+            <li class="nav-item m-0" role="presentation">
+                <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Registro Ocurrencia Médica</a>
+            </li>
+        </ul>
+        <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContent">
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">                                
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group m-0">
+                                            <label for="txtFiltroFolio" class="form-control-label">Número Folio</label>
+                                            <input type="text" autocomplete="off" class="form-control form-control-sm search solo-numero" id="txtFiltroFolio">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2" style="max-width: 150px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtFiltroFecha" class="form-control-label">Fecha Ocurrencia</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" autocomplete="off" class="form-control search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFiltroFecha">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group m-0">
+                                            <label for="cboFiltroEstado" class="form-control-label">Estado</label>
+                                            <select class="chzn-select w-100" id="cboFiltroEstado" data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="d-flex align-items-end" style="height: 55px;">
+                                            <button class="btn btn-sm btn-primary layout_btn_prevent mr-1" id="btnFiltroBuscar" style="padding-left: 2rem !important; padding-right: 2rem !important;">Buscar</button>
+                                            <button class="btn btn-sm btn-secondary layout_btn_prevent" id="btnFiltroLimpiar" style="padding-left: 2rem !important; padding-right: 2rem !important;">Limpiar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 pt-2 pb-0">
+                        @{
+                            if (@ViewBag.Agregar)
+                            {
+                                <button class="btn btn-success layout_btn_prevent" id="btnAgregar">Agregar</button>
+                            }
+                            if (@ViewBag.Modificar)
+                            {
+                                <button class="btn btn-primary layout_btn_prevent" id="btnModificar">Modificar</button>                                
+                            }
+                            if (@ViewBag.Eliminar)
+                            {
+                                <button class="btn btn-danger layout_btn_prevent" id="btnEliminar">Eliminar</button>
+                            }
+                            if (@ViewBag.Consultar)
+                            {                                
+                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultar">Consultar</button>
+                            }
+                                                        
+                        }
+                    </div>
+
+                    <div class="col-lg-12 pb-2">
+                        <table id="tblOcurrenciasMedicas" width="100%" class="table table-sm table-bordered table-content-sm" style="cursor: default;">
+                            <thead style="color: white;background: #434343;">
+                                <tr>
+                                    <th style="width:5%">Nro Folio</th>                                    
+                                    <th style="width:6%">Fecha Ocurrencia</th>
+                                    <th style="width:10%">Turno</th>
+                                    <th style="width:6%">Jefe de la Guardia</th>
+                                    <th style="width:5%">Estado</th>
+                                    <th style="width:5%;text-align:center">INFORME</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    @*<div class="col-md-12 d-flex align-items-end justify-content-end" style="height: 50px;">
+                        <div>
+                            <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaAtencion"><i class="fa-light fa-signature mr-1"></i>Firmar Atencion</button>
+                            <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaLote"><i class="fa-light fa-signature mr-1"></i>Firmar Lote</button>
+                        </div>
+                    </div>*@
+
+                </div>
+            </div>
+            <!--=============================================Panel Registro==================================================================-->
+            <div class="tab-pane fade" id="TabPanelRegistro" role="tabpanel" aria-labelledby="TabRegistro">                
+                @Html.Partial("~/Views/Shared/Components/VistasParciales/Estadistica/RegistroOcurrenciaMedica.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts
+    {
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment-with-locales.js"></script>
+    <script src="~/AdmiRE/js/date.format.js"></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Estadistica/OcurrenciaMedicaGuardia.js")></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js?v=" + version)></script>
+  
+
+    <script type="text/javascript">
+        
+    </script>
+
+}
+
+<style>
+.chosen-disabled {
+    opacity: 1 !important;
+}
+
+.chosen-disabled .chosen-single {
+    background: #eceeef !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.custom-control-indicator {
+    border: 1px solid darkgrey;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+    color: #434343 !important;
+}
+
+.border-x-0 {
+    border-right: 0 !important;
+    border-left: 0 !important;
+}
+
+.btn-sm {
+    padding: 0.4rem 0.5rem !important;
+}
+
+legend {
+    width: auto !important;
+    padding: 0 5px !important;
+    font-size: 1.2rem !important;
+    margin-left: 5px !important;
+}
+
+fieldset {
+    border: 1px solid #ccc !important;
+    margin: 0px 10px !important;
+}
+
+.nav-link:hover {
+    border-color: whitesmoke !important;
+    background-color: whitesmoke !important;
+}
+
+.btn-outline-secondary {
+    color: #999 !important;
+    border-color: #999 !important;
+}
+
+    .btn-outline-secondary:hover {
+        color: #fff !important;
+        border-color: #ccc !important;
+    }
+
+#clothing-nav-content2 .form-group {
+    margin-bottom: 0 !important;
+}
+
+#tblAtencion tr.over td {
+    background: #D6E8F8;
+    font-weight: bold;
+}
+
+/*  .chosen-container chosen-container-single {
+                        width: 100% !important;
+                    }*/
+
+
+.chosen-container {
+    width: 100% !important;
+}
+
+.modal-lg {
+    max-width: 1100px !important;
+}
+
+textarea {
+    font-size: 12px !important;
+}
+</style>
+

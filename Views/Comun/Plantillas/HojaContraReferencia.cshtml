@@ -1,0 +1,570 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var AppMensajePiePagina = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:DescripcionPiePagina");                
+                string MensajePiePagina = AppMensajePiePagina.ToString();
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hoja de Contrareferencia</title>
+@*    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/util.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/select2/css/select2.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/scroller.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/colReorder.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/datatables/css/dataTables.bootstrap.min.css" />*@
+
+    <style>
+        @*==========================CSS BOOTSTRAP====================================*@
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 8px;
+            color: black !important;
+            font-family: helvetica;
+            letter-spacing: 0.4px;
+            line-height: 8px;
+        }
+        .white-space {
+            white-space: pre-line;
+            line-height: 11px !important;
+        }
+        .position-absolute {
+            position: absolute;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+        @*==========================================================================*@
+
+        li {
+            font-size: 22px;
+        }
+
+        .d-flex {
+            display: -webkit-box !important;
+            display: -ms-flexbox !important;
+            display: flex !important;
+        }
+
+        .mr-auto, .mx-auto {
+            margin-right: auto !important;
+        }
+
+        .ml-auto, .mx-auto {
+            margin-left: auto !important;
+        }
+
+        .datos {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding-top:3px;
+            padding-bottom: 3px;
+        }
+
+        #fecha th {
+            padding-left: 10px;
+            padding-right: 10px;
+            text-align: center;
+            background-color: #ebe9e9;
+            /*line-height: 10px;*/
+        }
+
+        #fecha td {
+            padding: 0px 10px;
+            text-align: center;
+            /*line-height: 10px;*/
+        }
+        .titulo {            
+            background-color: #ebe9e9;
+            color: black;
+            margin-bottom: 3px;
+            width: 100%;
+            /*line-height: 15px;*/
+        }
+        .tabla1 td, .tabla1 th {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .miCheckBox {
+            padding: 0;
+            margin: 0;
+            /* font-size: 30px; */
+            /*width: 17px;
+            height: 17px;*/
+            vertical-align: middle;
+            text-align:center;
+        }
+
+        #cajaTitulo {
+            width: 40%;
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;            
+            font-weight: bold;
+            margin-left: auto;
+            margin-right: auto;
+           /* box-shadow: 5px 5px #8d8d8d;*/
+            margin-bottom: 25px;
+            font-size: 11px;
+        }
+        
+        /*body{
+            font-size: 9px;
+            line-height: 10px;
+        }*/
+
+
+        .qr-code {
+            position: absolute;
+            width: 70px;
+            right: 0;
+            top: -15px;
+        }
+    </style>
+</head>
+
+
+@*<body style="background: white; width: 793px; height: 1145px; position:relative; padding-top: 30px; /*border: 1px solid red;*/">*@
+<body style="background: white; width:698px; height:1015px; position:relative; /*border: 1px solid red;*/">
+ 
+    @if (ViewBag.CodigoQR != null)
+    {
+        <img class="qr-code" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.CodigoQR))" />
+    }
+
+    <img src="~/images/logo-minsa.png" style="width: 120px; position:absolute;" />
+        
+    <div style="position:absolute; left: 500px; top: 10px;font-size: 11px;">
+        <table class="" style="width: 120px;  border: none;">
+            <tbody>
+                <tr style="">
+                    <th scope="row" style="border: none;width: 20px;">N°</th>
+                    <td style="padding: 3px; font-weight: bolder;  width: 80px;" class="text-center">@ViewBag.NroHoja</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div style="" id="cajaTitulo">
+        <p style="font-weight: bold; margin:0;" class="">HOJA DE CONTRAREFERENCIA</p>
+    </div>
+       
+    <table class="titulo">
+        <tbody>
+            <tr>
+                <th scope="row" rowspan="2" class="text-center">1.- DATOS GENERALES</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex" style="margin-bottom: 3px; position: relative;">
+        <div style="width:30%;">
+             <div style="padding-right: 3px">
+                <table class="" style="width:100%;" id="fecha">
+                    <tbody>
+                        <tr style="line-height: 1.2">
+                            <th scope="row" rowspan="2"  style="height:30px;">FECHA</th>
+                            <td style="height:15px;">Día</td>
+                            <td style="height:15px;">Mes</td>
+                            <td style="height:15px;">Año</td>
+                        </tr>
+                        <tr style="line-height: 1.2">
+                            <td>@ViewBag.Dia</td>
+                            <td>@ViewBag.Mes</td>
+                            <td>@ViewBag.Anio</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="width:20%;">
+            <div>
+                <table class="" id="fecha">
+                    <tbody>
+                        <tr >
+                            <th scope="row" style="height:30px;">HORA</th>
+                            <td>@ViewBag.Hora</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="width:50%;">
+            <div class="">
+                <table class="ml-auto" id="fecha">
+                    <tbody>
+                        <tr>
+                            <th scope="row" rowspan="2"  style="height:30px;">N° HOJA DE REFERENCIA</th>
+                        </tr>
+                        <tr>
+                            <td style="width:130px;"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       
+        
+        
+    </div>
+
+    <div class="d-flex" style="margin-bottom: 3px;">
+        <table style="margin-bottom: 3px; width: 50%;" class="tabla1">
+            <tbody>
+                <tr>
+                    <th scope="row">Código IPRESS</th>
+                    <th scope="row">ESTABLECIMIENTO DE SALUD ORIGEN</th>
+                </tr>
+                <tr>
+                    <td>@ViewBag.IpressOrigen</td>
+                    <td>@ViewBag.Origen</td>
+                </tr>
+                <tr>
+                    <th scope="row" colspan="2">SERVICIO ORIGEN DE LA CONTRAREFERENCIA (UPS)</th>
+                </tr>
+                <tr>
+                    <td colspan="2">@ViewBag.UpsOrigen</td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="margin-bottom: 3px; width: 50%;" class="tabla1">
+            <tbody>
+                <tr>
+                    <th scope="row">Código IPRESS</th>
+                    <th scope="row">ESTABLECIMIENTO DE SALUD DESTINO</th>
+                </tr>
+                <tr>
+                    <td>@ViewBag.IpressDestino</td>
+                    <td>@ViewBag.Destino</td>
+                </tr>
+                <tr>
+                    <th scope="row" colspan="2">SERVICIO DESTINO DE LA CONTRAREFERENCIA (UPS)</th>
+                </tr>
+                <tr>
+                    <td colspan="2">@ViewBag.UpsDestino</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="titulo">
+        <tbody>
+            <tr>
+                <th scope="row" rowspan="2" class="text-center">2.- IDENTIFICACIÓN DEL PACIENTE</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <table style="width: 100%;" class="tabla1">
+        <tbody>
+            <tr>
+                <th scope="row">TIPO DOC.</th>
+                <td scope="row">@ViewBag.TipoDocumento</td>
+                <th scope="row">N° DOC.</th>
+                <td scope="row">@ViewBag.NroDocumento</td>
+                <th scope="row">RN</th>
+                @if (ViewBag.Rn == 1)
+                {
+                    <td class="text-center"><input class="miCheckBox" type="checkbox" checked></td>
+                }
+                else
+                {
+                    <td class="text-center"><input class="miCheckBox" type="checkbox"></td>
+                }
+                @*<td scope="row">@ViewBag.Rn</td>*@
+                <th scope="row">FINANCIADOR</th>
+                <td scope="row">@ViewBag.Financiador</td>
+                <th scope="row">N° AFILIACIÓN</th>
+                <td scope="row">@ViewBag.NroAfiliacion</td>
+                <th scope="row">N° HCL</th>
+                <td scope="row">@ViewBag.NroHistoria</td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table style="width: 100%;" class="tabla1">
+        <tbody>
+            <tr>
+                <th scope="row" style="max-width: 60px;">APELLIDO PATERNO</th>
+                <td>@ViewBag.ApPaterno</td>
+                <th scope="row" style="max-width: 60px;">APELLIDO MATERNO</th>
+                <td>@ViewBag.ApMaterno</td>
+                <th scope="row" style="max-width: 60px;">NOMBRE(S)</th>
+                <td>@ViewBag.Nombres</td>
+            </tr>
+        </tbody>
+    </table>
+    <table style="width: 100%;" class="tabla1">
+        <tbody>
+            <tr>
+                <th scope="row" style="max-width: 100px;">SEXO</th>
+                <td>@ViewBag.Sexo</td>
+                <th scope="row" style="max-width: 100px;">FECHA NACIMIENTO</th>
+                <td>@ViewBag.FechaNacimiento</td>
+                <th scope="row" style="max-width: 100px;">EDAD</th>
+                <td>@ViewBag.Edad</td>
+            </tr>
+        </tbody>
+    </table>
+    <table style="margin-bottom: 3px; width: 100%;" class="tabla1">
+        <tbody>
+            <tr>
+                <th scope="row" style="max-width: 100px;">DOMICILIO</th>
+                <td>@ViewBag.Domicilio</td>
+                <th scope="row" style="max-width: 100px;">DPTO./PROV./DIST.</th>
+                <td>@ViewBag.Departamento / @ViewBag.Provincia / @ViewBag.Distrito</td>
+            </tr>
+        </tbody>
+    </table>
+
+    @*==================================RESUMEN HISTORIA CLINICA======================================*@
+    <table class="titulo">
+        <tbody>
+            <tr>
+                <th scope="row" rowspan="2" class="text-center">3.- RESUMEN DE HISTORIA CLÍNICA</th>
+            </tr>
+        </tbody>
+    </table>
+    <table style="width: 100%;" class="tabla1">
+        <tbody>
+            <tr style="">
+                <th scope="row" style="width: 150px;height: 70px" class="text-center">DIAGNÓSTICO DE ORIGEN</th>
+                <td style="vertical-align: top !important;"></td>                
+            </tr>
+        </tbody>
+    </table>
+    <table style="width: 100%;" class="tabla1">
+        <tbody>
+            <tr style="">
+                <th scope="row" style="width: 150px;height: 70px" class="text-center">DIAGNÓSTICO DE INGRESO</th>
+                <td style="vertical-align: top !important;">
+                    @* @ViewBag.DxOrigen *@
+                     @{
+                        int index1 = 1;
+                        int cont1 = 1;
+                    }
+                    @foreach (System.Data.DataRow row in ViewBag.DxEgreso.Rows)
+                    {
+                        if(row["IdClasificacionDx"].ToString() == "2")
+                        {
+                            <span style="font-weight: bold;">DX</span>
+                            <span style="font-weight: bold;margin: 0px 7px;">@cont1</span>
+                            <span>@row["codigoCIEsinPto"] - @row["descripcion"] - TIPO: @row["subclasDiagnostico"]</span>
+                            <br />
+                            cont1++;
+                        }
+                        
+                        index1++;
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table style="width: 100%;" class="tabla1">
+        <tbody>
+            <tr style="">
+                <th scope="row" style="width: 150px;height: 70px" class="text-center">DIAGNÓSTICO DE EGRESO</th>
+                <td style="vertical-align: top !important;">
+                    @{
+                        int index = 1;
+                        int cont = 1;
+                    }
+                    @foreach (System.Data.DataRow row in ViewBag.DxEgreso.Rows)
+                    {
+                        if(row["IdClasificacionDx"].ToString() == "1" || row["IdClasificacionDx"].ToString() == "3")
+                        {
+                            <span style="font-weight: bold;">DX</span>
+                            <span style="font-weight: bold;margin: 0px 7px;">@cont</span>
+                            <span>@row["codigoCIEsinPto"] - @row["descripcion"] - TIPO: @row["subclasDiagnostico"]</span>
+                            <br />
+                            cont++;
+                        }
+                        
+                        index++;
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table style="margin-bottom: 3px; width: 100%;" class="tabla1">
+        <tbody>
+            <tr style="">
+                <th scope="row" style="width: 150px;height: 70px" class="text-center">TRATAMIENTO REALIZADO</th>
+                <td style="vertical-align: top !important;"><div class="white-space">@ViewBag.Tratamiento</div></td>
+            </tr>
+        </tbody>
+    </table>
+
+    @*==================================DATOS DE LA CONTRAREFERENCIA======================================*@
+    <table class="titulo">
+        <tbody>
+            <tr>
+                <th scope="row" class="text-center">4.- DATOS DE LA CONTRAREFERENCIA</th>
+            </tr>
+        </tbody>
+    </table>
+    <table style="width: 100%;" class="tabla1">
+        <tbody>
+            <tr>
+                <th scope="row" style="width: 170px;">ORIGEN DE LA REFERENCIA</th>
+                <td>@ViewBag.Destino</td>
+                <th scope="row" style="width: 170px;">CALIFICACIÓN DE LA REFERENCIA</th>
+                <td style="min-width: 50px;">@ViewBag.Calificacion</td>
+            </tr>
+        </tbody>
+    </table>
+    <table style="width: 100%;" class="tabla1">
+        <tbody>
+            <tr>
+                <th scope="row" style="width: 170px;">SERVICIO QUE CONTRAREFIERE</th>
+                <td>@ViewBag.UpsDestino</td>
+            </tr>
+        </tbody>
+    </table>
+    <table style="width: 100%;" class="tabla1">
+        <tbody>
+            <tr>
+                <th scope="row" style="width: 300px;">ESPECIALIDAD QUE ORDENA LA CONTRAREFERENCIA</th>
+                <td>@ViewBag.Especialidad</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="titulo" style="margin-bottom: 0;">
+        <tbody>
+            <tr>
+                <th scope="row" class="text-center">RECOMENDACIONES E INDICACIONES PARA EL SEGUIMIENTO</th>
+            </tr>
+        </tbody>
+    </table>
+    <table style="width: 100%;" class="tabla1">
+        <tbody>
+            <tr style="">
+                <td style="vertical-align: top !important;height: 70px;"><div class="white-space">@ViewBag.Recomendaciones</div></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex" style="margin-bottom: 3px;">
+        <table style="margin-bottom: 3px; width: 35%;" class="tabla1">
+            <tbody style="height:100%;">
+                <tr>
+                    <th scope="row" colspan="2" style="background-color: #ebe9e9;" class="text-center">CONDICIÓN DEL USUARIO</th>
+                </tr>
+                <tr>
+                    <td class="pl-2" style="border: 0; height:20px;">CURADO</td>
+                    @if (ViewBag.Condicion == 1)
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox" checked></td>
+                    }
+                    else
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox"></td>
+                    }
+                </tr>
+                <tr>
+                    <td class="pl-2" style="border: 0; height:20px;">MEJORADO EN TRATAMIENTO</td>
+                    @if (ViewBag.Condicion == 2)
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox" checked></td>
+                    }
+                    else
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox"></td>
+                    }
+                </tr>
+                <tr>
+                    <td class="pl-2" style="border: 0; height:20px;">ATENDIDO POR APOYO AL DX</td>
+                    @if (ViewBag.Condicion == 3)
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox" checked></td>
+                    }
+                    else
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox"></td>
+                    }
+                </tr>
+                <tr>
+                    <td class="pl-2" style="border: 0; height:20px;">DESERSIÓN</td>
+                    @if (ViewBag.Condicion == 4)
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox" checked></td>
+                    }
+                    else
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox"></td>
+                    }
+                </tr>
+                <tr>
+                    <td class="pl-2" style="border: 0; height:20px;">RETIRO VOLUNTARIO</td>
+                    @if (ViewBag.Condicion == 5)
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox" checked></td>
+                    }
+                    else
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox"></td>
+                    }
+                </tr>
+                <tr>
+                    <td class="pl-2" style="border: 0; height:20px;">FALLECIDO</td>
+                    @if (ViewBag.Condicion == 6)
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox" checked></td>
+                    }
+                    else
+                    {
+                        <td class="text-center" style="border: 0;height:20px;"><input class="miCheckBox" type="checkbox"></td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+        <table style="margin-bottom: 3px; width: 65%;" class="tabla1">
+            <tbody style="height:100%;">
+                <tr>
+                    <th scope="row" colspan="2" style="background-color: #ebe9e9;" class="text-center">RESPONSABLE DE LA CONTRAREFERENCIA</th>
+                </tr>
+                <tr>
+                    <th style="height:20px;">NOMBRE(S) Y APELLIDOS</th>
+                    <td rowspan="6" id="huella" style="width: 150px; vertical-align: bottom !important;" class="text-center">FIRMA Y SELLO</td>
+                </tr>
+                <tr>
+                    <td style="height:20px;">@ViewBag.Medico</td>
+                </tr>
+                <tr>
+                    <th style="height:20px;">PROFESIÓN</th>
+                </tr>
+                <tr>
+                    <td style="height:20px;">@ViewBag.ProfesionMedico</td>
+                </tr>
+                <tr>
+                    <th style="height:20px;">COLEGIO PROF.</th>
+                </tr>
+                <tr>
+                    <td style="height:20px;">@ViewBag.ColegioMedico</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="line-height: 8px;font-size: 8px;text-align: justify;" class="mt-1">
+        @MensajePiePagina
+    </div> @* como parametro *@
+
+</body>
+
+</html>

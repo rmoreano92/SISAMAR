@@ -1,0 +1,208 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+
+        <div class="row mb-1">
+            <div class="col-md-12">
+                <partial name="~/Views/Shared/Components/VistasParciales/Paciente/DatosPaciente.cshtml" />
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-md-12">
+                <partial name="~/Views/Shared/Components/VistasParciales/Triaje.cshtml" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+                @*JDELGADO J0 SACAR DEL CARD*@
+                <ul id="idtbAtencion" class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#entrevista" role="tab" id="entrevista-tab" data-toggle="tab" aria-controls="entrevista" aria-expanded="true">Entrevista/Anam./Exam. Fisico</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#diagnosticos" role="tab" id="diagnosticos-tab" data-toggle="tab" aria-controls="diagnosticos">Diagnósticos</a>
+                    </li>
+                    <li class="nav-item" id="contTabDestino">
+                        <a class="nav-link " href="#destino" role="tab" id="destino-tab" data-toggle="tab" aria-controls="destino">Destino</a>
+                    </li>
+                </ul>
+
+                <div id="clothing-nav-content" class="tab-content pt-1">
+
+                    <div role="tabpanel" class="tab-pane fade in active" id="entrevista" aria-labelledby="entrevista-tab">
+
+                        <div class="row" id="divClasificacionPaciente">
+                            <div class="col-md-12" style="display: none;">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="cboClasisifcacion" class="form-control-label">Clasificacion de Paciente</label>
+                                            <div class="input-group">
+                                                <select class="chzn-select" id="cboClasisifcacion"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="cboDestino" class="form-control-label">Controles MGP</label>
+                                            <div class="input-group">
+                                                <input id="txtControles" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="txtEdadGestacional" class="form-control-label">Edad Gestacional</label>
+                                            <div class="input-group">
+                                                <input id="txtEdadGestacional" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="txtGestas" class="form-control-label">Nro. Gestas</label>
+                                            <div class="input-group">
+                                                <input id="txtGestas" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <partial name="~/Views/Shared/Components/VistasParciales/AtencionMedica/Entrevista.cshtml" />
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card m-t-5 bg-green">
+                                    <div class="card-header bg-white">Resumen de la Historia Clínica</div>
+                                    <div class="card-block pb-0">
+                                        <div class="row pb-1 pt-1">
+                                            <div class="col-lg-12">
+                                                <div class="form-group m-0">
+                                                    <div class="input-group">
+                                                        <textarea class="form-control" id="txtResumenHistoriaClinica" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="diagnosticos" aria-labelledby="diagnosticos-tab">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos.cshtml" />
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-md-12">
+                                <partial name="~/Views/Shared/Components/VistasParciales/Procedimientos/VisorProcedimientos.cshtml" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card m-t-20">
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <b><label for="txtAtencedentes" class="form-control-label text-info titulo ">Plan de Trabajo</label></b>
+                                                    <div class="input-group">
+                                                        <textarea class="form-control" id="txtPlanTrabajo" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <b><label for="txtAtencedentes" class="form-control-label text-info titulo ">Tratamiento</label></b>
+                                                    <div class="input-group">
+                                                        <textarea class="form-control" id="txtTratamiento" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="destino" aria-labelledby="destino-tab">
+                        <div class="row campo">
+                            <div class="col-md-12">
+                                <div class="card m-t-20">
+                                    <div class="card-header bg-white">Destino Atención</div>
+                                    <div class="card-block bg-green">
+
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label for="cboDestino" class="form-control-label">Destino</label>
+                                                    <div class="input-group">
+                                                        <select class="chzn-select" id="cboDestino" data-placeholder="Seleccione una opción"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="form-group" id="EsTeleconsulta">
+                                                    <label for="cboTipoTeleconsulta" class="form-control-label">Tipo Teleconsulta</label>
+                                                    <div class="input-group">
+                                                        <select class="chzn-select" id="cboTipoTeleconsulta" data-placeholder="Seleccione una opción">
+                                                            <option>-- Seleccionar --</option>
+                                                            <option value="2">Teleconsultor</option>
+                                                            <option value="1">Teleconsultante</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3" id="contProcedenciaHospital">
+                                                <label for="" class="form-label" id="lblEstabRefCon">EE.SS. de Referencia</label>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control campoRegistro" id="txtIdReferenciaCita" style="width: 150px;" disabled>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-info bloquear" type="button" id="btnOpenModalEstablecimientoReferenciaCita">Buscar</button>
+                                                    </span>
+                                                    <input type="text" class="form-control campoRegistro" id="txtDescripcionReferenciaCita" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-1">
+                                            <div class="col-lg-2">
+                                                <label for="txtOtrasObservacionesGe" class="form-control-label"><strong>Otras Observaciones: </strong></label>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <textarea style="background:antiquewhite" class="form-control" id="txtOtrasObservacionesGe" rows="1"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div role="tabpanel" class="tab-pane fade" id="ordenes" aria-labelledby="ordenes-tab">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <partial name="~/Views/Shared/Components/VistasParciales/Ordenes.cshtml" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<partial name="~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml" />

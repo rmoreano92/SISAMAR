@@ -1,0 +1,623 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+
+    var AppUtilizaValidaciones = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UtilizaValidaciones");
+    string UtilizaValidaciones = AppUtilizaValidaciones.ToString();
+}
+
+
+@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<input hidden="hidden" id="hdUtilizaValidaciones" name="hdIdFuente" type="text" class="form-control" value="@UtilizaValidaciones">
+<input hidden="hidden" id="hdIdTipoServicio" name="hdIdFuente" type="text" class="form-control" value="3">
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-hospital-user"></i>
+                @ViewBag.Modulo
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Admisión de Emergencias</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="row m-0">
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+        </ul>
+        <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContent">
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-block">
+                                            <div class="row">
+                                                <div class="col-lg-2" style="max-width: 150px;">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtNroCuentaBuscar" class="form-control-label">N° Cuenta</label>
+                                                        <input id="txtNroCuentaBuscar" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2" style="max-width: 150px;">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtNroDniBuscar" class="form-control-label">N° Dni</label>
+                                                        <input id="txtNroDniBuscar" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2" style="max-width: 150px;">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtNroHistoriaBuscar" class="form-control-label">N° Historia</label>
+                                                        <input id="txtNroHistoriaBuscar" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtApPaternoBuscar" class="form-control-label">Ap. Paterno</label>
+                                                        <input id="txtApPaternoBuscar" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-2" style="max-width: 150px;">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtFechaAtencionBuscar" class="form-control-label">Fecha Ingreso</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input id="txtFechaAtencionBuscar" autocomplete="off" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" class=" form-control form-control-sm search">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2" style="max-width: 150px;">
+                                                    <div class="form-group m-0">
+                                                        <label for="txtFechaFinAtencionBuscar" class="form-control-label">Fecha Fin</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <input id="txtFechaFinAtencionBuscar" autocomplete="off" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" class=" form-control form-control-sm search">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @* <div class="col-lg-2">
+                                                <div class="form-group m-0">
+                                                <label for="txtFechaTransferencia" class="form-control-label">Fecha Transferencia</label>
+                                                <div class="input-group input-group-sm">
+                                                <input id="txtFechaTransferencia" autocomplete="off" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" class=" form-control form-control-sm search">
+                                                <span class="input-group-addon">
+                                                <i class="fa fa-calendar "></i>
+                                                </span>
+                                                </div>
+                                                </div>
+                                                </div> *@
+                                                <div class="col-lg-3">
+                                                    <div class="form-group m-0">
+                                                        <label for="cboServicioHospitalizacionBuscar" class="form-control-label">Servicio</label>
+                                                        <select class="chzn-select" id="cboServicioHospitalizacionBuscar"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <div class="d-flex align-items-end" style="height: 55px;">
+                                                        <button class="btn btn-sm btn-primary layout_btn_prevent mr-1" id="btnBuscarAtencionesHospitalizacion" style="padding-left: 2rem !important; padding-right: 2rem !important;">Buscar</button>
+                                                        <button class="btn btn-sm btn-secondary layout_btn_prevent" id="btnLimpiarFiltro" style="padding-left: 2rem !important; padding-right: 2rem !important;">Limpiar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="row mt-1">
+                                                <div class="col-md-12">
+                                                    <button class="btn btn-sm btn-light-blue layout_btn_prevent mr-1" id="btnBuscarAtencionesEmergenciaSinAltaMedica" style="padding-left: 1rem !important; padding-right: 1rem !important;">Pacientes sin Alta Médica</button>
+                                                    <button class="btn btn-sm btn-light-blue layout_btn_prevent mr-1" id="btnBuscarAtencionesEmergenciaSinRecepcion" style="padding-left: 1rem !important; padding-right: 1rem !important;">Pacientes sin Recepción</button>
+                                                    <button class="btn btn-sm btn-light-blue layout_btn_prevent" id="btnBuscarAtencionesEmergenciaSinAltaAdministrativa" style="padding-left: 1rem !important; padding-right: 1rem !important;">Pacientes sin Alta Admin.</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 pt-2 pb-0">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                @{
+                                    if (@ViewBag.Agregar)
+                                    {
+                                        <button class="btn btn-success layout_btn_prevent" id="btnAgregarAdmision">Agregar</button>
+                                    }
+                                    if (@ViewBag.Modificar)
+                                    {
+                                        <button class="btn btn-primary layout_btn_prevent" id="btnModificarAtenciones">Modificar</button>
+                                        // <button class="btn btn-info layout_btn_prevent" id="btnModificarAtenciones">Evaluación</button>
+                                    }
+                                    if (@ViewBag.Eliminar)
+                                    {
+                                        <button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtenciones">Eliminar</button>
+                                    }
+                                    if (@ViewBag.Consultar)
+                                    {
+                                        @*<button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtenciones" onclick="EvaluacionEmergencia.Consultar();">Consultar</button>*@
+                                        <button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtenciones">Consultar</button>
+                                    }
+                                }
+                            </div>
+                            <div class="col-sm-6">
+                                @{
+                                    if (@ViewBag.Modificar)
+                                    {
+                // <button class="btn btn-sm btn-light-green layout_btn_prevent float-xs-right" id="btnAltaMedica"><i class="fa fa-hands-heart mr-1"></i>ALTA MÉDICA</button>
+                                        <button class="btn btn-sm btn-teal layout_btn_prevent float-xs-right mr-1" id="btnTransferencia"><i class="fa fa-right-left mr-1"></i>TRANSFERENCIAS</button>
+                                        // <button class="btn btn-sm btn-deep-purple layout_btn_prevent float-xs-right mr-1" id="btnTransferenciaRecepcion"><i class="fa fa-bed mr-1"></i>RECEPCIÓN Y CAMA</button>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 pb-2">
+                        <table id="tblAtencionHosp" width="100%" class="table table-sm table-bordered table-content-sm" style="cursor: default;">
+                            <thead style="color: white;background: #434343;">
+                                <tr>
+                                    <th style="width:5%">Cuenta</th>
+                                    <th style="width:15%">Paciente</th>
+                                    <th style="width:5%">Historia</th>
+                                    <th style="width:5%">Edad</th>
+                                    <th style="width:5%">Tipo Pac.</th>
+                                    @* <th style="width:5%">Prioridad</th> *@
+                                    <th style="width:7%">Fec. Adm.</th>
+                                    <th style="width:7%">Fec. Eval.</th>
+                                    <th style="width:7%">Fec. Alta.</th>
+                                    <th style="width:7%">F.Egre.Adm.</th>
+                                    <th style="width:10%">Servicio</th>
+                                    <th style="width:7%">Plan</th>
+                                    <th style="width:5%">N° Eval.</th>
+                                    <th style="width:5%;text-align:center">INFORME</th>
+                                    <th style="width:5%;text-align:center">FUA</th>
+                                    <th style="width:5%;text-align:center">REFCON</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12 d-flex align-items-end justify-content-end" style="height: 50px;">
+                        <div>
+                            <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaAtencion"><i class="fa-light fa-signature mr-1"></i>Firmar Atencion</button>
+                            <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaLote"><i class="fa-light fa-signature mr-1"></i>Firmar Lote</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<div class="outer">
+        <div class="inner bg-light lter bg-container">
+            <div class="row">
+                <div class="col-xs-12 data_tables">
+                    <div class="card">
+                        <div class="card-block pt-1">
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+<div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalInformeEvaluacion" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <fieldset class="m-0 pr-1 pl-1 pb-1">
+                            <legend class="mb-0">Evaluaciones del Paciente</legend>
+                            <table id="tblInformeEvaluacionesEmergencia" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                                <thead style="color: white;">
+                                    <tr style="background-color: #434343;">
+                                        <th style="width:10% !important; text-align:center;">Eval.</th>
+                                        <th style="width:70% !important;">Médico</th>
+                                        <th style="width:20% !important; text-align:center;">Informe</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                            @*<div class="row mt-1" id="divFirma">
+                            <div class="col-xs-12 text-xs-center">
+                            <button type="button" style="width: 60px;" class="btn btn-sm btn-success" id="ImprimirEvalEmerCF"><i class="fa fa-print"></i></button>
+                            <button type="button" style="width: 60px;" class="btn btn-sm btn-info" id="FirmarEvalEmer"><i class="fa fa-pencil"></i></button>
+                            <button type="button" style="width: 60px;" class="btn btn-sm btn-warning" id="ImprimirEvalEmerSF"><i class="fa fa-eye"></i></button>
+                            </div>
+                            </div>*@
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrarInformeEvaluacion" target="_blank" class="btn btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/Recetas/VisorRecetas.cshtml" />
+
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaServicios.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaMedicos.cshtml" />
+
+@* ======================= TRANSFERENCIAS =========================================== *@
+<partial name="~/Views/Comun/Transferencias.cshtml" />
+<partial name="~/Views/Comun/TransferenciasConfirmacion.cshtml" />
+@* ================================================================================= *@
+
+@* =======================BUSQUEDA DE DIAGNOSTICOS================================== *@
+<partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticos.cshtml" />
+@* ================================================================================= *@
+
+@* =======================VISOR RESULTADOS LABORATORIO E IMAGENOLOGIA================================== *@
+<partial name="~/Views/Shared/Components/VistasParciales/VisorResultadosLabImg.cshtml" />
+@* ==================================================================================================== *@
+
+@* ======================VISOR SEGUIMIENTO PACIENTE==================================================== *@
+<partial name="~/Views/Shared/Components/VistasParciales/Seguimiento/VisorSeguimientoPaciente.cshtml" />
+@* ===================================================================================================== *@
+
+@* ======================RECETAS Y ORDENES==================================================== *@
+<partial name="~/Views/Shared/Components/VistasParciales/Recetas/Paquetes.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticosSolicitudCQx.cshtml" />
+@* ===================================================================================================== *@
+
+@* ====================== PROCEDENCIA PACIENTE ==================================================== *@
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalPacienteProviene" role="dialog" aria-hidden="false" style="background-color: #00000075; z-index: 1060;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Selecciona Paciente</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table id="tblPacienteProviene" width="100%" class="table table-sm table-bordered" style="cursor: default;">
+                                <thead style="color: white;background: #434343;">
+                                    <tr>
+                                        <th>Ap.Paterno</th>
+                                        <th>Ap.Materno</th>
+                                        <th>Nombres</th>
+                                        <th>Nro.Historia</th>
+                                        <th>Ult.FechaEgr.</th>
+                                        <th>H.Egreso</th>
+                                        <th>Consultorio</th>
+                                        <th>IdAtencion</th>
+                                        <th>IdCuentaAtencion</th>
+                                        <th>F.Financiamiento</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="btnCerrarModalPacienteProviene" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* ===================================================================================================== *@
+
+<div data-backdrop="static" class="modal fade" id="modalAdmision" role="dialog" aria-labelledby="modalAdmision" style="overflow-y: scroll;">
+    <div class="modal-dialog modal-xxl" role="document" id="modalAdmisionstyle">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Admisión Hospitalización</h4>
+            </div>
+            <div class="modal-body">
+                <partial name="~/Views/Comun/RegistroAdmision.cshtml" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ModuloAlta"></div>
+
+
+<input hidden="hidden" id="hdIdTipoServicio" name="hdIdTipoServicio" type="text" class="form-control" value="@ViewBag.Servicio">
+<input hidden="hidden" id="hdNroEvaluacion" name="hdNroEvaluacion" type="text" class="form-control">
+<input hidden="hidden" id="hdIdTipoFuenteFian" name="hdIdTipoFuenteFian" type="text" class="form-control">
+
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/moments/js/moment-with-locales.js"></script>
+
+
+    <script src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src=@Href("~/js/Hospitalizacion/AdmisionHospitalizacion.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/BusquedaDiagnosticos.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/Diagnosticos.js?v=" + version)></script>
+
+
+    @* <script type="text/javascript" src=@Href("~/js/VistasParciales/SeguimientoPaciente.js?v=" + version)></script> *@
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/AltaMedica.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/Transferencias.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientosSaludV2.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Variables.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Constantes.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientoSalud.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/RegistroAdmision.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Paciente/RegistroPaciente.js?v=" + version)></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //ESTABLECIMIENTOSSALUD.init();
+            //REFERENCIAS.init();
+            //ESTABLECIMIENTOSSALUD.init();
+            /*$(window).resize(function () {
+                $('#cboServicioHospitalizacionBuscar_chosen').attr('style', 'width:' + $('#cboServicioHospitalizacionBuscar_chosen').parent().parent().width() + 'px !important');
+            });*/
+
+        });
+    </script>
+
+}
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+        .chosen-disabled .chosen-single {
+            background: #eceeef !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .custom-control-indicator {
+        border: 1px solid darkgrey;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #434343 !important;
+    }
+
+    .border-x-0 {
+        border-right: 0 !important;
+        border-left: 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    legend {
+        width: auto !important;
+        padding: 0 5px !important;
+        font-size: 1.2rem !important;
+        margin-left: 5px !important;
+    }
+
+    fieldset {
+        border: 1px solid #ccc !important;
+        margin: 0px 10px !important;
+    }
+
+    .nav-link:hover {
+        border-color: whitesmoke !important;
+        background-color: whitesmoke !important;
+    }
+
+    .btn-outline-secondary {
+        color: #999 !important;
+        border-color: #999 !important;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff !important;
+            border-color: #ccc !important;
+        }
+
+    #clothing-nav-content2 .form-group {
+        margin-bottom: 0 !important;
+    }
+
+    #tblAtencion tr.over td {
+        background: #D6E8F8;
+        font-weight: bold;
+    }
+
+    /*  .chosen-container chosen-container-single {
+                                    width: 100% !important;
+                                }*/
+
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    .modal-lg {
+        max-width: 1100px !important;
+    }
+
+    textarea {
+        font-size: 12px !important;
+    }
+
+    /*-------------------Paridad 1---------------------------------*/
+    .paridad1 {
+        border-width: medium;
+        border-color: #009688;
+        color: #009688;
+        font-weight: bold;
+    }
+
+        .paridad1:hover, .paridad1:focus {
+            color: #009688;
+            border-color: #009688;
+            background-color: #0096881a;
+            outline: none;
+        }
+
+        .paridad1:focus {
+            box-shadow: 1px 1px 5px #009688;
+            outline: none;
+        }
+
+
+    /*--------------------Paridad 2--------------------------------*/
+    .paridad2 {
+        border-width: medium;
+        border-color: #E91E63;
+        color: #e91e63;
+        font-weight: bold;
+    }
+
+        .paridad2:hover, .paridad2:focus {
+            color: #e91e63;
+            border-color: #E91E63;
+            background-color: #E91E631a;
+            outline: none;
+        }
+
+        .paridad2:focus {
+            box-shadow: 1px 1px 5px #E91E63;
+            outline: none;
+        }
+
+    /*----------------------Paridad 3------------------------------*/
+    .paridad3 {
+        border-width: medium;
+        border-color: #2196F3;
+        color: #2196f3;
+        font-weight: bold;
+    }
+
+        .paridad3:hover, .paridad3:focus {
+            color: #2196f3;
+            border-color: #2196F3;
+            background-color: #2196F31a;
+            outline: none;
+        }
+
+        .paridad3:focus {
+            box-shadow: 1px 1px 5px #2196F3;
+            outline: none;
+        }
+
+    /*-------------------Paridad 4---------------------------------*/
+    .paridad4 {
+        border-width: medium;
+        border-color: #795548;
+        color: #795548;
+        font-weight: bold;
+    }
+
+        .paridad4:hover, .paridad4:focus {
+            color: #795548;
+            border-color: #795548;
+            background-color: #7955481a;
+            outline: none;
+        }
+
+        .paridad4:focus {
+            box-shadow: 1px 1px 5px #795548;
+            outline: none;
+        }
+
+    /*-----------------------------------------------------------------------*/
+    .align-items-center {
+        -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+        align-items: center !important;
+    }
+
+    .justify-content-between {
+        -webkit-box-pack: justify !important;
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+    }
+
+    #cboCodPrestacion_chosen {
+        max-width: 186px !important;
+    }
+
+</style>
+

@@ -1,0 +1,90 @@
+﻿
+<partial name="~/Views/Shared/Components/VistasParciales/Paciente/DatosPacienteUCIN.cshtml" />
+
+
+<div class="row">
+    <div class="col-xl-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card m-t-10">
+                    <div class="card">
+                        <ul id="ListaOpcionesEval" class="nav nav-tabs tabs-left" role="tablist">
+                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                <a class="nav-link active" href="#notaIngreso" role="tab" id="notaIngreso-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>NOTA INGRESO UCIN</a>
+                            </li>
+
+                            <li class="w-100 nav-item m-0">
+                                <a class="nav-link" href="#evaluaciones" role="tab" id="evaluaciones-tab" data-toggle="tab" aria-controls="hats"><i class="fa-solid fa-hand-holding-medical mr-1"></i>EVALUACIÓN UCIN</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-1" id="PanelEvaluaciones">
+            <div class="col-lg-12">
+                <form>
+                    <fieldset class="m-0 pr-1 pl-1 pb-1">
+                        <legend class="mb-0">Evaluaciones del Paciente</legend>
+                        <table id="tblEvaluaciones" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                            <thead style="color: white;">
+                                <tr style="background-color: #434343;">
+                                    <th style="width:30% !important; text-align:center;">Eval.</th>
+                                    <th style="width:70% !important;">Médico</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                        <div class="row mt-1" id="divFirma">
+                            <div class="col-xs-12 text-xs-center">
+                                <button type="button" style="width: 60px;" class="btn btn-sm btn-success" id="ImprimirEvalEmerCF"><i class="fa fa-print"></i></button>
+                                <button type="button" style="width: 60px;" class="btn btn-sm btn-info" id="FirmarEvalEmer"><i class="fa fa-pencil"></i></button>
+                                <button type="button" style="width: 60px;" class="btn btn-sm btn-warning" id="ImprimirEvalEmerSF"><i class="fa fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-lg-12">
+                <button style="width:100%;letter-spacing: 1px;" class="btn btn-success font-weight-bold layout_btn_prevent" id="btnNuevaEvaluacion"><i style="width: 20px; text-align:center;" class="fa-solid fa-file-plus"></i> NUEVA EVALUACIÓN</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-xl-9">        
+        <div id="clothing-nav1-content" class="tab-content fade in active">
+
+            @*==============================NOTA DE INGRESO=======================================*@
+            <div role="tabpanel" class="tab-pane fade show in active" id="notaIngreso" aria-labelledby="notaIngreso-tab">
+                <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/AtencionUCIN/RegistroNotaIngresoUCIN.cshtml" />
+            </div>
+
+            @*==============================REGISTRO EVALUACION=======================================*@
+            <div role="tabpanel" class="tab-pane fade" id="evaluaciones" aria-labelledby="evaluaciones-tab">
+                <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/AtencionUCIN/RegistroEvaluacionUCIN.cshtml" />                                
+            </div>
+
+        </div>                
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-lg-6">        
+        <button class="btn btn-light-blue btn-lg layout_btn_prevent float-lg-left" id="btnSeguimiento"><i class="fa fa-wheelchair-move mr-1"></i>Seguimiento</button>
+    </div>
+    <div class="col-lg-6">
+        <button id="btnCerrarAtencion" type="button" data-dismiss="modal" class="btn btn-lg btn-secondary float-lg-right mr-1 mb-1">Cerrar</button>
+        <button id="btnGuardar" class="btn btn-lg  btn-info float-lg-right mr-1 mb-1">Guardar</button>
+    </div>
+</div>
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroConDescripcion.cshtml" />
+

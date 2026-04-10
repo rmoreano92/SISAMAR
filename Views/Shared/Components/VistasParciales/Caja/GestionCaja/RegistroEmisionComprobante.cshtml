@@ -1,0 +1,420 @@
+﻿@using System.Data
+
+<div id="CabeceraCaja" @* style="font-size: smaller;" *@>
+    <div class="row mb-1">
+        <div class="col-xl-6">
+            <div class="row">
+                <div class="col-xl-8 col-xxl-7">
+                    <div class="position-relative w-100">
+                        <div class="card card-list-radio bg-green w-100">
+                            <div class="card-block p-1">
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbTipoPagoCaja" class="radioButtonStyleInput" value="1">
+                                    <span class="radioButtonStyleSpan w-100">NUEVO PAGO CON H. CLÍNICA/Nº CUENTA</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbTipoPagoCaja" class="radioButtonStyleInput" value="2">
+                                    <span class="radioButtonStyleSpan w-100">PAGAR ORDEN EXISTENTE (Serv./Farm.)</span>
+                                </label>
+                                @* <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbTipoPagoCaja" class="radioButtonStyleInput" value="3">
+                                    <span class="radioButtonStyleSpan w-100">ANULAR COMPROBANTE</span>
+                                </label> *@
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbTipoPagoCaja" class="radioButtonStyleInput" value="4">
+                                    <span class="radioButtonStyleSpan w-100">PAGAR CUENTA TOTAL (Serv./Farm.)</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbTipoPagoCaja" class="radioButtonStyleInput" value="5">
+                                    <span class="radioButtonStyleSpan w-100">PAGOS ADMINISTRATIVOS/SERVICIOS INTERMEDIOS</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-xxl-4">
+                    <div class="position-relative w-100">
+                        <div class="card card-list-radio bg-orange w-100">
+                            <div class="card-block p-1">
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbTipoServicioCaja" class="radioButtonStyleInput" value="10">
+                                    <span class="radioButtonStyleSpan w-100">Todos</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbTipoServicioCaja" class="radioButtonStyleInput" value="1">
+                                    <span class="radioButtonStyleSpan w-100">Laboratorio</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbTipoServicioCaja" class="radioButtonStyleInput" value="2">
+                                    <span class="radioButtonStyleSpan w-100">Rayos X</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbTipoServicioCaja" class="radioButtonStyleInput" value="3">
+                                    <span class="radioButtonStyleSpan w-100">Tomografía</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbTipoServicioCaja" class="radioButtonStyleInput" value="4">
+                                    <span class="radioButtonStyleSpan w-100">Eco. General</span>
+                                </label>
+                                <label class="radioButtonStyleLabel">
+                                    <input type="radio" name="rdbTipoServicioCaja" class="radioButtonStyleInput" value="5">
+                                    <span class="radioButtonStyleSpan w-100">Eco. Obstétrica</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6">
+            <div class="card bg-teal" style="border-color: #009688;">
+                <div class="card-block pb-05">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-xl-5">
+                                    <div class="form-group m-0">
+                                        <label for="cboTipoComprobanteCaja" class="font-weight-bold d-block text-truncate">Tipo Comprobante</label>
+                                        <select id="cboTipoComprobanteCaja" class="chzn-select-deselect w-100 writing" data-placeholder="Seleccione una opción">
+                                            @* <option value=""></option> *@
+                                            @foreach (DataRow tipoComprobante in ViewBag.ListaTiposComprobantes.Rows)
+                                            {
+                                                <option value="@tipoComprobante["IdTipoComprobante"]">@tipoComprobante["Descripcion"]</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-7">
+                                    <div class="form-group m-0">
+                                        <label for="txtNroSerieComprobanteCaja" class="form-label font-weight-bold d-block text-truncate">Nº Comprobante</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtNroSerieComprobanteCaja" autocomplete="off" placeholder="serie" class="form-control font-weight-bold solo-numero reading" disabled style="max-width:90px;color: #3F51B5;">
+                                            <span class="input-group-addon font-weight-bold">-</span>
+                                            <input id="txtNroDocumentoComprobanteCaja" autocomplete="off" placeholder="correlativo" class="form-control font-weight-bold solo-numero reading" disabled style="color: #3F51B5;">
+                                        </div>
+                                    </div>
+                                </div>
+                                @* <div class="col-xl-3">
+                                    <div class="form-group m-0">
+                                        <label for="txtFechaComprobanteCaja" class="form-label d-block text-truncate">Fecha</label>
+                                        <input id="txtFechaComprobanteCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                    </div>
+                                </div> *@
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-xl-5">
+                                    <div class="form-group m-0">
+                                        <label for="cboTipoFormaPagoCaja" class="d-block text-truncate">Forma de Pago</label>
+                                        <select id="cboTipoFormaPagoCaja" class="chzn-select-deselect w-100-deselect writing" data-placeholder="Seleccione una opción">
+                                            @* <option value=""></option> *@
+                                            @foreach (DataRow formaPago in ViewBag.ListaFormasPago.Rows)
+                                            {
+                                                <option value="@formaPago["IdFormaPago"]">@formaPago["Descripcion"]</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                @* <div class="col-xl-4">
+                                    <div class="form-group m-0">
+                                        <label for="txtNroCuotasCaja" class="form-label d-block text-truncate">Nº de Cuotas</label>
+                                        <input id="txtNroCuotasCaja" autocomplete="off" placeholder="" class="form-control form-control-sm solo-numero writing">
+                                    </div>                                    
+                                </div>
+                                <div class="col-xl-3">
+                                    <div style="margin-top: 25px;">
+                                        <button class="btn btn-sm btn-teal layout_btn_prevent mr-2" style="min-width: 70px;" id="btnBuscarFiltroCaja">Fechas Pago</button>
+                                    </div>
+                                </div> *@
+                            </div>
+                        </div>
+                    </div>
+                                        
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="frameFiltroBusquedaCaja" class="row mb-1">
+        <div class="col-xl-12">
+            <div class="card bg-blue" style="border-color: #9aa9fb;">
+                <div class="card-block px-1 pb-1">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-xl-3 col-xxl-3">
+                                    <div class="form-group m-0">
+                                        <label for="cboTipoNumeracionHistoriaCaja" class="d-block text-truncate">Tipo Historia</label>
+                                        <select id="cboTipoNumeracionHistoriaCaja" class="chzn-select-deselect w-100 writing" data-placeholder="Seleccione un opción">
+                                            @* <option value=""></option> *@
+                                            @foreach (DataRow tipoNumeracion in ViewBag.ListaTiposNumeracionHistoria.Rows)
+                                            {
+                                                <option value="@tipoNumeracion["IdTipoNumeracion"]">@tipoNumeracion["Descripcion"]</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-xxl-3">
+                                    <div class="form-group m-0">
+                                        <label for="txtNroHistoriaCaja" class="form-label d-block text-truncate">Nª Historia</label>
+                                        <input id="txtNroHistoriaCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-xxl-3">
+                                    <div class="form-group m-0">
+                                        <label for="txtNroDniCaja" class="form-label d-block text-truncate">DNI</label>
+                                        <input id="txtNroDniCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-xxl-3">
+                                    <div class="form-group m-0">
+                                        <label for="txtNroCuentaCaja">Nº Cuenta</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtNroCuentaCaja" autocomplete="off" placeholder="" class="solo-numero form-control writing">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-indigo" type="button" id="btnmodalBusquedaCuentasAtenciones"><i class="fa fa-search-plus"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-xl-3 col-xxl-3">
+                                    <div class="form-group m-0">
+                                        <label for="txtNroOrdenCaja" class="form-label d-block text-truncate">Nº Orden</label>
+                                        <input id="txtNroOrdenCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-xxl-3">
+                                    <div class="form-group m-0">
+                                        <label for="txtNroRecetaCaja">Nº Receta</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtNroRecetaCaja" autocomplete="off" placeholder="" class="solo-numero form-control writing">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-unique" type="button" id="btnmodalBusquedaRecetas"><i class="fa fa-search-plus"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @* <div class="col-xl-2">
+                                    <div class="form-group m-0">
+                                        <label for="cboBuscarTipoComprobanteCaja" class="d-block text-truncate">Tipo Comprobante</label>
+                                        <select id="cboBuscarTipoComprobanteCaja" class="chzn-select-deselect w-100 writing" data-placeholder="Seleccione una opción">                                            
+                                            @foreach (DataRow tipoComprobante in ViewBag.ListaTiposComprobantes.Rows)
+                                            {
+                                                <option value="@tipoComprobante["IdTipoComprobante"]">@tipoComprobante["Descripcion"]</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3">
+                                    <div class="form-group m-0">
+                                        <label for="txtBuscarNroSerieComprobanteCaja" class="form-label d-block text-truncate">Nº Comprobante</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtBuscarNroSerieComprobanteCaja" autocomplete="off" placeholder="serie" class="form-control solo-numero writing" style="max-width:90px;">
+                                            <span class="input-group-addon">-</span>
+                                            <input id="txtBuscarNroDocumentoComprobanteCaja" autocomplete="off" placeholder="correlativo" class="form-control solo-numero writing">
+                                        </div>
+                                    </div>
+                                </div> *@
+                                <div class="col-xl-3  col-xxl-3">
+                                    <div class="form-group m-0">
+                                        <label for="cboTipoPlanFinanciamientoCaja" class="d-block text-truncate">Producto/Plan</label>
+                                        <select id="cboTipoPlanFinanciamientoCaja" class="chzn-select-deselect w-100 writing" data-placeholder="Seleccione un opción">
+                                            @* <option value=""></option> *@
+                                            @foreach (DataRow tipoFinanciamiento in ViewBag.ListaTiposFinanciamientoGeneraPago.Rows)
+                                            {
+                                                <option value="@tipoFinanciamiento["IdTipoFinanciamiento"]">@tipoFinanciamiento["Descripcion"]</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3  col-xxl-3">
+                                    <div class="d-flex" style="margin-top: 25px;">
+                                        @* <button class="btn btn-sm btn-primary layout_btn_prevent mr-2" style="min-width: 70px;" id="btnBuscarFiltroCaja">Buscar</button> *@
+                                        <button class="btn btn-sm btn-secondary layout_btn_prevent" style="min-width: 70px;" id="btnLimpiarFiltroCaja">Limpiar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                                       
+                </div>
+            </div>
+        </div>                    
+        
+    </div>
+
+    <div id="frameDatosFacturacion" class="row mb-1">
+        <div class="col-xl-12">
+            <div class="card bg-light">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-xl-5">
+                            <div class="row">
+                                <div class="col-xl-3">
+                                    <div class="form-group m-0">
+                                        <label for="cboTipoDocumentoCaja" class="d-block text-truncate">Tipo Documento</label>
+                                        <select id="cboTipoDocumentoCaja" class="chzn-select-deselect w-100 writing" data-placeholder="Seleccione una opción">
+                                            <option value=""></option>
+                                            @foreach (DataRow tipoDocIdentidad in ViewBag.ListaTiposDocumentosIdentidad.Rows)
+                                            {
+                                                <option value="@tipoDocIdentidad["IdDocIdentidad"]">@tipoDocIdentidad["Descripcion"]</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="form-group m-0">
+                                        <label id="lblNroDocumentoCaja" for="txtNroDocumentoCaja" class="form-label d-block text-truncate">Nº Documento</label>
+                                        <input id="txtNroDocumentoCaja" autocomplete="off" placeholder="" class="form-control form-control-sm solo-numero writing">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label id="lblRazonSocialCaja" for="txtRazonSocialCaja" class="form-label d-block text-truncate">Apellidos y Nombres</label>
+                                        <input id="txtRazonSocialCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <div class="form-group m-0">
+                                <label for="txtCorreoCaja" class="form-label d-block text-truncate">Correo</label>
+                                <input id="txtCorreoCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                            </div>
+                        </div>
+                        <div class="col-xl-5">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtDireccionCaja" class="form-label d-block text-truncate">Dirección</label>
+                                        <input id="txtDireccionCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group m-0">
+                                        <label for="txtObservacionCaja" class="form-label d-block text-truncate">Observación</label>
+                                        <input id="txtObservacionCaja" autocomplete="off" placeholder="" class="form-control form-control-sm writing">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+</div>
+
+<div id="DetalleCaja" @* style="font-size: smaller;" *@>
+    <partial name="~/Views/Shared/Components/VistasParciales/Comun/BusquedaServiciosProductos.cshtml" />
+</div>
+
+<div id="TotalCaja" @*style="position: absolute; bottom: 1rem;"*@>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card bg-light" style="border-color:#607D8B;">
+                <div class="card-block p-1">
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <button class="btn btn-lg btn-success layout_btn_prevent btn-pagar-caja" id="btnPagarCaja">
+                                <i style="width: 20px; text-align:center;" class="fa fi fi-ss-payment-pos"></i><br />
+                                PAGAR
+                            </button>
+                        </div>
+                        <div class="col-xl-8">
+                            <div class="row mb-1">
+                                <div class="col-xl-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <span class="input-group-addon font-weight-bold">EXONE.</span>
+                                            <input id="txtTotalExoneradoComprobanteCaja" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                            <span class="input-group-addon">S/.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <span class="input-group-addon font-weight-bold">ADELA.</span>
+                                            <input id="txtTotalAdelantoComprobanteCaja" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                            <span class="input-group-addon">S/.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <span class="input-group-addon font-weight-bold">TOTAL</span>
+                                            <input id="txtTotalComprobanteCaja" type="text" autocomplete="off" class="form-control solo-decimal text-sm-right writing" disabled>
+                                            <span class="input-group-addon">S/.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <span class="input-group-addon font-weight-bold">PAGAR</span>
+                                            <input id="txtTotalPagarComprobanteCaja" type="text" autocomplete="off" class="form-control font-weight-bold solo-decimal text-sm-right writing" disabled>
+                                            <span class="input-group-addon">S/.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @* <hr /> *@
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="form-group m-0">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-addon font-weight-bold">Vuelto</span>
+                                            <input id="txtVueltoComprobanteCaja" autocomplete="off" class="form-control font-weight-bold solo-decimal text-sm-right reading" disabled>
+                                            <span class="input-group-addon font-weight-bold">S/.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="form-group m-0">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-addon font-weight-bold">Falta</span>
+                                            <input id="txtFaltaComprobanteCaja" autocomplete="off" class="form-control font-weight-bold solo-decimal text-sm-right reading" disabled>
+                                            <span class="input-group-addon font-weight-bold">S/.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="form-group m-0">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-addon font-weight-bold">Efectivo</span>
+                                            <input id="txtEfectivoComprobanteCaja" autocomplete="off" class="form-control font-weight-bold solo-decimal text-sm-right writing">
+                                            <span class="input-group-addon font-weight-bold">S/.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

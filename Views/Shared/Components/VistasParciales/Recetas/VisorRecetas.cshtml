@@ -1,0 +1,147 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var AppVistaOrdenesMedica = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:TipoVistaOrdenesMedica");
+    string VistaOrdenesMedica = AppVistaOrdenesMedica.ToString();
+}
+
+<div data-backdrop="static" style="overflow-y: scroll; background-color: #0606067a;" data-keyboard="false" class="modal fade" id="modalRecetaImprime" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-cyan">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Visor Recetas y Ordenes</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 col-lg-3 col-xl-3">
+                        <div class="card" style="background-color: aliceblue;">
+                            <div class="card-header">
+                                Recetas/Orden
+                            </div>
+                            <div class="card-block p-0">
+
+                                <ul id="ListNavTiposOrdenes" class="nav nav-tabs jerarquia2A" role="tablist">
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-F" id="farmaciaRece" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-pills mr-1"></i>Farmacia</a>
+                                    </li>
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-F" id="farmaciaAntimicRece" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa fi fi-ss-prescription-bottle-pill mr-1"></i>Farmacia Antimic.</a>
+                                    </li>
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-F" id="farmaciaIntSanitRece" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fi fi-ss-medicine mr-1"></i>Farmacia Int. Sanit.</a>
+                                    </li>
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-PC" id="patoClinicaRece" data-toggle="tab" aria-controls="hats" aria-expanded="false"><i class="fa-solid fa-microscope mr-1"></i>Pat. Clinica</a>
+                                    </li>
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-AP" id="anatoPatoRece" data-toggle="tab" aria-controls="hats"><i class="fa-solid fa-vial mr-1"></i>Anat. Patologica</a>
+                                    </li>
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-BS" id="bancoSangreRece" data-toggle="tab" aria-controls="hats"><i class="fa-solid fa-hand-holding-droplet mr-1"></i>Banco Sangre</a>
+                                    </li>
+                                    @if (VistaOrdenesMedica == "1")
+                                    {
+                                        <li class="nav-item w-100 m-0">
+                                            <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-EO" id="ecoObstRece" data-toggle="tab" aria-controls="hats"><i class="fa-solid fa-person-pregnant mr-1"></i>Eco. Obstétrica</a>
+                                        </li>
+                                    }
+                                    @if (VistaOrdenesMedica == "2")
+                                    {
+                                        <li class="nav-item w-100 m-0">
+                                            <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-EO" id="ecoObstRece" data-toggle="tab" aria-controls="hats"><i class="fa-solid fa-person-pregnant mr-1"></i>Eco. Medicina Fetal</a>
+                                        </li>
+                                        <li class="nav-item w-100 m-0">
+                                            <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-EOP" id="ecoObstProcRece" data-toggle="tab" aria-controls="hats"><i class="fa-solid fa-person-pregnant mr-1"></i>Proc. Medicina Fetal</a>
+                                        </li>
+                                    }
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-EG" id="ecoGeneRece" data-toggle="tab" aria-controls="hats"><i class="fa-solid fa-person-dots-from-line mr-1"></i>Eco. General</a>
+                                    </li>
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-RX" id="rayosRece" data-toggle="tab" aria-controls="hats"><i class="fa-solid fa-x-ray mr-1"></i>Rayos X</a>
+                                    </li>
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-T" id="tomografiaRece" data-toggle="tab" aria-controls="hats"><i class="fa-solid fa-display-medical mr-1"></i>Tomografía</a>
+                                    </li>
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-I" id="interconsultasRece" data-toggle="tab" aria-controls="hats"><i class="fa fi fi-ss-user-md mr-1"></i>Interconsultas</a>
+                                    </li>
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link btnReceta" href="#" role="tab" data-name="REC-CQx" id="solicitudCQxRece" data-toggle="tab" aria-controls="hats"><i class="fi fi-ss-scalpel-path mr-1"></i>Solicitud CQx</a>
+                                    </li>
+                                    <li class="nav-item w-100 m-0">
+                                        <a class="nav-link" href="#" role="tab" data-name="PROC" id="procedimientos" data-toggle="tab" aria-controls="hats" style="display: none"><i class="fi fi-sr-user-mask mr-1"></i>Procedimientos</a>
+                                    </li>
+
+                                </ul>
+
+                                @* <div>
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-F" id="farmaciaRece"><i class="fa-solid fa-pills mr-1"></i>Farmacia</button>
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-F" id="farmaciaAntimicRece"><i class="fa fi fi-ss-prescription-bottle-pill mr-1"></i>Farmacia Antimic.</button>
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-F" id="farmaciaIntSanitRece"><i class="fi fi-ss-medicine mr-1"></i>Farmacia Int. Sanit.</button>
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-PC" id="patoClinicaRece"><i class="fa-solid fa-microscope mr-1"></i>Pat. Clínica</button>
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-AP" id="anatoPatoRece"><i class="fa-solid fa-vial mr-1"></i>Anat. Patológica</button>
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-BS" id="bancoSangreRece"><i class="fa-solid fa-hand-holding-droplet mr-1"></i>Banco Sangre</button>
+                                @if (VistaOrdenesMedica == "1")
+                                {
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-EO" id="ecoObstRece"><i class="fa-solid fa-person-pregnant mr-1"></i>Eco. Obstétrica</button>
+                                }
+                                @if (VistaOrdenesMedica == "2")
+                                {
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-EO" id="ecoObstRece"><i class="fa-solid fa-person-pregnant mr-1"></i>Eco. Medicina Fetal</button>
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-EOP" id="ecoObstProcRece"><i class="fa-solid fa-person-pregnant mr-1"></i>Proc. Medicina Fetal</button>
+                                }
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-EG" id="ecoGeneRece"><i class="fa-solid fa-person-dots-from-line mr-1"></i>Eco. General</button>
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-RX" id="rayosRece"><i class="fa-solid fa-x-ray mr-1"></i>Rayos X</button>
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-T" id="tomografiaRece"><i class="fa-solid fa-x-ray mr-1"></i>Tomografia</button>
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-I" id="interconsultasRece"><i class="fa-solid fa-hand-holding-medical mr-1"></i>Inteconsultas</button>
+                                <button class="btn btn-outline-cyan w-100 btnReceta" data-name="REC-CQx" id="solicitudCQxRece"><i class="fa-solid fa-hand-holding-medical mr-1"></i>Solicitud CQx</button>
+                                <button class="btn btn-outline-cyan w-100" data-name="PROC" id="procedimientos" style="display: none"><i class="fa-solid fa-hand-holding-medical mr-1"></i>Procedimientos</button>
+                                </div> *@
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="px-1">
+                            <button id="btnifrmReceta" class="btn btn-info w-100 mt-1"><i class="fa fa-pencil mr-1"></i>Firmar Receta</button>
+                            <button id="btnFirmaRecetaPorLote" class="btn btn-info w-100 mt-1"><i class="fa fa-pencil mr-1"></i>Firmar Recetas Por Lote</button>
+                        </div>
+
+                    </div>
+                    <div class="col-md-8 col-lg-9 col-xl-9">
+                        <div class="card">
+                            <div class="card-header font-weight-bold">
+                                <span id="TituloVisorReceta" class="h4 text-info mr-1"></span>
+
+                            </div>
+                            <div class="card-block pt-1">
+                                @*<a href="#" id="btnifrmReceta" class="btn btn-danger mr-1"><i class="fa fa-pencil mr-1"></i>Firmar Receta</a>*@
+                                @*<button id="btnifrmReceta" class="btn btn-info mr-1"><i class="fa fa-pencil mr-1"></i>Firmar Receta</button>
+                                <button id="btnifrmRecetaFirmado" class="btn btn-success glow_button"><i class="fa fa-print mr-1"></i>Receta Firmada</button>*@
+                                @*<iframe id="ifrmReceta"
+                                title="Visor Receta"
+                                width="100%"
+                                height="550"
+                                src=""
+                                class="mt-1">
+                                </iframe>*@
+                                <embed id="ifrmReceta" type="application/pdf" width="100%" height="550px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button id="btnCerrarRecetas" target="_blank" class="btn btn-lg btn-secondary " data-bs-dismiss="modal"> Cerrar</button>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

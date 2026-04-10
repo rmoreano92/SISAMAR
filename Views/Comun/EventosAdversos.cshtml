@@ -1,0 +1,1135 @@
+﻿@using Microsoft.Extensions.Configuration;
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@* <input id="hdUsaLabs" value="@usaLabs" hidden> *@
+
+
+
+@section Css {
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-hand-holding-medical"></i>
+                Notificación de Eventos Adversos
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Notificación de Eventos Adversos</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+
+<div class="row m-0">
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+            <li class="nav-item m-0" role="presentation">
+                <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:block;">Registro Atención</a>
+            </li>
+        </ul>
+        <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContent">
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block pb-1">
+                                <div class="row">
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroFormatoBusq" class="form-control-label">N° de Formato</label>
+                                            <div class="input-group input-group-sm m-0">
+                                                <input type="text" autocomplete="off" class="form-control" id="txtNroFormatoBusq">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroHistoriaBusq" class="form-control-label">N° de Historia</label>
+                                            <div class="input-group input-group-sm m-0">
+                                                <input type="text" autocomplete="off" class="form-control" id="txtNroHistoriaBusq">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtNroDocumentoBusq" class="form-control-label">N° de Documento</label>
+                                            <div class="input-group input-group-sm m-0">
+                                                <input type="text" autocomplete="off" class="form-control" id="txtNroDocumentoBusq">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtApellidoPaternoBusq" class="form-control-label">Apellido Paterno</label>
+                                            <div class="input-group input-group-sm m-0">
+                                                <input type="text" autocomplete="off" class="form-control" id="txtApellidoPaternoBusq">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtApellidoMaternoBusq" class="form-control-label">Apellido Materno</label>
+                                            <div class="input-group input-group-sm m-0">
+                                                <input type="text" autocomplete="off" class="form-control" id="txtApellidoMaternoBusq">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2" style="max-width: 180px;">
+                                        <div class="form-group m-0">
+                                            <label for="txtFechaRegistroBusq" class="form-control-label">Fecha</label>
+                                            <div class="input-group input-group-sm m-0">
+                                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaRegistroBusq">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2 d-flex align-items-end" style="height: 55px;">
+                                        <div>
+                                            <button class="btn btn-primary btn-sm layout_btn_prevent" style="padding-left: 2rem !important; padding-right: 2rem !important;" id="btnBuscarAtenciones">Buscar</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 pt-2 pb-0">
+                        @{
+                            if (@ViewBag.Agregar)
+                            {
+                                <button class="btn btn-primary layout_btn_prevent" id="btnAgregar">Agregar</button>
+                            }
+                            if (@ViewBag.Modificar)
+                            {
+                                <button class="btn btn-info layout_btn_prevent" id="btnModificarAtenciones">Modificar</button>
+                            }
+                            if (@ViewBag.Eliminar)
+                            {
+                                <button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtenciones">Eliminar</button>
+                            }
+                            if (@ViewBag.Consultar)
+                            {
+                                <button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtenciones">Consultar</button>
+                            }
+                            if (@ViewBag.Modificar)
+                            {
+                                // <button class="btn btn-teal layout_btn_prevent" id="btnLlamarPaciente"><i class="fa-solid fa-volume-high"></i></button>
+                            }
+                        }
+                    </div>
+
+                    @* <div class="col-md-6 d-flex align-items-end justify-content-end" style="height: 50px;">
+                        <label for="" class="titulo mr-1" style=" font-size: medium; color: #0095ff !important;">Parte Diario: </label>
+                        <div>
+                            <button class="btn btn-info layout_btn_prevent" id="btnGeneraParte" title="Genera Parte" data-toggle="tooltip" style="margin: 2px;"><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-success layout_btn_prevent" id="btnDescargaParte" title="Imprime Parte Firmado" data-toggle="tooltip" style="margin: 2px;"><i class="fa fa-print"></i></button>
+                            <button class="btn btn-warning layout_btn_prevent" id="btnDescargaParteSF" title="Visualiza Parte" data-toggle="tooltip" style="margin: 2px;"><i class="fa fa-eye"></i></button>
+                        </div>
+                    </div>
+ *@
+                    <div class="col-lg-12 pb-2">
+                        <table id="tblEventosAdversos" width="100%" class="table table-sm table-content-md table-bordered">
+                            <thead style="color: white;background: #434343;">
+                                <tr>
+                                    <th style="width:10%;">N° Formato</th>
+                                    <th style="width:10%">N° Cuenta</th>
+                                    <th style="width:10%">N° Historia</th>
+                                    <th style="width:10%">N° Documento</th>
+                                    <th style="width:30%">Paciente</th>
+                                    <th style="width:10%">Edad</th>
+                                    <th style="width:5%">H. I.</th>
+                                    <th style="width:10%">Fecha Registro</th>
+                                    <th style="width:5%; text-align:center">INFORME</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="col-md-12 d-flex align-items-end justify-content-end" style="height: 50px;">
+                        <div>
+                            <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaAtencion"><i class="fa-light fa-signature mr-1"></i>Firmar Atencion</button>
+                            <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaLote"><i class="fa-light fa-signature mr-1"></i>Firmar Lote</button>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12">
+
+                        <input type="hidden" value="@ViewBag.idEmpleado" id="idEmpleadotxt" /> @*JDELGADO001*@
+                        <input type="hidden" value="@ViewBag.idMedico" id="idMedicotxt" />
+                    </div>
+                </div>
+            </div>
+            <!--=============================================Panel Registro==================================================================-->
+            <div class="tab-pane fade" id="TabPanelRegistro" role="tabpanel" aria-labelledby="TabRegistro">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul id="idtbAtencion" class="nav nav-tabs jerarquiaA" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active bg-whitesmoke border-bottom" href="#Atencion" role="tab" id="atencion-tab" data-toggle="tab" aria-controls="Perinatal">Atención</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-whitesmoke border-bottom" href="#diagnosticos" role="tab" id="diagnosticos-tab" data-toggle="tab" aria-controls="diagnosticos">Diagnósticos</a>
+                            </li>
+                        </ul>
+
+                        <div id="clothing-nav-contentAtencion" class="tab-content p-1 border-right border-left border-bottom">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Atencion" aria-labelledby="Atencion-tab">
+                                <div class="row">
+                                    <div class="col-md-12 mb-1">
+                                        <div class="card  m-t-5 bg-blue">
+                                            <div class="card-header bg-white">Datos del Paciente</div>
+                                            <div class="card-block m-t-5">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtDatoHistoria">N° Historia</label>
+                                                                    <input type="text" class="form-control form-control-sm" id="txtDatoHistoria" placeholder="" autocomplete="off">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtDatoCuenta">N° Cuenta</label>
+                                                                    <input type="text" class="form-control form-control-sm" id="txtDatoCuenta" placeholder="" autocomplete="off" disabled="">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtDatoPaciente">Nombres</label>
+                                                                    <input type="text" class="form-control form-control-sm" id="txtDatoPaciente" placeholder="" autocomplete="off" disabled="">
+                                                                </div>
+                                                            </div>
+                                                           
+                                                            <div class="col-md-2">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtDatoEdad">Edad</label>
+                                                                    <input type="text" class="form-control form-control-sm" id="txtDatoEdad" placeholder="" autocomplete="off" disabled="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    @* <div class="col-md-4">
+                                                        <div class="d-flex">
+                                                            <div class="mr-1" style="max-width: 170px;">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtHoraCia" class="font-weight-bold text-info">Hora de Cita</label>
+                                                                    <input type="text" class="form-control form-control-sm" id="txtHoraCia" placeholder="" autocomplete="off" style="max-width:80px;" disabled="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="ml-1" style="max-width: 170px;">
+                                                                <div class="form-group m-0 campo">
+                                                                    <label for="HoraInicioAtencion" class="font-weight-bold text-info">Hora de Inicio de Atención</label>
+                                                                    <div class="d-flex">
+                                                                        <div style="max-width:80px;">
+                                                                            <input type="text" name="HoraInicioAtencion" id="HoraInicioAtencion" onblur="valida_hora(value)" class="form-control form-control-sm" placeholder="" autocomplete="off">
+                                                                        </div>
+                                                                        <div class="ml-1 mr-1">
+                                                                            <label class="m-0 text-info">24 Horas</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> *@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-1">
+
+                                        <div class="row">
+
+                                            <div class="col-lg-12">
+                                                <div class="card bg-yellow">
+                                                    <div class="card-header bg-white">EVENTO ADVERSO: Lesión daño, incidente o resultado inesperado e indeseado en la salud del paciente directamente asociado con la atención de salud (Plan Nacional de Seguridad de paciente RM N ° 676-2006/MINSA)</div>
+                                                    <div class="card-block p-1" style="background-color: #f0f0f0;">
+                                                        <div class="row">
+                                                            <div class="col-lg-2" style="max-width: 180px;">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtFechaNotificacion" class="form-control-label">Fecha de Notificación</label>
+                                                                    <div class="input-group input-group-sm m-0">
+                                                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaNotificacion">
+                                                                        <span class="input-group-addon">
+                                                                            <i class="fa fa-calendar "></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-2" style="max-width: 180px;">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtHoraNotificacion" class="form-control-label">Hora</label>
+                                                                    <div class="input-group input-group-sm m-0">
+                                                                        <input type="text" autocomplete="off" class="form-control" id="txtHoraNotificacion">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label for="cboServicioNotifica" class="form-control-label">Servicio Notifica</label>
+                                                                    <div class="input-group">
+                                                                        <select class="chzn-select" id="cboServicioNotifica" data-placeholder="Seleccione una opción"></select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-lg-2" style="max-width: 180px;">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtLugarOcurrencia" class="form-control-label">Lugar de ocurrencia</label>
+                                                                    <div class="input-group input-group-sm m-0">
+                                                                        <input type="text" autocomplete="off" class="form-control" id="txtLugarOcurrencia">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-2" style="max-width: 180px;">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtHoraEvento" class="form-control-label">Hora del evento</label>
+                                                                    <div class="input-group input-group-sm m-0">
+                                                                        <input type="text" autocomplete="off" class="form-control" id="txtHoraEvento">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-2" style="max-width: 180px;">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtFechaIngreso" class="form-control-label">Fecha de ingreso</label>
+                                                                    <div class="input-group input-group-sm m-0">
+                                                                        <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaIngreso">
+                                                                        <span class="input-group-addon">
+                                                                            <i class="fa fa-calendar "></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-2" style="max-width: 180px;">
+                                                                <div class="form-group m-0">
+                                                                    <label for="txtHoraIngreso" class="form-control-label">Hora ingreso</label>
+                                                                    <div class="input-group input-group-sm m-0">
+                                                                        <input type="text" autocomplete="off" class="form-control" id="txtHoraIngreso">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-1">
+
+                                                            <div class="col-lg-9">
+                                                                <div class="row">
+                                                                    <div class="col-lg-8">
+                                                                        <div class="card bg-green">
+                                                                            <div class="card-header bg-white">MORTALIDAD</div>
+                                                                            <div class="card-block p-1">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMuerteMaterna">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Muerte Materna</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-5">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkObitoFetalIntrahospitalaria">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Óbito fetal intrahospitalaria</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-3">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkMuerteNeonatal">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Muerte Neonatal</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-4">
+                                                                        <div class="card bg-green">
+                                                                            <div class="card-header bg-white">RELACIONADO A EQUIPAMIENTO</div>
+                                                                            <div class="card-block p-1">
+
+                                                                                <div class="check__toggle mt-04 float-lg-left">
+                                                                                    <label class="toggle">
+                                                                                        <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkEventoEquipoBiomedico">
+                                                                                        <span class="toggle__label ml-1">
+                                                                                            <span class="toggle__text text-uppercase font-weight-bold">Evento relacionado con equipo biomédico</span>
+                                                                                        </span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mt-1">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="card bg-green">
+                                                                            <div class="card-header bg-white">INFECCIONES INTRAHOSPITALARIAS</div>
+                                                                            <div class="card-block p-1">
+
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkSepsisPostOperatoria">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Sepsis post operatoria</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-5">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkInfeccionHeridaOperatoria">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Infecciones de herida operatoria</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-3">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkEndometria">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Endometria</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkSepsisNeonatal">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Sepsis neonatal</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkFlebitis">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Flebitis</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mt-1">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="card bg-green">
+                                                                            <div class="card-header bg-white">TRAUMA OBSTETRICO NEONATAL</div>
+                                                                            <div class="card-block p-1">
+
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkCefaloHematoma">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Céfalo hematoma</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkLesionPlexoBraquial">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Lesión de plexo braquial</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkFracturaClavicula">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Fractura de clavícula</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkAsfixiaNeonatal">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Asfixia neontal</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkSindromeAspiracionLiquido">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Sindrome de aspiración de liquido</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mt-1">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="card bg-green">
+                                                                            <div class="card-header bg-white">RELACIONADO A PROCEDIMIENTOS</div>
+                                                                            <div class="card-block p-1">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkComplicacionesAnestesicas">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Complicaciones anestésicas</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkCuerpoExtranioPostCirugia">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Cuerpo extraño post cirugía</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkLesionIntraoperatoriaRecienNacido">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Lesion intraoperatoria de recien nacido</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkComplicacionesIntraPostOperatorio">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Complicaciones en el intra-post operatorio (lesión órgano adyacente)</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkPerforacionUterinaPostLegrado">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Perforación uterina post legrado uterino</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkEventoAdversoRelacionadoIntubacion">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Evento adverso relacionado a intubación</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkCaidaPaciente">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Caida de paciente</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkRelacionTransfusional">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Relación transfusional</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkErrorIdentificacionSexoRecienNacido">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Error de identificación y/o sexo de recien nacido</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mt-1">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="card bg-green">
+                                                                            <div class="card-header bg-white">RELACIONADO A MEDICAMENTOS</div>
+                                                                            <div class="card-block p-1">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkErrorMedicacion">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Error en la medicación (Prescripción, dispensación y administración)</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkReaccionAdversa">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Reacción adversa por</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 mb-1">
+                                                                        <div class="card bg-pink">
+                                                                            <div class="card-header bg-white">TRAUMA OBSTÉTRICO MATERNO</div>
+                                                                            <div class="card-block p-1">
+
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkDesgarroVaginal">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Desgarro vaginal</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkHematomas">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Hematomas</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkRupturaUterina">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Ruptura uterina</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkDesgarroCervical">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Desgarro cervical</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkAnemiaAgudaPostProcedimiento">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Anemia aguda post procedimiento</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkRetencionGasaVaginalPostParto">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Retencion de gasa vaginal post parto</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkTraumaObstetricoMaternoOtros">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Otros</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="form-group">
+                                                                                            <input class="form-control form-control-sm" id="txtTraumaObstetricoMaternoOtros" />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-12">
+                                                                        <div class="card bg-pink">
+                                                                            <div class="card-header bg-white">OTROS EVENTOS ADVERSOS</div>
+                                                                            <div class="card-block p-1">
+
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkLaceracionEsparadrapo">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Laceración por esparadrapo</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkQuemaduraTermicaElectrica">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Quemadura química termica y eléctrica</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkNeumoniaVentiladorMecanico">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Neumonía asociada a ventilador mecánico</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkDehiscenciaEspisorrafia">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Dehiscencia de episiorrafia</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkObitoFetalExtrahospitalario">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Óbito fetal extrahospitalario</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkInfreccionTractoUrinarioPostCateter">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Infección de tracto urinario post catéter</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkConjuntivitisRecienNacido">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Conjuntivitis en recién nacido</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkOnfalitis">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Onfalitis</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkPiodermitisNeonatal">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Piodermitis neonatal</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkOtrasFracturasRecienNacido">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Otras fracturas de recién nacido</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="check__toggle mt-04 float-lg-left">
+                                                                                            <label class="toggle">
+                                                                                                <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkOtrosEventosAdversos">
+                                                                                                <span class="toggle__label ml-1">
+                                                                                                    <span class="toggle__text text-uppercase font-weight-bold">Otros</span>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </div>
+
+                                                                                    </div>
+
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="form-group">
+                                                                                            <input class="form-control form-control-sm" id="txtOtrosEventosAdversos" />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <div class="row">
+                                                            <div class="col-lg-12 mt-1 mb-1">
+                                                                <div class="card bg-yellow">
+                                                                    <div class="card-block p-1">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="txtDescripcionEventoAdverso" class="form-control-label font-weight-bold">DESCRIPCIÓN DEL EVENTO ADVERSO NOTIFICADO</label>
+                                                                                    <textarea class="form-control form-control-sm" id="txtDescripcionEventoAdverso" rows="3"></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6">
+                                                                                <label for="rdbEventoAdversoPrevenibleSi" class="form-control-label font-weight-bold">¿El evento adverso era para usted prevenible?</label>
+                                                                                <div class="switch-field">
+                                                                                    <input type="radio" id="rdbEventoAdversoPrevenibleSi" name="rdbEventoAdversoPrevenible" value="1" class="bloquear-campos">
+                                                                                    <label for="rdbEventoAdversoPrevenibleSi" class="pl-2 pr-2">Si</label>
+                                                                                    <input type="radio" id="rdbEventoAdversoPrevenibleNo" name="rdbEventoAdversoPrevenible" value="2" class="bloquear-campos">
+                                                                                    <label for="rdbEventoAdversoPrevenibleNo" class="pl-2 pr-2 mr-auto">No</label>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-lg-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="txtComoPrevenirEventoAdverso" class="form-control-label font-weight-bold">¿Como?</label>
+                                                                                    <textarea class="form-control form-control-sm" id="txtComoPrevenirEventoAdverso"></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="diagnosticos" aria-labelledby="diagnosticos-tab">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/DiagnosticosLab.cshtml" />
+                                        @*<partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/DiagnosticosLab.cshtml" />*@
+                                        @*se cambia por lab, nueva actualizacion para oncologia jdelgado*@
+                                    </div>
+                                </div>
+
+                               @*  <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card m-t-20">
+                                            <div class="card-block">
+                                                <div class="row campo">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <b><label for="txtPlanTrabajo" class="form-control-label text-info titulo ">Plan de Trabajo</label></b>
+                                                            <div class="input-group">
+                                                                <textarea class="form-control" id="txtPlanTrabajo" rows="3"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <b><label for="txtTratamiento" class="form-control-label text-info titulo ">Tratamiento</label></b>
+                                                            <div class="input-group">
+                                                                <textarea class="form-control" id="txtTratamiento" rows="3"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12" id="divContRecomendaciones">
+                                                        <div class="form-group">
+                                                            <b><label for="txtRecomendacionesAtencion" class="form-control-label text-info titulo ">Recomendaciones</label></b>
+                                                            <div class="input-group">
+                                                                <textarea class="form-control" id="txtRecomendacionesAtencion" rows="3"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> *@
+                            </div>
+
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-lg-8">
+                                <button id="btnImprimeRecetas" target="_blank" class="btn btn-lg  btn-cyan float-lg-left mr-1 mb-1"><i class="fa fa-note-medical mr-1"></i>Rec. Médicas</button>
+                                <button id="btnImprimeSeguimiento" target="_blank" class="btn btn-lg  btn-light-blue  float-lg-left mr-1 mb-1"><i class="fa fa-wheelchair-move mr-1"></i>Seguimiento</button>
+                                <button id="btnImprimeSeguimientoCPN" target="_blank" style="display:none" class="btn btn-lg  btn-yellow  float-lg-left mr-1 mb-1"><i class="fa fa-baby mr-1"></i>Seguimiento CPN</button>
+                                <button id="btnCboRefresca" data-toggle="tooltip" data-placement="top" title="Actializa cbox" class="btn btn-lg  btn-success  float-lg-left mb-1"><i class="fa fa-refresh"></i></button>
+                            </div>
+                            <div class="col-lg-4">
+                                @*<button id="btnImprimeAtencion" target="_blank" class="btn  btn-success float-lg-left"><i class="fa fa-print"></i>&nbsp; Imp. Atencion</button>*@
+                                <button id="btnCerrarAtencion" type="button" data-dismiss="modal" class="btn btn-lg btn-secondary float-lg-right mr-1 mb-1">Cerrar</button>
+                                <button id="btnguardar" class="btn btn-lg  btn-info float-lg-right mr-1 mb-1">Guardar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Emergencia/EvaluacionNeonatal.cshtml")*@
+        </div>
+    </div>
+</div>
+
+
+
+
+<input hidden="hidden" id="codeParte" name="rutaParte" type="text">
+<input hidden="hidden" id="statusParte" name="rutaParte" type="text">
+<input hidden="hidden" id="hdIdCuentaAtencion" name="idCuentaAtencion" type="text" class="form-control">
+<input hidden="hidden" id="idPaciente" name="idPaciente" type="text" class="form-control">
+<input hidden="hidden" id="idAtencion" name="idAtencion" type="text" class="form-control">
+<input hidden="hidden" id="idDestinoAtencion" name="idAtencion" type="text" class="form-control">
+<input hidden="hidden" id="idEnEstablecimiento" name="idEnEstablecimiento" type="text" class="form-control">
+<input hidden="hidden" id="idEnServicio" name="idEnServicio" type="text" class="form-control">
+
+<input hidden="hidden" id="hdIdTipoServicio" name="hdIdTipoServicio" type="text" class="form-control">
+
+@* =======================BUSQUEDA DE DIAGNOSTICOS (KHOYOSI)================================== *@
+<partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticos.cshtml" />
+@* ================================================================================= *@
+
+@section Scripts
+{
+
+    <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+    @*<script src="https://momentjs.com/downloads/moment-with-locales.js"></script>*@
+    <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+    <script type="text/javascript" src="~/AdmiRE/js/html2canvas.min.js"></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/EventosAdversos.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/BusquedaDiagnosticos.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/Diagnosticos.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+}
+
+@* ======================VISOR SEGUIMIENTO PACIENTE==================================================== *@
+@* <partial name="~/Views/Shared/Components/VistasParciales/Seguimiento/VisorSeguimientoPaciente.cshtml" /> *@
+@* ===================================================================================================== *@
+
+@* <partial name="~/Views/Shared/Components/VistasParciales/Recetas/VisorRecetas.cshtml" />
+
+<partial name="~/Views/Shared/Components/VistasParciales/Seguimiento/SeguimientoPacienteCPN.cshtml" />
+
+<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroLab.cshtml" /> *@
+@*<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroLab.cshtml" />*@
+@*se cambia por lab, nueva actualizacion para oncologia jdelgado*@
+@*<partial name="~/Views/Shared/Components/VistasParciales/InterconsultaRegistro.cshtml" />*@
+
+@* =======================REFERENCIAS Y CONTRAREFERENCIAS=========================================== *@
+@* <partial name="~/Views/Shared/Components/VistasParciales/ContraReferenciaRegistro.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/ReferenciaRegistro.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml" /> *@
+@* ============================================================================================ *@
+
+@* =======================BUSQUEDA DE DIAGNOSTICOS (KHOYOSI)================================== *@
+@* <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticos.cshtml" /> *@
+@* ================================================================================= *@
+
+@* ======================RECETAS Y ORDENES==================================================== *@
+@* <partial name="~/Views/Shared/Components/VistasParciales/Recetas/Paquetes.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticosSolicitudCQx.cshtml" /> *@
+@* ===================================================================================================== *@
+

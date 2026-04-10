@@ -1,0 +1,598 @@
+﻿@* <div class="modal fade" id="modalReprogramacionMedica" style="background-color: rgba(0, 0, 0, 0.46);" data-backdrop="static"> *@
+<div class="modal fade" id="modalSistemaCitasWeb" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="false" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog modal-xxl modal-sistema-citas-web">
+        <div class="modal-content">
+            <div class="modal-header bg-brown">
+                <h5 class="text-white m-0">Bloqueo / Desbloqueo Sistema Citas Web</h5>
+            </div>
+
+            <input type="hidden" id="hdIdUsuarioSistemaCitasWeb" value="@ViewBag.idUsuario"> 
+
+            <div class="modal-body">
+
+                <div class="form-group m-0">
+                    <label for="txtMesAnioSistemaCitasWeb">Mes / Año</label>
+                    <div class="input-group input-group-sm" id="grpMesAnioSistemaCitasWeb" style="cursor:pointer;">
+                        <input type="month"
+                               id="txtMesAnioSistemaCitasWeb"
+                               class="form-control"
+                               style="height:24.31px;"
+                               value="@DateTime.Now.ToString("yyyy-MM")">
+                        <span class="input-group-addon" id="btnMesAnioSistemaCitasWeb">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group mb-0">
+                            <label for="cboDepartamentoHospital">Departamento:</label>
+                            <select class="chzn-select form-control" id="cboDepartamentoHospital" style="width:100%;"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group mb-0">
+                            <label for="cboEspecialidad">Especialidad:</label>
+                            <select class="chzn-select form-control" id="cboEspecialidad" style="width:100%;"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group mb-0">
+                            <label for="cboMedico">Médico:</label>
+                            <select class="chzn-select form-control" id="cboMedico" style="width:100%;"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-3">
+                        <button class="btn btn-brown mt-2 w-100" id="btnBuscarSistemaCitasWeb">BUSCAR</button>
+                    </div>
+                    <div class="col-xl-3">
+                        <button class="btn btn-secondary mt-2 w-100" id="btnLimpiarBusqueda">LIMPIAR</button>
+                    </div>
+                </div>
+
+                <div class="row mt-2" id="rowTablaSistemaCitasWeb" style="display:none;">
+                    <div class="col-12">
+                        <div class="tabla-citas-web-wrapper" style="max-height: 45vh;">
+                            <table class="table table-bordered table-sm mb-0" id="tblSistemaCitasWeb">
+                                <thead></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                @*
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group m-0">
+                            <label for="cboTiposServicioEgresos">Tipo Especialidad</label>
+                            <select class="chzn-select w-100" id="cboTiposServicioEgresos"
+                                    data-placeholder="Seleccione una opción">
+                                <option value="3">Hospitalización</option>
+                                <option value="2">Emergencia</option>
+                                <option value="1">Consultorio Externo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="cboDepartamentoEgresos">Departamento Egreso</label>
+                            <select class="chzn-select w-100" id="cboDepartamentoEgresos"
+                                    data-placeholder="Seleccione una opción">
+                                @foreach (var item in ViewBag.LstDepartamentos)
+                                {
+                                    <option value="@item.IdDepartamento">@item.Nombre.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="cboEspecialidadEgresos">Especialidad Egreso</label>
+                            <select class="chzn-select w-100" id="cboEspecialidadEgresos"
+                                    data-placeholder="Seleccione una opción">
+                                @foreach (var item in ViewBag.LstEspecialidades)
+                                {
+                                    <option value="@item.IdEspecialidad">@item.Nombre.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group m-0">
+                            <label for="cboServicioEgresos">Servicio Egreso</label>
+                            <select class="chzn-select w-100" id="cboServicioEgresos"
+                                    data-placeholder="Seleccione una opción">
+                                @foreach (var item in ViewBag.LstServicios)
+                                {
+                                    <option value="@item.IdServicio">@item.Nombre.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group m-0">
+                            <label for="cboFuenteFinanciamientoEgresos">Fuente Financiamiento</label>
+                            <select class="chzn-select w-100" id="cboFuenteFinanciamientoEgresos"
+                                    data-placeholder="Seleccione una opción">
+                                @foreach (var item in ViewBag.LstFuentesFinanciamiento)
+                                {
+                                    <option value="@item.IdFuenteFinanciamiento">@item.Descripcion.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="form-group m-0">
+                            <label for="txtFechaInicioEgresos">Fecha Inicio</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3"
+                                       placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioEgresos">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar "></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group m-0">
+                            <label for="txtFechaFinEgresos">Fecha Fin</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control  form_val_popup_dp3"
+                                       placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinEgresos">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar "></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" hidden>
+                    <div class="col-lg-12">
+                        <div class="check__toggle mt-1">
+                            <label class="toggle">
+                                <input class="toggle__input campo bloquear camposRegistro" type="checkbox"
+                                       id="chkConsiderarCPT">
+                                <span class="toggle__label mr-2">
+                                    <span class="toggle__text">Considerar CPT</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="check__toggle mt-1">
+                            <label class="toggle">
+                                <input class="toggle__input campo bloquear camposRegistro" type="checkbox"
+                                       id="chkConsiderarDx">
+                                <span class="toggle__label mr-2">
+                                    <span class="toggle__text">Considerar Dx</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="check__toggle mt-1">
+                            <label class="toggle">
+                                <input class="toggle__input campo bloquear camposRegistro" type="checkbox"
+                                       id="chkEstancia24h">
+                                <span class="toggle__label mr-2">
+                                    <span class="toggle__text">Sólo los que pasaron de 24 hr de ESTANCIA</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="radioButtonStyleLabel">
+                            <input type="radio" name="rdbTipoReporteEgresos" class="radioButtonStyleInput"
+                                   id="rdbTipoReporteEgresosReporteGeneral" value="1" checked>
+                            <span class="radioButtonStyleSpan w-100">Reporte General</span>
+                        </label>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label class="radioButtonStyleLabel">
+                            <input type="radio" name="rdbTipoReporteEgresos" class="radioButtonStyleInput"
+                                   id="rdbTipoReporteEgresosCeProcedimientos" value="2">
+                            <span class="radioButtonStyleSpan w-100">CE Procedimientos</span>
+                        </label>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label class="radioButtonStyleLabel">
+                            <input type="radio" name="rdbTipoReporteEgresos" class="radioButtonStyleInput"
+                                   id="rdbTipoReporteEgresosCeTerapia" value="3">
+                            <span class="radioButtonStyleSpan w-100">CE Terapia</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-3">
+                        <button class="btn btn-brown mt-2" id="btnGenerarReporteEgresosSistemaCitaWeb">GENERAR REPORTE</button>
+                    </div>
+                </div>
+                *@
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnCerrarSistemaCitasWeb" class="btn btn-secondary">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DETALLE -->
+<div class="modal fade" id="modalDetalleSistemaCitasWeb" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xxl modal-detalle-sistema-citas" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-brown">
+                <h5 class="text-white m-0">Programación médica de un Servicio en un día</h5>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="hdDetalleFechaYmdSistemaCitasWeb">
+                <input type="hidden" id="hdDetalleIdServicioSistemaCitasWeb">
+
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="tabla-detalle-citas-web-wrapper">
+                            <table class="table table-bordered table-sm" id="tblDetalleSistemaCitasWeb">
+                                <thead>
+                                    <tr>
+                                        <th style="width:90px;">CitasWeb</th>
+                                        <th style="width:90px;">HoraInicio</th>
+                                        <th style="width:90px;">HoraFinal</th>
+                                        <th>Médico</th>
+                                        <th>Paciente</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
+                        <div class="leyenda-detalle-sistema-citas" id="leyendaDetalleSistemaCitasWeb">
+                            <span class="muestra-color"></span>
+                            <span id="txtLeyendaFueraProgramacionSistemaCitasWeb">Gris = Cupos fuera de programación</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 panel-detalle-citas-web">
+                        <label class="detalle-label">Servicio</label>
+                        <div class="detalle-input" id="txtDetalleServicioSistemaCitasWeb"></div>
+
+                        <label class="detalle-label">Fecha programada</label>
+                        <div class="detalle-input" id="txtDetalleFechaSistemaCitasWeb"></div>
+
+                        <label class="detalle-label">Total cupos programados</label>
+                        <div class="detalle-input" id="txtDetalleTotalProgramadosSistemaCitasWeb">0</div>
+
+                        <label class="detalle-label">Total cupos separados para Citas Web</label>
+                        <div class="detalle-input" id="txtDetalleTotalCitasWebSistemaCitasWeb">0</div>
+
+                        @*
+                        <label class="detalle-label">Total cupos separados para RefCon</label>
+                        <div class="detalle-input" id="txtDetalleTotalRefConSistemaCitasWeb">0</div>
+
+                        <button type="button" class="btn btn-secondary btn-totaliza" id="btnTotalizaCuposWebSistemaCitasWeb">
+                            Totaliza Cupos Web
+                        </button>
+                        *@
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-brown" id="btnGuardarDetalleSistemaCitasWeb">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* =========================
+       TABLA PRINCIPAL
+    ========================= */
+    .tabla-citas-web-wrapper {
+        max-height: 350px;
+        overflow: auto;
+        border: 1px solid #ced4da;
+        margin-top: 8px;
+        background: #fff;
+    }
+
+    #tblSistemaCitasWeb {
+        width: max-content;
+        min-width: 100%;
+        white-space: nowrap;
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+
+    #tblSistemaCitasWeb th,
+    #tblSistemaCitasWeb td {
+        padding: .20rem .35rem;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid #b7b7b7;
+        height: 24px;
+    }
+
+    #tblSistemaCitasWeb thead th {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        background: #9fb6df;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    #tblSistemaCitasWeb .col-servicio {
+        min-width: 270px;
+        text-align: left;
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        background: #f8f9fa;
+        font-weight: 600;
+    }
+
+    #tblSistemaCitasWeb thead .col-servicio {
+        background: #7d96c7;
+        color: #fff;
+        z-index: 4;
+    }
+
+    #tblSistemaCitasWeb .col-dia {
+        min-width: 34px;
+        width: 34px;
+    }
+
+    #tblSistemaCitasWeb td.celda-dia {
+        cursor: pointer;
+    }
+
+    #tblSistemaCitasWeb td.celda-activa {
+        font-weight: bold;
+        color: #1f3c88;
+    }
+
+    #tblSistemaCitasWeb .sin-registros {
+        text-align: center !important;
+        color: #777;
+        background: #fff;
+    }
+
+    /* =========================
+       MODAL PRINCIPAL
+    ========================= */
+    .modal-sistema-citas-web {
+        max-height: 100% !important;
+        overflow-y: auto;
+    }
+
+    /* =========================
+       INPUT MES / AÑO
+    ========================= */
+    #txtMesAnioSistemaCitasWeb {
+        position: relative;
+        padding-right: 70px;
+    }
+
+    #txtMesAnioSistemaCitasWeb::-webkit-calendar-picker-indicator {
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: calc(100% - 100px);
+        height: 100%;
+        cursor: pointer;
+    }
+
+    /* =========================
+       MODAL DETALLE
+    ========================= */
+    .modal-detalle-sistema-citas .modal-body {
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .tabla-detalle-citas-web-wrapper {
+        max-height: 65vh;
+        overflow: auto;
+        border: 1px solid #ced4da;
+        background: #fff;
+    }
+
+    #tblDetalleSistemaCitasWeb {
+        width: 100%;
+        font-size: 12px;
+        margin-bottom: 0;
+        white-space: nowrap;
+    }
+
+    #tblDetalleSistemaCitasWeb th,
+    #tblDetalleSistemaCitasWeb td {
+        border: 1px solid #b7b7b7;
+        padding: .20rem .35rem;
+        vertical-align: middle;
+    }
+
+    #tblDetalleSistemaCitasWeb thead th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: #9fb6df;
+        color: #fff;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .panel-detalle-citas-web .detalle-label {
+        font-weight: 600;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    .panel-detalle-citas-web .detalle-input {
+        width: 100%;
+        background: #eef3fb;
+        border: 1px solid #b7c7e4;
+        min-height: 31px;
+        padding: 4px 6px;
+        margin-bottom: 10px;
+    }
+
+    .panel-detalle-citas-web .btn-totaliza {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .chk-citas-web {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }
+
+    .detalle-sin-registros {
+        text-align: center;
+        color: #777;
+    }
+
+    .fila-fuera-programacion td {
+        background: #e2e2e2 !important;
+    }
+
+    .leyenda-detalle-sistema-citas {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 8px;
+        font-size: 12px;
+        color: #555;
+    }
+
+    .leyenda-detalle-sistema-citas .muestra-color {
+        width: 16px;
+        height: 16px;
+        border: 1px solid #999;
+        background: #e2e2e2;
+        display: inline-block;
+        flex: 0 0 16px;
+    }
+
+    /* =========================
+       Z-INDEX MODAL DETALLE
+    ========================= */
+    #modalDetalleSistemaCitasWeb {
+        z-index: 1065 !important;
+    }
+
+    .modal-backdrop.modal-backdrop-detalle-sistema-citas {
+        z-index: 1060 !important;
+    }
+
+    .swal2-container {
+        z-index: 20000 !important;
+    }
+
+    .swal2-popup {
+        z-index: 20001 !important;
+    }
+
+    /* =========================
+       td-paciente
+    ========================= */
+    #tblDetalleSistemaCitasWeb .td-paciente {
+        vertical-align: middle;
+    }
+
+    #tblDetalleSistemaCitasWeb .paciente-box {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        line-height: 1.2;
+    }
+
+    #tblDetalleSistemaCitasWeb .paciente-nombre {
+        font-size: 12px;
+        font-weight: 600;
+        color: #2f3a4a;
+        word-break: break-word;
+    }
+
+    #tblDetalleSistemaCitasWeb .paciente-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    #tblDetalleSistemaCitasWeb .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid #d7dee8;
+        background: #f7f9fc;
+        font-size: 11px;
+        line-height: 1.2;
+        color: #4a5568;
+        white-space: nowrap;
+    }
+
+    #tblDetalleSistemaCitasWeb .chip-label {
+        font-weight: 700;
+        color: #5b6b7f;
+    }
+
+    #tblDetalleSistemaCitasWeb .chip-value {
+        font-weight: 500;
+        color: #2d3748;
+    }
+
+    #tblDetalleSistemaCitasWeb .chip-hc {
+        background: #f4f8ff;
+        border-color: #d9e6fb;
+    }
+
+    #tblDetalleSistemaCitasWeb .chip-doc {
+        background: #f8f8f8;
+        border-color: #e1e1e1;
+    }
+
+    #tblDetalleSistemaCitasWeb .paciente-inline {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    #tblDetalleSistemaCitasWeb .paciente-nombre-inline {
+        font-size: 12px;
+        font-weight: 600;
+        color: #2f3a4a;
+    }
+</style>

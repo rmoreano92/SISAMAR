@@ -1,0 +1,262 @@
+﻿<input type="text" id="txtIdAtencionTriaje" hidden />
+<input type="text" id="txtNroHistoriaTriaje" hidden />
+<input type="text" id="txtIdservicioTriaje" hidden />
+<input type="text" id="txtCitaFechaTriaje" hidden />
+
+
+<div class="row">
+    <div class="card shadow-sm mb-3">
+        <div class="card-body">
+            
+            <div class="row align-items-end">
+
+                <!-- Número Cuenta -->
+                <div class="col-lg-2 col-md-4 mb-2">
+                    <label for="txtCuentaTriaje" class="form-control-label">
+                        N° Cuenta
+                    </label>
+                    <input type="text"
+                           id="txtCuentaTriaje"
+                           name="txtCuentaTriaje"
+                           autocomplete="off"
+                           class="form-control form-control-sm solo-numero"
+                           placeholder="Documento">
+                </div>
+				<!-- Número Documento -->
+                <div class="col-lg-2 col-md-4 mb-2">
+                    <label for="txtNumeroDocumento" class="form-control-label">
+                        N° Documento
+                    </label>
+                    <input type="text"
+                           id="txtNumeroDocumento"
+                           name="NumeroDocumento"
+                           autocomplete="off"
+                           class="form-control form-control-sm solo-numero"
+                           placeholder="Documento">
+                </div>
+
+                <!-- Apellido Paterno -->
+                <div class="col-lg-2 col-md-4 mb-2">
+                    <label for="txtApellidoPaterno" class="form-control-label">
+                        Apellido Paterno
+                    </label>
+                    <input type="text"
+                           id="txtApellidoPaterno"
+                           name="ApellidoPaterno"
+                           autocomplete="off"
+                           class="form-control form-control-sm"
+                           placeholder="Apellido Paterno">
+                </div>
+
+                <!-- Apellido Materno -->
+                <div class="col-lg-2 col-md-4 mb-2">
+                    <label for="txtApellidoMaterno" class="form-control-label">
+                        Apellido Materno
+                    </label>
+                    <input type="text"
+                           id="txtApellidoMaterno"
+                           name="ApellidoMaterno"
+                           autocomplete="off"
+                           class="form-control form-control-sm"
+                           placeholder="Apellido Materno">
+                </div>
+
+                <!-- Nombres -->
+                <div class="col-lg-3 col-md-6 mb-2">
+                    <label for="txtNombres" class="form-control-label">
+                        Nombres
+                    </label>
+                    <input type="text"
+                           id="txtNombres"
+                           name="Nombres"
+                           autocomplete="off"
+                           class="form-control form-control-sm"
+                           placeholder="Nombres">
+                </div>
+
+                <!-- Botón Buscar -->
+                <div class="col-lg-1 col-md-2 mb-2">
+                    <button type="button"
+                            id="btnBuscarDatosPaciente"
+                            class="btn btn-info btn-sm w-100">
+                        Buscar
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group m-0">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtNombrePaciente" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group m-0">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero" id="txtDatosCuenta" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="row mb-1">
+            <div class="col-lg-6">
+                <label for="txtPulso" class="form-control-label">Pulso</label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group input-group-sm">
+                    <input type="text" autocomplete="off" class="form-control solo-numero bloquear-campo" id="txtPulso">
+                </div>
+            </div>
+            <div class="col-lg-3" style="color: red; font-weight: bold;">
+                60 a 100
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col-lg-6">
+                <label for="txtFr" class="form-control-label">Frecuencia Respiratoria</label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group input-group-sm">
+                    <input type="text" autocomplete="off" class="form-control solo-numero bloquear-campo" id="txtFr">
+                </div>
+            </div>
+            <div class="col-lg-3" style="color: red; font-weight: bold;">
+                10 a 20
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col-lg-6">
+                <label for="txtT" class="form-control-label">Temperatura</label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group input-group-sm">
+                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-decimal bloquear-campo" id="txtT">
+                </div>
+            </div>
+            <div class="col-lg-3" style="color: red; font-weight: bold;">
+                (°C)
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col-lg-6">
+                <label for="txtPeso" class="form-control-label">PESO</label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group input-group-sm">
+                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-decimal bloquear-campo" id="txtPeso">
+                </div>
+            </div>
+            <div class="col-lg-3" style="color: red; font-weight: bold;">
+                (Kg)
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col-lg-6">
+                <label for="txtPA" class="form-control-label">Presion Arterial</label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group input-group-sm">
+                    <div class="d-flex">
+                        <input type="text" autocomplete="off" maxlength="3" class="form-control form-control-sm solo-numero bloquear-campo" id="txtPA">
+                        <span style="margin: 0 3px;font-weight: bold;">/</span>
+                        <input type="text" autocomplete="off" maxlength="3" class="form-control form-control-sm solo-numero bloquear-campo" id="txtPAD"> @*JDELGADO J0 CAMBIO LIMITE DE CARACTERES*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3" style="color: red; font-weight: bold;">
+                Sias/Dias
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="row mb-1">
+            <div class="col-lg-6">
+                <label for="txtTalla" class="form-control-label">TALLA</label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group input-group-sm">
+                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero bloquear-campo" id="txtTalla">
+                </div>
+            </div>
+            <div class="col-lg-3" style="color: red; font-weight: bold;">
+                (cm)
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col-lg-6">
+                <label for="txtFc" class="form-control-label">Frecuencia Cardiaca</label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group input-group-sm">
+                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero bloquear-campo" id="txtFc">
+                </div>
+            </div>
+            <div class="col-lg-3" style="color: red; font-weight: bold;">
+                10 a 20
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col-lg-6">
+                <label for="txtPC" class="form-control-label">Perimetro Cefálico</label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group input-group-sm">
+                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero bloquear-campo" disabled id="txtPC">
+                </div>
+            </div>
+            <div class="col-lg-3" style="color: red; font-weight: bold;">
+                (cm)
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col-lg-6">
+                <label for="txtPAbdo" class="form-control-label">Perimetro abdominal</label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group input-group-sm">
+                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero bloquear-campo" id="txtPAbdo">
+                </div>
+            </div>
+            <div class="col-lg-3" style="color: red; font-weight: bold;">
+                (cm)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="txtSO" class="form-control-label">Saturación de Oxígeno</label>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group input-group-sm">
+                    <input type="text" autocomplete="off" class="form-control form-control-sm solo-numero bloquear-campo" id="txtSO">
+                </div>
+            </div>
+            <div class="col-lg-3" style="color: red; font-weight: bold;">
+                95 a 100
+            </div>
+        </div>
+    </div>
+</div>

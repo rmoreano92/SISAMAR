@@ -1,0 +1,291 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <div class="card  m-t-5 bg-blue" style="padding-bottom: 0px;">
+            <div class="card-header bg-white">Datos del Paciente</div>
+            <div class="card-block m-t-5 custom-form" style="padding-bottom: 0px;">
+
+                <div class="row  pb-1">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtNroCuenta">N° Cuenta</label>
+                            <input type="text" class="form-control form-control-sm" id="txtNroCuenta" placeholder="" autocomplete="off" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtHistoria">Historia</label>
+                            <input type="text" class="form-control form-control-sm" id="txtHistoria" placeholder="" autocomplete="off" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="txtPacienteNombre">Nombres</label>
+                            <input type="text" class="form-control form-control-sm" id="txtPacienteNombre" placeholder="" autocomplete="off" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="txtNroDocumento">N° Documento</label>
+                            <div class="d-flex">
+                                <input type="text" class="form-control form-control-sm m-r-5" id="txtTipoDocumentoEmer" placeholder="" autocomplete="off" disabled>
+                                <input type="text" class="form-control form-control-sm m-l-5" id="txtNroDocumentoEmer" placeholder="" autocomplete="off" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="">Edad (A|M|D)</label>
+                            <div class="d-flex">
+                                <input type="text" class="form-control form-control-sm" id="txtEdadAnio" placeholder="" autocomplete="off" disabled>
+                                <span style="margin: 0 2px;font-weight: bold;">|</span>
+                                <input type="text" class="form-control form-control-sm" id="txtEdadMes" placeholder="" autocomplete="off" disabled>
+                                <span style="margin: 0 2px;font-weight: bold;">|</span>
+                                <input type="text" class="form-control form-control-sm" id="txtEdadDia" placeholder="" autocomplete="off" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 d-none">
+                        <div class="form-group campo">
+                            <label for="cboTipoPaciente">Tipo Paciente</label>
+                            <select id="cboTipoPaciente" class="chzn-select"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="cboOrigenPaciente">Origen</label>
+                            <select id="cboOrigenPaciente" class="chzn-select" disabled></select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group campo">
+                            <label for="cboPrioridad">Prioridad</label>
+                            <select id="cboPrioridad" class="chzn-select"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group campo">
+                            <label for="txtGlasgow">Glasgow</label>
+                            <input type="text" class="form-control form-control-sm" id="txtGlasgow" placeholder="" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-md-1" style="display: none;">
+                        <div class="form-group">
+                            <label for="txtNroAtencion">N° Atención</label>
+                            <input type="text" class="form-control form-control-sm" id="txtNroAtencion" placeholder="" autocomplete="off" disabled>
+                        </div>
+                    </div>
+                    @*<div class="col-md-1" style="display: none;">
+                    <div class="form-group">
+                    <label for="hdIdTipoFuenteFian">Fuente Financiamiento</label>
+                    <input type="text" class="form-control form-control-sm" id="hdIdTipoFuenteFian" placeholder="" autocomplete="off" disabled>
+                    </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <partial name="~/Views/Shared/Components/VistasParciales/Triaje.cshtml" />
+        @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Triaje.cshtml")*@
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card m-t-10">
+                    <div class="card">
+                        <ul id="ListaOpcionesEval" class="nav nav-tabs tabs-left" role="tablist">
+                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                <a class="nav-link active" href="#motivo" role="tab" id="motivo-tab" data-toggle="tab" aria-controls="hats" aria-expanded="true"><i class="fa-solid fa-hand-holding-medical mr-1"></i>Motivo Atención</a>
+                            </li>
+                            <li class="w-100 nav-item m-0 OpcionEvalEmer">
+                                <a class="nav-link" href="#examenFisico" role="tab" id="examenFisico-tab" data-toggle="tab" aria-controls="hats"><i class="fa-solid fa-person-dots-from-line mr-1"></i>Examen Físico</a>
+                            </li>                                                       
+                            <li class="w-100 nav-item m-0" style="display:none;">
+                                <a class="nav-link" href="#evaluaciones" role="tab" id="evaluaciones-tab" data-toggle="tab" aria-controls="hats">Evaluaciones</a>
+                            </li>                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-1" id="PanelEvaluaciones">
+            <div class="col-lg-12">
+                <form>
+                    <fieldset class="m-0 pr-1 pl-1 pb-1">
+                        <legend class="mb-0">Evaluaciones del Paciente</legend>
+                        <table id="tblEvaluacionesEmergencia" class="table table-sm table-bordered" style="width: 100%; cursor: pointer;">
+                            <thead style="color: white;">
+                                @*
+                                <tr style="background-color: #434343;">
+                                <th colspan="2">EVALUACIONES</th>
+                                </tr>*@
+                                <tr style="background-color: #434343;">
+                                    <th style="width:15% !important; text-align:center;">Eval.</th>
+                                    <th style="width:85% !important;">Médico</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                        <div class="row mt-1" id="divFirma">
+                            <div class="col-xs-12 text-xs-center">
+                                <button type="button" style="width: 60px;" class="btn btn-sm btn-success" id="ImprimirEvalEmerCF"><i class="fa fa-print"></i></button>
+                                <button type="button" style="width: 60px;" class="btn btn-sm btn-info" id="FirmarEvalEmer"><i class="fa fa-pencil"></i></button>
+                                <button type="button" style="width: 60px;" class="btn btn-sm btn-warning" id="ImprimirEvalEmerSF"><i class="fa fa-eye"></i></button>
+                            </div>
+                        </div>
+
+                        @*<div class="row mt-1" id="divFirma">
+                        <div class="col-xs-4">
+                        <button style="width:100%" type="button" class="btn btn-sm btn-success" id="ImprimirEvalNeoEmerConF"><i class="fa fa-print"></i></button>
+                        </div>
+                        <div class="col-xs-4">
+                        <a id="FirmarEvalNeo" style="width:100%" href="" class="btn btn-sm btn-danger"><i class="fa fa-pencil"></i></a>
+                        </div>
+                        <div class="col-xs-4">
+                        <button style="width:100%" type="button" class="btn btn-sm btn-warning" id="ImprimirEvalNeoEmerSinF"><i class="fa fa-eye"></i></button>
+                        </div>
+                        </div>*@
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+
+        @*<br>
+        <div class="row">
+        <div class="col-lg-12">
+        <label for="" id="lblNroAtencion" style="font-size: x-large;" class="form-control-label titulo"></label>
+        </div>
+        </div>
+        *@
+        <div class="row mt-2">
+            <div class="col-lg-12">
+                <button style="width:100%;letter-spacing: 1px;" class="btn btn-success font-weight-bold layout_btn_prevent" id="btnNuevoRegistro"><i style="width: 20px; text-align:center;" class="fa-solid fa-file-plus"></i> NUEVA EVALUACIÓN</button>
+            </div>
+        </div>
+        @*<div class="row mt-2">
+        <div class="col-lg-12">
+        <button style="width:100%" class="btn btn-purple btn-lg layout_btn_prevent" id="btnAltaMedica"><i style="width: 30px; text-align:center;" class="fa fa-hands-heart"></i> ALTA MÉDICA</button>
+        </div>
+        </div>*@
+    </div>
+    <div class="col-md-9">
+        <div class="card m-t-10">
+            <div class="card">
+
+                <div class="card-block" id="CardEva">
+                    <div id="clothing-nav1-content" class="tab-content fade in active">
+
+                        @*==============================MOTIVO DE ATENCION=======================================*@
+                        <div role="tabpanel" class="tab-pane fade in active PanelCabeceraEmer campo" id="motivo" aria-labelledby="motivo-tab">
+                            <div class="card-header text-center" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">Motivo Atención</div>
+                            <partial name="~/Views/Shared/Components/VistasParciales/Emergencia/EvaEspMotivoAtencion.cshtml" />
+                            @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Emergencia/EvaEmerMotivoAtencion.cshtml")*@
+                        </div>
+
+                        @*================================EXAMEN FISICO===========================================*@
+                        <div id="examenFisico" class="tab-pane fade PanelCabeceraEmer campo" aria-labelledby="examenFisico-tab">
+                            <div class="card-header text-center" style="background-color: #607d8b; color: white; text-align: center; margin-left: -1.2rem; margin-right: -1.2rem">Examen Físico</div>
+                            <partial name="~/Views/Shared/Components/VistasParciales/Emergencia/EvaEmerExamenFisico.cshtml" />
+                            @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Emergencia/EvaEmerExamenFisico.cshtml")*@
+                        </div>
+                        
+                        @*==============================REGISTRO EVALUACION=======================================*@
+                        <div role="tabpanel" class="tab-pane fade" id="evaluaciones" aria-labelledby="evaluaciones-tab">
+                            <partial name="~/Views/Shared/Components/VistasParciales/Emergencia/EvaEmerRegistroEvaluacion.cshtml" />
+                            @*@Html.Partial("~/Views/Shared/Components/VistasParciales/Emergencia/EvaEmerRegistroEvaluacion.cshtml")*@
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-lg-6">
+        @*<button class="btn btn-cyan btn-lg layout_btn_prevent mr-1 float-lg-left" id="btnVisorRecetasEmer"><i class="fa fa-note-medical mr-1"></i>Rec. Médicas</button>*@
+        <button class="btn btn-light-blue btn-lg layout_btn_prevent float-lg-left" id="btnSeguimiento"><i class="fa fa-wheelchair-move mr-1"></i>Seguimiento</button>
+    </div>
+    <div class="col-lg-6">
+        <button id="btnCancelarEva" type="button" class="btn btn-secondary btn-lg mb-1 ml-2 pl-3 pr-3 float-xs-right" style="max-width: 140px;">Cerrar</button>
+        @*@{
+        if (@ViewBag.Agregar == true || @ViewBag.Modificar == true)
+        {*@
+        <button id="btnGuardarEva" type="button" class="btn btn-info btn-lg mb-1 pl-3 pr-3 float-xs-right" style="max-width: 140px; display:none">Guardar</button>
+        @*}
+        }*@
+    </div>
+</div>
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroLab.cshtml" />
+
+<script>
+    $('.solo-numero').keyup(function () {
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+
+    $('.solo-numero').keydown(function () {
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+
+    $('.solo-decimal').on('input', function () {
+        this.value = this.value.replace(/[^0-9,.]/g, '').replace(/,/g, '.');
+    });
+</script>
+
+
+
+@*<div data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalEvaluacionNeonatal" role="dialog" aria-labelledby="modalLabelsuccess">
+        <div class="modal-dialog modal-xxl" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <div style="display:inline-flex">
+                        <div id="BadgeEvaluacion" class="m-auto">
+                            <div class="msc-hotline" style="background-color: #f7f7f7 !important;">
+                                <div class="msc-hotline-icon bg-secondary">
+                                    <i class="fa-solid fa-baby"></i>
+                                </div>
+                                <div class="msc-hotline-content m-auto">
+                                    <div class="msc-hotline-title">
+                                        <span id="lblMedicoProgramado" class="text-success">EVALUACIÓN NEONATAL</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div style="display:inline-flex; margin-top:0.5rem">
+                        <span class="chip secondary" id="CuentaHeaderModal" style="font-size: 14px;font-weight: normal;letter-spacing: 1px;"></span>
+                        <span class="chip secondary" id="HistoriaHeaderModal" style="font-size: 14px;font-weight: normal;letter-spacing: 1px;"></span>
+                    </div>
+                    <div style="display:inline-flex; margin-top:0.5rem;">
+                        <span class="chip secondary" id="PacienteHeaderModal" style="font-size: 14px;font-weight: normal;letter-spacing: 1px;"></span>
+                    </div>
+                </div>
+                <div class="modal-body">
+
+
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+
+    </div>*@
+
+

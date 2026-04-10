@@ -1,0 +1,124 @@
+﻿<div data-backdrop="static" style="background-color: rgba(0, 0, 0, 0.46); overflow-y: scroll;" data-keyboard="false" class="modal fade" id="modalSeguimiento" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light-blue" style="display:flex;align-items:center">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Seguimiento de Paciente</h4>
+                <button class="btn btn-info ml-2" onclick="openGESS();"> Buscar en GESS</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <partial name="~/Views/Shared/Components/VistasParciales/Seguimiento/SeguimientoPaciente.cshtml" />
+                        @*@Html.Partial("~/Views/Shared/Components/VistasParciales/SeguimientoPaciente.cshtml");*@
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrarSeguimiento" target="_blank" class="btn btn-lg btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div data-backdrop="static" style="overflow-y: scroll;background-color: #00000075;" data-keyboard="false" class="modal fade" id="modalRecetaSegui" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="modalLabelsuccess">Recetas/Ordenes Médicas</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-block p-0">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <partial name="~/Views/Shared/Components/VistasParciales/OredenesYResultados.cshtml" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrarRecetaSegui" target="_blank" class="btn  btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div data-backdrop="static" style="overflow-y: scroll;background-color: #00000075;" data-keyboard="false" class="modal fade" id="modalResultadosLabImgSegui" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark-purple">
+                <h5 class="modal-title text-white" id="modalLabelsuccess">Resultados</h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 id="lblNombreExamenSegui" style="color: #3c3c3c !important;"></h4>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-block p-0">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <table id="tblResultadosExamenesSegui" class="table table-sm table-bordered">
+                                            <thead style="color: white;background: #3e6184;">
+                                                <tr>
+                                                    <th align="center" @*style="width: 150px;"*@>Grupo/Item</th>
+                                                    <th align="center" @*style="width: 100px;"*@>Valor</th>
+                                                    <th align="center" @*style="width: 100px;"*@>Valor Referencial</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbodyResultadosSegui"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="form-control-label font-weight-bold">OBSERVACIONES/CONCLUSIONES</label>
+                        <textarea style="overflow:scroll;" disabled class="form-control" id="txtObserOrdResSegui" rows="4"></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnCerrarResultadoLabImgSegui" target="_blank" class="btn  btn-secondary "> Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function openGESS() {
+        window.open(
+            "http://10.16.38.19:8990",
+            "_blank",
+            "width=1200,height=800,resizable=yes,scrollbars=yes"
+        );
+    }
+</script>
+
+<style>
+    #tblCuentas tr.selected {
+        color: #0300a9;
+        letter-spacing: 0.5px;
+        background-color: #c6cbf1 !important;
+        /*background-color: #dbefc5 !important;*/
+    }
+</style>

@@ -1,0 +1,62 @@
+﻿@* @using Microsoft.Extensions.Configuration;
+@{
+    var AppVistaOrdenesMedica = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:TipoVistaOrdenesMedica");
+    string VistaOrdenesMedica = AppVistaOrdenesMedica.ToString();
+} *@
+
+@* Esta version no se esta utilizando? validar *@         @* ==========>>>    SI SE ESTA USANDO*@
+
+<div class="card bg-pink">
+    @*<div class="card-header bg-white">Órdenes Médicas</div>*@
+    <div class="card-block custom-form pt-1">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-success btn-sm layout_btn_prevent OpcionesRecetas" id="btnAgregarOrdenMedica" style="width:100px;"><i class="fa fa-plus" style="width: 20px; text-align:center;"></i> Agregar</button>
+                <button class="btn btn-primary btn-sm layout_btn_prevent OpcionesRecetas" id="btnModificarOrdenMedica" style="width:100px;"><i class="fa fa-pencil" style="width: 20px; text-align:center;"></i> Modificar</button>
+                <button class="btn btn-warning btn-sm layout_btn_prevent" id="btnConsultarOrdenMedica" style="width:100px;"><i class="fa fa-eye" style="width: 20px; text-align:center;"></i> Consultar</button>
+                <button class="btn btn-danger btn-sm layout_btn_prevent OpcionesRecetas" id="btnEliminarOrdenMedica" style="width:100px;"><i class="fa fa-trash" style="width: 20px; text-align:center;"></i> Eliminar</button>
+            </div>
+            <div class="col-md-12">
+                <table id="tblOrdenesMedicas" class="table table-bordered table-sm table-content-sm">
+                    <thead style="color: white;background: #3e6184;">
+                        <tr>
+                            <th width="8%">Nro Receta</th>
+                            <th width="15%">Punto Carga</th>
+                            <th width="15%">Tipo</th>
+                            <th width="30%">Médico</th>
+                            <th width="12%">Fecha</th>
+                            <th width="12%">Estado</th>
+                            <th width="8%">Receta</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalReceta" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" style="overflow-y: scroll;" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white" id="modalLabelsuccess">Receta/Orden Médica</h4>
+            </div>
+            <div class="modal-body">
+                
+                <partial name="~/Views/Shared/Components/VistasParciales/Recetas/RegistroOrdenes.cshtml" />
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnImprimeRecetas" target="_blank" class="btn btn-lg btn-cyan float-lg-left"><i class="fa fa-note-medical mr-1"></i>Rec. Médicas</button>
+                <button id="btnGuardarRecetas" class="btn btn-lg btn-info" style="visibility: visible;">Guardar</button>
+                <button id="btnCerrarRecetas" type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/Recetas/Paquetes.cshtml" />
+
+<input hidden="hidden" id="hdIdTipoFuenteFian" name="hdIdFuente" type="text" class="form-control">

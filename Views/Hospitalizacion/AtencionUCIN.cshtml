@@ -1,0 +1,419 @@
+﻿@using Microsoft.Extensions.Configuration;
+@using System.Data
+@{
+    var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
+    // var usaLabs = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:UsaLabs");
+}
+
+@section Css {
+            <!-- plugin css -->
+            <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+            <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+            <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+            <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+            <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fad fa-procedures"></i>
+                Evaluación UCIN
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Evaluación UCIN</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+
+<div class="row m-0">
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#" class="nav-link nav-link-custom active" id="TabBusqueda" data-toggle="tab" data-target="#TabPanelBusqueda" role="tab" aria-controls="TabPanelBusqueda" aria-selected="true">Busqueda</a>
+            </li>
+            <li class="nav-item m-0" role="presentation">
+                <a href="#" class="nav-link nav-link-custom" id="TabRegistro" data-toggle="tab" data-target="#TabPanelRegistro" role="tab" aria-controls="TabPanelRegistro" aria-selected="false" style="display:none;">Registro Atención</a>
+            </li>
+        </ul>
+        <div class="tab-content border pt-1 pl-1 pr-1" id="myTabContent">
+            <!--=============================================Panel Busqueda==================================================================-->
+            <div class="tab-pane fade active in" id="TabPanelBusqueda" role="tabpanel" aria-labelledby="TabBusqueda">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <div class="row">
+                                            <div class="col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroCuentaBuscar" class="d-block text-truncate">N° Cuenta</label>
+                                                    <input id="txtNroCuentaBuscar" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroDniBuscar" class="d-block text-truncate">N° Dni</label>
+                                                    <input id="txtNroDniBuscar" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtNroHistoriaBuscar" class="d-block text-truncate">N° Historia</label>
+                                                    <input id="txtNroHistoriaBuscar" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                </div>
+                                            </div>  
+                                            <div class="col-xl-3">
+                                                <div class="form-group m-0">
+                                                    <label for="txtApPaternoBuscar" class="d-block text-truncate">Ap. Paterno</label>
+                                                    <input id="txtApPaternoBuscar" autocomplete="off" placeholder="" class="form-control form-control-sm search">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xl-3">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaInicioBuscar" class="d-block text-truncate">Fecha Ingreso</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input id="txtFechaInicioBuscar" autocomplete="off" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" class="form-control form-control-sm search maskFecha search">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaFinBuscar" class="d-block text-truncate">Fecha Fin</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input id="txtFechaFinBuscar" autocomplete="off" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" class="form-control form-control-sm search maskFecha search">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar "></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="form-group m-0">
+                                            <label for="cboServicioBuscar" class="d-block text-truncate">Servicio</label>
+                                            <select class="chzn-select search" id="cboServicioBuscar">
+                                                <option value="0">Todos</option>
+                                                @foreach (DataRow turno in ViewBag.ServiciosUcin.Rows)
+                                                {
+                                                    <option value="@turno["IdServicio"]">@turno["Servicio"]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div style="height: 55px;">
+                                            <button class="btn btn-sm btn-primary layout_btn_prevent" style="min-width: 70px;margin-top: 3px;" id="btnBuscarFiltroAtencionesUCIN">Buscar</button><br>
+                                            <button class="btn btn-sm btn-secondary layout_btn_prevent" style="min-width: 70px;margin-top: 2px;" id="btnLimpiarFiltroAtencionesUCIN">Limpiar</button>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                                                                          
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 pt-2 pb-0">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @{
+                                    if (@ViewBag.Agregar)
+                                    {
+                                        @*<button class="btn btn-primary layout_btn_prevent" id="btnAgregar">Agregar</button>*@
+                                    }
+                                    if (@ViewBag.Modificar)
+                                    {
+                                        <button class="btn btn-info layout_btn_prevent" id="btnModificarAtencion">Evaluar</button>
+                                    }
+                                    if (@ViewBag.Eliminar)
+                                    {
+                                        <button class="btn btn-danger layout_btn_prevent" id="btnEliminarAtencion">Eliminar</button>
+                                    }
+                                    if (@ViewBag.Consultar)
+                                    {
+                                        <button class="btn btn-warning layout_btn_prevent" id="btnConsultarAtencion">Consultar</button>
+                                    }
+
+                                }
+                            </div>
+                            <div class="col-md-6">
+                                @{
+                                    if (@ViewBag.Modificar)
+                                    {
+
+                                        <button class="btn btn-sm btn-light-green layout_btn_prevent float-xs-right" id="btnAltaMedica"><i class="fa fa-hands-heart mr-1"></i>EGRESO/ALTA MÉDICA</button>
+                                        <button class="btn btn-sm btn-teal layout_btn_prevent float-xs-right mr-1" id="btnTransferencia"><i class="fa fa-right-left mr-1"></i>TRANSFERENCIAS</button>
+                                        <button class="btn btn-sm btn-deep-purple layout_btn_prevent float-xs-right mr-1" id="btnTransferenciaRecepcion"><i class="fa fa-bed mr-1"></i>RECEPCIÓN Y CAMA</button>                                        
+                                    }
+                                }
+                            </div>
+                        </div>                        
+                    </div>
+
+                    
+
+
+                    <div class="col-xl-12">
+                        @* <button class="btn btn-success" id="btnAbrirModalReporteUCI"><i class="fa-solid fa-file-excel"></i> Generar Reporte UCI</button> *@
+                        <table id="tblAtencionesUCI" width="100%" class="table table-sm table-content-sm table-bordered">
+                            <thead style="color: white;background: #434343;">
+                                <tr>
+                                    <th>N° Cuenta</th>
+                                    <th>N° Historia.</th>
+                                    <th>Paciente</th>
+                                    <th>Cama</th>
+                                    <th>Fecha Ingreso</th>
+                                    <th>F.Egre.Adm.</th>
+                                    <th>Servicio Ing.</th>
+                                    <th>Servicio Actual.</th>
+                                    <th>Plan</th>
+                                    <th>Cant.Eval</th>
+                                    <th>Estado</th>
+                                    <th>Informe</th>
+                                    <th>I. Médico</th>
+
+                                </tr>
+                            </thead>
+                            <tbody style="cursor:pointer;"></tbody>
+                        </table>
+                    </div>
+
+                    @* 
+                    <div class="col-md-12 d-flex align-items-end justify-content-end" style="height: 50px;">
+                        <div>
+                            <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaAtencion"><i class="fa-light fa-signature mr-1"></i>Firmar Atencion</button>
+                            <button class="btn btn-info layout_btn_prevent m-1" id="btnFirmaLote"><i class="fa-light fa-signature mr-1"></i>Firmar Lote</button>
+                        </div>
+                    </div>
+ *@
+                    
+                </div>
+            </div>
+            <!--=============================================Panel Registro==================================================================-->
+            <div class="tab-pane fade" id="TabPanelRegistro" role="tabpanel" aria-labelledby="TabRegistro">
+                <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/AtencionUCIN/RegistroAtencionUCIN.cshtml" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@* ======================VISOR SEGUIMIENTO PACIENTE==================================================== *@
+<partial name="~/Views/Shared/Components/VistasParciales/Seguimiento/VisorSeguimientoPaciente.cshtml" />
+@* ===================================================================================================== *@
+
+@* <partial name="~/Views/Shared/Components/VistasParciales/Recetas/VisorRecetas.cshtml" /> *@
+
+<partial name="~/Views/Shared/Components/VistasParciales/Seguimiento/SeguimientoPacienteCPN.cshtml" />
+
+@* =======================CONSUMO SERVICIO (KHOYOSI)================================================== *@
+<partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroLab.cshtml" />
+@* ==================================================================================================== *@
+
+
+@* <partial name="~/Views/Shared/Components/VistasParciales/ConsumoServicioRegistroLab.cshtml" /> *@
+@* =======================REFERENCIAS Y CONTRAREFERENCIAS=========================================== *@
+<partial name="~/Views/Shared/Components/VistasParciales/ContraReferenciaRegistro.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/ReferenciaRegistro.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/EstablecimientoSalud.cshtml" />
+@* ============================================================================================ *@
+
+@* =======================BUSQUEDA DE DIAGNOSTICOS (KHOYOSI)=========================================== *@
+<partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticos.cshtml" />
+@* ==================================================================================================== *@
+
+@* ======================= TRANSFERENCIAS =========================================== *@
+<partial name="~/Views/Comun/Transferencias.cshtml" />
+<partial name="~/Views/Comun/TransferenciasConfirmacion.cshtml" />
+@* ================================================================================= *@
+
+@* ======================RECETAS Y ORDENES==================================================== *@
+@* <partial name="~/Views/Shared/Components/VistasParciales/Recetas/Paquetes.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos/BusquedaDiagnosticosSolicitudCQx.cshtml" /> *@
+@* ===================================================================================================== *@
+
+
+
+
+@section Scripts
+{
+        <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>        
+        <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/js/date.format.js"></script>
+    @* <script type="text/javascript" src="~/AdmiRE/js/html2canvas.min.js"></script> *@
+
+
+    <script type="text/javascript" src=@Href("~/js/Hospitalizacion/AtencionUCIN.js?v=" + version)></script>
+    @* <script type="text/javascript" src=@Href("~/js/Hospitalizacion/EvaluacionUCIN.js?v=" + version)></script> *@
+    @* <script type="text/javascript" src=@Href("~/js/Hospitalizacion/RegistroEvaluacionUCIN.js?v=" + version)></script> *@
+
+        
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/SeguimientoPaciente.js?v=" + version)></script>
+
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/BusquedaDiagnosticos.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos/Diagnosticos.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/Facturacion/ConsumoServicioConDescripcion.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenMedica.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV3.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/OrdenesYResultados.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/VisorRecetas.js?v=" + version)></script>
+
+
+    
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/AltaMedica.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientosSaludV2.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Transferencias.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/Resultados.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/ReferenciaV2.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/EstablecimientoSalud.js?v=" + version)></script>
+
+    <script type="text/javascript" src=@Href("~/js/Comun/Variables.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js?v=" + version)></script>
+    <script type="text/javascript" src=@Href("~/js/Comun/PermisosGenerales.js?v=" + version)></script>
+       
+}
+
+<style>
+    .chosen-disabled {
+        opacity: 1 !important;
+    }
+
+    .chosen-disabled .chosen-single {
+        background: #eceeef !important;
+        border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /*-------------------Paridad 1---------------------------------*/
+    .paridad1 {
+        border-width: medium;
+        border-color: #009688;
+        color: #009688;
+        font-weight: bold;
+    }
+
+        .paridad1:hover, .paridad1:focus {
+            color: #009688;
+            border-color: #009688;
+            background-color: #0096881a;
+            outline: none;
+        }
+
+        .paridad1:focus {
+            box-shadow: 1px 1px 5px #009688;
+            outline: none;
+        }
+
+
+    /*--------------------Paridad 2--------------------------------*/
+    .paridad2 {
+        border-width: medium;
+        border-color: #E91E63;
+        color: #e91e63;
+        font-weight: bold;
+    }
+
+        .paridad2:hover, .paridad2:focus {
+            color: #e91e63;
+            border-color: #E91E63;
+            background-color: #E91E631a;
+            outline: none;
+        }
+
+        .paridad2:focus {
+            box-shadow: 1px 1px 5px #E91E63;
+            outline: none;
+        }
+
+    /*----------------------Paridad 3------------------------------*/
+    .paridad3 {
+        border-width: medium;
+        border-color: #2196F3;
+        color: #2196f3;
+        font-weight: bold;
+    }
+
+        .paridad3:hover, .paridad3:focus {
+            color: #2196f3;
+            border-color: #2196F3;
+            background-color: #2196F31a;
+            outline: none;
+        }
+
+        .paridad3:focus {
+            box-shadow: 1px 1px 5px #2196F3;
+            outline: none;
+        }
+
+    /*-------------------Paridad 4---------------------------------*/
+    .paridad4 {
+        border-width: medium;
+        border-color: #795548;
+        color: #795548;
+        font-weight: bold;
+    }
+
+        .paridad4:hover, .paridad4:focus {
+            color: #795548;
+            border-color: #795548;
+            background-color: #7955481a;
+            outline: none;
+        }
+
+        .paridad4:focus {
+            box-shadow: 1px 1px 5px #795548;
+            outline: none;
+        }
+
+    /*-----------------------------------------------------------------------*/
+    .align-items-center {
+        -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+        align-items: center !important;
+    }
+
+    .justify-content-between {
+        -webkit-box-pack: justify !important;
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+    }
+</style>

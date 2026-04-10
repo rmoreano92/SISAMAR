@@ -1,0 +1,351 @@
+﻿<div data-backdrop="static" style="overflow-y: scroll; background-color: rgba(0, 0, 0, 0.46);" data-keyboard="false"
+    class="modal fade" id="modalLabResultado" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-xxl" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-deep-teal">
+                <span class="text-white" style="font-size: 1.28rem;font-weight: 500;letter-spacing: 0.5px;">Resultado
+                    Laboratorio: <small id="TituloModalResLab"></small></span>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 mb-1">
+                        <div class="card bg-blue">
+                            <div class="card-header bg-white">Datos de Cabecera</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-lg-5 col-xl-5">
+                                        <div class="form-group m-0">
+                                            <label for="txtGrupoExamen">Grupo Examen</label>
+                                            <input type="text" class="form-control form-control-sm campoRes"
+                                                id="txtGrupoExamen" placeholder="" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-xl-7">
+                                        <div class="form-group m-0">
+                                            <label for="txtMedicoSolicitante">Médico Solicitante</label>
+                                            <input type="text" class="form-control form-control-sm campoRes"
+                                                id="txtMedicoSolicitante" placeholder="" autocomplete="off" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="row">
+                                            <div class="col-sm-7">
+                                                <div class="form-group m-0">
+                                                    <label for="txtFechaResultado" class="d-block text-truncate">Fecha
+                                                        Resultado</label>
+                                                    <div class="input-group form-group input-group-sm m-0">
+                                                        <input type="text"
+                                                            class="form-control form_val_popup_dp3 campoRes"
+                                                            placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy"
+                                                            id="txtFechaResultado" autocomplete="off">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-group m-0">
+                                                    <label for="txtHoraResultado" class="d-block text-truncate">Hora
+                                                        Resultado</label>
+                                                    <input type="text" class="form-control form-control-sm campoRes"
+                                                        id="txtHoraResultado" placeholder="__:__" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="form-group m-0">
+                                            <label for="cboRealizaPrueba">Realiza Prueba</label>
+                                            <select id="cboRealizaPrueba" class="chzn-select w-100 campoRes"
+                                                data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtCodigoIngreso">Código Ingreso</label>
+                                            <input type="text" class="form-control form-control-sm campoRes"
+                                                id="txtCodigoIngreso" placeholder="" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 col-xl-8" id="frameCargarImagenResLab">
+                                        <br />
+                                        <button id="btnImagenesAdjuntasLab" type="button"
+                                            class="btn btn-sm btn-purple"><i class="fa fa-images"
+                                                style="width: 20px; text-align:center;"></i> Imagenes Adjuntas</button>
+                                    </div>
+
+
+
+                                    <div class="col-lg-12 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboTipoMuestra">Tipo de Muestra</label>
+                                            <select id="cboTipoMuestra" class="chzn-select w-100 campoRes"
+                                                data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboEstadoEstudio">Estado de Estudio</label>
+                                            <select id="cboEstadoEstudio" class="chzn-select w-100 campoRes"
+                                                data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-12">
+                                        <div class="form-group m-0">
+                                            <label for="cboDiagnosticoRs"
+                                                class="d-block text-truncate">Diagnóstico CIE10</label>
+                                            <select id="cboDiagnosticoRs" class="form-control form-control-sm" multiple></select>
+                                            <!--<select id="cboDiagnosticoRs" data-placeholder="Diagnosticos"
+                                                class="chosen-select writing" multiple style="width:350px;"
+                                                tabindex="4"></select>-->
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group m-0">
+                                            <label for="cboDiagnosticoCIE0"
+                                                   class="d-block text-truncate">Diagnóstico CIE0 - Topográfica</label>
+                                            <select id="cboDiagnosticoCIE0" class="form-control form-control-sm" multiple></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group m-0">
+                                            <label for="cboDiagnosticoCIE0Morfologica"
+                                                   class="d-block text-truncate">Diagnóstico CIE0 - Morfológica</label>
+                                            <select id="cboDiagnosticoCIE0Morfologica" class="form-control form-control-sm" multiple></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                
+                                    <div class="col-lg-12 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboGradoDiferenciacion">Grado de Diferenciación</label>
+                                            <select id="cboGradoDiferenciacion" class="chzn-select w-100 campoRes"
+                                                data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboLateralidad">Lateralidad</label>
+                                            <select id="cboLateralidad" class="chzn-select w-100 campoRes"
+                                                data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="col-lg-12 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="cboMetodoDiagnostico">Método base de diagnóstico</label>
+                                            <select id="cboMetodoDiagnostico" class="chzn-select w-100 campoRes"
+                                                data-placeholder="Seleccione una opción"></select>
+                                        </div>
+                                    </div>-->
+
+                                </div>                                
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-1">
+                        <div class="card bg-pink">
+                            <div class="card-header bg-white">Datos de Paciente</div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div class="form-group m-0">
+                                            <label for="txtResNroHistoria">N° Historia</label>
+                                            <input type="text" class="form-control form-control-sm campoRes"
+                                                id="txtResNroHistoria" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResTipoHistoria">Tipo Historia</label>
+                                            <input type="text" class="form-control form-control-sm campoRes"
+                                                id="txtResTipoHistoria" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResApPaterno">Apellido Paterno</label>
+                                            <input type="text" class="form-control form-control-sm campoRes"
+                                                id="txtResApPaterno" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResApMaterno">Apellido Materno</label>
+                                            <input type="text" class="form-control form-control-sm campoRes"
+                                                id="txtResApMaterno" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResNombres">Nombres</label>
+                                            <input type="text" class="form-control form-control-sm campoRes"
+                                                id="txtResNombres" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResSexo">Sexo</label>
+                                            <input type="text" class="form-control form-control-sm campoRes"
+                                                id="txtResSexo" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResFechaNacimiento" class="form-control-label">Fecha
+                                                Nac.</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" autocomplete="off" class="form-control campoRes"
+                                                    placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy"
+                                                    id="txtResFechaNacimiento" disabled="">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4 col-xl-4">
+                                        <div class="form-group m-0">
+                                            <label for="txtResEdad">Edad</label>
+                                            <input type="text" class="form-control form-control-sm campoRes"
+                                                id="txtResEdad" placeholder="" autocomplete="off" disabled="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mb-1">
+                    <div class="col-md-12">
+                        <table id="tblFormatoResultadosLab"
+                            class="table table-bordered table-sm table-content-sm table-striped w-100">
+                            <thead style="color: white;background: #3e6184;">
+                                <tr>
+                                    <th width="15%">Grupo</th>
+                                    <th width="15%">Item</th>
+                                    @*<th width="10%">Código</th>*@
+                                    <th width="10%">Valor Número</th>
+                                    <th width="15%">Valor Texto</th>
+                                    @*<th width="10%">Fecha</th>*@
+                                    <th width="15%">ValorCombo</th>
+                                    @*<th width="5%">Con Res.</th>*@
+                                    <th width="10%">Valor Check</th>
+                                    <th width="20%">Valor Referencial</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyFormatoResultadosLab"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bg-green">
+                            @* <div class="card-header bg-white">Datos de Paciente</div> *@
+                            <div class="card-block">
+                                <div class="form-group m-0">
+                                    <label for="txtResObservaciones"
+                                        class="form-control-label font-weight-bold">OBSERVACIONES</label>
+                                    <textarea style="overflow:scroll;" class="form-control campoRes campoResultado"
+                                        id="txtResObservaciones" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnGuardarResultado" type="button" class="btn btn-info btn-lg mb-1 pl-3 pr-3"
+                    style="max-width: 140px;">Guardar</button>
+                <button id="btnCancelarResultado" type="button" class="btn btn-secondary btn-lg mb-1 ml-2 pl-3 pr-3"
+                    style="max-width: 140px;">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div data-backdrop="static" style="overflow-y: scroll; background-color: rgba(0, 0, 0, 0.46);" data-keyboard="false"
+    class="modal fade" id="modalLabResultadoImagenesAdjuntas" role="dialog" aria-labelledby="modalLabelsuccess">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-deep-purple">
+                <span class="text-white" style="font-size: 1.28rem;font-weight: 500;letter-spacing: 0.5px;">Imagenes
+                    Adjuntas</span>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group m-0">
+                    @* <label>Archivo</label> *@
+                    <input type="file" class="form-control form-control-sm campoRes" accept=".jpg,.jpeg,.png"
+                        id="imagenLab" hidden>
+                    <div class="row">
+                        @* <div class="col-sm-6 col-md-5 col-lg-5">
+                            <input type="text" class="form-control form-control-sm font-weight-bold campoRes" id="txtNombreArchivo" placeholder="" autocomplete="off" disabled>
+                        </div> *@
+                        <div class="col-sm-12 col-md-7 col-lg-7">
+                            <div class="d-flex align-items-end">
+                                <button id="btnSubirImagenLab" type="button" class="btn btn-sm btn-indigo mr-1"><i
+                                        class="fa fa-file-upload" style="width: 20px; text-align:center;"></i> Subir
+                                    Imagen</button>
+                                <button id="btnEliminarImagenLab" type="button" class="btn btn-sm btn-danger mr-1"><i
+                                        class="fa fa-trash" style="width: 20px; text-align:center;"></i> Eliminar
+                                    Imagen</button>
+                                @* <button id="btnMostrarArchivoLab" type="button" class="btn btn-sm btn-purple" style="width: 90px;"><i class="fa fa-file-lines" style="width: 20px; text-align:center;"></i> Visualizar</button> *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="tblLabResImagenesAdjuntas" width="100%"
+                    class="table table-sm table-bordered table-content-sm">
+                    <thead style="color: white; background: #434343;">
+                        <tr>
+                            <th valign="middle">#</th>
+                            <th valign="middle">Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody style="cursor: pointer;"></tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnCancelarResultadoImagenesAdjuntas" type="button" class="btn btn-secondary"
+                    style="width: 100px;">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>

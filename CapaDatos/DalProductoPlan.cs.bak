@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CapaEntidades;
+using CapaDatos;
+using Microsoft.AspNetCore.Mvc;
+
+namespace WebAppMaternidad.CapaDatos
+{
+    public class DalProductoPlan
+    {
+        public Task<DataSet> TiposFinanciamientoSegunFiltro(string Filtro)
+        {
+            Conexion cx = new Conexion();
+            return Task.Run(() =>
+            {
+
+                using (SqlConnection conn = cx.obtenerConexion())
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        string sql = "TiposFinanciamientoSegunFiltro";
+                        da.SelectCommand = new SqlCommand(sql, conn);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        da.SelectCommand.Parameters.Add("@lcFiltro", SqlDbType.VarChar).Value = (Filtro == null) ? "" : Filtro;
+
+
+                        DataSet ds = new DataSet();
+                        da.Fill(ds);
+
+                        return ds;
+                    }
+                }
+
+            });
+        }
+    }
+}

@@ -1,0 +1,1201 @@
+﻿@section Css
+{
+    <!-- plugin css -->
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/chosen/css/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/radio_css/css/radiobox.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/css/pages/radio_checkbox.css" />
+    <link type="text/css" rel="stylesheet" href="~/AdmiRE/vendors/jquery-tagsinput/css/jquery.tagsinput.css" />
+}
+
+
+<header class="head">
+    <div class="main-bar row">
+        <div class="col-lg-6 col-md-4 col-sm-4">
+            <h4 class="nav_top_align">
+                <i class="fa fa-th"></i>
+                @ViewBag.Area
+            </h4>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-8">
+            <ol class="breadcrumb float-xs-right nav_breadcrumb_top_align">
+                <li class="breadcrumb-item">
+                    <a href="index1.html">
+                        <i class="fa fa-home" data-pack="default" data-tags=""></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">@ViewBag.Area</a>
+                </li>
+                <li class="breadcrumb-item active">Reportes</li>
+            </ol>
+        </div>
+    </div>
+</header>
+
+<div class="outer">
+    <div class="inner bg-light lter bg-container">
+        <div class="row">
+            <div class="col-xs-12 data_tables">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <i class="fa fa-pencil-square-o"></i> Reportes - Farmacia
+                    </div>
+
+                    <div class="card-block">
+
+                        <div class="row mt-2">
+                            <div class="col-lg-12">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Saldos por Almacén <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalSaldosPorAlmacen"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Saldos por Almacén (Por Fecha) <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalSaldosPorAlmacenPorFecha"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Reporte ICI - MGP/Ventas <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalReporteICI_MGP"><i class="fa-solid fa-eye"></i></button></li>
+
+                                    <li class="list-group-item">Formato ICI <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalICI"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Formato IDI <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalIDI"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Reporte de Consumo en el Servicio <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalActividadesConsumoServicio"><i class="fa-solid fa-eye"></i></button></li>
+
+
+                                    <li class="list-group-item">Consumo en el Servicio (Farmacia)<button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalActividadesConsumoServicioFarmacia"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Recetas por servicio <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalRecetasPorServicio"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Registro de Ventas <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalRegistroVentas"><i class="fa-solid fa-eye"></i></button></li>
+
+
+
+                                    <li class="list-group-item">Productos en Desabastecimiento <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalProductosEnDesabastecimiento"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Productos en Sobrestock <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalProductosEnSobrestock"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Reporte Recetas Médicas <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalMovimientoRecetas"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Reporte Medicamentos por Vencer <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalMedicamentosPorVencer"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Reporte Fajos <button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalReporteFajos"><i class="fa-solid fa-eye"></i></button></li>
+
+                                    <li class="list-group-item">Reporte Total Ventas<button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalReporteTotalVentas"><i class="fa-solid fa-eye"></i></button></li>
+
+                                    <li class="list-group-item">Reporte Psicotrópicos<button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalReportePsicotropicos"><i class="fa-solid fa-eye"></i></button></li>
+
+                                    <li class="list-group-item">Reporte Antimicrobianos<button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalReporteAntimicrobianos"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Movimiento de Documentos de Entrada y Salida<button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalReporteMovimientoEntradaSalida"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Productos por Vencer<button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalProductosPorVencer"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Recetas por Servicio<button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalReporteAntimicrobianos"><i class="fa-solid fa-eye"></i></button></li>
+                                    <li class="list-group-item">Recetas registradas por Usuario del Sistema<button class="btn btn-info btn-sm float-lg-right" data-toggle="modal" data-target="#modalReporteAntimicrobianos"><i class="fa-solid fa-eye"></i></button></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalSaldosPorAlmacen" tabindex="-1" role="dialog" aria-labelledby="modalSaldosPorAlmacenLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Saldos por Almacén</h4>
+            </div>
+            <div class="modal-body">
+                <partial name="~/Views/Shared/Components/VistasParciales/Farmacia/SaldosPorAlmacen.cshtml" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" id="btnGenerarSaldosPorAlmacen">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<partial name="~/Views/Shared/Components/VistasParciales/Farmacia/SaldosPorAlmacenPorFecha.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Farmacia/ReporteICI.cshtml" />
+<partial name="~/Views/Shared/Components/VistasParciales/Farmacia/ReporteICI_MGP.cshtml" />
+
+<partial name="~/Views/Shared/Components/VistasParciales/Farmacia/ReporteIDI.cshtml" />
+
+
+
+<div class="modal fade" id="modalActividadesConsumoServicio" tabindex="-1" role="dialog" aria-labelledby="modalActividadesConsumoServicioLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Consumo en el Servicio</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-group-sm">
+                            <label for="cboUsuarioConsumoServicio">Usuario</label>
+                            <select id="cboUsuarioConsumoServicio" class="chzn-select"></select>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="txtFechaInicioConsumoServicio">Fecha Inicio</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioConsumoServicio">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="txtFechaFinConsumoServicio">Fecha Fin</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinConsumoServicio">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCerrarConsumoServicioFarmacia">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnConsumoServicioFarmacia">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalActividadesConsumoServicioFarmacia" tabindex="-1" role="dialog" aria-labelledby="modalActividadesConsumoServicioFarmaciaLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Recetas Por Servicio</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-group-sm">
+                            <label for="cboFarmaciaConsumoPorServicio">Farmacia</label>
+                            <select id="cboFarmaciaConsumoPorServicio" class="chzn-select"></select>
+                        </div>
+
+                        <div class="form-group form-group-sm">
+                            <label for="cboTipoServiciopConsumoServFarmacia">Tipo Servicio</label>
+                            <select id="cboTipoServiciopConsumoServFarmacia" class="chzn-select">
+                                <option value="3">Hospitalizacion</option>
+                                <option value="2">Emergencia</option>
+                                <option value="1">Consultorios Externos</option>
+                            </select>
+                        </div>
+                       @*  <div class="form-group form-group-sm">
+                            <label for="cboTipoRecetaPorServicio">Tipo</label>
+                            <select id="cboTipoRecetaPorServicio" class="chzn-select">
+                                <option value="1">Recetas Por PLan</option>
+                                <option value="2">Recetas Por Servicio</option>
+                            </select>
+                        </div> *@
+                        <div class="form-group form-group-sm">
+                            <label for="txtFechaInicioConsumoPorServicioFarmacia">Fecha Inicio</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioConsumoPorServicioFarmacia">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="txtFechaFinConsumoPorServicioFarmacia">Fecha Fin</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinConsumoPorServicioFarmacia">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCerrarConsumoFarmacia">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnConsumoPorServicioFarmacia">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalRecetasPorServicio" tabindex="-1" role="dialog" aria-labelledby="modalRecetasPorServicioLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Recetas Por Servicio</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-group-sm">
+                            <label for="cboFarmaciaRecetaPorServicio">Farmacia</label>
+                            <select id="cboFarmaciaRecetaPorServicio" class="chzn-select"></select>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="cboTipoRecetaPorServicio">Tipo</label>
+                            <select id="cboTipoRecetaPorServicio" class="chzn-select">
+                                <option value="1">Recetas Por PLan</option>
+                                <option value="2">Recetas Por Servicio</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="txtFechaInicioRecetaPorServicio">Fecha Inicio</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioRecetaPorServicio">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="txtFechaFinRecetaPorServicio">Fecha Fin</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinRecetaPorServicio">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCerrarConsumoServicioFarmacia">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnRecetaPorServicioFarmacia">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalRegistroVentas" tabindex="-1" role="dialog" aria-labelledby="modalRegistroVentasLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Registro de Ventas</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label for="txtFechaInicioRegistroVentas">Fecha Inicio</label>
+                                <div class="input-group form-group input-group-sm">
+                                    <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioRegistroVentas" autocomplete="off">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="txtHoraInicioRegistroVentas" class="form-label">Hora Inicio</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" id="txtHoraInicioRegistroVentas" placeholder="__:__" value="07:00">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label for="txtFechaFinRegistroVentas">Fecha Fin</label>
+                                <div class="input-group form-group input-group-sm">
+                                    <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinRegistroVentas" autocomplete="off">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="txtHoraFinRegistroVentas" class="form-label">Hora Inicio</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" id="txtHoraFinRegistroVentas" placeholder="__:__" value="19:00">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group form-group-sm">
+                            <label for="cboCajaRegistroVentas">Caja</label>
+                            <select id="cboCajaRegistroVentas" class="chzn-select"></select>
+                        </div>
+
+                        <div class="form-group form-group-sm">
+                            <label for="cboTurnoRegistroVentas">Turno</label>
+                            <select id="cboTurnoRegistroVentas" class="chzn-select"></select>
+                        </div>
+
+                        <div class="form-group form-group-sm">
+                            <label for="cboCajeroRegistroVentas">Cajero</label>
+                            <select id="cboCajeroRegistroVentas" class="chzn-select"></select>
+                        </div>
+
+                        <div class="form-group form-group-sm">
+                            <label for="cboComprobanteRegistroVentas">Comprobante</label>
+                            <select id="cboComprobanteRegistroVentas" class="chzn-select"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group form-group-sm">
+                            <label for="cboTipoReporteRegistroVentas">Tipo Reporte</label>
+                            <select id="cboTipoReporteRegistroVentas" class="chzn-select">
+                                <option value="1">Detalle X Items</option>
+                                <option value="2">Detalle X Documento</option>
+                                <option value="3">Por CPT</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-group-sm">
+                            <label for="cboTipoRegistroVentas">Tipo</label>
+                            <select id="cboTipoRegistroVentas" class="chzn-select">
+                                <option value="1">Farmacia</option>
+                                <option value="2">Servicios</option>
+                                <option value="3">Ambos</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group form-group-sm">
+                            <label for="cboVendedorRegistroVentas">Vendedor Farma</label>
+                            <select id="cboVendedorRegistroVentas" class="chzn-select">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group form-group-sm">
+                            <label for="cboFarmaciaRegistroVentas">Farmacia</label>
+                            <select id="cboFarmaciaRegistroVentas" class="chzn-select">
+                            </select>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCerrarConsumoServicioFarmacia">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnRegistroVentasFarmacia">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalProductosEnDesabastecimiento" tabindex="-1" role="dialog" aria-labelledby="modalProductosEnDesabastecimientoLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Productos en Desabastecimiento</h5>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCerrarRptProductosEnDesabastecimiento">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnGenerarRptProductosEnDesabastecimiento">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalProductosEnSobrestock" tabindex="-1" role="dialog" aria-labelledby="modalmodalProductosEnSobrestockLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Productos en Sobrestock</h5>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCerrarRptProductosEnSobrestock">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnGenerarRptProductosEnSobrestock">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalMovimientoRecetas" tabindex="-1" role="dialog" aria-labelledby="modalMovimientoRecetasLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Recetas Médicas</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-group-sm">
+                            <label for="cboUsuarioRecetasMedicas">Usuario</label>
+                            <select id="cboUsuarioRecetasMedicas" class="chzn-select"></select>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="cboEstadoRecetasMedicas">Estado Receta</label>
+                            <select id="cboEstadoRecetasMedicas" class="chzn-select"></select>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="txtFechaInicioRecetasMedicas">Fecha Inicio</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioRecetasMedicas">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="txtFechaFinRecetasMedicas">Fecha Fin</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinRecetasMedicas">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCerrarRecetasMedicas">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnRecetasMedicas">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalMedicamentosPorVencer" tabindex="-1" role="dialog" aria-labelledby="modalMedicamentosPorVencer">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Medicamentos por Vencer</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="form-group form-group-sm">
+                            <label for="txtCantidadFechaVencimiento">Rango</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control solo-numero" id="txtCantidadFechaVencimiento">
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-sm">
+                            <label for="cboTipoTiempoVencimiento">Tipo</label>
+                            <select id="cboTipoTiempoVencimiento" class="chzn-select">
+                                <option value="0">Seleccione una opción</option>
+                                <option value="1">Días</option>
+                                <option value="2">Semanas</option>
+                                <option value="3">Meses</option>
+                                <option value="4">Años</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCerrarProductosPorVencer">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnProductosPorVencer">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalReporteFajos" tabindex="-1" role="dialog" aria-labelledby="modalReporteFajos">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Fajos</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+
+                    <div class="row">
+                        <div class="col-md-12 mb-1">
+
+                            <label for="cboAlmacenFajo" class="form-control-label">Almacen</label>
+                            <div class="input-group">
+                                <select class="chzn-select" id="cboAlmacenFajo">
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 mb-1">
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label for="txtFechaInicioFajo">Fecha Inicio</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioFajo" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="txtHoraInicioFajo" class="form-label">Hora Inicio</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="txtHoraInicioFajo" placeholder="__:__" value="07:00">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 mb-1">
+
+                            <div class="row">
+
+                                <div class="col-md-8">
+                                    <label for="txtFechaFinFajo">Fecha Fin</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinFajo" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="txtHoraFinFajo" class="form-label">Hora Fin</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="txtHoraFinFajo" placeholder="__:__" value="19:00">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12 mb-1">
+
+                            <label for="cboVendedorFajo" class="form-control-label">Vendedor Farm</label>
+                            <div class="input-group">
+                                <select class="chzn-select" id="cboVendedorFajo">
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12 mb-1">
+
+                            <label for="cboProductoPlanFajo" class="form-control-label">Producto Plan</label>
+                            <div class="input-group">
+                                <select class="chzn-select" id="cboProductoPlanFajo">
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4 mb-1">
+
+                            <label for="cboTipoServFajo" class="form-control-label">Tipo Serv</label>
+                            <div class="input-group">
+                                <select class="chzn-select" id="cboTipoServFajo">
+                                    <option value="3">Hospitalizacion</option>
+                                    <option value="2">Emergencia</option>
+                                    <option value="1">Consultorios Externos</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-8 mb-1">
+
+                            <label for="cboServicioFajo" class="form-control-label">Servicio</label>
+                            <div class="input-group">
+                                <select class="chzn-select" id="cboServicioFajo">
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="btnGenerarReporteFajo">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalReporteTotalVentas" tabindex="-1" role="dialog" aria-labelledby="mmodalReporteTotalVentasLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Total Ventas</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-group-sm">
+                            <label for="cboFarmaciaTotalVentas">Farmacia</label>
+                            <select id="cboFarmaciaTotalVentas" class="chzn-select"></select>
+                        </div>
+                                                
+                        <div class="form-group form-group-sm">
+                            <label for="txtFechaInicioTotalVentas">Fecha Inicio</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioTotalVentas">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="txtFechaFinTotalVentas">Fecha Fin</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinTotalVentas">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="radioButtonStyleLabel">
+                                <input type="radio" name="rdbTipoReporteTotalVentas" class="radioButtonStyleInput" id="rdbMedicamentosInsumos" value="1" />
+                                <span class="radioButtonStyleSpan w-100">Medicamentos e insumos</span>
+                            </label>
+                            <label class="radioButtonStyleLabel">
+                                <input type="radio" name="rdbTipoReporteTotalVentas" class="radioButtonStyleInput" id="rdbAntimicrobianosGenerales" value="2" />
+                                <span class="radioButtonStyleSpan w-100">Antimicrobianos general</span>
+                            </label>
+                            <label class="radioButtonStyleLabel">
+                                <input type="radio" name="rdbTipoReporteTotalVentas" class="radioButtonStyleInput" id="rdbAntimicrobianosRestringidos" value="3" />
+                                <span class="radioButtonStyleSpan w-100">Antimicrobianos restringidos</span>
+                            </label>                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarReporteTotalVentas">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnGenerarReporteTotalVentas">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalReportePsicotropicos" tabindex="-1" role="dialog" aria-labelledby="mmodalReportePsicotropicosLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Psicotrópicos</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboFarmaciaPsicotropicos">Farmacia</label>
+                            <select id="cboFarmaciaPsicotropicos" class="chzn-select"></select>
+                        </div>
+
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboTipoPsicotropicos">Tipo</label>
+                            <select id="cboTipoPsicotropicos" class="chzn-select"></select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtFechaInicioPsicotropicos">Fecha Inicio</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioPsicotropicos" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>                                
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtHoraInicioPsicotropicos" class="form-label">Hora Inicio</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtHoraInicioPsicotropicos" placeholder="__:__">
+                                </div>                                
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtFechaFinPsicotropicos">Fecha Fin</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinPsicotropicos" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtHoraFinPsicotropicos" class="form-label">Hora Fin</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtHoraFinPsicotropicos" placeholder="__:__">
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarReportePsicotropicos">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnGenerarReportePsicotropicos">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalReporteAntimicrobianos" tabindex="-1" role="dialog" aria-labelledby="mmodalReporteAntimicrobianosLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Antimicrobianos</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboFarmaciaAntimicrobianos">Farmacia</label>
+                            <select id="cboFarmaciaAntimicrobianos" class="chzn-select"></select>
+                        </div>
+
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboTipoServicioAntimicrobianos">Tipo Servicio</label>
+                            <select id="cboTipoServicioAntimicrobianos" class="chzn-select">
+                                <option value="0"></option>
+                                <option value="1">Consultorios Externos</option>                                
+                                <option value="2">Emergencia</option>
+                                <option value="3">Hospitalizacion</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-group-sm m-0">
+                            <label for="cboServicioAntimicrobianos">Servicio</label>
+                            <select id="cboServicioAntimicrobianos" class="chzn-select">
+                                <option value=""></option>
+                                <option value="0">Todos</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtFechaInicioAntimicrobianos">Fecha Inicio</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioAntimicrobianos" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtFechaFinAntimicrobianos">Fecha Fin</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinAntimicrobianos" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                           @*  <div class="col-md-4">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtHoraInicioAntimicrobianos" class="form-label">Hora Inicio</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtHoraInicioAntimicrobianos" placeholder="__:__">
+                                </div>
+                            </div> *@
+                        </div>
+
+                        @* <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtFechaFinAntimicrobianos">Fecha Fin</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinAntimicrobianos" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtHoraFinAntimicrobianos" class="form-label">Hora Fin</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtHoraFinAntimicrobianos" placeholder="__:__">
+                                </div>
+
+                            </div>
+                        </div> *@
+
+                        @* <div class="form-group form-group-sm m-0">
+                            <label for="cboTipoReporteAntimicrobianos">Tipo Reporte</label>
+                            <select id="cboTipoReporteAntimicrobianos" class="chzn-select">
+                                <option value="0"></option>
+                                <option value="1">Detallado</option>
+                                <option value="2">Consolidado</option>                                
+                            </select>
+                        </div> *@
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarReporteAntimicrobianos">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnGenerarReporteAntimicrobianos">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalReporteMovimientoEntradaSalida" tabindex="-1" role="dialog" aria-labelledby="modalReporteMovimientoEntradaSalida" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Movimientos de Entrada y Salida</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--<label class="radioButtonStyleLabel mb-1">
+                            <input type="radio" id="rdbConsolidadoIngresoSalida" class="radioButtonStyleInput camposRegistro" name="tipoReporte" value="1">
+                            <span class="radioButtonStyleSpan">Consolidado de Ingresos y Salidas</span>
+                        </label>-->
+                        <fieldset class="border p-2 m-1" id="fsFiltros">
+
+                            <div class="row">
+
+                                <div class="col-sm-6">
+                                    <div class="form-group form-group-sm m-0">
+                                        <label for="cboTipoReporte">Tipo Reporte</label>
+                                        <select id="cboTipoReporte" class="chzn-select">
+                                            <option value="1">Movimientos de Entrada y Salida</option>
+                                            <option value="2">Control de Transacciones</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group form-group-sm m-0">
+                                        <label for="cboAlmacen">Almacén</label>
+                                        <select id="cboAlmacen" class="chzn-select"></select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group form-group-sm m-0">
+                                        <label for="cboConcepto">Concepto</label>
+                                        <select id="cboConcepto" class="chzn-select"></select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group form-group-sm m-0">
+                                        <label for="cboTipoMovimientoAlmacen">Tipo Movimiento</label>
+                                        <select id="cboTipoMovimientoAlmacen" class="chzn-select">
+                                            <option value="0">Seleccione Tipo Movimiento</option>
+                                            <option value="1">Movimientos de Ingreso</option>
+                                            <option value="2">Movimientos de Salida</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group form-group-sm m-0">
+                                        <label for="cboEstado">Estado</label>
+                                        <select id="cboEstado" class="chzn-select">
+                                            <option value="0">Todos</option>
+                                            <option value="1">Sólo los Anulados</option>
+                                            <option value="2">Sólo los Activos</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group form-group-sm m-0">
+                                        <label for="cboAlmacenOrigen">Almacén Origen</label>
+                                        <select id="cboAlmacenOrigen" class="chzn-select"></select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group form-group-sm m-0">
+                                        <label for="cboAlmacenDestino">Almacén Destino</label>
+                                        <select id="cboAlmacenDestino" class="chzn-select"></select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group form-group-sm m-0">
+                                        <label for="cboVendedorFarm">Vendedor Farm</label>
+                                        <select id="cboVendedorFarm" class="chzn-select"></select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-sm m-0">
+                                        <label for="txtFechaInicioMovimiento">Fecha Inicio</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioMovimiento" autocomplete="off">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-sm m-0">
+                                        <label for="txtHoraInicioMovimiento" class="form-label">Hora Inicio</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtHoraInicioMovimiento" placeholder="__:__">
+                                    </div>
+                                </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtFechaFinMovimiento">Fecha Fin</label>
+                                    <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinMovimiento" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-sm m-0">
+                                    <label for="txtHoraFinMovimiento" class="form-label">Hora Fin</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtHoraFinMovimiento" placeholder="__:__">
+                                </div>
+
+                            </div>
+
+                           </div>
+                        </fieldset>
+
+                        <!--<label class="radioButtonStyleLabel mb-1">
+                            <input type="radio" id="rdbDetalleIngresos" class="radioButtonStyleInput camposRegistro" name="tipoReporte" value="2">
+                            <span class="radioButtonStyleSpan">Detalle de Ingresos</span>
+                        </label>
+                        <div style="text-align:center">
+                            <button type="button" class="btn btn-info" id="btnIngresoDetalle">Consulta y reporte de INGRESO en forma detallada </button>
+                        </div>--> 
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarReporteMovimientoEntradaSalida">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnGenerarReporteMovimientoEntradaSalida">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+<div class="modal fade" id="modalProductosPorVencer" tabindex="-1" role="dialog" aria-labelledby="modalProductosPorVencer" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header" style="background: #1D6F42;">
+                <h5 class="modal-title text-white" id="myModalLabel">Productos por Vencer</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <fieldset class="border p-2 m-1" id="fsFiltros">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-group-sm m-0">
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-6">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-addon" id="basic-addon2">Medicamento que están por vencer a </span>
+                                                    <input type="text" class="form-control form-control-sm" aria-describedby="basic-addon2" id="txtEdadAnioSolicitud">
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarProductosPorVencer">Cerrar</button>
+                <button type="button" class="btn text-white" style="background: #1D6F42;" id="btnGenerarReporteProductosPorVencer">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    @section Scripts
+    {
+        <script type="text/javascript" src="~/AdmiRE/vendors/chosen/js/chosen.jquery.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/raphael/js/raphael-min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/justgage/js/justgage.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/d3/js/d3.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/c3/js/c3.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/jquery-tagsinput/js/jquery.tagsinput.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" src="~/AdmiRE/vendors/masked/masked.js"></script>
+        @* <script src="https://momentjs.com/downloads/moment-with-locales.js"></script> *@
+        <script type="text/javascript" src="~/AdmiRE/js/moment-with-locales.js"></script>
+
+        <script src="~/AdmiRE/js/date.format.js"></script>
+        <script type="text/javascript" src=@Href("~/js/Farmacia/Farmacia.js")></script>
+        <script type="text/javascript" src=@Href("~/js/VistasParciales/Farmacia/ReportesFarmacia.js")></script>
+        <script type="text/javascript" src=@Href("~/js/Comun/Utilitarios.js")></script>
+
+    }
+
+    <style>
+        body {
+            padding-right: 0px !important;
+        }
+
+        nav.navbar {
+            background-color: #CC1414;
+        }
+
+        #clothing-nav-content2 .form-group {
+            margin-bottom: 0 !important;
+        }
+
+        #tblAtencion tr.over td {
+            background: #D6E8F8;
+            font-weight: bold;
+        }
+
+        .chosen-container {
+            width: 100% !important;
+        }
+
+        .modal-lg {
+            max-width: 1100px !important;
+        }
+
+        /*==============REFCON===============*/
+        .chosen-disabled {
+            opacity: 1 !important;
+        }
+
+            .chosen-disabled .chosen-single {
+                background: #eceeef !important;
+                border-color: rgba(0, 0, 0, 0.15) !important;
+            }
+
+        .custom-control-indicator {
+            border: 1px solid darkgrey;
+        }
+
+        .text-right {
+            text-align: right !important;
+        }
+
+        .bg-light {
+            background-color: #f8f9fa !important;
+            color: #434343 !important;
+        }
+
+        .border-x-0 {
+            border-right: 0 !important;
+            border-left: 0 !important;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.5rem !important;
+        }
+
+        legend {
+            width: auto !important;
+            padding: 0 5px !important;
+            font-size: 1.2rem !important;
+            margin-left: 5px !important;
+        }
+
+        fieldset {
+            border: 1px solid #ccc !important;
+            margin: 0px 10px !important;
+        }
+
+        .nav-link:hover {
+            border-color: whitesmoke !important;
+            background-color: whitesmoke !important;
+        }
+
+        .btn-outline-secondary {
+            color: #999 !important;
+            border-color: #999 !important;
+        }
+
+            .btn-outline-secondary:hover {
+                color: #fff !important;
+                border-color: #ccc !important;
+            }
+
+        #clothing-nav-content2 .form-group {
+            margin-bottom: 0 !important;
+        }
+
+        #tblAtencion tr.over td {
+            background: #D6E8F8;
+            font-weight: bold;
+        }
+
+        /*  .chosen-container chosen-container-single {
+                                width: 100% !important;
+                            }*/
+
+
+        .chosen-container {
+            width: 100% !important;
+        }
+
+        .modal-lg {
+            max-width: 1100px !important;
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: -1px;
+            background-color: #fff;
+            border: 1px solid #ddd !important;
+        }
+    </style>

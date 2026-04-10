@@ -1,0 +1,422 @@
+﻿<ul id="idtbAtencion" class="nav nav-tabs jerarquiaA" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" href="#entrevista" role="tab" id="entrevista-tab" data-toggle="tab" aria-controls="entrevista" aria-expanded="true">Entrevista/Anam./Exam. Fisico</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link " href="#examenEvalAnest" role="tab" id="examenEvalAnest-tab" data-toggle="tab" aria-controls="examenEvalAnest">Examen Evaluación</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link " href="#resultadosAnest" role="tab" id="resultadosAnest-tab" data-toggle="tab" aria-controls="resultadosAnest">Resultados</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link " href="#diagnosticos" role="tab" id="diagnosticos-tab" data-toggle="tab" aria-controls="diagnosticos">Diagnósticos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#ordenes" role="tab" id="ordenes-tab" data-toggle="tab" aria-controls="ordenes">Órdenes Médicas/Destino/Episodio</a>
+    </li>
+</ul>
+
+<div id="clothing-nav-contentEspecialidades" class="tab-content pt-1">
+
+    <div role="tabpanel" class="tab-pane fade in active" id="entrevista" aria-labelledby="entrevista-tab">
+
+        <div class="row" id="contenedorChkEsEvaluacionPreAnestesica">
+            <div class="col-lg-4">
+                <div class="check__toggle mt-04 float-lg-left">
+                    <label class="toggle">
+                        <input class="toggle__input campo bloquear-campos" type="checkbox" id="chkEsEvaluacionPreAnestesica">
+                        <span class="toggle__label mr-2">
+                            <span class="toggle__text">Es Evaluación Pre-Anestésica</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="divClasificacionPaciente">
+            <div class="col-md-12" style="display: none;">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group campo">
+                            <label for="cboClasisifcacion" class="form-control-label">Clasificacion de Paciente</label>
+                            <div class="input-group">
+                                <select class="chzn-select" id="cboClasisifcacion"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="cboDestino" class="form-control-label">Controles MGP</label>
+                            <div class="input-group">
+                                <input id="txtControles" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="txtEdadGestacional" class="form-control-label">Edad Gestacional</label>
+                            <div class="input-group">
+                                <input id="txtEdadGestacional" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="txtGestas" class="form-control-label">Nro. Gestas</label>
+                            <div class="input-group">
+                                <input id="txtGestas" autocomplete="off" placeholder="" class=" solo-numero form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="divTipoAtencion">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group campo">
+                            <label for="cboTipoAtencion" class="form-control-label">Tipo Atención</label>
+                            <div class="input-group">
+                                <select class="chzn-select" id="cboTipoAtencion">
+                                    <option value="0">Seleccione una opción</option>
+                                    <option value="1">Atención integral - control emocional</option>
+                                    <option value="2">Atención psicológica por infertilidad</option>
+                                    <option value="3">Atención psicológica del Niño de Alto Riesgo (NAR)</option>
+                                    <option value="4">Evaluación de desarrollo infantil del NAR</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="contenedorEspecialidades" class="campo">
+            <partial name="~/Views/Shared/Components/VistasParciales/ConsultaExterna/EspecialidadesMedicas/Entrevista.cshtml" />
+        </div>
+
+        <div id="contenedorPreAnestesica" class="campo" style="display: none;">
+            <partial name="~/Views/Shared/Components/VistasParciales/AtencionMedica/EntrevistaAnestesiologia.cshtml" />
+        </div>
+
+    </div>
+
+    <div role="tabpanel" class="tab-pane fade campo" id="examenEvalAnest" aria-labelledby="examenEvalAnest-tab">
+        <partial name="~/Views/Shared/Components/VistasParciales/AtencionMedica/ExamenEvaluacionAnestesiologia.cshtml" />
+    </div>
+
+    <div role="tabpanel" class="tab-pane fade campo" id="resultadosAnest" aria-labelledby="resultadosAnest-tab">
+        <partial name="~/Views/Shared/Components/VistasParciales/AtencionMedica/ResultadosAnestesiologia.cshtml" />
+    </div>
+
+    <div role="tabpanel" class="tab-pane fade" id="diagnosticos" aria-labelledby="diagnosticos-tab">
+
+        <div class="row">
+            <div class="col-md-12">
+                <partial name="~/Views/Shared/Components/VistasParciales/Diagnosticos.cshtml" />
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-md-12">
+                <div class="card m-t-5 bg-pink">
+                    <div class="card-header bg-white">Procedimientos en el Consultorio</div>
+                    <div class="card-block m-t-5 custom-form">
+                        <div class="row p-t-5">
+                            <div class="col-md-12">
+                                <table id="tblCSAtencion" class="table table-sm table-bordered">
+                                    <thead style="color: white; background: #5f7184;">
+                                        <tr>
+                                            <th style="width: 15%">N°. Orden</th>
+                                            <th style="width: 15%">N°. Orden Pago</th>
+                                            <th style="width: 60%">Producto</th>
+                                            <th style="width: 10%">Cantidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-12 m-t-5 OpcionesCPT">
+                                <div class="d-flex align-items-end">
+                                    <button id="btnAgregarCSAtencion" title="Agregar CPT" data-toggle="tooltip" type="button" class="btn btn-sm btn-success mr-1" style="width: 100px;">
+                                        <i class="fa fa-plus" style="width: 20px; text-align:center;"></i>
+                                        Agregar
+                                    </button>
+                                    <button id="btnEliminarCSAtencion" title="Eliminar CPT" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger mr-1" style="width: 100px;">
+                                        <i class="fa fa-trash" style="width: 20px; text-align:center;"></i>
+                                        Quitar
+                                    </button>
+                                    <button id="btnActualizaCSAtencion" title="Actualiza CPT" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary" style="width: 100px;">
+                                        <i class="fa fa-refresh" style="width: 20px; text-align:center;"></i>
+                                        Actualizar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card m-t-20">
+                    <div class="card-block">
+                        <div class="row campo">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <b><label for="txtAtencedentes" class="form-control-label text-info titulo ">Plan de Trabajo</label></b>
+                                    <div class="input-group">
+
+                                        <textarea class="form-control" id="txtPlanTrabajo" rows="3"></textarea>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <b><label for="txtAtencedentes" class="form-control-label text-info titulo ">Tratamiento</label></b>
+                                    <div class="input-group">
+
+                                        <textarea class="form-control" id="txtTratamiento" rows="3"></textarea>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div role="tabpanel" class="tab-pane fade" id="ordenes" aria-labelledby="ordenes-tab">
+        <div class="row">
+            <div class="col-md-12">
+                <partial name="~/Views/Shared/Components/VistasParciales/Ordenes.cshtml" />
+            </div>
+        </div>
+        <div class="row campo">
+            <div class="col-md-12">
+                <div class="card m-t-20">
+                    <div class="card-header bg-white">Destino Atención</div>
+                    <div class="card-block bg-green">
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row" style="display:none">
+                                    <div class="col-lg-12">
+                                        <label style="text-align: left" class="custom-control custom-checkbox">
+                                            <input id="chkValida" type="checkbox" class="custom-control-input">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">Alta definitva</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label for="cboDestino" class="form-control-label">Destino</label>
+                                            <div class="input-group">
+                                                <select class="chzn-select" id="cboDestino"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @{
+                                        if (@ViewBag.PermisoRefCon == "1")
+                                        {
+                                            <div class="col-lg-4 d-flex align-items-end" style="height: 57px;">
+                                                <div>
+                                                    <button id="btnRefCon" class="btn btn-outline-info" onclick="ModificarRefCon();"><i class="fa-solid fa-file-plus mr-1"></i>Referencia</button>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+
+                                <div class="row" style="display:none">
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="cboDestino" class="form-control-label">Próxima Consulta</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" autocomplete="off" class="form-control form_val_popup_dp3" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtProximaConsulta" disabled="disabled">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="cboTipoConsulta" class="form-control-label">Tipo de proxima consulta</label>
+                                            <div class="input-group">
+                                                <select class="chzn-select" id="cboTipoConsulta"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <form>
+                            <fieldset class="m-0 mb-2 pb-1" style="border-color: #d5d5d5;">
+                                <legend style="font-weight: 700;color: #6688e9;">Episodio Clínico</legend>
+                                <div class="row m-0">
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            <label for="cboEpisodio" class="form-control-label">Episodio hístorico</label>
+                                            <select class="chzn-select" id="cboEpisodio"></select>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <br>
+                                        <div class="form-group">
+
+                                            <div class="check__toggle mt-04">
+                                                <label class="toggle">
+                                                    <input class="toggle__input campo" type="checkbox" id="chkNuevo">
+                                                    <span class="toggle__label mr-2">
+                                                        <span class="toggle__text">Nuevo Espisodio</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <br>
+                                        <div class="form-group">
+
+                                            <div class="check__toggle mt-04">
+                                                <label class="toggle">
+                                                    <input class="toggle__input campo" type="checkbox" id="chkCierre">
+                                                    <span class="toggle__label mr-2">
+                                                        <span class="toggle__text">Cierre Espisodio</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div style="max-width:250px;" class="m-auto" ">
+                                    <div class="msc-hotline mb-1">
+                                        <div class="msc-hotline-icon bg-danger">
+                                            <i class="fa-solid fa-head-side-medical"></i>
+                                        </div>
+                                        <div class="msc-hotline-content">
+                                            <div class="msc-hotline-title">
+                                                <span id="lblEstadoAtencion" class="text-danger"></span>
+                                            </div>
+                                            <div class="msc-hotline-text">Estado Atención</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div style="max-width:250px;" class="m-auto" ">
+                                    <div class="msc-hotline mb-1">
+                                        <div class="msc-hotline-icon">
+                                            <i class="fa-solid fa-hospital-user"></i>
+                                        </div>
+                                        <div class="msc-hotline-content">
+                                            <div class="msc-hotline-title">
+                                                <span id="lblDesEstablecimiento"></span>
+                                            </div>
+                                            <div class="msc-hotline-text">En el Establecimiento</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div style="max-width:250px;" class="m-auto">
+                                    <div class="msc-hotline mb-1">
+                                        <div class="msc-hotline-icon">
+                                            <i class="fa-solid fa-id-card-clip"></i>
+                                        </div>
+                                        <div class="msc-hotline-content">
+                                            <div class="msc-hotline-title">
+                                                <span id="lblDesServicio"></span>
+                                            </div>
+                                            <div class="msc-hotline-text">En el Servicio</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-lg-2">
+                                <label for="txtOtrasObservacionesGe" class="form-control-label"><strong>Otras Observaciones: </strong></label>
+                            </div>
+                            <div class="col-lg-10">
+                                <textarea style="background:antiquewhite" class="form-control" id="txtOtrasObservacionesGe" rows="1"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src=@Href("~/js/ConsultaExterna/AtencionMedicaV2.js")></script>
+<script type="text/javascript" src=@Href("~/js/VistasParciales/Anestesiologia.js")></script>
+
+<script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV2.js")></script>
+<script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos.js")></script>
+
+<script>
+    $(document).ready(() => {
+        //AtencionMedica.Plugins()
+        AtencionMedica.ParcialEvents()
+        AtencionMedica.ListaTiposConsulta()
+        AtencionMedica.TiposClasificacionPaciente()
+        AtencionMedica.InitDatablesConsumoAtencion()
+
+
+        Anestesiologia.Iniciar()
+
+        
+        if (AtencionMedica.permisoClasiPaciente == '0') { // jdelgado para el control de versiones
+            $('#divClasificacionPaciente').hide()
+        } else {
+            $('#divClasificacionPaciente').show()
+        }
+        //Anestesiologia.InitDatablesMedicacionSuministrada()
+        //Anestesiologia.InitDatablesPatologiaClinica()
+        //AtencionMedica.ListaTiposConsulta()
+        //AtencionMedica.TiposClasificacionPaciente()
+    })
+</script>
+@*<script type="text/javascript" src=@Href("~/js/ConsultaExterna/AtencionMedica.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Anestesiologia.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Diagnosticos.js")></script>
+    <script type="text/javascript" src=@Href("~/js/VistasParciales/Recetas/OrdenesV2.js")></script>*@

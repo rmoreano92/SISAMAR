@@ -1,0 +1,132 @@
+﻿<div class="card">
+    <div class="card-header text-sm-center text-white" style="background-color: #607d8b;">EVALUACIÓN UCIN</div>
+    <div class="card-block p-1">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="BadgeEvaluacion" style="max-width: 280px;" class="">
+                    <div class="msc-hotline bg-blue mt-1">
+                        <div class="msc-hotline-icon bg-info">
+                            <i class="fa-solid fa-baby"></i>
+                        </div>
+                        <div class="msc-hotline-content m-auto">
+                            <div class="msc-hotline-title">
+                                <span id="lblNumeroEvaluacion" class="text-info"></span>
+                            </div>
+                            <div class="msc-hotline-text" id="lblTipoEvaluacion"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="d-flex" style="float: right;">
+                    <div class="form-group text-right mr-2" style="width: 200px;">
+                        <label for="FechaInicioAtencion" class="form-control-label" style="font-weight: bold;">Fecha Evaluación</label>
+                        <div class="input-group">
+                            <input type="text" autocomplete="off" class="form-control form_val_popup_dp3 text-info entrada" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="FechaInicioAtencion" style="font-weight: bold;border-color:#ff9900;" readonly>
+                            <span class="input-group-addon " for="FechaInicioAtencion" id="FechaInicioAtencionIcon">
+                                <i class="fa fa-calendar "></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-right" style="width: 200px;">
+                        <label for="HoraInicioAtencion" class="form-control-label" style="font-weight: bold;">Hora Inicio Atención (24 h)</label>
+                        <div class="input-group">
+                            <input type="text" autocomplete="off" class="form-control text-info text-right entrada" name="HoraInicioAtencion" id="HoraInicioAtencion" onblur="valida_hora(value)" style="font-weight: bold;border-color:#ff9900;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs" id="Eva-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="evaluacionFisica-tab" data-toggle="tab" href="#evaluacionFisica" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">EVALUACIÓN FÍSICA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="diagnosticos-tab" data-toggle="tab" href="#diagnosticos" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">IMPRESIÓN DIAGNÓSTICA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="apreaciacionClinica-tab" data-toggle="tab" href="#apreaciacionClinica" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">APRECIACIÓN Y PLAN</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="procedimientosCpt-tab" data-toggle="tab" href="#procedimientosCpt" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">PROCEDIMIENTOS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="resultadosAux-tab" data-toggle="tab" href="#resultadosAux" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">EXAMENES AUX. (RESULTADO)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="ordenes-tab" data-toggle="tab" href="#ordenes" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">ORDENES MÉDICAS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="notaAdicionalUCI-tab" data-toggle="tab" href="#notaAdicionalUCI" role="tab" aria-controls="home" aria-selected="false" aria-expanded="false">NOTA ADICIONAL</a>
+            </li>
+        </ul>
+
+        <div class="tab-content border" id="EvaTabContent3">
+            @*==============================EVALUACION FISICA=======================================*@
+            <div id="evaluacionFisica" role="tabpanel" class="tab-pane fade in active p-1" aria-labelledby="evaluacionFisica-tab">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#soporteRespiratorio" data-toggle="tab" role="tab" id="soporteRespiratorio-tab" aria-controls="home" aria-selected="false" aria-expanded="false">Soporte Respiratorio</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#terapia" data-toggle="tab" role="tab" id="tarapia-tab" aria-controls="home" aria-selected="false" aria-expanded="false">Terapia Transfusional e Infusional</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content border">
+                    <div id="soporteRespiratorio" role="tabpanel" class="tab-pane fade in active p-1" aria-labelledby="soporteRespiratorio-tab">
+                        <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/AtencionUCIN/SoporteRespiratorioEvaluacionUCIN.cshtml" />
+                    </div>
+
+                    <div id="terapia" role="tabpanel" class="tab-pane fade p-1" aria-labelledby="terapia-tab">
+                        <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/AtencionUCIN/TerapiaEvaluacionUCIN.cshtml" />
+                    </div>
+                </div>
+            </div>
+
+           
+            @*================================IMPRESION DIAGNOSTICA===========================================*@
+            <div id="diagnosticos" role="tabpanel" class="tab-pane fade p-1" aria-labelledby="diagnosticos-tab">
+                <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/AtencionUCIN/ImpresionDiagnosticaEvaluacionUCIN.cshtml" />
+            </div>
+
+            @*================================APRECION Y PLAN===========================================*@
+            <div id="apreaciacionClinica" role="tabpanel" class="tab-pane fade p-1" aria-labelledby="apreaciacionClinica-tab">
+                <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/AtencionUCIN/ApreciacionPlanEvaluacionUCIN.cshtml" />
+            </div>
+
+            @*================================PROCEDIMIENTO===========================================*@
+            <div id="procedimientosCpt" role="tabpanel" class="tab-pane fade p-1" aria-labelledby="procedimientosCpt-tab">
+                <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/AtencionUCIN/ProcedimientosEvaluacionUCIN.cshtml" />
+            </div>
+
+             @*================================RESUTLADOS AUXILIARES===========================================*@
+            <div id="resultadosAux" role="tabpanel" class="tab-pane fade p-1" aria-labelledby="resultadosAux-tab">
+                <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/AtencionUCIN/ResultadosAuxiliaresEvaluacionUCIN.cshtml" />
+            </div>
+
+            @*================================ORDENES MEDICA===========================================*@
+            <div id="ordenes" role="tabpanel" class="tab-pane fade p-1" aria-labelledby="ordenes-tab">
+                <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/AtencionUCIN/OrdenesMedicasEvaluacionUCIN.cshtml" />
+            </div>
+
+            @*================================NOTAS ADICIONALES===========================================*@
+            <div id="notaAdicionalUCI" role="tabpanel" class="tab-pane fade p-1" aria-labelledby="notaAdicionalUCI-tab">
+                <partial name="~/Views/Shared/Components/VistasParciales/Hospitalizacion/AtencionUCIN/NotaAdicionalEvaluacionUCIN.cshtml" />
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+

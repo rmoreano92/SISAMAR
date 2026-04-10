@@ -1,0 +1,108 @@
+﻿<div class="modal fade" id="modalSaldosPorAlmacenPorFecha" tabindex="-1" role="dialog" aria-labelledby="modalSaldosPorAlmacenPorFechaLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Saldos por Almacén Por Fecha</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+
+                    <div class="row mt-2">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                @*<div class="col-lg-6">
+                                    <label for="cboConsultorio" class="form-control-label">Tipo</label>
+                                    <div class="input-group">
+                                        <select class="chzn-select" id="cboTipoReporteFarmacia">
+                                            <option value="1">Saldos Totales</option>
+                                            <option value="2">Lote y Fecha de Vencimiento</option>
+                                        </select>
+                                    </div>
+                                </div>*@
+
+                                <div class="col-lg-5">
+                                    <label for="cboFarmAlmacenPorFecha" class="form-control-label">Almacén</label>
+                                    <div class="input-group">
+                                        <select class="chzn-select" id="cboFarmAlmacenPorFecha"></select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="txtFechaCorteSaldosPorAlmacen">Fecha Corte</label>
+                                    <div class="input-group form-group input-group-sm">
+                                        <input type="text" class="form-control form_val_popup_dp3 search" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaCorteSaldosPorAlmacen" autocomplete="off">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="txtHoraCorteSaldosPorAlmacen" class="form-label">Hora</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="txtHoraCorteSaldosPorAlmacen" placeholder="__:__" value="07:00">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 d-flex align-items-end mb-1" style="height: 50px;">
+                                    <div>
+                                        <button type="button" class="btn btn-sm btn-primary" style="padding-left: 1rem !important; padding-right: 1rem !important;" id="btnBuscarSaldosConFechaCorte">Buscar</button>&nbsp;&nbsp;
+                                        <button type="button" class="btn btn-sm btn-default" style="padding-left: 1rem !important; padding-right: 1rem !important;">limpiar</button>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-12 mt-2">
+                                <button class="btn btn-success btn-sm float-lg-right" id="btnGenerarSaldosPorAlmacen">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+                                </div>*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <table id="tblSaldosPorAlmacenConFechaCorte" width="100%" class="table table-sm table-bordered">
+                                        <thead style="color: white;background: #434343;">
+                                            <tr>
+                                                <th style="width:15%">Farmacia</th>
+                                                <th style="width:5%">Codigo</th>
+                                                <th style="width:25%">Nombre</th>
+                                                <th style="width:5%">P. Compra</th>
+                                                <th style="width:5%">P. UltCom</th>
+                                                <th style="width:5%">P. Dist</th>
+                                                <th style="width:5%">P. Don</th>
+                                                <th style="width:5%">Saldo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+
+                                    @* <table id="tblReporteICIDonaciones" width="100%" class="table table-sm table-bordered">
+                                        <thead style="color: white;background: #434343;">
+                                            <tr>
+                                                <th style="width:4%">Codigo</th>
+                                                <th style="width:70%">Descripcion</th>
+                                                <th style="width:5%">Precio</th>
+                                                <th style="width:5%">Saldo</th>
+                                                <th style="width:5%">Ingresos.</th>
+                                                <th style="width:5%">Consumo</th>
+                                                <th style="width:5%">SaldoFinal</th>
+                                                <th style="width:5%">FecVen</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table> *@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" id="btnGenerarSaldosPorAlmacenPorFecha">Generar Reporte <i class="fa-solid fa-file-excel ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
