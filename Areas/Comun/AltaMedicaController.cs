@@ -131,7 +131,7 @@ namespace WebAppMaternidad.Areas.Comun
 
         [HttpPost]
         public async Task<ActionResult> AltaMedicaModificar(Atenciones atencion, AtencionesDatosAdicionales atencionesDatosAdicionales, AtencionEpisodio atencionEpisodio, ProCabecera proCabecera, int estadoCierreControlPrenatal, 
-                                                            String lstDiagnosticosEgreso, String lstDiagnosticosComplicaciones, String lstDiagnosticosNacimientos, String lstDiagnosticosMortalidad, int conExoneracion=0)   //KHOYOSI
+                                                            String lstDiagnosticosEgreso, String lstDiagnosticosComplicaciones, String lstDiagnosticosNacimientos, String lstDiagnosticosMortalidad, int conExoneracion=0, int conDescansoMedico=0)   //KHOYOSI
         {
             if (HttpContext.User.Identity.IsAuthenticated == false)
             {
@@ -185,6 +185,14 @@ namespace WebAppMaternidad.Areas.Comun
             if (conExoneracion == 1) {
 
                 await GenerarPapeletaExoneracionMed(
+                    atencion.idCuentaAtencion,
+                    atencion.idAtencion
+                );
+            }
+
+            if (conDescansoMedico == 1)
+            {
+                await GenerarPapeletaDescansoMedico(
                     atencion.idCuentaAtencion,
                     atencion.idAtencion
                 );
@@ -249,7 +257,7 @@ namespace WebAppMaternidad.Areas.Comun
 
         [HttpPost]
         public async Task<Boolean> GenerarPapeletaHospitalizacionPrueba(Atenciones atencion, AtencionesDatosAdicionales atencionesDatosAdicionales, AtencionEpisodio atencionEpisodio, ProCabecera proCabecera, int estadoCierreControlPrenatal,
-                                                            String lstDiagnosticosEgreso, String lstDiagnosticosComplicaciones, String lstDiagnosticosNacimientos, String lstDiagnosticosMortalidad, int conExoneracion = 0)
+                                                            String lstDiagnosticosEgreso, String lstDiagnosticosComplicaciones, String lstDiagnosticosNacimientos, String lstDiagnosticosMortalidad, int conExoneracion = 0, int conDescansoMedico = 0)
         {
             try
             {
@@ -266,6 +274,11 @@ namespace WebAppMaternidad.Areas.Comun
                 );
 
                 bool resp3 = await GenerarPapeletaExoneracionMed(
+                    atencion.idCuentaAtencion,
+                    atencion.idAtencion
+                );
+
+                bool resp4 = await GenerarPapeletaDescansoMedico(
                     atencion.idCuentaAtencion,
                     atencion.idAtencion
                 );
@@ -489,10 +502,86 @@ namespace WebAppMaternidad.Areas.Comun
 
         }
 
+        public async Task<Boolean> GenerarPapeletaDescansoMedico(int idCuentaAtencion, int idAtencion)
+        {
+            try
+            {
+                FormatoPdf pdf = new FormatoPdf();
+                StringBuilder stringHtml = new StringBuilder();
+                string pageHtml = null;
+
+                UtilitarioController utilitario = new UtilitarioController();
+                int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+
+                stringHtml = null;
+                pageHtml = null;
+                pageHtml = Url.Action("PapeletaDescansoMedico", "AltaMedica", new { area = "Emergencia", idCuentaAtencion, idAtencion }, "http");
+
+                pdf.orientacion = "Portrait";
+                pdf.tamanio = "A4";
+                pdf.marginX = 20;
+                pdf.marginY = 20;
+
+                bool resp = await utilitario.GenerarDocumentoDigital(
+                    idCuentaAtencion,
+                    idAtencion,
+                    0,
+                    "E-PDM",
+                    0,
+                    pageHtml,
+                    stringHtml,
+                    idUsuario,
+                    pdf
+                );
+
+                return resp;
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.Message.ToString());
+                return false;
+            }
+        }
+
+        public async Task<ActionResult> PapeletaDescansoMedico(int idCuentaAtencion, int idAtencion)
+        {
+            DalAtenciones daoAtenciones = new DalAtenciones();
+            DalUtilitario dalUtilitario = new DalUtilitario();
+
+            DataSet datosPapeleta = await daoAtenciones.getDatosAtencion(idCuentaAtencion, idAtencion);
+            DataSet datosAtencion = await dalUtilitario.SeleccionarAtencionAtencionDatosAdicionalesPaciente(idAtencion);
+
+            var fecha = DateTime.Now;
+            string fechaTexto = fecha.ToString("dd/MM/yyyy");
+
+            var filaPapeleta = datosPapeleta.Tables[0].Rows[0];
+            var filaAtencion = datosAtencion.Tables[0].Rows[0];
+
+            DateTime? fechaInicioDescanso = filaAtencion["FechaInicioDescansoMedico"] == DBNull.Value ? null : (DateTime?)filaAtencion["FechaInicioDescansoMedico"];
+            DateTime? fechaFinDescanso = filaAtencion["FechaFinDescansoMedico"] == DBNull.Value ? null : (DateTime?)filaAtencion["FechaFinDescansoMedico"];
+
+            int totalHoras = 0;
+            if (fechaInicioDescanso.HasValue && fechaFinDescanso.HasValue)
+            {
+                totalHoras = (int)Math.Round((fechaFinDescanso.Value.Date.AddDays(1) - fechaInicioDescanso.Value.Date).TotalHours);
+            }
+
+            ViewBag.Paciente = filaPapeleta["Paciente"].ToString();
+            ViewBag.Grado = filaPapeleta["Grado"].ToString();
+            ViewBag.Cip = filaPapeleta["FichaFamiliar"].ToString();
+            ViewBag.Dependencia = filaPapeleta["dependencia"].ToString();
+            ViewBag.FechaInicioDescanso = fechaInicioDescanso.HasValue ? fechaInicioDescanso.Value.ToString("dd/MM/yyyy") : "";
+            ViewBag.FechaFinDescanso = fechaFinDescanso.HasValue ? fechaFinDescanso.Value.ToString("dd/MM/yyyy") : "";
+            ViewBag.TotalHorasDescanso = totalHoras;
+            ViewBag.FechaTexto = fechaTexto;
+
+            return PartialView("~/Views/Emergencia/Plantillas/PapeletaDescansoMedico.cshtml");
+        }
+
 
         [HttpPost]
         public async Task<ActionResult> AltaMedicaUCIModificar(Atenciones atencion, AtencionesDatosAdicionales atencionesDatosAdicionales, AtencionEpisodio atencionEpisodio, ProCabecera proCabecera, int estadoCierreControlPrenatal,
-                                                            String lstDiagnosticosEgreso, String lstDiagnosticosComplicaciones, String lstDiagnosticosNacimientos, String lstDiagnosticosMortalidad, int conExoneracion = 0)   //KHOYOSI
+                                                            String lstDiagnosticosEgreso, String lstDiagnosticosComplicaciones, String lstDiagnosticosNacimientos, String lstDiagnosticosMortalidad, int conExoneracion = 0, int conDescansoMedico = 0)   //KHOYOSI
         {
             if (HttpContext.User.Identity.IsAuthenticated == false)
             {
@@ -548,6 +637,14 @@ namespace WebAppMaternidad.Areas.Comun
             {
 
                 await GenerarPapeletaExoneracionMed(
+                    atencion.idCuentaAtencion,
+                    atencion.idAtencion
+                );
+            }
+
+            if (conDescansoMedico == 1)
+            {
+                await GenerarPapeletaDescansoMedico(
                     atencion.idCuentaAtencion,
                     atencion.idAtencion
                 );

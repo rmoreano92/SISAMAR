@@ -2614,6 +2614,9 @@ namespace CapaDatos
                             da.SelectCommand.Parameters.Add("@HoraIntervencionQuirurgica", SqlDbType.VarChar).Value = atencionesDatosAdicionales.HoraIntervencionQuirurgica;
                             da.SelectCommand.Parameters.Add("@IdMedicoIntervencionQuirurgica", SqlDbType.Int).Value = atencionesDatosAdicionales.IdMedicoIntervencionQuirurgica;
                             da.SelectCommand.Parameters.Add("@ObservacionAltaMedica", SqlDbType.VarChar).Value = atencionesDatosAdicionales.ObservacionAltaMedica;//RMOREANO OBSERVACION ALTAMEDICA
+                            da.SelectCommand.Parameters.Add("@TieneDescansoMedico", SqlDbType.Bit).Value = atencionesDatosAdicionales.TieneDescansoMedico ?? Convert.DBNull;
+                            da.SelectCommand.Parameters.Add("@FechaInicioDescansoMedico", SqlDbType.DateTime).Value = atencionesDatosAdicionales.FechaInicioDescansoMedico ?? Convert.DBNull;
+                            da.SelectCommand.Parameters.Add("@FechaFinDescansoMedico", SqlDbType.DateTime).Value = atencionesDatosAdicionales.FechaFinDescansoMedico ?? Convert.DBNull;
 
                             da.SelectCommand.Parameters.Add("@IdGrupoGo", SqlDbType.Int).Value = atencionesDatosAdicionales.IdGrupoGo;
                             //da.SelectCommand.Parameters.Add("@IdEstadoFacturacion", SqlDbType.Int).Value = idEstadoFacturacion;

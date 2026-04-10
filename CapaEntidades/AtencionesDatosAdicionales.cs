@@ -92,6 +92,9 @@ namespace CapaEntidades
         public int? IdMedicoIntervencionQuirurgica { get; set; }
         public int? IdGrupoGo { get; set; }
         public string ObservacionAltaMedica { get; set; }
+        public bool? TieneDescansoMedico { get; set; }
+        public DateTime? FechaInicioDescansoMedico { get; set; }
+        public DateTime? FechaFinDescansoMedico { get; set; }
 
     }
 }
