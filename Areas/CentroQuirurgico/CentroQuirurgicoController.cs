@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.CentroQuirurgico
 {
-    public class CentroQuirurgicoController: Controller
+    public class CentroQuirurgicoController: BaseController
     {
         public async Task<IActionResult> SolicitudSalaOperaciones(int idListBar)
         {

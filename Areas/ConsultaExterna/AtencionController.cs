@@ -27,6 +27,7 @@ using WebAppMaternidad.CapaEntidades;
 using System.Diagnostics;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.Controllers;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna
 {
@@ -95,9 +96,14 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
         [HttpPost]
         public async Task<ActionResult> ListaProgramacionBtFecha(string fecha)
         {
+
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
             DataSet lstServicio;
             DalUtilitario daoCitas = new DalUtilitario();
-            lstServicio = await daoCitas.DevuelveDSComboxServicioByFecha(fecha);
+            lstServicio = await daoCitas.DevuelveDSComboxServicioByFecha(fecha, idIpressInt);
             return Json(lstServicio);
         }
         [HttpPost]
@@ -526,6 +532,7 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idRefCon, 0, tipo, 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -573,6 +580,7 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
                             pdf.tamanio = "A4";
                             pdf.marginX = 20;
                             pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                             resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idAtencion, 0, "FUA", 0, pageHtml, stringHtml, idUsuario, pdf);
                         }
                     }
@@ -1349,17 +1357,21 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             string nombre = "", direccion = "", telefono = "";
             DalParametros daoParametros = new DalParametros();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205); // JDELGADO J0 AWAIT SENTENCE
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsAtencion = await daoAtenciones.ListaAtencionByIdCuentaAtencion(idCuentaAtencion);
@@ -1724,6 +1736,7 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             pdf.tamanio = "A4";
             pdf.marginX = 20;
             pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
             resp = await utilitario.GenerarDocumentoDigital(0, programacion, 0, "CE-PD", 0, pageHtml, stringHtml, idUsuario, pdf);
 
             return resp;
@@ -2059,17 +2072,21 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             string nombre = "", direccion = "", telefono = "";
             DalParametros daoParametros = new DalParametros();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205); // JDELGADO J0 AWAIT SENTENCE
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsAtencion = await daoAtenciones.ListaAtencionByIdCuentaAtencion(idCuentaAtencion);
@@ -2439,17 +2456,21 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             string nombre = "", direccion = "", telefono = "";
             DalParametros daoParametros = new DalParametros();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205); // JDELGADO J0 AWAIT SENTENCE
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsAtencion = await daoAtenciones.ListaAtencionByIdCuentaAtencion(idCuentaAtencion);
@@ -2677,17 +2698,21 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             @ViewBag.FechaImpresion = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
             @ViewBag.Usuario = usuario;
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205); // JDELGADO J0 AWAIT SENTENCE
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             @ViewBag.nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             @ViewBag.direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             @ViewBag.telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsAtencion = await daoAtenciones.ListaAtencionByIdCuentaAtencion(idCuentaAtencion);
@@ -2962,17 +2987,21 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
 
             DalParametros daoParametros = new DalParametros();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205); // JDELGADO J0 AWAIT SENTENCE
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsAtencion = await daoAtenciones.ListaAtencionByIdCuentaAtencion(idCuentaAtencion);
@@ -3941,17 +3970,21 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             DalRecetas daoRecetas = new DalRecetas();
             DalParametros daoParametros = new DalParametros();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205); // JDELGADO J0 AWAIT SENTENCE
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             string idAtencion = "0";
@@ -6096,21 +6129,25 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             Comun.ClUtilirario cl = new Comun.ClUtilirario();
             Conexion con = new Conexion();
 
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
             sWebRootFolder = con.ObtenerServidorArchivos();
             tipo = "REC-" + tipo;
             path = Path.Combine(sWebRootFolder, "Recetas", (idCuentaAtencion + idReceta + (DateTime.Now.ToString("HH:mm:ss")).Replace(":", "") + tipo + ".pdf"));
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             string idAtencion = "0";
@@ -7411,6 +7448,7 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idAtencion, 0, "CE-A", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -7447,6 +7485,7 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(0, programacion, 0, "CE-PD", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 if (resp)
@@ -7992,13 +8031,18 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
                 DalRecetas daoRecetas = new DalRecetas();
                 DalParametros daoParametros = new DalParametros();
 
-                var lsParametros = await daoParametros.SeleccionaFilaParametro2(205);
+                int idIpressInt = 0;
+                var idIpressStr = HttpContext.Session.GetString("IdIPress");
+                if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+
+                var lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
                 ViewBag.nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
                 lsParametros.Clear();
-                lsParametros = await daoParametros.SeleccionaFilaParametro2(206);
+                lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
                 ViewBag.direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
                 lsParametros.Clear();
-                lsParametros = await daoParametros.SeleccionaFilaParametro2(207);
+                lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
                 ViewBag.telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
                 ViewBag.FechaImpresion = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");

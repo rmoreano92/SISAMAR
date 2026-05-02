@@ -20,10 +20,11 @@ using System.Threading.Tasks;
 using WebAppMaternidad.Areas.Comun;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Caja
 {
-    public class GestionCajaController : Controller
+    public class GestionCajaController : BaseController
     {
         public IActionResult Index()
         {
@@ -884,10 +885,14 @@ namespace WebAppMaternidad.Areas.Caja
             DataRow drComprobante = dsComprobante.Tables[0].Rows[0];
             DataTable dtComprobanteDetalle = dsComprobante.Tables[1];
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
-            var ruc = await daoParametros.SeleccionaFilaParametro2(339);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
+            var ruc = await daoParametros.SeleccionaFilaParametro2(339, idIpressInt);
 
             DateTime now = DateTime.Now;
 

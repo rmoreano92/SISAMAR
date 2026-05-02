@@ -9,10 +9,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class CatalogoController : Controller
+    public class CatalogoController : BaseController
     {
         public IActionResult Index()
         {

@@ -8,11 +8,12 @@ using CapaDatos;
 using CapaEntidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Economia
 {   
 
-    public class MigracionDocumentosController : Controller
+    public class MigracionDocumentosController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

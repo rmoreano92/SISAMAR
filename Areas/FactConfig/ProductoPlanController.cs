@@ -8,6 +8,7 @@ using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.Controllers;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.FactConfig
 {

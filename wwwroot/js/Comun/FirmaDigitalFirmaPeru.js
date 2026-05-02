@@ -86,34 +86,46 @@ var FirmaPeruDigital = {
     async SubirFirmados(signedUrls) {
         const idFirma = (document.getElementById("nroFirma").textContent || "").trim();
         const codeFirma = (document.getElementById("codigoFirma").textContent || "").trim();
-        if (!idFirma || !Array.isArray(signedUrls) || signedUrls.length === 0) {
+        const firmaCodesEl = document.getElementById("firmaCodesJson");
+        const firmaCodes = firmaCodesEl ? JSON.parse(firmaCodesEl.textContent || "[]") : [];
+
+        if (!Array.isArray(signedUrls) || signedUrls.length === 0) return;
+
+        if (firmaCodes.length > 0) {
+            const codeMap = Object.fromEntries(firmaCodes.map(f => [f.name, f.codeFirma]));
+            for (const doc of signedUrls) {
+                const docCode = codeMap[doc.documento] || '';
+                if (!docCode) continue;
+                const pdfResponse = await fetch(doc.url, { method: 'GET' });
+                if (!pdfResponse.ok) throw new Error(`No se pudo descargar PDF firmado (${pdfResponse.status}).`);
+                const pdfBlob = await pdfResponse.blob();
+                const formData = new FormData();
+                formData.append('signed_file', pdfBlob, `${doc.documento}.pdf`);
+                formData.append('codeFirma', docCode);
+                const uploadResponse = await fetch(`/api/UploadFileFirmaPeru/0`, {
+                    method: 'POST',
+                    body: formData
+                });
+                if (!uploadResponse.ok) throw new Error(`No se pudo subir PDF firmado (${uploadResponse.status}).`);
+            }
             return;
         }
 
+        if (!idFirma) return;
         const first = signedUrls[0];
         const pdfResponse = await fetch(first.url, { method: 'GET' });
-        if (!pdfResponse.ok) {
-            throw new Error(`No se pudo descargar PDF firmado (${pdfResponse.status}).`);
-        }
-
+        if (!pdfResponse.ok) throw new Error(`No se pudo descargar PDF firmado (${pdfResponse.status}).`);
         const pdfBlob = await pdfResponse.blob();
         const formData = new FormData();
         formData.append('signed_file', pdfBlob, `${first.documento}.pdf`);
         formData.append('codeFirma', codeFirma);
-
         const uploadResponse = await fetch(`/api/UploadFileFirmaPeru/${encodeURIComponent(idFirma)}`, {
             method: 'POST',
             body: formData
         });
-
-        if (!uploadResponse.ok) {
-            throw new Error(`No se pudo subir PDF firmado al backend (${uploadResponse.status}).`);
-        }
-
+        if (!uploadResponse.ok) throw new Error(`No se pudo subir PDF firmado al backend (${uploadResponse.status}).`);
         const guardado = await uploadResponse.json();
-        if (guardado !== true) {
-            throw new Error("El backend no confirmó el guardado del PDF firmado.");
-        }
+        if (guardado !== true) throw new Error("El backend no confirmó el guardado del PDF firmado.");
     },
 
     CerrarFlujo() {

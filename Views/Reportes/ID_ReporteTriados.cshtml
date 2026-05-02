@@ -1,0 +1,73 @@
+﻿﻿<div class="modal-header modal-header bg-success">
+    <h5 class="modal-title text-white" id="titulo">Reporte de pacientes triados</h5>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card m-t-5">
+                <div class="card-block m-t-5">
+                    <div class="row">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-lg-right">
+                                <label for="txtFechaInicioTriados" class="form-control-label">Fecha Inicio:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type="text" class="form-control txtFechaRpt" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioTriados" autocomplete="off">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-lg-right">
+                                <label for="txtFechaFinTriados" class="form-control-label">Fecha Fin:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type="text" class="form-control txtFechaRpt" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinTriados" autocomplete="off">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-lg-right">
+                                <label for="txtHoraInicioTriados" class="form-control-label">Hora inicio</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control txtHoraRpt" placeholder="00:00" id="txtHoraInicioTriados" autocomplete="off" maxlength="5">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-lg-right">
+                                <label for="txtHoraFinTriados" class="form-control-label">Hora Fin</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control txtHoraRpt" placeholder="00:00" id="txtHoraFinTriados" autocomplete="off" maxlength="5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button id="btnGenerarReporteTriados" type="button" class="btn btn-success" onclick="ID_ReporteTriados.GenerarReporte();">Generar Reporte</button>
+        <button type="button" class="btn btn-secondary" onclick="ID_ReporteTriados.CerrarModal();">Cancelar</button>
+    </div>
+</div>
+
+<script src="~/js/Reportes/ID_ReporteTriados.js" asp-append-version="true"></script>

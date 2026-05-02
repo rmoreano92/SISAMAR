@@ -1988,7 +1988,7 @@
                     $('#btnImprimirTicket').prop('disabled', false)
                     $('#ImprimeFormatoFiliacionArchivoClinico').prop('disabled', false)
                     $('#txtNroDerivacion').prop('disabled', true)
-                    //$('#modalAdmision').modal('hide')
+                    $('#modalAdmision').modal('hide')
                 } else if (RegistroAdmision.opcion == 'M') {
                     let msg = `
                         <b>La admisión se modificó con exito: </b>

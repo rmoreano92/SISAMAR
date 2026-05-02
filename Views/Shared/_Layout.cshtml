@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
+
 @{
     ViewData["Title"] = "Layout2";
 }
@@ -15,9 +16,13 @@
     DataSet lsParametros;
     DalParametros dalParametros = new DalParametros();
     Encriptar objCripto = new Encriptar();
-    string nombre, siglas, tipoBD;
+    string nombre, siglas, tipoBD, logo, imagen_fondo;
+    int idIpressInt = 0;
+    var idIpressStr = Context.Session.GetString("IdIPress");
+    if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+    
 
-    lsParametros = await dalParametros.SeleccionaFilaParametro2(205);
+    lsParametros = await dalParametros.SeleccionaFilaParametro2(205, idIpressInt);
     nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
     lsParametros = await dalParametros.SeleccionaFilaParametro2(1007);
@@ -26,10 +31,19 @@
     lsParametros = await dalParametros.SeleccionaParametroPorCodigo("TIPO_VERSION_DB"); //version BD
     tipoBD = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
+    lsParametros = await dalParametros.SeleccionaFilaParametro2(1070, idIpressInt);
+    logo = lsParametros.Tables[0].Rows[0]["Base64"].ToString();
+
+    lsParametros = await dalParametros.SeleccionaFilaParametro2(1071, idIpressInt);
+    imagen_fondo = lsParametros.Tables[0].Rows[0]["Base64v2"].ToString();
+
     ViewBag.nombre = nombre;
     ViewBag.siglas = siglas;
     ViewBag.tipoBD = tipoBD;
+    ViewBag.logo = logo;
+    ViewBag.imagen_fondo = imagen_fondo;
 
+    
     //ViewBag.version = "v3.5.111223";
 
     var version = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Version");
@@ -152,6 +166,9 @@
 
     @RenderSection("Css", required: false)
     <!---->
+
+  
+
 </head>
 
 <body class="fixedMenu_left">
@@ -186,9 +203,9 @@
                 <div class="container-fluid">
                     <a class="navbar-brand text-xs-center" style="padding-top: 5px;" asp-controller="Home" asp-action="Inicio">
                         <div class="d-flex">
-                            <img src="~/images/Logo.png" class="admin_img m-0" alt="logo" style="width: auto; height:40px;">
+                            <img src="@ViewBag.logo" class="admin_img m-0" alt="logo" style="width: auto; height:40px;">                            
                             <h3 style="margin-top: 12px;">
-                                @* <img src="~/images/Logo.png" class="admin_img" alt="logo">    *@
+                                @* <img src="@ViewBag.Logo" class="admin_img" alt="logo">    *@
                                 @ViewBag.siglas
                             </h3>
                         </div>                        

@@ -393,6 +393,42 @@ var AdmisionEmergencia = {
         });
 
 
+        $('#tblAtencionEmer tbody').on('click', '.ImprimirpaDescansoMedico', async function () {
+
+            var objrow = oTable_atencionesEmer.api(true).row($(this).parents("tr")[0]).index();
+            var row = oTable_atencionesEmer.fnGetData(objrow);
+            const firma = await Utilitario.SeleccionarFirmaDigitalV2(row.codeDescansoMed)
+            Cargando(1);
+            if (isEmpty(row)) {
+                alerta(2, 'Seleccione una evaluación por favor.');
+            } else {
+
+                AbrirVisorDocumento(firma.rutaArchivo, 0);
+
+            }
+            Cargando(0);
+        });
+
+        $('#tblAtencionEmer tbody').on('click', '.ImprimirpaDescansoMedicoSF', async function () {
+            var objrow = oTable_atencionesEmer.api(true).row($(this).parents("tr")[0]).index();
+            var row = oTable_atencionesEmer.fnGetData(objrow);
+            Cargando(1);
+            if (isEmpty(row)) {
+                alerta(2, 'Seleccione una evaluación por favor.');
+            } else {
+                Utilitario.TipoArchivoFirmar = 'E-PE';
+                Cargando(1);
+                const firma = await Utilitario.ValidarUsuarioFirmaDigital(row.codeDescansoMed)               //KHOYOSI            
+                if (firma) {
+                    if (permisoFirmaDigital == 1) { await Utilitario.IniciarServicioFirmaBit4Id(row.codeDescansoMed); }
+                    if (permisoFirmaDigital == 2) { await Utilitario.IniciarServicioFirmaPeru(row.codeDescansoMed); }
+                }
+                Cargando(0);
+            }
+            Cargando(0);
+        });
+
+
         // FIN RMOREANO 
 
         $('#tblInformeEvaluacionesEmergencia tbody').on('click', '.ImprimirEvalSF', async function () {
@@ -582,6 +618,44 @@ var AdmisionEmergencia = {
 
         //    //AdmisionEmergencia.ListarAtenciones();
         //});
+
+
+        //----------------------------AUTORIZACIÓN EXÁMENES ESPECIALIZADOS-----------------------------------//
+        $("#btnAutorizacionExamenesEspecializados").on('click', async function () {
+            const objrowTb = oTable_atencionesEmer.api(true).row('.selected').data();
+
+            if (isEmpty(objrowTb)) {
+                alerta2('info', 'Atención', 'Por favor seleccione un registro.');
+                return;
+            }
+
+            await AdmisionEmergencia.GenerarAutorizacionExamenesEspecializadosVista(
+                objrowTb.idCuentaAtencion,
+                objrowTb.idAtencion,
+                objrowTb.idServicioEgreso,
+                objrowTb.cantEvaluacion
+            );
+        });
+
+        //----------------------------CONSENTIMIENTO PROCESOS QX-----------------------------------//
+        $("#btnConsentimientoProcesosQx").on('click', async function () {
+            const objrowTb = oTable_atencionesEmer.api(true).row('.selected').data();
+
+            if (isEmpty(objrowTb)) {
+                alerta2('info', 'Atención', 'Por favor seleccione un registro.');
+                return;
+            }
+
+            await AdmisionEmergencia.GenerarConsentimientoProcesosQxVista(
+                objrowTb.idCuentaAtencion,
+                objrowTb.idAtencion,
+                objrowTb.idServicioEgreso,
+                objrowTb.cantEvaluacion
+            );
+        });
+
+
+
 
         /////////////////////////////EVENTO LISTA INFORMES DE EVALAUCION///////////////////////////
         $('#tblAtencionEmer tbody').on('click', '.btnInformeEvaluacion', async function () {
@@ -955,8 +1029,113 @@ var AdmisionEmergencia = {
             Cargando(0);
         });
 
+        //---------------------------GENERAR BRAZALETE-----------------------------------//
+        $("#GenerarBrazalete").on('click', async function () {
+            let objrowTb = oTable_atencionesEmer.api(true).row('.selected').data();
 
+            if (isEmpty(objrowTb)) {
+                alerta2('warning', 'Atención', 'Debe seleccionar un registro.');
+                return;
+            }
+
+            Brazalete.idPaciente = objrowTb.idPaciente;
+            Brazalete.nroHistoria = objrowTb.nroHistoriaClinica;
+            Brazalete.apellidos = objrowTb.apellidoPaterno + " " + objrowTb.apellidoMaterno;
+            Brazalete.nombres = objrowTb.primerNombre + " " + objrowTb.segundoNombre;
+            Brazalete.tipoDocumento = objrowTb.tipoDocumento;
+            Brazalete.nroDocumento = objrowTb.nroDocumento;
+            Brazalete.fechaNacimiento = objrowTb.fechaNacimiento;
+            Brazalete.horaNacimiento = "";
+            Brazalete.tipoSexo = objrowTb.idTipoSexo == 1 ? "Masculino" : "Femenino";
+            Brazalete.gemelar = "";
+            let edad = CalcularEdadAnioMesDia(objrowTb.fechaNacimiento);
+            console.log('Fecha nacimiento:', objrowTb.fechaNacimiento);
+            console.log('Edad calculada:', edad);
+            console.log('Años:', edad.años, 'Meses:', edad.meses, 'Días:', edad.dias);
+            if (edad.años > 0) {
+                Brazalete.edad = edad.años + ' A';
+            } else if (edad.meses > 0) {
+                Brazalete.edad = edad.meses + ' M';
+            } else if (edad.dias > 0) {
+                Brazalete.edad = edad.dias + ' D';
+            } else {
+                Brazalete.edad = ' - ';
+            }
+            Brazalete.fichaFamiliar = objrowTb.fichaFamiliar;
+            Brazalete.parentesco = objrowTb.parentesco;
+            //alert("AQUI ES");
+            await Brazalete.GenerarBrazaletePaciente();
+            Brazalete.LimpiarBrazalete();
+
+        });
     },
+
+    async GenerarConsentimientoProcesosQxVista(idCuentaAtencion, idAtencion, idServicio, eval) {
+        Cargando(1);
+        const formData = new FormData();
+        formData.append('idCuentaAtencion', idCuentaAtencion);
+        formData.append('idAtencion', idAtencion);
+        formData.append('idServicio', idServicio);
+        formData.append('eval', eval > 0 ? eval : 1);
+
+        const url = "/Emergencia/GenerarConsentimientoProcesosQxPdf?area=Emergencia";
+        const request = new XMLHttpRequest();
+        request.responseType = "blob";
+        request.open("POST", url, true);
+
+        request.onload = function () {
+            Cargando(0);
+
+            if (request.status === 200 && request.response && request.response.size > 0) {
+                const urlBlob = window.URL.createObjectURL(request.response);
+                AbrirVisorDocumentoPersonalizado(urlBlob, "Consentimiento de Procesos Qx");
+                return;
+            }
+
+            alerta2('warning', 'Consentimiento', 'No fue posible generar el documento.');
+        };
+
+        request.onerror = function () {
+            Cargando(0);
+            alerta2('error', 'Consentimiento', 'Ocurrió un error al generar el documento.');
+        };
+
+        request.send(formData);
+    },
+
+    async GenerarAutorizacionExamenesEspecializadosVista(idCuentaAtencion, idAtencion, idServicio, eval) {
+        Cargando(1);
+        const formData = new FormData();
+        formData.append('idCuentaAtencion', idCuentaAtencion);
+        formData.append('idAtencion', idAtencion);
+        formData.append('idServicio', idServicio);
+        formData.append('eval', eval > 0 ? eval : 1);
+
+        const url = "/Emergencia/GenerarAutorizacionExamenesEspecializadosPdf?area=Emergencia";
+        const request = new XMLHttpRequest();
+        request.responseType = "blob";
+        request.open("POST", url, true);
+
+        request.onload = function () {
+            Cargando(0);
+
+            if (request.status === 200 && request.response && request.response.size > 0) {
+                const urlBlob = window.URL.createObjectURL(request.response);
+                AbrirVisorDocumentoPersonalizado(urlBlob, "Autorización de Exámenes Especializados");
+                return;
+            }
+
+            alerta2('warning', 'Autorización', 'No fue posible generar el documento.');
+        };
+
+        request.onerror = function () {
+            Cargando(0);
+            alerta2('error', 'Autorización', 'Ocurrió un error al generar el documento.');
+        };
+
+        request.send(formData);
+    },
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -2003,7 +2182,7 @@ var AdmisionEmergencia = {
                     createdCell: function (td, cellData, rowData, row, col) {
                         $(td).attr('align', 'center')
 
-                        if (rowData.codePapeletaEgreso != '' && rowData.conAlta == 1) {
+                        if (rowData.codePapeletaEgreso != null && rowData.conAlta == 1) {
                             let btnImprime = "";
                             let btnImprimeSinF = "";
                             if (rowData.statusFirmaPapeletaEgreso == 1) {
@@ -2011,6 +2190,29 @@ var AdmisionEmergencia = {
                             } else {
                                 btnImprime = '<button class="ImprimirPapeletaEgresoSF btn btn-sm btn btn-sm btn-info glow_button"><i class="fa fa-pencil"></i> </button> <button class="ImprimirpaPapeletaEgreso btn btn-sm btn-deep-orange  glow_button"><i class="fa fa-print"></i> </button> ';
                                
+                            }
+                            $(td).html(btnImprime);
+                        } else {
+                            $(td).html('');
+                        }
+                    }
+                },
+                {
+                    width: '8%',
+                    data: null,
+                    targets: 16,
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'center')
+                        
+                        if (rowData.codeDescansoMed !=  null && rowData.tieneDescansoMed == 1) {
+                            let btnImprime = "";
+                            let btnImprimeSinF = "";
+                                    
+                            if (rowData.statusFirmaDescansoMed == 1) {
+                                btnImprime = ' <button class="ImprimirpaDescansoMedico btn btn-sm btn-deep-orange glow_button"><i class="fa fa-print"></i> </button>';
+                            } else {
+                                btnImprime = '<button class="ImprimirpaDescansoMedicoSF btn btn-sm btn btn-sm btn-info glow_button"><i class="fa fa-pencil"></i> </button> <button class="ImprimirpaDescansoMedico btn btn-sm btn-deep-orange  glow_button"><i class="fa fa-print"></i> </button> ';
+
                             }
                             $(td).html(btnImprime);
                         } else {

@@ -15,10 +15,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using SelectPdf;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Estadistica
 {
-    public class MigracionController : Controller
+    public class MigracionController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

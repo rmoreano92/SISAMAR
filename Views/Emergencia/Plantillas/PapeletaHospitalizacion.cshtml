@@ -42,7 +42,8 @@
     <table style="margin-top:-40px;position:absolute;top:0">
         <tr>
             <td style="width:40px;">
-                <img src="@($"{Context.Request.Scheme}://{Context.Request.Host}/images/logo.png")" />
+                @*<img src="@ViewBag.Logo" />*@
+                <img src="@ViewBag.Logo"/>
             </td>
 
             <td>
@@ -73,7 +74,7 @@
     <tr>
         <td>Grado o Parentesco:</td>
         <td>
-            <span class="line" style="width:60%;"><span>@ViewBag.Parentesco</span></span>
+                <span class="line" style="width:60%;"><span>@ViewBag.Parentesco @ViewBag.Parentesco</span></span>
             &nbsp;&nbsp;
             N° CIP:
             <span class="line" style="width:25%;"><span>@ViewBag.FichaFamiliar</span></span>
@@ -123,11 +124,11 @@
 <table>
     <tr>
         <td style="width:60%;">Para hospitalizarse el:
-            <span class="line" style="width:60%;"><span>01/04/2026</span></span>
+                <span class="line" style="width:60%;"><span>@ViewBag.Fecha</span></span>
         </td>
 
         <td style="width:40%;">Hora:
-            <span class="line" style="width:60%;"><span>10:30</span></span>
+                <span class="line" style="width:60%;"><span>@ViewBag.Hora</span></span>
         </td>
     </tr>
 

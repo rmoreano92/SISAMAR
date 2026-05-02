@@ -5292,11 +5292,7 @@
                     await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data);
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip(objrow.idCuentaAtencion, '', "'CE-A','REC','RF', 'CRF','FUA'");
-                if (!isEmpty(paquete)) {
-                    //await Utilitario.AbrirServicioFirmaPeruMultiple(paquete.data);
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru(objrow.idCuentaAtencion, "'CE-A','REC','RF', 'CRF','FUA'");
             }
             Cargando(0)
         })
@@ -5325,10 +5321,7 @@
                     await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data);
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip(cuentasAtencion, '', "'CE-A','REC','RF', 'CRF','FUA'");
-                if (!isEmpty(paquete)) {
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru(cuentasAtencion, "'CE-A','REC','RF', 'CRF','FUA'");
             }
             Cargando(0)
         })
@@ -5336,7 +5329,6 @@
         $('#btnFirmaLoteAtenciones').on('click', async function () {
             let listAtenciones = oTable_atenciones.api(true).data();
             let cuentasAtencion = [];
-
 
             $(listAtenciones).each(async (i, obj) => {
                 if (!isEmpty(obj.fechaEgreso) && obj.idEstadoCita == 2) {
@@ -5357,10 +5349,7 @@
                     await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data);
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip(cuentasAtencion, '', "'CE-A'");
-                if (!isEmpty(paquete)) {
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru(cuentasAtencion, "'CE-A'");
             }
             Cargando(0)
         })
@@ -5368,7 +5357,6 @@
         $('#btnFirmaLoteOtros').on('click', async function () {
             let listAtenciones = oTable_atenciones.api(true).data();
             let cuentasAtencion = [];
-
 
             $(listAtenciones).each(async (i, obj) => {
                 if (!isEmpty(obj.fechaEgreso) && obj.idEstadoCita == 2) {
@@ -5389,10 +5377,7 @@
                     await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data);
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip(cuentasAtencion, '', "'REC','RF', 'CRF','FUA'");
-                if (!isEmpty(paquete)) {
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru(cuentasAtencion, "'REC','RF', 'CRF','FUA'");
             }
             Cargando(0)
         })

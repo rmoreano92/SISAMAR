@@ -14,10 +14,11 @@ using WebAppMaternidad.Areas.Comun;
 using WebAppMaternidad.CapaEntidades;
 using WebAppMaternidad.CapaDatos;
 using Microsoft.Extensions.Configuration;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Imagenes
 {
-    public class ImagenesResultadosController : Controller
+    public class ImagenesResultadosController : BaseController
     {
         public IActionResult Index()
         {
@@ -153,6 +154,7 @@ namespace WebAppMaternidad.Areas.Imagenes
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idMovimiento, idProducto, tipoFormato, 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

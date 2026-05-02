@@ -8,10 +8,11 @@ using CapaEntidades;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
 {
-    public class SolicitudCitasController : Controller
+    public class SolicitudCitasController : BaseController
     {
 
         private IWebHostEnvironment _env;

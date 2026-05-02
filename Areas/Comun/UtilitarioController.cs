@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Aspose.Zip.SevenZip;
 using CapaDatos;
 using CapaEntidades;
-using System.Data;
-using Microsoft.AspNetCore.Http;
-
-using System.IO;
-using Microsoft.Extensions.Configuration;
-using System.Net.Sockets;
-using System.Net;
+using DocumentFormat.OpenXml.Spreadsheet;
+using iText.Html2pdf;
+using iText.Kernel.Colors;
+using iText.Kernel.Events;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Layer;
+using iText.Layout.Borders;
 using Microsoft.AspNetCore.Hosting;
-using System.Text;
-using System.Text.Json;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Win32;
+using NPOI.SS.Formula.Functions;
+using Org.BouncyCastle.Asn1.Ocsp;
 using SelectPdf;
-using System.IO.Compression;
-using System.Net.Mime;
 //using Microsoft.AspNetCore.Http.Internal;
 //using System.Security.Policy;
 //using DocumentFormat.OpenXml.Drawing.Charts;
@@ -25,30 +23,33 @@ using System.Net.Mime;
 ////using NPOI.HPSF;
 //using NPOI.SS.Formula.Functions;
 using SiHospCrypKey;
-using System.Drawing;
+using System;
+using System.Collections.Generic;
+using System.Data;
 //using Microsoft.AspNetCore.Http.Internal;
 //using NPOI.HPSF;
 using System.Diagnostics;
-using Aspose.Zip.SevenZip;
-using iText.Html2pdf;
-using iText.Kernel.Events;
+using System.Drawing;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
-using NPOI.SS.Formula.Functions;
-using Microsoft.Win32;
-using iText.Kernel.Colors;
-using iText.Kernel.Pdf.Layer;
-using iText.Kernel.Pdf;
-using DocumentFormat.OpenXml.Spreadsheet;
+using System.Net.Mime;
+using System.Net.Sockets;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
-using iText.Layout.Borders;
-using WebAppMaternidad.Services.Firma;
 //using iText.Kernel.Geom;
 //using iText.Layout;
 //using iText.Kernel.Pdf;
+using WebAppMaternidad.Controllers;
+using WebAppMaternidad.Services.Firma;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class UtilitarioController : Controller
+    public class UtilitarioController : BaseController
     {
         private readonly IFirmaService _firmaService;
 
@@ -139,7 +140,7 @@ namespace WebAppMaternidad.Areas.Comun
             return Json(new { lsEstadoCivil = lsEstadoCivil, session = true });
 
         }
-        
+
         [HttpGet]
         public async Task<ActionResult> ListaTiposEstadoCivilTodosV2() // JDELGADO002
         {
@@ -149,7 +150,7 @@ namespace WebAppMaternidad.Areas.Comun
             }
             DataSet dataSet = null;
             DalUtilitario dalUtili = new DalUtilitario();
-            
+
 
             string actionName = this.ControllerContext.RouteData.Values["action"].ToString();
             string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
@@ -178,7 +179,7 @@ namespace WebAppMaternidad.Areas.Comun
 
             return Json(new { lsGradosIns = lsGradosIns, session = true });
         }
-        
+
         [HttpGet]
         public async Task<ActionResult> TiposGradoInstruccionTodosV2() // JDELGADO002
         {
@@ -202,7 +203,7 @@ namespace WebAppMaternidad.Areas.Comun
             }
         }
 
-        
+
 
         [HttpGet]
         public async Task<ActionResult> TiposProcedenciaTodos() // JDELGADO002
@@ -517,7 +518,7 @@ namespace WebAppMaternidad.Areas.Comun
         //////////////////////KHOYOSI////////////////////////////
         ///
 
-        
+
 
         [HttpGet]
         public async Task<ActionResult> listarTiposOrigenAtencionSeleccionarViasDeConsultoriosExternos() // JDELGADO001.2
@@ -591,7 +592,7 @@ namespace WebAppMaternidad.Areas.Comun
             {
                 return Json(new { session = false });
             }
-            
+
             string actionName = this.ControllerContext.RouteData.Values["action"].ToString();
             string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
 
@@ -662,7 +663,7 @@ namespace WebAppMaternidad.Areas.Comun
                 return Json(new { session = true, estado = false, msg = "¡Error! \n [" + controllerName + "Controller / " + actionName + "] \n " + e, data = dataSet });
             }
         }
-                
+
 
         [HttpPost]
         public async Task<ActionResult> ListarMedicos() // JDELGADO010
@@ -781,7 +782,7 @@ namespace WebAppMaternidad.Areas.Comun
 
         [HttpPost]
         public async Task<ActionResult> ObtenerUsuarioLogeado()
-        {            
+        {
             if (HttpContext.User.Identity.IsAuthenticated == false)
             {
                 return Json(new { session = false });
@@ -853,7 +854,7 @@ namespace WebAppMaternidad.Areas.Comun
             DalParametros daoParametro = new DalParametros();
 
 
-            
+
             if (HttpContext.User.Identity.IsAuthenticated == false)
             {
                 return Json(new { session = false });
@@ -863,7 +864,7 @@ namespace WebAppMaternidad.Areas.Comun
 
             return Json(new { respuesta = resp, session = true });
         }
-        
+
         [HttpPost]
         public async Task<ActionResult> SeleccionarFirmaDigital(int idCuenta, int idRegistro, string tipo)
         {
@@ -880,16 +881,16 @@ namespace WebAppMaternidad.Areas.Comun
         [HttpPost]
         public async Task<ActionResult> SeleccionarFirmaDigitalV2(string code)
         {
- 
+
             if (HttpContext.User.Identity.IsAuthenticated == false)
-             {
-              return Json(new { session = false });
-             }
-             DataSet dataSet;
-             DalUtilitario dalUtili = new DalUtilitario();
-             int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
-             dataSet = await dalUtili.FirmaDigitalSeleccionarPorCode(code);            
-             return Json(new { respuesta = dataSet, session = true });
+            {
+                return Json(new { session = false });
+            }
+            DataSet dataSet;
+            DalUtilitario dalUtili = new DalUtilitario();
+            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            dataSet = await dalUtili.FirmaDigitalSeleccionarPorCode(code);
+            return Json(new { respuesta = dataSet, session = true });
 
         }
 
@@ -904,7 +905,7 @@ namespace WebAppMaternidad.Areas.Comun
             DalUtilitario dalUtili = new DalUtilitario();
 
             int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
-            dataSet = await dalUtili.FirmaDigitalSeleccionarPorGrupo(idRegistro, tipo);            
+            dataSet = await dalUtili.FirmaDigitalSeleccionarPorGrupo(idRegistro, tipo);
             return Json(new { respuesta = dataSet, session = true });
         }
 
@@ -995,7 +996,7 @@ namespace WebAppMaternidad.Areas.Comun
                 {
                     try
                     {
-                        if(Int32.Parse(statusFirma) == 0)
+                        if (Int32.Parse(statusFirma) == 0)
                         {
                             rutaDocumento = rutaDocumento.Replace("/UNSIGNED/", "");
                         }
@@ -1003,7 +1004,7 @@ namespace WebAppMaternidad.Areas.Comun
                         {
                             rutaDocumento = rutaDocumento.Replace("/SIGNED/", "");
                         }
-                        
+
 
                         //tring ruta = "C:/SisgalenFiles/4IdentitySignedFiles" + rutaDocumento;
                         string ruta = cn.ObtenerServidorArchivosConFirma() + rutaDocumento;
@@ -1023,9 +1024,9 @@ namespace WebAppMaternidad.Areas.Comun
 
                             //var rsFirma = await dl.InsertaFirma(filePath, rutaDocumento, idCuentaAtencion, Int32.Parse(idCuentaAtencion), Int32.Parse(idRegistro), tipo, "U", 1, "");
                             //var rsFirma = await dl.InsertaFirmaDigital(code);
-                            var rsFirma = await dl.EstadoFirmaDigitalAutoriza(code,Int32.Parse(idUsuario));
+                            var rsFirma = await dl.EstadoFirmaDigitalAutoriza(code, Int32.Parse(idUsuario));
                         }
-                    } 
+                    }
                     catch (Exception e)
                     {
                         Console.WriteLine(e);
@@ -1062,7 +1063,7 @@ namespace WebAppMaternidad.Areas.Comun
 
             if (documentID != null)
             {
-                paquete = documentID.Split(',')[0];                                
+                paquete = documentID.Split(',')[0];
                 idUsuario = documentID.Split(',')[1];
                 //statusFirma = documentID.Split(',')[2];
             }
@@ -1135,7 +1136,7 @@ namespace WebAppMaternidad.Areas.Comun
             return RedirectToAction(metodo, controller, new { idListBar = 103, area = "Comun" });
         }
 
-        public async Task<MemoryStream> UnirDocumentosPdf(DataSet dsFirmas) 
+        public async Task<MemoryStream> UnirDocumentosPdf(DataSet dsFirmas)
         {
 
             DalUtilitario dalUtilitario = new DalUtilitario();
@@ -1152,7 +1153,8 @@ namespace WebAppMaternidad.Areas.Comun
                 archivosEntrada[nuevoTamanio - 1] = dr["rutaArchivo"].ToString();
 
 
-            };
+            }
+            ;
 
             MemoryStream outputStream = new MemoryStream();
 
@@ -1174,7 +1176,7 @@ namespace WebAppMaternidad.Areas.Comun
                 {
                     archivoDoc = serverFiles + archivo;
                     if (System.IO.File.Exists(archivoDoc))
-                    {                        
+                    {
                         iText.Kernel.Pdf.PdfDocument documentoEntrada = new iText.Kernel.Pdf.PdfDocument(new PdfReader(archivoDoc));
 
                         // Copiar todas las páginas del documento de entrada al documento de salida
@@ -1626,7 +1628,7 @@ namespace WebAppMaternidad.Areas.Comun
             {
                 return Json(new { session = true, estado = false, msg = "¡Error! \n [" + controllerName + "Controller / " + actionName + "] \n " + e, data = dataSet });
             }
-            
+
         }
 
         [HttpPost]
@@ -1682,13 +1684,13 @@ namespace WebAppMaternidad.Areas.Comun
             idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
 
             resp = await daoUtilitario.ValidarPermisoUsuario(idUsuario, clave);
-                        
+
             return Json(new { respuesta = resp, session = true });
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////KHOYOSI (FIRMA DIGITAL FIRMA PERU)////////////////////////////////////
-        [HttpGet]        
+        [HttpGet]
         public async Task<IActionResult> FirmaDigitalFirmaPeru(string server, string code)
         {
             try
@@ -1697,7 +1699,7 @@ namespace WebAppMaternidad.Areas.Comun
                 {
                     return View("Login");
                 }
-                               
+
                 DataSet DatosFirma;
                 DalUtilitario dalUtili = new DalUtilitario();
 
@@ -1707,7 +1709,7 @@ namespace WebAppMaternidad.Areas.Comun
                 string rutaLogo = server + "/resources/logosFirma/isotipo.png";
                 string rutaFileOriginal = rutaFile;
                 string rutaLogoOriginal = rutaLogo;
-                
+
                 code = DecodificarDeUrl(code);
                 ViewBag.CodigoFirma = code;
                 ViewBag.UrlInvoker = _firmaService.ObtenerInvokerUrl();
@@ -1726,7 +1728,7 @@ namespace WebAppMaternidad.Areas.Comun
                     stampTextSize = 14,
                     stampWordWrap = 37
                 });
-                
+
                 return View("~/Views/Comun/FirmaPeru/FirmaDigitalFirmaPeru.cshtml");
             }
             catch (Exception ex)
@@ -1737,7 +1739,7 @@ namespace WebAppMaternidad.Areas.Comun
 
         }
 
-        [HttpGet]        
+        [HttpGet]
         public async Task<IActionResult> FirmaDigitalFirmaPeruMultiple(string server, string nombrePaquete)
         {
             try
@@ -1758,7 +1760,7 @@ namespace WebAppMaternidad.Areas.Comun
                 string rutaFileOriginal = rutaFile;
                 string rutaLogoOriginal = rutaLogo;
                 //ViewBag.ParagraphFormat = server + "/logosFirma/isotipo.png";
-                                
+
                 ViewBag.CodigoFirma = nombrePaquete;
                 ViewBag.UrlInvoker = _firmaService.ObtenerInvokerUrl();
                 ViewBag.PdfsJson = JsonSerializer.Serialize(new[] { new { url = rutaFileOriginal, name = nombrePaquete } });
@@ -1786,7 +1788,7 @@ namespace WebAppMaternidad.Areas.Comun
             }
         }
 
-        [HttpPost ("api/UploadFileFirmaPeru/{ID}")]
+        [HttpPost("api/UploadFileFirmaPeru/{ID}")]
         public async Task<Boolean> FirmaComponentFirmaPeru(string ID, List<IFormFile> signed_file, string codeFirma) // JDELGADO013
         {
             DalUtilitario dl = new DalUtilitario();
@@ -1883,7 +1885,7 @@ namespace WebAppMaternidad.Areas.Comun
             //return RedirectToAction(metodo, controller, new { idListBar = 103, area = "Comun" });
         }
 
-        [HttpPost("api/UploadPackageFirmaPeru/{ID}")]        
+        [HttpPost("api/UploadPackageFirmaPeru/{ID}")]
         public async Task<Boolean> FirmaMultipleComponentFirmaPeru(string ID, IList<IFormFile> signed_file) // JDELGADO013
         {
             Conexion con = new Conexion();
@@ -1926,7 +1928,7 @@ namespace WebAppMaternidad.Areas.Comun
                         //string sWebRootFolder = con.ObtenerServidorArchivos();
                         string sWebRootFolder = con.ObtenerServidorArchivosConFirma();
                         string pathExtract = "C:\\SisgalenFiles\\temp\\" + documentID + "\\signed\\temp";
-                        
+
                         using (var archive = new SevenZipArchive(filePath))
                         {
                             archive.ExtractToDirectory(pathExtract);
@@ -2023,7 +2025,7 @@ namespace WebAppMaternidad.Areas.Comun
                 string LetraTamanio = DatosFirma.Tables[0].Rows[0]["LetraTamanio"].ToString();
 
                 int statusFirma = Int32.Parse(DatosFirma.Tables[0].Rows[0]["statusFirma"].ToString());
-                if(statusFirma == 1)
+                if (statusFirma == 1)
                 {
                     rutaArchivoFirma = rutaArchivoFirma.Replace("UNSIGNED", "SIGNED");
                 }
@@ -2034,7 +2036,7 @@ namespace WebAppMaternidad.Areas.Comun
                 ViewBag.Document = server + rutaArchivoFirma;
                 //ViewBag.DocumentName = nameArchivoFirma[5];
                 ViewBag.DocumentName = nameArchivoFirma + ".pdf";
-                ViewBag.DocumentID = rutaArchivoFirma + "," + idCuentaFirma + "," + idRegistroFirma + "," + tipoFirma + "," + codigoFirma +",Utilitario,FinFirmaDigitalBitFourId," + idUsuario.ToString() + "," + statusFirma.ToString();
+                ViewBag.DocumentID = rutaArchivoFirma + "," + idCuentaFirma + "," + idRegistroFirma + "," + tipoFirma + "," + codigoFirma + ",Utilitario,FinFirmaDigitalBitFourId," + idUsuario.ToString() + "," + statusFirma.ToString();
                 ViewBag.Image = server + "/resources/logosFirma/" + ImagenNombre;
                 ViewBag.TipoEmpleado = TipoEmpleado;
                 ViewBag.Colegio = Colegio;
@@ -2086,9 +2088,9 @@ namespace WebAppMaternidad.Areas.Comun
                 {
                     return View("Login");
                 }
-                                
+
                 //DataSet DatosFirma;
-                DalUtilitario dalUtili = new DalUtilitario();               
+                DalUtilitario dalUtili = new DalUtilitario();
                 Conexion con = new Conexion();
                 DataSet DatosFirmaPaquete;
 
@@ -2115,7 +2117,7 @@ namespace WebAppMaternidad.Areas.Comun
                 ViewBag.y1 = DatosFirmaPaquete.Tables[0].Rows[0]["Y1"].ToString();
                 ViewBag.x2 = DatosFirmaPaquete.Tables[0].Rows[0]["X2"].ToString();
                 ViewBag.y2 = DatosFirmaPaquete.Tables[0].Rows[0]["Y2"].ToString();
-                
+
 
                 return View("~/Views/Comun/FirmaDigitalBit4IdMultiple.cshtml");
             }
@@ -2192,7 +2194,7 @@ namespace WebAppMaternidad.Areas.Comun
             {
                 return Json(new { session = false });
             }
-            
+
             DataSet dataSet = null;
             DalUtilitario dalUtili = new DalUtilitario();
 
@@ -2242,8 +2244,8 @@ namespace WebAppMaternidad.Areas.Comun
 
             return await CrearPaqueteArchivos(archivos, idUsuario);
         }
-       
-            
+
+
         public async Task<ActionResult> CrearPaqueteArchivos(DataSet archivos, int idUsuario)
         {
             string directorio = "", directorio2 = "", directorio3 = "", rutaZip = "";
@@ -2520,7 +2522,7 @@ namespace WebAppMaternidad.Areas.Comun
         //        return Json(new { error = true, session = true, estado = false, msg = "ERRORR: " + e.ToString(), data = "" });
         //    }
         //}
-        
+
         //public async Task<ActionResult> CrearPaqueteArchivosConRegistrosConItems(string registros, int idEvaluacion, int idServicio, int idItem, string tipo)
         //{
         //    string directorio = "", directorio2 = "", directorio3 = "", rutaZip = "";
@@ -2748,7 +2750,7 @@ namespace WebAppMaternidad.Areas.Comun
                 return Json(new { session = true, estado = false, msg = "¡Error! \n [" + controllerName + "Controller / " + actionName + "] \n " + e, data = dataSet });
             }
         }
-        
+
         //[HttpPost]
         //public async Task<ActionResult> FirmaDocumentosByLote(int idCuentaAtencion) // JDELGADO002
         //{
@@ -2934,7 +2936,7 @@ namespace WebAppMaternidad.Areas.Comun
         public async Task<bool> GuardarArchivo(string filePath, string fileName, StringBuilder html, int idCuentaAtencion, string tipo)
         {
             Conexion con = new Conexion();
-            ClUtilirario clUtilitario= new ClUtilirario();
+            ClUtilirario clUtilitario = new ClUtilirario();
             //string sWebRootFolder = _hostingEnvironment.WebRootPath;
             //string sWebRootFolder = con.ObtenerServidorArchivos();
             string sWebRootFolder = con.ObtenerServidorArchivosSinFirma();
@@ -3027,7 +3029,7 @@ namespace WebAppMaternidad.Areas.Comun
             if (!Directory.Exists(Path.Combine(sWebRootFolder, filePath)))
             {
                 Directory.CreateDirectory(Path.Combine(sWebRootFolder, filePath));
-            }            
+            }
 
             SelectPdf.PdfDocument obPdfDoc = ohtml.ConvertUrl(url);
             obPdfDoc.Save(path);
@@ -3044,7 +3046,7 @@ namespace WebAppMaternidad.Areas.Comun
         /// KHOYOSI
         /////////////////////////////////////////////////////////////////////////////////////////
         [HttpPost]
-        public async Task<Boolean> GenerarDocumentoDigital(int idCuentaAtencion, int idRegistro, int idItem, string tipo, int idNumero, 
+        public async Task<Boolean> GenerarDocumentoDigital(int idCuentaAtencion, int idRegistro, int idItem, string tipo, int idNumero,
                                                            string pagePlantilla, StringBuilder htmlPlantilla, int IdUsuario, FormatoPdf pdff)
         {
             //FormatoPdf pdff = new FormatoPdf();
@@ -3055,7 +3057,7 @@ namespace WebAppMaternidad.Areas.Comun
             DataSet dataFile;
             string nombreRuta, accion = "", nombreArchivoAnt, rutaFolderAnt;
             bool pdf, Tbol, pdfAnt;
-            
+
 
             try
             {
@@ -3071,13 +3073,13 @@ namespace WebAppMaternidad.Areas.Comun
                 firma.tipo = datos.Tables[0].Rows[0]["tipo"].ToString();
                 firma.idUsuarioRegistra = IdUsuario;
                 firma.idItem = idItem;
-                
+
                 nombreRuta = await GenerarRutaArchivoPdf(firma.idCuentaAtencion, firma.idTipoServicio, firma.tipo);
                 if (firma.code == "0")
                 {
                     accion = "I";
                     firma.code = await GenerarCodeArchivoPdf(firma);
-                } 
+                }
                 else
                 {
                     dataFile = await dalUtilitario.FirmaDigitalSeleccionarPorCode(firma.code);
@@ -3096,6 +3098,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdff.pageHtml = pagePlantilla;
                 pdff.rutaArchivo = firma.rutaArchivo;
                 pdff.tipo = firma.tipo;
+                //pdff.cookies = HttpContext.Request.Headers["Cookie"].ToString();
 
                 ////////////////DATOS PARA PIE DE PAGINA//////////////////////
                 pdff.Paciente = datos.Tables[0].Rows[0]["Paciente"].ToString();
@@ -3111,9 +3114,10 @@ namespace WebAppMaternidad.Areas.Comun
                 pdff.Firmador2 = datos.Tables[0].Rows[0]["Firmador2"].ToString();
                 pdff.TipoFirmador2 = datos.Tables[0].Rows[0]["TipoFirmador2"].ToString();
                 //////////////////////////////////////////////////////////////
+                
 
                 Tbol = await clUtilitario.FirmaDigitalModificar(firma, accion);
-                
+
                 if (Tbol)
                 {
                     //pdf = GenerarArchivoPdf(pdff);    //VERSION CON HtmlToPdf
@@ -3204,8 +3208,8 @@ namespace WebAppMaternidad.Areas.Comun
 
         ////////////////////////VERSION CON ITEXT 7///////////////////////////////////////////////
         public async Task<Boolean> GenerarArchivoPdfV2(FormatoPdf pdf)
-        {            
-            ClUtilirario clUtilitario = new ClUtilirario();            
+        {
+            ClUtilirario clUtilitario = new ClUtilirario();
             bool rpta = false;
 
             try
@@ -3215,7 +3219,7 @@ namespace WebAppMaternidad.Areas.Comun
                 iText.Layout.Document document;
                 iText.Kernel.Geom.PageSize pageSize = null;
                 FooterHandler footerHandler = new FooterHandler();
-                
+
                 if (pdf.tipoDocumento == "Ticket")
                 {
                     pageSize = new iText.Kernel.Geom.PageSize(225, 859);
@@ -3226,14 +3230,15 @@ namespace WebAppMaternidad.Areas.Comun
                 {
                     if (pdf.orientacion == "Portrait")
                     {
-                        if(pdf.tamanio == "A5")
+                        if (pdf.tamanio == "A5")
                         {
                             pageSize = iText.Kernel.Geom.PageSize.A5;
-                        } else
+                        }
+                        else
                         {
                             pageSize = iText.Kernel.Geom.PageSize.A4;
                         }
-                        
+
                     }
                     else if (pdf.orientacion == "Landscape")
                     {
@@ -3245,14 +3250,14 @@ namespace WebAppMaternidad.Areas.Comun
                         {
                             pageSize = iText.Kernel.Geom.PageSize.A4.Rotate();
                         }
-                        
+
                     }
 
                     //iText.Kernel.Geom.PageSize pageSize = new iText.Kernel.Geom.PageSize(668, 935);
                     document = new iText.Layout.Document(pdfd, pageSize);
-                    
+
                 }
-                                
+
 
                 if (pdf.stringHtml != null)
                 {
@@ -3273,11 +3278,30 @@ namespace WebAppMaternidad.Areas.Comun
                     string IpPublica = AppNameIp2.ToString();
                     pdf.pageHtml = pdf.pageHtml.Replace(IpPublica, IpPrivada);
                     ////////////////////////////////////////////////////////////////////////////
-                    
-                    using (HttpClient httpClient = new HttpClient())
+
+                    var handler = new HttpClientHandler()
                     {
-                        // Obtener el contenido de la URL como un stream
-                        using (Stream htmlStream = await httpClient.GetStreamAsync(pdf.pageHtml))
+                        UseCookies = false // 🔥 importante
+                    };
+
+                    using (HttpClient httpClient = new HttpClient(handler))
+                    {
+                        var request = new HttpRequestMessage(HttpMethod.Get, pdf.pageHtml);
+
+                        // 🔥 AQUÍ mandas la cookie de sesión
+                        if (!string.IsNullOrEmpty(pdf.cookies))
+                        {
+                            request.Headers.Add("Cookie", pdf.cookies);
+                        }
+
+                        var response = await httpClient.SendAsync(request);
+
+                        if (!response.IsSuccessStatusCode)
+                        {
+                            throw new Exception("Error al obtener HTML: " + response.StatusCode);
+                        }
+
+                        using (Stream htmlStream = await response.Content.ReadAsStreamAsync())
                         {
 
                             if (pdf.tipo == "CE-A" || pdf.tipo == "CE-APC" || pdf.tipo == "INF-RS")
@@ -3329,7 +3353,7 @@ namespace WebAppMaternidad.Areas.Comun
 
                             }
                             ////////////////////////////////////////////////////////////////////////////////////
-                            
+
                             if (pdf.tipo == "IMG-RES")
                             {
                                 Dictionary<string, string> parametros = new Dictionary<string, string>
@@ -3380,7 +3404,7 @@ namespace WebAppMaternidad.Areas.Comun
                             }
                             ////////////////////////////////////////////////////////////////////////////////////
                             // Realizar las operaciones necesarias con el stream (COVIERTE STREAM HTML a PDF)
-                            HtmlConverter.ConvertToPdf(htmlStream, pdfd);                            
+                            HtmlConverter.ConvertToPdf(htmlStream, pdfd);
                         }
                     }
 
@@ -3443,7 +3467,7 @@ namespace WebAppMaternidad.Areas.Comun
                 string paramFirmador2 = Parameters["Firmador2"];
                 string paramTipoFirmador2 = Parameters["TipoFirmador2"];
 
-                var AppMensajePiePagina = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:DescripcionPiePagina");                
+                var AppMensajePiePagina = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetValue<string>("Configuraciones:DescripcionPiePagina");
                 string MensajePiePagina = AppMensajePiePagina.ToString();
 
                 int widthHoja = 0;
@@ -3492,13 +3516,13 @@ namespace WebAppMaternidad.Areas.Comun
                     widthHoja = 523;
 
                     float[] parametrosValores = new float[] { 0f }; ;
-                    
+
                     if (paramTipo == "LAB-RES" || paramTipo == "LAB-RES-GRUPO")
                     {
                         parametrosValores = new float[] { 33f, 20f, 8f, 8f, 10f, 10f, 11f };
                         fontSize = 10f;
-                    } 
-                    else if(paramTipo == "IMG-RES")
+                    }
+                    else if (paramTipo == "IMG-RES")
                     {
                         leftHoja = 22;
                         widthHoja = 550;
@@ -3507,7 +3531,7 @@ namespace WebAppMaternidad.Areas.Comun
                         parametrosValores = new float[] { 43f, 26f, 10f, 10f, 11f };
                         fontSize = 8f;
                     }
-                    
+
                     iText.Layout.Element.Table table = new iText.Layout.Element.Table(iText.Layout.Properties.UnitValue.CreatePercentArray(parametrosValores))
                     .SetFontSize(fontSize)
                     .SetWidth(iText.Layout.Properties.UnitValue.CreatePointValue(widthHoja))
@@ -3523,23 +3547,23 @@ namespace WebAppMaternidad.Areas.Comun
                     if ((paramTipo == "LAB-RES" && paramItem != idCptTamizaje) || (paramTipo == "LAB-RES-GRUPO" && paramItem != idGrupoTamizaje) || paramTipo == "IMG-RES")       //si es producto tamizaje, no agregar pie de pagina
                     {
 
-                        if(paramTipo == "IMG-RES")
+                        if (paramTipo == "IMG-RES")
                         {
                             tableFirma.AddCell(new iText.Layout.Element.Cell()
-                                      .Add(new iText.Layout.Element.Paragraph(paramFirmador1)                                      
+                                      .Add(new iText.Layout.Element.Paragraph(paramFirmador1)
                                       .SetFontColor(ColorConstants.DARK_GRAY))
                                       .SetPadding(0)
                                       .SetBorder(iText.Layout.Borders.Border.NO_BORDER)
                                       .SetBorderTop(new SolidBorder(1)));
                             tableFirma.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(" ").SetFontColor(ColorConstants.DARK_GRAY)).SetPadding(0).SetBorder(iText.Layout.Borders.Border.NO_BORDER));
-                            if(paramFirmador2 != "")
+                            if (paramFirmador2 != "")
                             {
                                 tableFirma.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramFirmador2).SetFontColor(ColorConstants.DARK_GRAY)).SetPadding(0).SetBorder(iText.Layout.Borders.Border.NO_BORDER).SetBorderTop(new SolidBorder(1)));
                             }
                             else
                             {
                                 tableFirma.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(" ").SetFontColor(ColorConstants.DARK_GRAY)).SetPadding(0).SetBorder(iText.Layout.Borders.Border.NO_BORDER));
-                            }                            
+                            }
 
                             tableFirma.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramTipoFirmador1).SetFontColor(ColorConstants.DARK_GRAY)).SetPadding(0).SetBorder(iText.Layout.Borders.Border.NO_BORDER));
                             tableFirma.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(" ").SetFontColor(ColorConstants.DARK_GRAY)).SetPadding(0).SetBorder(iText.Layout.Borders.Border.NO_BORDER));
@@ -3551,7 +3575,7 @@ namespace WebAppMaternidad.Areas.Comun
                             {
                                 tableFirma.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(" ").SetFontColor(ColorConstants.DARK_GRAY)).SetPadding(0).SetBorder(iText.Layout.Borders.Border.NO_BORDER));
                             }
-                            
+
                         }
 
                         table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("APELLIDOS Y NOMBRES").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
@@ -3560,10 +3584,10 @@ namespace WebAppMaternidad.Areas.Comun
                         {
                             table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("CAMA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
                             table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("EDAD").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
-                        }                        
-                        table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("CUENTA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));                        
+                        }
+                        table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("CUENTA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
                         table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("MOVIMIENTO").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
-                        table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("HISTORIA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));                        
+                        table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("HISTORIA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
 
                         table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramNombres)));
                         table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramServicio)));
@@ -3571,12 +3595,12 @@ namespace WebAppMaternidad.Areas.Comun
                         {
                             table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramCama)));
                             table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramEdad)));
-                        }                            
-                        table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramCuenta)));                        
+                        }
+                        table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramCuenta)));
                         table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramMovimiento)));
-                        table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramHistoria)));                        
-                    } 
-                    
+                        table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramHistoria)));
+                    }
+
                     table.AddCell(new iText.Layout.Element.Cell(0, parametrosValores.Length)
                     .Add(new iText.Layout.Element.Paragraph(MensajePiePagina))
                         .SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED)
@@ -3587,8 +3611,8 @@ namespace WebAppMaternidad.Areas.Comun
                     new iText.Layout.Canvas(canvas, pageSize)
                     .Add(tableFirma)
                     .Add(table);
-                } 
-                else if(paramTipo == "UCI-EVA")
+                }
+                else if (paramTipo == "UCI-EVA")
                 {
                     iText.Layout.Element.Table table = new iText.Layout.Element.Table(iText.Layout.Properties.UnitValue.CreatePercentArray(new float[] { 40f, 26f, 10f, 12f, 12f, 12f }))
                     .SetFontSize(fontSize)
@@ -3602,13 +3626,13 @@ namespace WebAppMaternidad.Areas.Comun
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("EDAD").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("CUENTA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("HISTORIA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
-                    
+
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramNombres)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramServicio)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramCama)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramEdad)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramCuenta)));
-                    table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramHistoria)));                    
+                    table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramHistoria)));
 
                     table.AddCell(new iText.Layout.Element.Cell(0, 6)
                     .Add(new iText.Layout.Element.Paragraph(MensajePiePagina))
@@ -3621,9 +3645,9 @@ namespace WebAppMaternidad.Areas.Comun
                     .Add(table);
 
                 }
-                else if(paramTipo == "HO-PIE")
+                else if (paramTipo == "HO-PIE")
                 {
-                    iText.Layout.Element.Table table = new iText.Layout.Element.Table(iText.Layout.Properties.UnitValue.CreatePercentArray(new float[] { 40f, 26f, 10f, 12f}))
+                    iText.Layout.Element.Table table = new iText.Layout.Element.Table(iText.Layout.Properties.UnitValue.CreatePercentArray(new float[] { 40f, 26f, 10f, 12f }))
                     .SetFontSize(fontSize)
                     .SetWidth(iText.Layout.Properties.UnitValue.CreatePointValue(widthHoja))
                     .SetFixedPosition(pageSize.GetLeft() + leftHoja, pageSize.GetBottom() + bottomHoja, widthHoja)
@@ -3633,11 +3657,11 @@ namespace WebAppMaternidad.Areas.Comun
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("SERVICIO").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("CUENTA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("HISTORIA CLINICA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
-                    
+
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramNombres)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramServicio)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramCuenta)));
-                    table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramHistoria)));                    
+                    table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramHistoria)));
 
                     table.AddCell(new iText.Layout.Element.Cell(0, 4)
                     .Add(new iText.Layout.Element.Paragraph(MensajePiePagina))
@@ -3649,17 +3673,17 @@ namespace WebAppMaternidad.Areas.Comun
                     new iText.Layout.Canvas(canvas, pageSize)
                     .Add(table);
 
-                } 
-                else if(paramTipo == "H-EVA")
+                }
+                else if (paramTipo == "H-EVA")
                 {
-                    
+
                     float[] parametrosValores = new float[] { 0f };
                     float[] parametrosValoresFirma = new float[] { 0f };
 
                     leftHoja = 22;
                     widthHoja = 550;
                     bottomHoja = 5;
-                    bottomHojaFirma = 70;                    
+                    bottomHojaFirma = 70;
                     fontSize = 7f;
                     fontSizeFirma = 7.5f;
 
@@ -3673,7 +3697,7 @@ namespace WebAppMaternidad.Areas.Comun
                     }
                     parametrosValores = new float[] { 43f, 26f, 10f, 10f, 11f };
 
-                    
+
                     iText.Layout.Element.Table tableFirma = new iText.Layout.Element.Table(iText.Layout.Properties.UnitValue.CreatePercentArray(parametrosValoresFirma))
                     .SetFontSize(fontSizeFirma)
                     .SetWidth(iText.Layout.Properties.UnitValue.CreatePointValue(widthHoja))
@@ -3698,7 +3722,7 @@ namespace WebAppMaternidad.Areas.Comun
 
                         tableFirma.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramFirmador2).SetFontColor(ColorConstants.DARK_GRAY)).SetPadding(0).SetBorder(iText.Layout.Borders.Border.NO_BORDER).SetBorderTop(new SolidBorder(1)));
                         tableFirma.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(" ").SetFontColor(ColorConstants.DARK_GRAY)).SetPadding(0).SetBorder(iText.Layout.Borders.Border.NO_BORDER));
-                        tableFirma.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramTipoFirmador2).SetFontColor(ColorConstants.DARK_GRAY)).SetPadding(0).SetBorder(iText.Layout.Borders.Border.NO_BORDER));                        
+                        tableFirma.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramTipoFirmador2).SetFontColor(ColorConstants.DARK_GRAY)).SetPadding(0).SetBorder(iText.Layout.Borders.Border.NO_BORDER));
                     }
                     else
                     {
@@ -3717,14 +3741,14 @@ namespace WebAppMaternidad.Areas.Comun
                     }
 
 
-                    
+
                     //if (paramFirmador2 != "")
                     //{
-                        
+
                     //}
                     //else
                     //{
-                        
+
                     //}
 
                     //tableFirma.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramTipoFirmador1).SetFontColor(ColorConstants.DARK_GRAY)).SetPadding(0).SetBorder(iText.Layout.Borders.Border.NO_BORDER));
@@ -3749,14 +3773,14 @@ namespace WebAppMaternidad.Areas.Comun
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("SERVICIO").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
 
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("CAMA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
-                    table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("CUENTA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));                    
+                    table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("CUENTA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("HISTORIA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
 
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramNombres)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramServicio)));
 
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramCama)));
-                    table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramCuenta)));                    
+                    table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramCuenta)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(paramHistoria)));
 
                     table.AddCell(new iText.Layout.Element.Cell(0, parametrosValores.Length)
@@ -3772,14 +3796,14 @@ namespace WebAppMaternidad.Areas.Comun
                 }
                 else
                 {
-                    
+
                     iText.Layout.Element.Table table = new iText.Layout.Element.Table(iText.Layout.Properties.UnitValue.CreatePercentArray(new float[] { 40f, 26f, 10f, 12f, 12f }))
                     .SetFontSize(fontSize)
                     .SetWidth(iText.Layout.Properties.UnitValue.CreatePointValue(widthHoja))
                     .SetFixedPosition(pageSize.GetLeft() + leftHoja, pageSize.GetBottom() + bottomHoja, widthHoja)
                     .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
 
-                                        
+
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("APELLIDOS Y NOMBRES").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("SERVICIO").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
                     table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph("CAMA").SetBold().SetFontColor(ColorConstants.DARK_GRAY)).SetBackgroundColor(new DeviceRgb(215, 215, 215)));
@@ -3844,10 +3868,10 @@ namespace WebAppMaternidad.Areas.Comun
                             .SetFontSize(6)
                         .SetBorder(iText.Layout.Borders.Border.NO_BORDER));
 
-                            new iText.Layout.Canvas(canvas, pageSize)
-                            .Add(tableFirma)
-                            .Add(table);
-                    } 
+                        new iText.Layout.Canvas(canvas, pageSize)
+                        .Add(tableFirma)
+                        .Add(table);
+                    }
                     else
                     {
                         table.AddCell(new iText.Layout.Element.Cell(0, 5)
@@ -3857,17 +3881,17 @@ namespace WebAppMaternidad.Areas.Comun
                             .SetFontSize(6)
                         .SetBorder(iText.Layout.Borders.Border.NO_BORDER));
 
-                            new iText.Layout.Canvas(canvas, pageSize)
-                            .Add(table);
+                        new iText.Layout.Canvas(canvas, pageSize)
+                        .Add(table);
                     }
 
-                    
+
                 }
 
                 //.SetProperty(iText.Layout.Properties.Property, 1); 
 
                 // Add cells to the table
-                                
+
                 canvas.Release();
             }
         }
@@ -3883,7 +3907,7 @@ namespace WebAppMaternidad.Areas.Comun
             FooterHandler footerHandler = new FooterHandler();
 
             props.SetBaseUri("ruta/a/los/archivos/relativos/");
-            
+
 
             try
             {
@@ -3898,7 +3922,7 @@ namespace WebAppMaternidad.Areas.Comun
                     //pageSize = iText.Kernel.Geom.PageSize.A7;
                     document = new iText.Layout.Document(pdfd, pageSize);
                 }
-                else if(pdf.tipoDocumento == "Personalizado")
+                else if (pdf.tipoDocumento == "Personalizado")
                 {
                     pageSize = new iText.Kernel.Geom.PageSize(pdf.width, pdf.height);
                     document = new iText.Layout.Document(pdfd, pageSize);
@@ -3913,7 +3937,7 @@ namespace WebAppMaternidad.Areas.Comun
                     {
                         pageSize = iText.Kernel.Geom.PageSize.A4.Rotate();
                     }
-                    
+
                     //iText.Kernel.Geom.PageSize pageSize = new iText.Kernel.Geom.PageSize(668, 935);
                     document = new iText.Layout.Document(pdfd, pageSize);
                 }
@@ -3963,37 +3987,49 @@ namespace WebAppMaternidad.Areas.Comun
                     pdf.pageHtml = pdf.pageHtml.Replace(IpPublica, IpPrivada);
                     ////////////////////////////////////////////////////////////////////////////
 
-                    using (HttpClient httpClient = new HttpClient())
+                    var handler = new HttpClientHandler()
                     {
-                        // Obtener el contenido de la URL como un stream
-                        using (Stream htmlStream = await httpClient.GetStreamAsync(pdf.pageHtml))
-                        {
-                            if (pdf.tipo == "HO-PIE")
-                            {
-                                Dictionary<string, string> parametros = new Dictionary<string, string>
-                                {
-                                    { "Tipo", pdf.tipo },
-                                    { "Nombres", pdf.Paciente },
-                                    { "Servicio", pdf.Servicio },
-                                    { "Cama", pdf.Cama },
-                                    { "Cuenta", pdf.Cuenta },
-                                    { "Edad", pdf.Edad },
-                                    { "Historia", pdf.Historia },
-                                    { "Movimiento", pdf.Movimiento },
-                                    { "Item", pdf.Item },
-                                    { "FormatoHoja", pdf.tamanio },
-                                    { "Firmador1", pdf.Firmador1 },
-                                    { "TipoFirmador1", pdf.TipoFirmador1 },
-                                    { "Firmador2", pdf.Firmador2 },
-                                    { "TipoFirmador2", pdf.TipoFirmador2 }
-                                };
-                                footerHandler.Parameters = parametros;
-                                pdfd.AddEventHandler(PdfDocumentEvent.END_PAGE, footerHandler);
+                        UseCookies = false // 🔥 importante
+                    };
 
-                            }
-                            // Realizar las operaciones necesarias con el stream
-                            HtmlConverter.ConvertToPdf(htmlStream, pdfd, props);
+                    using (HttpClient httpClient = new HttpClient(handler))
+                    {
+                        var request = new HttpRequestMessage(HttpMethod.Get, pdf.pageHtml);
+
+                        // 🔥 AQUÍ mandas la sesión
+                        if (!string.IsNullOrEmpty(pdf.cookies))
+                        {
+                            request.Headers.Add("Cookie", pdf.cookies);
                         }
+
+                        var response = await httpClient.SendAsync(request);
+                        var htmlStream = await response.Content.ReadAsStreamAsync();
+
+                        if (pdf.tipo == "HO-PIE")
+                        {
+                            Dictionary<string, string> parametros = new Dictionary<string, string>
+                            {
+                                { "Tipo", pdf.tipo },
+                                { "Nombres", pdf.Paciente },
+                                { "Servicio", pdf.Servicio },
+                                { "Cama", pdf.Cama },
+                                { "Cuenta", pdf.Cuenta },
+                                { "Edad", pdf.Edad },
+                                { "Historia", pdf.Historia },
+                                { "Movimiento", pdf.Movimiento },
+                                { "Item", pdf.Item },
+                                { "FormatoHoja", pdf.tamanio },
+                                { "Firmador1", pdf.Firmador1 },
+                                { "TipoFirmador1", pdf.TipoFirmador1 },
+                                { "Firmador2", pdf.Firmador2 },
+                                { "TipoFirmador2", pdf.TipoFirmador2 }
+                            };
+
+                            footerHandler.Parameters = parametros;
+                            pdfd.AddEventHandler(PdfDocumentEvent.END_PAGE, footerHandler);
+                        }
+
+                        HtmlConverter.ConvertToPdf(htmlStream, pdfd, props);
                     }
 
                     document.Close();
@@ -4005,7 +4041,7 @@ namespace WebAppMaternidad.Areas.Comun
                 //}
                 //rpta = true;
 
-                
+
             }
             catch (Exception e)
             {
@@ -4018,7 +4054,7 @@ namespace WebAppMaternidad.Areas.Comun
             return outputStream;
         }
 
-        
+
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         ////////////////////////VERSION CON HtmlToPdf///////////////////////////////////////////////
@@ -4038,20 +4074,21 @@ namespace WebAppMaternidad.Areas.Comun
                 ohtml.Options.MarginTop = pdf.marginY;
                 ohtml.Options.MarginBottom = pdf.marginY;
 
-                if(pdf.orientacion == "Portrait")
+                if (pdf.orientacion == "Portrait")
                 {
                     ohtml.Options.WebPageWidth = 793;
                     ohtml.Options.WebPageHeight = 1145;
-                } else if(pdf.orientacion == "Landscape")
+                }
+                else if (pdf.orientacion == "Landscape")
                 {
                     ohtml.Options.WebPageWidth = 1122;
                     ohtml.Options.WebPageHeight = 773;
-                }                
+                }
 
-                if(pdf.stringHtml != null)
+                if (pdf.stringHtml != null)
                 {
                     obPdfDoc = ohtml.ConvertHtmlString(pdf.stringHtml.ToString());
-                } 
+                }
                 else
                 {
                     /////////////////////KHOYOSI - OBTENER DIRECCIONES IPs///////////////////////                
@@ -4061,15 +4098,29 @@ namespace WebAppMaternidad.Areas.Comun
                     string IpPublica = AppNameIp2.ToString();
                     pdf.pageHtml = pdf.pageHtml.Replace(IpPublica, IpPrivada);
                     ////////////////////////////////////////////////////////////////////////////
-                    
+
+                    if (!string.IsNullOrEmpty(pdf.cookies))
+                    {
+                        var cookieParts = pdf.cookies.Split(';');
+
+                        foreach (var cookie in cookieParts)
+                        {
+                            var parts = cookie.Split('=');
+                            if (parts.Length == 2)
+                            {
+                                ohtml.Options.HttpCookies.Add(parts[0].Trim(), parts[1].Trim());
+                            }
+                        }
+                    }
+
                     obPdfDoc = ohtml.ConvertUrl(pdf.pageHtml);
 
                 }
-                
+
                 obPdfDoc.Save(pdf.rutaArchivo);
 
                 rpta = true;
-                
+
                 return rpta;
             }
             catch (Exception e)
@@ -4089,7 +4140,7 @@ namespace WebAppMaternidad.Areas.Comun
             DalAtenciones daoAtenciones = new DalAtenciones();
             ClUtilirario clUtilitario = new ClUtilirario();
             Conexion con = new Conexion();
-            
+
             try
             {
                 if (idTipoServicio == 1)
@@ -4146,7 +4197,8 @@ namespace WebAppMaternidad.Areas.Comun
                     else if (tipoDocumento == "IMG-RES")
                     {
                         tipoDocumento = "ResultadosImagenes";
-                    }else if (tipoDocumento == "E-PH")
+                    }
+                    else if (tipoDocumento == "E-PH")
                     {
                         tipoDocumento = "PapeletasHospitalizacion";
                     }
@@ -4162,8 +4214,12 @@ namespace WebAppMaternidad.Areas.Comun
                     {
                         tipoDocumento = "PapeletasEgreso";
                     }
+                    else if (tipoDocumento == "E-PDM")
+                    {
+                        tipoDocumento = "DescansoMedico";
+                    }
 
-                    ruta = nroHistoria + "/" + tipoServicio + "/" + idCuentaAtencion + "/" + tipoDocumento + "/";                    
+                    ruta = nroHistoria + "/" + tipoServicio + "/" + idCuentaAtencion + "/" + tipoDocumento + "/";
                 }
                 else
                 {
@@ -4199,8 +4255,12 @@ namespace WebAppMaternidad.Areas.Comun
                     {
                         tipoDocumento = "PapeletasEgreso";
                     }
+                    else if (tipoDocumento == "E-PDM")
+                    {
+                        tipoDocumento = "DescansoMedico";
+                    }
 
-                    ruta = tipoServicio + "/" + tipoDocumento + "/";                    
+                    ruta = tipoServicio + "/" + tipoDocumento + "/";
                 }
 
                 //sWebRootFolder = con.ObtenerServidorArchivos();
@@ -4225,10 +4285,10 @@ namespace WebAppMaternidad.Areas.Comun
         public async Task<String> GenerarNombreArchivoPdf(FirmaDigital firma)
         {
             string nombre;
-            
+
             nombre = firma.idCuentaAtencion.ToString() + "_" + firma.idRegistro.ToString() + "_" + (DateTime.Now.ToString("HH:mm:ss")).Replace(":", "") + "_" + firma.tipo;
             nombre = await EncriptarNombre(nombre);
-            
+
             return nombre;
         }
 
@@ -4246,7 +4306,7 @@ namespace WebAppMaternidad.Areas.Comun
         {
             bool resp = false;
             Conexion con = new Conexion();
-            
+
             string rutaOrigen, rutaOrigenFirma;
             string rutaHistorial, rutaHistorialFirma;
 
@@ -4300,7 +4360,7 @@ namespace WebAppMaternidad.Areas.Comun
                 return false;
             }
 
-            
+
 
             return resp;
         }
@@ -4431,15 +4491,15 @@ namespace WebAppMaternidad.Areas.Comun
                         ind = random.Next(1, 52);
                         encriptado = encriptado + alfabeto[ind];
                         i++;
-                    }                    
+                    }
                     resp = await utilitario.ValidarNombreFirmaDigital(encriptado);
-                }                
+                }
 
                 return encriptado;
             }
             catch (Exception ex)
             {
-                return ex.ToString() ;
+                return ex.ToString();
             }
         }
 
@@ -4482,14 +4542,14 @@ namespace WebAppMaternidad.Areas.Comun
 
         public async Task<string> EncriptarCode(string texto)
         {
-            DalUtilitario utilitario = new  DalUtilitario();
+            DalUtilitario utilitario = new DalUtilitario();
             Boolean resp = true;
             string code = "";
             var objEncripta = new Encriptar();
             try
             {
                 while (resp)
-                {                    
+                {
                     code = objEncripta.EncriptarCadena(texto);
                     resp = await utilitario.ValidarCodeFirmaDigital(code);
                 }
@@ -4524,7 +4584,7 @@ namespace WebAppMaternidad.Areas.Comun
         }
 
         public string DecodificarDeUrl(string cadena)
-        {            
+        {
             try
             {
                 cadena = cadena.Replace("%3F%3F%3F", "+");
@@ -4718,7 +4778,7 @@ namespace WebAppMaternidad.Areas.Comun
             //DataSet ds;
             Boolean resp;
             DalUtilitario daoUtilitario = new DalUtilitario();
-            
+
             try
             {
                 int idUsuario;
@@ -5904,11 +5964,11 @@ namespace WebAppMaternidad.Areas.Comun
 
 
             if (tipoModulo == "psicoprofilaxis")
-            {                
+            {
                 return PartialView("~/Views/Shared/Components/VistasParciales/ConsultaExterna/ConsejeriaPsicoprofilaxis/RegistroConsejeriaPsicoprofilaxis.cshtml");
-            }           
+            }
             else
-            {                
+            {
                 return PartialView("~/Views/Shared/Components/VistasParciales/ConsultaExterna/EspecialidadesMedicas/EspecialidadesMedicasV2.cshtml");
             }
 

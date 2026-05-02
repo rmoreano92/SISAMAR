@@ -16,10 +16,11 @@ using System.IO;
 using System.Text;
 using WebAppMaternidad.Areas.Comun;
 using DocumentFormat.OpenXml.Drawing.Diagrams;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Laboratorio
 {
-    public class MedicinaReproductivaController : Controller
+    public class MedicinaReproductivaController : BaseController
     {
         public IActionResult Index()
         {
@@ -158,6 +159,7 @@ namespace WebAppMaternidad.Areas.Laboratorio
                 pdf.orientacion = "Portrait";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idOrden, idProducto, "MED-REPRO", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

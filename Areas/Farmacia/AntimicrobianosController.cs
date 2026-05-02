@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
 using static CapaEntidades.ListBarItemEnum;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Farmacia
 {
-    public class AntimicrobianosController : Controller
+    public class AntimicrobianosController : BaseController
     {
         public IActionResult Index()
         {

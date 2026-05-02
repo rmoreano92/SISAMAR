@@ -13,10 +13,11 @@ using System.IO;
 using SiHospCrypKey;
 using iText.Layout.Properties;
 using iText.Kernel.Font;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class PruebasPdfController: Controller
+    public class PruebasPdfController: BaseController
     {
         public async void Index()
         {
@@ -98,17 +99,17 @@ namespace WebAppMaternidad.Areas.Comun
 
         //        if (Tbol)
         //        {
-        //            lsParametros = await daoParametros.SeleccionaFilaParametro2(205);
+        //            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
         //            nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
         //            lsParametros.Clear();
 
-        //            lsParametros = await daoParametros.SeleccionaFilaParametro2(206);
+        //            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
         //            direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
         //            lsParametros.Clear();
 
-        //            lsParametros = await daoParametros.SeleccionaFilaParametro2(207);
+        //            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
         //            telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
 

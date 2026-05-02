@@ -975,7 +975,7 @@
 
         swal({
             title: 'Evaluaciones',
-            text: "Paciente iniciara la Evaluación N° " + (eval + 1),
+            text: "Paciente iniciará la evaluación N° " + (eval + 1),
             type: 'info',
         }).done()
 

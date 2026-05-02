@@ -1452,7 +1452,7 @@ var Ordenes = {
                     $('#cboEspecialidades').val(0);
                     $('.chzn-select').chosen().trigger("chosen:updated");
                 } else {
-                    alert("La sesion ya expiro se volvera a recargar la pagina XD")
+                    alert("La sesión ya expiró se volverá a recargar la página")
                 }
             })
     },
@@ -1478,7 +1478,7 @@ var Ordenes = {
                     $('#cboEspecialidades').val(0);
                     $('.chzn-select').chosen().trigger("chosen:updated");
                 } else {
-                    alert("La sesion ya expiro se volvera a recargar la pagina XD")
+                    alert("La sesión ya expiró se volverá a recargar la página")
                 }
             })
     },
@@ -1497,7 +1497,7 @@ var Ordenes = {
                     });
                     $('.chzn-select').chosen().trigger("chosen:updated");
                 } else {
-                    alert("La sesion ya expiro se volvera a recargar la pagina XD")
+                    alert("La sesión ya expiró se volverá a recargar la página")
                 }
             })
     },
@@ -2286,10 +2286,10 @@ var Ordenes = {
                 if (obj.idPuntoCarga == 5) {//farmacia
 
                     /////////RECETA FARMACIA///////////////////////////////////
-                    //if (isNull(obj.esRecetaAntimicrobiano, 0) == 0 && isNull(obj.esRecetaIntervencionSanitaria, 0) == 0) {
-                    if ((isNull(obj.esRecetaAntimicrobiano, 0) == 0 || isNull(obj.esRecetaAntimicrobiano, 0) == 1) && isNull(obj.esRecetaIntervencionSanitaria, 0) == 0) {          //SE CAMBIO LA LOGICA  PARA INCLUIR LOS ANRTIMICROBIANOS DENTRO DE LA MISMA VISTA DE MEDICAMENTO
+                    if (isNull(obj.esRecetaAntimicrobiano, 0) == 0 && isNull(obj.esRecetaIntervencionSanitaria, 0) == 0) {
+                    //if ((isNull(obj.esRecetaAntimicrobiano, 0) == 0 || isNull(obj.esRecetaAntimicrobiano, 0) == 1) && isNull(obj.esRecetaIntervencionSanitaria, 0) == 0) {          //SE CAMBIO LA LOGICA  PARA INCLUIR LOS ANRTIMICROBIANOS DENTRO DE LA MISMA VISTA DE MEDICAMENTO
                         $('#lblFarmacia').html(labelReceta);
-                        //$('#hdIdRecetaFarmacia').val(obj.idReceta);
+                        $('#hdIdRecetaFarmacia').val(obj.idReceta);
                         $('.nav-tabs a[href="#farmacia"]').tab('show');
                         $('[href="#farmacia"]').closest('li').show();
                         $('.nav-tabs a[href="#farmaciaMedInsum"]').tab('show');
@@ -2303,6 +2303,7 @@ var Ordenes = {
                         }
 
                         //SE AGREGO LA LOGICA  PARA INCLUIR LA SOLICUTUD ANRTIMICROBIANOS DENTRO DE LA MISMA VISTA DE MEDICAMENTO
+                        /*
                         if (isNull(obj.esRecetaAntimicrobiano, 0) == 1) {
                             $('#hdIdRecetaFarmaciaAntimic').val(obj.idReceta);
                             if (obj.idSolicitudAntimicrobiano > 0) {
@@ -2321,7 +2322,7 @@ var Ordenes = {
                             $('#hdIdRecetaFarmacia').val(obj.idReceta);
                             $("#frmSolicitudAntimicrobianos").hide();
                         }
-                        
+                        */
                         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                         if (obj.idEstado === 1) {
@@ -2337,41 +2338,42 @@ var Ordenes = {
 
                     //SE CAMBIO LA COMENTO PARA INCLUIR LOS ANRTIMICROBIANOS DENTRO DE LA MISMA VISTA DE MEDICAMENTO
                     /////////RECETA FARMACIA ANTIMICROBIANOS///////////////////////////////////
-                    //if (isNull(obj.esRecetaAntimicrobiano, 0) == 1 && isNull(obj.esRecetaIntervencionSanitaria, 0) == 0) {
-                    //    $('#lblFarmaciaAntimic').html(labelReceta);
-                    //    $('#hdIdRecetaFarmaciaAntimic').val(obj.idReceta);
-                    //    $('.nav-tabs a[href="#farmacia"]').tab('show');
-                    //    $('[href="#farmacia"]').closest('li').show();
-                    //    $('.nav-tabs a[href="#farmaciaAntimicro"]').tab('show');
-                    //    $('[href="#farmaciaAntimicro"]').closest('li').show();
-                    //    $("#txtFechaVigencia").datepicker("setDate", obj.fechaVigenciaWeb);
+                    if (isNull(obj.esRecetaAntimicrobiano, 0) == 1 && isNull(obj.esRecetaIntervencionSanitaria, 0) == 0) {
+                        $('#lblFarmaciaAntimic').html(labelReceta);
+                        $('#hdIdRecetaFarmaciaAntimic').val(obj.idReceta);
+                        await Ordenes.SeleccionarProaAntimicrobiano(obj.idReceta); // MGAMERO - PROA
+                        $('.nav-tabs a[href="#farmacia"]').tab('show');
+                        $('[href="#farmacia"]').closest('li').show();
+                        $('.nav-tabs a[href="#farmaciaAntimicro"]').tab('show');
+                        $('[href="#farmaciaAntimicro"]').closest('li').show();
+                        $("#txtFechaVigencia").datepicker("setDate", obj.fechaVigenciaWeb);
 
-                    //    //detalleReceta = await Ordenes.SeleccionarRecetaAntimicrobianoDetalle(obj.idReceta, 5)
-                    //    detalleReceta = await Ordenes.SeleccionarRecetaDetalle(obj.idReceta, 5)
-                    //    if (!isEmpty(detalleReceta.table)) {
-                    //        oTable_farmaciaAntimic.fnAddData(detalleReceta.table);
-                    //    }
+                        //detalleReceta = await Ordenes.SeleccionarRecetaAntimicrobianoDetalle(obj.idReceta, 5)
+                        detalleReceta = await Ordenes.SeleccionarRecetaDetalle(obj.idReceta, 5)
+                        if (!isEmpty(detalleReceta.table)) {
+                            oTable_farmaciaAntimic.fnAddData(detalleReceta.table);
+                        }
 
-                    //    if (obj.idSolicitudAntimicrobiano > 0) {
-                    //        $('#rdbGeneraSolAntimicSI').click();
-                    //        Ordenes.DesbloquearCamposAntimicrobianos();
-                    //        await Ordenes.SeleccionarSolicitudAntimicrobiano(obj.idSolicitudAntimicrobiano);
-                    //    } else {
-                    //        $('#rdbGeneraSolAntimicNO').click();
-                    //        Ordenes.LimpiarCamposAntimicrobianos();
-                    //        Ordenes.BloquearCamposAntimicrobianos();
-                    //    }
+                        if (obj.idSolicitudAntimicrobiano > 0) {
+                            $('#rdbGeneraSolAntimicSI').click();
+                            Ordenes.DesbloquearCamposAntimicrobianos();
+                            await Ordenes.SeleccionarSolicitudAntimicrobiano(obj.idSolicitudAntimicrobiano);
+                        } else {
+                            $('#rdbGeneraSolAntimicNO').click();
+                            Ordenes.LimpiarCamposAntimicrobianos();
+                            Ordenes.BloquearCamposAntimicrobianos();
+                        }
 
-                    //    if (obj.idEstado === 1) {
-                    //        $('#btnAgregaFarmaciaAntimic').css("visibility", 'visible');
-                    //        $('#btnQuitarFarmaciaAntimic').css("visibility", 'visible');
-                    //    }
-                    //    else {
-                    //        $('#btnAgregaFarmaciaAntimic').css("visibility", 'hidden')
-                    //        $('#btnQuitarFarmaciaAntimic').css("visibility", 'hidden')
-                    //        //$('#lblFarmacia').html("Receta Nro.: " + obj.idReceta + ' - Estado: Despachada');
-                    //    }
-                    //}
+                        if (obj.idEstado === 1) {
+                            $('#btnAgregaFarmaciaAntimic').css("visibility", 'visible');
+                            $('#btnQuitarFarmaciaAntimic').css("visibility", 'visible');
+                        }
+                        else {
+                            $('#btnAgregaFarmaciaAntimic').css("visibility", 'hidden')
+                            $('#btnQuitarFarmaciaAntimic').css("visibility", 'hidden')
+                            //$('#lblFarmacia').html("Receta Nro.: " + obj.idReceta + ' - Estado: Despachada');
+                        }
+                    }
 
                     /////////RECETA FARMACIA INTERVENCION SANITARIA///////////////////////////////////
                     if (isNull(obj.esRecetaAntimicrobiano, 0) == 0 && isNull(obj.esRecetaIntervencionSanitaria, 0) == 1) {
@@ -4679,21 +4681,22 @@ var Ordenes = {
         let html = "";
         html += '[';
         let tieneAntimic = false;
-        //let databafarmacia = oTable_farmaciaAntimic.api(true).rows().data();      //SE COMENTO POR QUE SE CAMBIO LA LOGICA EN UN SOLO VISTA TODOS LOS MEDIACMENTOS Y ANTIMICROBIANOS
-        let databafarmacia = oTable_farmacia.api(true).rows().data();
+        let databafarmacia = oTable_farmaciaAntimic.api(true).rows().data();      //SE COMENTO POR QUE SE CAMBIO LA LOGICA EN UN SOLO VISTA TODOS LOS MEDIACMENTOS Y ANTIMICROBIANOS
+        //let databafarmacia = oTable_farmacia.api(true).rows().data();
         databafarmacia.each(function (value, index) {
-            if (value.tipoProducto == "ANT") {
-                tieneAntimic = true;
-            }
+            //if (value.tipoProducto == "ANT") {
+            //    tieneAntimic = true;
+            //}
+            tieneAntimic = true;
 
             //SE COMENTO POR QUE SE CAMBIO LA LOGICA EN UN SOLO VISTA TODOS LOS MEDIACMENTOS Y ANTIMICROBIANOS
-            //let txtFrec = "#txtFrecAntimic_" + databafarmacia[index]["idItem"];
-            //let txtCant = "#txtCantAntimic_" + databafarmacia[index]["idItem"];            //KHOYOSI
-            //let cboDx = "#cboDxAntimic_" + databafarmacia[index]["idItem"];            //KHOYOSI
+            let txtFrec = "#txtFrecAntimic_" + databafarmacia[index]["idItem"];
+            let txtCant = "#txtCantAntimic_" + databafarmacia[index]["idItem"];            //KHOYOSI
+            let cboDx = "#cboDxAntimic_" + databafarmacia[index]["idItem"];            //KHOYOSI
 
-            let txtFrec = "#txtFrec_" + databafarmacia[index]["idItem"];
-            let txtCant = "#txtCant_" + databafarmacia[index]["idItem"];            //KHOYOSI
-            let cboDx = "#cboDx_" + databafarmacia[index]["idItem"];            //KHOYOSI
+            //let txtFrec = "#txtFrec_" + databafarmacia[index]["idItem"];
+            //let txtCant = "#txtCant_" + databafarmacia[index]["idItem"];            //KHOYOSI
+            //let cboDx = "#cboDx_" + databafarmacia[index]["idItem"];            //KHOYOSI
             //html += '{"idItem":"' + databafarmacia[index]["idItem"] + '","cantidadPedida":"' + databafarmacia[index]["cantidadPedida"] + '","precio":"' + databafarmacia[index]["precio"] + '","total":"' + databafarmacia[index]["total"] + '","idDosisRecetada":"' + databafarmacia[index]["idDosisRecetada"] + '","idViaAdministracion":"' + databafarmacia[index]["idViaAdministracion"] + '","observaciones":"' + $(txtFrec).val() + '"},';       //KHOYOSI(COMENTADO)
             html += '{"idItem":"' + databafarmacia[index]["idItem"] + '","cantidadPedida":"' + $(txtCant).val() + '","precio":"' + databafarmacia[index]["precio"] + '","total":"' + databafarmacia[index]["total"] +
                 '","idDosisRecetada":"' + (isEmpty(databafarmacia[index]["idDosisRecetada"]) ? 0 : databafarmacia[index]["idDosisRecetada"]) +
@@ -5329,13 +5332,13 @@ var Ordenes = {
                 //async: false,
                 success: function (datos) {
                     Cargando(0);
-                    //$('#cboMedicamentoAntimic').empty();
+                    $('#cboMedicamentoAntimic').empty();
                     $(datos.table).each(function (i, obj) {
                         //$('#cboMedicamentoAntimic').append('<option  value="' + obj.idProducto + '">' + obj.nombre + '</option>');
                         antimicrobianos = antimicrobianos + '<option data-tipoProducto="ANT" value="' + obj.idProducto + '">' + obj.nombre + '</option>';
 
                     });
-                    $('#cboMedicamento').append("<optgroup label='Antimicrobianos'>" + antimicrobianos + "</optgroup>");
+                    $('#cboMedicamentoAntimic').append("<optgroup label='Antimicrobianos'>" + antimicrobianos + "</optgroup>");
 
                     $('.chzn-select').chosen().trigger("chosen:updated");
 
@@ -5835,6 +5838,41 @@ var Ordenes = {
         //    }
 
         //})
+
+        //MGAMERO - PROA
+        $('.chk-cultivo').on('change', async function () {
+            let item = parseInt($(this).data('id'));
+            let $fila = $(this).closest('tr');
+            let $fecha = $fila.find('.txt-fecha-cultivo');
+
+            if ($(this).is(':checked')) {
+                $fecha.prop('disabled', false);
+            } else {
+                $fecha.val('');
+                $fecha.prop('disabled', true);
+            }
+
+            if (item === 8) {
+                if ($(this).is(':checked')) {
+                    $('#txtOtroCultivo').show();
+                } else {
+                    $('#txtOtroCultivo').val('').hide();
+                }
+            }
+        });
+
+        //MGAMERO - PROA
+        $('.chk-sindrome').on('change', async function () {
+            let item = parseInt($(this).data('id'));
+            if (item === 9) {
+                if ($(this).is(':checked')) {
+                    $('#txtOtroSindrome').show();
+                } else {
+                    $('#txtOtroSindrome').val('').hide();
+                }
+            }
+        });        
+
     },
 
     ubicaFarmacia(valor) {
@@ -6740,6 +6778,13 @@ var Ordenes = {
         Ordenes.LimpiarCamposIntervencionSanitaria();
         Ordenes.DesbloquearCamposIntervencionSanitaria();
         //------------INTERVENCION SANITARIA==============================
+
+        // ------------ PROA ------------
+        $('.chk-sindrome, .chk-cultivo').prop('checked', false);
+        $('.txt-fecha-cultivo').val('').prop('disabled', true);
+        $('#txtOtroSindrome').val('').hide();
+        $('#txtOtroCultivo').val('').hide();
+        // ------------ PROA ------------
 
         //$('#cboMedicoReceta').val(ObtenerIdMedicoSesion());
         //console.log(this.ObtenerIdMedicoSesion());
@@ -8500,7 +8545,9 @@ var Ordenes = {
         /////////////////VALIDAR SI ES RECETA DE ANTIMICROBIANOS//////////////////////////////        
         let generarSolicitudAntimicrobiano = 0;
         if (ListaRecetaDetalleFarmaciaAntimicrobiano != "[]") {
-
+            if (!Ordenes.ValidarProaAntimicrobiano()) {
+                return false;
+            }
             Ordenes.productosSinSolicitud = await Ordenes.DevolverProductosSinSolicitudAntimicrobianos();                      
                         
             if (Ordenes.productosSinSolicitud.length > 0) {
@@ -8663,6 +8710,11 @@ var Ordenes = {
 
         formData.append('lstDiagnosticosPre', JSON.stringify(ObjtableDiagnosticosSolicitudCQx.api(true).data().toArray()));
 
+        //============= PROA =============
+        let lstProa = Ordenes.ObtenerProaAntimicrobiano();
+        console.log('lstProa:', lstProa);
+        formData.append('lstRecetaFarmaciaAntimicrobianoPROA', lstProa);
+
         alerta(4, 'Generando recetas, por favor espere.');
         //AQUI ES !!!!!! MGAMERO
         try {
@@ -8681,8 +8733,17 @@ var Ordenes = {
             if (datos.session) {
                 if (datos.rpt) {
                     if (datos.msjReceta != "") {
-                        //console.log(datos.objRecetas);
                         var objRecetas = datos.objRecetas;
+
+                        console.log('objRecetas:', objRecetas);
+
+                        const obtenerCodePorIdReceta = (idReceta) => {
+                            if (!idReceta) return '';
+
+                            const receta = objRecetas.find(x => String(x.idReceta) === String(idReceta));
+                            return receta ? receta.code : '';
+                        };
+
                         var recetas = [
                             { "idPuntoCarga": 21, "idReceta": datos.lrcRx, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 21)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 21).code },
                             { "idPuntoCarga": 2, "idReceta": datos.lrcPatoClin, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 2)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 2).code },
@@ -8691,27 +8752,17 @@ var Ordenes = {
                             { "idPuntoCarga": 20, "idReceta": datos.lrcEcoGene, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 20)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 20).code },
                             { "idPuntoCarga": 23, "idReceta": datos.lrcEcoObst, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 23)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 23).code },
                             { "idPuntoCarga": 24, "idReceta": datos.lrcEcoObstProc, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 24)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 24).code },
-                            { "idPuntoCarga": 5, "idReceta": datos.lrcFarmacia, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 5)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 5).code, esRecetaAntimicrobiano: 0 },
-                            { "idPuntoCarga": 5, "idReceta": datos.lrcFarmaciaAntimicrobiano, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 5)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 5).code, esRecetaAntimicrobiano: 1 },
-                            { "idPuntoCarga": 5, "idReceta": datos.lrcFarmaciaIntervencionSanitaria, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 5)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 5).code, esRecetaIntervencionSanitaria: 1 },
+
+                            { "idPuntoCarga": 5, "idReceta": datos.lrcFarmacia, "code": obtenerCodePorIdReceta(datos.lrcFarmacia), esRecetaAntimicrobiano: 0 },
+                            { "idPuntoCarga": 5, "idReceta": datos.lrcFarmaciaAntimicrobiano, "code": obtenerCodePorIdReceta(datos.lrcFarmaciaAntimicrobiano), esRecetaAntimicrobiano: 1 },
+                            { "idPuntoCarga": 5, "idReceta": datos.lrcFarmaciaIntervencionSanitaria, "code": obtenerCodePorIdReceta(datos.lrcFarmaciaIntervencionSanitaria), esRecetaIntervencionSanitaria: 1 },
+
                             { "idPuntoCarga": 22, "idReceta": datos.lrcTomografia, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 22)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 22).code },
                             { "idPuntoCarga": 12, "idReceta": datos.lrcInterconsulta, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 12)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 12).code },
-
-                            { "idPuntoCarga": 1060, "idReceta": datos.lrcSolicitudCQx, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 1060)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 1060).code },
-                            //{ idPuntoCarga = 12, idReceta = datos.lrcFarmacia },
-                            //{ "idPuntoCarga": 12, "idReceta": datos.lrcInterconsulta },
-                        ]
-                        //VisorReceta.AbrirVisorRecetas(recetas);
+                            { "idPuntoCarga": 1060, "idReceta": datos.lrcSolicitudCQx, "code": isEmpty(objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 1060)) ? '' : objRecetas.find(({ idPuntoCarga }) => idPuntoCarga == 1060).code }
+                        ];
 
                         resp = recetas;
-
-                        //swal({
-                        //    title: 'Recetas',
-                        //    text: datos.msjReceta,
-                        //    type: 'info',
-                        //}).done();
-                        alerta2("info", "Recetas", datos.msjReceta);
-
                     }
 
                     alerta('1', 'Se  registro correctamente las recetas');
@@ -8864,7 +8915,172 @@ var Ordenes = {
                 console.log("ValidarMedicamentoRecientePaciente", e);
                 return null;
             });
-    }
+    },
+
+    //PROA
+    /*armarProaJson() {
+        var proa = {
+            sindromes: [],
+            cultivos: []
+        };
+
+        $('.chk-sindrome').each(function () {
+            proa.sindromes.push({
+                id: $(this).data('id'),
+                texto: $(this).data('texto'),
+                marcado: $(this).is(':checked')
+            });
+        });
+
+        $('.chk-cultivo').each(function () {
+            var $fila = $(this).closest('tr');
+            var fecha = $fila.find('.txt-fecha-cultivo').val();
+
+            proa.cultivos.push({
+                id: $(this).data('id'),
+                texto: $(this).data('texto'),
+                marcado: $(this).is(':checked'),
+                fecha: fecha
+            });
+        });
+
+        $('#hdProaJson').val(JSON.stringify(proa));
+    },*/
+
+    ObtenerProaAntimicrobiano() {
+        let lista = [];
+
+        $('.chk-sindrome:checked').each(function () {
+            let item = parseInt($(this).data('id'));
+            let descripcionOtro = null;
+
+            if (item === 9) {
+                descripcionOtro = $('#txtOtroSindrome').val().trim();
+            }
+
+            lista.push({
+                tipoRegistro: 'S',
+                item: item,
+                fechaCultivo: null,
+                descripcionOtro: isEmpty(descripcionOtro) ? null : descripcionOtro
+            });
+        });
+
+        $('.chk-cultivo:checked').each(function () {
+            let item = parseInt($(this).data('id'));
+            let fecha = $(this).closest('tr').find('.txt-fecha-cultivo').val();
+            let descripcionOtro = null;
+
+            if (item === 8) {
+                descripcionOtro = $('#txtOtroCultivo').val().trim();
+            }
+
+            lista.push({
+                tipoRegistro: 'C',
+                item: item,
+                fechaCultivo: isEmpty(fecha) ? null : fecha,
+                descripcionOtro: isEmpty(descripcionOtro) ? null : descripcionOtro
+            });
+        });
+
+        return JSON.stringify(lista);
+    },
+
+    ValidarProaAntimicrobiano() {
+
+        if ($('.chk-sindrome[data-id="9"]').is(':checked') && isEmpty($('#txtOtroSindrome').val().trim())) {
+            alerta(2, 'Debe especificar el otro síndrome.');
+            $('#txtOtroSindrome').focus();
+            return false;
+        }
+
+        if ($('.chk-cultivo[data-id="8"]').is(':checked') && isEmpty($('#txtOtroCultivo').val().trim())) {
+            alerta(2, 'Debe especificar el otro cultivo.');
+            $('#txtOtroCultivo').focus();
+            return false;
+        }
+
+        let valido = true;
+
+        $('.chk-cultivo:checked').each(function () {
+            let $fila = $(this).closest('tr');
+            let $fecha = $fila.find('.txt-fecha-cultivo');
+            let fecha = ($fecha.val() || '').trim();
+
+            if (isEmpty(fecha) || isNaN(new Date(fecha).getTime())) {
+                alerta(2, 'Debe seleccionar una fecha válida para cada cultivo marcado.');
+                $fecha.focus();
+                valido = false;
+                return false;
+            }
+        });
+
+        if (!valido) {
+            return false;
+        }
+
+        return true;
+    },
+
+    async SeleccionarProaAntimicrobiano(idReceta) {
+        let data = new FormData();
+        let datos;
+
+        data.append('idReceta', idReceta);
+
+        try {
+            datos = await $.ajax({
+                method: "POST",
+                url: "/Receta/ListarRecetaFarmaciaAntimicrobianoPROA?area=Comun",
+                data: data,
+                dataType: "json",
+                cache: false,
+                processData: false,
+                contentType: false,
+            });
+
+            // limpiar antes de cargar
+            $('.chk-sindrome, .chk-cultivo').prop('checked', false);
+            $('.txt-fecha-cultivo').val('').prop('disabled', true);
+            $('#txtOtroSindrome').val('').hide();
+            $('#txtOtroCultivo').val('').hide();
+
+            if (!isEmpty(datos.table)) {
+                $(datos.table).each(function (i, obj) {
+
+                    if (obj.tipoRegistro == 'S') {
+                        $('.chk-sindrome[data-id="' + obj.item + '"]').prop('checked', true);
+
+                        if (parseInt(obj.item) === 9 && !isEmpty(obj.descripcionOtro)) {
+                            $('#txtOtroSindrome').val(obj.descripcionOtro).show();
+                        }
+                    }
+
+                    if (obj.tipoRegistro == 'C') {
+                        let $chk = $('.chk-cultivo[data-id="' + obj.item + '"]');
+                        let $fila = $chk.closest('tr');
+                        let $fecha = $fila.find('.txt-fecha-cultivo');
+
+                        $chk.prop('checked', true);
+                        $fecha.prop('disabled', false);
+
+                        if (!isEmpty(obj.fechaCultivo)) {
+                            let fecha = obj.fechaCultivo.toString().substring(0, 10);
+                            $fecha.val(fecha);
+                        }
+
+                        if (parseInt(obj.item) === 8 && !isEmpty(obj.descripcionOtro)) {
+                            $('#txtOtroCultivo').val(obj.descripcionOtro).show();
+                        }
+                    }
+                });
+            }
+
+        } catch (error) {
+            alerta(3, error);
+        }
+    },    
+
 };
 
 

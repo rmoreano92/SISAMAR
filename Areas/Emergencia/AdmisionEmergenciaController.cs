@@ -17,10 +17,11 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using WebAppMaternidad.Areas.Comun;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Emergencia
 {
-    public class AdmisionEmergenciaController : Controller
+    public class AdmisionEmergenciaController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 
@@ -210,7 +211,9 @@ namespace WebAppMaternidad.Areas.Emergencia
                 pdf.tipoDocumento = "Ticket";
                 pdf.pageHtml = pageHtml;
 
-                resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
                 byte[] pdfBytes = resultStream.ToArray();
                 ms.Write(pdfBytes, 0, pdfBytes.Length);
@@ -349,9 +352,13 @@ namespace WebAppMaternidad.Areas.Emergencia
             DataSet lsParametros = new DataSet();
             DataSet lsCitas = await dalAtenciones.AtencionesSeleccionarPorId(idAtencion);
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
 
             DateTime now = DateTime.Now;
 
@@ -406,9 +413,13 @@ namespace WebAppMaternidad.Areas.Emergencia
 
             DataTable dtDx = lsDiagnosticos.Tables[0];
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
 
             DateTime now = DateTime.Now;
 
@@ -495,9 +506,13 @@ namespace WebAppMaternidad.Areas.Emergencia
             DataSet lsPacientes = await dalPaciente.PacientesSeleccionarPorId(idPaciente);
             DataSet lsCitas = await dalAtenciones.AtencionesSeleccionarPorId(idAtencion);
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
 
             DateTime now = DateTime.Now;
 
@@ -523,10 +538,15 @@ namespace WebAppMaternidad.Areas.Emergencia
             @ViewBag.Telefono = lsPacientes.Tables[0].Rows[0]["Telefono"];
             @ViewBag.GrupoSanguineo = lsPacientes.Tables[0].Rows[0]["GrupoSanguineo"];
             @ViewBag.Ocupacion = lsPacientes.Tables[0].Rows[0]["Ocupacion"];
-            @ViewBag.Religion = lsPacientes.Tables[0].Rows[0]["Religion"];
+            @ViewBag.Religion = lsPacientes.Tables[0].Rows[0]["Religion"]; //MGAMERO
             @ViewBag.Edad = lsCitas.Tables[0].Rows[0]["Edad"];
             @ViewBag.TipoEdad = lsCitas.Tables[0].Rows[0]["TipoEdad"];
 
+            @ViewBag.FichaFamiliar = lsPacientes.Tables[0].Rows[0]["FichaFamiliar"];
+            @ViewBag.CipPaciente = lsPacientes.Tables[0].Rows[0]["CipPaciente"];
+            @ViewBag.Procedencia = lsPacientes.Tables[0].Rows[0]["Procedencia"];
+            @ViewBag.Parentesco = lsPacientes.Tables[0].Rows[0]["Parentesco"];
+            @ViewBag.Titular = lsPacientes.Tables[0].Rows[0]["Titular"];
 
             @ViewBag.PacienteNombres = lsPacientes.Tables[0].Rows[0]["nombres"].ToString().ToUpper();
 

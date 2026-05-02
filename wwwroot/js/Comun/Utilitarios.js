@@ -1363,6 +1363,17 @@
         $('#ifmFirmaDigital').attr('src', rutaFirmaPeru);
     },
 
+    async IniciarServicioFirmaLoteFirmaPeru(cuentasAtencion, tipos) {
+        finFirmaDigital = 0;
+        Cargando(0);
+        const cuentasParam = Array.isArray(cuentasAtencion) ? cuentasAtencion.join(',') : cuentasAtencion;
+        let ruta = '/FirmaDigital/FirmaDigitalLoteFirmaPeru?server=' + PathServerFiles
+            + '&cuentasAtencion=' + encodeURIComponent(cuentasParam)
+            + '&tipos=' + encodeURIComponent(tipos);
+        $("#modalFirmaDigital").modal("show");
+        $('#ifmFirmaDigital').attr('src', ruta);
+    },
+
     //async AbrirServicioFirmaPeru(code) {
     //    await VerificarFirma(code);
     //    ws = window.screen.width;

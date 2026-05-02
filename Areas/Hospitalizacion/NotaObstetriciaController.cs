@@ -7,10 +7,11 @@ using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class NotaObstetriciaController: Controller
+    public class NotaObstetriciaController: BaseController
     {
         [HttpPost]
         public async Task<ActionResult> CrearModificarNotaObstetricia(NotaObstetricia notaObstetricia, Triaje objtriaje) // JDELGADO003-C

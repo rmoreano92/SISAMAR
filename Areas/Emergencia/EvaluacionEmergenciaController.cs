@@ -19,10 +19,11 @@ using WebAppMaternidad.Areas.Comun;
 using System.Diagnostics;
 using QRCoder;
 using System.Drawing;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Emergencia
 {
-    public class EvaluacionEmergenciaController : Controller
+    public class EvaluacionEmergenciaController : BaseController
     {
         //private IHostingEnvironment _hostingEnvironment;
         private IWebHostEnvironment _hostingEnvironment;
@@ -309,6 +310,7 @@ namespace WebAppMaternidad.Areas.Emergencia
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuenta, idEvaluacionDetalle, 0, "E-EVA", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

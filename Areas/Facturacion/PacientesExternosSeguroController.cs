@@ -9,10 +9,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Facturacion
 {
-    public class PacientesExternosSeguroController: Controller
+    public class PacientesExternosSeguroController: BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

@@ -13,10 +13,11 @@ using System.Diagnostics;
 using System.Text;
 using WebAppMaternidad.Areas.Comun;
 using System.Runtime.Intrinsics.X86;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.CentroQuirurgico
 {
-    public class SalaOperacionesController: Controller
+    public class SalaOperacionesController: BaseController
     {
         [HttpPost]
         public async Task<ActionResult> CrearModificarSalaOperacionesCQx(SolicitudSalaOperacionesCQx solicitudSalaOperacionesCQx, int IdFormaPago, int IdFuenteFinanciamiento, string DireccionDomicilio, string IdSiaSis, string SisCodigo, int IdTipoServicio, String lstDiagnosticosPre)
@@ -583,6 +584,7 @@ namespace WebAppMaternidad.Areas.CentroQuirurgico
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuenta, IdReporteOperatorio, 0, "I-CQX", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

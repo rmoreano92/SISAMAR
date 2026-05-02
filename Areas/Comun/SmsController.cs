@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Threading.Tasks;
 using System;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class SmsController : Controller
+    public class SmsController : BaseController
     {
 
         public async Task<ActionResult> ListarMensajesPorEstadoEnvio(int idEstadoEnvio)

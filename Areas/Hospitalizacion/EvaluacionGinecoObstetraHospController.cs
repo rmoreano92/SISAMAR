@@ -20,10 +20,11 @@ using System.Diagnostics;
 using QRCoder;
 using System.Drawing;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class EvaluacionGinecoObstetraHospController : Controller
+    public class EvaluacionGinecoObstetraHospController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 
@@ -316,6 +317,7 @@ namespace WebAppMaternidad.Areas.Hospitalizacion
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuenta, idEvaluacionDetalle, 0, "H-EVA", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

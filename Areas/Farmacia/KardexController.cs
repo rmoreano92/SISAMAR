@@ -11,10 +11,11 @@ using CapaEntidades;
 using ClosedXML.Excel;
 using System.IO;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Farmacia
 {
-    public class KardexController : Controller
+    public class KardexController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

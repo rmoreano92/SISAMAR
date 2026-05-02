@@ -9,10 +9,11 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using CapaEntidades;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class DiagnosticosController : Controller
+    public class DiagnosticosController : BaseController
     {
         public IActionResult Index()
         {

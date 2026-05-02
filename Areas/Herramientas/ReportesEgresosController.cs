@@ -8,6 +8,7 @@ using ClosedXML.Excel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Herramientas
 {

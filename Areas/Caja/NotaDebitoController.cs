@@ -13,10 +13,11 @@ using System.IO;
 using System.Net.Mime;
 using System.Text;
 using WebAppMaternidad.Areas.Comun;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Caja
 {
-    public class NotaDebitoController : Controller
+    public class NotaDebitoController : BaseController
     {
         public IActionResult Index()
         {
@@ -188,9 +189,12 @@ namespace WebAppMaternidad.Areas.Caja
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 pdf.pageHtml = pageHtml;
 
-                resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
                 byte[] pdfBytes = resultStream.ToArray();
                 ms.Write(pdfBytes, 0, pdfBytes.Length);
@@ -216,11 +220,15 @@ namespace WebAppMaternidad.Areas.Caja
             //DataSet lsParametros = new DataSet();
             DataSet dsNota = await dalNotaDebito.NotaDebitoFormato(idNota);
             DataRow drNota = dsNota.Tables[0].Rows[0];
+            
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
-            var ruc = await daoParametros.SeleccionaFilaParametro2(339);
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
+            var ruc = await daoParametros.SeleccionaFilaParametro2(339, idIpressInt);
 
             DateTime now = DateTime.Now;
 

@@ -10,10 +10,11 @@ using System.Collections.Generic;
 using WebAppMaternidad.CapaEntidades;
 using static NPOI.HSSF.Util.HSSFColor;
 using Microsoft.AspNetCore.Http;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.FactConfig
 {
-    public class ConfiguracionResultadosLaboratorioController : Controller
+    public class ConfiguracionResultadosLaboratorioController : BaseController
     {
         public IActionResult Index()
         {

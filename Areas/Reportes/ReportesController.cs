@@ -17,10 +17,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor.Internal;
 using SelectPdf;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Reportes
 {
-    public class ReportesController : Controller
+    public class ReportesController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 
@@ -1641,6 +1642,224 @@ namespace WebAppMaternidad.Areas.Reportes
         }
 
 
+        /// <summary>
+        /// Reporte Triados en módulo Emergencia
+        /// </summary>
+        /// <param name="fechaInicio"></param>
+        /// <param name="fechaFin"></param>
+        /// <param name="horaInicio"></param>
+        /// <param name="horaFin"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> ReporteTriadosEmergencia(string fechaInicio, string fechaFin, string horaInicio, string horaFin)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return Unauthorized();
+            }
+
+            if (string.IsNullOrWhiteSpace(fechaInicio) || string.IsNullOrWhiteSpace(fechaFin) || string.IsNullOrWhiteSpace(horaInicio) || string.IsNullOrWhiteSpace(horaFin))
+            {
+                return BadRequest("Debe ingresar fecha y hora de inicio/fin.");
+            }
+
+            DalReportes dalRpt = new DalReportes();
+            DataSet dsTriados = await dalRpt.ReporteTriadosEmergencia(fechaInicio, fechaFin, horaInicio, horaFin);
+
+            if (dsTriados == null || dsTriados.Tables.Count == 0 || dsTriados.Tables[0].Rows.Count == 0)
+            {
+                return NoContent();
+            }
+
+            string fechaInicioCabecera = dsTriados.Tables[0].Rows[0]["FechaInicioCabecera"].ToString();
+            string fechaFinCabecera = dsTriados.Tables[0].Rows[0]["FechaFinCabecera"].ToString();
+
+            using (var workbook = new XLWorkbook())
+            {
+                var ws = workbook.Worksheets.Add("Reporte de triados");
+
+                ws.Cell("A1").Value = "CENTRO MEDICO NAVAL";
+                ws.Range("A1:J1").Merge();
+                ws.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Cell("A1").Style.Font.Bold = true;
+                ws.Cell("A1").Style.Font.FontSize = 13;
+
+                ws.Cell("A2").Value = "REPORTE DE TRIADOS - EMERGENCIA";
+                ws.Range("A2:J2").Merge();
+                ws.Cell("A2").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Cell("A2").Style.Font.Bold = true;
+
+                ws.Cell("A3").Value = $"DEL {fechaInicioCabecera} AL {fechaFinCabecera}";
+                ws.Range("A3:J3").Merge();
+                ws.Cell("A3").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Cell("A3").Style.Font.Bold = true;
+
+                ws.Cell("A5").Value = "HORA INICIO:";
+                ws.Cell("B5").Value = horaInicio;
+                ws.Cell("D5").Value = "HORA FIN:";
+                ws.Cell("E5").Value = horaFin;
+
+                ws.Cell("A6").Value = "N°";
+                ws.Cell("B6").Value = "DNI";
+                ws.Cell("C6").Value = "CIP";
+                ws.Cell("D6").Value = "PACIENTE";
+                ws.Cell("E6").Value = "EDAD";
+                ws.Cell("F6").Value = "TELEFONO";
+                ws.Cell("G6").Value = "SERVICIO";
+                ws.Cell("H6").Value = "FECHA";
+                ws.Cell("I6").Value = "HORA";
+                ws.Cell("J6").Value = "USUARIO";
+                ws.Cell("K6").Value = "PRIORIDAD";
+                ws.Cell("L6").Value = "TIEMPO ATENCION";
+
+                ws.Range("A6:L6").Style.Font.Bold = true;
+                ws.Range("A6:L6").Style.Fill.BackgroundColor = XLColor.LightGray;
+                ws.Range("A6:L6").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Range("A6:L6").Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                ws.Range("A6:L6").Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+
+                int fila = 7;
+                foreach (DataRow row in dsTriados.Tables[0].Rows)
+                {
+                    ws.Cell(fila, 1).Value = row["Numero"].ToString();
+                    ws.Cell(fila, 2).Value = row["Dni"].ToString();
+                    ws.Cell(fila, 3).Value = row["Cip"].ToString();
+                    ws.Cell(fila, 4).Value = row["Paciente"].ToString();
+                    ws.Cell(fila, 5).Value = row["Edad"].ToString();
+                    ws.Cell(fila, 6).Value = row["Telefono"].ToString();
+                    ws.Cell(fila, 7).Value = row["Servicio"].ToString();
+                    ws.Cell(fila, 8).Value = row["Fecha"].ToString();
+                    ws.Cell(fila, 9).Value = row["Hora"].ToString();
+                    ws.Cell(fila, 10).Value = row["Usuario"].ToString();
+                    ws.Cell(fila, 11).Value = row["Prioridad"].ToString();
+                    ws.Cell(fila, 12).Value = row["Tiempo"].ToString();
+                    fila++;
+                }
+
+                if (fila > 7)
+                {
+                    ws.Range($"A7:L{fila - 1}").Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                    ws.Range($"A7:L{fila - 1}").Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+                }
+
+                ws.Columns().AdjustToContents();
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Reporte_Triados_Emergencia.xlsx");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reporte de admitidos en módulo Emergencia
+        /// </summary>
+        /// <param name="fechaInicio"></param>
+        /// <param name="fechaFin"></param>
+        /// <param name="horaInicio"></param>
+        /// <param name="horaFin"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> ReporteAdmitidosEmergencia(string fechaInicio, string fechaFin, string horaInicio, string horaFin)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return Unauthorized();
+            }
+
+            if (string.IsNullOrWhiteSpace(fechaInicio) || string.IsNullOrWhiteSpace(fechaFin) || string.IsNullOrWhiteSpace(horaInicio) || string.IsNullOrWhiteSpace(horaFin))
+            {
+                return BadRequest("Debe ingresar fecha y hora de inicio/fin.");
+            }
+
+            DalReportes dalRpt = new DalReportes();
+            DataSet dsAdmitidos = await dalRpt.ReporteAdmitidosEmergencia(fechaInicio, fechaFin, horaInicio, horaFin);
+
+            if (dsAdmitidos == null || dsAdmitidos.Tables.Count == 0 || dsAdmitidos.Tables[0].Rows.Count == 0)
+            {
+                return NoContent();
+            }
+
+            string fechaInicioCabecera = dsAdmitidos.Tables[0].Rows[0]["FechaInicioCabecera"].ToString();
+            string fechaFinCabecera = dsAdmitidos.Tables[0].Rows[0]["FechaFinCabecera"].ToString();
+
+            using (var workbook = new XLWorkbook())
+            {
+                var ws = workbook.Worksheets.Add("Reporte de admitidos");
+
+                ws.Cell("A1").Value = "CENTRO MEDICO NAVAL";
+                ws.Range("A1:J1").Merge();
+                ws.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Cell("A1").Style.Font.Bold = true;
+                ws.Cell("A1").Style.Font.FontSize = 13;
+
+                ws.Cell("A2").Value = "REPORTE DE ADMITIDOS - EMERGENCIA";
+                ws.Range("A2:J2").Merge();
+                ws.Cell("A2").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Cell("A2").Style.Font.Bold = true;
+
+                ws.Cell("A3").Value = $"DEL {fechaInicioCabecera} AL {fechaFinCabecera}";
+                ws.Range("A3:J3").Merge();
+                ws.Cell("A3").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Cell("A3").Style.Font.Bold = true;
+
+                ws.Cell("A5").Value = "HORA INICIO:";
+                ws.Cell("B5").Value = horaInicio;
+                ws.Cell("D5").Value = "HORA FIN:";
+                ws.Cell("E5").Value = horaFin;
+
+                ws.Cell("A6").Value = "N°";
+                ws.Cell("B6").Value = "DNI";
+                ws.Cell("C6").Value = "CIP";
+                ws.Cell("D6").Value = "PACIENTE";
+                ws.Cell("E6").Value = "EDAD";
+                ws.Cell("F6").Value = "TELEFONO";
+                ws.Cell("G6").Value = "SERVICIO";
+                ws.Cell("H6").Value = "FECHA";
+                ws.Cell("I6").Value = "HORA";
+                ws.Cell("J6").Value = "USUARIO";
+
+                ws.Range("A6:J6").Style.Font.Bold = true;
+                ws.Range("A6:J6").Style.Fill.BackgroundColor = XLColor.LightGray;
+                ws.Range("A6:J6").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Range("A6:J6").Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                ws.Range("A6:J6").Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+
+                int fila = 7;
+                foreach (DataRow row in dsAdmitidos.Tables[0].Rows)
+                {
+                    ws.Cell(fila, 1).Value = row["Numero"].ToString();
+                    ws.Cell(fila, 2).Value = row["Dni"].ToString();
+                    ws.Cell(fila, 3).Value = row["Cip"].ToString();
+                    ws.Cell(fila, 4).Value = row["Paciente"].ToString();
+                    ws.Cell(fila, 5).Value = row["Edad"].ToString();
+                    ws.Cell(fila, 6).Value = row["Telefono"].ToString();
+                    ws.Cell(fila, 7).Value = row["Servicio"].ToString();
+                    ws.Cell(fila, 8).Value = row["Fecha"].ToString();
+                    ws.Cell(fila, 9).Value = row["Hora"].ToString();
+                    ws.Cell(fila, 10).Value = row["Usuario"].ToString();
+                    fila++;
+                }
+
+                if (fila > 7)
+                {
+                    ws.Range($"A7:J{fila - 1}").Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                    ws.Range($"A7:J{fila - 1}").Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+                }
+
+                ws.Columns().AdjustToContents();
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Reporte_Admitidos_Emergencia.xlsx");
+                }
+            }
+        }
+
         ////////////////////////////REPORTE TAMIZAJE OFTALMOLOGICO///////////////////////////////////////////////
         [HttpPost]
         public async Task<IActionResult> ReporteTamizajeOftalmologico(string fechaInicio, string fechaFin, int enExcel)
@@ -1767,6 +1986,10 @@ namespace WebAppMaternidad.Areas.Reportes
             DataSet lsParametros = new DataSet();
             DalReportes dalRpt = new DalReportes();
 
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
             @ViewBag.FechaImpresion = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
             @ViewBag.Usuario = usuario;
 
@@ -1775,17 +1998,17 @@ namespace WebAppMaternidad.Areas.Reportes
             DataTable RegistroRpt = DatosRpt.Tables[0];
             //DataTable TotalRpt = DatosRpt.Tables[1];
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
             string nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
             string direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
             string telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             @ViewBag.NombreInstitucion = nombre;
@@ -1852,6 +2075,143 @@ namespace WebAppMaternidad.Areas.Reportes
         }
 
         #endregion
+
+
+        /// <summary>   reporte de atenciones de pacientes cronicos </summary>
+        /// autor:RMOREANO
+
+        public IActionResult PartePacientesCronicos(int idTipoServicio, int idDepartamento, int idEspecialidad, int idServicio, int idDestino, int idMedico, DateTime FechaInicio, DateTime FechaFin)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+            using (var workbook = new XLWorkbook())
+            {
+
+               
+                // Listado Dertivaciones 
+                var worksheetDerivacion = workbook.Worksheets.Add("Reporte de Pacientes Cronicos");
+                // 🔷 TITULOS
+                worksheetDerivacion.Cell(1, 1).Value = "CENTRO MEDICO NAVAL";
+                worksheetDerivacion.Range(1, 1, 1, 10).Merge().Style
+                    .Font.SetBold().Font.SetFontSize(16)
+                    .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+
+                worksheetDerivacion.Cell(2, 1).Value = "REPORTE DE PACIENTES CRONICOS";
+                worksheetDerivacion.Range(2, 1, 2, 10).Merge().Style
+                    .Font.SetBold().Font.SetFontSize(14)
+                    .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+
+                worksheetDerivacion.Cell(3, 1).Value = $"DEL {FechaInicio:dd/MM/yyyy} AL {FechaFin:dd/MM/yyyy}";
+                worksheetDerivacion.Range(3, 1, 3, 10).Merge().Style
+                    .Font.SetFontSize(13)
+                    .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                var FilaIni = 5;
+                DalReportes dalRpt = new DalReportes();
+                DataSet dsTabla = dalRpt.PartePacientesCronicos(idTipoServicio, idDepartamento, idEspecialidad, idServicio, idDestino, idMedico, FechaInicio, FechaFin);
+
+
+                var currentRow = 4;
+                for (int i = 0; i < dsTabla.Tables[0].Columns.Count; i++)
+                {
+                    worksheetDerivacion.Cell(currentRow, i + 1).Value = dsTabla.Tables[0].Columns[i].ColumnName;
+                    worksheetDerivacion.Cell(currentRow, i + 1).Style
+                        .Border.SetOutsideBorder(XLBorderStyleValues.Dotted)
+                        .Font.SetFontColor(XLColor.Gray)
+                        .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center)
+                        .Fill.SetBackgroundColor(XLColor.BeauBlue)
+                        .Font.SetBold(true);
+                }
+
+                for (int i = 0; i < dsTabla.Tables[0].Columns.Count; i++)
+                {
+                    for (int j = 0; j < dsTabla.Tables[0].Rows.Count; j++)
+                    {
+                        worksheetDerivacion.Cell(FilaIni + j, i + 1).Value = dsTabla.Tables[0].Rows[j][i].ToString();
+                    }
+                }
+
+                worksheetDerivacion.Rows().AdjustToContents();
+                worksheetDerivacion.Columns().AdjustToContents();
+
+                // Listado Admision 
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Reporte_Pacientes_cronicos_" + DateTime.Now.ToShortDateString() + ".xlsx");
+                }
+            }
+        }
+
+
+        /// <summary>   reporte Epidemiologico </summary>
+        /// autor:RMOREANO
+        public IActionResult Epidemiologico(DateTime FechaInicio, DateTime FechaFin, string HoraIni, string HoraFin)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+            using (var workbook = new XLWorkbook())
+            {
+
+
+                // Listado Dertivaciones 
+                var worksheetDerivacion = workbook.Worksheets.Add("Reporte Epidemiologico");
+                // 🔷 TITULOS
+                worksheetDerivacion.Cell(1, 1).Value = "CENTRO MEDICO NAVAL";
+                worksheetDerivacion.Range(1, 1, 1, 10).Merge().Style
+                    .Font.SetBold().Font.SetFontSize(16)
+                    .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+
+                worksheetDerivacion.Cell(2, 1).Value = "REPORTE EPIDEMIOLÓGICO";
+                worksheetDerivacion.Range(2, 1, 2, 10).Merge().Style
+                    .Font.SetBold().Font.SetFontSize(14)
+                    .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+
+                worksheetDerivacion.Cell(3, 1).Value = $"DEL {FechaInicio:dd/MM/yyyy} AL {FechaFin:dd/MM/yyyy}, HORA INICIO: {HoraIni} - HORA FIN: {HoraFin} ";
+                worksheetDerivacion.Range(3, 1, 3, 10).Merge().Style
+                    .Font.SetFontSize(13)
+                    .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                var FilaIni = 5;
+                DalReportes dalRpt = new DalReportes();
+                DataSet dsTabla = dalRpt.ReporteEpidemiologico(FechaInicio, FechaFin, HoraIni, HoraFin);
+
+
+                var currentRow = 4;
+                for (int i = 0; i < dsTabla.Tables[0].Columns.Count; i++)
+                {
+                    worksheetDerivacion.Cell(currentRow, i + 1).Value = dsTabla.Tables[0].Columns[i].ColumnName;
+                    worksheetDerivacion.Cell(currentRow, i + 1).Style
+                        .Border.SetOutsideBorder(XLBorderStyleValues.Dotted)
+                        .Font.SetFontColor(XLColor.Gray)
+                        .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center)
+                        .Fill.SetBackgroundColor(XLColor.BeauBlue)
+                        .Font.SetBold(true);
+                }
+
+                for (int i = 0; i < dsTabla.Tables[0].Columns.Count; i++)
+                {
+                    for (int j = 0; j < dsTabla.Tables[0].Rows.Count; j++)
+                    {
+                        worksheetDerivacion.Cell(FilaIni + j, i + 1).Value = dsTabla.Tables[0].Rows[j][i].ToString();
+                    }
+                }
+
+                worksheetDerivacion.Rows().AdjustToContents();
+                worksheetDerivacion.Columns().AdjustToContents();
+
+                // Listado Admision 
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Reporte_epidemiologico_" + DateTime.Now.ToShortDateString() + ".xlsx");
+                }
+            }
+        }
 
 
     }

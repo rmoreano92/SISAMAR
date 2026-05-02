@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Bibliography;
 using WebAppMaternidad.CapaDatos;
 using Microsoft.Extensions.Configuration;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.SistemaColas
 {
-    public class SGCConfiguracionController : Controller
+    public class SGCConfiguracionController : BaseController
     {
         public IActionResult Index()
         {

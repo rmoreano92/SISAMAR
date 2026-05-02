@@ -10,10 +10,11 @@ using Microsoft.AspNetCore.Hosting;
 using System.Data;
 using WebAppMaternidad.CapaDatos;
 using SiHospCrypKey;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Caja
 {
-    public class CajaController : Controller
+    public class CajaController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

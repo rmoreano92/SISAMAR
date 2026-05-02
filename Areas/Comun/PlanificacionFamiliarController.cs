@@ -10,10 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using WebAppMaternidad.Controllers;
 using WebAppMaternidad.Models;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class PlanificacionFamiliarController : Controller
+    public class PlanificacionFamiliarController : BaseController
     {
         public ActionResult ListaAtencionesDelDia(DateTime FechaAtencion, int NroCuenta, int NroHistoria, int NroDocumento, String ApPaterno, int idGrupo)
         {

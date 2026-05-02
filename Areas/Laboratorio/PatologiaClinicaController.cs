@@ -10,10 +10,11 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using WebAppMaternidad.Areas.Comun;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Laboratorio
 {
-    public class PatologiaClinicaController : Controller
+    public class PatologiaClinicaController : BaseController
     {
         //[HttpPost]
         //public async Task<ActionResult> FactOrdenServicioPorFechasLabPaciente(int idMovimiento, int idCuenta, string historia, string nombres, DateTime fechaInicio, DateTime fechaFin, int idPuntoCarga)
@@ -228,6 +229,7 @@ namespace WebAppMaternidad.Areas.Laboratorio
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idMovimiento, idProducto, tipoFormato, 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -261,6 +263,7 @@ namespace WebAppMaternidad.Areas.Laboratorio
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idMovimiento, idProducto, tipoFormato, 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -293,6 +296,7 @@ namespace WebAppMaternidad.Areas.Laboratorio
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(0, idMovimiento, 0, tipoFormato, 0, pageHtml, stringHtml, idUsuario, pdf);
                 //resp = true;
                 return resp;
@@ -414,6 +418,7 @@ namespace WebAppMaternidad.Areas.Laboratorio
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(0, idMovimiento, 0, tipoFormato, 0, pageHtml, stringHtml, idUsuario, pdf);
                 //resp = true;
                 return resp;

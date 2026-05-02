@@ -16,10 +16,11 @@ using QRCoder;
 using System.Drawing;
 using System.Text;
 using static CapaEntidades.Enumerados;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Imagenes
 {
-    public class ImagenologiaResultadosController : Controller
+    public class ImagenologiaResultadosController : BaseController
     {
         public IActionResult Index()
         {
@@ -317,6 +318,7 @@ namespace WebAppMaternidad.Areas.Imagenes
                 pdf.tamanio = tipoFormatoHoja;
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idMovimiento, idProducto, tipoFormato, 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

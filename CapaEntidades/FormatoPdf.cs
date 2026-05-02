@@ -43,5 +43,7 @@ namespace CapaEntidades
         public string Firmador2 { get; set; }
         public string TipoFirmador2 { get; set; }
 
+        public string cookies { get; set; }
+
     }
 }

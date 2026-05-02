@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using SisReference;
 using System.Data;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class MantenimientoController: Controller
+    public class MantenimientoController: BaseController
     {
         public async Task<IActionResult> Mantenimiento(int idListBar)
         {

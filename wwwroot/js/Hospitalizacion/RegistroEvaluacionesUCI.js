@@ -4345,7 +4345,7 @@
 
         swal({
             title: 'Evaluaciones',
-            text: "Paciente iniciara la Evaluación N° " + (RegistroEvaluacionesUCI.nroEvaluacion),
+            text: "Paciente iniciará la evaluación N° " + (RegistroEvaluacionesUCI.nroEvaluacion),
             type: 'info',
         }).done()
 

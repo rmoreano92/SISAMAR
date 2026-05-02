@@ -7,7 +7,7 @@ namespace WebAppMaternidad.CapaDatos
 {
     public class DalDepartamentos
     {
-        public Task<DataSet> ListarDepartamentos()
+        public Task<DataSet> ListarDepartamentos(int idIpress = 0)
         {
             Conexion cx = new Conexion();
             return Task.Run(() =>
@@ -17,11 +17,14 @@ namespace WebAppMaternidad.CapaDatos
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter())
                     {
-                        string sql = "DepartamentosHospitalSeleccionarTodos";
+                        DataSet ds = new DataSet();
+                        //string sql = "DepartamentosHospitalSeleccionarTodos";
+                        string sql = "web_DepartamentosHospitalSeleccionarTodos";
                         da.SelectCommand = new SqlCommand(sql, conn);
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                        da.SelectCommand.Parameters.Add("@idIpress", SqlDbType.Int).Value = idIpress;
+                        da.SelectCommand.Parameters.Add("@tipoListado", SqlDbType.Int).Value = 2;
 
-                        DataSet ds = new DataSet();
                         da.Fill(ds);
 
                         return ds;

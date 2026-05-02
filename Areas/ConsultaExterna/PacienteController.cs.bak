@@ -19,10 +19,11 @@ using SelectPdf;
 using WebAppMaternidad.Areas.Comun;
 using WebAppMaternidad.CapaEntidades;
 using WebAppMaternidad.Models;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
 {
-    public class PacienteController : Controller
+    public class PacienteController : BaseController
     {
         [HttpPost]
         public ActionResult PacientesSeleccionarPorNroHistoriaClinica(int nroHistoria)
@@ -700,6 +701,8 @@ namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
                     pdf.marginY = 5;
                     pdf.pageHtml = pageHtml;
 
+                    pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
                     resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
                     byte[] pdfBytes = resultStream.ToArray();
@@ -750,6 +753,8 @@ namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
                     pdf.marginX = 5;
                     pdf.marginY = 5;
                     pdf.pageHtml = pageHtml;
+
+                    pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
 
                     resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
@@ -1077,9 +1082,12 @@ namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 pdf.pageHtml = pageHtml;
 
-                resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
                 byte[] pdfBytes = resultStream.ToArray();
                 ms.Write(pdfBytes, 0, pdfBytes.Length);

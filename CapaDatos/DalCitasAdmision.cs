@@ -36,7 +36,7 @@ namespace CapaDatos
                 }
             });
         }
-        public Task<DataSet> listarDepartamentoHospitalario(string lcFiltro) //MGAMERO
+        public Task<DataSet> listarDepartamentoHospitalario(string lcFiltro, int idIpress = 0) //MGAMERO
         {
             Conexion cx = new Conexion();
             return Task.Run(() =>
@@ -46,11 +46,13 @@ namespace CapaDatos
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter())
                     {
-                        string sql = "usp_DepartamentoHospitalario";
+                        //string sql = "usp_DepartamentoHospitalario";
+                        string sql = "web_DepartamentosHospitalSeleccionarTodos";
                         da.SelectCommand = new SqlCommand(sql, conn);
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
                         da.SelectCommand.Parameters.Add("@lcFiltro", SqlDbType.VarChar).Value = lcFiltro; //Nombre
+                        da.SelectCommand.Parameters.Add("@IdIpress", SqlDbType.Int).Value = idIpress;
 
                         DataSet ds = new DataSet();
                         da.Fill(ds);
@@ -260,7 +262,7 @@ namespace CapaDatos
             });
         }
         */
-        public Task<DataSet> listarMedicosFiltrarPorProgramacion(string lcFiltro)
+        public Task<DataSet> listarMedicosFiltrarPorProgramacion(string lcFiltro,int idIpress = 0)
         {
             Conexion cx = new Conexion();
             return Task.Run(() =>
@@ -275,6 +277,7 @@ namespace CapaDatos
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
                         da.SelectCommand.Parameters.Add("@lcFiltro", SqlDbType.VarChar).Value = lcFiltro;
+                        da.SelectCommand.Parameters.Add("@idIpress", SqlDbType.Int).Value = idIpress;
 
                         DataSet ds = new DataSet();
                         da.Fill(ds);

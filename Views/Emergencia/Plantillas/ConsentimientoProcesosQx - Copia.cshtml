@@ -1,0 +1,187 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Consentimiento de Procesos Qx</title>
+    <style>
+        body {
+            font-family: helvetica, Arial, sans-serif;
+            font-size: 10px;
+            color: #000;
+            line-height: 1.2;
+            width: 698px;
+            height: 1015px;
+            margin: 0;
+            position: relative;
+        }
+
+        .top-logo {
+            width: 60px;
+        }
+
+        .print-info {
+            position: absolute;
+            right: 5px;
+            top: 8px;
+            font-size: 7px;
+            text-align: right;
+        }
+
+        #cajaTitulo {
+            width: 55%;
+            border: 1px solid black;
+            text-align: center;
+            padding: 4px;
+            font-weight: bold;
+            margin: 10px auto 12px auto;
+            box-shadow: 4px 4px #8d8d8d;
+            font-size: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-bordered {
+            border: solid 1px #4c4c4c;
+        }
+
+            .table-bordered th,
+            .table-bordered td {
+                border: solid 1px #4c4c4c;
+                padding: 3px 5px;
+                font-size: 10px;
+            }
+
+        .txt-justify {
+            text-align: justify;
+            font-size: 11px;
+            line-height: 1.4;
+            margin: 8px 0;
+        }
+
+        .line {
+            border-bottom: 1px solid #333;
+            display: inline-block;
+            min-width: 120px;
+            padding: 0 4px 1px 4px;
+            font-weight: bold;
+        }
+
+        .box {
+            border: 1px solid #4c4c4c;
+            padding: 8px;
+            min-height: 32px;
+            margin-top: 4px;
+            font-size: 11px;
+        }
+
+        .firma {
+            margin-top: 50px;
+            width: 48%;
+            text-align: center;
+            float: left;
+        }
+
+        .firma-right {
+            float: right;
+        }
+
+        .firma-line {
+            border-top: 1px solid #000;
+            padding-top: 5px;
+            margin-top: 55px;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td style="width:70px; vertical-align:top;">
+                <img class="top-logo" src="@ViewBag.Logo" />
+            </td>
+            <td style="vertical-align:top; font-size:8px;">
+                DIRECCIÓN DE SALUD Y CENTRO MÉDICO NAVAL<br />
+                "CIRUJANO MAYOR SANTIAGO TÁVARA"
+            </td>
+        </tr>
+    </table>
+
+    <div class="print-info">
+        <span>@ViewBag.FechaImpresion</span><br />
+        <span>@ViewBag.Usuario</span>
+    </div>
+
+    <div id="cajaTitulo">CONSENTIMIENTO INFORMADO DE PROCESOS QUIRÚRGICOS</div>
+
+    <table class="table-bordered">
+        <tr>
+            <th style="width: 22%; text-align:left;">Nro Historia</th>
+            <td style="width: 28%;">@ViewBag.NroHistoriaClinica</td>
+            <th style="width: 22%; text-align:left;">Nro Cuenta</th>
+            <td style="width: 28%;">@ViewBag.NroCuenta</td>
+        </tr>
+        <tr>
+            <th style="text-align:left;">Paciente</th>
+            <td colspan="3">@ViewBag.Paciente</td>
+        </tr>
+        <tr>
+            <th style="text-align:left;">Fecha / Hora</th>
+            <td>@ViewBag.FechaEvaluacion @ViewBag.HoraEvaluacion</td>
+            <th style="text-align:left;">Edad / Sexo</th>
+            <td>@ViewBag.Edad / @ViewBag.Sexo</td>
+        </tr>
+        <tr>
+            <th style="text-align:left;">Servicio</th>
+            <td>@ViewBag.Servicio</td>
+            <th style="text-align:left;">Médico tratante</th>
+            <td>@ViewBag.Medico</td>
+        </tr>
+        <tr>
+            <th style="text-align:left;">Parentesco</th>
+            <td>@ViewBag.Parentesco</td>
+            <th style="text-align:left;">DNI/CIP</th>
+            <td>@ViewBag.Titular</td>
+        </tr>
+    </table>
+
+    <p class="txt-justify">
+        Yo, <span class="line" style="min-width:360px;">@ViewBag.Paciente</span>, declaro haber recibido información clara,
+        suficiente y comprensible sobre el proceso quirúrgico propuesto, incluyendo finalidad, beneficios esperados,
+        riesgos potenciales, alternativas terapéuticas y posibles complicaciones.
+    </p>
+
+    <p class="txt-justify">
+        Se me explicó que durante el acto médico podrían presentarse situaciones no previstas que requieran procedimientos
+        adicionales necesarios para preservar mi salud, por lo que autorizo su realización cuando el criterio médico lo determine.
+    </p>
+
+    <div>
+        <strong>Diagnóstico / motivo del procedimiento:</strong>
+        <div class="box">@ViewBag.Diagnostico</div>
+    </div>
+
+    <div style="margin-top:8px;">
+        <strong>Procedimiento quirúrgico propuesto:</strong>
+        <div class="box">@ViewBag.Procedimiento</div>
+    </div>
+
+    <p class="txt-justify">
+        De manera libre y voluntaria otorgo mi consentimiento para la realización del procedimiento descrito.
+    </p>
+
+    <div class="firma">
+        <div class="firma-line">Firma del paciente o representante</div>
+    </div>
+
+    <div class="firma firma-right">
+        <div class="firma-line">Firma y sello del médico tratante</div>
+    </div>
+</body>
+</html>

@@ -10,10 +10,11 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Sis
 {
-    public class ReportesSisController: Controller
+    public class ReportesSisController: BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

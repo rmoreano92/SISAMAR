@@ -1,0 +1,73 @@
+﻿﻿<div class="modal-header modal-header bg-success">
+    <h5 class="modal-title text-white" id="titulo">Reporte de admitidos emergencia</h5>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card m-t-5">
+                <div class="card-block m-t-5">
+                    <div class="row">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-lg-right">
+                                <label for="txtFechaInicioAdmitidos" class="form-control-label">Fecha Inicio:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type="text" class="form-control txtFechaRpt" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaInicioAdmitidos" autocomplete="off">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-lg-right">
+                                <label for="txtFechaFinAdmitidos" class="form-control-label">Fecha Fin:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type="text" class="form-control txtFechaRpt" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaFinAdmitidos" autocomplete="off">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar "></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-lg-right">
+                                <label for="txtHoraInicioAdmitidos" class="form-control-label">Hora inicio</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control txtHoraRpt" placeholder="00:00" id="txtHoraInicioAdmitidos" autocomplete="off" maxlength="5">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-lg-right">
+                                <label for="txtHoraFinAdmitidos" class="form-control-label">Hora Fin</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control txtHoraRpt" placeholder="00:00" id="txtHoraFinAdmitidos" autocomplete="off" maxlength="5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button id="btnGenerarReporteAdmitidos" type="button" class="btn btn-success" onclick="ID_ReporteAdmitidos.GenerarReporte();">Generar Reporte</button>
+        <button type="button" class="btn btn-secondary" onclick="ID_ReporteAdmitidos.CerrarModal();">Cancelar</button>
+    </div>
+</div>
+
+<script src="~/js/Reportes/ID_ReporteAdmitidos.js" asp-append-version="true"></script>

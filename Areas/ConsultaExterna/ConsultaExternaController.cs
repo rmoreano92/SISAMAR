@@ -9,10 +9,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static CapaEntidades.Enumerados;
 using WebAppMaternidad.Areas.Comun;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna
 {
-    public class ConsultaExternaController : Controller
+    public class ConsultaExternaController : BaseController
     {
 
         public async Task<IActionResult> AtencionMedica(int idListBar)

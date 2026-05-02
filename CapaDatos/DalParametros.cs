@@ -37,7 +37,7 @@ namespace CapaDatos
             return ds;
         }
 
-        public Task<DataSet> SeleccionaFilaParametro2(int lnIdParametro) // JDELGADO J1 ASYNC METHOD
+        public Task<DataSet> SeleccionaFilaParametro2(int lnIdParametro, int IdIpress = 0) // JDELGADO J1 ASYNC METHOD
         {
 
             Conexion cx = new Conexion();
@@ -48,11 +48,12 @@ namespace CapaDatos
                     using (SqlDataAdapter da = new SqlDataAdapter())
                     {
 
-                        string sql = "ParametrosSeleccionarPorId";
+                        string sql = "web_ParametrosSeleccionarPorId";
                         da.SelectCommand = new SqlCommand(sql, conn);
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
                         da.SelectCommand.Parameters.Add("@IdParametro", SqlDbType.Int).Value = lnIdParametro;
+                        da.SelectCommand.Parameters.Add("@IdIpress", SqlDbType.Int).Value = IdIpress;
 
                         DataSet ds = new DataSet();
                         da.Fill(ds);

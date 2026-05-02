@@ -4,10 +4,11 @@ using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ProgramacionGeneral
 {
-    public class TurnosController : Controller
+    public class TurnosController : BaseController
     {
         public IActionResult Index()
         {

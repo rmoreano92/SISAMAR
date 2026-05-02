@@ -7,10 +7,11 @@ using CapaDatos;
 using CapaEntidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class FarmaciaController : Controller
+    public class FarmaciaController : BaseController
     {
         public IActionResult Index()
         {
@@ -25,7 +26,11 @@ namespace WebAppMaternidad.Areas.Comun
             int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
             ListaFarmacia = null;
 
-            ListaFarmacia =  await daoFarmacia.FarmaciasSegunFiltro("idTipoLocales='F' and idTipoSuministro='01' and idEstado=1");
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            ListaFarmacia =  await daoFarmacia.FarmaciasSegunFiltro("idTipoLocales='F' and idTipoSuministro='01' and idEstado=1", idIpressInt);
 
 
             return Json(ListaFarmacia);

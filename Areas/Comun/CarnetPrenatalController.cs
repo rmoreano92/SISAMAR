@@ -17,10 +17,11 @@ using System.Net.Mime;
 using System.Text;
 using System.Web;
 using Microsoft.Extensions.Configuration;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class CarnetPrenatalController : Controller
+    public class CarnetPrenatalController : BaseController
     {
         //private IHostingEnvironment _hostingEnvironment;
         private IWebHostEnvironment _hostingEnvironment;
@@ -93,7 +94,9 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.orientacion = "Portrait";
                 pdf.pageHtml = pageHtml;
 
-                resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
                 byte[] pdfBytes = resultStream.ToArray();
                 ms.Write(pdfBytes, 0, pdfBytes.Length);
@@ -202,8 +205,12 @@ namespace WebAppMaternidad.Areas.Comun
             DalParametros daoParametros = new DalParametros();
 
             int hemo = 1, gluco = 1, vdrl = 1, pr = 1, uro = 1;
+            
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             @ViewBag.nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString().ToUpper();
 
             @ViewBag.FechaNacimiento = "__/__/____".ToString().Split("/");

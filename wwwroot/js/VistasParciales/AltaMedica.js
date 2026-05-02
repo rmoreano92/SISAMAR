@@ -964,6 +964,7 @@
         $("#txtCipPacienteEmer").val(objrowTb.titularCIP);
         $("#txtCipTitularPacienteEmer").val(objrowTb.titularNombre);
         $("#txtObservacionAltaMedica").val(objrowTb.observacionAltaMedica);
+      
         $('#chk_descansoMedico').prop('checked', false);
         AltaMedica.ToggleControlesDescansoMedico(false);
         //RMOREANO 28032026
@@ -994,12 +995,12 @@
             $('#cboMedicoIntervencionQuirurgicaAlta').val(resp.idMedicoIntervencionQuirurgica);
             $('#cboGrupoGoAlta').val(resp.idGrupoGo);
 
-            const tieneDescansoMedico = resp.tieneDescansoMedico === true || resp.tieneDescansoMedico === 1 || resp.tieneDescansoMedico === '1';
+            const tieneDescansoMedico = resp.tieneDescansoMed === true || resp.tieneDescansoMed === 1 || resp.tieneDescansoMed === '1';
             $('#chk_descansoMedico').prop('checked', tieneDescansoMedico);
             AltaMedica.ToggleControlesDescansoMedico(tieneDescansoMedico);
             if (tieneDescansoMedico) {
-                $('#txtFechaInicioDescansoMedico').datepicker('setDate', FormatearFecha(resp.fechaInicioDescansoMedico));
-                $('#txtFechaFinDescansoMedico').datepicker('setDate', FormatearFecha(resp.fechaFinDescansoMedico));
+                $('#txtFechaInicioDescansoMedico').datepicker('setDate', FormatearFecha(resp.fechaInicioDescansoMed));
+                $('#txtFechaFinDescansoMedico').datepicker('setDate', FormatearFecha(resp.fechaFinDescansoMed));
             }
 
             if (isEmpty(resp.codeEpicrisis)) {

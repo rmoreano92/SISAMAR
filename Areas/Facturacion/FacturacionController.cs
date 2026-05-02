@@ -15,10 +15,11 @@ using SelectPdf;
 using WebAppMaternidad.CapaDatos;
 using DocumentFormat.OpenXml.Spreadsheet;
 
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Facturacion
 {
-    public class FacturacionController : Controller
+    public class FacturacionController : BaseController
     {
         public IActionResult Index()
         {

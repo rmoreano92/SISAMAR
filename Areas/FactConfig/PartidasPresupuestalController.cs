@@ -8,10 +8,11 @@ using DocumentFormat.OpenXml.Office2013.Excel;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.FactConfig
 {
-    public class PartidasPresupuestalController : Controller
+    public class PartidasPresupuestalController : BaseController
     {
         public IActionResult Index()
         {

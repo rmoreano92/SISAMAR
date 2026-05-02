@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna
 {
-    public class AtencionConsejeriaController : Controller
+    public class AtencionConsejeriaController : BaseController
     {
         public IActionResult Index()
         {

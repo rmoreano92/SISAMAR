@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.FactConfig
 {
-    public class FactConfigController : Controller
+    public class FactConfigController : BaseController
     {
         public IActionResult Index()
         {

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using CapaDatos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class ParametrosController : Controller
+    public class ParametrosController : BaseController
     {
         public IActionResult Index()
         {

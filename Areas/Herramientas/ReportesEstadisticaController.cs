@@ -11,10 +11,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Herramientas
 {
-    public class ReportesEstadisticaController : Controller
+    public class ReportesEstadisticaController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

@@ -1,0 +1,523 @@
+﻿@using System.Data
+
+@{
+    var fechaReceta = ViewBag.FechaReceta != null ? Convert.ToString(ViewBag.FechaReceta) : "";
+    if (!string.IsNullOrEmpty(fechaReceta) && fechaReceta.Length >= 10)
+    {
+        fechaReceta = fechaReceta.Substring(0, 10);
+    }
+
+    var fechaVigencia = ViewBag.FechaVigencia != null ? Convert.ToString(ViewBag.FechaVigencia) : "";
+    if (!string.IsNullOrEmpty(fechaVigencia) && fechaVigencia.Length >= 10)
+    {
+        fechaVigencia = fechaVigencia.Substring(0, 10);
+    }
+
+    var diagnosticos = ViewBag.Diagnosticos as DataTable;
+    var detalle = ViewBag.DetalleReceta as DataTable;
+    var otrosMedicamentos = ViewBag.otrosMedicamentos as string;
+
+    var proa = ViewBag.Proa as DataTable;
+
+    Func<string, int, string> obtenerDescripcionOtro = (tipoRegistro, item) =>
+    {
+        if (proa == null) return "";
+        if (!proa.Columns.Contains("DescripcionOtro")) return "";
+
+        var rows = proa.Select("TipoRegistro = '" + tipoRegistro + "' AND Item = " + item);
+        if (rows.Length == 0) return "";
+
+        var valor = rows[0]["DescripcionOtro"];
+        if (valor == DBNull.Value || valor == null) return "";
+
+        return Convert.ToString(valor);
+    };
+
+    Func<int, string> marcarSindrome = item =>
+    {
+        if (proa == null) return "";
+        var rows = proa.Select("TipoRegistro = 'S' AND Item = " + item);
+        return rows.Length > 0 ? "X" : "";
+    };
+
+    Func<int, string> obtenerFechaCultivo = item =>
+    {
+        if (proa == null) return "";
+        var rows = proa.Select("TipoRegistro = 'C' AND Item = " + item);
+        if (rows.Length == 0) return "";
+        var valor = rows[0]["FechaCultivo"];
+        if (valor == DBNull.Value || valor == null) return "";
+        DateTime fecha;
+        if (DateTime.TryParse(Convert.ToString(valor), out fecha))
+        {
+            return fecha.ToString("dd/MM/yyyy");
+        }
+        return Convert.ToString(valor);
+    };
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Formato PROA</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 10px 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            color: #000;
+            background: #fff;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .fw-bold {
+            font-weight: 700;
+        }
+
+        .mt-1 { margin-top: 4px; }
+        .mt-2 { margin-top: 8px; }
+        .mt-3 { margin-top: 12px; }
+        .mb-1 { margin-bottom: 4px; }
+        .mb-2 { margin-bottom: 8px; }
+        .mb-3 { margin-bottom: 12px; }
+
+        .title-1 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .title-2 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .proa-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .proa-table td,
+        .proa-table th {
+            border: 1px solid #444;
+            padding: 2px 4px;
+            vertical-align: top;
+            word-wrap: break-word;
+            line-height: 1.15;
+        }
+
+        .proa-table th {
+            font-weight: 700;
+        }
+
+        .label {
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .tiny {
+            font-size: 9px;
+        }
+
+        .small {
+            font-size: 10px;
+        }
+
+        .section-header {
+            font-weight: 700;
+            background: #f3f3f3;
+        }
+
+        .med-row td {
+            height: 20px;
+        }
+
+        .footer-box {
+            border: 1px solid #444;
+            padding: 6px 8px;
+            font-size: 9px;
+            line-height: 1.25;
+        }
+
+        .qr-sign {
+            margin-top: 10px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .qr-sign td {
+            vertical-align: top;
+        }
+
+        .qr {
+            width: 75px;
+        }
+
+        .sign-line {
+            margin-top: 42px;
+            border-top: 1px solid #444;
+            text-align: center;
+            font-weight: 700;
+            padding-top: 4px;
+        }
+
+        .extras-title {
+            margin-top: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .w-8 { width: 8%; }
+        .w-10 { width: 10%; }
+        .w-12 { width: 12%; }
+        .w-14 { width: 14%; }
+        .w-15 { width: 15%; }
+        .w-18 { width: 18%; }
+        .w-20 { width: 20%; }
+        .w-22 { width: 22%; }
+        .w-25 { width: 25%; }
+        .w-28 { width: 28%; }
+        .w-30 { width: 30%; }
+        .w-35 { width: 35%; }
+        .w-40 { width: 40%; }
+        .w-45 { width: 45%; }
+        .w-50 { width: 50%; }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <div class="text-center mb-2">
+        </br></br></br>
+            <div class="title-1">ANEXO 01</div>
+            <div class="title-2">FICHA DE SOLICITUD/PRESCRIPCIÓN DE ANTIBIÓTICOS</div>
+            <div class="title-2">PROGRAMA DE OPTIMIZACIÓN DEL USO DE ANTIMICROBIANOS (PROA)</div>
+            <div class="title-2">DEL CENTRO MÉDICO NAVAL “CMST”</div>
+        </div>
+
+        <table class="proa-table small">
+            <tr>
+                <td class="label w-12">Fecha:</td>
+                <td class="w-18">@fechaReceta</td>
+                <td class="label w-15">Especialidad:</td>
+                <td class="w-20">@ViewBag.TipoServicio</td>
+                <td class="label w-20">Sala de Hospitalización:</td>
+                <td>@ViewBag.Consultorio</td>
+            </tr>
+            <tr>
+                <td class="label">Paciente:</td>
+                <td colspan="3">@ViewBag.Paciente</td>
+                <td class="label">Edad:</td>
+                <td>@ViewBag.Edad</td>
+            </tr>
+            <tr>
+                <td class="label">DNI</td>
+                <td>@ViewBag.NroDocumento</td>
+                <td class="label">CIP</td>
+                <td>@ViewBag.CIP</td>
+                <td class="label">Sexo:</td>
+                <td>@ViewBag.sexo</td>
+            </tr>
+            <tr>
+                <td class="label">Solicitud Nro.</td>
+                <td colspan="5">@ViewBag.NroReceta</td>
+            </tr>
+        </table>
+<style>
+.col-x{
+    min-width: 30px;
+    width: 30px;
+    white-space: nowrap;
+}
+
+.col-muestra{
+    width: 1%;
+    white-space: nowrap;
+}
+
+.col-fecha{
+    min-width: 110px;
+    white-space: nowrap;
+}
+</style>
+        <table class="proa-table small mt-2">
+            <tr>
+                <td colspan="3" class="section-header">Síndrome Clínico que amerita la prescripción</td>
+                <td class="section-header">Tipo de cultivo</td>
+                <td class="section-header">Fecha</td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="text-nowrap">1. Infección del tracto urinario</td>
+                <td class="col-x text-center">@marcarSindrome(1)</td>
+                <td class="col-muestra">Orina</td>
+                <td class="col-fecha">@obtenerFechaCultivo(1)</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-nowrap">2. Infección del tracto respiratorio inferior (NAV, NIH)</td>
+                <td class="col-x text-center">@marcarSindrome(2)</td>
+                <td class="col-muestra">Sang.</td>
+                <td class="col-fecha">@obtenerFechaCultivo(2)</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-nowrap">3. Infección de vías biliares</td>
+                <td class="col-x text-center">@marcarSindrome(3)</td>
+                <td class="col-muestra">Sec. Respiratoria</td>
+                <td class="col-fecha">@obtenerFechaCultivo(3)</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-nowrap">4. Infección intraabdominal asociada a servicios de salud [no biliar]</td>
+                <td class="col-x text-center">@marcarSindrome(4)</td>
+                <td class="col-muestra">Cont. peritoneal</td>
+                <td class="col-fecha">@obtenerFechaCultivo(4)</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-nowrap">5. Neutropenia febril</td>
+                <td class="col-x text-center">@marcarSindrome(5)</td>
+                <td class="col-muestra">Líquido pleural</td>
+                <td class="col-fecha">@obtenerFechaCultivo(5)</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-nowrap">6. Pie diabético</td>
+                <td class="col-x text-center">@marcarSindrome(6)</td>
+                <td class="col-muestra">Líquido sinovial</td>
+                <td class="col-fecha">@obtenerFechaCultivo(6)</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-nowrap">7. Infección de Sitio Quirúrgico</td>
+                <td class="col-x text-center">@marcarSindrome(7)</td>
+                <td class="col-muestra">LCR</td>
+                <td class="col-fecha">@obtenerFechaCultivo(7)</td>
+            </tr>
+            <tr>
+                <td colspan="2">8. Infección del Sistema Nervioso Central</td>
+                <td class="col-x text-center">@marcarSindrome(8)</td>
+                <td class="col-muestra">
+                    <span class="otro-label">Otros:</span>
+                    @if (!string.IsNullOrWhiteSpace(obtenerDescripcionOtro("C", 8)))
+                    {
+                        <span class="otro-texto">@obtenerDescripcionOtro("C", 8)</span>
+                    }
+                </td>
+                <td class="col-fecha">@obtenerFechaCultivo(8)</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="otro-label">9. Otro foco no consignado en la lista:</span>
+                    @if (!string.IsNullOrWhiteSpace(obtenerDescripcionOtro("S", 9)))
+                    {
+                        <span class="otro-texto">@obtenerDescripcionOtro("S", 9)</span>
+                    }
+                </td>
+                <td class="col-x text-center">@marcarSindrome(9)</td>
+                <td class="col-muestra"></td>
+                <td class="col-fecha"></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <span class="label">Médico que prescribe:</span> @ViewBag.Medico
+                </td>
+            </tr>
+        </table>
+
+        <table class="proa-table small mt-2">
+            <tr>
+                <th class="text-center w-8">Cantidad</th>
+                <th class="text-left">Antimicrobiano a prescribir:</th>
+                <th class="text-left w-30">Dosis y vía</th>
+                <th class="text-left w-12">Días</th>
+            </tr>
+
+            @if (detalle != null && detalle.Rows.Count > 0)
+            {
+                foreach (DataRow row in detalle.Rows)
+                {
+                    var producto = "";
+                    var dosis = "";
+                    var via = "";
+                    var dias = "";
+                    var observaciones = "";
+                    var cantidadPedida = "";
+
+                    if (detalle.Columns.Contains("NombreProducto"))
+                    {
+                        producto = Convert.ToString(row["NombreProducto"]);
+                    }
+                    else if (detalle.Columns.Contains("Producto"))
+                    {
+                        producto = Convert.ToString(row["Producto"]);
+                    }
+
+                    if (detalle.Columns.Contains("CantidadPedida"))
+                    {
+                        cantidadPedida = Convert.ToString(row["CantidadPedida"]);
+                    }
+
+                    if (detalle.Columns.Contains("dosis"))
+                    {
+                        dosis = Convert.ToString(row["dosis"]);
+                    }
+
+                    if (detalle.Columns.Contains("vias"))
+                    {
+                        via = Convert.ToString(row["vias"]);
+                    }
+
+                    if (detalle.Columns.Contains("observaciones"))
+                    {
+                        observaciones = Convert.ToString(row["observaciones"]);
+                    }
+
+                    <tr class="med-row">
+                        <td class="text-center">@cantidadPedida</td>
+                        <td>@producto</td>
+                        <td>
+                            @dosis
+                            @if (!string.IsNullOrWhiteSpace(via))
+                            {
+                                <text>@(string.IsNullOrWhiteSpace(dosis) ? "" : " / ")@via</text>
+                            }
+                        </td>
+                        <td>@observaciones</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    <tr class="med-row">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                }
+            }
+        </table>
+
+        <div class="footer-box mt-2">
+            Drogas que pueden ser prescritas directamente hasta por 7 días. *<br />
+            Drogas que pueden ser recetadas hasta por 5 días. **<br />
+            Sólo para uso por Neonatología. ***<br />
+            Sólo con evaluación previa de Infectología o Unidad de PROA.<br /><br />
+
+            <span class="fw-bold">Importante:</span><br />
+            - Si la medicación no ha sido llenada correctamente, el antibiótico no será dispensado, bajo responsabilidad del médico tratante.<br />
+            - La información sobre cultivos será verificada por el profesional que recibe la solicitud.
+        </div>
+<br /><br /><br /><br />
+        <table class="qr-sign">
+            <tr>
+                <td class="w-20">
+                    @if (ViewBag.CodigoQR != null)
+                    {
+                        <img class="qr" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.CodigoQR))" />
+                    }
+                </td>
+                <td>
+                    <div class="sign-line">@ViewBag.Medico</div>
+                </td>
+            </tr>
+        </table>
+@*
+        <div class="extras-title">Datos adicionales del sistema</div>
+
+        <table class="proa-table tiny mt-1">
+            <tr>
+                <td class="label w-15">Institución</td>
+                <td>@ViewBag.NombreInstitucion</td>
+                <td class="label w-15">Teléfono</td>
+                <td>@ViewBag.TelefonoInstitucion</td>
+            </tr>
+            <tr>
+                <td class="label">Dirección</td>
+                <td colspan="3">@ViewBag.DireccionInstitucion</td>
+            </tr>
+            <tr>
+                <td class="label">Historia</td>
+                <td>@ViewBag.Historia</td>
+                <td class="label">Cuenta</td>
+                <td>@ViewBag.Cuenta</td>
+            </tr>
+            <tr>
+                <td class="label">Tipo Plan</td>
+                <td>@ViewBag.TipoPlan</td>
+                <td class="label">Tipo Servicio</td>
+                <td>@ViewBag.TipoServicio</td>
+            </tr>
+            <tr>
+                <td class="label">Consultorio</td>
+                <td>@ViewBag.Consultorio</td>
+                <td class="label">Vigencia</td>
+                <td>@fechaVigencia</td>
+            </tr>
+            <tr>
+                <td class="label">Usuario</td>
+                <td>@ViewBag.Usuario</td>
+                <td class="label">Fecha creación</td>
+                <td>@ViewBag.FechaCreacion</td>
+            </tr>
+        </table>
+
+        <div class="extras-title">Diagnósticos</div>
+        <table class="proa-table tiny mt-1">
+            <tr>
+                <th class="w-20">CIE 10</th>
+                <th>Descripción</th>
+            </tr>
+            @if (diagnosticos != null && diagnosticos.Rows.Count > 0)
+            {
+                foreach (DataRow row in diagnosticos.Rows)
+                {
+                    <tr>
+                        <td>@row["codigoCIE10"]</td>
+                        <td>@row["descripcion"]</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            }
+        </table>
+
+        @if (!string.IsNullOrEmpty(otrosMedicamentos))
+        {
+            <div class="extras-title">Otros medicamentos</div>
+            <table class="proa-table tiny mt-1">
+                <tr>
+                    <td>@Html.Raw(otrosMedicamentos.Replace("\r\n", "<br />").Replace("\n", "<br />"))</td>
+                </tr>
+            </table>
+        }
+
+*@
+
+    </div>
+</body>
+</html>

@@ -1,6 +1,21 @@
 ﻿
 
 var Triaje = {
+    ObtenerGlasgowSegunContexto() {
+        const idTipoPaciente = ($('#cboTipoPaciente').val() || '').toString();
+        const descripcionTipoPaciente = ($('#cboTipoPaciente option:selected').text() || '').toLowerCase();
+        const esPediatrico = descripcionTipoPaciente.includes('pediatr');
+        const usaGlasgowCabecera = esPediatrico || idTipoPaciente === '3';
+
+        const glasgowCabecera = ($('#txtGlasgow').val() || '').trim();
+        const glasgowTriaje = ($('#txtGlasgowTriaje').val() || '').trim();
+
+        if (usaGlasgowCabecera) {
+            return glasgowCabecera || glasgowTriaje;
+        }
+
+        return glasgowTriaje || glasgowCabecera;
+    },
     Plugins() {
         $('#txtFechaTriajeBusq').datepicker({
             todayHighlight: true,
@@ -64,6 +79,15 @@ var Triaje = {
         formData.append("TriajeTalla", $("#txtTalla").val());
         formData.append("TriajeSaturacionOxigeno", $("#txtSO").val());
 
+        formData.append("TriajePerimCefalico", $("#txtPC").val());                  //MGAMERO
+        formData.append("TriajePulso", $("#txtPulso").val());                       //MGAMERO
+        formData.append("TriajePerimAbdominal", $("#txtPAbdo").val());              //MGAMERO
+        formData.append("TriajeDolor", $("#txtDolor").val());                       //MGAMERO
+        formData.append("TriajeLlenadoCapilar", $("#txtLlenadoCapilar").val());     //MGAMERO
+        //        formData.append("Glasgow", $("#txtGlasgowTriaje").val());     //RMOREANO
+        formData.append('Glasgow', EvaluacionEmergencia.obtenerGlasgowSegunTipoPaciente());
+        formData.append("BiernamPierson", $("#txtBiermanPierson").val());     //RMOREANO
+
         formData.append("idServicio", idServicio);
         formData.append("idNumero", idEvaluacion);
         formData.append("idAtencion", idAtencion);
@@ -81,7 +105,14 @@ var Triaje = {
                 $("#txtImc").val("");
                 $("#txtPAD").val("");
                 $("#txtPC").val("");
-                $("#txtSO").val("");       //KHOYOSI               
+                $("#txtSO").val("");       //KHOYOSI         
+                 
+                $("#txtPulso").val("");            //MGAMERO
+                $("#txtPAbdo").val("");            //MGAMERO
+                $("#txtDolor").val("");            //MGAMERO
+                $("#txtLlenadoCapilar").val("");   //MGAMERO
+                $("#txtGlasgowTriaje").val("");   //RMOREANO
+                $("#txtBiermanPierson").val("");   //RMOREANO
 
                 Cargando(0);
             })
@@ -444,7 +475,19 @@ var Triaje = {
                         $("#txtTriajeIMC").val($("#txtTriajeIMC").val() + ' (' + Triaje.imc($("#txtTriajeIMC").val()) + ')');
                     }
 
+                    
+                    $("#txtPC").val(datos.table[0].triajePerimCefalico);                //MGAMERO
                     $("#txtSO").val(datos.table[0].triajeSaturacionOxigeno);     //KHOYOSI
+
+                    $("#txtPulso").val(datos.table[0].triajePulso);                     //MGAMERO
+                    $("#txtPAbdo").val(datos.table[0].triajePerimAbdominal);            //MGAMERO
+                    $("#txtDolor").val(datos.table[0].triajeDolor);                     //MGAMERO
+                    $("#txtLlenadoCapilar").val(datos.table[0].triajeLlenadoCapilar);   //MGAMERO
+                    $("#txtGlasgow").val(datos.table[0].glasgow);   //RMOREANO 11042026
+                    $("#txtGlasgowTriaje").val(datos.table[0].glasgow);   //RMOREANO 11042026
+                    $('#txtObservacionTriaje').val(datos.table[0].observacionTriaje);
+                    $("#txtBiermanPierson").val(datos.table[0].biermanPierson);   //RMOREANO 11042026
+
 
                     //$("#txtImc").val(Triaje.calculaImc($("#txtPeso").val(), $("#txtTalla").val())) // cambio calculo imc
                     $("#txtImc").val(Triaje.calculaImc($("#txtPesoPregesta").val(), $("#txtTalla").val()))

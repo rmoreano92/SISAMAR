@@ -20,10 +20,11 @@ using System.Diagnostics;
 using QRCoder;
 using System.Drawing;
 
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Emergencia
 {
-    public class EvaluacionNeonatalController : Controller
+    public class EvaluacionNeonatalController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 
@@ -416,6 +417,7 @@ namespace WebAppMaternidad.Areas.Emergencia
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuenta, idEvaluacionDetalle, 0, "E-EVA", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -698,17 +700,17 @@ namespace WebAppMaternidad.Areas.Emergencia
         //    tipo = "REC-" + tipo;
         //    path = Path.Combine(sWebRootFolder, "Recetas", (idCuentaAtencion + idReceta + (DateTime.Now.ToString("HH:mm:ss")).Replace(":", "") + tipo + ".pdf"));
 
-        //    lsParametros = await daoParametros.SeleccionaFilaParametro2(205); // JDELGADO J0 AWAIT SENTENCE
+        //    lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
         //    nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
         //    lsParametros.Clear();
 
-        //    lsParametros = await daoParametros.SeleccionaFilaParametro2(206); // JDELGADO J0 AWAIT SENTENCE
+        //    lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
         //    direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
         //    lsParametros.Clear();
 
-        //    lsParametros = await daoParametros.SeleccionaFilaParametro2(207); // JDELGADO J0 AWAIT SENTENCE
+        //    lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
         //    telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
         //    string idAtencion = "0";

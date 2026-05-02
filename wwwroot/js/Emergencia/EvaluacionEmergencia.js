@@ -272,11 +272,11 @@
 
                 //swal({
                 //    title: 'Evaluaciones',
-                //    text: "Paciente iniciara la Evaluación N° " + (eval + 1),
+                //    text: "Paciente iniciará la evaluación N° " + (eval + 1),
                 //    type: 'info',
                 //    allowOutsideClick: false,
                 //}).done();
-                alerta2("info", "Evaluaciones", "Paciente iniciara la Evaluación N° " + (eval + 1));
+                alerta2("info", "Evaluaciones", "Paciente iniciará la evaluación N° " + (eval + 1));
                 $("#evaluaciones-tab").click();
             } else {
                 //swal({
@@ -368,7 +368,7 @@
                 } else {
                     if (EvaluacionEmergencia.ValidarVariablesEvaluacionEmergencia()) {
                         Cargando(1);
-                        Triaje.GuardarTriajeHospEmeg(Variables.IdAtencion, Variables.IdServicioEgreso, 0);                        
+                        Triaje.GuardarTriajeHospEmeg(Variables.IdAtencion, Variables.IdServicioIngreso, 0);                        
                         const data1 = await EvaluacionEmergencia.GuardarEvaluacionEmergencia();
                         const data2 = await EvaluacionEmergencia.GuardarExamenGinecoObstetra();
                         const dataAnt = await Antecedentes.AntecedentesPacienteGuardar(Variables.IdPaciente, Variables.IdAtencion, EvaluacionEmergencia.idProCabecera);
@@ -811,7 +811,7 @@
         //$('#hdIdServicioPaciente').val(objrowTb.idServicioEgreso);
         IdCuentaAtencionTemp = Variables.IdCuentaAtencion;       //variable para conservar el IdCuentaAtencion despues de abrir el modulo de SEGUIMIENTO
 
-        await Triaje.TriajeEmgHospListar(Variables.IdAtencion, Variables.IdServicioEgreso, 0);
+        await Triaje.TriajeEmgHospListar(Variables.IdAtencion, Variables.IdServicioIngreso, 0);
 
         let EvaEmer = await EvaluacionEmergencia.SeleccionarEvaluacion(Variables.IdAtencion);        
         //var EvaDetEmer = EvaluacionEmergencia.SeleccionarEvaluacionDetalle(Variables.IdAtencion, Variables.IdServicioEgreso);
@@ -828,7 +828,12 @@
         $("#txtEdadMes").val(edad.meses);
         $("#txtEdadDia").val(edad.dias);
 
-        $('#txtGlasgow').val(EvaEmer.glasgow);
+        const glasgowEva = isNull(EvaEmer.glasgow, EvaEmer.Glasgow);
+        const observacionTriajeEva = isNull(EvaEmer.observacionTriaje, EvaEmer.ObservacionTriaje);
+        $('#txtGlasgow').val(glasgowEva);
+        $('#txtGlasgowTriaje').val(glasgowEva);
+        $('#txtObservacionTriaje').val(observacionTriajeEva);
+        $('#txtGlasgow').hide();
         $('input:radio[name=rdbRiesgoCaida][value=' + isNull(EvaEmer.riesgoCaida, 0) + ']').prop('checked', true);
 
         //----------------------ANTECEDENTES-----------------------//
@@ -1181,6 +1186,22 @@
         return true;
     },
 
+    obtenerGlasgowSegunTipoPaciente() {
+        const idTipoPaciente = $('#cboTipoPaciente').val();
+        const descripcionTipoPaciente = ($('#cboTipoPaciente option:selected').text() || '').toLowerCase();
+        const esPediatrico = descripcionTipoPaciente.includes('pediatr');
+        const usaGlasgowCabecera = esPediatrico || idTipoPaciente === '3';
+
+        const glasgowCabecera = ($('#txtGlasgow').val() || '').trim();
+        const glasgowTriaje = ($('#txtGlasgowTriaje').val() || '').trim();
+
+        if (usaGlasgowCabecera) {
+            return glasgowCabecera || glasgowTriaje;
+        }
+
+        return glasgowTriaje || glasgowCabecera;
+    },
+
 
     /// <summary>
     /// CARGA DATOS A LAS VARIABLES
@@ -1212,7 +1233,7 @@
 
         formData.append('TipoPaciente', $('#cboTipoPaciente').val());
         formData.append('Prioridad', $('#cboPrioridad').val());
-        formData.append('Glasgow', $('#txtGlasgow').val());
+        formData.append('Glasgow', EvaluacionEmergencia.obtenerGlasgowSegunTipoPaciente());
 
         ///////////////////////MOTIVO ATENCION//////////////////////////
         formData.append('FechaUR', $('#txtFechaFUR').val());

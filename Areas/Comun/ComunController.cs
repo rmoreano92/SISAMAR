@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using System;
 using System.Data;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class ComunController: Controller
+    public class ComunController: BaseController
     {
 
         public async Task<IActionResult> EventosAdversos(int idListBar)

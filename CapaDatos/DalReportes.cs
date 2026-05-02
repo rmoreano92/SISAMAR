@@ -493,6 +493,80 @@ namespace CapaDatos
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        public Task<DataSet> ReporteTriadosEmergencia(string fechaInicio, string fechaFin, string horaInicio, string horaFin)
+        {
+            DataSet dataSet = new DataSet();
+            Conexion cx = new Conexion();
+
+            return Task.Run(() =>
+            {
+                using (SqlConnection conn = cx.obtenerConexion())
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        try
+                        {
+                            string sql = "web_ReporteTriadosEmergencia";
+                            SqlCommand cmd = new SqlCommand(sql, conn);
+                            cmd.CommandTimeout = 0;
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@FechaInicio", fechaInicio);
+                            cmd.Parameters.AddWithValue("@FechaFin", fechaFin);
+                            cmd.Parameters.AddWithValue("@HoraInicio", horaInicio);
+                            cmd.Parameters.AddWithValue("@HoraFin", horaFin);
+
+                            da.SelectCommand = cmd;
+                            da.Fill(dataSet);
+                        }
+                        catch (Exception ex)
+                        {
+                            dataSet = null;
+                            throw new Exception(ex.Message);
+                        }
+                        return dataSet;
+                    }
+                }
+            });
+        }
+
+        public Task<DataSet> ReporteAdmitidosEmergencia(string fechaInicio, string fechaFin, string horaInicio, string horaFin)
+        {
+            DataSet dataSet = new DataSet();
+            Conexion cx = new Conexion();
+
+            return Task.Run(() =>
+            {
+                using (SqlConnection conn = cx.obtenerConexion())
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        try
+                        {
+                            string sql = "web_ReporteAdmitidosEmergencia";
+                            SqlCommand cmd = new SqlCommand(sql, conn);
+                            cmd.CommandTimeout = 0;
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@FechaInicio", fechaInicio);
+                            cmd.Parameters.AddWithValue("@FechaFin", fechaFin);
+                            cmd.Parameters.AddWithValue("@HoraInicio", horaInicio);
+                            cmd.Parameters.AddWithValue("@HoraFin", horaFin);
+
+                            da.SelectCommand = cmd;
+                            da.Fill(dataSet);
+                        }
+                        catch (Exception ex)
+                        {
+                            dataSet = null;
+                            throw new Exception(ex.Message);
+                        }
+                        return dataSet;
+                    }
+                }
+            });
+        }
+
         public DataSet ReporteAnatomiaPatologia(DateTime FechaInicio, DateTime FechaFin)
         {
             DataSet ds = new DataSet();
@@ -507,6 +581,66 @@ namespace CapaDatos
             }
             catch (Exception)
             {
+                ds = null; throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return ds;
+        }
+
+        //RMOREANO Reporte de pacientes cronicos
+
+        public DataSet PartePacientesCronicos(int idTipoServicio, int idDepartamento, int idEspecialidad, int idServicio, int idDestino, int idMedico, DateTime FechaInicio, DateTime FechaFin)
+        {
+            DataSet ds = new DataSet();
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = MetodoDatos.CrearComando("web_rptPartePacientesCronicos");
+                cmd.Parameters.AddWithValue("@idTipoServicio", idTipoServicio);
+                cmd.Parameters.AddWithValue("@idDepartamento", idDepartamento);
+                cmd.Parameters.AddWithValue("@idEspecialidad", idEspecialidad);
+                cmd.Parameters.AddWithValue("@idServicio", idServicio);
+                cmd.Parameters.AddWithValue("@idDestino", idDestino);
+                cmd.Parameters.AddWithValue("@idMedico", idMedico);
+                cmd.Parameters.AddWithValue("@FechaInicio", FechaInicio);
+                cmd.Parameters.AddWithValue("@FechaFin", FechaFin);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+            }
+            catch (Exception)
+            {
+
+                ds = null; throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return ds;
+        }
+
+
+        //RMC
+        public DataSet ReporteEpidemiologico(DateTime FechaInicio, DateTime FechaFin, string HoraIni, string HoraFin)
+        {
+            DataSet ds = new DataSet();
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = MetodoDatos.CrearComando("web_rptEpidemiologico");
+                cmd.Parameters.AddWithValue("@FechaInicio", FechaInicio);
+                cmd.Parameters.AddWithValue("@FechaFin", FechaFin);
+                cmd.Parameters.AddWithValue("@HoraIni", HoraIni);
+                cmd.Parameters.AddWithValue("@HoraFin", HoraFin);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+            }
+            catch (Exception)
+            {
+
                 ds = null; throw;
             }
             finally

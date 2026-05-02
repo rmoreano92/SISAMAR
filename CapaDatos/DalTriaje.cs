@@ -105,6 +105,13 @@ namespace CapaDatos
                         cmd.Parameters.AddWithValue("@TriajeFrecuenciaCardiaca", objtriaje.TriajeFrecCardiaca);
                         cmd.Parameters.AddWithValue("@TriajeSaturacionOxigeno", objtriaje.TriajeSaturacionOxigeno);
 
+                        cmd.Parameters.AddWithValue("@TriajePerimCefalico", objtriaje.TriajePerimCefalico);     //MGAMERO
+                        cmd.Parameters.AddWithValue("@TriajePerimAbdominal", objtriaje.TriajePerimAbdominal);   //MGAMERO
+                        cmd.Parameters.AddWithValue("@TriajeDolor", objtriaje.TriajeDolor);                     //MGAMERO
+                        cmd.Parameters.AddWithValue("@TriajeLlenadoCapilar", objtriaje.TriajeLlenadoCapilar);   //MGAMERO
+                        cmd.Parameters.AddWithValue("@Glasgow", objtriaje.Glasgow);   //MGAMERO    
+                        cmd.Parameters.AddWithValue("@BiernamPierson", objtriaje.BiernamPierson);   //MGAMERO    
+
                         cmd.Parameters.AddWithValue("@idUsuario", objtriaje.idUsuario);
                         cmd.Parameters.AddWithValue("@idNumero", objtriaje.idNumero);
 
@@ -254,7 +261,7 @@ namespace CapaDatos
         }
 
         public Task<DataSet> ListarAtencionesCEFiltrarPorPaciente(string nroHistoriaClinica, string apellidoPaterno, string apellidoMaterno, string primerNombre,
-            string dni, int idCuentaAtencion, string lcFechaTriaje) // JDELGADO001.2
+            string dni, int idCuentaAtencion, string lcFechaTriaje, int idIpress = 0) // JDELGADO001.2
         {
             Conexion cx = new Conexion();
             DataSet ds = new DataSet();
@@ -275,6 +282,7 @@ namespace CapaDatos
                         cmd.Parameters.AddWithValue("@dni", dni == null ? "" : dni);
                         cmd.Parameters.AddWithValue("@idCuentaAtencion", idCuentaAtencion);
                         cmd.Parameters.AddWithValue("@lcFechaTriaje", lcFechaTriaje == null ? "" : lcFechaTriaje);
+                        cmd.Parameters.AddWithValue("@IdIpress", idIpress);
 
                         da.SelectCommand = cmd;
 

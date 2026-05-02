@@ -230,6 +230,7 @@
         $("#EstanciaServicioActual").show();
         $("#EstanciaServicioPorRecepcionar").show();
         $("#CamasActual").show();
+        $("#CamasEspera").show();
         $("#btnGuardarCamaActualTransferencia").show();
         Transferencias.idEstanciaHospitalariaActual = objrowTb.idEstanciaHospitalariaActual;
         Variables.Cargar(objrowTb);
@@ -250,6 +251,11 @@
                     await Transferencias.ListarCamasEspera(objrowTb.idServicioActual, objrowTb.idPaciente, objrowTb.idCamaActual);
                     $('#cboServicioEsperaTransferencia').val(Variables.IdServicioActual);
                     $("#EstanciaServicioActual").hide();
+                    if ($('#cboCamaEsperaTransferencia option').length > 0) {
+                        $("#CamasEspera").show();
+                    } else {
+                        $("#CamasEspera").hide();
+                    }
                 } else {
                     await Transferencias.ListarCamas(objrowTb.idServicioActual);
                     $('#cboServicioActualTransferencia').val(Variables.IdServicioActual);

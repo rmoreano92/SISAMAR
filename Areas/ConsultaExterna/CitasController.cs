@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using WebAppMaternidad.Areas.Comun;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna
 {
     // JDELGADO010
-    public class CitasController : Controller
+    public class CitasController : BaseController
     {
         [HttpGet]
         public async Task<ActionResult> listarDepartamentosHospital()
@@ -52,6 +53,10 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             {
                 return Json(new { session = false });
             }
+
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
 
             dataSet = await dalCitasAdmision.listarDepartamentoHospitalario(lcFiltro);
 
@@ -219,7 +224,11 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
             try
             {
-                dataSet = await dalCitasAdmision.listarMedicosFiltrarPorProgramacion(lcFiltro);
+                int idIpressInt = 0;
+                var idIpressStr = HttpContext.Session.GetString("IdIPress");
+                if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+                dataSet = await dalCitasAdmision.listarMedicosFiltrarPorProgramacion(lcFiltro, idIpressInt);
                 return Json(new { session = true, estado = true, msg = "", data = dataSet });
             }
             catch (Exception e)
@@ -1037,7 +1046,9 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
                 pdf.tipoDocumento = "Ticket";
                 pdf.pageHtml = pageHtml;
 
-                resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
                 byte[] pdfBytes = resultStream.ToArray();
                 ms.Write(pdfBytes, 0, pdfBytes.Length);
@@ -1232,9 +1243,15 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             DataSet lsParametros = new DataSet();
             DataSet lsCitas = await dalCitasAdmision.ListaCitaByIdCita(idCita);
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
+
 
             DateTime now = DateTime.Now;
 
@@ -1293,9 +1310,13 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             DataSet lsPacientes = await dalPaciente.PacientesSeleccionarPorId(idPaciente);
             DataSet lsCitas = await dalCitasAdmision.ListaCitaByIdCita(idCita);
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
 
             DateTime now = DateTime.Now;
 
@@ -1375,9 +1396,13 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             DataSet lsPacientes = await dalPaciente.PacientesSeleccionarPorId(idPaciente);
             DataSet lsCitas = await dalCitasAdmision.ListaCitaByIdCita(idCita);
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
 
             DateTime now = DateTime.Now;
 
@@ -1484,9 +1509,13 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             DataSet lsPacientes = await dalPaciente.PacientesSeleccionarPorId(idPaciente);
             DataSet lsCitas = await dalCitasAdmision.ListaCitaByIdCita(idCita);
 
-            //var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            //var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            //var telefono = await daoParametros.SeleccionaFilaParametro2(207);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            //var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            //var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            //var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
 
             //DateTime now = DateTime.Now;
 
@@ -1965,7 +1994,9 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
                 pdf.tipoDocumento = "Ticket";
                 pdf.pageHtml = pageHtml;
 
-                resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
                 byte[] pdfBytes = resultStream.ToArray();
                 ms.Write(pdfBytes, 0, pdfBytes.Length);
@@ -1990,9 +2021,13 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
             DataSet lsParametros = new DataSet();
             DataSet lsCitas = await dalCitasAdmision.ListaCitaTerapiaByIdCita(idCita);
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
 
             DateTime now = DateTime.Now;
 

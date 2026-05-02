@@ -19,10 +19,11 @@ using SelectPdf;
 using WebAppMaternidad.Areas.Comun;
 using WebAppMaternidad.CapaEntidades;
 using WebAppMaternidad.Models;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
 {
-    public class PacienteController : Controller
+    public class PacienteController : BaseController
     {
         [HttpPost]
         public ActionResult PacientesSeleccionarPorNroHistoriaClinica(int nroHistoria)
@@ -719,9 +720,13 @@ namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
 
             DataSet lsPacientes = await dalPaciente.PacientesSeleccionarPorId(idPaciente);
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
 
             DateTime now = DateTime.Now;
 
@@ -849,6 +854,8 @@ namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
                     pdf.marginY = 5;
                     pdf.pageHtml = pageHtml;
 
+                    pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
                     resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
                     byte[] pdfBytes = resultStream.ToArray();
@@ -891,14 +898,18 @@ namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
                 if (resp == true)
                 {
                     pageHtml = Url.Action("PlantillaBrazaleteRecienNacido", "Paciente", new { area = "ConsultaExterna", nroHistoria = paciente.nroHistoria, apellidos = paciente.apellidos, nombres = paciente.nombres, fechaNacimiento = paciente.fechaNacimiento,
-                                                                                              horaNacimiento = paciente.horaNacimiento, tipoSexo = paciente.tipoSexo, TipoDocumento = paciente.tipoDocumento, nroDocumento = paciente.nroDocumento, gemelar = paciente.gemelar 
+                                                                                              horaNacimiento = paciente.horaNacimiento, tipoSexo = paciente.tipoSexo, TipoDocumento = paciente.tipoDocumento, nroDocumento = paciente.nroDocumento, gemelar = paciente.gemelar,
+                                                                                              edad = paciente.edad, fichaFamiliar = paciente.fichaFamiliar , parentesco = paciente.parentesco 
                                                                                             }, "http");
                     pdf.tipoDocumento = "Personalizado";
                     pdf.width = 340f;
-                    pdf.height = 130f;
+                    pdf.height = 150f;
                     pdf.marginX = 5;
                     pdf.marginY = 5;
                     pdf.pageHtml = pageHtml;
+                    pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
 
                     resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
@@ -987,6 +998,9 @@ namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
             @ViewBag.TipoDocumento = paciente.tipoDocumento == null ? "" : paciente.tipoDocumento.ToString();
             @ViewBag.NroDocumento = paciente.nroDocumento == null ? "" : paciente.nroDocumento.ToString();
             @ViewBag.Gemelar = paciente.gemelar == null ? "" : paciente.gemelar.ToString();
+            @ViewBag.Edad = paciente.edad == null ? " - " : paciente.edad.ToString();
+            @ViewBag.fichaFamiliar = paciente.fichaFamiliar == null ? " - " : paciente.fichaFamiliar.ToString();
+            @ViewBag.parentesco = paciente.parentesco == null ? " - " : paciente.parentesco.ToString();
             //@ViewBag.GradoInstruccion = lsPacientes.Tables[0].Rows[0]["GradoInstruccion"];
             //@ViewBag.EstadoCivilDes = lsPacientes.Tables[0].Rows[0]["EstadoCivilDes"];
             //@ViewBag.Etnia = lsPacientes.Tables[0].Rows[0]["Etnia"];
@@ -1225,9 +1239,13 @@ namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 pdf.pageHtml = pageHtml;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
 
-                resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
                 byte[] pdfBytes = resultStream.ToArray();
                 ms.Write(pdfBytes, 0, pdfBytes.Length);
@@ -1256,9 +1274,13 @@ namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
 
             DataSet lsPacientes = await dalPaciente.PacientesSeleccionarPorId(idPaciente);
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
 
             DateTime now = DateTime.Now;
 

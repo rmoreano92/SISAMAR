@@ -15,11 +15,12 @@ using Microsoft.AspNetCore.Http;
 //using CapaEntidades;
 using System.IO;
 using System.Diagnostics.Contracts;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {   
     // JDELGADO003-M
-    public class SisController : Controller
+    public class SisController : BaseController
     {
 
         private IWebHostEnvironment _hostingEnvironment;

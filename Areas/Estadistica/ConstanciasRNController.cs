@@ -21,10 +21,11 @@ using QRCoder;
 using SelectPdf;
 using SiHospCrypKey;
 using WebAppMaternidad.Areas.Comun;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Estadistica
 {
-    public class ConstanciasRNController : Controller
+    public class ConstanciasRNController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 
@@ -502,6 +503,7 @@ namespace WebAppMaternidad.Areas.Estadistica
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(0, objConstanciaRN.idConstancia, 0, "CN", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

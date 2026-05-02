@@ -11,10 +11,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Farmacia
 {
-    public class ReportesFarmaciaController: Controller
+    public class ReportesFarmaciaController: BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

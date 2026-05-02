@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using WebAppMaternidad.Controllers;
 using Newtonsoft.Json;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Sis
 {
@@ -150,6 +151,7 @@ namespace WebAppMaternidad.Areas.Sis
                             pdf.tamanio = "A4";
                             pdf.marginX = 20;
                             pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                             resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idAtencion, 0, "FUA", 0, pageHtml, stringHtml, idUsuario, pdf);
                         }
                     }
@@ -190,6 +192,7 @@ namespace WebAppMaternidad.Areas.Sis
                     //    pdf.tamanio = "A4";
                     //    pdf.marginX = 20;
                     //    pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                     //    resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idAtencion, 0, "FUA", 0, pageHtml, stringHtml, idUsuario, pdf);
                     //}
                 }
@@ -230,6 +233,7 @@ namespace WebAppMaternidad.Areas.Sis
                         pdf.tamanio = "A4";
                         pdf.marginX = 20;
                         pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                         resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idAtencion, 0, "FUA", 0, pageHtml, stringHtml, idUsuario, pdf);
                     }
                 }

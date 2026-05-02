@@ -5,10 +5,11 @@ using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ProgramacionGeneral
 {
-    public class ProgramacionMedicaController : Controller
+    public class ProgramacionMedicaController : BaseController
     {
         public IActionResult Index()
         {

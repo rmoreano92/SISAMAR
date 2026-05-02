@@ -17,10 +17,11 @@ using WebAppMaternidad.Areas.Comun;
 using NPOI.SS.Formula.Eval;
 using Aspose.Cells;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class EvaluacionesUCIController : Controller
+    public class EvaluacionesUCIController : BaseController
     {
 
         [HttpPost]
@@ -1049,6 +1050,7 @@ namespace WebAppMaternidad.Areas.Hospitalizacion
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuenta, idEvaluacionDetalle, 0, "UCI-EVA", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -1692,6 +1694,7 @@ namespace WebAppMaternidad.Areas.Hospitalizacion
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuenta, IdComentarioApreciacion, 0, "NA-UCI", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -1773,6 +1776,7 @@ namespace WebAppMaternidad.Areas.Hospitalizacion
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuenta, IdAtencion, 0, "IA-UCI", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

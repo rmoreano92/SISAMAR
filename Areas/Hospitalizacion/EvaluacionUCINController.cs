@@ -4,10 +4,11 @@ using System.Data;
 using System.Threading.Tasks;
 using System;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class EvaluacionUCINController : Controller
+    public class EvaluacionUCINController : BaseController
     {
         public IActionResult Index()
         {

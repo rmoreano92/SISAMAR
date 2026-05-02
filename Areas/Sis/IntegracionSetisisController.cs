@@ -15,10 +15,11 @@ using MathNet.Numerics.Providers.LinearAlgebra;
 using NPOI.Util;
 using System.Text;
 using SharpCompress.Common;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Sis
 {
-    public class IntegracionSetisisController : Controller
+    public class IntegracionSetisisController : BaseController
     {
         public IActionResult Index()
         {

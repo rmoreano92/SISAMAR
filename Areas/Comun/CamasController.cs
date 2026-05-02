@@ -9,10 +9,11 @@ using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class CamasController : Controller
+    public class CamasController : BaseController
     {
         // GET: CamasController
         public ActionResult Index()

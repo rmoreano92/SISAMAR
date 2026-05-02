@@ -14,10 +14,11 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using WebAppMaternidad.Areas.Comun;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class NotaEnfermeriaNeoController : Controller
+    public class NotaEnfermeriaNeoController : BaseController
     {
         [HttpPost]
         public async Task<ActionResult> ListarAtencionesNotaEnfermeria(
@@ -536,6 +537,7 @@ namespace WebAppMaternidad.Areas.Hospitalizacion
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, nroEvaluacion, 0, "NE-NEO", nroEvaluacion, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

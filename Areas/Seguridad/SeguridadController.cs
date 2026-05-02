@@ -3,10 +3,11 @@ using CapaEntidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Seguridad
 {
-    public class SeguridadController : Controller
+    public class SeguridadController : BaseController
     {
         public IActionResult Index()
         {

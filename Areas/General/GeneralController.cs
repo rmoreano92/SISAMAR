@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.General
 {
-    public class GeneralController : Controller
+    public class GeneralController : BaseController
     {
         public IActionResult Index()
         {

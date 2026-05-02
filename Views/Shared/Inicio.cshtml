@@ -1,6 +1,37 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
+
+@{
+    ViewData["Title"] = "Layout2";
+}
+
+@model CapaEntidades.User
+@using CapaDatos
+@using System.Data
+@using Microsoft.Extensions.Configuration;
+@using SiHospCrypKey;
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    DataSet lsParametros;
+    DalParametros dalParametros = new DalParametros();
+    string imagen_fondo;
+    int idIpressInt = 0;
+    var idIpressStr = Context.Session.GetString("IdIPress");
+    if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+    lsParametros = await dalParametros.SeleccionaFilaParametro2(1071, idIpressInt);
+    imagen_fondo = lsParametros.Tables[0].Rows[0]["Base64v2"].ToString();
+
+    ViewBag.imagen_fondo = imagen_fondo;
+
+}
+
+
+@{
+    var fondo = "data:image/jpeg;base64," + ViewBag.imagen_fondo;
+}
 <div class="row">
-    <div class="col-lg-12 fondo-dashboard head">
+    <div class="col-lg-12 fondo-dashboard head" style="background-image:url('@fondo')">
 
         @*<img src="../../images/inicio.jpeg" alt="Inicio" />*@
 

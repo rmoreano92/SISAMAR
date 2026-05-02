@@ -8,10 +8,11 @@ using ClosedXML.Excel;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using System.Linq;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.SistemaColas
 {
-    public class SGCMonitoreoController : Controller
+    public class SGCMonitoreoController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

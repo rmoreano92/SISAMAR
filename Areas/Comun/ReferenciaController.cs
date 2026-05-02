@@ -24,6 +24,7 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaEntidades;
 using WebAppMaternidad.Controllers;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
@@ -1045,6 +1046,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idRefCon, 0, tipo, 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

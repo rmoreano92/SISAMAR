@@ -4,10 +4,11 @@ using System.Data;
 using System.Threading.Tasks;
 using System;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ArchivoClinico
 {
-    public class HistoriaClinicaController : Controller
+    public class HistoriaClinicaController : BaseController
     {
         [HttpPost]
         public async Task<ActionResult> HistoriasClinicasSegunFiltro(int? NroHistoriaClinica, string ApellidoPaterno, string ApellidoMaterno, string Nombres)

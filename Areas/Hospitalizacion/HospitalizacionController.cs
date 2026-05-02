@@ -11,10 +11,11 @@ using Microsoft.Extensions.Configuration;
 using WebAppMaternidad.Areas.Comun;
 using WebAppMaternidad.CapaDatos;
 using static CapaEntidades.Enumerados;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class HospitalizacionController : Controller
+    public class HospitalizacionController : BaseController
     {
       
         public async Task<IActionResult> VisitasMedicas(int idListBar)

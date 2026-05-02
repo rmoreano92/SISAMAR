@@ -7,10 +7,11 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.General
 {
-    public class ServiciosController : Controller
+    public class ServiciosController : BaseController
     {
         public IActionResult Index()
         {

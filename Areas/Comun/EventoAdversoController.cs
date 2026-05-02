@@ -10,10 +10,11 @@ using CapaEntidades;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Text;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class EventoAdversoController: Controller
+    public class EventoAdversoController: BaseController
     {
 
 
@@ -216,6 +217,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(0, IdEventoAdverso, 0, "REG-EA", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

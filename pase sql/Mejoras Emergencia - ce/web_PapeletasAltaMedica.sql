@@ -25,14 +25,7 @@ LEFT JOIN Medicos ON Medicos.IdMedico = Atenciones.IdMedicoEgreso
 LEFT JOIN Empleados ON Empleados.IdEmpleado = Medicos.IdEmpleado
 LEFT JOIN FirmasDigitales ON FirmasDigitales.idCuentaAtencion = Atenciones.IdCuentaAtencion AND 
 	FirmasDigitales.idRegistro = Atenciones.IdAtencion AND FirmasDigitales.tipo in('E-PH','E-PHF','E-PEM')
-WHERE Atenciones.IdAtencion = @IdAtencion AND FirmasDigitales.tipo in('E-PH','E-PHF','E-PEM')
+WHERE Atenciones.IdAtencion = @IdAtencion AND FirmasDigitales.tipo in('E-PH','E-PHF','E-PEM') and FirmasDigitales.idEstado = 1
  ORDER BY FirmasDigitales.id ASC
 
 END
-
-
-
-
-
-
-

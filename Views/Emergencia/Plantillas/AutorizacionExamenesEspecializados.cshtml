@@ -1,0 +1,151 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Autorización de Exámenes Especializados</title>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 11px; color: #000; }
+        .container { width: 700px; margin: 0 auto; padding: 10px; }
+        .header { text-align: center; margin-bottom: 8px; }
+        .title { font-weight:700; font-size: 16px; letter-spacing: 1px; }
+        .row { display:flex; margin-bottom:6px; }
+        .label { width: 180px; font-weight:600; }
+        .value { flex:1; border-bottom:1px dotted #000; padding-left:6px; }
+        .textarea { min-height: 60px; border: 1px dotted #000; padding:6px; }
+        .sign { margin-top: 30px; display:flex; justify-content:space-between; }
+        .sign .box { width: 200px; text-align:center; border-top:1px solid #000; padding-top:6px; }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .inst {
+            font-size: 12px;
+            line-height: 1;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .logo img {
+            max-height: 64px
+        }
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .checkbox-label {
+            min-width: 120px;
+            font-weight: 600;
+        }
+        .checkbox {
+            width: 16px;
+            height: 16px;
+            border: 1px solid #000;
+            display: inline-block;
+            margin-right: 8px;
+            margin-left: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="@ViewBag.Logo" style="width:50px;" />
+            <div class="inst">
+               DIRECCIÓN DE SALUD Y CENTRO MÉDICO NAVAL <br>
+               "CIRUJANO MAYOR SANTIAGO TAVARÁ"
+            </div>
+        </div>
+        <div class="header">
+            <div class="title">AUTORIZACIÓN DE EXÁMENES ESPECIALIZADOS</div>
+        </div>
+          <div class="row">
+            &nbsp;
+        </div>
+
+        <div class="row">
+            <div class="label">Fecha:</div>
+            <div class="value">@ViewBag.Fecha</div>
+        </div>
+        <div class="row">
+            <div class="label">Al Servicio:</div>
+            <div class="value">@ViewBag.Servicio</div>
+        </div>
+        <div class="row">
+            <div class="label">Paciente:</div>
+            <div class="value">@ViewBag.Paciente</div>
+        </div>
+        <div class="row">
+            <div class="label">Titular:</div>
+            <div class="value">@ViewBag.Titular</div>
+        </div>
+        <div class="row">
+            <div class="label">CIP:</div>
+            <div class="value">@ViewBag.Cip</div>
+        </div>
+        <div class="row">
+            <div class="label">DNI:</div>
+            <div class="value">@ViewBag.NroDocumento</div>
+        </div>
+        <div class="row">
+            <div class="label">Grado de Parentesco:</div>
+            <div class="value">@ViewBag.Grado</div>
+        </div>
+        <div class="row">
+            <div class="label">Unidad o Dependencia:</div>
+            <div class="value">@ViewBag.UnidadDependencia</div>
+        </div>
+        <div class="row">
+            <div class="label">Examen Solicitado:</div>
+            <div class="value">@ViewBag.Procedimiento</div>
+        </div>
+        <div class="row">
+            <div class="label">Dx. Presuntivo:</div>
+            <div class="value">@ViewBag.Diagnostico</div>
+        </div>
+        <div class="row">
+            <div class="label">Resumen Clínico:</div>
+            <div class="value textarea">@ViewBag.Resumen</div>
+        </div>
+
+        <div class="row">
+            <span class="checkbox-label">Emergencia</span>
+            <span class="checkbox">@ViewBag.EsEmergencia</span>
+         </div>
+           <div class="row">
+               <span class="checkbox-label">Hospitalizado</span>
+            <span class="checkbox">@ViewBag.EsHospitalizacion</span>
+            </div>
+             <div class="row">
+                         <span class="checkbox-label">Ambulatorio</span>
+            <span class="checkbox">@ViewBag.EsCE</span>
+            </div>
+     </br>
+        </br>
+        </br>
+        </br>
+        </br>
+                </br>
+        </br>
+        </br>
+        </br>
+        </br>
+           
+       
+
+        <div class="sign">
+            <div class="box">Médico Tratante</div>
+                 <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="box">Jefe del Servicio</div>
+        </div>
+
+        
+    </div>
+</body>
+</html>

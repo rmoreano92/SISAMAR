@@ -20,10 +20,11 @@ using Newtonsoft.Json;
 using WebAppMaternidad.CapaEntidades;
 using DocumentFormat.OpenXml.Office2013.Word;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class RecienNacidoController : Controller
+    public class RecienNacidoController : BaseController
     {
 
         private IWebHostEnvironment _hostingEnvironment;

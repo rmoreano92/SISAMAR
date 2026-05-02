@@ -8,10 +8,11 @@ using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Farmacia
 {
-    public class FarmacoVigilanciaController : Controller
+    public class FarmacoVigilanciaController : BaseController
     {
         public IActionResult Index()
         {

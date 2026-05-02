@@ -10,10 +10,11 @@ using ClosedXML.Excel;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using System.Linq;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Emergencia
 {
-    public class DerivacionController: Controller
+    public class DerivacionController: BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

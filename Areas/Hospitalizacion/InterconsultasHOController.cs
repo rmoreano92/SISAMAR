@@ -14,10 +14,11 @@ using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using WebAppMaternidad.Areas.Comun;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class InterconsultasHOController: Controller
+    public class InterconsultasHOController: BaseController
     {
         public IActionResult Index()
         {
@@ -166,6 +167,7 @@ namespace WebAppMaternidad.Areas.Hospitalizacion
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idReceta, idProducto, "INTER-HO", idAtencionInterconsulta, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

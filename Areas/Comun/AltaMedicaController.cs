@@ -19,10 +19,11 @@ using System.Text;
 using System.Threading.Tasks;
 using WebAppMaternidad.Areas.Sis;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class AltaMedicaController : Controller
+    public class AltaMedicaController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
         private IHttpContextAccessor _httpContextAccessor;
@@ -236,6 +237,34 @@ namespace WebAppMaternidad.Areas.Comun
                 resp3 = await GenerarPapeletaEgreso(atencion.idCuentaAtencion);
             }
 
+
+            if (atencion.idDestinoAtencion == 21 && !(atencion.idServicioEgreso == 3102 || atencion.idServicioEgreso == 3103
+                || atencion.idServicioEgreso == 3155 || atencion.idServicioEgreso == 3156))
+            {
+                await GenerarPapeletaHospitalizacion(
+                    atencion.idCuentaAtencion,
+                    atencion.idAtencion
+                );
+            }
+
+            if (atencion.idDestinoAtencion == 21 && (atencion.idServicioEgreso == 3102 || atencion.idServicioEgreso == 3103
+                || atencion.idServicioEgreso == 3155 || atencion.idServicioEgreso == 3156))
+            {
+                await GenerarPapeletaHospitalizacionFam(
+                    atencion.idCuentaAtencion,
+                    atencion.idAtencion
+                );
+            }
+
+            if (conExoneracion == 1)
+            {
+
+                await GenerarPapeletaExoneracionMed(
+                    atencion.idCuentaAtencion,
+                    atencion.idAtencion
+                );
+            }
+
             int IdReferencia = Int32.Parse(datosRefcon.Tables[0].Rows[0]["IdReferencia"].ToString());
             int IdContraReferencia = Int32.Parse(datosRefcon.Tables[0].Rows[0]["IdContraReferencia"].ToString());
 
@@ -278,11 +307,6 @@ namespace WebAppMaternidad.Areas.Comun
                     atencion.idAtencion
                 );
 
-                bool resp4 = await GenerarPapeletaDescansoMedico(
-                    atencion.idCuentaAtencion,
-                    atencion.idAtencion
-                );
-
                 return resp1;
             }
             catch (Exception e)
@@ -312,6 +336,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
 
                 
                 bool resp = await utilitario.GenerarDocumentoDigital(
@@ -350,6 +375,14 @@ namespace WebAppMaternidad.Areas.Comun
             @ViewBag.Paciente = datosPapeleta.Tables[0].Rows[0]["Paciente"].ToString();
             @ViewBag.FichaFamiliar = datosPapeleta.Tables[0].Rows[0]["FichaFamiliar"].ToString();
             @ViewBag.Parentesco = datosPapeleta.Tables[0].Rows[0]["Parentesco"].ToString();
+            @ViewBag.Grado = datosPapeleta.Tables[0].Rows[0]["Grado"].ToString();
+
+            if (@ViewBag.Parentesco == "TITULAR") {
+                @ViewBag.ParentescoGrado = @ViewBag.Grado;
+            } else {
+                @ViewBag.ParentescoGrado = @ViewBag.Parentesco;
+            }
+
             @ViewBag.Titular = datosPapeleta.Tables[0].Rows[0]["Titular"].ToString();
             @ViewBag.diagnostico = datosPapeleta.Tables[0].Rows[0]["diagnostico"].ToString();
             @ViewBag.dependencia = datosPapeleta.Tables[0].Rows[0]["dependencia"].ToString();
@@ -382,6 +415,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
 
                 
                 bool resp = await utilitario.GenerarDocumentoDigital(
@@ -451,6 +485,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
 
                 
                 bool resp = await utilitario.GenerarDocumentoDigital(
@@ -521,6 +556,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
 
                 bool resp = await utilitario.GenerarDocumentoDigital(
                     idCuentaAtencion,
@@ -545,37 +581,44 @@ namespace WebAppMaternidad.Areas.Comun
 
         public async Task<ActionResult> PapeletaDescansoMedico(int idCuentaAtencion, int idAtencion)
         {
-            DalAtenciones daoAtenciones = new DalAtenciones();
+            DalEvaluacionEmergencia daoEvaluacion = new DalEvaluacionEmergencia();
             DalUtilitario dalUtilitario = new DalUtilitario();
-
-            DataSet datosPapeleta = await daoAtenciones.getDatosAtencion(idCuentaAtencion, idAtencion);
-            DataSet datosAtencion = await dalUtilitario.SeleccionarAtencionAtencionDatosAdicionalesPaciente(idAtencion);
-
-            var fecha = DateTime.Now;
-            string fechaTexto = fecha.ToString("dd/MM/yyyy");
-
-            var filaPapeleta = datosPapeleta.Tables[0].Rows[0];
-            var filaAtencion = datosAtencion.Tables[0].Rows[0];
-
-            DateTime? fechaInicioDescanso = filaAtencion["FechaInicioDescansoMedico"] == DBNull.Value ? null : (DateTime?)filaAtencion["FechaInicioDescansoMedico"];
-            DateTime? fechaFinDescanso = filaAtencion["FechaFinDescansoMedico"] == DBNull.Value ? null : (DateTime?)filaAtencion["FechaFinDescansoMedico"];
-
-            int totalHoras = 0;
-            if (fechaInicioDescanso.HasValue && fechaFinDescanso.HasValue)
+            try
             {
-                totalHoras = (int)Math.Round((fechaFinDescanso.Value.Date.AddDays(1) - fechaInicioDescanso.Value.Date).TotalHours);
+
+                DataSet datosPapeleta = await daoEvaluacion.PapeletaDescansoMedico(idCuentaAtencion);
+
+                var fecha = DateTime.Now;
+                string fechaTexto = fecha.ToString("dd/MM/yyyy");
+
+                var filaPapeleta = datosPapeleta.Tables[0].Rows[0];
+
+                DateTime? fechaInicioDescanso = filaPapeleta["FechaInicioDescansoMed"] == DBNull.Value ? null : (DateTime?)filaPapeleta["FechaInicioDescansoMed"];
+                DateTime? fechaFinDescanso = filaPapeleta["FechaFinDescansoMed"] == DBNull.Value ? null : (DateTime?)filaPapeleta["FechaFinDescansoMed"];
+
+                int totalHoras = 0;
+                if (fechaInicioDescanso.HasValue && fechaFinDescanso.HasValue)
+                {
+                    totalHoras = (int)Math.Round((fechaFinDescanso.Value.Date.AddDays(1) - fechaInicioDescanso.Value.Date).TotalHours);
+                }
+
+                ViewBag.Paciente = filaPapeleta["Paciente"].ToString();
+                ViewBag.Grado = filaPapeleta["Grado"].ToString();
+                ViewBag.Cip = filaPapeleta["FichaFamiliar"].ToString();
+                ViewBag.Dependencia = filaPapeleta["dependencia"].ToString();
+                ViewBag.FechaInicioDescanso = fechaInicioDescanso.HasValue ? fechaInicioDescanso.Value.ToString("dd/MM/yyyy") : "";
+                ViewBag.FechaFinDescanso = fechaFinDescanso.HasValue ? fechaFinDescanso.Value.ToString("dd/MM/yyyy") : "";
+                ViewBag.TotalHorasDescanso = totalHoras;
+                ViewBag.FechaTexto = fechaTexto;
+
+                return PartialView("~/Views/Emergencia/Plantillas/PapeletaDescansoMedico.cshtml");
+            }
+            catch (Exception)
+            {
+
+                return PartialView("~/Views/Emergencia/Plantillas/PapeletaDescansoMedico.cshtml");
             }
 
-            ViewBag.Paciente = filaPapeleta["Paciente"].ToString();
-            ViewBag.Grado = filaPapeleta["Grado"].ToString();
-            ViewBag.Cip = filaPapeleta["FichaFamiliar"].ToString();
-            ViewBag.Dependencia = filaPapeleta["dependencia"].ToString();
-            ViewBag.FechaInicioDescanso = fechaInicioDescanso.HasValue ? fechaInicioDescanso.Value.ToString("dd/MM/yyyy") : "";
-            ViewBag.FechaFinDescanso = fechaFinDescanso.HasValue ? fechaFinDescanso.Value.ToString("dd/MM/yyyy") : "";
-            ViewBag.TotalHorasDescanso = totalHoras;
-            ViewBag.FechaTexto = fechaTexto;
-
-            return PartialView("~/Views/Emergencia/Plantillas/PapeletaDescansoMedico.cshtml");
         }
 
 
@@ -687,6 +730,32 @@ namespace WebAppMaternidad.Areas.Comun
                 resp3 = await GenerarPapeletaEgreso(atencion.idCuentaAtencion);
             }
 
+            if (atencion.idDestinoAtencion == 21)
+            {
+                await GenerarPapeletaHospitalizacion(
+                    atencion.idCuentaAtencion,
+                    atencion.idAtencion
+                );
+            }
+
+            if (atencion.idDestinoAtencion == 21 && (atencion.idServicioEgreso == 1850 || atencion.idServicioEgreso == 3102 || atencion.idServicioEgreso == 3103))
+            {
+                await GenerarPapeletaHospitalizacionFam(
+                    atencion.idCuentaAtencion,
+                    atencion.idAtencion
+                );
+            }
+
+
+            if (conExoneracion == 1)
+            {
+
+                await GenerarPapeletaExoneracionMed(
+                    atencion.idCuentaAtencion,
+                    atencion.idAtencion
+                );
+            }
+
             int IdReferencia = Int32.Parse(datosRefcon.Tables[0].Rows[0]["IdReferencia"].ToString());
             int IdContraReferencia = Int32.Parse(datosRefcon.Tables[0].Rows[0]["IdContraReferencia"].ToString());
 
@@ -794,6 +863,7 @@ namespace WebAppMaternidad.Areas.Comun
                             pdf.tamanio = "A4";
                             pdf.marginX = 20;
                             pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                             resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idAtencion, 0, "FUA", 0, pageHtml, stringHtml, idUsuario, pdf);
                         }
                     }
@@ -831,6 +901,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idAtencion, 0, "H-EPIC", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -1015,6 +1086,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idAtencion, 0, "H-EPIC", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -1212,6 +1284,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idRefCon, 0, tipo, 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -1412,6 +1485,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idCuentaAtencion, 0, "E-PE", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

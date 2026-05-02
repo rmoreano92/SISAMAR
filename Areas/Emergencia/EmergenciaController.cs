@@ -9,14 +9,19 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using SelectPdf;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
+using WebAppMaternidad.Areas.Comun;
 using static CapaEntidades.Enumerados;
+using static CapaEntidades.ListBarItemEnum;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Emergencia
 {
-    public class EmergenciaController : Controller
+    public class EmergenciaController : BaseController
     {
         public IActionResult Index()
         {
@@ -420,6 +425,383 @@ namespace WebAppMaternidad.Areas.Emergencia
             catch (Exception ex)
             {
                 return PartialView("~/Views/Emergencia/Plantillas/PapeletaEgreso.cshtml");
+            }
+        }
+
+        /*[HttpPost]
+        public async Task<ActionResult> GenerarConsentimientoProcesosQxPdf(int idCuentaAtencion, int idAtencion, int idServicio, int eval)
+        {
+            MemoryStream ms = new MemoryStream();
+            try
+            {
+                string rutaFormato = Url.Action(
+                    "ConsentimientoProcesosQxFormato",
+                    "Emergencia",
+                    new { area = "Emergencia", idCuentaAtencion, idAtencion, idServicio, eval },
+                    Request?.Scheme ?? "http");
+
+                HtmlToPdf htmlToPdf = new HtmlToPdf();
+                PdfPageSize pageSize = (PdfPageSize)Enum.Parse(typeof(PdfPageSize), "A4", true);
+                PdfPageOrientation orientation = (PdfPageOrientation)Enum.Parse(typeof(PdfPageOrientation), "Portrait", true);
+
+                htmlToPdf.Options.PdfPageOrientation = orientation;
+                htmlToPdf.Options.PdfPageSize = pageSize;
+                htmlToPdf.Options.MarginLeft = 20;
+                htmlToPdf.Options.MarginRight = 20;
+                htmlToPdf.Options.MarginTop = 20;
+                htmlToPdf.Options.MarginBottom = 20;
+                htmlToPdf.Options.WebPageWidth = 793;
+                htmlToPdf.Options.WebPageHeight = 1122;
+
+                PdfDocument pdfDocument = htmlToPdf.ConvertUrl(rutaFormato);
+                byte[] pdfBytes = pdfDocument.Save();
+                ms.Write(pdfBytes, 0, pdfBytes.Length);
+                ms.Position = 0;
+                pdfDocument.Close();
+
+                return new FileStreamResult(ms, MediaTypeNames.Application.Pdf);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { exep = ex.ToString() });
+            }
+        }*/
+
+        public async Task<ActionResult> GenerarConsentimientoProcesosQxPdf(int idCuentaAtencion, int idAtencion, int idServicio, int eval)
+        {
+            FormatoPdf pdf = new FormatoPdf();
+            MemoryStream resultStream = new MemoryStream();
+            MemoryStream ms = new MemoryStream();
+            UtilitarioController utilitario = new UtilitarioController();
+            string pageHtml;
+
+            try
+            {
+                string usuario = HttpContext.Session.GetString("usuario");
+
+                pageHtml = Url.Action(
+                    "ConsentimientoProcesosQxFormato",
+                    "Emergencia",
+                    new { area = "Emergencia", idCuentaAtencion, idAtencion, idServicio, eval, usuario },
+                    "http"
+                );
+
+                pdf.orientacion = "Portrait"; // igual que tu otro caso
+                pdf.tipoDocumento = "A4";     // importante: ya no es Ticket
+                pdf.pageHtml = pageHtml;
+
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
+
+                byte[] pdfBytes = resultStream.ToArray();
+                ms.Write(pdfBytes, 0, pdfBytes.Length);
+                ms.Position = 0;
+            }
+            catch (Exception ex)
+            {
+                return Json(new { exep = ex.ToString() });
+            }
+
+            return new FileStreamResult(ms, MediaTypeNames.Application.Pdf);
+        }
+
+        public async Task<ActionResult> GenerarAutorizacionExamenesEspecializadosPdf(int idCuentaAtencion, int idAtencion, int idServicio, int eval)
+        {
+            FormatoPdf pdf = new FormatoPdf();
+            MemoryStream resultStream = new MemoryStream();
+            MemoryStream ms = new MemoryStream();
+            UtilitarioController utilitario = new UtilitarioController();
+            string pageHtml;
+
+            try
+            {
+                string usuario = HttpContext.Session.GetString("usuario");
+
+                pageHtml = Url.Action(
+                    "AutorizacionExamenesEspecializadosFormato",
+                    "Emergencia",
+                    new { area = "Emergencia", idCuentaAtencion, idAtencion, idServicio, eval, usuario },
+                    "http"
+                );
+
+                pdf.orientacion = "Portrait";
+                pdf.tipoDocumento = "A4";
+                pdf.pageHtml = pageHtml;
+
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
+
+                byte[] pdfBytes = resultStream.ToArray();
+                ms.Write(pdfBytes, 0, pdfBytes.Length);
+                ms.Position = 0;
+            }
+            catch (Exception ex)
+            {
+                return Json(new { exep = ex.ToString() });
+            }
+
+            return new FileStreamResult(ms, MediaTypeNames.Application.Pdf);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AutorizacionExamenesEspecializadosFormato(int idCuentaAtencion, int idAtencion, int idServicio, int eval)
+        {
+            try
+            {
+                var daoEvalEmergencia = new DalEvaluacionEmergencia();
+
+                // Llamar al procedimiento centralizado que trae todos los datos necesarios
+                var dsAutorizacion = await daoEvalEmergencia.AutorizacionExamenPersonalizado(idCuentaAtencion, idAtencion, idServicio, eval);
+
+                var fechaHoy = DateTime.Now;
+
+                string paciente = "";
+                string titular = "";
+                string diagnostico = "";
+                string procedimiento = "";
+                string medico = "";
+                string nroHistoria = "";
+                string nroCuenta = "";
+                string edad = "";
+                string sexo = "";
+                string servicio = "";
+                string nroDocumento = "";
+                string cip = "";
+                string grado = "";
+                string unidadDependencia = "";
+                string EsEmergencia = "";
+                string EsHospitalizacion = "";
+                string EsCE = "";
+                string resumen = "";
+                string fechaEvaluacion = fechaHoy.ToString("dd/MM/yyyy");
+                string horaEvaluacion = fechaHoy.ToString("HH:mm");
+
+                // Extraer datos del DataSet retornado por el procedimiento
+                if (dsAutorizacion != null && dsAutorizacion.Tables.Count > 0 && dsAutorizacion.Tables[0].Rows.Count > 0)
+                {
+                    var row = dsAutorizacion.Tables[0].Rows[0];
+
+                    // Extraer todos los campos del procedimiento almacenado
+                    paciente = row.Table.Columns.Contains("Paciente") ? row["Paciente"]?.ToString() ?? "" : "";
+                    titular = row.Table.Columns.Contains("Titular") ? row["Titular"]?.ToString() ?? "" : "";
+                    diagnostico = row.Table.Columns.Contains("Diagnostico") ? row["Diagnostico"]?.ToString() ?? "" : "";
+                    procedimiento = row.Table.Columns.Contains("Procedimiento") ? row["Procedimiento"]?.ToString() ?? "" : "";
+                    medico = row.Table.Columns.Contains("Medico") ? row["Medico"]?.ToString() ?? "" : "";
+                    nroHistoria = row.Table.Columns.Contains("NroHistoria") ? row["NroHistoria"]?.ToString() ?? "" : "";
+                    nroCuenta = row.Table.Columns.Contains("NroCuenta") ? row["NroCuenta"]?.ToString() ?? "" : "";
+                    edad = row.Table.Columns.Contains("Edad") ? row["Edad"]?.ToString() ?? "" : "";
+                    sexo = row.Table.Columns.Contains("Sexo") ? row["Sexo"]?.ToString() ?? "" : "";
+                    servicio = row.Table.Columns.Contains("Servicio") ? row["Servicio"]?.ToString() ?? "" : "";
+                    nroDocumento = row.Table.Columns.Contains("NroDocumento") ? row["NroDocumento"]?.ToString() ?? "" : "";
+                    cip = row.Table.Columns.Contains("CIP") ? row["CIP"]?.ToString() ?? "" : "";
+                    grado = row.Table.Columns.Contains("Grado") ? row["Grado"]?.ToString() ?? "" : "";
+                    unidadDependencia = row.Table.Columns.Contains("UnidadDependencia") ? row["UnidadDependencia"]?.ToString() ?? "" : "";
+                    EsEmergencia = row.Table.Columns.Contains("EsEmergencia") ? row["EsEmergencia"]?.ToString() ?? "" : "";
+                    EsHospitalizacion = row.Table.Columns.Contains("EsHospitalizacion") ? row["EsHospitalizacion"]?.ToString() ?? "" : "";
+                    EsCE = row.Table.Columns.Contains("EsCE") ? row["EsCE"]?.ToString() ?? "" : "";
+                    resumen= row.Table.Columns.Contains("resumen") ? row["resumen"]?.ToString() ?? "" : "";
+
+                    // Extraer fechas si están disponibles
+                    if (row.Table.Columns.Contains("FechaEvaluacion") && !string.IsNullOrEmpty(row["FechaEvaluacion"]?.ToString()))
+                    {
+                        fechaEvaluacion = row["FechaEvaluacion"]?.ToString() ?? fechaEvaluacion;
+                    }
+
+                    if (row.Table.Columns.Contains("HoraEvaluacion") && !string.IsNullOrEmpty(row["HoraEvaluacion"]?.ToString()))
+                    {
+                        horaEvaluacion = row["HoraEvaluacion"]?.ToString() ?? horaEvaluacion;
+                    }
+                }
+
+                // Asignar datos a ViewBag para la plantilla
+                ViewBag.Paciente = paciente;
+                ViewBag.resumen = resumen;
+                ViewBag.NroDocumento = nroDocumento;
+                ViewBag.Cip = cip;
+                ViewBag.Grado = grado;
+                ViewBag.Titular = titular;
+                ViewBag.Diagnostico = diagnostico;
+                ViewBag.Procedimiento = procedimiento;
+                ViewBag.Medico = medico;
+                ViewBag.NroHistoriaClinica = nroHistoria;
+                ViewBag.NroCuenta = nroCuenta;
+                ViewBag.Edad = edad;
+                ViewBag.Sexo = sexo;
+                ViewBag.Servicio = servicio;
+                ViewBag.UnidadDependencia = unidadDependencia;
+                ViewBag.FechaEvaluacion = fechaEvaluacion;
+                ViewBag.HoraEvaluacion = horaEvaluacion;
+                ViewBag.Fecha = fechaHoy.ToString("dd/MM/yyyy");
+                ViewBag.Hora = fechaHoy.ToString("HH:mm");
+                ViewBag.FechaImpresion = fechaHoy.ToString("dd/MM/yyyy HH:mm:ss");
+                ViewBag.Usuario = HttpContext.Session.GetString("user") ?? "";
+                ViewBag.EsEmergencia = EsEmergencia;
+                ViewBag.EsHospitalizacion = EsHospitalizacion;
+                ViewBag.EsCE = EsCE;
+
+                return PartialView("~/Views/Emergencia/Plantillas/AutorizacionExamenesEspecializados.cshtml");
+            }
+            catch (Exception)
+            {
+
+                ViewBag.resumen = "";
+                ViewBag.Paciente = "";
+                ViewBag.Titular = "";
+                ViewBag.Diagnostico = "";
+                ViewBag.Procedimiento = "";
+                ViewBag.Medico = "";
+                ViewBag.NroHistoriaClinica = "";
+                ViewBag.NroCuenta = "";
+                ViewBag.Edad = "";
+                ViewBag.Sexo = "";
+                ViewBag.Servicio = "";
+                ViewBag.FechaEvaluacion = DateTime.Now.ToString("dd/MM/yyyy");
+                ViewBag.HoraEvaluacion = DateTime.Now.ToString("HH:mm");
+                ViewBag.Fecha = DateTime.Now.ToString("dd/MM/yyyy");
+                ViewBag.Hora = DateTime.Now.ToString("HH:mm");
+                ViewBag.FechaImpresion = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                ViewBag.EsEmergencia = "";
+                ViewBag.EsHospitalizacion = "";
+                ViewBag.EsCE = "";  
+                ViewBag.Usuario = HttpContext.Session.GetString("user") ?? "";
+                return PartialView("~/Views/Emergencia/Plantillas/AutorizacionExamenesEspecializados.cshtml");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConsentimientoProcesosQxFormato(int idCuentaAtencion, int idAtencion, int idServicio, int eval)
+        {
+            try
+            {
+                var daoEvalEmergencia = new DalEvaluacionEmergencia();
+                var daoEvalEspecialidades = new DalEvaluacionEspecialidades();
+                var daoAtenciones = new DalAtenciones();
+                var dsAt = await Task.Run(() => daoEvalEmergencia.FormatoConsentimientoProcQxEmergencia(idCuentaAtencion));
+                var dsEvaluacion = await daoEvalEspecialidades.SeleccionarInformeEvaluacionEmergencia(idAtencion, idServicio, eval, 0);
+                var dsDiagnosticos = await daoAtenciones.AtencionesDiagnosticosSeleccionarPorAtencionPorNumeroEvaluacion(
+                    idAtencion,
+                    (int)Enumerados.TiposDiagnostico.EmergenciaIngreso,
+                    idServicio,
+                    eval
+                );
+                var fechaHoy = DateTime.Now;
+
+                string paciente = "";
+                string parentesco = "";
+                string titular = "";
+                string diagnostico = "";
+                string procedimiento = "";
+                string medico = "";
+                string nroHistoria = "";
+                string nroCuenta = "";
+                string edad = "";
+                string sexo = "";
+                string servicio = "";
+
+                string nroDocumento = "";
+                string cip = "";
+                string grado = "";
+                string rne = "";
+                string cmp = "";
+                string nroDocumentoMedico = "";
+                
+                
+                string fechaEvaluacion = fechaHoy.ToString("dd/MM/yyyy");
+                string horaEvaluacion = fechaHoy.ToString("HH:mm");
+
+                if (dsAt != null && dsAt.Tables.Count > 0 && dsAt.Tables[0].Rows.Count > 0)
+                {
+                    var row = dsAt.Tables[0].Rows[0];
+                    paciente = row.Table.Columns.Contains("Paciente") ? row["Paciente"]?.ToString() ?? "" : "";
+                    parentesco = row.Table.Columns.Contains("Parentesco") ? row["Parentesco"]?.ToString() ?? "" : "";
+                    titular = row.Table.Columns.Contains("CIP") ? row["CIP"]?.ToString() ?? "" : "";
+                    diagnostico = row.Table.Columns.Contains("Diagnostico") ? row["Diagnostico"]?.ToString() ?? "" : "";
+                    medico = row.Table.Columns.Contains("Medico") ? row["Medico"]?.ToString() ?? "" : "";
+                    edad = row.Table.Columns.Contains("Edad") ? row["Edad"]?.ToString() ?? "" : "";
+
+                    nroDocumento = row.Table.Columns.Contains("NroDocumento") ? row["NroDocumento"]?.ToString() ?? "" : "";
+                    nroDocumentoMedico = row.Table.Columns.Contains("NroDocumentoMedico") ? row["NroDocumentoMedico"]?.ToString() ?? "" : "";
+                    cip = row.Table.Columns.Contains("CIP") ? row["CIP"]?.ToString() ?? "" : "";
+                    grado = row.Table.Columns.Contains("GradoIntruccion") ? row["GradoIntruccion"]?.ToString() ?? "" : "";
+                    servicio = row.Table.Columns.Contains("Servicio") ? row["Servicio"]?.ToString() ?? "" : "";
+                    rne = row.Table.Columns.Contains("RNE") ? row["RNE"]?.ToString() ?? "" : "";
+                    cmp = row.Table.Columns.Contains("Colegiatura") ? row["Colegiatura"]?.ToString() ?? "" : "";
+                    procedimiento = row.Table.Columns.Contains("procedimiento") ? row["procedimiento"]?.ToString() ?? "" : "";
+                    
+                }
+
+                if (dsEvaluacion != null && dsEvaluacion.Tables.Count > 0 && dsEvaluacion.Tables[0].Rows.Count > 0)
+                {
+                    var rowEvaluacion = dsEvaluacion.Tables[0].Rows[0];
+                    paciente = rowEvaluacion.Table.Columns.Contains("Paciente") ? rowEvaluacion["Paciente"]?.ToString() ?? paciente : paciente;
+                    nroCuenta = rowEvaluacion.Table.Columns.Contains("NroCuenta") ? rowEvaluacion["NroCuenta"]?.ToString() ?? "" : "";
+                    nroHistoria = rowEvaluacion.Table.Columns.Contains("NroHistoriaClinica") ? rowEvaluacion["NroHistoriaClinica"]?.ToString() ?? "" : "";
+                    //edad = rowEvaluacion.Table.Columns.Contains("Edad") ? rowEvaluacion["Edad"]?.ToString() ?? "" : "";
+                    sexo = rowEvaluacion.Table.Columns.Contains("Sexo") ? rowEvaluacion["Sexo"]?.ToString() ?? "" : "";
+                    //servicio = rowEvaluacion.Table.Columns.Contains("Servicio") ? rowEvaluacion["Servicio"]?.ToString() ?? "" : "";
+                    //medico = rowEvaluacion.Table.Columns.Contains("Medico") ? rowEvaluacion["Medico"]?.ToString() ?? medico : medico;
+                    fechaEvaluacion = rowEvaluacion.Table.Columns.Contains("FechaEvaluacion") ? rowEvaluacion["FechaEvaluacion"]?.ToString() ?? fechaEvaluacion : fechaEvaluacion;
+                    horaEvaluacion = rowEvaluacion.Table.Columns.Contains("HoraEvaluacion") ? rowEvaluacion["HoraEvaluacion"]?.ToString() ?? horaEvaluacion : horaEvaluacion;
+                }
+
+                /*if (dsDiagnosticos != null && dsDiagnosticos.Tables.Count > 0 && dsDiagnosticos.Tables[0].Rows.Count > 0)
+                {
+                    procedimiento = string.Join("; ", dsDiagnosticos.Tables[0].AsEnumerable()
+                        .Select(x => x.Table.Columns.Contains("Diagnostico") ? x["Diagnostico"]?.ToString() : "")
+                        .Where(x => !string.IsNullOrWhiteSpace(x)));
+                }*/
+
+                ViewBag.Paciente = paciente;
+
+                ViewBag.NroDocumento = nroDocumento;
+                ViewBag.Cip = cip;
+                ViewBag.Grado = grado;
+                ViewBag.rne = rne;
+                ViewBag.cmp = cmp;
+                
+
+                ViewBag.Parentesco = parentesco;
+                ViewBag.Titular = titular;
+                ViewBag.Diagnostico = diagnostico;
+                ViewBag.Procedimiento = procedimiento;
+                ViewBag.Medico = medico;
+                ViewBag.NroDocumentoMedico = nroDocumentoMedico;
+                ViewBag.NroHistoriaClinica = nroHistoria;
+                ViewBag.NroCuenta = nroCuenta;
+                ViewBag.Edad = edad;
+                ViewBag.Sexo = sexo;
+                ViewBag.Servicio = servicio;
+                ViewBag.FechaEvaluacion = fechaEvaluacion;
+                ViewBag.HoraEvaluacion = horaEvaluacion;
+                ViewBag.Fecha = fechaHoy.ToString("dd/MM/yyyy");
+                ViewBag.Hora = fechaHoy.ToString("HH:mm");
+                ViewBag.FechaImpresion = fechaHoy.ToString("dd/MM/yyyy HH:mm:ss");
+                ViewBag.Usuario = HttpContext.Session.GetString("user") ?? "";
+
+                return PartialView("~/Views/Emergencia/Plantillas/ConsentimientoProcesosQx.cshtml");
+            }
+            catch (Exception)
+            {
+                ViewBag.Paciente = "";
+                ViewBag.Parentesco = "";
+                ViewBag.Titular = "";
+                ViewBag.Diagnostico = "";
+                ViewBag.Procedimiento = "";
+                ViewBag.Medico = "";
+                ViewBag.NroHistoriaClinica = "";
+                ViewBag.NroCuenta = "";
+                ViewBag.Edad = "";
+                ViewBag.Sexo = "";
+                ViewBag.Servicio = "";
+                ViewBag.FechaEvaluacion = DateTime.Now.ToString("dd/MM/yyyy");
+                ViewBag.HoraEvaluacion = DateTime.Now.ToString("HH:mm");
+                ViewBag.Fecha = DateTime.Now.ToString("dd/MM/yyyy");
+                ViewBag.Hora = DateTime.Now.ToString("HH:mm");
+                ViewBag.FechaImpresion = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                ViewBag.Usuario = HttpContext.Session.GetString("user") ?? "";
+                return PartialView("~/Views/Emergencia/Plantillas/ConsentimientoProcesosQx.cshtml");
             }
         }
     }

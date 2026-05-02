@@ -15,10 +15,11 @@ using System.Threading.Tasks;
 using WebAppMaternidad.Areas.Comun;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Estadistica
 {
-    public class OcurrenciasMedicasController : Controller
+    public class OcurrenciasMedicasController : BaseController
     {
         public IActionResult Index()
         {
@@ -149,6 +150,7 @@ namespace WebAppMaternidad.Areas.Estadistica
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(0, idRegistro, 0, "GUARDIA", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

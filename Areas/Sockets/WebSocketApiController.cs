@@ -14,11 +14,12 @@ using System.Threading.Tasks;
 using WebAppMaternidad.Controllers;
 using WebAppMaternidad.Models;
 using WebAppMaternidad.Services;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Sockets
 {
 
-    public class WebSocketApiController : Controller
+    public class WebSocketApiController : BaseController
     {
 
         private readonly ILogger<WebSocketApiController> _logger;

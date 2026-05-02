@@ -7,10 +7,11 @@ using WebAppMaternidad.CapaDatos;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.FactConfig
 {
-    public class TiposTarifaController : Controller
+    public class TiposTarifaController : BaseController
     {
         public IActionResult Index()
         {

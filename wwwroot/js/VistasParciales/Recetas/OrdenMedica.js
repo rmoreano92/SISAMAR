@@ -181,9 +181,12 @@
                     confirmButtonColor: '#4fb7fe',
                     cancelButtonColor: '#EF6F6C',
                     confirmButtonText: 'Aceptar'
-                }).then(async function () {
-                    Ordenes.EliminarOrdenesMedicas(objrow.idReceta)
-                    await OrdenMedica.CargarOrdenesMedicasPorIdCuentaAtencion(Variables.IdCuentaAtencion);
+                }).then(async function (result) {
+                    if (result.isConfirmed) {
+                        Ordenes.EliminarOrdenesMedicas(objrow.idReceta)
+                        await OrdenMedica.CargarOrdenesMedicasPorIdCuentaAtencion(Variables.IdCuentaAtencion);
+                    } 
+                    
                 }, function (dimiss) { });
             }
             else {

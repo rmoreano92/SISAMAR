@@ -7,10 +7,11 @@ using CapaDatos;
 using CapaEntidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Seguimiento
 {
-    public class SeguimientoController : Controller
+    public class SeguimientoController : BaseController
     {
         public IActionResult Index()
         {

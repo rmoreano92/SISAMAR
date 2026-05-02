@@ -482,7 +482,7 @@ var Ordenes = {
                     });
                     $('.chzn-select').chosen().trigger("chosen:updated");
                 } else {
-                    alert("La sesion ya expiro se volvera a recargar la pagina XD")
+                    alert("La sesión ya expiró se volverá a recargar la página")
                 }
             })
     },
@@ -500,7 +500,7 @@ var Ordenes = {
                     });
                     $('.chzn-select').chosen().trigger("chosen:updated");
                 } else {
-                    alert("La sesion ya expiro se volvera a recargar la pagina XD")
+                    alert("La sesión ya expiró se volverá a recargar la página")
                 }
             })
     },

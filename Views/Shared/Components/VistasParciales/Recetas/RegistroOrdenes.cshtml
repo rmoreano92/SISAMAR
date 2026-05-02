@@ -144,12 +144,12 @@
 
                                             @if (NuevosFormulariosRegistro == "1")
                                             {
-                                                @* <li class="nav-item">
-                                                    <a class="nav-link" href="#farmaciaAntimicro" role="tab" id="farmaciaAntimicro-tab" data-toggle="tab" aria-controls="hats">Antimicrobianos Restringidos</a>
-                                                </li> *@
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="#farmaciaIntSanit" role="tab" id="farmaciaIntSanit-tab" data-toggle="tab" aria-controls="hats">Intervención Sanitaria</a>
                                                 </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#farmaciaAntimicro" role="tab" id="farmaciaAntimicro-tab" data-toggle="tab" aria-controls="hats">PROA</a>
+                                                </li>                                                 
                                             }
                                             
                                         </ul>
@@ -387,6 +387,7 @@
                                                 </div>
 
                                             </div>
+                                            <!-- MGAMERO - PROA -->
                                             <div role="tabpanel" class="tab-pane fade" id="farmaciaAntimicro" aria-labelledby="farmaciaAntimicro-tab">
 
                                                 <form>
@@ -395,6 +396,239 @@
                                                             <i class="fa fi fi-ss-prescription-bottle-pill m-r-5" style="color: #ccc;"></i>
                                                             <label id="lblFarmaciaAntimic" style="color:#ff0076; font-weight: bolder; letter-spacing: 1px; font-size: 16px;" class="form-control-label"></label>
                                                         </legend>
+
+<!-- PROA - Inicio -->
+<style>
+.tabla-proa {
+    font-size: 12px;
+}
+
+.tabla-proa th,
+.tabla-proa td {
+    padding: .18rem .35rem;
+    vertical-align: middle;
+}
+
+.tabla-proa .col-num {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.tabla-proa .col-check {
+    width: 32px;
+    min-width: 32px;
+    white-space: nowrap;
+}
+
+.tabla-proa .col-fecha {
+    width: 130px;
+    min-width: 130px;
+    white-space: nowrap;
+}
+
+.tabla-proa input[type="date"] {
+    min-width: 115px;
+    padding: .10rem .25rem;
+    height: calc(1.4em + .5rem + 2px);
+}
+</style>
+
+                <input type="hidden" id="hdProaJson" name="hdProaJson" />
+
+                <div class="row mx-0">
+                    <!-- SINDROMES -->
+                    <div class="col-md-6 pr-md-1">
+                        <table class="table table-sm table-bordered mb-0 tabla-proa">
+                            <thead>
+                                <tr>
+                                    <th colspan="3">Síndrome Clínico que amerita la prescripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="col-num">1.</td>
+                                    <td>Infección del tracto urinario</td>
+                                    <td class="col-check text-center">
+                                        <input type="checkbox" class="chk-sindrome" data-id="1"
+                                               data-texto="Infección del tracto urinario">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num">2.</td>
+                                    <td>Infección del tracto respiratorio inferior (NAV, NIH)</td>
+                                    <td class="col-check text-center">
+                                        <input type="checkbox" class="chk-sindrome" data-id="2"
+                                               data-texto="Infección del tracto respiratorio inferior (NAV, NIH)">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num">3.</td>
+                                    <td>Infección de vías biliares</td>
+                                    <td class="col-check text-center">
+                                        <input type="checkbox" class="chk-sindrome" data-id="3"
+                                               data-texto="Infección de vías biliares">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num">4.</td>
+                                    <td>Infección intraabdominal asociada a servicios de salud [no biliar]</td>
+                                    <td class="col-check text-center">
+                                        <input type="checkbox" class="chk-sindrome" data-id="4"
+                                               data-texto="Infección intraabdominal asociada a servicios de salud [no biliar]">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num">5.</td>
+                                    <td>Neutropenia febril</td>
+                                    <td class="col-check text-center">
+                                        <input type="checkbox" class="chk-sindrome" data-id="5"
+                                               data-texto="Neutropenia febril">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num">6.</td>
+                                    <td>Pie diabético</td>
+                                    <td class="col-check text-center">
+                                        <input type="checkbox" class="chk-sindrome" data-id="6"
+                                               data-texto="Pie diabético">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num">7.</td>
+                                    <td>Infección de Sitio Quirúrgico</td>
+                                    <td class="col-check text-center">
+                                        <input type="checkbox" class="chk-sindrome" data-id="7"
+                                               data-texto="Infección de Sitio Quirúrgico">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num">8.</td>
+                                    <td>Infección del Sistema Nervioso Central</td>
+                                    <td class="col-check text-center">
+                                        <input type="checkbox" class="chk-sindrome" data-id="8"
+                                               data-texto="Infección del Sistema Nervioso Central">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num">9.</td>
+                                    <td>
+                                        Otro foco no consignado en la lista
+                                        <div class="mt-1">
+                                            <input type="text"
+                                                id="txtOtroSindrome"
+                                                class="form-control form-control-sm"
+                                                placeholder="Especifique otro síndrome"
+                                                style="display:none;">
+                                        </div>
+                                    </td>
+                                    <td class="col-check text-center">
+                                        <input type="checkbox" class="chk-sindrome" data-id="9"
+                                            data-texto="Otro foco no consignado en la lista">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- CULTIVOS -->
+                    <div class="col-md-6 pl-md-1">
+                        <table class="table table-sm table-bordered mb-0 tabla-proa">
+                            <thead>
+                                <tr>
+                                    <th>Tipo de cultivo</th>
+                                    <th class="col-check text-center">✔</th>
+                                    <th class="col-fecha">Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Orina</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="chk-cultivo" data-id="1" data-texto="Orina">
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control form-control-sm txt-fecha-cultivo" disabled>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sang.</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="chk-cultivo" data-id="2" data-texto="Sang.">
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control form-control-sm txt-fecha-cultivo" disabled>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sec. Respiratoria</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="chk-cultivo" data-id="3" data-texto="Sec. Respiratoria">
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control form-control-sm txt-fecha-cultivo" disabled>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Cont. peritoneal</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="chk-cultivo" data-id="4" data-texto="Cont. peritoneal">
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control form-control-sm txt-fecha-cultivo" disabled>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Líquido pleural</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="chk-cultivo" data-id="5" data-texto="Líquido pleural">
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control form-control-sm txt-fecha-cultivo" disabled>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Líquido sinovial</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="chk-cultivo" data-id="6" data-texto="Líquido sinovial">
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control form-control-sm txt-fecha-cultivo" disabled>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>LCR</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="chk-cultivo" data-id="7" data-texto="LCR">
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control form-control-sm txt-fecha-cultivo" disabled>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Otros
+                                        <div class="mt-1">
+                                            <input type="text"
+                                                id="txtOtroCultivo"
+                                                class="form-control form-control-sm"
+                                                placeholder="Especifique otro cultivo"
+                                                style="display:none;">
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="chk-cultivo" data-id="8" data-texto="Otros">
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control form-control-sm txt-fecha-cultivo" disabled>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+<!-- PROA - Fin -->
+
                                                         <div class="row m-0 OpcionesOrdenes">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group m-0">
@@ -425,8 +659,8 @@
                                                             </div>
                                                             <div class="col-lg-3">
                                                                 <div class="form-group m-0">
-                                                                    <label for="txtFrecuenciaAntimic">Frecuencia</label>
-                                                                    <input id="txtFrecuenciaAntimic" autocomplete="off" placeholder="Frecuencia" class="form-control form-control-sm" data-placeholder="Seleccione una opción">
+                                                                    <label for="txtFrecuenciaAntimic">Dias</label>
+                                                                    <input id="txtFrecuenciaAntimic" autocomplete="off" placeholder="Dias" class="form-control form-control-sm" data-placeholder="Seleccione una opción">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-3">

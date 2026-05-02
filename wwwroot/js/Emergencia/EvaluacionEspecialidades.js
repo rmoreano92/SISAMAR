@@ -264,7 +264,7 @@
 
                 swal({
                     title: 'Evaluaciones',
-                    text: "Paciente iniciara la Evaluación N° " + (eval + 1),
+                    text: "Paciente iniciará la evaluación N° " + (eval + 1),
                     type: 'info',
                     allowOutsideClick: false,
                 }).done();
@@ -359,7 +359,7 @@
                 } else {
                     if (EvaluacionEspecialidad.ValidarVariablesEvaluacionEmergencia()) {
                         Cargando(1);
-                        Triaje.GuardarTriajeHospEmeg(Variables.IdAtencion, Variables.IdServicioEgreso, 0);
+                        Triaje.GuardarTriajeHospEmeg(Variables.IdAtencion, Variables.IdServicioIngreso, 0);
                         const data1 = await EvaluacionEspecialidad.GuardarEvaluacionEmergencia();
                         const data2 = await EvaluacionEspecialidad.GuardarExamenFisico();
 
@@ -780,7 +780,7 @@
         //$('#hdIdServicioPaciente').val(objrowTb.idServicioEgreso);
         IdCuentaAtencionTemp = Variables.IdCuentaAtencion;       //variable para conservar el IdCuentaAtencion despues de abrir el modulo de SEGUIMIENTO
 
-        Triaje.listaTriajeEmgHosp(Variables.IdAtencion, Variables.IdServicioEgreso, 0);
+        Triaje.listaTriajeEmgHosp(Variables.IdAtencion, Variables.IdServicioIngreso, 0);
 
         var EvaEsp = EvaluacionEspecialidad.SeleccionarEvaluacion(Variables.IdAtencion);
         //var EvaDetEmer = EvaluacionEspecialidad.SeleccionarEvaluacionDetalle(Variables.IdAtencion, Variables.IdServicioEgreso);
@@ -797,7 +797,10 @@
         $("#txtEdadMes").val(edad.meses);
         $("#txtEdadDia").val(edad.dias);
 
-        $('#txtGlasgow').val(EvaEsp.glasgow);
+        if (EvaEsp && EvaEsp.glasgow !== undefined && EvaEsp.glasgow !== null) {
+            $('#txtGlasgow').val(EvaEsp.glasgow);
+            $('#txtGlasgowTriaje').val(EvaEsp.glasgow);//19:49
+        }
 
         //----------------------MOTIVO ATENCION-----------------------//        
         $('#chkDolor').prop('checked', EvaEsp.dolor);
@@ -952,13 +955,29 @@
         }
 
         var ListDiagnosticos = Diagnosticos.DevolverDiagnosticos();
-        if (ListDiagnosticos.toArray().length == 0 && EvaluacionNeonatal.nuevaEvaluacion == true) {
+        if (ListDiagnosticos.toArray().length == 0/* && EvaluacionNeonatal.nuevaEvaluacion == true*/) {
             alerta('2', 'Ingresa un diagnóstico');
             $('.nav-tabs a[href="#diagnosticos"]').tab('show');
             return false;
         }
 
         return true;
+    },
+
+    obtenerGlasgowSegunTipoPaciente() {
+        const idTipoPaciente = ($('#cboTipoPaciente').val() || '').toString();
+        const descripcionTipoPaciente = ($('#cboTipoPaciente option:selected').text() || '').toLowerCase();
+        const esPediatrico = descripcionTipoPaciente.includes('pediatr');
+        const usaGlasgowCabecera = esPediatrico || idTipoPaciente === '3'; //19:49
+
+        const glasgowCabecera = ($('#txtGlasgow').val() || '').trim();
+        const glasgowTriaje = ($('#txtGlasgowTriaje').val() || '').trim();
+
+        if (usaGlasgowCabecera) {
+            return glasgowCabecera || glasgowTriaje;
+        }
+
+        return glasgowTriaje || glasgowCabecera;
     },
 
 
@@ -974,7 +993,8 @@
 
         formData.append('TipoPaciente', $('#cboTipoPaciente').val());
         formData.append('Prioridad', $('#cboPrioridad').val());
-        formData.append('Glasgow', $('#txtGlasgow').val());
+        //formData.append('Glasgow', $('#txtGlasgow').val());
+        formData.append('Glasgow', EvaluacionEspecialidad.obtenerGlasgowSegunTipoPaciente()); //19:49
 
         ///////////////////////MOTIVO ATENCION//////////////////////////
         /*formData.append('FechaUR', $('#txtFechaFUR').val());
@@ -1400,6 +1420,7 @@
         EvaluacionEspecialidad.modificaCabecera = false;
         EvaluacionEspecialidad.idMedicoPrimeraEvaluacion = 0;
 
+        $("#txtGlasgow").hide();
         $("#btnGuardarEva").hide();
 
         asigna_FechaHoraAtencion(null);

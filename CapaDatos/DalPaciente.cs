@@ -677,7 +677,7 @@ namespace CapaDatos
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter())
                     {
-                        string sql = "HistoriasClinicasSeleccionarPorId";
+                        string sql = "web_HistoriasClinicasSeleccionarPorId";
                         da.SelectCommand = new SqlCommand(sql, conn);
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
 

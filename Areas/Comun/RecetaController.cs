@@ -23,10 +23,11 @@ using WebAppMaternidad.CapaEntidades;
 using DocumentFormat.OpenXml.Drawing.Diagrams;
 using WebAppMaternidad.Areas.ConsultaExterna;
 
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class RecetaController : Controller
+    public class RecetaController : BaseController
     {
 
         public IActionResult Index()
@@ -191,6 +192,7 @@ namespace WebAppMaternidad.Areas.Comun
             string lstRecetaAnatoPatologica, int idRecetaAnaPatologica, string lstRecetaPatalogiaClinica, int idRecetaPatoClinica, 
             string lstRecetaBancoSangre, int idRecetaBancoSangre, string lstRecetaFarmacia, int idRecetaFarmacia, 
             string lstRecetaFarmaciaAntimicrobiano, int idRecetaFarmaciaAntimicrobiano, int recetaAntimicrobiano,
+            string lstRecetaFarmaciaAntimicrobianoPROA, // MGAMERO
             string lstRecetaFarmaciaIntervencionSanitaria, int idRecetaFarmaciaIntervencionSanitaria, int recetaIntervencionSanitaria,
             string lstRecetaTomografia, int idRecetaTomografia, // Jdelgado Tomografia
             Receta objreceta,int  idServicioGeneral, int nroEvaluacion, string otrosMedicamentos, // MGAMERO
@@ -308,6 +310,8 @@ namespace WebAppMaternidad.Areas.Comun
                 receta.otrosMedicamentos = otrosMedicamentos;
                 receta.idMedico = objreceta.idMedico;
                 receta.idUsuario = idUsuario;
+
+                
 
                 if (registraModificaElimina)
                 {
@@ -1090,6 +1094,17 @@ namespace WebAppMaternidad.Areas.Comun
                         {
                             //respFarmacia = daoRecetas.InsertaRecetaDetalle(lstobjFarmacia, idRecetaFarmacia);
                             respFarmaciaAntimicrobiano = await daoRecetas.InsertaRecetaDetalleV2(lstobjFarmaciaAntimicrobiano, idRecetaFarmaciaAntimicrobiano);           //KHOYOSI
+                        
+                        // PROA - INICIO
+                            if (respFarmaciaAntimicrobiano)
+                            {
+                                await daoRecetas.GuardarRecetaFarmaciaAntimicrobianoPROA( 
+                                    lstRecetaFarmaciaAntimicrobianoPROA,
+                                    idRecetaFarmaciaAntimicrobiano
+                                );
+                            }
+                        // PROA - FIN
+
                             var recpdf = await GenerarRecetaOrdenMedica(receta.idCuentaAtencion, idRecetaFarmaciaAntimicrobiano, "F");        //KHOYOSI -GENERAR PDF DE RECETA
                         }
                         mensajeRectas = mensajeRectas + "<br> Receta de Farmacia Antimic.: " + idRecetaFarmaciaAntimicrobiano;
@@ -1216,11 +1231,15 @@ namespace WebAppMaternidad.Areas.Comun
             {
                 return Json(new { session = false });
             }
-            DataSet listaRc;
 
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            DataSet listaRc;
             DalRecetas daoRecetas = new DalRecetas();
 
-            listaRc = await daoRecetas.ListarRecetas( nroReceta,  nroCuenta,  nroDni,  nroHistoria,  apellidoPaterno,  apellidoMaterno, idServicioGeneral);
+            listaRc = await daoRecetas.ListarRecetas( nroReceta,  nroCuenta,  nroDni,  nroHistoria,  apellidoPaterno,  apellidoMaterno, idServicioGeneral, idIpressInt);
 
             return Json(new { listaRecetas = listaRc,session=true });
 
@@ -1439,21 +1458,25 @@ namespace WebAppMaternidad.Areas.Comun
             Comun.ClUtilirario cl = new Comun.ClUtilirario();
             Conexion con = new Conexion();
 
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
             sWebRootFolder = con.ObtenerServidorArchivos();
             tipo = "REC-" + tipo;
             path = Path.Combine(sWebRootFolder, "Recetas", (idCuentaAtencion.ToString() + idReceta.ToString() + (DateTime.Now.ToString("HH:mm:ss")).Replace(":", "") + tipo + ".pdf"));
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             string idAtencion = "0";
@@ -1998,6 +2021,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idReceta, 0, "REC", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -2034,6 +2058,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idReceta, 0, "REC", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -2132,24 +2157,27 @@ namespace WebAppMaternidad.Areas.Comun
             //bool farmaciaHospi = false;
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             DataSet lsParametros = new DataSet();
-            DataSet lsAtencion, lsDiagnosticos, lsRecetas, lsRecetasDestalle;
+            DataSet lsAtencion, lsDiagnosticos, lsRecetas, lsRecetasDestalle, lsProa;
             DalAtenciones daoAtenciones = new DalAtenciones();
             DalRecetas daoRecetas = new DalRecetas();
             DalDiagnostico daoDiagnostico = new DalDiagnostico();
             DalParametros daoParametros = new DalParametros();
-                       
+        
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
             
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
             nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
             direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
             telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             string idAtencion = "0";
@@ -2163,13 +2191,16 @@ namespace WebAppMaternidad.Areas.Comun
 
             @ViewBag.NombreInstitucion = nombre;
             @ViewBag.DireccionInstitucion = direccion;
-            @ViewBag.TelefonoInstitucion = telefono;
+            @ViewBag.TelefonoInstitucion = telefono; 
             @ViewBag.FechaVigencia = lsRecetas.Tables[0].Rows[0]["fechaVigencia"].ToString();
             @ViewBag.FechaReceta = lsRecetas.Tables[0].Rows[0]["FechaReceta"].ToString();
             @ViewBag.Paciente = lsAtencion.Tables[0].Rows[0]["ApellidoPaterno"].ToString() + " " + lsAtencion.Tables[0].Rows[0]["ApellidoMaterno"].ToString() + " " + lsAtencion.Tables[0].Rows[0]["nombres"].ToString();
             @ViewBag.Historia = lsAtencion.Tables[0].Rows[0]["NroHistoriaClinica"].ToString();
             @ViewBag.TipoPlan = lsAtencion.Tables[0].Rows[0]["planA"].ToString();
             @ViewBag.Edad = lsAtencion.Tables[0].Rows[0]["edadPaciente"].ToString();
+            @ViewBag.Sexo = lsAtencion.Tables[0].Rows[0]["sexo"].ToString();
+            @ViewBag.NroDocumento = lsAtencion.Tables[0].Rows[0]["NroDocumento"].ToString();
+            @ViewBag.CIP = lsAtencion.Tables[0].Rows[0]["FichaFamiliar"].ToString();
             @ViewBag.Cuenta = lsAtencion.Tables[0].Rows[0]["IdCuentaAtencion"].ToString();
             @ViewBag.TipoServicio = lsRecetas.Tables[0].Rows[0]["nomTipoServicio"].ToString();
             @ViewBag.Consultorio = lsRecetas.Tables[0].Rows[0]["nomServicio"].ToString();
@@ -2208,6 +2239,7 @@ namespace WebAppMaternidad.Areas.Comun
             string tipoReceta = "";
             string tipoRecetaFarmacia = "";
             lsRecetasDestalle = null;
+            bool esRecetaProa = false; // MGAMERO
 
             foreach (DataRow dr in lsRecetas.Tables[0].Rows)
             {
@@ -2312,6 +2344,7 @@ namespace WebAppMaternidad.Areas.Comun
                     if(Convert.ToInt32(dr["EsRecetaAntimicrobiano"].ToString()) == 1)
                     {
                         tipoRecetaFarmacia = " ANTIMICROBIANO RESTRINGIDO";
+                        esRecetaProa = true; // MGAMERO
                     }
 
                     if (Convert.ToInt32(dr["EsRecetaIntervencionSanitaria"].ToString()) == 1)
@@ -2356,10 +2389,23 @@ namespace WebAppMaternidad.Areas.Comun
                 @ViewBag.TituloDoc = "RECETA MÉDICA" + tipoRecetaFarmacia;
                 if (tipoFormato == "A4")
                 {
+                    if (esRecetaProa)                                                                  // MGAMERO
+                    {
+                        lsProa = await daoRecetas.ListarRecetaFarmaciaAntimicrobianoPROA(idReceta);
+                        ViewBag.Proa = (lsProa != null && lsProa.Tables.Count > 0)
+                            ? lsProa.Tables[0]
+                            : null;
+                        return PartialView("~/Views/Recetas/Plantillas/FormatoA4_PROA.cshtml");
+                    }
+
                     return PartialView("~/Views/Recetas/Plantillas/FormatoA4.cshtml");
                 }
                 if (tipoFormato == "Ticket")
                 {
+                    //if (esRecetaProa)                                                                  // MGAMERO
+                    //{
+                    //    return PartialView("~/Views/Recetas/Plantillas/FormatoTicket_PROA.cshtml");
+                    //}
                     return PartialView("~/Views/Recetas/Plantillas/FormatoTicket.cshtml");
                 }
             }
@@ -2376,8 +2422,28 @@ namespace WebAppMaternidad.Areas.Comun
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///
+        
+        // PROA
+        [HttpPost]
+        public async Task<ActionResult> ListarRecetaFarmaciaAntimicrobianoPROA(int idReceta)
+        {
+            DataSet dataSet;
+            DalRecetas daoRecetas = new DalRecetas();
 
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return Json(new { session = false });
+            }
 
+            dataSet = await daoRecetas.ListarRecetaFarmaciaAntimicrobianoPROA(idReceta);
+
+            return Json(new
+            {
+                table = dataSet.Tables[0],
+                session = true
+            });
+        }
+        
         [HttpGet]
         public async Task<ActionResult> ListarProcedimientosInterconsulta() // JDELGADO002
         {
@@ -2612,6 +2678,7 @@ namespace WebAppMaternidad.Areas.Comun
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idRecetaFarm, 0, "CE-APC", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

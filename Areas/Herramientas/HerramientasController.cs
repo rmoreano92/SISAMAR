@@ -15,10 +15,11 @@ using WebAppMaternidad.Context.General.Especialidades.Domain;
 using WebAppMaternidad.Context.General.Servicios.Domain;
 using WebAppMaternidad.Context.General.TiposServicio.Application.interfaces;
 using WebAppMaternidad.Context.General.TiposServicio.Domain;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Herramientas
 {
-    public class HerramientasController : Controller
+    public class HerramientasController : BaseController
     {
         private readonly ITipoServicioService _tiposServicioService;
         private readonly IDepartamentoHospitalService _departamentoHospitalService;

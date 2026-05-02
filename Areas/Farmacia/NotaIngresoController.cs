@@ -9,10 +9,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Farmacia
 {
-    public class NotaIngresoController : Controller
+    public class NotaIngresoController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

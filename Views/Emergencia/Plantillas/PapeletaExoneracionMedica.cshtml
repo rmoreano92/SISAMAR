@@ -54,7 +54,7 @@
     <table>
         <tr>
             <td style="width:180px; vertical-align:top;text-align:center;margin-top:-40px;position:absolute;top:0">
-                <img src="@($"{Context.Request.Scheme}://{Context.Request.Host}/images/logo.png")" style="width:50px;" /><br>
+                <img src="@ViewBag.Logo" style="width:50px;" /><br>
                 <span class="small">
                     DIRECCIÓN DEL CENTRO MÉDICO NAVAL<br>
                     "CIRUJANO MAYOR SANTIAGO TÁVARA"
@@ -63,7 +63,7 @@
 
             <td style="text-align:right;">
                 N° <span class="line" style="width:120px;"></span><br><br>
-                FECHA <span class="line" style="width:120px;"></span>
+                FECHA <span class="line" style="width:120px;">@ViewBag.FechaTexto</span>
             </td>
         </tr>
     </table>
@@ -94,7 +94,7 @@
         <tr>
             <td>
                 CÓDIGO INTERNACIONAL DE ENFERMEDADES (CIE-10):
-                <span class="line" style="width:55%;"></span>
+                <span class="line" style="width:55%;">@ViewBag.diagnostico</span>
             </td>
         </tr>
 

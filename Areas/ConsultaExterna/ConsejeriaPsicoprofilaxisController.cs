@@ -4,10 +4,11 @@ using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna
 {
-    public class ConsejeriaPsicoprofilaxisController : Controller
+    public class ConsejeriaPsicoprofilaxisController : BaseController
     {
         public IActionResult Index()
         {

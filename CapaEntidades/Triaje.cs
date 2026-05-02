@@ -70,5 +70,14 @@ namespace CapaEntidades
         public int idServicio { get; set; }
         public int idNumero { get; set; }
         public int idUsuario { get; set; }
+        public string TriajeDolor { get; set; }
+        public string TriajeLlenadoCapilar { get; set; }
+
+        public string Glasgow { get; set; }
+
+        public string BiernamPierson { get; set; }
+
+
+
     }
 }

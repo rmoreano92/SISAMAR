@@ -1,0 +1,346 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Receta/Orden Médica</title>
+    @*<link type="text/css" rel="stylesheet" href="~/BootstrapV5.1.3/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+        *@
+    @*<link href="~/BootstrapV5.1.3/font.roboto.css" rel="stylesheet">*@
+    
+    
+    <style type="text/css" >       
+
+        body {
+            font-size: 10px;
+            color: black !important;
+            font-family: helvetica;
+            letter-spacing: 0.4px;
+            font-weight: 900 !important;
+        }
+
+        td, th {
+            padding: 0.25rem !important;
+        }
+
+        .font-sm {
+            font-size: 8px;
+        }
+
+        .font-md {
+            font-size: 11px;
+        }
+
+        .font-lg {
+            font-size: 12px;
+        }
+
+        .w-100{
+            width: 100%;
+        }
+
+        .table {
+            border-color: #607d8b !important;
+        }
+
+        .break-word{
+            word-wrap: break-word;
+        }
+        /*=====================MI CSS=======================*/
+        .d-flex {
+            display: flex !important;
+        }
+
+        .position-absolute{
+            position: absolute;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .border {
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .border-secondary {
+            border-color: #6c757d !important;
+        }
+
+        .w-100 {
+            width: 100% !important;
+        }
+
+        .my-2 {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem !important;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem !important;
+        }
+
+        .p-1 {
+            padding: 0.25rem !important;
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+        
+        .text-center{
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .table {
+            caption-side: bottom;
+            border-collapse: collapse;
+        }
+
+        .table-bordered {
+            border: solid 1px #4c4c4c;
+        }
+
+        .table-bordered td, .table-bordered th {
+            border: solid 1px #4c4c4c;
+        }
+        /*=================================================*/
+        
+
+        .qr-code {            
+            width: 75px;
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+
+<body style="background: white; width:650px; height:1015px; position:relative; /*padding-top: 30px; border: 1px solid red;*/">
+
+    <div class="position-relative" style="width: 260px; margin-left: -34px; padding-top: 60px;">
+       
+        <div class="row text-center mx-auto" style="width: 85%;">
+            <div class="col-12"><span class="fw-bold">@ViewBag.NombreInstitucion</span></div>
+            <div class="col-12"><span class="fw-bold">@ViewBag.DireccionInstitucion</span></div>
+            <div class="col-12"><span class="fw-bold">Telefono: @ViewBag.TelefonoInstitucion</span></div>
+            <div class="col-12 my-2"><span class="fw-bold font-md">@ViewBag.TituloDoc</span></div>
+            <div class="col-12 my-2"><span class="fw-bold font-md">ANEXO 01</span></div>
+        </div>
+
+        <div class="text-center" style="margin-left: auto; width: 90px; right:10px; top: 100px;">
+            <div class="fw-bold font-md border border-secondary w-100">@ViewBag.TituloNro</div>
+            <div class="font-md font-lg border border-secondary w-100">@ViewBag.NroReceta</div>
+        </div>
+
+        <div class="" style="margin-top: 10px; letter-spacing: 1px;">
+            <div class="d-flex m-0">
+                <div class="" style="width: 70px;"><div class="fw-bold font-md p-1">Servicio</div></div>
+                <div class="" style="width: 190px;"><div class="p-1">@ViewBag.Servicio</div></div>
+            </div>
+            <div class="d-flex m-0">
+                <div class="" style="width: 70px;"><div class="fw-bold font-md p-1">F. Atenc.</div></div>
+                <div class="" style="width: 190px;"><div class="p-1">@ViewBag.FechaReceta</div></div>
+            </div>
+            <div class="d-flex m-0">
+                <div class="" style="width: 70px;"><div class="fw-bold font-md p-1">Paciente</div></div>
+                <div class="" style="width: 190px;"><div class="p-1">@ViewBag.Paciente</div></div>
+            </div>
+            <div class="d-flex m-0">
+                <div class="" style="width: 70px;"><div class="fw-bold font-md p-1">N° H.C</div></div>
+                <div class="" style="width: 60px;"><div class="p-1">@ViewBag.Historia</div></div>
+
+                <div class="" style="width: 70px;"><div class="fw-bold font-md p-1">Edad</div></div>
+                <div class="" style="width: 60px;"><div class="p-1">@ViewBag.Edad</div></div>
+            </div>
+            <div class="d-flex m-0">
+                <div class="" style="width: 70px;"><div class="fw-bold font-md p-1">N° Cuenta</div></div>
+                <div class="" style="width: 60px;"><div class="p-1">@ViewBag.Cuenta</div></div>                
+            </div>
+            <div class="d-flex m-0">
+                <div class="" style="width: 70px;"><div class="fw-bold font-md p-1">Tipo Plan</div></div>
+                <div class="" style="width: 190px;"><div class="p-1 break-word">@ViewBag.TipoPlan</div></div>
+            </div>
+            <div class="d-flex m-0">
+                <div class="" style="width: 70px;"><div class="fw-bold font-md p-1">Médico</div></div>
+                <div class="" style="width: 190px;"><div class="p-1">@ViewBag.Medico</div></div>
+            </div>
+            <div class="d-flex m-0">
+                <div class="" style="width: 70px;"><div class="fw-bold font-md p-1">Consult.</div></div>
+                <div class="" style="width: 190px;"><div class="p-1">@ViewBag.Consultorio</div></div>
+            </div>
+        </div>
+
+        <hr class="my-2" />
+
+        <div class="" style="letter-spacing: 1px;">
+            <span class="fw-bold font-md">Diagnósticos</span>
+            <table class="table table-bordered mt-1 w-100">
+                <thead>
+                    <tr>
+                        <th class="fw-bold font-md" scope="col" style="width: 50px;">CIE 10</th>
+                        <th class="fw-bold font-md" scope="col">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.Diagnosticos != null)
+                    {
+                        @foreach (System.Data.DataRow row in ViewBag.Diagnosticos.Rows)
+                        {
+                            <tr>
+                                <td class="">@row["codigoCIE10"]</td>
+                                <td class="break-word">@row["descripcion"]</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="my-2" />
+
+        <div class="" style="letter-spacing: 1px;">
+            <table class="table table-bordered mt-1 w-100">
+                <thead>
+                    <tr>
+                        <th class="fw-bold font-md" scope="col">Cod.</th>
+                        <th class="fw-bold font-md" scope="col">Concepto</th>
+                        <th class="fw-bold font-md" scope="col" style="width: 50px;">Cant.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.DetalleReceta != null)
+                    {
+                        @foreach (System.Data.DataRow row in ViewBag.DetalleReceta.Rows)
+                        {
+                            <tr>
+                                <td>@row["CodigoProducto"]</td>                                
+                                <td class="break-word">@row["NombreProducto"]</td>
+                                <td class="">@row["CantidadPedida"]</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="my-2" />
+
+        @{
+            if (ViewBag.Servicio == "Farmacia")
+            {
+                if (ViewBag.IdTipoServicio != "3")
+                {
+                    <div class="mt-3" style="letter-spacing: 1px;">
+                        <div class="fw-bold font-md text-center">INDICACIONES</div>
+                        <table class="table table-bordered mt-1">
+                            <thead>
+                                <tr>
+                                    <th class="fw-bold font-md" scope="col">Concepto</th>
+                                    <th class="fw-bold font-md" scope="col" style="width: 50px;">Dosis</th>
+                                    <th class="fw-bold font-md" scope="col" style="width: 50px;">Vias</th>
+                                    @*<th scope="col" style="width: 70px;">Frecuencia</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.DetalleReceta != null)
+                                {
+                                    @foreach (System.Data.DataRow row in ViewBag.DetalleReceta.Rows)
+                                    {
+                                        <tr>
+                                            <td class="">@row["Producto"]<br /><span class="fw-bold">Frecuencia: </span>@row["observaciones"]</td>
+                                            <td class="">@row["dosis"]</td>
+                                            <td class="">@row["vias"]</td>
+                                            @*<td>@row["observaciones"]</td>*@
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }                
+            }
+            else if (ViewBag.IdTipoServicio == "3" && (ViewBag.Servicio == "Patologica Clinica" || ViewBag.Servicio == "Anatomia Patologica" || ViewBag.Servicio == "Banco de Sangre"))
+            {
+                <div class="mt-3" style="letter-spacing: 1px;">
+                    <div class="fw-bold font-md text-center">INDICACIONES</div>
+                    <table class="table table-bordered mt-1">
+                        <thead>
+                            <tr>
+                                <th class="fw-bold font-md" scope="col">Concepto</th>
+                                <th class="fw-bold font-md" scope="col" style="width: 50px;">Frecuencia</th>
+                                @*<th scope="col" style="width: 70px;">Frecuencia</th>*@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.DetalleReceta != null)
+                            {
+                                @foreach (System.Data.DataRow row in ViewBag.DetalleReceta.Rows)
+                                {
+                                    <tr>
+                                        <td class="">@row["Producto"]</td>
+                                        <td class="">@row["Frecuencia"]</td>
+                                        @*<td>@row["observaciones"]</td>*@
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        }
+
+        <hr class="my-2" />
+
+        <div class="position-relative">
+
+            <div class="">
+                <div class="">
+                    <div class="font-sm">USUARIO: @ViewBag.Usuario</div>
+                    <div class="font-sm">FECHA CREACIÓN: @ViewBag.FechaCreacion</div>
+                </div>
+            </div>
+
+            @if (ViewBag.CodigoQR != null)
+            {
+                <div class="text-center">
+                    <img class="qr-code" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.CodigoQR))" />
+                </div>
+            }
+
+            <div style="line-height: 10px;font-size: 8px !important;text-align: justify;" class="mt-2">
+                Esta es una copia auténtica imprimible de un documento electrónico almacenado en <b class="">@ViewBag.NombreInstitucion</b>,
+                aplicando lo dispuesto por el <b class="">Art. 25 de D.S. 070-2013-PCM</b> y la Tercera Disposición Complementaria Final del <b class="">D.S. 026-2016-PCM</b>.
+                Su autenticidad e integridad pueden ser contrastadas a través de la siguiente dirección web: <b class="text-primary">https://mgp.gob.pe/verifica</b>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+    @*<script src="~/BootstrapV5.1.3/bootstrap.bundle.min.js"></script>*@
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consentimiento Informado</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin:  20px 50px;
+            line-height: 1.5;
+        }
+
+        .titulo {
+            font-size: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .linea {
+            text-align:center;
+            border-bottom: 1px dotted #000;
+            display: inline-block;
+            min-width: 30px;
+            height: 16px;
+        }
+
+        .block-line {
+            border-bottom: 1px dotted #000;
+            display: block;
+            width: 100%;
+            height: 14px;
+            margin-top: 5px;
+        }
+
+        .texto {            
+            margin: 10px 0;
+            text-align: justify;
+            line-height: 18px
+        }
+
+        .block-line, .texto {
+            font-size: 16px;
+            line-height: 19px
+        }
+
+        .campo {
+            margin: 8px 0;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= PAGINA 1 ================= -->
+
+    <table>
+        <tr>
+            <td style="width:280px; vertical-align:top;text-align:center;margin-top:-40px;position:absolute;top:0">
+                <img src="@ViewBag.Logo" style="width:50px;" /><br>
+                <span class="small">
+                    DIRECCIÓN DEL CENTRO MÉDICO NAVAL<br>
+                    "CIRUJANO MAYOR SANTIAGO TÁVARA"
+                </span>
+            </td>
+
+            
+        </tr>
+    </table>
+    
+    <div class="titulo" >CONSENTIMIENTO INFORMADO PARA PROCEDIMIENTOS QUIRURGICOS Y/O TRATAMIENTOS ESPECIALES</div>
+
+    <div class="texto">
+        Yo, <span class="linea" style="width:450px;">@ViewBag.Paciente</span>, de
+        <span class="linea" style="width:35px;">@ViewBag.Edad</span> de edad,
+    </div>
+    <div class="texto">
+        sexo
+        <span class="linea" style="width:80px;">@ViewBag.Sexo</span>, con grado de instrucción
+        <span class="linea" style="width:190px;">@ViewBag.Grado</span> y de ocupación
+    </div>
+    <div class="texto">
+        <span class="linea" style="width:180px;"></span>, Identificado con
+        <span class="linea" style="width:100px;">@ViewBag.NroDocumento</span>, en mi calidad de paciente
+    </div>
+
+    <div class="texto">
+        y en pleno uso de mis facultades mentales y de mis derechos de salud, en cumplimiento de la
+        Ley N° 26842 Ley General de Salud y la NTS N° 022-MINSA/DGSP-V.02 (Norma Técnica de Salud para
+        el Consentimiento Informado), declaro haber recibido y entendido la información brindada en
+        forma respetuosa y clara, por el /la Dr./Dra
+    </div>
+
+    <div class="texto">
+        <span class="linea" style="width:450px;">@ViewBag.Medico</span>
+        (remarcar según corresponda: Médico tratante,
+        Médico de guardia, Odontólogo) sobre mi estado de salud, los riesgos reales y potenciales que
+        se pueden presentar como consecuencia de la enfermedad que en la actualidad padezco, de los
+        estudios que podrían ser necesarios para lograr el diagnóstico definitivo y el tratamiento que requiero.
+    </div>
+
+    <div class="texto">
+        Declaro que he comprendido que los síntomas por los que he consultado están provocadas por la enfermedad que padezco, cuyo diagnóstico es:
+    </div>
+    <div class="block-line">@ViewBag.Diagnostico</div>
+
+    <div class="texto">
+        Para lo cual requiero de un tratamiento quirúrgico denominado:
+    </div>
+
+    <div class="block-line" style="font-size:17px">@ViewBag.Procedimiento</div>
+
+    <div class="texto">
+        según el informe proporcionado por el profesional de la salud que me ha explicado detalladamente mi diagnóstico.
+    </div>
+    <div class="texto">
+        Asimismo, me han informado de las molestias o consecuencias previsibles de dicho procedimiento quirúrgico, que son:
+    </div>
+
+    <div class="block-line"></div>
+    <div class="block-line"></div>
+
+    <div class="texto">
+        Y de los posibles riesgos y complicaciones del procedimiento quirúrgico en mención que son: <span class="linea" style="width:530px;"></span>
+    </div>
+    <div class="block-line"></div>
+
+    <div class="texto">
+        Así como, de sus ventajas y beneficios que son: 
+    </div>
+    <div class="block-line"></div>
+    <div class="block-line"></div>
+
+    <div class="texto">
+        Soy consciente de los riesgos personalizados, que son: <span class="linea" style="width:218px;"></span>
+    </div>
+    <div class="block-line"></div>
+    <div class="block-line"></div>
+
+    <!-- ================= PAGINA 2 ================= -->
+
+    <div class="page-break"></div>
+
+    <div class="block-line"></div>
+
+    <div class="texto">
+        Asimismo me ha informado de la posibilidad de sufrir efectos adversos por administración 
+        de fármacos por idiosincrasia efectos colaterales o sinergia medicamentosa, tales como antibióticos, 
+        antiinflamatorios, analgésicos, corticoides y otros fármacos los cuales pueden aumentar la posibilidad de complicaciones.
+    </div>
+
+    <div class="texto">
+        Por ello otorgo mi consentimiento en forma libre y voluntaria, para la intervención quirúrgica que va a realizarme el Dr./ Dra
+        <span class="linea" style="width:200px;"></span> (Remarcar según corresponda: Médico cirujano o dentista) Especialista en
+        <span class="linea" style="width:200px;"></span> con CMP
+        <span class="linea" style="width:60px;"></span> COP
+        <span class="linea" style="width:60px;"></span> RNE
+        <span class="linea" style="width:60px;"></span> del Servicio @ViewBag.Servicio de donde vengo siendo atendido,
+        quien mostrando respeto, paciencia y dedicación para con mi caso y mi persona me ha informado 
+        ampliamente acerca de mi enfermedad.
+    </div>
+
+    <div class="texto">
+        Asimismo, declaro haber recibido la visita del médico Dr./Dra 
+        <span class="linea" style="width:460px;"></span>
+        CMP <span class="linea" style="width:60px;"></span>
+        RNE <span class="linea" style="width:60px;"></span>
+         anestesiólogo, quien me ha explicado los beneficios y riesgos del tipo de anestesia a utilizar.
+    </div>
+
+    <div class="texto">
+        El facultativo me ha asegurado que se tomarán todas las medidas y precauciones para reducir en lo posible el riesgo y las 
+        probables complicaciones de la enfermedad, de la intervención quirúrgica y de la anestesia.
+    </div>
+
+    <div class="texto">
+        Me ha explicado y he comprendido que la firma del presente documento no exime de responsabilidad 
+        (remarcar según corresponda: a mi médico/ odontólogo tratante) y que en cualquier momento antes de 
+        la operación y sin necesidad de dar ninguna explicación, puedo comunicar mi necesidad de revocar el 
+        consentimiento que ahora puedo prestar.
+    </div>
+
+    <div class="texto">
+        También, de ser el caso, se me ha informado sobre la posibilidad de tratamientos alternativos tales como:
+    </div>
+    <div class="block-line"></div>
+
+    <div class="texto">
+        Y no han dejado de referirse e informarme acerca de las consecuencias o riesgos de no aceptar el tratamiento, que las mismas son:
+    </div>
+    <div class="block-line"></div>
+
+    <div class="texto">
+        También se me ha informado que en las actuales circunstancias mi pronóstico de salud es:
+    </div>
+    <div class="block-line"></div>
+
+    <div class="texto">
+        Así como me comprometo a seguir todas las recomendaciones posteriores al acto quirúrgico en favor de la recuperación de mi salud.
+    </div>
+
+    <div class="texto">
+        Asimismo, doy fe de la disposición que ha mostrado el Profesional de la Salud para absolver a todas mis preguntas de 
+        manera clara y precisa contestando todas las dudas que he planteado, para lo cual de ser necesario y por voluntad del
+        propio Profesional de Salud o a solicitud mía, he recibido información escrita al respecto. Por lo tanto, en forma 
+        consciente y voluntaria, luego de haber escuchado la información y explicaciones de mi (remarcar según corresponda: 
+        médico tratante/odontólogo tratante), sin haber sido objeto de coacción, persuasión, ni manipulación por parte de él o ellos,
+        ni por ningún otro profesional de salud, y luego de haber leído detenidamente la información escrita que se me ha
+        proporcionado con tiempo (de haber sido necesario) así como el documento de autorización que se me ha alcanzado.
+    </div>
+
+    <!-- ================= PAGINA 3 ================= -->
+
+    <div class="page-break"></div>
+
+    <div class="texto">
+        <b>Manifiesto lo siguiente</b> (Deberá ser remarcado por el/la paciente; o su apoderado o representante legal)
+    </div>
+
+    <div class="texto">
+        Que me considero <b>SATISFECHO - INSATISFECHO</b> con la información recibida y que <b>COMPRENDO - NO COMPRENDO</b> la indicación,
+        los beneficios, además de los riesgos y posibles complicaciones que podrían desprenderse de dicho acto médico.
+    </div>
+
+    <div class="texto">
+        Y en tales condiciones <b>SI - NO, OTORGO MI CONSENTIMIENTO</b> para que se me realice la Cirugía propuesta / el Procedimiento Especial consistente en:
+    </div>
+
+    <div class="block-line" style="font-size:17px">@ViewBag.Procedimiento</div>
+
+
+    <div class="texto">
+        Al otorgar mi consentimiento, declaro además estar de acuerdo en recibir la anestesia y el tratamiento médico que deriva 
+        de la intervención quirúrgica (antibióticos, analgésicos, etc.) y que se efectúen los estudios necesarios para lograr el 
+        diagnóstico definitivo de la enfermedad que actualmente presento: asimismo admito los cambios del procedimiento quirúrgico y 
+        tipo de anestésico que los médicos consideren indispensables en mi beneficio, los cuales también me han sido explicados. Y 
+        por ende, acepto el riesgo de vida propio del acto quirúrgico y la anestesia, así como las alteraciones previsibles de mi 
+        integridad física provocadas por las acciones efectuadas para tratar mi enfermedad
+    </div>
+
+    <div class="texto">
+        De otro lado (remarcar según corresponda), SI - NO, autorizo que se fotografíe o televise la intervención quirúrgica que efectuarán, para utilizarla con fines médicos - de docencia e investigación, siempre que mi identidad no sea revelada y se mantenga en reserva.
+    </div>
+
+    <div class="texto">
+        Por tanto firmo el presente documento en pleno uso de mis facultades mentales, el mismo que debe incluirse en mi Historia Clínica obligatoriamente.
+    </div>
+
+    <div>
+        <div style="display:inline-block;width:50%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">FIRMA DEL PACIENTE: <span class="linea" style="width:120px;"></span></div>
+        </div>
+
+        <div style="display:inline-block;width:48%;vertical-align:top">
+            <div class="texto" style="font-size:14px;"> FIRMA DEL PROFESIONAL DE LA SALUD INFORMANTE: <span class="linea" style="width:180px;"></span></div>
+        </div>
+    </div>
+
+    <div>
+        <div style="display:inline-block;width:50%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">Nombres y apellidos: <span class="" style="display:inline-block;width:150px;text-align:center">@ViewBag.Paciente</span></div>
+        </div>
+        <div style="display:inline-block;width:48%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">Nombres y apellidos: <span class="linea" style="width:160px;">@ViewBag.Medico</span></div>
+        </div>
+    </div>
+
+
+    <div>
+        <div style="display:inline-block;width:50%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">Documento de Identidad: <span class="linea" style="width:130px;">@ViewBag.NroDocumento</span></div>
+        </div>
+        <div style="display:inline-block;width:48%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">Documento de identidad: <span class="linea" style="width:135px;">@ViewBag.NroDocumentoMedico</span></div>
+        </div>
+    </div>
+
+    <div>
+        <div style="display:inline-block;width:50%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">HUELLA DIGITAL: <span class="linea" style="width:155px;"></span></div>
+        </div>
+        <div style="display:inline-block;width:48%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">SELLO: <span class="linea" style="width:230px;"></span></div>
+        </div>
+    </div>
+
+    <div>
+        <div style="display:inline-block;width:50%;vertical-align:top"></div>
+        <div style="display:inline-block;width:48%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">
+                CMP/COP: <span class="linea" style="width:90px;">@ViewBag.cmp</span>
+                RNE: <span class="linea" style="width:90px;">@ViewBag.rne</span>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="texto">
+        Cualquiera sea la decisión del paciente sobre el procedimiento quirúrgico, de ser posible deberá firmar también un testigo.
+    </div>
+
+    <div>
+        <div style="display:inline-block;width:50%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">Nombres y apellidos <span class="linea" style="width:160px;"></span></div>
+        </div>
+        <div style="display:inline-block;width:48%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">Documento de identidad <span class="linea" style="width:145px;"></span></div>
+        </div>
+    </div>
+
+    <div>
+        <div style="display:inline-block;width:50%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">HUELLA DIGITAL <span class="linea" style="width:155px;"></span></div>
+        </div>
+    </div>
+
+    <div>
+        <div style="display:inline-block;width:50%;vertical-align:top">
+            <div class="texto" style="font-size:14px;">
+                Fecha: <span class="linea" style="width:75px;">@ViewBag.Fecha</span>
+                Horas: <span class="linea" style="width:80px;">@ViewBag.Hora</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGINA 4 ================= -->
+
+    <div class="page-break"></div>
+
+    <div class="titulo">REVOCATORIA DE CONSENTIMIENTO</div>
+
+    <div class="texto">
+        Yo <span class="linea" style="width:570px;">@ViewBag.Paciente</span>
+    </div>
+
+    <div class="texto">
+        Revoco el consentimiento informado, prestado en:
+    </div>
+    <div class="block-line"></div>
+
+    <div class="texto">
+        Y declaro por tanto que por: <span class="linea" style="width:400px;"></span>
+    </div>
+    <div class="block-line"></div>
+        
+    <div class="texto">
+        No consiento: se me realice la cirugía programada / procedimiento especial propuesto
+    </div>
+
+    <br />
+
+    <div class="texto">Nombres y Apellidos: <span class="linea" style="width:435px;">@ViewBag.Paciente</span></div>
+    <div class="texto">Firma del paciente o su Representante Legal: <span class="linea" style="width:280px;"></span></div>
+    <div class="texto">DNI/CIP: <span class="linea" style="width:200px;">@ViewBag.NroHistoriaClinica</span></div>
+
+    <br />
+    <br />
+    <div class="texto">HUELLA DIGITAL <span class="linea" style="width:300px;"></span></div>
+
+
+    <br />
+
+    <div class="texto">Lugar: <span class="linea" style="width:300px;"></span></div>
+    <div class="texto">Fecha: <span class="linea" style="width:300px;">@ViewBag.Fecha</span></div>
+    <div class="texto">Hora: <span class="linea" style="width:300px;">@ViewBag.Hora</span></div>
+    <br />
+
+    <div class="texto" style="line-height:normal">
+        <b>Nota:</b>
+        <ul>
+            <li>Usar letra legible</li>
+            <li>Todos los espacios en blanco de este documento deben ser llenados o tachados antes de firmar.</li>
+            <li>Los datos de filiación del paciente siempre deben ser llenados</li>
+            <li>En casos de menores de edad o pacientes con discapacidad mental se tomará el consentimiento informado a su apoderado o representante legal.</li>
+            <li>Documentos permitidos: CIP, DNI, N° de Pasaporte, Partida de Nacimiento.</li>
+        </ul>
+    </div>
+
+</body>
+</html>

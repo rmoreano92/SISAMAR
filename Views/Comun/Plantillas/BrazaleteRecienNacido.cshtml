@@ -1,4 +1,29 @@
-﻿
+﻿@* 
+@model CapaEntidades.User
+@using CapaDatos
+@using System.Data
+@using Microsoft.Extensions.Configuration;
+@using SiHospCrypKey;
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "--SISGALEN--";
+    DataSet lsParametros;
+    DalParametros dalParametros = new DalParametros();
+    Encriptar objCripto = new Encriptar();
+    string nombre, siglas, tipoBD, logo;
+    int idIpressInt = 0;
+    var idIpressStr = Context.Session.GetString("IdIPress");
+    if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+    lsParametros = await dalParametros.SeleccionaFilaParametro2(1070, idIpressInt);
+    logo = lsParametros.Tables[0].Rows[0]["Base64"].ToString();
+
+    ViewBag.logo = logo;
+}
+*@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -149,37 +174,24 @@
 </head>
 
 
-<body style="background: white; width:390px;  position:relative; /* border: 1px solid cornflowerblue; */">
+<body border =1; style="background: white; width:390px;  position:relative; /* border: 1px solid cornflowerblue; */">
 
     <div class="pulsera">
         <div class="d-flex">
             <div style="width: 60px; padding: 5px;">
-                <img src="@ViewBag.IpServer/resources/images/LogoBW.jpg" width="100%" />
+                <!--<img src="@ViewBag.IpServer/resources/images/LogoBW.jpg" width="100%" />-->
+                <img src="@ViewBag.Logo" width="100%" />
             </div>
-            <div style="width:200px;">
-                <h3 class="celda-custom py-fila">@ViewBag.Apellidos</h3>
-                <h3 class="celda-custom py-fila">@ViewBag.Nombres</h3>
+            <div style="width:350px;">
+                <h3 class="celda-custom py-fila">@ViewBag.Apellidos  @ViewBag.Nombres</h3>
                 <div class="d-flex py-fila">
-                    <h4 class="celda-custom" style="width:180px;">F.N: @ViewBag.FechaNacimiento H.N: @ViewBag.HoraNacimiento</h4>
-                    @if (ViewBag.Gemelar != "")
-                    {
-                        <h4 class="celda-custom" >@ViewBag.Gemelar</h4>
-                    }                    
+                    <h4 class="celda-custom" style="">@ViewBag.TipoDocumento @ViewBag.NroDocumento | CIP: @ViewBag.fichaFamiliar | EDAD: @ViewBag.Edad  </h4>               
                 </div>
                 <div class="d-flex py-fila">     
-                    <h4 class="celda-custom" style="width:110px;">SEXO: @ViewBag.Sexo</h4>
-                    @*
-                    @if (ViewBag.TipoDocumento != "" && ViewBag.NroDocumento != "")
-                    {
-                        <h4 class="celda-custom" style="width:120px; background:red;">@ViewBag.TipoDocumento @ViewBag.NroDocumento</h4>
-                    }
-                    *@
-                    @if (ViewBag.NroHistoria != "0")
-                    {
-                        <h4 class="celda-custom" >HC: @ViewBag.NroHistoria</h4>
-                    }
+                    <h4 class="celda-custom" style="">F.I.: @DateTime.Now.ToString("dd/MM/yyyy") | H.I.: @DateTime.Now.ToString("hh:mm tt") | G/P: @ViewBag.parentesco </h4>
                 </div>
                 
+                @* HC: @ViewBag.NroHistoria @ViewBag.TipoDocumento @ViewBag.NroDocumento SEXO: @ViewBag.Sexo @ViewBag.Gemelar @ViewBag.HoraNacimiento F.N: @ViewBag.FechaNacimiento*@
                 
             </div>
             <div style="width: 70px; ">

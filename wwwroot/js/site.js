@@ -1652,8 +1652,10 @@ newIframe = nuevoIframe;
 // 2. Registrar el listener ANTES de asignar el src
 newIframe.addEventListener('load', function () {
     try {
-        newIframe.contentWindow.focus();
-        //newIframe.contentWindow.print();
+        if (newIframe.src != '') {
+            newIframe.contentWindow.focus();
+            newIframe.contentWindow.print();
+        }        
     } catch (e) {
         console.error('Error al imprimir:', e);
     }

@@ -8,10 +8,11 @@ using CapaEntidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.Data;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Economia
 {
-    public class EconomiaController : Controller
+    public class EconomiaController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

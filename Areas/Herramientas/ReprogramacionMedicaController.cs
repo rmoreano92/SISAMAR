@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Herramientas
 {
-    public class ReprogramacionMedicaController : Controller
+    public class ReprogramacionMedicaController : BaseController
     {
         public IActionResult Index()
         {

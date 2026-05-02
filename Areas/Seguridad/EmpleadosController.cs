@@ -14,10 +14,11 @@ using WebAppMaternidad.Areas.Comun;
 using System.IO;
 using System.Drawing;
 using Microsoft.IdentityModel.Tokens;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Seguridad
 {
-    public class EmpleadosController : Controller
+    public class EmpleadosController : BaseController
     {
         public IActionResult Index()
         {

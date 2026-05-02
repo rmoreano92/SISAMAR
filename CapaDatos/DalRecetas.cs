@@ -7,6 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaEntidades;
+
+using Newtonsoft.Json.Linq;
+using System.Xml.Linq;
+using System.Globalization;
+
+
 namespace CapaDatos
 {
     public class DalRecetas
@@ -591,7 +597,8 @@ namespace CapaDatos
             });
         }
 
-        public Task<DataSet> ListarRecetas(int nroReceta, int nroCuenta, string nroDni, int nroHistoria, string apellidoPaterno, string apellidoMaterno ,int idServicioGeneral)
+        public Task<DataSet> ListarRecetas(int nroReceta, int nroCuenta, string nroDni, int nroHistoria, string apellidoPaterno, 
+            string apellidoMaterno ,int idServicioGeneral, int idIpress = 0)
         {
             
             Conexion cx = new Conexion();
@@ -611,6 +618,7 @@ namespace CapaDatos
                         da.SelectCommand.Parameters.Add("@nroHistoria", SqlDbType.Int).Value = nroHistoria;
                         da.SelectCommand.Parameters.Add("@apellidoPaterno", SqlDbType.VarChar).Value = apellidoPaterno;
                         da.SelectCommand.Parameters.Add("@idServicioGeneral", SqlDbType.Int).Value = idServicioGeneral;
+                        da.SelectCommand.Parameters.Add("@IdIpress", SqlDbType.Int).Value = idIpress;
 
                         DataSet ds = new DataSet();
                         da.Fill(ds);
@@ -1012,6 +1020,83 @@ namespace CapaDatos
                 }
             });            
         }
+
+        //MGAMERO
+        public Task<Boolean> GuardarRecetaFarmaciaAntimicrobianoPROA(string lstRecetaFarmaciaAntimicrobianoPROA, int idReceta)
+        {
+            DataSet ds = new DataSet();
+            Conexion cx = new Conexion();
+            Boolean resp = false;
+            string xmlProa = "<root />";
+
+            return Task.Run(() =>
+            {
+                using (SqlConnection conn = cx.obtenerConexion())
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        if (!string.IsNullOrWhiteSpace(lstRecetaFarmaciaAntimicrobianoPROA))
+                        {
+                            JArray arr = JArray.Parse(lstRecetaFarmaciaAntimicrobianoPROA);
+
+                            var root = new XElement("root",
+                                arr.Select(x => new XElement("item",
+                                    new XElement("TipoRegistro", (string)x["tipoRegistro"]),
+                                    new XElement("Item", (int?)x["item"] ?? 0),
+                                    new XElement("FechaCultivo",
+                                        string.IsNullOrWhiteSpace((string)x["fechaCultivo"])
+                                            ? ""
+                                            : Convert.ToDateTime((string)x["fechaCultivo"]).ToString("yyyy-MM-dd")),
+                                    new XElement("DescripcionOtro",
+                                        string.IsNullOrWhiteSpace((string)x["descripcionOtro"])
+                                            ? ""
+                                            : (string)x["descripcionOtro"])                                            
+                                ))
+                            );
+
+                            xmlProa = root.ToString(SaveOptions.DisableFormatting);
+                        }
+
+                        string sql = "usp_RecetaFarmaciaAntimicrobianoPROAGuardar";
+                        da.SelectCommand = new SqlCommand(sql, conn);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        da.SelectCommand.Parameters.Add("@IdReceta", SqlDbType.Int).Value = idReceta;
+                        da.SelectCommand.Parameters.Add("@XmlPROA", SqlDbType.Xml).Value = xmlProa;
+
+                        da.Fill(ds);
+
+                        resp = true;
+                        return resp;
+                    }
+                }
+            });
+        }     
+
+        //MGAMERO
+        public Task<DataSet> ListarRecetaFarmaciaAntimicrobianoPROA(int idReceta)
+        {
+            DataSet ds = new DataSet();
+            Conexion cx = new Conexion();
+
+            return Task.Run(() =>
+            {
+                using (SqlConnection conn = cx.obtenerConexion())
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        string sql = "usp_RecetaFarmaciaAntimicrobianoPROAListar";
+                        da.SelectCommand = new SqlCommand(sql, conn);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        da.SelectCommand.Parameters.Add("@IdReceta", SqlDbType.Int).Value = idReceta;
+
+                        da.Fill(ds);
+                        return ds;
+                    }
+                }
+            });
+        }          
 
         public Task<int> InsertaRecetaDetalleInterconsultaV2(int idEspecialidadInterconsulta, int idTipoConsultaInterconsulta, string resumenHistoriaClinica, string motivoInterconsulta, int idReceta)
         {

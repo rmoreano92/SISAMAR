@@ -20,10 +20,11 @@ using static NPOI.HSSF.Util.HSSFColor;
 using WebAppMaternidad.Areas.Herramientas;
 using System.Text;
 using DbfDataReader;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.FactConfig
 {
-    public class CatalogoBienesInsumosController : Controller
+    public class CatalogoBienesInsumosController : BaseController
     {
         private readonly IHubContext<ProgressHub> _hubContext;
 

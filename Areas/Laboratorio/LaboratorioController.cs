@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using static CapaEntidades.ListBarItemEnum;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Laboratorio
 {
-    public class LaboratorioController : Controller
+    public class LaboratorioController : BaseController
     {
         public IActionResult Index()
         {

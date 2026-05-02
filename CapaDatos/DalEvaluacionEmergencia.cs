@@ -455,6 +455,84 @@ namespace CapaDatos
             });
         }
 
+        public Task<DataSet> FormatoConsentimientoProcQxEmergencia(int idCuentaAtencion)
+        {
+            Conexion cx = new Conexion();
+            return Task.Run(() =>
+            {
+
+                using (SqlConnection conn = cx.obtenerConexion())
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        string sql = "web_FormatoConsentimientoProcQxEmergencia";
+                        da.SelectCommand = new SqlCommand(sql, conn);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        da.SelectCommand.Parameters.Add("@NroCuenta", SqlDbType.Int).Value = idCuentaAtencion;
+
+                        DataSet ds = new DataSet();
+                        da.Fill(ds);
+
+                        return ds;
+                    }
+                }
+
+            });
+        }
+
+        public Task<DataSet> PapeletaDescansoMedico(int idCuentaAtencion)
+        {
+            Conexion cx = new Conexion();
+            return Task.Run(() =>
+            {
+
+                using (SqlConnection conn = cx.obtenerConexion())
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        string sql = "web_DescansoMedico";
+                        da.SelectCommand = new SqlCommand(sql, conn);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        da.SelectCommand.Parameters.Add("@NroCuenta", SqlDbType.Int).Value = idCuentaAtencion;
+
+                        DataSet ds = new DataSet();
+                        da.Fill(ds);
+
+                        return ds;
+                    }
+                }
+
+            });
+        }
+
+        public Task<DataSet> AutorizacionExamenPersonalizado(int idCuentaAtencion, int idAtencion, int idServicio, int eval)
+        {
+            Conexion cx = new Conexion();
+            return Task.Run(() =>
+            {
+
+                using (SqlConnection conn = cx.obtenerConexion())
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        string sql = "web_AutorizacionExamenPersonalizado";
+                        da.SelectCommand = new SqlCommand(sql, conn);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        da.SelectCommand.Parameters.Add("@idCuentaAtencion", SqlDbType.Int).Value = idCuentaAtencion;
+
+                        DataSet ds = new DataSet();
+                        da.Fill(ds);
+
+                        return ds;
+                    }
+                }
+
+            });
+        }
+
 
     }
 }

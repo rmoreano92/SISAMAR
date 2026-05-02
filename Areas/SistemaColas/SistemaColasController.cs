@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.SistemaColas
 {
-    public class SistemaColasController : Controller
+    public class SistemaColasController : BaseController
     {
         public IActionResult Index()
         {

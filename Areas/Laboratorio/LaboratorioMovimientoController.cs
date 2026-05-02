@@ -8,10 +8,11 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Laboratorio
 {
-    public class LaboratorioMovimientoController : Controller
+    public class LaboratorioMovimientoController : BaseController
     {
         public IActionResult Index()
         {

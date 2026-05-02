@@ -5,10 +5,11 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna
 {
-    public class InmunizacionesController : Controller
+    public class InmunizacionesController : BaseController
     {
 
         [HttpGet]

@@ -15,10 +15,11 @@ using System.Text;
 using System.Net.Mime;
 using System.Diagnostics;
 using CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Estadistica
 {
-    public class LibroNacimientoController : Controller
+    public class LibroNacimientoController : BaseController
     {
         public IActionResult Index()
         {

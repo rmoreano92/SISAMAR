@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Http;
 
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna
 {
-    public class AdmisionController: Controller
+    public class AdmisionController: BaseController
     {
         [HttpPost]
         public async Task<ActionResult> ListarAtencionesCEFiltrarPorPaciente(string nroHistoriaClinica, string apellidoPaterno, string apellidoMaterno, string primerNombre,
@@ -23,9 +24,13 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
                 return Json(new { session = false });
             }
 
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
             DalAdmision dalAdmision = new DalAdmision();
             DataSet dataSet = await dalAdmision.ListarAtencionesCEFiltrarPorPaciente(nroHistoriaClinica, apellidoPaterno, apellidoMaterno, primerNombre,
-            dni, idCuentaAtencion, lcFechaTriaje);
+            dni, idCuentaAtencion, lcFechaTriaje, idIpressInt);
 
             return Json(new { session = true, dataSet, estado = true });
         }

@@ -18,10 +18,11 @@ using QRCoder;
 using System.Drawing;
 using WebAppMaternidad.CapaEntidades;
 
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class EvaluacionNeonatalHospController : Controller
+    public class EvaluacionNeonatalHospController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 
@@ -849,6 +850,7 @@ namespace WebAppMaternidad.Areas.Hospitalizacion
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuenta, idEvaluacionDetalle, 0, "H-EVA", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -1252,21 +1254,25 @@ namespace WebAppMaternidad.Areas.Hospitalizacion
             Comun.ClUtilirario cl = new Comun.ClUtilirario();
             Conexion con = new Conexion();
 
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
             sWebRootFolder = con.ObtenerServidorArchivos();
             tipo = "REC-" + tipo;
             path = Path.Combine(sWebRootFolder, "Recetas", (idCuentaAtencion + idReceta + (DateTime.Now.ToString("HH:mm:ss")).Replace(":", "") + tipo + ".pdf"));
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207); // JDELGADO J0 AWAIT SENTENCE
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt); // JDELGADO J0 AWAIT SENTENCE
             telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             string idAtencion = "0";

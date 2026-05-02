@@ -10,10 +10,11 @@ using WebAppMaternidad.CapaDatos;
 using System.Threading.Tasks;
 using System.Data;
 using System.Security.Cryptography;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class TriajeRecienNacidoController : Controller
+    public class TriajeRecienNacidoController : BaseController
     {
         public IActionResult Index()
         {

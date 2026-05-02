@@ -19,10 +19,11 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Data;
 using System;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Emergencia
 {
-    public class EvaluacionEspecialidadesController : Controller
+    public class EvaluacionEspecialidadesController : BaseController
     {
         //private IHostingEnvironment _hostingEnvironment;
         private IWebHostEnvironment _hostingEnvironment;
@@ -288,6 +289,7 @@ namespace WebAppMaternidad.Areas.Emergencia
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuenta, idEvaluacionDetalle, 0, "E-EVA", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -414,7 +416,15 @@ namespace WebAppMaternidad.Areas.Emergencia
             @ViewBag.Talla = DatosEvaluacion.Tables[0].Rows[0]["Talla"];
             @ViewBag.Peso = DatosEvaluacion.Tables[0].Rows[0]["Peso"];
             @ViewBag.Saturacion = DatosEvaluacion.Tables[0].Rows[0]["Saturacion"];
+            @ViewBag.Pulso = DatosEvaluacion.Tables[0].Rows[0]["Pulso"];
+            @ViewBag.PerimAbdominal = DatosEvaluacion.Tables[0].Rows[0]["PerimAbdominal"];
+            @ViewBag.PerimCefalico = DatosEvaluacion.Tables[0].Rows[0]["PerimCefalico"];
+            @ViewBag.Dolor = DatosEvaluacion.Tables[0].Rows[0]["Dolor"];
+            @ViewBag.LlenadoCapilar = DatosEvaluacion.Tables[0].Rows[0]["LlenadoCapilar"];
+            @ViewBag.TriajeGlasgow = DatosEvaluacion.Tables[0].Rows[0]["TriajeGlasgow"];
+            @ViewBag.BiermanPierson = DatosEvaluacion.Tables[0].Rows[0]["BiermanPierson"];           
             @ViewBag.ObservacionTriaje = DatosEvaluacion.Tables[0].Rows[0]["ObservacionTriaje"];
+            @ViewBag.Glasgow = DatosEvaluacion.Tables[0].Rows[0]["Glasgow"];
 
             @ViewBag.EstadoGeneralSensorio = DatosEvaluacion.Tables[0].Rows[0]["EstadoGeneralSensorio"];
             @ViewBag.DEstadoGeneralSensorio = DatosEvaluacion.Tables[0].Rows[0]["DEstadoGeneralSensorio"];

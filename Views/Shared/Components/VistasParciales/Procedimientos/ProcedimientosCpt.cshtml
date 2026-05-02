@@ -1,4 +1,10 @@
-﻿<div class="card bg-pink">
+﻿﻿<style>
+     #tblCSAtencion th:nth-child(8),
+     #tblCSAtencion td:nth-child(8) {
+         display: none !important;
+     }
+</style>
+<div class="card bg-pink">
     <div class="card-header bg-white">Procedimientos en el Servicio</div>
     <div class="card-block m-t-5 custom-form">
         <div class="row p-t-5">
@@ -50,3 +56,24 @@
         </div>
     </div>
 </div>
+<script>
+    (function () {
+        function ocultarColumnaInformeTblCSAtencion() {
+            const $tabla = $('#tblCSAtencion');
+            if (!$tabla.length) return;
+
+            $tabla.find('thead th:nth-child(8), tbody td:nth-child(8)').css('display', 'none');
+
+            if ($.fn.dataTable && $.fn.dataTable.isDataTable($tabla)) {
+                const dt = $tabla.DataTable();
+                if (dt.column(7).visible()) {
+                    dt.column(7).visible(false, false);
+                    dt.columns.adjust().draw(false);
+                }
+            }
+        }
+
+        $(document).ready(ocultarColumnaInformeTblCSAtencion);
+        $(document).on('init.dt draw.dt', '#tblCSAtencion', ocultarColumnaInformeTblCSAtencion);
+    })();
+</script>

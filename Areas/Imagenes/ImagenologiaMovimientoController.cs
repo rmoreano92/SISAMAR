@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Imagenes
 {
-    public class ImagenologiaMovimientoController : Controller
+    public class ImagenologiaMovimientoController : BaseController
     {
         public IActionResult Index()
         {

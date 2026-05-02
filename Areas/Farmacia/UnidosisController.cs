@@ -17,10 +17,11 @@ using QRCoder;
 using System.Drawing;
 using System.IO;
 
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Farmacia
 {
-    public class UnidosisController : Controller
+    public class UnidosisController : BaseController
     {
         public IActionResult Index()
         {
@@ -272,6 +273,7 @@ namespace WebAppMaternidad.Areas.Farmacia
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idReceta, 0, "REC", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -299,18 +301,21 @@ namespace WebAppMaternidad.Areas.Farmacia
             DalRecetas daoRecetas = new DalRecetas();
             DalParametros daoParametros = new DalParametros();
 
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
             nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
             direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
             telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             string idAtencion = "0";

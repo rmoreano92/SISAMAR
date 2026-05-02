@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System;
 using System.Data;
 using System.Threading.Tasks;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class FactPuntosCargaController : Controller
+    public class FactPuntosCargaController : BaseController
     {
         public IActionResult Index()
         {

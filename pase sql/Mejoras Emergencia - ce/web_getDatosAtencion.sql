@@ -14,7 +14,7 @@ Select top 1
 	d.descripcion diagnostico, dep.nombre dependencia,adi.ObservacionAltaMedica
 from Atenciones a 
 inner join pacientes p on p.IdPaciente = a.IdPaciente
-left join AtencionesDiagnosticos atd on a.idAtencion = atd.idAtencion --and IdClasificacionDx in('2', '3') 
+left join AtencionesDiagnosticos atd on a.idAtencion = atd.idAtencion and IdSubClasificacionDX = 301
 left join Diagnosticos d on atd.IdDiagnostico = d.IdDiagnostico
 left join TiposCondicionLaboral par on par.idCondicion = p.condLaboral
 

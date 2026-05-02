@@ -6,10 +6,11 @@ using CapaDatos;
 using CapaEntidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Estadistica
 {
-    public class EstadisticaController : Controller
+    public class EstadisticaController : BaseController
     {
         public async Task<IActionResult> ConstanciaRN(int idListBar)
         {

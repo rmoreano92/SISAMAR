@@ -17,10 +17,11 @@ using Ghostscript.NET.Rasterizer;
 using WebAppMaternidad.Areas.Comun;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna
 {
-    public class AtencionOdontologicaController : Controller
+    public class AtencionOdontologicaController : BaseController
     {
         public IActionResult Index()
         {
@@ -220,6 +221,7 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
         //        pdf.tamanio = "A4";
         //        pdf.marginX = 20;
         //        pdf.marginY = 20;
+                //pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
         //        resp = await utilitario.GenerarDocumentoDigital(idCuenta, idAtencionOdontologica, 0, "CE-ODO", 0, pageHtml, stringHtml, idUsuario, pdf);
 
         //        return resp;
@@ -400,6 +402,7 @@ namespace WebAppMaternidad.Areas.ConsultaExterna
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuenta, idAtencionOdontologica, 0, "CE-A", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

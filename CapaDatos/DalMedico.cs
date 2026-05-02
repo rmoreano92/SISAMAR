@@ -31,7 +31,7 @@ namespace WebAppMaternidad.CapaDatos
             });
         }
 
-        public Task<DataSet> ListarMedicosPorEspecialidad(int idEspecialidad)
+        public Task<DataSet> ListarMedicosPorEspecialidad(int idEspecialidad, int idIpress = 0)
         {
             Conexion cx = new Conexion();
             return Task.Run(() =>
@@ -46,6 +46,7 @@ namespace WebAppMaternidad.CapaDatos
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
                         da.SelectCommand.Parameters.Add("@IdEspecialidad", SqlDbType.Int).Value = idEspecialidad;
+                        da.SelectCommand.Parameters.Add("@idIpress", SqlDbType.Int).Value = idIpress;
 
                         DataSet ds = new DataSet();
                         da.Fill(ds);

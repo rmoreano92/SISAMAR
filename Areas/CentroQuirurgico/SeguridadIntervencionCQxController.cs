@@ -14,6 +14,7 @@ using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
 using WebAppMaternidad.Controllers;
 using WebAppMaternidad.Middleware;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.CentroQuirurgico
 {

@@ -8,10 +8,11 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using WebAppMaternidad.CapaEntidades;
 using CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Caja
 {
-    public class CajasController : Controller
+    public class CajasController : BaseController
     {
         public IActionResult Index()
         {

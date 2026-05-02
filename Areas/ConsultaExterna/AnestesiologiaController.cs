@@ -11,10 +11,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna
 {
-    public class AnestesiologiaController: Controller
+    public class AnestesiologiaController: BaseController
     {
         [HttpPost]
         public async Task<ActionResult> CrearModificarAtencionAnestesiologia(int IdTipoAtencionAnestesio,

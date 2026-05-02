@@ -16,10 +16,11 @@ using System.IO;
 using System.Text;
 using WebAppMaternidad.Areas.Comun;
 using System.Security.Cryptography;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Facturacion
 {
-    public class EvaluacionRiesgoSocialController : Controller
+    public class EvaluacionRiesgoSocialController : BaseController
     {
         public IActionResult Index()
         {
@@ -230,6 +231,7 @@ namespace WebAppMaternidad.Areas.Facturacion
                 pdf.orientacion = "Portrait";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idEvaluacion, 0, "INF-RS", 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;

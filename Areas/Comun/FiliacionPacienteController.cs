@@ -8,10 +8,11 @@ using System;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
 using CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class FiliacionPacienteController : Controller
+    public class FiliacionPacienteController : BaseController
     {
         public IActionResult Index()
         {

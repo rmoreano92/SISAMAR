@@ -94,7 +94,7 @@ namespace CapaDatos
             return ds;
         }
 
-        public Task<DataSet> DevuelveDSComboxServicioByFecha(String fecha)
+        public Task<DataSet> DevuelveDSComboxServicioByFecha(String fecha, int idIpress = 0)
         {
             Conexion cx = new Conexion();
             return Task.Run(() =>
@@ -108,6 +108,7 @@ namespace CapaDatos
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
                         da.SelectCommand.Parameters.Add("@fecha", SqlDbType.VarChar).Value = fecha;
+                        da.SelectCommand.Parameters.Add("@IdIpress", SqlDbType.Int).Value = idIpress;
 
                         DataSet ds = new DataSet();
                         da.Fill(ds);
@@ -2614,9 +2615,12 @@ namespace CapaDatos
                             da.SelectCommand.Parameters.Add("@HoraIntervencionQuirurgica", SqlDbType.VarChar).Value = atencionesDatosAdicionales.HoraIntervencionQuirurgica;
                             da.SelectCommand.Parameters.Add("@IdMedicoIntervencionQuirurgica", SqlDbType.Int).Value = atencionesDatosAdicionales.IdMedicoIntervencionQuirurgica;
                             da.SelectCommand.Parameters.Add("@ObservacionAltaMedica", SqlDbType.VarChar).Value = atencionesDatosAdicionales.ObservacionAltaMedica;//RMOREANO OBSERVACION ALTAMEDICA
+
+                            //RMOREANO 
                             da.SelectCommand.Parameters.Add("@TieneDescansoMedico", SqlDbType.Bit).Value = atencionesDatosAdicionales.TieneDescansoMedico ?? Convert.DBNull;
                             da.SelectCommand.Parameters.Add("@FechaInicioDescansoMedico", SqlDbType.DateTime).Value = atencionesDatosAdicionales.FechaInicioDescansoMedico ?? Convert.DBNull;
                             da.SelectCommand.Parameters.Add("@FechaFinDescansoMedico", SqlDbType.DateTime).Value = atencionesDatosAdicionales.FechaFinDescansoMedico ?? Convert.DBNull;
+
 
                             da.SelectCommand.Parameters.Add("@IdGrupoGo", SqlDbType.Int).Value = atencionesDatosAdicionales.IdGrupoGo;
                             //da.SelectCommand.Parameters.Add("@IdEstadoFacturacion", SqlDbType.Int).Value = idEstadoFacturacion;

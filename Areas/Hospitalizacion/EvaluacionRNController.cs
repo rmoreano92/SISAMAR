@@ -7,10 +7,11 @@ using CapaDatos;
 using CapaEntidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class EvaluacionRNController : Controller
+    public class EvaluacionRNController : BaseController
     {
         public IActionResult Index()
         {

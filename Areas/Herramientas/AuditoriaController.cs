@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using System;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Herramientas
 {
-    public class AuditoriaController : Controller
+    public class AuditoriaController : BaseController
     {
         public IActionResult Index()
         {

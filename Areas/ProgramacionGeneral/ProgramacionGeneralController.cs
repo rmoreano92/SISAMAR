@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ProgramacionGeneral
 {
-    public class ProgramacionGeneralController : Controller
+    public class ProgramacionGeneralController : BaseController
     {
         public IActionResult Index()
         {

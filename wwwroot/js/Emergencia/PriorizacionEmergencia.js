@@ -4,6 +4,13 @@
     IdDerivacion: 0,
     CodigoServicio: 0,
     IdEspecialidad: 0,
+    IdMotivoAtencionConScore: '3',
+    obtenerGlasgowActual() {
+        const motivo = $('#cboMotivoAtencionDerivacion').val();
+        return motivo == PriorizacionEmergencia.IdMotivoAtencionConScore
+            ? $('#txtGlasgow').val()
+            : $('#txtGlasgowVitales').val();
+    },
     Plugins: function () {
         $(".hide_search").chosen({ disable_search_threshold: 10 });
         $(".chzn-select").chosen({ allow_single_deselect: true, placeholder_text_single: 'Seleccione una opción' });
@@ -1071,6 +1078,7 @@
         $("#txtLlenadoCapilar").val(derivacion.triajeLlenadoCapilar);
         $("#txtDolor").val(derivacion.triajeDolor);
         $("#txtGlasgow").val(derivacion.glasgow);
+        $("#txtGlasgowVitales").val(derivacion.glasgow);
         $("#txtBiermanPierson").val(derivacion.biermanPierson);
 
         //====KHOYOSI 20032026==================================================
@@ -1141,7 +1149,7 @@
         $(`input[name="rdbSangradoVaginal"][value="${derivacion.sangradoVaginal}"]`).prop('checked', true)
 
         if (derivacion.idServicio == 3102) {
-            $('#cboMotivoAtencionDerivacion').val('3').trigger('chosen:updated').trigger('change');
+            $('#cboMotivoAtencionDerivacion').val(PriorizacionEmergencia.IdMotivoAtencionConScore).trigger('chosen:updated').trigger('change');
         }
 
         $('.chzn-select').chosen().trigger("chosen:updated")
@@ -1172,6 +1180,7 @@
         $('#txtLlenadoCapilar').val('')
         $('#txtDolor').val('')
         $('#txtGlasgow').val('')
+        $('#txtGlasgowVitales').val('')
         $('#txtBiermanPierson').val('')
 
         $('#txtObservacionesDerivacion').val('')
@@ -1256,13 +1265,15 @@
     toggleScorePorMotivoAtencion() {
         var motivo = $('#cboMotivoAtencionDerivacion').val();
 
-        if (motivo == '3') {
+        if (motivo == PriorizacionEmergencia.IdMotivoAtencionConScore) {
             $('#cardScore').show();
+            $('#divGlasgowFuncionesVitales').hide();
+            $('#txtGlasgowVitales').val('');
         } else {
             $('#cardScore').hide();
+            $('#divGlasgowFuncionesVitales').show();
             $('#txtGlasgow').val('');
             $('#txtBiermanPierson').val('');
-            
         }
     },
 
@@ -1551,7 +1562,7 @@
             PriorizacionEmergencia.IdEspecialidad = objRowTb.idEspecialidad
 
             if (objRowTb.idServicio == 3102) {
-                $('#cboMotivoAtencionDerivacion').val('3').trigger('chosen:updated').trigger('change');
+                $('#cboMotivoAtencionDerivacion').val(PriorizacionEmergencia.IdMotivoAtencionConScore).trigger('chosen:updated').trigger('change');
             }
 
             $('#modalServicios').modal('hide')
@@ -1678,7 +1689,7 @@
             formData.append("CipPaciente", $('#txtCipPaciente').val());
             formData.append("TriajeLlenadoCapilar", $('#txtLlenadoCapilar').val());
             formData.append("TriajeDolor", $('#txtDolor').val());
-            formData.append("Glasgow", $('#txtGlasgow').val());
+            formData.append("Glasgow", PriorizacionEmergencia.obtenerGlasgowActual());
             formData.append("BiermanPierson", $('#txtBiermanPierson').val());
             //=====================================================================================================================
             

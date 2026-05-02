@@ -34,22 +34,26 @@ namespace WebAppMaternidad.Context.Reportes.presentation.controllers
 
                 DataSet dsParametros;
 
+                int idIpressInt = 0;
+                var idIpressStr = HttpContext.Session.GetString("IdIPress");
+                if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
 
                 string usuario = HttpContext.Session.GetString("user");
                 int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
 
 
-                dsParametros = await daoParametros.SeleccionaFilaParametro2(205);
+                dsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
                 string NombreInstitucion = dsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
                 dsParametros.Clear();
 
-                dsParametros = await daoParametros.SeleccionaFilaParametro2(206);
+                dsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
                 string DireccionInstitucion = dsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
                 dsParametros.Clear();
 
-                dsParametros = await daoParametros.SeleccionaFilaParametro2(207);
+                dsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
                 string TelefonoInstitucion = dsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
 

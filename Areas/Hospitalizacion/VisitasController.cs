@@ -23,10 +23,11 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using WebAppMaternidad.Controllers;
 
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.CallCenter.Controllers
 {
-    public class VisitasController : Controller
+    public class VisitasController : BaseController
     {
         //private IHostingEnvironment _env;
         private IWebHostEnvironment _env;

@@ -217,7 +217,7 @@
                 $('#cboReligionPaciente').empty();
                 $('#cboReligionPaciente').append(`<option value="0">--Seleccionar--</option>`)
                 $(response.lsReligion.table).each(function (i, obj) {
-                    $('#cboReligionPaciente').append(`<option value="${obj.codReligion}">${obj.descripcion}</option>`)
+                    $('#cboReligionPaciente').append(`<option value="${obj.idReligion}">${obj.descripcion}</option>`)
                 })
                 $('#cboReligionPaciente').val(4)
                 $('.chzn-select').chosen().trigger("chosen:updated");
@@ -788,7 +788,6 @@
         formData.append("DireccionMadre", $("#txtDireccionMadre").val());
 
         formData.append("Religion", $("#cboReligionPaciente").val());
-
         // 🔥 Enviar lista REAL con IdContacto
         formData.append("Contactos", JSON.stringify(listaContactos));
 

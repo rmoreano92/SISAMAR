@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using CapaDatos;
 using CapaEntidades;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ConsultaExterna.Controllers
 {
-    public class DashBoardController : Controller
+    public class DashBoardController : BaseController
     {
         public IActionResult Index()
         {

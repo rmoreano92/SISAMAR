@@ -13,10 +13,11 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 //using WebAppMaternidad.Connected_Services;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Herramientas
 {
-    public class ExportarDatosController : Controller
+    public class ExportarDatosController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 

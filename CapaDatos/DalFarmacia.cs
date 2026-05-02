@@ -15,7 +15,7 @@ namespace CapaDatos
 {
     public class DalFarmacia
     {
-        public Task<DataSet> FarmaciasSegunFiltro(string filtro)
+        public Task<DataSet> FarmaciasSegunFiltro(string filtro, int idIpress = 0)
         {
             Conexion cx = new Conexion();
             return Task.Run(() =>
@@ -30,6 +30,7 @@ namespace CapaDatos
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
                         da.SelectCommand.Parameters.Add("@lcFiltro", SqlDbType.VarChar).Value = filtro;
+                        da.SelectCommand.Parameters.Add("@IdIpress", SqlDbType.Int).Value = idIpress;
 
 
                         DataSet ds = new DataSet();

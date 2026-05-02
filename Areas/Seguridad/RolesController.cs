@@ -10,10 +10,11 @@ using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Seguridad
 {
-    public class RolesController : Controller
+    public class RolesController : BaseController
     {
         public IActionResult Index()
         {

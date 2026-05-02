@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using CapaDatos;
 using CapaEntidades;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class DashBoardHospController : Controller
+    public class DashBoardHospController : BaseController
     {
         public IActionResult Index()
         {

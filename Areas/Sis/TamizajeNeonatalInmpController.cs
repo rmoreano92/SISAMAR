@@ -10,10 +10,11 @@ using WebAppSaludOcupacional.CapaEntidades;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Sis
 {
-    public class TamizajeNeonatalInmpController : Controller
+    public class TamizajeNeonatalInmpController : BaseController
     {
 
         [HttpGet]

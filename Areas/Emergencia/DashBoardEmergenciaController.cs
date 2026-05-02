@@ -8,10 +8,11 @@ using CapaDatos;
 using CapaEntidades;
 using ClosedXML.Excel;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Emergencia.Controllers
 {
-    public class DashBoardEmergenciaController : Controller
+    public class DashBoardEmergenciaController : BaseController
     {
         public IActionResult Index()
         {

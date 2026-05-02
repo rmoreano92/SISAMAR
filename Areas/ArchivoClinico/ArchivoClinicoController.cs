@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ArchivoClinico
 {
-    public class ArchivoClinicoController : Controller
+    public class ArchivoClinicoController : BaseController
     {
         public IActionResult Index()
         {

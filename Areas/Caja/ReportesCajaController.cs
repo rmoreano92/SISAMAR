@@ -17,10 +17,11 @@ using System.Net.Mime;
 using System.Text;
 using DocumentFormat.OpenXml.Drawing.Diagrams;
 using NPOI.POIFS.Crypt.Dsig;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Caja
 {
-    public class ReportesCajaController : Controller
+    public class ReportesCajaController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 
@@ -476,18 +477,22 @@ namespace WebAppMaternidad.Areas.Caja
 
             DataTable RegistroRpt = DatosRpt.Tables[0];
             DataTable TotalRpt = DatosRpt.Tables[1];
+            
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
             string nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
             string direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
             string telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             @ViewBag.NombreInstitucion = nombre;
@@ -538,17 +543,21 @@ namespace WebAppMaternidad.Areas.Caja
             DataTable RegistroRpt = DatosRpt.Tables[0];
             DataTable TotalRpt = DatosRpt.Tables[1];
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
             string nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
             string direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
             string telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             @ViewBag.NombreInstitucion = nombre;
@@ -582,17 +591,21 @@ namespace WebAppMaternidad.Areas.Caja
             DataTable RegistroRpt = DatosRpt.Tables[0];
             //DataTable TotalRpt = DatosRpt.Tables[1];
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(205);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
             string nombre = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(206);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
             string direccion = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             lsParametros.Clear();
 
-            lsParametros = await daoParametros.SeleccionaFilaParametro2(207);
+            lsParametros = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
             string telefono = lsParametros.Tables[0].Rows[0]["valorTexto"].ToString();
 
             @ViewBag.NombreInstitucion = nombre;

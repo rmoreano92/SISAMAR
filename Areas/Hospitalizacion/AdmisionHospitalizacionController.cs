@@ -16,10 +16,11 @@ using System.Net.Mime;
 using Microsoft.Extensions.Configuration;
 using SelectPdf;
 using QRCoder;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class AdmisionHospitalizacionController : Controller
+    public class AdmisionHospitalizacionController : BaseController
     {
         private IWebHostEnvironment _hostingEnvironment;
 
@@ -162,7 +163,9 @@ namespace WebAppMaternidad.Areas.Hospitalizacion
                 pdf.Historia = datos.Tables[0].Rows[0]["NroHistoriaClinica"].ToString();
                 pdf.tipo = "HO-PIE";
 
-                resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
                 byte[] pdfBytes = resultStream.ToArray();
                 ms.Write(pdfBytes, 0, pdfBytes.Length);
@@ -262,9 +265,13 @@ namespace WebAppMaternidad.Areas.Hospitalizacion
             DataSet lsPacientes = await dalPaciente.PacientesSeleccionarPorId(idPaciente);
             DataSet lsCitas = await dalAtenciones.AtencionesSeleccionarPorId(idAtencion);
 
-            var nombre = await daoParametros.SeleccionaFilaParametro2(205);
-            var direccion = await daoParametros.SeleccionaFilaParametro2(206);
-            var telefono = await daoParametros.SeleccionaFilaParametro2(207);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            var nombre = await daoParametros.SeleccionaFilaParametro2(205, idIpressInt);
+            var direccion = await daoParametros.SeleccionaFilaParametro2(206, idIpressInt);
+            var telefono = await daoParametros.SeleccionaFilaParametro2(207, idIpressInt);
 
             DateTime now = DateTime.Now;
 

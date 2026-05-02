@@ -205,11 +205,13 @@
                     confirmButtonColor: '#4fb7fe',
                     cancelButtonColor: '#EF6F6C',
                     confirmButtonText: 'Aceptar'
-                }).then(function () {
-
-                    RecetaGeneral.eliminar(objrow.idReceta)
-                    //ListaRecetas();
-                    RecetaGeneral.ListaRecetasV2();   //KHOYOSI
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        RecetaGeneral.eliminar(objrow.idReceta)
+                        //ListaRecetas();
+                        RecetaGeneral.ListaRecetasV2();   //KHOYOSI
+                    }
+                    
                 }, function (dimiss) {});
             }
             else {

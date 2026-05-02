@@ -7,10 +7,11 @@ using WebAppMaternidad.CapaDatos;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using WebAppMaternidad.CapaEntidades;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.ArchivoClinico
 {
-    public class MovimientoHistoriasController : Controller
+    public class MovimientoHistoriasController : BaseController
     {
         public IActionResult Index()
         {

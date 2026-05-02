@@ -17,10 +17,11 @@ using Microsoft.Extensions.Configuration;
 //using NPOI.HPSF;
 using System.Security.Policy;
 using WebAppMaternidad.Areas.Comun;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Hospitalizacion
 {
-    public class NotaIngresoController : Controller
+    public class NotaIngresoController : BaseController
     {
         public IActionResult Index()
         {
@@ -422,6 +423,7 @@ namespace WebAppMaternidad.Areas.Hospitalizacion
                 pdf.tamanio = "A4";
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
 
 
                 resp = await utilitario.GenerarDocumentoDigital(idCuenta, idAtencion, 0, tipo, eval, pageHtml, stringHtml, idUsuario, pdf);

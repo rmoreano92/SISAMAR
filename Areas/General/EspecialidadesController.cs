@@ -7,10 +7,11 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.General
 {
-    public class EspecialidadesController : Controller
+    public class EspecialidadesController : BaseController
     {
         public IActionResult Index()
         {

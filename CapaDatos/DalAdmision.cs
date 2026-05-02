@@ -16,7 +16,8 @@ namespace CapaDatos
             SqlCommand cmd = null;
             try
             {
-                cmd = MetodoDatos.CrearComando("usp_update_CambiarEstadoColaCita");
+                //cmd = MetodoDatos.CrearComando("usp_update_CambiarEstadoColaCita");
+                cmd = MetodoDatos.CrearComando("web_update_CambiarEstadoColaCita");
                 
                 cmd.Parameters.AddWithValue("@idCita", obAdmision.IdCita);
                 cmd.Parameters.AddWithValue("@idAtencion", obAdmision.IdAtencion);
@@ -54,9 +55,9 @@ namespace CapaDatos
 				cmd = MetodoDatos.CrearComando("usp_CambiarEstadoCitaPagado");
 				cmd.CommandType = CommandType.StoredProcedure;
 
-				cmd.Parameters.AddWithValue("@IdCita", IdCita);
-
-				SqlParameter pResultado = new SqlParameter("@resultado", SqlDbType.Int)
+				cmd.Parameters.AddWithValue("@IdCita", IdCita);               
+                
+                SqlParameter pResultado = new SqlParameter("@resultado", SqlDbType.Int)
 				{
 					Direction = ParameterDirection.Output
 				};
@@ -288,7 +289,7 @@ namespace CapaDatos
         }
 
         public Task<DataSet> ListarAtencionesCEFiltrarPorPaciente(string nroHistoriaClinica, string apellidoPaterno, string apellidoMaterno, string primerNombre,
-            string dni, int idCuentaAtencion, string fechaAtencion)
+            string dni, int idCuentaAtencion, string fechaAtencion, int idIpress = 0)
         {
             Conexion cx = new Conexion();
             DataSet ds = new DataSet();
@@ -301,7 +302,7 @@ namespace CapaDatos
                         string sql = "usp_AdmisionCEFiltrarPorPaciente";
                         SqlCommand cmd = new SqlCommand(sql, conn);
                         cmd.CommandType = CommandType.StoredProcedure;
-
+                        
                         cmd.Parameters.AddWithValue("@NroHistoriaClinica", nroHistoriaClinica);
                         cmd.Parameters.AddWithValue("@apellidoPaterno", apellidoPaterno == null ? "" : apellidoPaterno);
                         cmd.Parameters.AddWithValue("@apellidoMaterno", apellidoMaterno == null ? "" : apellidoMaterno);
@@ -309,6 +310,7 @@ namespace CapaDatos
                         cmd.Parameters.AddWithValue("@dni", dni == null ? "" : dni);
                         cmd.Parameters.AddWithValue("@idCuentaAtencion", idCuentaAtencion);
                         cmd.Parameters.AddWithValue("@fechaAtencion", fechaAtencion == null ? "" : fechaAtencion);
+                        cmd.Parameters.AddWithValue("@IdIpress", idIpress);
 
                         da.SelectCommand = cmd;
 

@@ -14,6 +14,7 @@ using System.Data;
 using SiHospCrypKey;
 using CapaEntidades;
 using Microsoft.AspNetCore.Http;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {

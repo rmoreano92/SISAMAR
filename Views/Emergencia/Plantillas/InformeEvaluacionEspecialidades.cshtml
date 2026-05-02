@@ -999,7 +999,7 @@
 @*<body style="background: white; width:793px; height:1145px; position:relative; /*border: 1px solid red;*/" class="pt-2 m-0">*@
 <body style="background: transparent; width:698px; height:1015px; position:relative;" >
 
-    <img class="logo" src="@($"{Context.Request.Scheme}://{Context.Request.Host}/images/logo.png")" />
+    <img class="logo" src="@ViewBag.Logo" />
 
     @if (ViewBag.CodigoQR != null)
     {
@@ -1412,6 +1412,30 @@
                                         <tr>
                                             <th class="border-secondary text-center font-weight-bold p-0" style="width:40px;">SO2</th>
                                             <td class="border-secondary text-center p-0">@ViewBag.Saturacion</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="border-secondary text-center font-weight-bold p-0" style="width:40px;">Pulso</th>
+                                            <td class="border-secondary text-center p-0">@ViewBag.Pulso</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="border-secondary text-center font-weight-bold p-0" style="width:40px;">Per. Abd.</th>
+                                            <td class="border-secondary text-center p-0">@ViewBag.PerimAbdominal</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="border-secondary text-center font-weight-bold p-0" style="width:40px;">Dolor</th>
+                                            <td class="border-secondary text-center p-0">@ViewBag.Dolor</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="border-secondary text-center font-weight-bold p-0" style="width:40px;">Llen. Cap.</th>
+                                            <td class="border-secondary text-center p-0">@ViewBag.LlenadoCapilar</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="border-secondary text-center font-weight-bold p-0" style="width:40px;">Glasgow</th>
+                                            <td class="border-secondary text-center p-0">@ViewBag.TriajeGlasgow</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="border-secondary text-center font-weight-bold p-0" style="width:40px;">Bie. Pier.</th>
+                                            <td class="border-secondary text-center p-0">@ViewBag.BiermanPierson</td>
                                         </tr>
                                     </tbody>
                                 </table>

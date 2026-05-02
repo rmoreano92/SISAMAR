@@ -4538,7 +4538,7 @@ let GuardarCita = async function (tipo) {
 
         swal({
             title: 'Cita Creada ',
-            text:
+            html:
                 'Los datos se agregaron correctamente para \n N° Historia: ' + paciente.nroHistoriaClinica + "<br> " +
                 'N° Cuenta: ' + idCuentaAtencion + "<br> " +
                 'N° Orden Pago: ' + insertFactCatalogo.ordenPago + "<br> ",

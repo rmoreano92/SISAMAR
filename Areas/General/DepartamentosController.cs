@@ -1,12 +1,14 @@
 ﻿using CapaDatos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.General
 {
-    public class DepartamentosController : Controller
+    public class DepartamentosController : BaseController
     {
         public IActionResult Index()
         {
@@ -20,10 +22,15 @@ namespace WebAppMaternidad.Areas.General
             {
                 return Json(new { session = false });
             }
+
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
             DataSet lsResultado;
             DalDepartamentos dal = new DalDepartamentos();
-            lsResultado = await dal.ListarDepartamentos();
-
+            lsResultado = await dal.ListarDepartamentos(idIpressInt);
+                        
             return Json(new { lsResultado = lsResultado, estado = true, session = true });
 
         }

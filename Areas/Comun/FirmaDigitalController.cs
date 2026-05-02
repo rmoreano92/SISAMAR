@@ -15,10 +15,11 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using WebAppMaternidad.CapaDatos;
 using WebAppMaternidad.Services.Firma;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class FirmaDigitalController : Controller
+    public class FirmaDigitalController : BaseController
     {
         private readonly IFirmaService _firmaService;
 
@@ -233,6 +234,98 @@ namespace WebAppMaternidad.Areas.Comun
                 return View("Error");
             }
 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> FirmaDigitalLoteFirmaPeru(string server, string cuentasAtencion, string tipos)
+        {
+            try
+            {
+                if (HttpContext.User.Identity.IsAuthenticated == false)
+                    return View("Login");
+
+                int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+                DalFirmaDigital dalFirma = new DalFirmaDigital();
+                UtilitarioController util = new UtilitarioController();
+                Conexion con = new Conexion();
+
+                string nombrePaquete = await dalFirma.FirmaDigitalGenerarPaquete(cuentasAtencion, "", tipos, idUsuario);
+                System.Data.DataSet archivos = await dalFirma.FirmaDigitalSeleccionarPorPaquetePorIdEmpleado(nombrePaquete, idUsuario);
+
+                if (archivos.Tables[0].Rows.Count == 0)
+                    return Json(new { error = true, msg = "No hay documentos pendientes de firma." });
+
+                var firstRow = archivos.Tables[0].Rows.Cast<System.Data.DataRow>()
+                    .FirstOrDefault(r => int.TryParse(r["statusFirma"].ToString(), out int s) && s == 0)
+                    ?? archivos.Tables[0].Rows[0];
+
+                if (firstRow["statusFirma"].ToString() != "0")
+                    return Json(new { error = true, msg = "No hay documentos pendientes de firma." });
+                string Motivo = firstRow["MotivoFP"].ToString();
+                string DatosMedico = firstRow["DatosMedicoFP"].ToString();
+                string x = firstRow["XFP"].ToString();
+                string y = firstRow["YFP"].ToString();
+                string Longitud = firstRow["LongitudFP"].ToString();
+                string ImagenNombre = firstRow["ImagenNombreFP"].ToString();
+                string LetraTamanio = firstRow["LetraTamanioFP"].ToString();
+                string rutaLogoBase = $"{Request.Scheme}://{Request.Host}";
+                string rutaLogoOriginal = rutaLogoBase + "/resources/logosFirma/" + ImagenNombre;
+
+                var pdfs = new List<object>();
+                var firmaCodes = new List<object>();
+
+                foreach (System.Data.DataRow row in archivos.Tables[0].Rows)
+                {
+                    if (int.TryParse(row["statusFirma"].ToString(), out int statusFirma) && statusFirma != 0)
+                        continue;
+
+                    string rutaOrig = row["rutaArchivoOriginal"].ToString().Replace("\\", "/");
+                    int idx = rutaOrig.IndexOf("/UNSIGNED/", StringComparison.OrdinalIgnoreCase);
+                    if (idx < 0) idx = rutaOrig.IndexOf("/SIGNED/", StringComparison.OrdinalIgnoreCase);
+                    string rutaRelativa = idx >= 0 ? rutaOrig.Substring(idx) : "/" + rutaOrig.TrimStart('/');
+                    // string urlPdf = "https://pdfobject.com/pdf/sample.pdf"; // TEST: URL estática pública (útil cuando el invoker externo no puede alcanzar el servidor de archivos)
+                    string urlPdf = server.TrimEnd('/') + rutaRelativa; // PROD: PathServerFiles debe ser accesible desde el invoker externo (IP/dominio público)
+                    string nombre = row["nombreArchivo"].ToString();
+                    string code = row["code"].ToString();
+
+                    pdfs.Add(new { url = urlPdf, name = nombre });
+                    firmaCodes.Add(new { name = nombre, codeFirma = code });
+                }
+
+                Motivo = util.CodificarDeUrl(Motivo);
+                DatosMedico = util.CodificarDeUrl(DatosMedico);
+
+                int posX = int.TryParse(x, out var tmpX) ? tmpX : 10;
+                int posY = int.TryParse(y, out var tmpY) ? tmpY : 12;
+                int stampTextSize = int.TryParse(LetraTamanio, out var tmpSize) ? tmpSize : 14;
+
+                ViewBag.IdFirma = "0";
+                ViewBag.CodigoFirma = nombrePaquete;
+                ViewBag.UrlInvoker = _firmaService.ObtenerInvokerUrl();
+                ViewBag.PdfsJson = JsonSerializer.Serialize(pdfs);
+                ViewBag.FirmaCodesJson = JsonSerializer.Serialize(firmaCodes);
+                ViewBag.FirmaParamJson = JsonSerializer.Serialize(new
+                {
+                    posx = posX,
+                    posy = posY,
+                    reason = Motivo,
+                    role = DatosMedico,
+                    stampSigned = rutaLogoOriginal,
+                    pageNumber = 1,
+                    visiblePosition = false,
+                    oneByOne = false,
+                    signatureStyle = 1,
+                    stampTextSize = stampTextSize,
+                    stampWordWrap = 37
+                });
+
+                return View("~/Views/Comun/FirmaPeru/FirmaDigitalFirmaPeru.cshtml");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.DescripcionError = ex.Message;
+                return View("Error");
+            }
         }
 
         [HttpPost]

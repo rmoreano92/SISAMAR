@@ -19,10 +19,11 @@ using Newtonsoft.Json;
 using WebAppMaternidad.Views.Hospitalizacion.Plantillas;
 using System.Diagnostics;
 using System.Net.Mime;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Laboratorio
 {
-    public class LaboratorioResultadosController : Controller
+    public class LaboratorioResultadosController : BaseController
     {
         public IActionResult Index()
         {
@@ -596,6 +597,7 @@ namespace WebAppMaternidad.Areas.Laboratorio
                 pdf.tamanio = tipoFormatoHoja;
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
                 resp = await utilitario.GenerarDocumentoDigital(idCuentaAtencion, idMovimiento, idProducto, tipoFormato, 0, pageHtml, stringHtml, idUsuario, pdf);
 
                 return resp;
@@ -628,7 +630,9 @@ namespace WebAppMaternidad.Areas.Laboratorio
                 pdf.tamanio = tipoFormatoHoja;
                 pdf.pageHtml = pageHtml;
 
-                resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
+
+                    resultStream = await utilitario.GenerarArchivoEnMemoriaPdfV2(pdf);
 
                 byte[] pdfBytes = resultStream.ToArray();
                 ms.Write(pdfBytes, 0, pdfBytes.Length);
@@ -855,6 +859,7 @@ namespace WebAppMaternidad.Areas.Laboratorio
                 pdf.tamanio = tipoFormatoHoja;
                 pdf.marginX = 20;
                 pdf.marginY = 20;
+                pdf.cookies = HttpContext.Request.Headers["Cookie"].ToString();
 
                 //dsGrupos = await dal.ListarGruposLaboratorio(idMovimiento, idOrden);
                 dsGrupos = await dal.ListarGrupoLaboratorioPorProducto(idMovimiento, idOrden, idProducto);

@@ -7,10 +7,11 @@ using CapaDatos;
 using CapaEntidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class ServiciosControllerBorrarClase : Controller
+    public class ServiciosControllerBorrarClase : BaseController
     {
         public IActionResult Index()
         {

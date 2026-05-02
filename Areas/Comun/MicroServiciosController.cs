@@ -4,10 +4,11 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
 using WebAppMaternidad.Services;
+using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Comun
 {
-    public class MicroServiciosController: Controller
+    public class MicroServiciosController: BaseController
     {
 
         //[HttpPost]

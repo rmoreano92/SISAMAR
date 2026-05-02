@@ -9,6 +9,9 @@
     horaNacimiento: '',
     tipoSexo: '',
     gemelar: '',
+    edad: '',
+    fichaFamiliar: '',
+    parentesco: '',
 
     async GenerarBrazaletePaciente() {
         Cargando(1);
@@ -23,7 +26,10 @@
         formData.append('fechaNacimiento', Brazalete.fechaNacimiento);
         formData.append('horaNacimiento', Brazalete.horaNacimiento);
         formData.append('tipoSexo', Brazalete.tipoSexo);
-        formData.append('gemelar', Brazalete.gemelar);
+        formData.append('gemelar', Brazalete.gemelar);  
+        formData.append('edad', Brazalete.edad);  
+        formData.append('fichaFamiliar', Brazalete.fichaFamiliar);  
+        formData.append('parentesco', Brazalete.parentesco);  
 
         var url = "/Paciente/GenerarBrazaletePacienteRecienNacido?area=ConsultaExterna";
         //$('#ifrmReporte').attr('src', url);
@@ -60,6 +66,7 @@
         //Cargando(0);        
     },
 
+
     LimpiarBrazalete() {
         Brazalete.idPaciente = 0;    
         Brazalete.nroHistoria = 0,
@@ -71,6 +78,9 @@
         Brazalete.horaNacimiento = '';
         Brazalete.tipoSexo = '';
         Brazalete.gemelar = '';
+        Brazalete.edad = '';
+        Brazalete.fichaFamiliar = '';
+        Brazalete.parentesco = '';
     }
 
 }

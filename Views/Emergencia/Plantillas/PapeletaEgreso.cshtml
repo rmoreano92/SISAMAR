@@ -19,11 +19,32 @@
         .textarea { min-height: 60px; border: 1px dotted #000; padding:6px; }
         .sign { margin-top: 30px; display:flex; justify-content:space-between; }
         .sign .box { width: 200px; text-align:center; border-top:1px solid #000; padding-top:6px; }
+         .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+         .inst {
+            font-size: 12px;
+            line-height: 1;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .logo img {
+            max-height: 64px
         .qr { position: absolute; right: 20px; top: 20px; width:70px; }
     </style>
 </head>
 <body>
+    
     <div class="container">
+          <div class="logo">
+                <img src="@ViewBag.Logo" style="width:50px;" />
+                <div class="inst">
+                    DIRECCIÓN DE SALUD Y CENTRO MÉDICO NAVAL<br />
+                    "CIRUJANO MAYOR SANTIAGO TAVARÁ"
+                </div>
+        </div>
         @if (ViewBag.CodigoQR != null) {
             <img class="qr" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String((byte[])ViewBag.CodigoQR))" />
         }

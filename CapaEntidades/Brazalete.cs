@@ -13,6 +13,9 @@
         public string horaNacimiento { get; set; }
         public string tipoSexo { get; set; }
         public string gemelar { get; set; }
+        public string edad { get; set; }
+        public string fichaFamiliar { get; set; }
+        public string parentesco { get; set; }
 
 
     }
