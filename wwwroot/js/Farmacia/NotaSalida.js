@@ -845,6 +845,27 @@
 
         });
 
+        $('#btnConsumirRequerimiento').on('click', function () {
+            let $btn = $(this);
+
+            if ($btn.attr('data-estado') === 'concluir') {
+                return;
+            }
+
+            let camposABloquear = '#contDatosPreviosRegistroNotaSalida input, #contDatosPreviosRegistroNotaSalida select, #contDatosPreviosRegistroNotaSalida textarea';
+
+            $(camposABloquear).not('#btnConsumirRequerimiento').prop('disabled', true);
+            $('.chzn-select').trigger('chosen:updated');
+
+            $btn
+                .attr('data-estado', 'concluir')
+                .removeClass('btn-info')
+                .addClass('btn-success')
+                .html('<i class="fa fa-check"></i> CONCLUIR PARCIAL GUÍA');
+
+            $('#contFiltrosProductos').show();
+        });
+
 
         $('#btnBuscarRecetasUnidosis').on('click', async function () {
 
