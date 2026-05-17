@@ -69,6 +69,19 @@ namespace WebAppMaternidad.Areas.Farmacia
             return Json(new { lstData = ListaTipoDocumentos, session = true });
         }
 
+        [HttpGet]
+        public async Task<ActionResult> ListarTipoCompartimiento()
+        {
+            DataSet listaTipoCompartimiento;
+            DalFarmacia daoFarmacia = new DalFarmacia();
+            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            listaTipoCompartimiento = null;
+
+            listaTipoCompartimiento = await daoFarmacia.ListarTipoCompartimiento();
+
+            return Json(new { lstData = listaTipoCompartimiento, session = true });
+        }
+
         [HttpPost]
         public async Task<ActionResult> FarmTipoConceptosDevuelveParaRegistroDeNiNs(string TipoAlmacen, string TipoMov, string TipoSuministro)
         {

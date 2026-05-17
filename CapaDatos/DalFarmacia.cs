@@ -101,6 +101,30 @@ namespace CapaDatos
 
         }
 
+        public Task<DataSet> ListarTipoCompartimiento()
+        {
+            Conexion cx = new Conexion();
+            return Task.Run(() =>
+            {
+
+                using (SqlConnection conn = cx.obtenerConexion())
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        string sql = "ListarTipoCompartimiento";
+                        da.SelectCommand = new SqlCommand(sql, conn);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        DataSet ds = new DataSet();
+                        da.Fill(ds);
+
+                        return ds;
+                    }
+                }
+
+            });
+        }
+
         public Task<DataSet> FarmTipoConceptosDevuelveParaRegistroDeNiNs(string TipoAlmacen, string TipoMov, string TipoSuministro)
         {
             Conexion cx = new Conexion();
