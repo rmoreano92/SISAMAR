@@ -882,6 +882,13 @@
     ValidarCampos: function () {
         $('.alert-danger').hide();
 
+        //MGAMERO: Admisión solo con documento obligatorio
+        if ($('#cboTipoDocPaciente>option:selected').val() == 0) {
+            alerta(2, 'Seleccione un Tipo de Documento')
+            $('#cboTipoDocPaciente').focus()
+            return false
+        }
+
         if ($('#txtDniPaciente').val() == '' && $('#cboTipoDocPaciente>option:selected').val() != 0) {
             alerta(2, 'Ingrese el Nro: Docuemtno')
             $('#txtDniPaciente').focus()

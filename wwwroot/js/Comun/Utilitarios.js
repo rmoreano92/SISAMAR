@@ -1265,6 +1265,31 @@
         return datos;
     },
 
+    async ConfiguracionIpress(tipo) {
+        var midata = new FormData();
+        midata.append('idParametro', tipo);
+        var respuesta = '';
+        let datos;
+        try {
+            datos = await
+                $.ajax({
+                    method: "POST",
+                    url: "/Parametros/SeleccionaFilaParametroV2?area=Comun",
+                    data: midata,
+                    dataType: "json",
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                });
+
+        } catch (error) {
+            //console.error(error)
+            alerta(3, JSON.stringify(error));
+        }
+
+        return datos?.lsResultado?.table[0]["valorTexto"];
+    },
+
     async ValidarPermiso(idPermiso) {
         var formData = new FormData();
         let datos;
@@ -1363,13 +1388,17 @@
         $('#ifmFirmaDigital').attr('src', rutaFirmaPeru);
     },
 
-    async IniciarServicioFirmaLoteFirmaPeru(cuentasAtencion, tipos) {
+    async IniciarServicioFirmaLoteFirmaPeru(cuentasAtencion, tipos, registros = '') {
         finFirmaDigital = 0;
         Cargando(0);
         const cuentasParam = Array.isArray(cuentasAtencion) ? cuentasAtencion.join(',') : cuentasAtencion;
         let ruta = '/FirmaDigital/FirmaDigitalLoteFirmaPeru?server=' + PathServerFiles
             + '&cuentasAtencion=' + encodeURIComponent(cuentasParam)
             + '&tipos=' + encodeURIComponent(tipos);
+        if (registros !== '' && registros !== null && registros !== undefined) {
+            const regParam = Array.isArray(registros) ? registros.join(',') : registros;
+            ruta += '&registros=' + encodeURIComponent(regParam);
+        }
         $("#modalFirmaDigital").modal("show");
         $('#ifmFirmaDigital').attr('src', ruta);
     },

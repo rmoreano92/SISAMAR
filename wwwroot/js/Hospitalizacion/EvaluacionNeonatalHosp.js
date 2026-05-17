@@ -204,11 +204,8 @@ var EvaluacionNeonatalHosp = {
                     await Utilitario.AbrirServicioFirmaBit4IdMultiple(paquete.data)
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip(Variables.IdCuentaAtencion, EvaluacionDetalle.IdNumero, EvaluacionDetalle.IdServicio);
-                if (!isEmpty(paquete)) {
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
-            }    
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru(Variables.IdCuentaAtencion, EvaluacionDetalle.IdServicio, EvaluacionDetalle.IdNumero);
+            }
             //const paquete = await Utilitario.CrearPaqueteArchivos(Variables.IdCuentaAtencion, EvaluacionNeonatalHosp.nroEvaluacion, Variables.IdServicioIngreso);
             
             Cargando(0);

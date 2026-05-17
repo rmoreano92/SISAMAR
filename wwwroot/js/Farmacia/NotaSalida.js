@@ -102,7 +102,6 @@
             autoWidth: false,
             columns: [
                 {
-                    targets: 1,
                     data: "movNumero",
                     width: "10%",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -110,7 +109,6 @@
                     }
                 },
                 {
-                    targets: 2,
                     data: "movTipo",
                     width: "5%",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -118,7 +116,6 @@
                     }
                 },
                 {
-                    targets: 3,
                     data: "abreviatura",
                     width: "7%",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -126,7 +123,6 @@
                     }
                 },
                 {
-                    targets: 4,
                     data: "documentoNumero",
                     width: "10%",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -134,7 +130,6 @@
                     }
                 },
                 {
-                    targets: 5,
                     data: "fechaCreacionMovimiento",
                     width: "10%",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -142,7 +137,6 @@
                     }
                 },
                 {
-                    targets: 6,
                     data: "estado",
                     width: "8%",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -154,7 +148,6 @@
                     }
                 },
                 {
-                    targets: 7,
                     data: "concepto",
                     width: "15%",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -162,7 +155,6 @@
                     }
                 },
                 {
-                    targets: 8,
                     data: "total",
                     width: "8%",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -170,7 +162,6 @@
                     }
                 },
                 {
-                    targets: 9,
                     data: "idUsuario",
                     width: "7%",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -178,7 +169,6 @@
                     }
                 },
                 {
-                    targets: 12,
                     data: null,
                     width: "10%",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -202,17 +192,12 @@
         var parms = {
             "scrollY": "250px",
             "scrollCollapse": true,
-            //"autoWidth": false,
-            //deferRender: true,
-            //scroller: true,
             data: null,
             destroy: true,
             info: false,
             bFilter: false,
             paging: false,
             responsive: true,
-            //dom: 'Bflr<"table-responsive"t>ip',
-            //buttons: ['copy', 'csv', 'print'],        //KHOYOSI(COMENTADO)
             columns: [
                 {
                     width: '0%',
@@ -427,18 +412,19 @@
                     console.log('obj', obj)
 
                     let cantProducto = $('#txtCant_idItem_' + obj.idProducto.toString() + '_' + i).val()
+                    let registroSanitario = $('#txtRegistroSanitario_' + obj.idProducto.toString() + '_' + i).val()
 
                     farmMovimientoDetalle.push({
 
                         idProducto: obj.idProducto,
-                        Lote: '', // validar
-                        FechaVencimiento: '', // validar
+                        Lote: obj.lote, // validar
+                        FechaVencimiento: obj.fechaVencimiento, // validar
                         idTipoSalidaBienInsumo: obj.idTipoSalidaBienInsumo, // validar
                         Item: i + 1,
                         Cantidad: cantProducto,
                         Precio: obj.precio,
                         Total: obj.total,
-                        RegistroSanitario: "",
+                        RegistroSanitario: registroSanitario,
                         DocumentoNumero: "",
 
                     })
@@ -656,7 +642,7 @@
                 fechaVencimiento: row.fechaVencimiento,
                 idTipoSalidaBienInsumo: row.idTipoSalidaBienInsumoSaldo,
                 fechaVencimientoFormat: row.fechaVencimientoFormat,
-                registroSanitario: ''
+                registroSanitario: row.registroSanitario
             }
 
             if (NotaSalida.ExisteProducto(row.idProducto, row.lote, row.tipo, row.fechaVencimientoFormat)) {
@@ -911,7 +897,8 @@
                     //let adicionarProducto = 0
                     let producto = objDetalle.producto
                     // obtenemos el codigo sin punto
-                    codigoSnPunto = producto.substring(0, producto.indexOf("."))
+                    //codigoSnPunto = producto.substring(0, producto.indexOf("/"))
+                    codigoSnPunto = objDetalle.codigo
 
                     let FarmUnidosisFilter = NotaSalida.FarmUnidosis
 
@@ -1499,7 +1486,11 @@
             if (datos.lstData.table.length > 0) { //IdTipoConcepto<>10 and IdTipoConcepto<>13  and IdTipoConcepto<>14 and IdTipoConcepto<>15  and IdTipoConcepto<>16 and IdTipoConcepto<>17  and IdTipoConcepto<>25 and IdTipoConcepto<>23
                 respuesta = datos.lstData.table;
                 respuesta = respuesta.filter(obj => obj.idTipoConcepto != 10 && obj.idTipoConcepto != 13 && obj.idTipoConcepto != 14 && obj.idTipoConcepto != 15 && obj.idTipoConcepto != 16 && obj.idTipoConcepto != 17 && obj.idTipoConcepto != 25 && obj.idTipoConcepto != 23)
-                oTable_NotasSalida.fnAddData(respuesta);
+                console.log("MOISES - datos que irán a la tabla:", respuesta);
+                console.table(respuesta);
+                if (respuesta.length > 0) {
+                    oTable_NotasSalida.fnAddData(respuesta);
+                }
                 oTable_NotasSalida.resize();
             }
             else {

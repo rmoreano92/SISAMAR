@@ -1778,7 +1778,7 @@
         $("#BadgeEvaluacion .msc-hotline-icon").removeClass("bg-info");
 
         //Ordenes.ubicaFarmacia(8);
-        Ordenes.ubicaFarmacia(await Utilitario.Configuracion("FarmaciaEmer")); //RMOREANO SETEAR LA FARMACIA DE EMERGENCIA
+        Ordenes.ubicaFarmacia(await Utilitario.ConfiguracionIpress(1073)); //RMOREANO SETEAR LA FARMACIA DE EMERGENCIA
 
         Ordenes.limpiarCatalogoV2();
         Diagnosticos.LimpiarDiagnosticosAtencion();

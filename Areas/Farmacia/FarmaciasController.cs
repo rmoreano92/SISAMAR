@@ -187,20 +187,31 @@ namespace WebAppMaternidad.Areas.Farmacia
         }
 
         [HttpPost]
-        public async Task<ActionResult> FarmMovimientoAgregarModificar(FarmMovimiento farmMovimiento, int esNotaIngresoAutomatica, string detalleNotaSalida)
+        public async Task<IActionResult> FarmMovimientoAgregarModificar(FarmMovimiento farmMovimiento, int esNotaIngresoAutomatica, string detalleNotaSalida)
         {
-            int resp;
-            DalFarmacia daoFarmacia = new DalFarmacia();
-            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
-            resp = 0;
 
-            farmMovimiento.idUsuario = idUsuario;
+            if (!UsuarioAutenticado())
+                return SessionExpiredResult();
 
-            var lstObjDetalleNotaSalida = JsonConvert.DeserializeObject<List<FarmMovimientoDetalle>>(detalleNotaSalida);
+            try
+            {
+                int resp;
+                DalFarmacia daoFarmacia = new DalFarmacia();
+                int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+                resp = 0;
 
-            resp = await daoFarmacia.FarmMovimientoAgregarModificar(farmMovimiento, esNotaIngresoAutomatica, lstObjDetalleNotaSalida);
+                farmMovimiento.idUsuario = idUsuario;
 
-            return Json(new { lstData = resp, session = true });
+                var lstObjDetalleNotaSalida = JsonConvert.DeserializeObject<List<FarmMovimientoDetalle>>(detalleNotaSalida);
+
+                resp = await daoFarmacia.FarmMovimientoAgregarModificar(farmMovimiento, esNotaIngresoAutomatica, lstObjDetalleNotaSalida);
+
+                return SuccessResponse(resp);
+            }
+            catch (Exception ex)
+            {
+                return ErrorResponse($"¡Error! {ex.Message}");
+            }
         }
 
         [HttpPost]
@@ -1412,4 +1423,5 @@ namespace WebAppMaternidad.Areas.Farmacia
         }
 
     }
+
 }

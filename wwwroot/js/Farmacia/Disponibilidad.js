@@ -85,90 +85,6 @@
 
                     }
                 },
-                //{
-                //    data: "mes1",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
-                //{
-                //    data: "mes2",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
-                //{
-                //    data: "mes3",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
-                //{
-                //    data: "mes4",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
-                //{
-                //    data: "mes5",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
-                //{
-                //    data: "mes6",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
-                //{
-                //    data: "mes7",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
-                //{
-                //    data: "mes8",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
-                //{
-                //    data: "mes9",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
-                //{
-                //    data: "mes10",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
-                //{
-                //    data: "mes11",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
-                //{
-                //    data: "mes12",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left')
-
-                //    }
-                //},
                 {
                     data: "cpma",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -219,7 +135,14 @@
                         }
                         
                     }
-                }
+                },
+                {
+                    data: "anaquel",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+
+                    }
+                },
             ]
         }
 
@@ -229,6 +152,19 @@
     },
 
     Events: () => {
+        $('#tblPacientes tbody').on('click', 'tr', function () {
+
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                oTable_Pacientes.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+
+
+        });
+
         $('#btnDescargarExcelDisponibilidad').on('click', () => {
 
             window.open(

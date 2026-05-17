@@ -1,0 +1,52 @@
+@{
+    Layout = null;
+    string mensaje = ViewBag.Mensaje ?? "No hay documentos pendientes de firma.";
+}
+<html>
+<body>
+    <script type="text/javascript" src="~/AdmiRE/js/components.js"></script>
+    <script>
+        function cerrarModalEnVentana(win) {
+            try {
+                if (!win || win.closed || !win.document) return;
+
+                const iframe = win.document.getElementById('ifmFirmaDigital');
+                if (iframe) {
+                    iframe.setAttribute('src', '');
+                    iframe.innerHTML = '';
+                }
+
+                if (win.$ && typeof win.$ === 'function') {
+                    win.$('#modalFirmaDigital').modal('hide');
+                } else {
+                    const modalNode = win.document.getElementById('modalFirmaDigital');
+                    if (modalNode) {
+                        modalNode.classList.remove('show');
+                        modalNode.style.display = 'none';
+                        modalNode.setAttribute('aria-hidden', 'true');
+                    }
+                    win.document.querySelectorAll('.modal-backdrop').forEach(bd => bd.remove());
+                    win.document.body.classList.remove('modal-open');
+                    win.document.body.style.removeProperty('padding-right');
+                }
+
+                if (typeof win.alerta2 === 'function') {
+                    win.alerta2('info', '', '@Html.Raw(mensaje)');
+                } else if (typeof win.alerta === 'function') {
+                    win.alerta(2, '@Html.Raw(mensaje)');
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        $(document).ready(function () {
+            const targets = [];
+            if (window.parent && window.parent !== window) targets.push(window.parent);
+            if (window.opener) targets.push(window.opener);
+
+            targets.forEach(cerrarModalEnVentana);
+        });
+    </script>
+</body>
+</html>

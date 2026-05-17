@@ -1056,34 +1056,46 @@
             <tr>
                 <th class="border-secondary text-center">CODIGO</th>
                 <th class="border-secondary text-center" style="width:350px;">PRODUCTO</th>
+                @*
                 <th class="border-secondary text-center">UM</th>
                 <th class="border-secondary text-center">Tipo Salida</th>
-                <th class="border-secondary text-center">Lote</th>
-                <th class="border-secondary text-center">Fecha Vencimiento</th>
-                <th class="border-secondary text-center">Cantidad</th>
-                <th class="border-secondary text-center">Precio</th>
-                <th class="border-secondary text-center">Total</th>
+                *@
+                <th class="border-secondary text-center">PETITORIO</th>
+                <th class="border-secondary text-center">MARCA</th>
+                <th class="border-secondary text-center">F.F.</th>
+                <th class="border-secondary text-center">CANT.</th>
+                <th class="border-secondary text-center">PRECIO UNIT.</th>
+                <th class="border-secondary text-center">IMPORTE</th>
+                <th class="border-secondary text-center">FECHA VENC.</th>
+                <th class="border-secondary text-center">LOTE</th>
+                <th class="border-secondary text-center">OBSERVACIÓN</th>
             </tr>
         </thead>
         <tbody>
             @foreach (System.Data.DataRow row in ViewBag.detalleRegistro.Rows)
             {
             <tr>
-                    <td>@row["Codigo"]</td>
+                    <td class="text-center">@row["Codigo"]</td>
                     <td>@row["Producto"]</td>
+                    @*
                     <td>@row["UM"]</td>
-                    <td>@row["tipo"]</td>
-                    <td>@row["Lote"]</td>
+                    <td>@row["tipo"]</td>    
+                    *@
+                    <td class="text-center">@(Convert.ToBoolean(row["Petitorio"]) ? "SI" : "NO")</td>
+                    <td>@row["Fabricante"]</td>    
+                    <td>@row["FormaFarmaceutica"]</td>    
+                    <td class="text-center">@row["Cantidad"]</td>
+                    <td class="text-right">@row["Precio"]</td>
+                    <td class="text-right">@row["Total"]</td>
                     <td>@row["FechaVencimiento"]</td>
-                    <td>@row["Cantidad"]</td>
-                    <td>@row["Precio"]</td>
-                    <td>@row["Total"]</td>
+                    <td>@row["Lote"]</td>
+                    <td></td>
             </tr>
             }
 
             <tr>
-                <th class="border-secondary text-center" colspan="8"></th>
-                <th class="border-secondary text-center">@ViewBag.Total</th>
+                <th class="border-secondary text-center" colspan="7"></th>
+                <th class="border-secondary text-right">@ViewBag.Total</th>
             </tr>
         </tbody>
     </table>

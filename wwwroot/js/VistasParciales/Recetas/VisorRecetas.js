@@ -343,10 +343,7 @@ var VisorReceta = {
                     await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data);
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip(Variables.IdCuentaAtencion, '', "'REC'");
-                if (!isEmpty(paquete)) {
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru(Variables.IdCuentaAtencion, "'REC'");
             }                           
             Cargando(0)
         });

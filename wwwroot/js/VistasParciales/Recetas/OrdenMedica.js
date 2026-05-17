@@ -87,7 +87,7 @@
             Ordenes.ubicaMedico(idMedico);
             Ordenes.CargarDiagnosticosOrdenesMedicas(0);
             Ordenes.ModoVistaMultiple();
-            Ordenes.ubicaFarmacia(await Utilitario.Configuracion("FarmaciaEmer")); //rmoreano 09042023
+            Ordenes.ubicaFarmacia(await Utilitario.ConfiguracionIpress(1073)); //rmoreano 09042023
    
 
             $('#btnMuestraPaquete').css("visibility", 'visible');

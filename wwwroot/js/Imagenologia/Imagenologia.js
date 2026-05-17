@@ -2135,10 +2135,7 @@ let Imagenologia = {
                     await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data)
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip('', objrow.idMovimiento, "'IMG-RES','IMG-RES-GRUPO'");
-                if (!isEmpty(paquete)) {
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru('', "'IMG-RES','IMG-RES-GRUPO'", objrow.idMovimiento);
             }
 
             Cargando(0)
@@ -2162,10 +2159,7 @@ let Imagenologia = {
                     await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data)
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip('', numMovimientos, "'IMG-RES','IMG-RES-GRUPO'");
-                if (!isEmpty(paquete)) {
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru('', "'IMG-RES','IMG-RES-GRUPO'", numMovimientos);
             }
 
             Cargando(0)

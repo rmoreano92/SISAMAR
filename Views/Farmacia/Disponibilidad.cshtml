@@ -45,9 +45,13 @@
                     <div class="card-block">
 
                         <div class="row mt-2">
+                            
                             <div class="col-lg-12">
                                 <button class="btn btn-outline-success btn-lg" id="btnDescargarExcelDisponibilidad">Descargar <i class="fa-solid fa-file-excel ml-1"></i></button>
+
+                                <button class="btn btn-outline-info btn-lg" id="btn">Modificar <i class="fa-solid fa-file-excel ml-1"></i></button>
                             </div>
+
                             <div class="col-lg-12">
                                 <table id="tblDisponibilidad" class="table table-bordered table-hover mb-1" style="position: sticky; top: 0; width:100%">
                                     <thead style="color: white; background: #434343;">
@@ -58,23 +62,12 @@
                                             <th>Presentación</th>
                                             <th>Forma Farma.</th>
                                             <th>Tipo</th>
-                                            @*<th>mes1</th>
-                                            <th>mes2</th>
-                                            <th>mes3</th>
-                                            <th>mes4</th>
-                                            <th>mes5</th>
-                                            <th>mes6</th>
-                                            <th>mes7</th>
-                                            <th>mes8</th>
-                                            <th>mes9</th>
-                                            <th>mes10</th>
-                                            <th>mes11</th>
-                                            <th>mes12</th>*@
                                             <th>CPMA</th>
                                             <th>Stock</th>
                                             <th>Rotación</th>
                                             <th>Meses Abastecidos</th>
                                             <th>Estado</th>
+                                            <th>Anaquel</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -89,6 +82,33 @@
     </div>
 </div>
 
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalPa" 
+    role="dialog" aria-hidden="false" style="background-color: #00000075;">
+    <div class="modal-dialog modal-xl" style="box-shadow: 0 20px 13px 0 rgb(0, 0, 0);">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Actualizar Datos</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group input-group-sm">
+                            <label class="form-label">Tipo Afiliacion</label>
+                            <select class="chzn-select" id="cboTipoAfiliacion"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Guardar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <iframe id="ifrmReporte"
         title="Inline Frame Example"

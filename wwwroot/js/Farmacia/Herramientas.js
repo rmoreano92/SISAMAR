@@ -144,8 +144,8 @@ var Kardex = {
 
             swal({
                 title: 'Actualizar Fecha de Vencimiento',
-                text: 'Esta acción afectara a todos los lotes de todas las farmacias y almacenes, además de todos los movimientos realizados con este lote.<br>¿Estas seguro de actualizar la fecha de vencimiento del lote para este producto?',
-                type: 'warning',
+                html: 'Esta acción afectara a todos los lotes de todas las farmacias y almacenes, además de todos los movimientos realizados con este lote.<br>¿Estas seguro de actualizar la fecha de vencimiento del lote para este producto?',
+                icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#4fb7fe',
                 cancelButtonColor: '#EF6F6C',
@@ -168,8 +168,8 @@ var Kardex = {
 
             swal({
                 title: 'Actualizar Lote',
-                text: 'Esta acción afectara a todos los lotes de todas las farmacias y almacenes, además de todos los movimientos realizados con este lote.<br>¿Estas seguro de actualizar el lote para este producto?',
-                type: 'warning',
+                html: 'Esta acción afectara a todos los lotes de todas las farmacias y almacenes, además de todos los movimientos realizados con este lote.<br>¿Estas seguro de actualizar el lote para este producto?',
+                icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#4fb7fe',
                 cancelButtonColor: '#EF6F6C',

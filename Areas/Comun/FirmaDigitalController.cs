@@ -237,7 +237,7 @@ namespace WebAppMaternidad.Areas.Comun
         }
 
         [HttpGet]
-        public async Task<IActionResult> FirmaDigitalLoteFirmaPeru(string server, string cuentasAtencion, string tipos)
+        public async Task<IActionResult> FirmaDigitalLoteFirmaPeru(string server, string cuentasAtencion, string tipos, string registros = "")
         {
             try
             {
@@ -249,18 +249,24 @@ namespace WebAppMaternidad.Areas.Comun
                 UtilitarioController util = new UtilitarioController();
                 Conexion con = new Conexion();
 
-                string nombrePaquete = await dalFirma.FirmaDigitalGenerarPaquete(cuentasAtencion, "", tipos, idUsuario);
+                string nombrePaquete = await dalFirma.FirmaDigitalGenerarPaquete(cuentasAtencion, registros, tipos, idUsuario);
                 System.Data.DataSet archivos = await dalFirma.FirmaDigitalSeleccionarPorPaquetePorIdEmpleado(nombrePaquete, idUsuario);
 
                 if (archivos.Tables[0].Rows.Count == 0)
-                    return Json(new { error = true, msg = "No hay documentos pendientes de firma." });
+                {
+                    ViewBag.Mensaje = "No hay documentos pendientes de firma.";
+                    return View("~/Views/Comun/FirmaPeru/SinDocumentosFirmaPeru.cshtml");
+                }
 
                 var firstRow = archivos.Tables[0].Rows.Cast<System.Data.DataRow>()
                     .FirstOrDefault(r => int.TryParse(r["statusFirma"].ToString(), out int s) && s == 0)
                     ?? archivos.Tables[0].Rows[0];
 
                 if (firstRow["statusFirma"].ToString() != "0")
-                    return Json(new { error = true, msg = "No hay documentos pendientes de firma." });
+                {
+                    ViewBag.Mensaje = "No hay documentos pendientes de firma.";
+                    return View("~/Views/Comun/FirmaPeru/SinDocumentosFirmaPeru.cshtml");
+                }
                 string Motivo = firstRow["MotivoFP"].ToString();
                 string DatosMedico = firstRow["DatosMedicoFP"].ToString();
                 string x = firstRow["XFP"].ToString();

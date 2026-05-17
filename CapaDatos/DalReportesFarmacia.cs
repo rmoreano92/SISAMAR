@@ -11,7 +11,7 @@ namespace CapaDatos
 {
     public class DalReportesFarmacia
     {
-        public Task<DataSet> ListarDisponibilidadFarmacia()
+        public Task<DataSet> ListarDisponibilidadFarmacia(int IdAlmacen = 0)
         {
             DataSet dataSet = new DataSet();
             //int nRpta = 0;
@@ -28,6 +28,39 @@ namespace CapaDatos
                             string sql = "web_ListarDisponibilidadFarmacia";
                             SqlCommand cmd = new SqlCommand(sql, conn);
                             cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@IdAlmacen", IdAlmacen);
+
+                            da.SelectCommand = cmd;
+                            da.Fill(dataSet);
+                        }
+                        catch (Exception ex)
+                        {
+                            dataSet = null;
+                            throw new Exception(ex.Message);
+                        }
+                        return dataSet;
+                    }
+                }
+            });
+        }
+        public Task<DataSet> ListarAnaqueles(int IdAlmacen = 0)
+        {
+            DataSet dataSet = new DataSet();
+            //int nRpta = 0;
+            Conexion cx = new Conexion();
+
+            return Task.Run( () => {
+
+                using (SqlConnection conn = cx.obtenerConexion())
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        try
+                        {
+                            string sql = "Web_ListarAnaqueles";
+                            SqlCommand cmd = new SqlCommand(sql, conn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@IdAlmacen", IdAlmacen);
 
                             da.SelectCommand = cmd;
                             da.Fill(dataSet);

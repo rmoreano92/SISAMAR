@@ -786,11 +786,7 @@ var AdmisionEmergencia = {
                     await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data);
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip(objrow.idCuentaAtencion, '', "'E-EVA','REC','RF', 'CRF','FUA'");
-                if (!isEmpty(paquete)) {
-                    //await Utilitario.AbrirServicioFirmaPeruMultiple(paquete.data);
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru(objrow.idCuentaAtencion, "'E-EVA','REC','RF', 'CRF','FUA'");
             }
 
 
@@ -817,10 +813,7 @@ var AdmisionEmergencia = {
                     await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data)
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip(cuentasAtencion, '', "'E-EVA','REC','RF', 'CRF','FUA'");
-                if (!isEmpty(paquete)) {
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru(cuentasAtencion, "'E-EVA','REC','RF', 'CRF','FUA'");
             }
 
 

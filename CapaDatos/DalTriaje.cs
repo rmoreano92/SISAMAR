@@ -32,6 +32,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@TriajePerimCefalico", objatencionesCE.TriajePerimCefalico);
                 cmd.Parameters.AddWithValue("@TriajeSaturacionOxigeno", objatencionesCE.TriajeSaturacionOxigeno);
                 cmd.Parameters.AddWithValue("@TriajePerimAbdominal", objatencionesCE.TriajePerimAbdominal);
+                cmd.Parameters.AddWithValue("@TriajePulso", objatencionesCE.TriajePulso);
 
 
                 //cmd.ExecuteNonQuery();

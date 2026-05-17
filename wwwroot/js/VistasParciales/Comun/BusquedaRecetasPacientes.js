@@ -258,7 +258,7 @@
         let recetas = null;
 
         let midata = new FormData();
-        midata.append('NroHistoriaClinica', isNull($('#txtBusquedaRecetaNroHistoria').val(), 0));
+        midata.append('NroHistoriaClinica', $('#txtBusquedaRecetaNroHistoria').val());
         midata.append('NroDocumento', $('#txtBusquedaRecetaDNI').val());
         midata.append('ApellidoPaterno', $('#txtBusquedaRecetaApPaterno').val());        
         midata.append('FechaInicio', $('#txtBusquedaRecetaFechaInicio').val());

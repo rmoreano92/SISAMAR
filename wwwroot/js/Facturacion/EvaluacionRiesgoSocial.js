@@ -514,10 +514,7 @@ var RiesgoSocial = {
                     await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data)
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip('', numOrdenes, "'INF-RS'");
-                if (!isEmpty(paquete)) {
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru('', "'INF-RS'", numOrdenes);
             }
 
             Cargando(0)

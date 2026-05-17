@@ -346,6 +346,7 @@ var Triaje = {
                 $("#txtPC").val("");
                 $("#txtPAbdo").val("");
                 $("#txtSO").val("");       //KHOYOSI
+                $("#txtPulso").val("");       //JVICENTE
 
                 datos = datos.data
 
@@ -387,8 +388,9 @@ var Triaje = {
                     
                     $("#txtPC").val(datos.table[0].triajePerimCefalico);
 
-                    $("#txtSO").val(datos.table[0].triajeSaturacionOxigeno);     //KHOYOSI
-                    $("#txtPAbdo").val(datos.table[0].triajePerimAbdominal);     //KHOYOSI
+                    $("#txtSO").val(datos.table[0].triajeSaturacionOxigeno);    //KHOYOSI
+                    $("#txtPAbdo").val(datos.table[0].triajePerimAbdominal);    //KHOYOSI
+                    $("#txtPulso").val(datos.table[0].triajePulso);             //JVICENTE
 
                     //$("#txtImc").val(Triaje.calculaImc($("#txtPeso").val(), $("#txtTalla").val())) // cambio calculo imc
                     $("#txtImc").val(Triaje.calculaImc($("#txtPesoPregesta").val(), $("#txtTalla").val()))

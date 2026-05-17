@@ -793,11 +793,18 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@IdUsuarioAuditoria", farmMovimiento.idUsuario ?? Convert.DBNull);
                 //cmd.Parameters.AddWithValue("@IdUsuarioAuditoria", IdUsuarioAuditoria);
 
+                // Parámetro OUTPUT para capturar el resultado
+                var pResultado = new SqlParameter("@Resultado", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(pResultado);
+
                 await conn.OpenAsync();
+                await cmd.ExecuteNonQueryAsync();
 
-                nRpta = await cmd.ExecuteNonQueryAsync();
-
-                return nRpta;
+                // Leer el valor output (puede ser null si el SP lanzó excepción antes de asignarlo)
+                return pResultado.Value != DBNull.Value ? Convert.ToInt32(pResultado.Value) : 0;
             }
         }
 
@@ -1322,7 +1329,7 @@ namespace CapaDatos
             DataSet ds = new DataSet();
 
             using (SqlConnection conn = new Conexion().obtenerConexion())
-            using (SqlCommand cmd = new SqlCommand("PacientesFiltrarTodos", conn))
+            using (SqlCommand cmd = new SqlCommand("Web_PacientesFiltrarTodos", conn))
             using (SqlDataAdapter da = new SqlDataAdapter(cmd))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -1804,6 +1811,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@PresExternoMedico", farmPreVenta.PresExternoMedico ?? Convert.DBNull);
                 cmd.Parameters.AddWithValue("@PresExternoFecha", farmPreVenta.PresExternoFecha ?? Convert.DBNull);
                 cmd.Parameters.AddWithValue("@NroFormato", farmPreVenta.NroFormato ?? Convert.DBNull);
+                cmd.Parameters.AddWithValue("@Observaciones", farmPreVenta.Observaciones ?? Convert.DBNull);
 
                 await conn.OpenAsync();
                 await cmd.ExecuteNonQueryAsync();

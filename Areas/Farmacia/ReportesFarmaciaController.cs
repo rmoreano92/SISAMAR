@@ -25,7 +25,7 @@ namespace WebAppMaternidad.Areas.Farmacia
         }
 
         [HttpPost]
-        public async Task<ActionResult> ListarDisponibilidadFarmacia() 
+        public async Task<ActionResult> ListarDisponibilidadFarmacia(int IdAlmacen=0) 
         {
 
             if (HttpContext.User.Identity.IsAuthenticated == false)

@@ -2810,14 +2810,7 @@ let Laboratorio = {
           await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data);
         }
       } else if (permisoFirmaDigital == 2) {
-        const paquete = await Utilitario.CrearPaqueteArchivos7zip(
-          "",
-          objrow.idMovimiento,
-          "'LAB-RES','LAB-RES-GRUPO'",
-        );
-        if (!isEmpty(paquete)) {
-          await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-        }
+        await Utilitario.IniciarServicioFirmaLoteFirmaPeru('', "'LAB-RES','LAB-RES-GRUPO'", objrow.idMovimiento);
       }
 
       Cargando(0);
@@ -2845,14 +2838,7 @@ let Laboratorio = {
           await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data);
         }
       } else if (permisoFirmaDigital == 2) {
-        const paquete = await Utilitario.CrearPaqueteArchivos7zip(
-          "",
-          numMovimientos,
-          "'LAB-RES','LAB-RES-GRUPO'",
-        );
-        if (!isEmpty(paquete)) {
-          await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-        }
+        await Utilitario.IniciarServicioFirmaLoteFirmaPeru('', "'LAB-RES','LAB-RES-GRUPO'", numMovimientos);
       }
 
       Cargando(0);

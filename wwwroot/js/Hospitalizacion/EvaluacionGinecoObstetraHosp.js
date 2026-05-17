@@ -492,10 +492,7 @@
                     await Utilitario.AbrirServicioFirmaBit4IdMultiple(paquete.data)
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip(Variables.IdCuentaAtencion, EvaluacionGinecoObstetra.nroEvaluacion, Variables.IdServicioIngreso);
-                if (!isEmpty(paquete)) {
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru(Variables.IdCuentaAtencion, Variables.IdServicioIngreso, EvaluacionGinecoObstetra.nroEvaluacion);
             }
 
             Cargando(0);

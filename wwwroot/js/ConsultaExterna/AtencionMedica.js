@@ -416,7 +416,7 @@
         //return false
         Diagnosticos.LimpiarCampos()
         //Ordenes.ubicaFarmacia(116)
-        Ordenes.ubicaFarmacia(await Utilitario.Configuracion("FarmaciaCE"))
+        Ordenes.ubicaFarmacia(await Utilitario.ConfiguracionIpress(1072))
 
         AtencionMedica.Limpiar()
         Ordenes.limpiarCatalogo
@@ -833,7 +833,7 @@
         Anestesiologia.CargaDatosPorDefecto()
         Diagnosticos.LimpiarCampos()
         //Ordenes.ubicaFarmacia(116)
-        Ordenes.ubicaFarmacia(await Utilitario.Configuracion("FarmaciaCE"))
+        Ordenes.ubicaFarmacia(await Utilitario.ConfiguracionIpress(1072))
 
         AtencionMedica.Limpiar()
         Ordenes.limpiarCatalogo

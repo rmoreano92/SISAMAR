@@ -153,15 +153,15 @@
     ListarDepartamentoHospitalario() {
         if (typeof HttpClient === 'undefined') return Promise.resolve();
 
-        let formData = new FormData();
-        formData.append('lcFiltro', ' where IdEstado = 1 order by IdDepartamento');
-
-        return HttpClient.Post('/Citas/listarDepartamentoHospitalario?area=ConsultaExterna', formData)
+        let formData = new FormData();        
+        //formData.append("lcFiltro", " where IdEstado = 1 order by IdDepartamento") 
+        formData.append("tipoListado", 2) 
+        return HttpClient.Post('/Departamentos/ListarDepartamentos?area=General', formData)
             .then(res => {
                 $('#cboDepartamentoHospital').html('<option value="0">--Seleccionar--</option>');
 
-                if (res && res.dataSet && res.dataSet.table) {
-                    $(res.dataSet.table).each(function (i, obj) {
+                if (res && res?.lsResultado && res?.lsResultado?.table) {
+                    $(res?.lsResultado?.table).each(function (i, obj) {
                         $('#cboDepartamentoHospital').append(
                             `<option value="${obj.idDepartamento}">${obj.descripcionLarga}</option>`
                         );

@@ -43,10 +43,16 @@ namespace WebAppMaternidad.Areas.Comun
                 return Json(new { session = false });
             }
 
-            listaParametro = await daoParametro.SeleccionaFilaParametro2(idParametro);
+            int idIpressInt = 0;
+            var idIpressStr = HttpContext.Session.GetString("IdIPress");
+            if (!string.IsNullOrEmpty(idIpressStr) && int.TryParse(idIpressStr, out int result)) idIpressInt = result;
+
+            listaParametro = await daoParametro.SeleccionaFilaParametro2(idParametro, idIpressInt);
 
             return Json(new { lsResultado = listaParametro, session = true });
         }
+
+
 
         [HttpPost]
         public async Task<ActionResult> ParametrosSeleccionarPorTipo(string tipo)

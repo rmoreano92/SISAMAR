@@ -142,6 +142,10 @@
                     width: "8%",
                     createdCell: function (td, cellData, rowData, row, col) {
                         $(td).attr('align', 'left')
+                        if (rowData.idEstadoMovimiento == 0) {
+                            $(td).parent().css('color', '#ff0808');
+                            $(td).parent().css('font-weight', 'bold');
+                        }
                     }
                 },
                 {
@@ -263,7 +267,7 @@
                     data: null,
                     createdCell: function (td, cellData, rowData, row, col) {
                         $(td).attr('align', 'left');
-                        let inputLote = '  <input type="text" id="txtLoteNI_' + rowData.idProducto + '" data-fila="' + rowData.index + '" value="' + isNull(rowData.lote, "") + '" style=" width: 80%;" autocomplete="off" placeholder="" class="form-control form-control-sm dLoteNI">'
+                        let inputLote = `<input type="text" id="txtLoteNI_${rowData.idProducto}_${rowData.item}" data-fila="${rowData.item}" value="${isNull(rowData.lote, '')}" style="width:80%;" autocomplete="off" placeholder="" class="form-control form-control-sm dLoteNI">`;
                         $(td).html(inputLote);
                     }
                 },
@@ -273,30 +277,29 @@
                     data: null,
                     createdCell: function (td, cellData, rowData, row, col) {
                         $(td).attr('align', 'left');
-                        let inputFechaVencimiento = '<div class="input-group input-group-sm" style=" width: 80%;">' +
-                            '<input type="text" autocomplete="off" class="form-control form_val_popup_dp3 PickerFecha dFechaVencNI" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" id="txtFechaVencNI_' + rowData.idProducto + '" data-fila="' + rowData.index + '" value="' + isNull(rowData.fechaVencimiento, rowData.fechaHoy) + '">' +
-                            '<span class="input-group-addon">' +
-                            '<i class="fa fa-calendar "></i>' +
-                            '</span>' +
-                            '</div>'
+                        let inputFechaVencimiento = `
+                        <div class="input-group input-group-sm" style="width:80%;">
+                            <input type="text" autocomplete="off"
+                                class="form-control form_val_popup_dp3 PickerFecha dFechaVencNI"
+                                placeholder="dd/mm/yyyy"
+                                data-date-format="dd/mm/yyyy"
+                                id="txtFechaVencNI_${rowData.idProducto}_${rowData.item}"
+                                data-fila="${rowData.item}"
+                                value="${isNull(rowData.fechaVencimiento, rowData.fechaHoy)}">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>`;
                         $(td).html(inputFechaVencimiento);
                     }
                 },
-                //{
-                //    width: '5%',
-                //    targets: 1,
-                //    data: "saldo",
-                //    createdCell: function (td, cellData, rowData, row, col) {
-                //        $(td).attr('align', 'left');
-                //    }
-                //},
                 {
                     width: '8%',
                     targets: 6,
                     data: null,
                     createdCell: function (td, cellData, rowData, row, col) {
                         $(td).attr('align', 'left');
-                        let inputCantidad = '  <input type="text" id="txtCantNI_' + rowData.idProducto + '" data-fila="' + rowData.index + '" value="' + isNull(rowData.cantidad, 0) + '" style=" width: 80%;" autocomplete="off" placeholder="" class="form-control form-control-sm solo-numero dCantNI">'
+                        let inputCantidad = `<input type="text" id="txtCantNI_${rowData.idProducto}_${rowData.item}" data-fila="${rowData.item}" value="${isNull(rowData.cantidad, 0)}" style="width:80%;" autocomplete="off" placeholder="" class="form-control form-control-sm solo-numero dCantNI">`;
                         $(td).html(inputCantidad);
                     }
                 },
@@ -306,8 +309,7 @@
                     data: null,
                     createdCell: function (td, cellData, rowData, row, col) {
                         $(td).attr('align', 'left');
-                        //let inputPrecio = '<div id="htmlPrecioNI_' + rowData.idProducto + '" class="dPrecioNI">' + rowData.precioUnitario + '</div>'
-                        let inputPrecio = '  <input type="text" id="txtPrecioNI_' + rowData.idProducto + '" data-fila="' + rowData.index + '" value="' + isNull(rowData.precioUnitario, 0) + '" style=" width: 80%;" autocomplete="off" placeholder="" class="form-control form-control-sm solo-numero dPrecioNI">'
+                        let inputPrecio = `<input type="text" id="txtPrecioNI_${rowData.idProducto}_${rowData.item}" data-fila="${rowData.item}" value="${isNull(rowData.precioUnitario, 0)}" style="width:80%;" autocomplete="off" placeholder="" class="form-control form-control-sm solo-decimal dPrecioNI">`;
                         $(td).html(inputPrecio);
                     }
                 },
@@ -317,7 +319,7 @@
                     data: null,
                     createdCell: function (td, cellData, rowData, row, col) {
                         $(td).attr('align', 'left');
-                        let inputTotal = '<div id="htmlTotalNI_' + rowData.idProducto + '" data-fila="' + rowData.index + '" class="dTotalNI">' + isNull(rowData.total, 0.00) + '</div>'
+                        let inputTotal = `<div id="htmlTotalNI_${rowData.idProducto}_${rowData.item}" data-fila="${rowData.item}" class="dTotalNI">${isNull(rowData.total, 0.00)}</div>`;
                         $(td).html(inputTotal);
                     }
                 },
@@ -327,7 +329,7 @@
                     data: null,
                     createdCell: function (td, cellData, rowData, row, col) {
                         $(td).attr('align', 'left');
-                        let inputRegistroSanitario = '  <input type="text" id="txtRegSanNI_' + rowData.idProducto + '" data-fila="' + rowData.index + '" value="' + isNull(rowData.registroSanitario, "") + '" style=" width: 80%;" autocomplete="off" placeholder="" class="form-control form-control-sm dRegSanNI">'
+                        let inputRegistroSanitario = `<input type="text" id="txtRegSanNI_${rowData.idProducto}_${rowData.item}" data-fila="${rowData.item}" value="${isNull(rowData.registroSanitario, '')}" style="width:80%;" autocomplete="off" placeholder="" class="form-control form-control-sm dRegSanNI">`;
                         $(td).html(inputRegistroSanitario);
                     }
                 }
@@ -613,7 +615,7 @@
         //})
         $('#btnBuscar').on('click', async function () {
             await NotaIngreso.ListarNotasIngresos();
-        }); 
+        });
 
         $('.search').keypress(function (e) {
             if (e.which == 13) {
@@ -650,18 +652,26 @@
         });
 
         $('#btnModificarNotaIngreso').on('click', async function () {
-            //TriajeRn.LimpiarDatosMadre();
-            //TriajeRn.LimpiarCamposRegistro();
-            //TriajeRn.DesbloquearRegistro();
+
+
+            let notaIngreso = oTable_NotasIngreso.api(true).row('.selected').data()
+
+            if (isEmpty(notaIngreso)) {
+                alerta(2, 'Seleccione un registro por favor.')
+                return false
+            }
+
+
+            if (notaIngreso.idEstadoMovimiento == 0) {
+                alerta2('warning', 'El registro se encuentra anulado.')
+                return false
+            }
+
             NotaIngreso.accion = "M";
             NotaIngreso.LimpiarCamposRegistro();
             NotaIngreso.DesbloquearRegistro();
             await NotaIngreso.CargarDatosRegistro();
             NotaIngreso.ValidarModificacion();
-            ////const resp = await TriajeRn.SeleccionarTriajeRecienNacido();
-            //if (resp) {
-            //    MostrarAreaRegistro();
-            //}
         });
 
         $('#btnConsultarNotaIngreso').on('click', async function () {
@@ -679,6 +689,20 @@
         });
 
         $('#btnEliminarNotaIngreso').on('click', async function () {
+
+            let notaIngreso = oTable_NotasIngreso.api(true).row('.selected').data()
+
+            if (isEmpty(notaIngreso)) {
+                alerta(2, 'Seleccione un registro por favor.')
+                return false
+            }
+
+
+            if (notaIngreso.idEstadoMovimiento == 0) {
+                alerta2('warning', 'El registro se encuentra anulado.')
+                return false
+            }
+
             NotaIngreso.accion = "E";
             NotaIngreso.LimpiarCamposRegistro();
             await NotaIngreso.CargarDatosRegistro();
@@ -687,6 +711,10 @@
 
         $('#btnGuardarNotaIngreso').on('click', async function () {
             await NotaIngreso.GuardarNotaIngreso();
+        });
+
+        $('#btnAnularNotaIngreso').on('click', async function () {
+            await NotaIngreso.AnularNotaIngreso();
         });
 
         $('#btnCancelarNotaIngreso').on('click', async function () {
@@ -866,7 +894,7 @@
             let idElement = $(this).prop("id");
             let idProducto = idElement.split("_")
             let lote = $(this).val();
-            let fechaVencimiento = $("#txtFechaVencNI_" + idProducto[1] + "[data-fila='" + indexFila + "']").val();
+            let fechaVencimiento = $("#txtFechaVencNI_" + idProducto[1] + "_" + indexFila + "[data-fila='" + indexFila + "']").val();
 
             let objrowTb = oTable_DetalleNI.fnGetData(posFila);
             //console.log($(this).closest('tr'));
@@ -876,21 +904,16 @@
         });
 
         $(document).on("keyup", ".dFechaVencNI", function () {
-            let posFila = parseInt($(this).closest('tr').index());
-            let indexFila = $(this).attr("data-fila");
-            let idElement = $(this).prop("id");
-            let idProducto = idElement.split("_")
-            let fechaVencimiento = $(this).val();
-            let lote = $("#txtLoteNI_" + idProducto[1] + "[data-fila='" + indexFila + "']").val();
-
-            let objrowTb = oTable_DetalleNI.fnGetData(posFila);
+            const posFila = parseInt($(this).closest('tr').index());
+            const indexFila = $(this).attr("data-fila");
+            const idProducto = $(this).prop("id").split("_")[1];
+            const fechaVencimiento = $(this).val();
+            const lote = $(`#txtLoteNI_${idProducto}_${indexFila}[data-fila='${indexFila}']`).val();
+            const objrowTb = oTable_DetalleNI.fnGetData(posFila);
 
             if (NotaIngreso.ItemYaExiste(objrowTb.idProducto, lote, fechaVencimiento, objrowTb.idTipoSalidaBienInsumo, indexFila)) {
                 $(this).datepicker("setDate", objrowTb.fechaHoy);
             }
-
-            //console.log("Número de fila: " + posFila);
-            //console.log(objrowTb);                        
         });
 
         //$(document).on("change", ".dFechaVencNI", function () {
@@ -910,24 +933,9 @@
         //    //console.log(objrowTb);                        
         //});
 
-        $(document).on("keyup", ".dCantNI", function () {
-            let idElement = $(this).prop("id");
-            let idProducto = idElement.split("_")
-            let cantidad = parseInt($("#" + idElement).val());
-            let precio = parseFloat($("#txtPrecioNI_" + idProducto[1]).val());
-            let total = parseFloat((cantidad * precio).toFixed(4));
-            $("#htmlTotalNI_" + idProducto[1]).html(total);
-            NotaIngreso.Totalizar();
-        });
-
-        $(document).on("keyup", ".dPrecioNI", function () {
-            let idElement = $(this).prop("id");
-            let idProducto = idElement.split("_")
-            let cantidad = parseInt($("#" + idElement).val());
-            let precio = parseFloat($("#txtPrecioNI_" + idProducto[1]).val());
-            let total = parseFloat((cantidad * precio).toFixed(5));
-            $("#htmlTotalNI_" + idProducto[1]).html(total);
-            NotaIngreso.Totalizar();
+        $(document).on("keyup", ".dCantNI, .dPrecioNI", function () {
+            const partes = $(this).prop("id").split("_");
+            NotaIngreso.calcularTotalFila(partes[1], partes[2]);
         });
 
 
@@ -938,7 +946,7 @@
             $(this).addClass('selected');
         });
 
-        $('#tblProductosBuscados tbody').on('dblclick', 'tr', function () {
+        $('#tblProductosBuscados tbody').on('dblclick', 'tr', async function () {
             $(this).removeClass('selected');
             oTable_ProductosBuscados.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
@@ -946,25 +954,21 @@
             var objrowTb = oTable_ProductosBuscados.api(true).row('.selected').data();
 
             if (objrowTb.idTipoSalidaBienInsumo == 3) {
-                swal({
-                    title: 'Atención',
-                    text: "El tipo de Salida es: \"IntervSanitarias/Ventas\" \n ¿Lo registrara como VENTAS?",
-                    type: 'question',
-                    allowOutsideClick: false,
-                    showCancelButton: true,
-                    confirmButtonColor: '#4fb7fe',
-                    cancelButtonColor: '#6c6c6c',
-                    confirmButtonText: 'Aceptar',
-                    cancelButtonText: 'No',
-                }).then(function () {
+
+                let tipoSalida = await alertaAsync("question", "Atención", "El tipo de Salida es: \"IntervSanitarias/Ventas\" \n ¿Lo registrara como VENTAS?",
+                    cancelButtonText = 'IntervSanitarias', preConfirm = null, confirmButtonText = 'Ventas')
+
+
+                if (tipoSalida.isConfirmed) {
                     objrowTb.idTipoSalidaBienInsumo = 1
                     objrowTb.tipo = 'Venta'
                     NotaIngreso.AgregarProducto(objrowTb);
-                }, function (dimiss) {
+                } else {
                     objrowTb.idTipoSalidaBienInsumo = 2
                     objrowTb.tipo = 'IntervSanitarias'
                     NotaIngreso.AgregarProducto(objrowTb);
-                });
+                }
+
             } else {
                 NotaIngreso.AgregarProducto(objrowTb);
             }
@@ -1007,6 +1011,14 @@
         });
 
 
+    },
+
+     calcularTotalFila(idProducto, item) {
+        const cantidad = parseFloat($(`#txtCantNI_${idProducto}_${item}`).val()) || 0;
+        const precio = parseFloat($(`#txtPrecioNI_${idProducto}_${item}`).val()) || 0;
+        const total = parseFloat((cantidad * precio).toFixed(5));
+        $(`#htmlTotalNI_${idProducto}_${item}`).html(total);
+        NotaIngreso.Totalizar();
     },
 
     //////////////////////////LLENAR COMBOS////////////////////////////////////////////////////
@@ -1387,6 +1399,7 @@
 
             NotaIngreso.indexDetalle = NotaIngreso.indexDetalle + 1;
             producto.index = NotaIngreso.indexDetalle;
+            producto.item = NotaIngreso.indexDetalle;
 
             oTable_DetalleNI.fnAddData(producto);
             oTable_DetalleNI.resize();
@@ -1774,10 +1787,12 @@
         } else {
             lstDetalleNI.forEach(function (detalle) {
                 esProductoUnidosis = null;
-                esProductoUnidosis = NotaIngreso.oRsItemsUnidosis.find(function (unidosis) { return parseInt(unidosis.idProductoConPunto) == parseInt(detalle.idProducto); });
-                console.log(esProductoUnidosis);
-                if (isEmpty(esProductoUnidosis) == false) {
-                    mensajeError = mensajeError + "El ITEM " + detalle.codigo + " - " + detalle.nombre + " solo es usado en FARMACIA UNIDOSIS\n";
+                if (NotaIngreso.oRsItemsUnidosis) {
+                    esProductoUnidosis = NotaIngreso.oRsItemsUnidosis.find(function (unidosis) { return parseInt(unidosis.idProductoConPunto) == parseInt(detalle.idProducto); });
+                    console.log(esProductoUnidosis);
+                    if (isEmpty(esProductoUnidosis) == false) {
+                        mensajeError = mensajeError + "El ITEM " + detalle.codigo + " - " + detalle.nombre + " solo es usado en FARMACIA UNIDOSIS\n";
+                    }
                 }
 
             });
@@ -1832,42 +1847,40 @@
     },
 
     DevolverDetalleNotaIngreso() {
-        let detalleNotaIngreso = [];
-        let objItemDetalle = null;
-        let lstDetalleNotaIngreso = oTable_DetalleNI.api(true).data().toArray();
+        const detalleNotaIngreso = [];
+        const lstDetalleNotaIngreso = oTable_DetalleNI.api(true).data().toArray();
 
-        for (let [i, obj] of lstDetalleNotaIngreso.entries()) {
+        for (const [i, obj] of lstDetalleNotaIngreso.entries()) {
+            const $lote = $(`#txtLoteNI_${obj.idProducto}_${obj.item}[data-fila='${obj.item}']`);
+            const $fechaVenc = $(`#txtFechaVencNI_${obj.idProducto}_${obj.item}[data-fila='${obj.item}']`);
+            const $cant = $(`#txtCantNI_${obj.idProducto}_${obj.item}`);
+            const $precio = $(`#txtPrecioNI_${obj.idProducto}_${obj.item}`);
+            const $regSan = $(`#txtRegSanNI_${obj.idProducto}_${obj.item}[data-fila='${obj.item}']`);
 
-            //fechaVencimiento = $('#txtFechaVencNI_' + obj.idProducto).val().split('/');
-            //detalle.nombre = detalle.nombre.replace(/</g, '(').replace(/>/g, ')').replace(/(\r\n|\n|\r)/g, '');
-            //detalle.nombre = detalle.nombre.replace(/>/g, ')');
-            //detalle.nombre = detalle.nombre.replace(/(\r\n|\n|\r)/g, '');
+            const cantidad = parseInt($cant.val()) || 0;
+            const precio = parseFloat($precio.val()) || 0;
+            const fechaRaw = $fechaVenc.val();
 
-            objItemDetalle = {
-                index: obj.index,               //para controlar cada fila como unica
+            detalleNotaIngreso.push({
+                index: obj.item,
                 idProducto: obj.idProducto,
                 codigo: obj.codigo,
                 nombre: obj.nombre,
-                Lote: $('#txtLoteNI_' + obj.idProducto + "[data-fila='" + obj.index + "']").val(),
-                FechaVencimiento: ConvertirFormatoFecha($('#txtFechaVencNI_' + obj.idProducto + "[data-fila='" + obj.index + "']").val()), // ====> yyyy-mm-dd
-                fVencimiento: $('#txtFechaVencNI_' + obj.idProducto + "[data-fila='" + obj.index + "']").val(),           // ===> dd/mm/yyyy
+                Lote: $lote.val() ?? '',
+                FechaVencimiento: fechaRaw ? ConvertirFormatoFecha(fechaRaw) : '',  // yyyy-mm-dd
+                fVencimiento: fechaRaw ?? '',                                   // dd/mm/yyyy
                 idTipoSalidaBienInsumo: obj.idTipoSalidaBienInsumo,
                 Item: i + 1,
-                Cantidad: parseInt($('#txtCantNI_' + obj.idProducto + "[data-fila='" + obj.index + "']").val()),
-                Precio: parseFloat($('#txtPrecioNI_' + obj.idProducto + "[data-fila='" + obj.index + "']").val()).toFixed(4),
-                Total: parseFloat((parseInt($('#txtCantNI_' + obj.idProducto + "[data-fila='" + obj.index + "']").val()) * parseFloat($('#txtPrecioNI_' + obj.idProducto + "[data-fila='" + obj.index + "']").val()).toFixed(4)).toFixed(4)),
-                RegistroSanitario: $('#txtRegSanNI_' + obj.idProducto + "[data-fila='" + obj.index + "']").val(),
+                Cantidad: cantidad,
+                Precio: parseFloat(precio.toFixed(4)),
+                Total: parseFloat((cantidad * precio).toFixed(4)),
+                RegistroSanitario: $regSan.val() ?? '',
                 DocumentoNumero: $('#txtNroNotaIngreso').val(),
                 idAlmacenOrigen: $('#cboFarmaciaOrigenNI').val(),
                 idAlmacenDestino: $('#cboFarmaciaDestinoNI').val(),
                 stock: 0,
                 stockTotal: 0,
-                //fila: $('#txtLoteNI_' + obj.idProducto).attr("fila")            //solo para obtener la fila de ubicacion de cada producto
-
-            }
-
-            detalleNotaIngreso.push(objItemDetalle);
-
+            });
         }
 
         return detalleNotaIngreso;
@@ -1994,7 +2007,7 @@
             swal({
                 title: 'Salir',
                 html: "Se agregó Nota de Ingreso N° " + MovNumeroNotaIngreso,
-                type: 'success',
+                icon: 'success',
                 allowOutsideClick: false,
                 showCancelButton: true,
                 confirmButtonColor: '#4fb7fe',
@@ -2010,6 +2023,54 @@
         return true;
     },
 
+    async AnularNotaIngreso() {
+        const valida = await NotaIngreso.ValidarDatosObligatorios()
+        if (valida == false) {
+            return false;
+        }
+
+        let cabeceraNotaIngreso = [];
+        let detalleNotaIngreso = NotaIngreso.DevolverDetalleNotaIngreso();
+
+        console.log(detalleNotaIngreso)
+
+        let MovNumero
+
+        if (NotaIngreso.accion == "A") {
+            MovNumero = await NotaIngreso.FarmDevuelveYactualizaCorrelativosDeDocumentosES(1) // 2 - Nota de Ingreso
+        } else {
+            MovNumero = $('#txtNroNotaIngreso').val()
+        }
+
+
+
+        let MovNumeroNotaIngreso = MovNumero
+        const NotaIngresoAgregar = await NotaIngreso.FarmMovimientoAgregarModificar(MovNumero, 'E', $('#cboFarmaciaOrigenNI').val(), $('#cboFarmaciaDestinoNI').val(), $('#cboConceptoNI').val(), $('#cboTipoDocumentoNI').val(), $('#txtNroDocumentoNI').val(),
+            $('#txtFechaRecepcionNI').val(), $('#cboTipoDocumentoOrigenNI').val(), $('#txtNroDocumentoOrigenNI').val(), $('#txtFechaDocumentoOrigenNI').val(),
+            NotaIngreso.idProveedor, $("#txtNroRucNI").val(), $("#txtRazonSocialRucNI").val(),
+            $('#cboTipoCompraNI').val(), $('#cboTipoProcesoNI').val(), $('#txtNroProcesoNI').val(),
+            NotaIngreso.idPacienteDevolucion, NotaIngreso.idCuentaDevolucion, NotaIngreso.idComprobantePagoDevolucion, NotaIngreso.idFuenteFinanciamientoDevolucion,
+            $('#txtObservacionesNI').val(), 0, 0, 0, JSON.stringify(detalleNotaIngreso))
+
+        if (NotaIngresoAgregar > 0) {
+            swal({
+                title: 'Salir',
+                html: "Se anulo Nota de Ingreso N° " + MovNumeroNotaIngreso,
+                icon: 'warning',
+                allowOutsideClick: false,
+                showCancelButton: true,
+                confirmButtonColor: '#4fb7fe',
+                cancelButtonColor: '#6c6c6c',
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+            })
+
+            MostrarAreaLista();
+        }
+
+
+        return true;
+    },
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -2770,7 +2831,7 @@
 
             Cargando(0);
 
-            resp = datos.lstData
+            resp = datos.data
 
         } catch (error) {
             Cargando(0);

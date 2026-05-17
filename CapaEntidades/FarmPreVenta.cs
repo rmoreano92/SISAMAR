@@ -23,6 +23,7 @@ namespace WebAppMaternidad.CapaEntidades
         public int? idEstadoPreventa { get; set; }
         public string dni { get; set; }
         public string Paciente { get; set; }
+        public string Observaciones { get; set; }
         //fechaHoraPrescribe: 0,
         //idUsuarioAuditoria: 0,
         public string PresExternoCmp { get; set; }

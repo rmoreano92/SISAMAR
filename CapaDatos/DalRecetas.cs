@@ -1320,7 +1320,7 @@ namespace CapaDatos
                         da.SelectCommand = new SqlCommand(sql, conn);
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
-                        da.SelectCommand.Parameters.Add("@NroHistoriaClinica", SqlDbType.Int).Value = NroHistoriaClinica;
+                        da.SelectCommand.Parameters.Add("@NroHistoriaClinica", SqlDbType.VarChar).Value = NroHistoriaClinica != null ? NroHistoriaClinica : "";
                         da.SelectCommand.Parameters.Add("@NroDocumento", SqlDbType.VarChar).Value = NroDocumento != null ? NroDocumento : "";
                         da.SelectCommand.Parameters.Add("@ApellidoPaterno", SqlDbType.VarChar).Value = apellidoPaterno != null ? apellidoPaterno : "";
                         da.SelectCommand.Parameters.Add("@FechaIni", SqlDbType.VarChar).Value = FechaInicio != null ? FechaInicio : "";

@@ -421,10 +421,7 @@
                     await Utilitario.IniciarServicioFirmaMultipleBit4Id(paquete.data)
                 }
             } else if (permisoFirmaDigital == 2) {
-                const paquete = await Utilitario.CrearPaqueteArchivos7zip('', numOrdenes, "'MED-REPRO'");
-                if (!isEmpty(paquete)) {
-                    await Utilitario.IniciarServicioFirmaMultipleFirmaPeru(paquete.data);
-                }
+                await Utilitario.IniciarServicioFirmaLoteFirmaPeru('', "'MED-REPRO'", numOrdenes);
             }
             
             Cargando(0)

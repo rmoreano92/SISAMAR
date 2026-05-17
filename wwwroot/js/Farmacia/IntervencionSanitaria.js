@@ -2624,7 +2624,7 @@
                     contentType: false,
                 });
             Cargando(0);
-            if (datos.lstData.table.length > 0) {
+            if (datos.lstData?.table?.length > 0) {
                 oTable_BusquedaPacientes.fnAddData(datos.lstData.table);
                 oTable_BusquedaPacientes.resize();
                 //resp = datos.lstData.table[0];

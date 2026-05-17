@@ -2552,7 +2552,7 @@
         //    }
         //}
 
-        Ordenes.ubicaFarmacia(await Utilitario.Configuracion("FarmaciaCE"))
+        Ordenes.ubicaFarmacia(await Utilitario.ConfiguracionIpress(1072))
         Ordenes.ubicaMedico(Variables.IdMedico); //KHOYOSI
 
 
@@ -2914,7 +2914,7 @@
         AtencionMedica.ServiciosSeleccionarCEPorEspecialidad(1)
         //Anestesiologia.CargaDatosPorDefecto()             //DESCOMENTAR LUEGO
 
-        Ordenes.ubicaFarmacia(await Utilitario.Configuracion("FarmaciaCE"))
+        Ordenes.ubicaFarmacia(await Utilitario.ConfiguracionIpress(1072))
 
         // JDELGADO VALIDACIONES PRE-ANESTESICA
         if ($('#cboConsultorio').val() == 54 || $('#cboConsultorio').val() == 175) {
@@ -3314,7 +3314,7 @@
         //Anestesiologia.CargaDatosPorDefecto()             DESCOEMNTAR LUEGO
         Diagnosticos.LimpiarCampos()
         //Ordenes.ubicaFarmacia(116)
-        Ordenes.ubicaFarmacia(await Utilitario.Configuracion("FarmaciaCE"))
+        Ordenes.ubicaFarmacia(await Utilitario.ConfiguracionIpress(1072))
 
         AtencionMedica.Limpiar()
         Ordenes.limpiarCatalogo

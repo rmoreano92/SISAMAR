@@ -1357,11 +1357,12 @@ let CitasAdmision = {
     //MGAMERO
     ListarDepartamentoHospitalario: function() {
         let formData = new FormData();
-        formData.append("lcFiltro", " where IdEstado = 1 order by IdDepartamento") 
-        return HttpClient.Post('/Citas/listarDepartamentoHospitalario?area=ConsultaExterna', formData).then(res => {
+        //formData.append("lcFiltro", " where IdEstado = 1 order by IdDepartamento") 
+        formData.append("tipoListado", 2) 
+        return HttpClient.Post('/Departamentos/ListarDepartamentos?area=General', formData).then(res => {
             $('#cboDepartamentoHospital').empty();
             $('#cboDepartamentoHospital').append(`<option value="0">--Seleccionar--</option>`)
-            $(res.dataSet.table).each(function(i, obj) {
+            $(res?.lsResultado?.table).each(function(i, obj) {
                 $('#cboDepartamentoHospital').append(`<option value="${obj.idDepartamento}">${obj.descripcionLarga}</option>`)
             })
             $('.chzn-select').chosen().trigger("chosen:updated");

@@ -476,12 +476,12 @@ export class EstadoCuentaActions {
             alerta2('warning', '', 'No cuenta con permiso para abrir cuentas')
             return
         }
-
+/*
         if (this.ctx.IdEstadoCuentaAtencion == 1) {
             alerta2('info', '', 'La cuenta esta ABIERTA')
             return
         }
-
+*/
         //if (this.ctx.IdEstadoCuentaAtencion == 4) {
         //    alerta2('info', '', 'La cuenta esta PAGADA Y CERRADA. No se podra abrir.')
         //    return

@@ -927,7 +927,83 @@
       //        })
       //}
     });
+      $('#btnGenerarReporteICI').on('click', () => {
 
+          // //generarVistaPreviaDesdeTabla(oTable_reporteICI_INMP, {
+          // //    titulo: "Reporte ICI - INMP",
+          // //    subtitulo: "Instituto Nacional Materno Perinatal",
+          // //    colorHeader: "#9b1b30",
+          // //    colorTextoHeader: "#fff"
+          // //});
+
+
+
+          // generarVistaPreviaDesdeTabla(oTable_reporteICI_INMP, {
+          //     titulo: "Reporte ICI - INMP",
+          //     subtitulo: "Instituto Nacional Materno Perinatal",
+          //     colorHeader: "#9b1b30",
+          //     colorTextoHeader: "#fff",
+          //     orientacion: "landscape",      // "portrait" o "landscape"
+          //     margenIzqDer: "2mm"
+          // });
+
+
+          if ($('#txtFechaInicioICI').val() == '' || $('#txtHoraInicioICI').val() == '' || $('#txtFechaFinICI').val() == '' || $('#txtHoraFinICI').val() == '') {
+              alerta(2, 'Las fechas y horas son obligatorias')
+              Cargando(0)
+              return false
+          }
+          let formData = new FormData()
+          formData.append('FechaInicio', $("#txtFechaInicioICI").val() + ' ' + $("#txtHoraInicioICI").val())
+          formData.append('FechaFin', $("#txtFechaFinICI").val() + ' ' + $("#txtHoraFinICI").val())
+          formData.append('IdAlmacen', $("#cboFarmaciaICI").val())
+          Cargando(1)
+
+          if ($("#cboTipoReporteICI").val() == 1) {
+              fetch('/ReportesFarmacia/rptGeneraICI?area=Farmacia', {
+                  method: "POST",
+                  body: formData
+              })
+                  .then(response => response.blob())
+                  .then(blob => {
+                      var url = window.URL.createObjectURL(blob)
+                      var a = document.createElement('a')
+                      a.href = url
+                      a.download = "ReporteICI.xlsx"
+                      document.body.appendChild(a) // we need to append the element to the dom -> otherwise it will not work in firefox
+                      a.click();
+                      a.remove();  //afterwards we remove the element again
+                      alerta(1, 'La descarga se realizo con exito.')
+                      Cargando(0)
+                  })
+                  .catch((e) => {
+                      alerta(2, 'Error al descargar documento, intente nuevamente.')
+                      Cargando(0)
+                  })
+          } else {
+              fetch('/ReportesFarmacia/rptGeneraICIDonaciones?area=Farmacia', {
+                  method: "POST",
+                  body: formData
+              })
+                  .then(response => response.blob())
+                  .then(blob => {
+                      var url = window.URL.createObjectURL(blob)
+                      var a = document.createElement('a')
+                      a.href = url
+                      a.download = "ReporteICIDonaciones.xlsx"
+                      document.body.appendChild(a) // we need to append the element to the dom -> otherwise it will not work in firefox
+                      a.click();
+                      a.remove();  //afterwards we remove the element again
+                      alerta(1, 'La descarga se realizo con exito.')
+                      Cargando(0)
+                  })
+                  .catch((e) => {
+                      alerta(2, 'Error al descargar documento, intente nuevamente.')
+                      Cargando(0)
+                  })
+          }
+
+      })
     $("#btnGenerarICI").on("click", () => {
       if (
         $("#txtFechaInicioICI").val() == "" ||

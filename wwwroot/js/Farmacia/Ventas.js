@@ -1013,8 +1013,7 @@
             if (resp) {
                 $('#modalPaquete').modal('show');
             }
-        })
-
+        })        
 
         $('#chkConsumoHistorico').on('click', async function () {
 
@@ -3839,11 +3838,11 @@
                     IdEstadoFacturacion = 1
                 }
 
-                let res = await this.CrearModificarVentaFarmacia(MovNumero = Ventas.MovNumero, MovTipo = 'S', IdCuentaAtencion = $('#txtNroCuenta').val(), IdServicioPaciente = $('#cboServicioRegistro').val(),
-                    FechaHoraPrescribe = $('#txtFechaPrescripcion').val() + ' ' + $('#txtHoraPrescripcion').val(), IdPaquete = '', PresExternoCmp = $('#txtCmpPrescriptorExterno').val(),
-                    PresExternoMedico = $('#txtDatosMedicoExterno').val(),
+                let res = await this.CrearModificarVentaFarmacia(MovNumero = Ventas.MovNumero, MovTipo = 'S', IdCuentaAtencion = $('#txtNroCuenta').val(),
+                    IdServicioPaciente = $('#cboServicioRegistro').val(), FechaHoraPrescribe = $('#txtFechaPrescripcion').val() + ' ' + $('#txtHoraPrescripcion').val(), IdPaquete = '',
+                    PresExternoCmp = $('#txtCmpPrescriptorExterno').val(), PresExternoMedico = $('#txtDatosMedicoExterno').val(),
                     PresExternoFecha = $('#txtFechaPrescripcionExterno').val() + ' ' + $('#txtHoraPrescripcionExt').val(), NroFormato = $('#txtNroFormato').val(), IdReceta = $('#txtNroReceta').val(),
-                    DocumentoNumero = Ventas.DocumentoNumero, Observaciones = '', idEstadoMovimiento = Ventas.IdEstadoMovimiento, idAlmacenOrigen = $('#cboFarmaciaVenta').val(), idAlmacenDestino = 0,
+                    DocumentoNumero = Ventas.DocumentoNumero, Observaciones = $("#txtObservacionesRegistro").val(), idEstadoMovimiento = Ventas.IdEstadoMovimiento, idAlmacenOrigen = $('#cboFarmaciaVenta').val(), idAlmacenDestino = 0,
                     IdFuenteFinanciamiento = $('#cboTipoFinanciamiento').val(), IdPreVenta = Ventas.IdPreventa, IdPrescriptor = $('#cboPrescriptor').val(), IdTipoReceta = $('#cboTipoReceta').val(), idPuntoCarga = 5,
                     idComprobantePago = '', idEstadoFacturacion = IdEstadoFacturacion, DNI = $('#txtNroDocumentoPaciente').val(), NombPaciente = $('#txtNombrePaciente').val(),
                     movimientoDetalle = JSON.stringify(farmMovimientoDetalle))
@@ -4373,6 +4372,7 @@
         data.append('PresExternoMedico', Ventas.oDoPreventa.PresExternoMedico);
         data.append('PresExternoFecha', Ventas.oDoPreventa.PresExternoFecha);
         data.append('NroFormato', Ventas.oDoPreventa.NroFormato);
+        data.append('Observaciones', $('#txtObservacionesRegistro').val());
 
         try {
             Cargando(1);
@@ -5052,6 +5052,7 @@
         $('#txtHoraPrescripcion').val('')
         $('#txtNroHistoria').val('')
         $('#txtNombrePaciente').val('')
+        $('#txtObservacionesRegistro').val('')
         $('#cboServicioRegistro').val(0)
         $('#cboTipoFinanciamiento').val(0)
         $('#txtDescripcionPlan').val('')
@@ -5200,6 +5201,7 @@
             $('#txtNroHistoria').val("")
             $('#txtNroDocumentoPaciente').val("")
             $('#txtNombrePaciente').val("")
+            $('#txtObservacionesRegistro').val("")
             $('#cboServicioRegistro').val("")
             $('#cboTipoFinanciamiento').val("")
             $('#txtDescripcionPlan').val("")
@@ -5248,6 +5250,8 @@
                     $('#txtNroHistoria').val(datosGenerales.nroHistoriaClinica)
                     $('#txtNroDocumentoPaciente').val(datosGenerales.nroDocumento)
                     $('#txtNombrePaciente').val(datosGenerales.nombresPaciente)
+
+                    //$('#txtNombrePaciente').val(datosGenerales.nombresPaciente)
 
                     if (datosGenerales.idServicioEgreso > 0) {
                         $('#cboServicioRegistro').val(datosGenerales.idServicioEgreso)
@@ -5826,6 +5830,9 @@
             $('#txtFechaPrescripcion').val(farmMovimientoVentas.fechaPrescribeFormat)
             $('#txtHoraPrescripcion').val(farmMovimientoVentas.horaPrescribeFormat)
 
+
+            $('#txtObservacionesRegistro').val(farmMovimientoVentas.observaciones)
+
             if (isEmpty(atencionCuenta) == false) {
                 $('#txtNroHistoria').val(atencionCuenta.nroHistoriaClinica)
                 $('#txtNombrePaciente').val(atencionCuenta.nombresPaciente)
@@ -6026,6 +6033,8 @@
             await Ventas.TipoReceta_Change();
             $('#cboPrescriptor').val(preVenta.idPrescriptor)
             $('#cboFarmaciaVenta').val(preVenta.idAlmacen)
+
+            $('#txtObservacionesRegistro').val(preVenta.observaciones)
 
             $('#txtNroCuenta').val(preVenta.idCuentaAtencion)
 
@@ -6281,7 +6290,231 @@ const combineProductsDetalleVenta = (products) => {
     return Object.values(combined);
 };
 
+const Historial = {
+    async Iniciar() {
+        //Historial.Plugins();
+        //Historial.DataTableBusqueda();
+        //Historial.DataTableDetalleVentas();
+        //Historial.DataTableProductosBuscados();
+        //Historial.DataTableBusquedaPacientes();
+        //Historial.DataTableAtencionesPacientes();
+        //Historial.DataTableConsumoHistorico();
+        //Historial.DataTableDiagnosticos();
+        //Historial.initDatablesPaquetes();
+        Historial.Eventos();
+        Historial.DataTableBusquedaRecetas();
+        //Historial.LLenarCombos();
+        //Historial.ValidarLugarDondeTrabaja();
+
+        //BusqRecetasPacientes.idPuntoCarga = 5;
+        //BusqRecetasPacientes.esIntervencionSanitaria = 0;
+    },
+
+    Eventos() {
+        $('#btnHistorial').on('click', async function () {
+            const resp = await Historial.listaRecetas();
+            if (resp) {
+                $('#modalHistorial').modal('show');
+            }
+        })
+        $('#btnCerrarHistorial').on('click', function () {
+            $('#modalHistorial').modal('hide');
+        })
+        $('#tblHistorialRecetasPacientes tbody').on('click', '.ImprimirBusquedaRecetaSF', async function () {
+            var objrow = oTable_HistorialRecetasPacientes.api(true).row($(this).parents("tr")[0]).index();
+            var row = oTable_HistorialRecetasPacientes.fnGetData(objrow);
+
+            Cargando(1);
+            const firma = await Utilitario.SeleccionarFirmaDigitalV2(row.code)
+            if (!isEmpty(firma)) {
+                AbrirVisorDocumento(firma.rutaArchivo, 0);
+                //$('#tblOrdenesMedicas tbody tr').removeClass('selected');
+            } else {
+                alerta2('warning', '', 'No existe el documento digital.')
+            }
+            Cargando(0);
+        });        
+    },
+
+    async listaRecetas() {
+        let resp = false;
+        let recetas = null;
+        let midata = new FormData();
+        midata.append('NroHistoriaClinica', $('#txtNroHistoria').val());        
+
+        try {
+            Cargando(1);
+            oTable_HistorialRecetasPacientes.fnClearTable();
+            datos = await
+                $.ajax({
+                    method: "POST",
+                    url: "/Receta/RecetasFiltrarPorRangoFechas?area=Comun",
+                    data: midata,
+                    dataType: "json",
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                });
+            Cargando(0);
+                if (datos.lstData.table.length > 0) {
+                    recetas = datos.lstData.table;
+                    if (BusqRecetasPacientes.esIntervencionSanitaria == 1) {
+                        recetas = recetas.filter(function (obj) {
+                            return obj.esRecetaIntervencionSanitaria == 1;
+                        });
+                    } else {
+                        recetas = recetas.filter(function (obj) {
+                            return obj.esRecetaIntervencionSanitaria == 0;
+                        });
+                    }
+
+                    if (recetas.length > 0) {
+                        oTable_HistorialRecetasPacientes.fnAddData(recetas);
+                        oTable_HistorialRecetasPacientes.resize();
+                    }
+                    
+                    //resp = datos.lstData.table[0];
+                }
+            resp = true;
+        } catch (error) {
+            resp = false;
+            alerta("ERROR", "Error listar paquetes!", "2");
+        }
+
+        return resp;
+    },
+
+    DataTableBusquedaRecetas() {
+        var parms = {
+            "paging": false,
+            "ordering": true,
+            "info": false,
+            "searching": false,
+            "scrollX": true,
+            scrollY: '45vh',
+            autoWidth: false,
+            columns: [
+                {
+                    width: '6%',
+                    targets: 0,
+                    data: "idReceta",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },
+                {
+                    width: '6%',
+                    targets: 1,
+                    data: "idCuentaAtencion",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },
+                {
+                    width: '6%',
+                    targets: 2,
+                    data: "nroHistoriaClinica",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },
+                {
+                    width: '10%',
+                    targets: 3,
+                    data: "apellidoPaterno",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },
+                {
+                    width: '10%',
+                    targets: 4,
+                    data: "apellidoMaterno",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },
+                {
+                    width: '10%',
+                    targets: 5,
+                    data: "primerNombre",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },
+                {
+                    width: '10%',
+                    targets: 6,
+                    data: "segundoNombre",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },                
+                {
+                    width: '8%',
+                    targets: 7,
+                    data: "fechaReceta",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },
+                {
+                    width: '10%',
+                    targets: 8,
+                    data: "puntoCarga",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },
+                {
+                    width: '10%',
+                    targets: 8,
+                    data: "tipoServicio",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },
+                {
+                    width: '10%',
+                    targets: 9,
+                    data: "servicio",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },
+                {
+                    width: '4%',
+                    targets: 10,
+                    data: null,
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'center')
+
+                        if (rowData.code != '') {
+                            let btnRuta = "";
+                            let btnImprime = "";
+                            let btnImprimeSinF = "";
+                            if (rowData.statusFirma == 1) {
+                                btnImprime = ' <button class="ImprimirBusquedaRecetaCF btn btn-sm btn-deep-green glow_button"><i class="fa fa-print"></i> </button>';
+                            } else {
+                                btnImprimeSinF = '<button class="ImprimirBusquedaRecetaSF btn btn-sm btn-deep-orange glow_button"><i class="fa fa-print"></i> </button>';
+                            }
+                            $(td).html(btnRuta + " " + btnImprime + " " + btnImprimeSinF);
+                        } else {
+                            $(td).html('');
+                        }
+                    }
+                },
+            ]
+        }
+        var tableWrapper = $('#tblHistorialRecetasPacientes');
+        oTable_HistorialRecetasPacientes = $("#tblHistorialRecetasPacientes").dataTable(parms);
+        $('#tblHistorialRecetasPacientes_length').css('display', 'none');
+    },    
+
+}
+
 $(document).ready(function () {
+    Historial.Iniciar()
     Ventas.Iniciar()
     BusqRecetasPacientes.Iniciar();
 });
