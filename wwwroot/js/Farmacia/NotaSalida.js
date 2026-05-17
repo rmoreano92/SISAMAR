@@ -1363,6 +1363,7 @@
     LLenarCombos() {
         NotaSalida.CargarTipoCompartimientoOrigenRegistro();
         NotaSalida.CargarFarmaciasRegistro($('#cboTipoCompartimientoOrigenRegistro').val());
+        NotaSalida.CargarAreaTerritorioNacionalRegistro();
 
         $.ajax({
             method: "GET",
@@ -1492,6 +1493,31 @@
             },
             error: function (msg) {
                 alerta("ERROR", "Error listar farmacias!", "2");
+            }
+        });
+    },
+
+    CargarAreaTerritorioNacionalRegistro() {
+        $.ajax({
+            method: "GET",
+            url: "/Farmacias/ListarTerritorioNacional?area=Farmacia",
+            dataType: "json",
+            async: false,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (datos) {
+                $('#cboAreaTerritorioNacionalRegistro').empty();
+                $('#cboAreaTerritorioNacionalRegistro').append('<option value="0">Seleccione una opción</option>');
+
+                $(datos.lstData.table).each(function (i, obj) {
+                    $('#cboAreaTerritorioNacionalRegistro').append('<option value="' + obj.idTerritorioNac + '">' + obj.descripcion + '</option>');
+                });
+
+                $('.chzn-select').chosen().trigger("chosen:updated");
+            },
+            error: function (msg) {
+                alerta("ERROR", "Error listar territorio nacional!", "2");
             }
         });
     },
