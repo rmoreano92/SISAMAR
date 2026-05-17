@@ -1045,6 +1045,10 @@
             $('#cboFarmaciasRegistro').val(0).trigger('change');
         });
 
+        $('#cboAreaTerritorioNacionalRegistro').on('change', function () {
+            NotaSalida.CargarUnidadDependenciaRegistro($(this).val());
+        });
+
 
         $('#cboFarmaciasRegistro').on('change', async function () {
             var dataTipoConcepto = new FormData();
@@ -1364,6 +1368,7 @@
         NotaSalida.CargarTipoCompartimientoOrigenRegistro();
         NotaSalida.CargarFarmaciasRegistro($('#cboTipoCompartimientoOrigenRegistro').val());
         NotaSalida.CargarAreaTerritorioNacionalRegistro();
+        NotaSalida.CargarUnidadDependenciaRegistro($('#cboAreaTerritorioNacionalRegistro').val());
 
         $.ajax({
             method: "GET",
@@ -1518,6 +1523,30 @@
             },
             error: function (msg) {
                 alerta("ERROR", "Error listar territorio nacional!", "2");
+            }
+        });
+    },
+
+    CargarUnidadDependenciaRegistro(idTerritorioNac) {
+        $.ajax({
+            method: "GET",
+            url: "/Farmacias/ListarUnidadDependenciabyTerritorioNacional?area=Farmacia",
+            data: { idTerritorioNac: idTerritorioNac },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (datos) {
+                $('#cboUnidadDependenciaRegistro').empty();
+                $('#cboUnidadDependenciaRegistro').append('<option value="0">Seleccione una opción</option>');
+
+                $(datos.lstData.table).each(function (i, obj) {
+                    $('#cboUnidadDependenciaRegistro').append('<option value="' + obj.idIPress + '">' + obj.descripcion + '</option>');
+                });
+
+                $('.chzn-select').chosen().trigger("chosen:updated");
+            },
+            error: function (msg) {
+                alerta("ERROR", "Error listar unidades de dependencia!", "2");
             }
         });
     },

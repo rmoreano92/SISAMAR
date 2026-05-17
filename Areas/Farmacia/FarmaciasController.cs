@@ -95,6 +95,19 @@ namespace WebAppMaternidad.Areas.Farmacia
             return Json(new { lstData = listaTerritorioNacional, session = true });
         }
 
+        [HttpGet]
+        public async Task<ActionResult> ListarUnidadDependenciabyTerritorioNacional(int idTerritorioNac)
+        {
+            DataSet listaUnidadDependencia;
+            DalFarmacia daoFarmacia = new DalFarmacia();
+            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            listaUnidadDependencia = null;
+
+            listaUnidadDependencia = await daoFarmacia.ListarUnidadDependenciabyTerritorioNacional(idTerritorioNac);
+
+            return Json(new { lstData = listaUnidadDependencia, session = true });
+        }
+
         [HttpPost]
         public async Task<ActionResult> FarmTipoConceptosDevuelveParaRegistroDeNiNs(string TipoAlmacen, string TipoMov, string TipoSuministro)
         {
