@@ -1040,6 +1040,16 @@
         });
 
 
+        $('#cboTipoCompartimientoOrigenRegistro').on('change', function () {
+            NotaSalida.CargarFarmaciasRegistro($(this).val());
+            $('#cboFarmaciasRegistro').val(0).trigger('change');
+        });
+
+        $('#cboAreaTerritorioNacionalRegistro').on('change', function () {
+            NotaSalida.CargarUnidadDependenciaRegistro($(this).val());
+        });
+
+
         $('#cboFarmaciasRegistro').on('change', async function () {
             var dataTipoConcepto = new FormData();
             dataTipoConcepto.append('TipoAlmacen', $("#TipoFarmacia").html());
@@ -1355,33 +1365,10 @@
 
     //////////////////////////LLENAR COMBOS////////////////////////////////////////////////////
     LLenarCombos() {
-        let filtroFarmacia = "idTipoLocales='" + $("#TipoFarmacia").html() + "' and idEstado=1";
-        var dataFiltroFarmacia = new FormData();
-        dataFiltroFarmacia.append('filtro', filtroFarmacia);
-        $.ajax({
-            method: "POST",
-            url: "/Farmacias/FarmaciasSeleccionarSegunFiltro?area=Farmacia",
-            data: dataFiltroFarmacia,
-            dataType: "json",
-            async: false,
-            cache: false,
-            processData: false,
-            contentType: false,
-            success: function (datos) {
-                $('#cboFarmaciasBusq').empty();
-                $('#cboFarmaciasRegistro').empty();
-
-                $('#cboFarmaciasRegistro').append('<option value="' + 0 + '">Seleccione una opción</option>');
-                $(datos.lstData.table).each(function (i, obj) {
-                    $('#cboFarmaciasBusq').append('<option value="' + obj.idAlmacen + '">' + obj.descripcion + '</option>');
-                    $('#cboFarmaciasRegistro').append('<option value="' + obj.idAlmacen + '" tipoSuministro="' + obj.idTipoSuministro + '" idTipoLocales="' + obj.idTipoLocales + '" esUnidosis="' + obj.esUnidosis + '">' + obj.descripcion + '</option>');
-                });
-            },
-            error: function (msg) {
-                alerta("ERROR", "Error listar farmacias!", "2");
-            }
-        });
-
+        NotaSalida.CargarTipoCompartimientoOrigenRegistro();
+        NotaSalida.CargarFarmaciasRegistro($('#cboTipoCompartimientoOrigenRegistro').val());
+        NotaSalida.CargarAreaTerritorioNacionalRegistro();
+        NotaSalida.CargarUnidadDependenciaRegistro($('#cboAreaTerritorioNacionalRegistro').val());
 
         $.ajax({
             method: "GET",
@@ -1449,6 +1436,119 @@
         });
 
         $('.chzn-select').chosen().trigger("chosen:updated");
+    },
+
+    CargarTipoCompartimientoOrigenRegistro() {
+        $.ajax({
+            method: "GET",
+            url: "/Farmacias/ListarTipoCompartimiento?area=Farmacia",
+            dataType: "json",
+            async: false,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (datos) {
+                const tipoFarmaciaDefault = $.trim($("#TipoFarmacia").html());
+
+                $('#cboTipoCompartimientoOrigenRegistro').empty();
+                $('#cboTipoCompartimientoOrigenRegistro').append('<option value="0">Seleccione una opción</option>');
+
+                $(datos.lstData.table).each(function (i, obj) {
+                    $('#cboTipoCompartimientoOrigenRegistro').append('<option value="' + obj.idTipoLocal + '">' + obj.descripcion + '</option>');
+                });
+
+                if (tipoFarmaciaDefault !== '') {
+                    $('#cboTipoCompartimientoOrigenRegistro').val(tipoFarmaciaDefault);
+                }
+
+                $('#cboTipoCompartimientoOrigenRegistro').attr('disabled', true);
+                $('.chzn-select').chosen().trigger("chosen:updated");
+            },
+            error: function (msg) {
+                alerta("ERROR", "Error listar tipos de compartimiento!", "2");
+            }
+        });
+    },
+
+    CargarFarmaciasRegistro(idTipoCompartimiento) {
+        let filtroFarmacia = "idTipoLocales='" + idTipoCompartimiento + "' and idEstado=1";
+        var dataFiltroFarmacia = new FormData();
+        dataFiltroFarmacia.append('filtro', filtroFarmacia);
+
+        $.ajax({
+            method: "POST",
+            url: "/Farmacias/FarmaciasSeleccionarSegunFiltro?area=Farmacia",
+            data: dataFiltroFarmacia,
+            dataType: "json",
+            async: false,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (datos) {
+                $('#cboFarmaciasBusq').empty();
+                $('#cboFarmaciasRegistro').empty();
+
+                $('#cboFarmaciasRegistro').append('<option value="0">Seleccione una opción</option>');
+                $(datos.lstData.table).each(function (i, obj) {
+                    $('#cboFarmaciasBusq').append('<option value="' + obj.idAlmacen + '">' + obj.descripcion + '</option>');
+                    $('#cboFarmaciasRegistro').append('<option value="' + obj.idAlmacen + '" tipoSuministro="' + obj.idTipoSuministro + '" idTipoLocales="' + obj.idTipoLocales + '" esUnidosis="' + obj.esUnidosis + '">' + obj.descripcion + '</option>');
+                });
+
+                $('.chzn-select').chosen().trigger("chosen:updated");
+            },
+            error: function (msg) {
+                alerta("ERROR", "Error listar farmacias!", "2");
+            }
+        });
+    },
+
+    CargarAreaTerritorioNacionalRegistro() {
+        $.ajax({
+            method: "GET",
+            url: "/Farmacias/ListarTerritorioNacional?area=Farmacia",
+            dataType: "json",
+            async: false,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (datos) {
+                $('#cboAreaTerritorioNacionalRegistro').empty();
+                $('#cboAreaTerritorioNacionalRegistro').append('<option value="0">Seleccione una opción</option>');
+
+                $(datos.lstData.table).each(function (i, obj) {
+                    $('#cboAreaTerritorioNacionalRegistro').append('<option value="' + obj.idTerritorioNac + '">' + obj.descripcion + '</option>');
+                });
+
+                $('.chzn-select').chosen().trigger("chosen:updated");
+            },
+            error: function (msg) {
+                alerta("ERROR", "Error listar territorio nacional!", "2");
+            }
+        });
+    },
+
+    CargarUnidadDependenciaRegistro(idTerritorioNac) {
+        $.ajax({
+            method: "GET",
+            url: "/Farmacias/ListarUnidadDependenciabyTerritorioNacional?area=Farmacia",
+            data: { idTerritorioNac: idTerritorioNac },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (datos) {
+                $('#cboUnidadDependenciaRegistro').empty();
+                $('#cboUnidadDependenciaRegistro').append('<option value="0">Seleccione una opción</option>');
+
+                $(datos.lstData.table).each(function (i, obj) {
+                    $('#cboUnidadDependenciaRegistro').append('<option value="' + obj.idIPress + '">' + obj.descripcion + '</option>');
+                });
+
+                $('.chzn-select').chosen().trigger("chosen:updated");
+            },
+            error: function (msg) {
+                alerta("ERROR", "Error listar unidades de dependencia!", "2");
+            }
+        });
     },
 
     //////////////////////////METODOS BACKED///////////////////////////////////////////////////////////

@@ -69,6 +69,45 @@ namespace WebAppMaternidad.Areas.Farmacia
             return Json(new { lstData = ListaTipoDocumentos, session = true });
         }
 
+        [HttpGet]
+        public async Task<ActionResult> ListarTipoCompartimiento()
+        {
+            DataSet listaTipoCompartimiento;
+            DalFarmacia daoFarmacia = new DalFarmacia();
+            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            listaTipoCompartimiento = null;
+
+            listaTipoCompartimiento = await daoFarmacia.ListarTipoCompartimiento();
+
+            return Json(new { lstData = listaTipoCompartimiento, session = true });
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ListarTerritorioNacional()
+        {
+            DataSet listaTerritorioNacional;
+            DalFarmacia daoFarmacia = new DalFarmacia();
+            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            listaTerritorioNacional = null;
+
+            listaTerritorioNacional = await daoFarmacia.ListarTerritorioNacional();
+
+            return Json(new { lstData = listaTerritorioNacional, session = true });
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ListarUnidadDependenciabyTerritorioNacional(int idTerritorioNac)
+        {
+            DataSet listaUnidadDependencia;
+            DalFarmacia daoFarmacia = new DalFarmacia();
+            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            listaUnidadDependencia = null;
+
+            listaUnidadDependencia = await daoFarmacia.ListarUnidadDependenciabyTerritorioNacional(idTerritorioNac);
+
+            return Json(new { lstData = listaUnidadDependencia, session = true });
+        }
+
         [HttpPost]
         public async Task<ActionResult> FarmTipoConceptosDevuelveParaRegistroDeNiNs(string TipoAlmacen, string TipoMov, string TipoSuministro)
         {
