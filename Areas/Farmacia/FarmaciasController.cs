@@ -1,30 +1,31 @@
 ﻿using CapaDatos;
 using CapaEntidades;
+using ClosedXML.Excel;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System;
-using System.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebAppMaternidad.CapaEntidades;
-using ClosedXML.Excel;
-using System.IO;
-using WebAppMaternidad.CapaDatos;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using NPOI.SS.Formula.Functions;
 using QRCoder;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Net.Mime;
 using System.Text;
+using System.Threading.Tasks;
 using WebAppMaternidad.Areas.Comun;
-using System.Data.SqlClient;
+using WebAppMaternidad.CapaDatos;
+using WebAppMaternidad.CapaEntidades;
 using WebAppMaternidad.Connected_Services;
+using WebAppMaternidad.Controllers;
+using WebAppMaternidad.Controllers;
 //using CapaDatos;
 using Conexion = CapaDatos.Conexion;
-using WebAppMaternidad.Controllers;
-using WebAppMaternidad.Controllers;
 
 namespace WebAppMaternidad.Areas.Farmacia
 {
@@ -1049,6 +1050,38 @@ namespace WebAppMaternidad.Areas.Farmacia
 
                 var dataSet = await dal.CrearModificarNotaIngresoSalidaFarmacia(MovNumero, MovTipo, idEstadoMovimiento, idTipoLocales, idTipoSuministro, documentoIdTipo, idAlmacenOrigen,
                 idAlmacenDestino, IdTipoConceptoFarmacia, Observaciones, lstObjDetalleNotaSalida, idUsuario, IdListBarItem);
+
+                return SuccessResponse(dataSet);
+            }
+            catch (Exception ex)
+            {
+                return ErrorResponse($"¡Error! {ex.Message}");
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CrearModificarReservaNotaSalidaFarmacia(
+        string MovNumero, string MovTipo, int? idEstadoMovimiento, string idTipoLocales, string idTipoSuministro, int? documentoIdTipo, int? idAlmacenOrigen,
+        int? idAlmacenDestino, int? IdTipoConceptoFarmacia, string Observaciones, string movimientoDetalle, int IdListBarItem ,
+        int idAreaTerritotorial , int idUnidadDependencia , int idTipoCompartimientoSalida , int idTipoCompartimientoOrigen , int idCompartimiento , string
+        docReferencia, int idEstadoReserva)
+        {
+
+            if (!UsuarioAutenticado())
+                return SessionExpiredResult();
+
+            try
+            {
+                var lstObjDetalleNotaSalida = JsonConvert.DeserializeObject<List<FarmMovimientoDetalle>>(movimientoDetalle);
+
+                var dal = new DalFarmacia();
+                var idUsuario = IdUsuarioSesion();
+
+                var dataSet = await dal.CrearModificarReservaNotaIngresoSalida(MovNumero, MovTipo, idEstadoMovimiento, idTipoLocales, idTipoSuministro, documentoIdTipo, idAlmacenOrigen,
+                idAlmacenDestino, IdTipoConceptoFarmacia, Observaciones, lstObjDetalleNotaSalida, idUsuario, IdListBarItem ,  idAreaTerritotorial,  idUnidadDependencia,  idTipoCompartimientoSalida,  
+                idTipoCompartimientoOrigen,  idCompartimiento, 
+                docReferencia,  idEstadoReserva);
 
                 return SuccessResponse(dataSet);
             }

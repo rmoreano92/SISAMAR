@@ -2461,6 +2461,64 @@ namespace CapaDatos
         }
 
 
+
+        public async Task<DataSet> CrearModificarReservaNotaIngresoSalida(
+            string MovNumero, string MovTipo, int? idEstadoMovimiento, string idTipoLocales, string idTipoSuministro, int? documentoIdTipo, int? idAlmacenOrigen,
+            int? idAlmacenDestino, int? IdTipoConceptoFarmacia, string Observaciones, List<FarmMovimientoDetalle> lstObjDetalleNotaSalida, int? idUsuario, int IdListBarItem,
+             int idAreaTerritorial, int idUnidadDependencia, int idTipoCompartimientoSalida, int idTipoCompartimientoOrigen, int idCompartimiento, string
+        docReferencia, int idEstadoReserva)
+        {
+
+            DataSet dataSet = new DataSet();
+
+            Conexion cx = new Conexion();
+
+            string xmlMovimientoDetalle;
+            xmlMovimientoDetalle = XmlUtil.Serializer(typeof(List<FarmMovimientoDetalle>), lstObjDetalleNotaSalida);
+
+            using (SqlConnection conn = new Conexion().obtenerConexion())
+            using (SqlCommand cmd = new SqlCommand("Web_CrearModificarReservaNotaIngresoSalida", conn))
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@MovNumero", string.IsNullOrEmpty(MovNumero) ? DBNull.Value : MovNumero);
+                cmd.Parameters.AddWithValue("@MovTipo", string.IsNullOrEmpty(MovTipo) ? DBNull.Value : MovTipo);
+                cmd.Parameters.AddWithValue("@idEstadoMovimiento", idEstadoMovimiento ?? (object)DBNull.Value);
+
+                cmd.Parameters.AddWithValue("@idTipoLocales", idTipoLocales ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@idTipoSuministro", idTipoSuministro ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@documentoIdTipo", documentoIdTipo ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@idAlmacenOrigen", idAlmacenOrigen ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@idAlmacenDestino", idAlmacenDestino ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@IdTipoConceptoFarmacia", IdTipoConceptoFarmacia ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Observaciones", Observaciones ?? (object)DBNull.Value);
+                cmd.Parameters.Add("@movimientoDetalle", SqlDbType.Xml).Value = xmlMovimientoDetalle;
+                cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                cmd.Parameters.AddWithValue("@IdListBarItem", IdListBarItem);
+
+
+                cmd.Parameters.AddWithValue("@idAreaTerritorial", idAreaTerritorial);  
+                cmd.Parameters.AddWithValue("@idUnidadDependencia" , idUnidadDependencia);  
+                cmd.Parameters.AddWithValue("@idTipoCompartimientoSalida" , idTipoCompartimientoSalida);  
+                cmd.Parameters.AddWithValue("@idTipoCompartimientoOrigen" , idTipoCompartimientoOrigen);  
+                cmd.Parameters.AddWithValue("@idCompartimiento", idCompartimiento);  
+                cmd.Parameters.AddWithValue("@docReferencia" , docReferencia);  
+                cmd.Parameters.AddWithValue("@idEstadoReserva" , idEstadoReserva);
+  
+                cmd.Parameters.AddWithValue("@idReserva" , 0);
+  
+
+
+
+                  await conn.OpenAsync();
+
+                da.Fill(dataSet);
+
+                return dataSet;
+            }
+        }
+
         /*@idReceta int,
 @IdPuntoCarga int,
 @FechaReceta DateTime,

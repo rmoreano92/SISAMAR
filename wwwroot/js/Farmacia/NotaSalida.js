@@ -492,6 +492,83 @@
             }
         }
     },
+
+
+
+
+
+    async GuardarReservaMovimientoFarmacia() {
+
+        if (NotaSalida.Guardando == 0) {
+            Cargando(1)
+            NotaSalida.Guardando = 1
+
+            try {
+
+                let idTipoLocales = $('#cboFarmaciasRegistro>option:selected').attr("idTipoLocales");
+                let tipoSuministro = $('#cboFarmaciasRegistro>option:selected').attr("tipoSuministro");
+
+                let detalleProductos = oTable_detalleNotaSalida.api(true).data().toArray()
+                let farmMovimientoDetalle = []
+                $(detalleProductos).each(function (i, obj) {
+                    console.log('obj', obj)
+                    let cantProducto = $('#txtCant_idItem_' + obj.idProducto.toString() + '_' + i).val()
+                    let registroSanitario = $('#txtRegistroSanitario_' + obj.idProducto.toString() + '_' + i).val()
+                    farmMovimientoDetalle.push({
+                        idProducto: obj.idProducto,
+                        Lote: obj.lote, // validar
+                        FechaVencimiento: obj.fechaVencimiento, // validar
+                        idTipoSalidaBienInsumo: obj.idTipoSalidaBienInsumo, // validar
+                        Item: i + 1,
+                        Cantidad: cantProducto,
+                        Precio: obj.precio,
+                        Total: obj.total,
+                        RegistroSanitario: registroSanitario,
+                        DocumentoNumero: "",
+                    })
+                })
+                if (NotaSalida.TipoAccion == 'E') {
+                    NotaSalida.IdEstadoMovimiento = 0
+                } else {
+                    NotaSalida.IdEstadoMovimiento = 1
+                }
+
+                let res = await NotaSalida.CrearModificarReservaNotaIngresoSalidaFarmacia(
+                    MovNumero = NotaSalida.MovNumero, MovTipo = 'S', idEstadoMovimiento = NotaSalida.IdEstadoMovimiento, idTipoLocales = idTipoLocales,
+                    idTipoSuministro = tipoSuministro, documentoIdTipo = $("#cboTipoDocRegistro").val(), idAlmacenOrigen = $('#cboFarmaciasRegistro').val(),
+                    idAlmacenDestino = $('#cboDestinoRegistro').val(), IdTipoConceptoFarmacia = $('#cboConceptoRegistro').val(), Observaciones = $('#txtObservacionesRegistro').val(),
+                    movimientoDetalle = JSON.stringify(farmMovimientoDetalle),
+                    idAreaTerritotorial = $('#cboAreaTerritorioNacionalRegistro').val(),
+                    idUnidadDependencia = $('#cboUnidadDependenciaRegistro').val(),
+                    idTipoCompartimientoSalida = $('#cboTipoCompartimientoSalidaRegistro').val(),
+                    idTipoCompartimientoOrigen = $('#cboTipoCompartimientoOrigenRegistro').val(),
+                    idCompartimiento = $('#cboCompartimientoSalidaRegistro').val(),
+                    docReferencia = $('#txtDocReferenciaRegistro').val(),
+                    idEstadoReserva = 1,
+                    idReserva = $('#hndReserva').val(),
+
+                )
+
+
+                let data = res.data.table[0]
+                let textoAlerta = ''
+                let NuevoMovNumero = ''
+                if (data.successNumber == 0) {
+                    alerta2('error', '', data.errorMessage)
+                    Cargando(0)
+                    Ventas.Guardando = 0
+                    return
+                }
+
+            } catch (error) {
+                alerta(2, "Error al Guardar")
+                console.error("Error al obtener saldos:", error);
+                Cargando(0)
+                NotaSalida.Guardando = 0
+                return false
+            }
+        }
+    },
     //////////////////////////////EVENTOS USUARIO - SISTEMA///////////////////////////////////////////
 
     Eventos() {
@@ -675,10 +752,13 @@
 
             NotaSalida.TipoAccion = 'A'
 
+            
+
             NotaSalida.LimpiarCamposRegistro()
 
             NotaSalida.IniciarDatosRegistro()
             MostrarAreaRegistro();
+           
         });
 
         $('#btnModificarNotaSalida').on('click', async function () {
@@ -833,6 +913,9 @@
             await NotaSalida.GuardarMovimientoFarmacia()
         });
 
+
+
+       
         
 
         $('#btnCancelarNotaSalida').on('click', async function () {
@@ -848,14 +931,24 @@
         $('#btnConsumirRequerimiento').on('click', function () {
             let $btn = $(this);
 
-            if ($btn.attr('data-estado') === 'concluir') {
-                return;
+            if (!NotaSalida.ValidarDatosObligatoriosReserva()) {
+                return false
             }
+
+            let rsp = false;
+            if ($btn.attr('data-estado') === 'concluir') {
+              //Cuando es concluir 
+            } else {
+                rsp = await NotaSalida.reser();
+            }
+
+            
 
             let camposABloquear = '#contDatosPreviosRegistroNotaSalida input, #contDatosPreviosRegistroNotaSalida select, #contDatosPreviosRegistroNotaSalida textarea';
 
-            $(camposABloquear).not('#btnConsumirRequerimiento').prop('disabled', true);
-            $('.chzn-select').trigger('chosen:updated');
+            $(camposABloquear).not('#btnConsumirRequerimiento').prop('disabled', false);
+
+          $('.chzn-select').trigger('chosen:updated');
 
             $btn
                 .attr('data-estado', 'concluir')
@@ -1063,12 +1156,12 @@
 
         $('#cboTipoCompartimientoOrigenRegistro').on('change', function () {
             NotaSalida.CargarFarmaciasRegistro($(this).val());
-            $('#cboFarmaciasRegistro').val(0).trigger('change');
+            //$('#cboFarmaciasRegistro').val(0).trigger('change');
         });
 
         $('#cboTipoCompartimientoSalidaRegistro').on('change', function () {
             NotaSalida.CargarFarmaciasSalidaRegistro($(this).val());
-            $('#cboCompartimientoSalidaRegistro').val(0).trigger('change');
+            //$('#cboCompartimientoSalidaRegistro').val(0).trigger('change');
         });
 
         $('#cboAreaTerritorioNacionalRegistro').on('change', function () {
@@ -1389,6 +1482,71 @@
         oTable_detalleNotaSalida.resize();
     },
 
+
+    async RegistrarReserva() {
+        let idTipoLocales = $('#cboFarmaciasRegistro>option:selected').attr("idTipoLocales");
+        let tipoSuministro = $('#cboFarmaciasRegistro>option:selected').attr("tipoSuministro");
+
+        let detalleProductos = oTable_detalleNotaSalida.api(true).data().toArray()
+        let farmMovimientoDetalle = []
+
+       
+
+        //for (let [i, obj] of detalleProductos.entries()) {
+        //    if (parseInt($(`#txtCant_idItem_${obj.idProducto}_${i}`).val()) <= 0) {
+        //        alerta2('error', 'Alerta', `El producto ${obj.producto} debe tener una cantidad mayor a cero.`)
+        //        return false
+        //    }
+        //}
+
+        //for (let [i, obj] of detalleProductos.entries()) {
+        //    if (parseFloat(obj.precio) <= 0.00) {
+        //        alerta2('error', 'Alerta', `El producto ${obj.producto} no tiene precio.`)
+        //        return false
+        //    }
+        //}
+
+        let movimientos = await NotaSalida.FarmMovimientoSeleccionarPorTipoYnumeroDocumento('S');
+
+        if (NotaSalida.TipoAccion === 'A' && !isEmpty(movimientos)) {
+
+            const fechaDMY = new Date(movimientos.fechaCreacion);
+            const fechaFormateada = fechaDMY.toLocaleDateString('es-PE', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+
+            let confirmarNroDocumento = alertaAsync('info', 'Info',
+                `Ya existe una nota de salida con los siguientes datos:
+                    <table class="table table-bordered mt-1 mb-1" style="font-size: 12px;">
+                        <tbody>
+                            <tr>
+                                <th style="width: 25%; background: #f0f0f0;">N° Documento:</th>
+                                <td>${movimientos.documentoNumero}</td>
+                                <th style="width: 10%; background: #f0f0f0;">NS:</th>
+                                <td>${movimientos.movNumero}</td>
+                                <th style="width: 10%; background: #f0f0f0;">Fecha:</th>
+                                <td>${fechaFormateada}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    Intente probar con el siguiente número de documento`
+            )
+
+            if (confirmarNroDocumento.isConfirmed) {
+                let documentoEsAutomatico = $('#cboConceptoRegistro>option:selected').attr("documentoEsAutomatico") === 'S';
+                let numeroDocumento = $('#txtNroDocNotaSalida').val();
+                $('#txtNroDocNotaSalida').val(documentoEsAutomatico ? parseInt(numeroDocumento) + 1 : '');
+            }
+
+            return false;
+        }
+
+        await NotaSalida.GuardarReservaMovimientoFarmacia()
+
+    },
+
     //////////////////////////LLENAR COMBOS////////////////////////////////////////////////////
     LLenarCombos() {
         NotaSalida.CargarTipoCompartimientoOrigenRegistro();
@@ -1467,6 +1625,7 @@
     },
 
     CargarTipoCompartimientoOrigenRegistro() {
+        $('#cboTipoCompartimientoOrigenRegistro').attr('disabled', true);
         $.ajax({
             method: "GET",
             url: "/Farmacias/ListarTipoCompartimiento?area=Farmacia",
@@ -1521,7 +1680,7 @@
                     $('#cboTipoCompartimientoSalidaRegistro').val(tipoFarmaciaDefault);
                 }
 
-             /*   $('#cboTipoCompartimientoSalidaRegistro').attr('disabled', true);*/
+             /*  */
                 $('.chzn-select').chosen().trigger("chosen:updated");
             },
             error: function (msg) {
@@ -1545,7 +1704,7 @@
             processData: false,
             contentType: false,
             success: function (datos) {
-                $('#cboFarmaciasBusq').empty();
+                //$('#cboFarmaciasBusq').empty();
                 $('#cboFarmaciasRegistro').empty();
 
                 $('#cboFarmaciasRegistro').append('<option value="0">Seleccione una opción</option>');
@@ -1949,6 +2108,65 @@
 
 
     CrearModificarNotaIngresoSalidaFarmacia: async function (MovNumero, MovTipo, idEstadoMovimiento, idTipoLocales, idTipoSuministro, documentoIdTipo, idAlmacenOrigen,
+        idAlmacenDestino, IdTipoConceptoFarmacia, Observaciones, movimientoDetalle) {
+
+        let formData = new FormData();
+
+        formData.append('MovNumero', MovNumero);
+        formData.append('MovTipo', MovTipo);
+        formData.append('idEstadoMovimiento', idEstadoMovimiento);
+        formData.append('idTipoLocales', idTipoLocales);
+        formData.append('idTipoSuministro', idTipoSuministro);
+        formData.append('documentoIdTipo', documentoIdTipo);
+        formData.append('idAlmacenOrigen', idAlmacenOrigen);
+        formData.append('idAlmacenDestino', idAlmacenDestino);
+        formData.append('IdTipoConceptoFarmacia', IdTipoConceptoFarmacia);
+        formData.append('Observaciones', Observaciones);
+        formData.append('movimientoDetalle', movimientoDetalle);
+        formData.append('IdListBarItem', ObtenerItemListBar());
+
+        let res = await HttpClient.Post('/Farmacias/CrearModificarNotaIngresoSalidaFarmacia?area=Farmacia', formData)
+
+
+        return res
+    },
+
+
+
+    CrearModificarReservaNotaIngresoSalidaFarmacia: async function (
+        MovNumero, MovTipo, idEstadoMovimiento, idTipoLocales, idTipoSuministro, documentoIdTipo, idAlmacenOrigen,
+        idAlmacenDestino, IdTipoConceptoFarmacia, Observaciones, movimientoDetalle, idAreaTerritotorial, idUnidadDependencia, idTipoCompartimientoSalida, idTipoCompartimientoOrigen, idCompartimiento, docReferencia, idEstadoReserva) {
+
+        let formData = new FormData();
+
+        formData.append('MovNumero', MovNumero);
+        formData.append('MovTipo', MovTipo);
+        formData.append('idEstadoMovimiento', idEstadoMovimiento);
+        formData.append('idTipoLocales', idTipoLocales);
+        formData.append('idTipoSuministro', idTipoSuministro);
+        formData.append('documentoIdTipo', documentoIdTipo);
+        formData.append('idAlmacenOrigen', idAlmacenOrigen);
+        formData.append('idAlmacenDestino', idAlmacenDestino);
+        formData.append('IdTipoConceptoFarmacia', IdTipoConceptoFarmacia);
+        formData.append('Observaciones', Observaciones);
+        formData.append('movimientoDetalle', movimientoDetalle);
+        formData.append('IdListBarItem', ObtenerItemListBar());
+
+        formData.append('idAreaTerritotorial', idAreaTerritotorial);
+        formData.append('idUnidadDependencia', idUnidadDependencia);
+        formData.append('IdListBarItem', idTipoCompartimientoSalida);
+        formData.append('idTipoCompartimientoOrigen', idTipoCompartimientoOrigen);
+        formData.append('idCompartimiento', idCompartimiento);
+        formData.append('docReferencia', docReferencia);
+        formData.append('idEstadoReserva', idEstadoReserva);
+
+        let res = await HttpClient.Post('/Farmacias/CrearModificarReservaNotaSalidaFarmacia?area=Farmacia', formData)
+
+
+        return res
+    },
+
+    CrearModificarNotaIngresoReserva: async function (MovNumero, MovTipo, idEstadoMovimiento, idTipoLocales, idTipoSuministro, documentoIdTipo, idAlmacenOrigen,
         idAlmacenDestino, IdTipoConceptoFarmacia, Observaciones, movimientoDetalle) {
 
         let formData = new FormData();
@@ -2437,7 +2655,7 @@
     LimpiarCamposRegistro() {
 
         NotaSalida.MovNumero = ''
-
+        
         $('#txtNroNotaSalida').val('')
         $('#txtFechaRegistroNotaSalida').val('')
         $('#txtHoraRegistroNotaSalida').val('')
@@ -2459,7 +2677,7 @@
         $('#cboFarmaciasRegistro').attr('disabled', false)
         $('#cboConceptoRegistro').attr('disabled', false)
         $('#cboDestinoRegistro').attr('disabled', false)
-        //$('#cboTipoDocRegistro').attr('disabled', false)
+        $('#cboTipoCompartimientoOrigenRegistro').attr('disabled', true)
         $('#txtNroDocNotaSalida').attr('disabled', false)
 
         $('#btnGuardarNotaSalida').show()
@@ -2467,6 +2685,8 @@
         $('#contProductosBusqueda').hide()
 
         $('.chzn-select').chosen().trigger("chosen:updated");
+
+       
     },
 
     // accion -> 2. Modificar 3. Consultar
@@ -2541,6 +2761,50 @@
             alerta(2, 'Ingrese al menos un producto a la lista por favor.')
             return false
         }
+
+        return true
+    },
+
+
+    ValidarDatosObligatoriosReserva() {
+        if ($('#cboFarmaciasRegistro').val() == 0) {
+            alerta(2, 'Por favor elija el Almacén de Origen.')
+            return false
+        }
+
+        if ($('#cboConceptoRegistro').val() == 0) {
+            alerta(2, 'Por favor elija el Concepto.')
+            return false
+        }
+
+        if ($('#cboDestinoRegistro').val() < 0) {
+            alerta(2, 'Por favor elija el Almacén de Destino.')
+            return false
+        }
+
+        if ($('#txtNroDocNotaSalida').val() == 0) {
+            alerta(2, 'Por favor ingrese el N° de Documento.')
+            return false
+        }
+
+        if ($('#cboAreaTerritorioNacionalRegistro').val() == 0) {
+            alerta(2, 'Por favor ingrese el Territorio Nacional.')
+            return false
+        }
+        if ($('#cboUnidadDependenciaRegistro').val() == 0) {
+            alerta(2, 'Por favor elija la unidad de dependencia.')
+            return false
+        }
+        if ($('#cboTipoCompartimientoSalidaRegistro').val() == 0) {
+            alerta(2, 'Por favor elija el tipo de compartimiento de salida.')
+            return false
+        }
+        if ($('#cboCompartimientoSalidaRegistro').val() == 0) {
+            alerta(2, 'Por favor elija el compartimiento de salida.')
+            return false
+        }
+
+       
 
         return true
     },
