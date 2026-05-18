@@ -449,8 +449,8 @@
                 if (data.successNumber == 0) {
                     alerta2('error', '', data.errorMessage)
                     Cargando(0)
-                    Ventas.Guardando = 0
-                    return
+                    NotaSalida.Guardando = 0
+                    return 0
                 }
 
                 NuevoMovNumero = data.movNumero
@@ -488,7 +488,7 @@
                 console.error("Error al obtener saldos:", error);
                 Cargando(0)
                 NotaSalida.Guardando = 0
-                return false
+                return 0
             }
         }
     },
@@ -556,9 +556,17 @@
                 if (data.successNumber == 0) {
                     alerta2('error', '', data.errorMessage)
                     Cargando(0)
-                    Ventas.Guardando = 0
-                    return
+                    NotaSalida.Guardando = 0
+                    return 0
                 }
+
+                let idReservaGenerada = data.idReserva || data.IdReserva || data.idreserva || data.id || 0;
+                $('#hndReserva').val(idReservaGenerada);
+
+                Cargando(0)
+                NotaSalida.Guardando = 0
+
+                return parseInt(idReservaGenerada);
 
             } catch (error) {
                 alerta(2, "Error al Guardar")
@@ -928,27 +936,30 @@
 
         });
 
-        $('#btnConsumirRequerimiento').on('click', function () {
+        $('#btnConsumirRequerimiento').on('click', async function () {
             let $btn = $(this);
 
             if (!NotaSalida.ValidarDatosObligatoriosReserva()) {
-                return false
+                return false;
             }
 
-            let rsp = false;
             if ($btn.attr('data-estado') === 'concluir') {
-              //Cuando es concluir 
-            } else {
-                rsp = await NotaSalida.reser();
+                return false;
             }
 
-            
+            let idReserva = await NotaSalida.RegistrarReserva();
+
+            if (!idReserva || parseInt(idReserva) <= 0) {
+                return false;
+            }
+
+            $('#hndReserva').val(idReserva);
 
             let camposABloquear = '#contDatosPreviosRegistroNotaSalida input, #contDatosPreviosRegistroNotaSalida select, #contDatosPreviosRegistroNotaSalida textarea';
 
-            $(camposABloquear).not('#btnConsumirRequerimiento').prop('disabled', false);
+            $(camposABloquear).not('#btnConsumirRequerimiento').prop('disabled', true);
 
-          $('.chzn-select').trigger('chosen:updated');
+            $('.chzn-select').trigger('chosen:updated');
 
             $btn
                 .attr('data-estado', 'concluir')
@@ -1543,7 +1554,9 @@
             return false;
         }
 
-        await NotaSalida.GuardarReservaMovimientoFarmacia()
+        let idReserva = await NotaSalida.GuardarReservaMovimientoFarmacia();
+
+        return idReserva;
 
     },
 
