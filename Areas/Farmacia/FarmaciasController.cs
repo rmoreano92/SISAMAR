@@ -96,6 +96,20 @@ namespace WebAppMaternidad.Areas.Farmacia
             return Json(new { lstData = listaTerritorioNacional, session = true });
         }
 
+
+        [HttpGet]
+        public async Task<ActionResult> ListarEstadosReservaNotaSalida()
+        {
+            DataSet listaEstados;
+            DalFarmacia daoFarmacia = new DalFarmacia();
+            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            listaEstados = null;
+
+            listaEstados = await daoFarmacia.ListarEstadosReservaNotaSalida();
+
+            return Json(new { lstData = listaEstados, session = true });
+        }
+
         [HttpGet]
         public async Task<ActionResult> ListarUnidadDependenciabyTerritorioNacional(int idTerritorioNac)
         {
@@ -268,6 +282,21 @@ namespace WebAppMaternidad.Areas.Farmacia
             return Json(new { lstData = ds, session = true });
         }
 
+
+        [HttpPost]
+        public async Task<ActionResult> FarmDevuelveReservas( int IdAlmacen, DateTime FechaInicio, DateTime FechaFin)
+        {
+            DataSet ds;
+            DalFarmacia daoFarmacia = new DalFarmacia();
+            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            //resp = 0;
+            FechaInicio = FechaInicio.Date.Add(new TimeSpan(0, 1, 0)); // 00:01:00
+            FechaFin = FechaFin.Date.Add(new TimeSpan(23, 59, 0)); // 23:59:00
+            ds = await daoFarmacia.FarmDevuelveReservas( IdAlmacen, FechaInicio, FechaFin);
+
+            return Json(new { lstData = ds, session = true });
+        }
+
         [HttpPost]
         public async Task<ActionResult> FarmMovimientoDetalleByMovNumero(string MovNumero, string MovTipo)
         {
@@ -277,6 +306,21 @@ namespace WebAppMaternidad.Areas.Farmacia
             //resp = 0;
 
             ds = await daoFarmacia.FarmMovimientoDetalleByMovNumero(MovNumero, MovTipo);
+
+            return Json(new { lstData = ds, session = true });
+        }
+
+
+
+        [HttpPost]
+        public async Task<ActionResult> FarmMovimientoDetalleByidReserva(int idReserva)
+        {
+            DataSet ds;
+            DalFarmacia daoFarmacia = new DalFarmacia();
+            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            //resp = 0;
+
+            ds = await daoFarmacia.FarmMovimientoDetalleByidReserva(idReserva);
 
             return Json(new { lstData = ds, session = true });
         }
@@ -1064,7 +1108,7 @@ namespace WebAppMaternidad.Areas.Farmacia
         public async Task<IActionResult> CrearModificarReservaNotaSalidaFarmacia(
         string MovNumero, string MovTipo, int? idEstadoMovimiento, string idTipoLocales, string idTipoSuministro, int? documentoIdTipo, int? idAlmacenOrigen,
         int? idAlmacenDestino, int? IdTipoConceptoFarmacia, string Observaciones, string movimientoDetalle, int IdListBarItem ,
-        int idAreaTerritotorial , int idUnidadDependencia , int idTipoCompartimientoSalida , int idTipoCompartimientoOrigen , int idCompartimiento , string
+        int idAreaTerritotorial , int idUnidadDependencia , string idTipoCompartimientoSalida , string idTipoCompartimientoOrigen , int idCompartimiento , string
         docReferencia, int idEstadoReserva)
         {
 
@@ -1082,6 +1126,31 @@ namespace WebAppMaternidad.Areas.Farmacia
                 idAlmacenDestino, IdTipoConceptoFarmacia, Observaciones, lstObjDetalleNotaSalida, idUsuario, IdListBarItem ,  idAreaTerritotorial,  idUnidadDependencia,  idTipoCompartimientoSalida,  
                 idTipoCompartimientoOrigen,  idCompartimiento, 
                 docReferencia,  idEstadoReserva);
+
+                return SuccessResponse(dataSet);
+            }
+            catch (Exception ex)
+            {
+                return ErrorResponse($"¡Error! {ex.Message}");
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ModificarReservaNotaSalidaFarmacia(int idReserva, string movimientoDetalle,int idEstadoReserva)
+        {
+
+            if (!UsuarioAutenticado())
+                return SessionExpiredResult();
+
+            try
+            {
+                var lstObjDetalleNotaSalida = JsonConvert.DeserializeObject<List<FarmMovimientoDetalle>>(movimientoDetalle);
+
+                var dal = new DalFarmacia();
+                var idUsuario = IdUsuarioSesion();
+
+                var dataSet = await dal.ModificarReservaNotaSalidaFarmacia(idReserva, lstObjDetalleNotaSalida, idEstadoReserva);
 
                 return SuccessResponse(dataSet);
             }

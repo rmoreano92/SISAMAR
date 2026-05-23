@@ -102,6 +102,13 @@
             autoWidth: false,
             columns: [
                 {
+                    data: "idReserva",
+                    width: "10%",
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).attr('align', 'left')
+                    }
+                },
+                {
                     data: "movNumero",
                     width: "10%",
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -179,7 +186,12 @@
 
                         btnImprimeSinF = '<button class="btnImprimeInforme btn btn-sm btn-warning glow_button" title="Visualiza Informe" data-toggle="tooltip" style="margin: 2px;"><i class="fa fa-eye"></i> </button>';
 
-                        $(td).html(btnImprimeSinF);
+                        if (rowData.movNumero != null) {
+                            $(td).html(btnImprimeSinF);
+                        } else { $(td).html(''); }
+
+
+                      
                     }
                 },
             ]
@@ -497,6 +509,84 @@
 
 
 
+    async ActualizarReserva(idEstadoReserva) {
+
+
+
+            try {
+
+                let idTipoLocales = $('#cboFarmaciasRegistro>option:selected').attr("idTipoLocales");
+                let tipoSuministro = $('#cboFarmaciasRegistro>option:selected').attr("tipoSuministro");
+
+                let detalleProductos = oTable_detalleNotaSalida.api(true).data().toArray()
+                let farmMovimientoDetalle = []
+                $(detalleProductos).each(function (i, obj) {
+                    console.log('obj', obj)
+
+                    let cantProducto = $('#txtCant_idItem_' + obj.idProducto.toString() + '_' + i).val()
+                    let registroSanitario = $('#txtRegistroSanitario_' + obj.idProducto.toString() + '_' + i).val()
+
+                    farmMovimientoDetalle.push({
+
+                        idProducto: obj.idProducto,
+                        Lote: obj.lote, // validar
+                        FechaVencimiento: obj.fechaVencimiento, // validar
+                        idTipoSalidaBienInsumo: obj.idTipoSalidaBienInsumo, // validar
+                        Item: i + 1,
+                        Cantidad: cantProducto,
+                        Precio: obj.precio,
+                        Total: obj.total,
+                        RegistroSanitario: registroSanitario,
+                        DocumentoNumero: "",
+
+                    })
+                })
+
+               
+
+                let res = await NotaSalida.ModificarReserva(idReserva = $('#hndReserva').val(),
+                    movimientoDetalle = JSON.stringify(farmMovimientoDetalle), idEstadoReserva )
+
+
+                let data = res.data.table[0]
+                let textoAlerta = ''
+                let NuevoMovNumero = ''
+                if (data.successNumber == 0) {
+                    alerta2('error', '', data.errorMessage)
+                    Cargando(0)
+                    Ventas.Guardando = 0
+                    return
+                } else {
+                   
+                    if (idEstadoReserva == 2) {
+                        alerta(1, 'Se concluyó correctamente.')
+                        Cargando(0)
+                        $('#btnGuardarNotaSalida').hide();
+                        
+                        MostrarAreaLista();
+                        $('#btnBuscar').trigger('click')
+                    } else {
+                        alerta(1, 'Se actualizó el detalle correctamente.')
+                        Cargando(0)
+                    }
+                 
+                }
+
+                
+
+            } catch (error) {
+                alerta(2, "Error al Guardar")
+                console.error("Error al obtener saldos:", error);
+                Cargando(0)
+                NotaSalida.Guardando = 0
+                return false
+            }
+        
+    },
+
+
+
+
     async GuardarReservaMovimientoFarmacia() {
 
         if (NotaSalida.Guardando == 0) {
@@ -536,7 +626,8 @@
                 let res = await NotaSalida.CrearModificarReservaNotaIngresoSalidaFarmacia(
                     MovNumero = NotaSalida.MovNumero, MovTipo = 'S', idEstadoMovimiento = NotaSalida.IdEstadoMovimiento, idTipoLocales = idTipoLocales,
                     idTipoSuministro = tipoSuministro, documentoIdTipo = $("#cboTipoDocRegistro").val(), idAlmacenOrigen = $('#cboFarmaciasRegistro').val(),
-                    idAlmacenDestino = $('#cboDestinoRegistro').val(), IdTipoConceptoFarmacia = $('#cboConceptoRegistro').val(), Observaciones = $('#txtObservacionesRegistro').val(),
+                    idAlmacenDestino = $('#cboDestinoRegistro').val(), IdTipoConceptoFarmacia = $('#cboConceptoRegistro').val(),
+                    Observaciones = $('#txtObservacionesRegistro').val(),
                     movimientoDetalle = JSON.stringify(farmMovimientoDetalle),
                     idAreaTerritotorial = $('#cboAreaTerritorioNacionalRegistro').val(),
                     idUnidadDependencia = $('#cboUnidadDependenciaRegistro').val(),
@@ -544,8 +635,7 @@
                     idTipoCompartimientoOrigen = $('#cboTipoCompartimientoOrigenRegistro').val(),
                     idCompartimiento = $('#cboCompartimientoSalidaRegistro').val(),
                     docReferencia = $('#txtDocReferenciaRegistro').val(),
-                    idEstadoReserva = 1,
-                    idReserva = $('#hndReserva').val(),
+                    idEstadoReserva = 1
 
                 )
 
@@ -553,12 +643,42 @@
                 let data = res.data.table[0]
                 let textoAlerta = ''
                 let NuevoMovNumero = ''
-                if (data.successNumber == 0) {
+
+                if (data.successNumber == 1 && data.idReserva > 0) {
+                    $('#hndReserva').val(data.idReserva);
+                    
+                    this.BloquearCabecera(true);
+
+
+
+                    $('#cboEstadoNotaSalida').val(data.idEstadoReserva);
+                    $('.chzn-select').trigger('chosen:updated');
+                    $('#btnConsumirRequerimiento')
+                        .attr('data-estado', 'concluir')
+                        .removeClass('btn-info')
+                        .addClass('btn-success')
+                        .html('<i class="fa fa-check"></i> CONCLUIR PARCIAL GUÍA');
+                    $('#contFiltrosProductos').show();
+                    $('#btnGuardarNotaSalida').show();
+
+
+
+                } else if (data.successNumber == 0) {
                     alerta2('error', '', data.errorMessage)
                     Cargando(0)
                     Ventas.Guardando = 0
                     return
-                }
+                } 
+
+
+              
+              
+
+
+
+                
+
+
 
             } catch (error) {
                 alerta(2, "Error al Guardar")
@@ -770,9 +890,16 @@
                 return false
             }
 
-
             if (notaSalida.idEstadoMovimiento == 0) {
                 alerta2('warning', 'El registro se encuentra anulado.')
+                return false
+            }
+            if (notaSalida.idEstadoReserva == 2) {
+                alerta2('warning', 'El registro se encuentra concluido parcialmente,no se puede moficar.')
+                return false
+            }
+            if (notaSalida.idEstadoReserva == 3) {
+                alerta2('warning', 'El registro se encuentra concluido,no se puede moficar.')
                 return false
             }
 
@@ -783,6 +910,7 @@
             NotaSalida.LimpiarCamposRegistro()
 
             NotaSalida.CargarCamposRegistro(notaSalida)
+
 
             NotaSalida.IniciarDatosRegistro()
 
@@ -854,27 +982,22 @@
 
             let detalleProductos = oTable_detalleNotaSalida.api(true).data().toArray()
             let farmMovimientoDetalle = []
-
             if (!NotaSalida.ValidarDatosObligatorios()) {
                 return false
             }
-
             for (let [i, obj] of detalleProductos.entries()) {
                 if (parseInt($(`#txtCant_idItem_${obj.idProducto}_${i}`).val()) <= 0) {
                     alerta2('error', 'Alerta', `El producto ${obj.producto} debe tener una cantidad mayor a cero.`)
                     return false
                 }
             }
-
             for (let [i, obj] of detalleProductos.entries()) {
                 if (parseFloat(obj.precio) <= 0.00) {
                     alerta2('error', 'Alerta', `El producto ${obj.producto} no tiene precio.`)
                     return false
                 }
             }
-
             let movimientos = await NotaSalida.FarmMovimientoSeleccionarPorTipoYnumeroDocumento('S');
-
             if (NotaSalida.TipoAccion === 'A' && !isEmpty(movimientos)) {
 
                 const fechaDMY = new Date(movimientos.fechaCreacion);
@@ -909,8 +1032,7 @@
 
                 return false;
             }
-
-            await NotaSalida.GuardarMovimientoFarmacia()
+            await NotaSalida.ActualizarReserva(1);
         });
 
 
@@ -928,35 +1050,28 @@
 
         });
 
-        $('#btnConsumirRequerimiento').on('click', function () {
+        $('#btnConsumirRequerimiento').on('click',async  function () {
             let $btn = $(this);
 
             if (!NotaSalida.ValidarDatosObligatoriosReserva()) {
                 return false
             }
 
-            let rsp = false;
             if ($btn.attr('data-estado') === 'concluir') {
-              //Cuando es concluir 
+
+                if (oTable_detalleNotaSalida.api(true).data().toArray().length == 0) {
+                    alerta(2, 'Ingrese al menos un producto a la lista por favor.')
+                    return false
+                }
+
+                await NotaSalida.ActualizarReserva(2);
             } else {
-                rsp = await NotaSalida.reser();
+                await NotaSalida.RegistrarReserva();
             }
 
             
 
-            let camposABloquear = '#contDatosPreviosRegistroNotaSalida input, #contDatosPreviosRegistroNotaSalida select, #contDatosPreviosRegistroNotaSalida textarea';
-
-            $(camposABloquear).not('#btnConsumirRequerimiento').prop('disabled', false);
-
-          $('.chzn-select').trigger('chosen:updated');
-
-            $btn
-                .attr('data-estado', 'concluir')
-                .removeClass('btn-info')
-                .addClass('btn-success')
-                .html('<i class="fa fa-check"></i> CONCLUIR PARCIAL GUÍA');
-
-            $('#contFiltrosProductos').show();
+            
         });
 
 
@@ -1489,23 +1604,6 @@
 
         let detalleProductos = oTable_detalleNotaSalida.api(true).data().toArray()
         let farmMovimientoDetalle = []
-
-       
-
-        //for (let [i, obj] of detalleProductos.entries()) {
-        //    if (parseInt($(`#txtCant_idItem_${obj.idProducto}_${i}`).val()) <= 0) {
-        //        alerta2('error', 'Alerta', `El producto ${obj.producto} debe tener una cantidad mayor a cero.`)
-        //        return false
-        //    }
-        //}
-
-        //for (let [i, obj] of detalleProductos.entries()) {
-        //    if (parseFloat(obj.precio) <= 0.00) {
-        //        alerta2('error', 'Alerta', `El producto ${obj.producto} no tiene precio.`)
-        //        return false
-        //    }
-        //}
-
         let movimientos = await NotaSalida.FarmMovimientoSeleccionarPorTipoYnumeroDocumento('S');
 
         if (NotaSalida.TipoAccion === 'A' && !isEmpty(movimientos)) {
@@ -1551,6 +1649,7 @@
     LLenarCombos() {
         NotaSalida.CargarTipoCompartimientoOrigenRegistro();
         NotaSalida.CargarTipoCompartimientoSalidaRegistro();
+        NotaSalida.CargarEstadosNotaSalida();
         NotaSalida.CargarFarmaciasRegistro($('#cboTipoCompartimientoOrigenRegistro').val());
         NotaSalida.CargarFarmaciasSalidaRegistro($('#cboTipoCompartimientoSalidaRegistro').val());
         NotaSalida.CargarAreaTerritorioNacionalRegistro();
@@ -1657,6 +1756,33 @@
         });
     },
 
+
+    CargarEstadosNotaSalida() {
+        $.ajax({
+            method: "GET",
+            url: "/Farmacias/ListarEstadosReservaNotaSalida",
+            dataType: "json",
+            async: false,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (datos) {
+                $('#cboEstadoNotaSalida').empty();
+                $('#cboEstadoNotaSalida').append('<option value="0">Seleccione una opción</option>');
+
+                $(datos.lstData.table).each(function (i, obj) {
+                    $('#cboEstadoNotaSalida').append('<option value="' + obj.idEstadoReserva + '">' + obj.descripcion + '</option>');
+                });
+
+                $('.chzn-select').chosen().trigger("chosen:updated");
+            },
+            error: function (msg) {
+                alerta("ERROR", "Error listar territorio nacional!", "2");
+            }
+        });
+    },
+
+
     CargarTipoCompartimientoSalidaRegistro() {
         $.ajax({
             method: "GET",
@@ -1705,7 +1831,7 @@
             contentType: false,
             success: function (datos) {
                 //$('#cboFarmaciasBusq').empty();
-                $('#cboFarmaciasRegistro').empty();
+                 $('#cboFarmaciasRegistro').empty();
 
                 $('#cboFarmaciasRegistro').append('<option value="0">Seleccione una opción</option>');
                 $(datos.lstData.table).each(function (i, obj) {
@@ -1816,7 +1942,6 @@
             return false;
         }
 
-        data.append('MovTipo', 'S');
         data.append('IdAlmacen', $("#cboFarmaciasBusq").val());
         data.append('FechaInicio', $("#txtFechaInicioBusq").val());
         data.append('FechaFin', $("#txtFechaFinalBusq").val());
@@ -1827,7 +1952,7 @@
             datos = await
                 $.ajax({
                     method: "POST",
-                    url: "/Farmacias/FarmDevuelveMovimientos?area=Farmacia",
+                    url: "/Farmacias/FarmDevuelveReservas?area=Farmacia",
                     //contentType: "application/json; charset=utf-8",
                     data: data,
                     dataType: "json",
@@ -1875,6 +2000,46 @@
                 $.ajax({
                     method: "POST",
                     url: "/Farmacias/FarmMovimientoDetalleByMovNumero?area=Farmacia",
+                    //contentType: "application/json; charset=utf-8",
+                    data: data,
+                    dataType: "json",
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                });
+
+            Cargando(0);
+            if (datos.lstData.table.length > 0) {
+                oTable_detalleNotaSalida.fnAddData(datos.lstData.table);
+                oTable_detalleNotaSalida.resize();
+            }
+            else {
+                resp = null;
+            }
+        } catch (error) {
+            Cargando(0);
+            alerta(2, JSON.stringify(error));
+        }
+
+        return resp;
+    },
+
+    async FarmMovimientoDetalleByidReserva(idReserva) {
+        var respuesta;
+        var resp = false;
+        let datos
+        var data = new FormData();
+
+
+        data.append('idReserva', idReserva);
+
+        try {
+            Cargando(1);
+            oTable_detalleNotaSalida.fnClearTable();
+            datos = await
+                $.ajax({
+                    method: "POST",
+                    url: "/Farmacias/FarmMovimientoDetalleByidReserva?area=Farmacia",
                     //contentType: "application/json; charset=utf-8",
                     data: data,
                     dataType: "json",
@@ -2107,25 +2272,15 @@
 
 
 
-    CrearModificarNotaIngresoSalidaFarmacia: async function (MovNumero, MovTipo, idEstadoMovimiento, idTipoLocales, idTipoSuministro, documentoIdTipo, idAlmacenOrigen,
-        idAlmacenDestino, IdTipoConceptoFarmacia, Observaciones, movimientoDetalle) {
+    ModificarReserva: async function (idReserva, movimientoDetalle, idEstadoReserva) {
 
         let formData = new FormData();
 
-        formData.append('MovNumero', MovNumero);
-        formData.append('MovTipo', MovTipo);
-        formData.append('idEstadoMovimiento', idEstadoMovimiento);
-        formData.append('idTipoLocales', idTipoLocales);
-        formData.append('idTipoSuministro', idTipoSuministro);
-        formData.append('documentoIdTipo', documentoIdTipo);
-        formData.append('idAlmacenOrigen', idAlmacenOrigen);
-        formData.append('idAlmacenDestino', idAlmacenDestino);
-        formData.append('IdTipoConceptoFarmacia', IdTipoConceptoFarmacia);
-        formData.append('Observaciones', Observaciones);
+       
+        formData.append('idReserva', idReserva);
         formData.append('movimientoDetalle', movimientoDetalle);
-        formData.append('IdListBarItem', ObtenerItemListBar());
-
-        let res = await HttpClient.Post('/Farmacias/CrearModificarNotaIngresoSalidaFarmacia?area=Farmacia', formData)
+        formData.append('idEstadoReserva', idEstadoReserva);
+        let res = await HttpClient.Post('/Farmacias/ModificarReservaNotaSalidaFarmacia?area=Farmacia', formData)
 
 
         return res
@@ -2154,7 +2309,7 @@
 
         formData.append('idAreaTerritotorial', idAreaTerritotorial);
         formData.append('idUnidadDependencia', idUnidadDependencia);
-        formData.append('IdListBarItem', idTipoCompartimientoSalida);
+        formData.append('idTipoCompartimientoSalida', idTipoCompartimientoSalida);
         formData.append('idTipoCompartimientoOrigen', idTipoCompartimientoOrigen);
         formData.append('idCompartimiento', idCompartimiento);
         formData.append('docReferencia', docReferencia);
@@ -2663,7 +2818,7 @@
 
         $('#cboFarmaciasRegistro').val(0)
         //$('#cboFarmaciasRegistro').trigger('change')
-
+        $('#cboEstadoNotaSalida').val(0);
         $('#cboConceptoRegistro').empty();
         //$('#cboConceptoRegistro').trigger('change')
 
@@ -2677,12 +2832,34 @@
         $('#cboFarmaciasRegistro').attr('disabled', false)
         $('#cboConceptoRegistro').attr('disabled', false)
         $('#cboDestinoRegistro').attr('disabled', false)
+        $('#cboEstadoNotaSalida').attr('disabled', true)
         $('#cboTipoCompartimientoOrigenRegistro').attr('disabled', true)
         $('#txtNroDocNotaSalida').attr('disabled', false)
 
-        $('#btnGuardarNotaSalida').show()
+        $('#btnGuardarNotaSalida').hide()
 
         $('#contProductosBusqueda').hide()
+
+        
+
+
+        $('#cboAreaTerritorioNacionalRegistro').val(0)
+        $('#cboUnidadDependenciaRegistro').val(0)
+        $('#cboTipoCompartimientoSalidaRegistro').val(0)
+        $('#cboCompartimientoSalidaRegistro').val(0)
+        $('#txtDocReferenciaRegistro').val('')
+
+        $('#cboAreaTerritorioNacionalRegistro').attr('disabled', false)
+        $('#cboUnidadDependenciaRegistro').attr('disabled', false)
+        $('#cboTipoCompartimientoSalidaRegistro').attr('disabled', false)
+        $('#cboCompartimientoSalidaRegistro').attr('disabled', false)
+        $('#txtDocReferenciaRegistro').attr('disabled', false)
+        $('#contFiltrosProductos').hide();
+        $('#btnConsumirRequerimiento').attr('data-estado', 'consumir')
+        $('#btnConsumirRequerimiento').removeClass('btn-success')
+            .addClass('btn-info')
+            .html('<i class="fa fa-list-alt"></i> CONSUMIR REQUERIMIENTO');
+
 
         $('.chzn-select').chosen().trigger("chosen:updated");
 
@@ -2710,9 +2887,27 @@
         $('#txtNroDocNotaSalida').val(notaSalida.documentoNumero)
         $('#txtObservacionesRegistro').val(notaSalida.observaciones)
 
+        $('#cboAreaTerritorioNacionalRegistro').val(notaSalida.idAreaTerritorial)
+        $('#cboAreaTerritorioNacionalRegistro').trigger('change')
+        $('#cboUnidadDependenciaRegistro').val(notaSalida.idUnidadDependencia)
+       
+        $('#cboTipoCompartimientoSalidaRegistro').val(notaSalida.idTipoCompartimientoSalida)
+        $('#cboTipoCompartimientoSalidaRegistro').trigger('change')
 
-        await NotaSalida.FarmMovimientoDetalleByMovNumero(notaSalida.movNumero, 'S')
+        $('#cboCompartimientoSalidaRegistro').val(notaSalida.idAlmacenDestino)
+        $('#cboEstadoNotaSalida').val(notaSalida.idEstadoReserva)
+        $('#txtDocReferenciaRegistro').val(notaSalida.docReferencia)
+        $('#hndReserva').val(notaSalida.idReserva)
 
+        $('#cboAreaTerritorioNacionalRegistro').attr('disabled', false)
+        $('#cboUnidadDependenciaRegistro').attr('disabled', false)
+        $('#cboTipoCompartimientoSalidaRegistro').attr('disabled', false)
+        $('#cboCompartimientoSalidaRegistro').attr('disabled', false)
+        $('#cboEstadoNotaSalida').attr('disabled', false)
+        $('#txtDocReferenciaRegistro').attr('disabled', false)
+
+
+        await NotaSalida.FarmMovimientoDetalleByidReserva(notaSalida.idReserva)
         if (NotaSalida.TipoAccion == 'M') { // modificar
             $('#TabPanelRegistro').find('input, select').prop('disabled', false);
             $('#btnGuardarNotaSalida').show()
@@ -2720,6 +2915,7 @@
             $('#TabPanelRegistro').find('input, select').prop('disabled', true);
             $('#btnGuardarNotaSalida').hide()
         }
+        $('#contFiltrosProductos').show();
 
         $('#txtNroNotaSalida').attr('disabled', true)
         $('#txtFechaRegistroNotaSalida').attr('disabled', true)
@@ -2731,10 +2927,41 @@
         $('#cboDestinoRegistro').attr('disabled', true)
         $('#cboTipoDocRegistro').attr('disabled', true)
         $('#txtNroDocNotaSalida').attr('disabled', true)
-
+        NotaSalida.BloquearCabecera(true);
+        if (NotaSalida.idEstadoReserva = 1 && NotaSalida.TipoAccion == 'M') {
+            $('#btnConsumirRequerimiento').show()
+            $('#btnConsumirRequerimiento')
+                .attr('data-estado', 'concluir')
+                .removeClass('btn-info')
+                .addClass('btn-success')
+                .html('<i class="fa fa-check"></i> CONCLUIR PARCIAL GUÍA');
+        } else {
+            $('#btnConsumirRequerimiento').hide()
+        }
 
         $('.chzn-select').chosen().trigger("chosen:updated");
     },
+
+
+
+    BloquearCabecera(bBloqueo) {
+
+        $('#cboFarmaciasRegistro').attr('disabled', bBloqueo)
+        $('#cboConceptoRegistro').attr('disabled', bBloqueo)
+        $('#txtDocReferenciaRegistro').attr('disabled', bBloqueo)
+        $('#cboAreaTerritorioNacionalRegistro').attr('disabled', bBloqueo)
+        $('#cboUnidadDependenciaRegistro').attr('disabled', bBloqueo)
+        $('#cboTipoCompartimientoSalidaRegistro').attr('disabled', bBloqueo)
+        $('#cboCompartimientoSalidaRegistro').attr('disabled', bBloqueo)
+        $('#chkIndicadorBajaRegistro').attr('disabled', bBloqueo)
+        $('#cboTipoCompartimientoOrigenRegistro').attr('disabled', bBloqueo)
+        $('#cboEstadoNotaSalida').attr('disabled', bBloqueo)
+        
+
+    },
+
+
+
 
     ValidarDatosObligatorios() {
         if ($('#cboFarmaciasRegistro').val() == 0) {

@@ -1,0 +1,44 @@
+<div class="modal-header modal-header bg-success">
+    <h5 class="modal-title text-white" id="titulo">Reporte: Productos con Stock</h5>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card m-t-5">
+                <div class="card-block m-t-5">
+
+                    <div class="row">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-lg-right">
+                                <label for="cboAlmacen" class="form-control-label">Almacén:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <select id="cboAlmacen" class="form-control chzn-select"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-10">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-lg-right">
+                                <label for="cboAnaquel" class="form-control-label">Anaquel:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <select id="cboAnaquel" class="form-control chzn-select"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button id="btnGenerarReporteProdMedConStock" type="button" class="btn btn-success" onclick="ID_ReporteProdMedConStock.GenerarReporte();">Generar Reporte</button>
+        <button type="button" class="btn btn-secondary" onclick="ID_ReporteProdMedConStock.CerrarModal();">Cancelar</button>
+    </div>
+</div>
+
+<script src="~/js/Farmacia/Disponibilidad.js" asp-append-version="true"></script>
+<script src="~/js/Reportes/ID_ReporteProdMedConStock.js" asp-append-version="true"></script>

@@ -1,0 +1,185 @@
+﻿<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalRecepcionGuias" role="dialog">
+    <div class="modal-dialog modal-xl" role="document" style="max-width: 1200px;">
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">
+                    <i class="fa fa-file-text-o"></i> Recepción de Guías
+                </h4>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <strong>Lista de Guías</strong>
+                    </div>
+
+                    <div class="card-block">
+                        <table id="tblReservaNotaSalida" class="table table-sm table-bordered table-striped table-content-sm w-100">
+                            <thead style="color: white; background: #6c757d;">
+                                <tr>
+                                    <th style="width:4%">N°</th>
+                                    <th style="width:8%">ID Guía</th>
+                                    <th style="width:10%">Monto Total</th>
+                                    <th style="width:10%">Fecha Documento</th>
+                                    <th style="width:18%">Documento Refer.</th>
+                                    <th style="width:18%">Comp. Emisor</th>
+                                    <th style="width:12%">Estado Guía</th>
+                                    <th style="width:5%">Ver</th>
+                                    <th style="width:5%">Aceptar</th>
+                                    <th style="width:5%">Rechazar</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="btnCerrarModalRecepcionGuias" class="btn btn-secondary">
+                    Cerrar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalDetalleRecepcionGuia" role="dialog">
+    <div class="modal-dialog modal-xl" role="document" style="max-width: 1100px;">
+        <div class="modal-content">
+
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-white">
+                    <i class="fa fa-search"></i> Detalle de Guía
+                </h4>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="card mb-2">
+                    <div class="card-header bg-light">
+                        <strong>Datos de la Guía</strong>
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>ID Guía</label>
+                                <input type="text" id="txtDetalleIdGuiaRG" class="form-control form-control-sm" disabled>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <label>Fecha Documento</label>
+                                <input type="text" id="txtDetalleFechaRG" class="form-control form-control-sm" disabled>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label>Documento Referencia</label>
+                                <input type="text" id="txtDetalleDocReferenciaRG" class="form-control form-control-sm" disabled>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <label>Estado</label>
+                                <input type="text" id="txtDetalleEstadoRG" class="form-control form-control-sm" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-lg-6">
+                                <label>Almacén Origen</label>
+                                <input type="text" id="txtDetalleAlmacenOrigenRG" class="form-control form-control-sm" disabled>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Almacén Destino</label>
+                                <input type="text" id="txtDetalleAlmacenDestinoRG" class="form-control form-control-sm" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="text-center font-weight-bold mb-1" style="color:#20295e;">
+                    Productos de la Guía
+                </h5>
+
+                <table id="tblDetalleRecepcionGuia" class="table table-sm table-bordered table-striped table-content-sm w-100">
+                    <thead style="color:white; background:#20295e;">
+                        <tr>
+                            <th style="width:5%">Item</th>
+                            <th style="width:10%">Id Producto</th>
+                            <th style="width:15%">Lote</th>
+                            <th style="width:15%">F. Vencimiento</th>
+                            <th style="width:10%">Cantidad</th>
+                            <th style="width:10%">Precio</th>
+                            <th style="width:10%">Total</th>
+                            <th style="width:15%">Registro Sanitario</th>
+                            <th style="width:10%">Tipo Salida</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="6" class="text-right">Total General</th>
+                            <th id="htmlTotalDetalleRecepcionGuia" class="text-right">0.00</th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="btnCerrarModalDetalleRecepcionGuia" class="btn btn-secondary">
+                    Cerrar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalDesestimarReservaGuia" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title text-white">
+                    <i class="fa fa-times"></i> Desestimar Guía
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="txtIdReservaDesestimacion">
+
+                <div class="form-group">
+                    <label for="cboTipoDesestimacionRG">Tipo de Desestimación</label>
+                    <select id="cboTipoDesestimacionRG" class="form-control form-control-sm">
+                        <option value="">Seleccione una opción</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtMotivoDesestimacionRG">Motivo de Desestimación</label>
+                    <textarea id="txtMotivoDesestimacionRG"
+                              class="form-control form-control-sm"
+                              rows="4"
+                              maxlength="500"
+                              placeholder="Ingrese el motivo de desestimación"></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="btnGuardarDesestimacionRG" class="btn btn-danger">
+                    Guardar
+                </button>
+                <button type="button" id="btnCerrarModalDesestimacionRG" class="btn btn-secondary">
+                    Cancelar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -149,6 +149,30 @@ namespace CapaDatos
             });
         }
 
+        public Task<DataSet> ListarEstadosReservaNotaSalida()
+        {
+            Conexion cx = new Conexion();
+            return Task.Run(() =>
+            {
+
+                using (SqlConnection conn = cx.obtenerConexion())
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        string sql = "ListarEstadosReservaNotaSalida";
+                        da.SelectCommand = new SqlCommand(sql, conn);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        DataSet ds = new DataSet();
+                        da.Fill(ds);
+
+                        return ds;
+                    }
+                }
+
+            });
+        }
+
         public Task<DataSet> ListarUnidadDependenciabyTerritorioNacional(int idTerritorioNac)
         {
             Conexion cx = new Conexion();
@@ -892,6 +916,30 @@ namespace CapaDatos
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@MovTipo", MovTipo);
+                cmd.Parameters.AddWithValue("@IdAlmacen", IdAlmacen);
+                cmd.Parameters.AddWithValue("@FechaInicio", FechaInicio);
+                cmd.Parameters.AddWithValue("@FechaFin", FechaFin);
+
+                await conn.OpenAsync();
+
+                da.Fill(ds);
+
+                return ds;
+            }
+
+        }
+
+
+        public async Task<DataSet> FarmDevuelveReservas(int IdAlmacen, DateTime FechaInicio, DateTime FechaFin)
+        {
+            DataSet ds = new DataSet();
+
+            using (SqlConnection conn = new Conexion().obtenerConexion())
+            using (SqlCommand cmd = new SqlCommand("Web_FarmDevuelveReservaNotaSalida", conn))
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.AddWithValue("@IdAlmacen", IdAlmacen);
                 cmd.Parameters.AddWithValue("@FechaInicio", FechaInicio);
                 cmd.Parameters.AddWithValue("@FechaFin", FechaFin);
@@ -2465,7 +2513,7 @@ namespace CapaDatos
         public async Task<DataSet> CrearModificarReservaNotaIngresoSalida(
             string MovNumero, string MovTipo, int? idEstadoMovimiento, string idTipoLocales, string idTipoSuministro, int? documentoIdTipo, int? idAlmacenOrigen,
             int? idAlmacenDestino, int? IdTipoConceptoFarmacia, string Observaciones, List<FarmMovimientoDetalle> lstObjDetalleNotaSalida, int? idUsuario, int IdListBarItem,
-             int idAreaTerritorial, int idUnidadDependencia, int idTipoCompartimientoSalida, int idTipoCompartimientoOrigen, int idCompartimiento, string
+             int idAreaTerritorial, int idUnidadDependencia, string idTipoCompartimientoSalida, string idTipoCompartimientoOrigen, int idCompartimiento, string
         docReferencia, int idEstadoReserva)
         {
 
@@ -2500,7 +2548,7 @@ namespace CapaDatos
 
                 cmd.Parameters.AddWithValue("@idAreaTerritorial", idAreaTerritorial);  
                 cmd.Parameters.AddWithValue("@idUnidadDependencia" , idUnidadDependencia);  
-                cmd.Parameters.AddWithValue("@idTipoCompartimientoSalida" , idTipoCompartimientoSalida);  
+                cmd.Parameters.AddWithValue("@idTipoCompartimientoSalida" , idTipoCompartimientoSalida );  
                 cmd.Parameters.AddWithValue("@idTipoCompartimientoOrigen" , idTipoCompartimientoOrigen);  
                 cmd.Parameters.AddWithValue("@idCompartimiento", idCompartimiento);  
                 cmd.Parameters.AddWithValue("@docReferencia" , docReferencia);  
@@ -2518,6 +2566,59 @@ namespace CapaDatos
                 return dataSet;
             }
         }
+
+
+        public async Task<DataSet> ModificarReservaNotaSalidaFarmacia(int idReserva,List<FarmMovimientoDetalle> lstObjDetalleNotaSalida,int idEstadoReserva)
+        {
+
+            DataSet dataSet = new DataSet();
+
+            Conexion cx = new Conexion();
+
+            string xmlMovimientoDetalle;
+            xmlMovimientoDetalle = XmlUtil.Serializer(typeof(List<FarmMovimientoDetalle>), lstObjDetalleNotaSalida);
+
+            using (SqlConnection conn = new Conexion().obtenerConexion())
+            using (SqlCommand cmd = new SqlCommand("Web_ModificarReservaNotaSalida", conn))
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                cmd.Parameters.AddWithValue("@idReserva", idReserva );
+                cmd.Parameters.AddWithValue("@idEstadoReserva", idEstadoReserva);
+                cmd.Parameters.Add("@movimientoDetalle", SqlDbType.Xml).Value = xmlMovimientoDetalle;
+               
+                await conn.OpenAsync();
+
+                da.Fill(dataSet);
+
+                return dataSet;
+            }
+        }
+
+
+        public async Task<DataSet> FarmMovimientoDetalleByidReserva(int idReserva)
+        {
+            DataSet ds = new DataSet();
+
+            using (SqlConnection conn = new Conexion().obtenerConexion())
+            using (SqlCommand cmd = new SqlCommand("Web_FarmMovimientoDetalleReservaByidReserva", conn))
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@idReserva", idReserva);
+
+                await conn.OpenAsync();
+
+                da.Fill(ds);
+
+                return ds;
+            }
+
+        }
+
 
         /*@idReceta int,
 @IdPuntoCarga int,
