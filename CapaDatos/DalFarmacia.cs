@@ -2407,6 +2407,100 @@ namespace CapaDatos
             });
         }
 
+        public Task<DataSet> RequerimientoConsumoCalcular(int idOrigen, string fechaInicio, string fechaFin, int idUsuario)
+        {
+            Conexion cx = new Conexion();
+            return Task.Run(() =>
+            {
+                using (SqlConnection conn = cx.obtenerConexion())
+                using (SqlDataAdapter da = new SqlDataAdapter())
+                {
+                    string sql = "web_RequerimientoConsumoCalcular";
+                    da.SelectCommand = new SqlCommand(sql, conn);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    da.SelectCommand.Parameters.Add("@IdOrigen", SqlDbType.Int).Value = idOrigen;
+                    da.SelectCommand.Parameters.Add("@FechaInicio", SqlDbType.VarChar).Value = fechaInicio;
+                    da.SelectCommand.Parameters.Add("@FechaFin", SqlDbType.VarChar).Value = fechaFin;
+                    da.SelectCommand.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = idUsuario;
+
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    return ds;
+                }
+            });
+        }
+
+        public Task<DataSet> RequerimientoOrigenDestinoGuardar(string cabeceraJson, string detalleJson, bool enviar, int idUsuario)
+        {
+            Conexion cx = new Conexion();
+            return Task.Run(() =>
+            {
+                using (SqlConnection conn = cx.obtenerConexion())
+                using (SqlDataAdapter da = new SqlDataAdapter())
+                {
+                    string sql = "web_RequerimientoOrigenDestinoGuardar";
+                    da.SelectCommand = new SqlCommand(sql, conn);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    da.SelectCommand.Parameters.Add("@CabeceraJson", SqlDbType.VarChar).Value = cabeceraJson;
+                    da.SelectCommand.Parameters.Add("@DetalleJson", SqlDbType.VarChar).Value = detalleJson;
+                    da.SelectCommand.Parameters.Add("@Enviar", SqlDbType.Bit).Value = enviar;
+                    da.SelectCommand.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = idUsuario;
+
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    return ds;
+                }
+            });
+        }
+
+        public Task<DataSet> RequerimientosOrigenDestinoFiltrar(string fechaInicio, string fechaFin, string estado, int? idOrigen, int? idDestino, int idUsuario)
+        {
+            Conexion cx = new Conexion();
+            return Task.Run(() =>
+            {
+                using (SqlConnection conn = cx.obtenerConexion())
+                using (SqlDataAdapter da = new SqlDataAdapter())
+                {
+                    string sql = "web_RequerimientosOrigenDestinoFiltrar";
+                    da.SelectCommand = new SqlCommand(sql, conn);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    da.SelectCommand.Parameters.Add("@FechaInicio", SqlDbType.VarChar).Value = string.IsNullOrWhiteSpace(fechaInicio) ? (object)DBNull.Value : fechaInicio;
+                    da.SelectCommand.Parameters.Add("@FechaFin", SqlDbType.VarChar).Value = string.IsNullOrWhiteSpace(fechaFin) ? (object)DBNull.Value : fechaFin;
+                    da.SelectCommand.Parameters.Add("@Estado", SqlDbType.VarChar).Value = string.IsNullOrWhiteSpace(estado) ? (object)DBNull.Value : estado;
+                    da.SelectCommand.Parameters.Add("@IdOrigen", SqlDbType.Int).Value = idOrigen.HasValue ? idOrigen.Value : (object)DBNull.Value;
+                    da.SelectCommand.Parameters.Add("@IdDestino", SqlDbType.Int).Value = idDestino.HasValue ? idDestino.Value : (object)DBNull.Value;
+                    da.SelectCommand.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = idUsuario;
+
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    return ds;
+                }
+            });
+        }
+
+        public Task<DataSet> RequerimientoOrigenDestinoActualizarEstado(string numeroRequerimiento, string accion, string detalleJson, int idUsuario)
+        {
+            Conexion cx = new Conexion();
+            return Task.Run(() =>
+            {
+                using (SqlConnection conn = cx.obtenerConexion())
+                using (SqlDataAdapter da = new SqlDataAdapter())
+                {
+                    string sql = "web_RequerimientoOrigenDestinoActualizarEstado";
+                    da.SelectCommand = new SqlCommand(sql, conn);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    da.SelectCommand.Parameters.Add("@NumeroRequerimiento", SqlDbType.VarChar).Value = numeroRequerimiento;
+                    da.SelectCommand.Parameters.Add("@Accion", SqlDbType.VarChar).Value = accion;
+                    da.SelectCommand.Parameters.Add("@DetalleJson", SqlDbType.VarChar).Value = string.IsNullOrWhiteSpace(detalleJson) ? (object)DBNull.Value : detalleJson;
+                    da.SelectCommand.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = idUsuario;
+
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    return ds;
+                }
+            });
+        }
+
         public async Task<DataSet> CrearModificarVentaFarmacia(
             string MovNumero, string MovTipo, int? IdCuentaAtencion, int? IdServicioPaciente, DateTime? FechaHoraPrescribe, int? IdPaquete, string PresExternoCmp, string PresExternoMedico,
             string PresExternoFecha, string NroFormato, int? IdReceta, string DocumentoNumero, string Observaciones, int? idEstadoMovimiento, int? idAlmacenOrigen, int? idAlmacenDestino, int? IdFuenteFinanciamiento,

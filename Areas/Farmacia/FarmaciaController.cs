@@ -256,6 +256,33 @@ namespace WebAppMaternidad.Areas.Farmacia
             return View("NotaSalida");
         }
 
+        public async Task<IActionResult> RegistroRequerimientoOrigenDestino(int idListBar)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+                return View("Login");
+            }
+
+            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
+            DalEmpleado dlEmpleado = new DalEmpleado();
+            RolesItems objRol = await dlEmpleado.DevuelveRolxItem(idUsuario, idListBar);
+
+            if (objRol == null)
+            {
+                return View("AccesoDenegado");
+            }
+
+            ViewBag.Agregar = objRol.Agregar;
+            ViewBag.Modificar = objRol.Modificar;
+            ViewBag.Eliminar = objRol.Eliminar;
+            ViewBag.Consultar = objRol.Consultar;
+            ViewBag.Area = "Farmacia";
+            ViewBag.Modulo = "Registro de Requerimiento Origen - Destino";
+            ViewBag.TipoFarmacia = "F";
+
+            return View("RegistroRequerimientoOrigenDestino");
+        }
+
         public async Task<IActionResult> Ventas(int idListBar)
         {
             if (HttpContext.User.Identity.IsAuthenticated == false)
