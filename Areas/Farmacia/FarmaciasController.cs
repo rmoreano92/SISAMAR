@@ -694,57 +694,6 @@ namespace WebAppMaternidad.Areas.Farmacia
         }
 
         [HttpPost]
-        public async Task<ActionResult> RequerimientoConsumoCalcular(int idOrigen, string fechaInicio, string fechaFin)
-        {
-            DataSet dataSet;
-            DalFarmacia daoFarmacia = new DalFarmacia();
-            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
-            dataSet = await daoFarmacia.RequerimientoConsumoCalcular(idOrigen, fechaInicio, fechaFin, idUsuario);
-            return Json(new { lstData = dataSet, session = true });
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> RequerimientoOrigenDestinoGuardar(
-            string cabeceraJson,
-            string detalleJson,
-            bool enviar)
-        {
-            DataSet dataSet;
-            DalFarmacia daoFarmacia = new DalFarmacia();
-            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
-            dataSet = await daoFarmacia.RequerimientoOrigenDestinoGuardar(cabeceraJson, detalleJson, enviar, idUsuario);
-            return Json(new { lstData = dataSet, session = true });
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> RequerimientosOrigenDestinoFiltrar(
-            string fechaInicio,
-            string fechaFin,
-            string estado,
-            int? idOrigen,
-            int? idDestino)
-        {
-            DataSet dataSet;
-            DalFarmacia daoFarmacia = new DalFarmacia();
-            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
-            dataSet = await daoFarmacia.RequerimientosOrigenDestinoFiltrar(fechaInicio, fechaFin, estado, idOrigen, idDestino, idUsuario);
-            return Json(new { lstData = dataSet, session = true });
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> RequerimientoOrigenDestinoActualizarEstado(
-            string numeroRequerimiento,
-            string accion,
-            string detalleJson)
-        {
-            DataSet dataSet;
-            DalFarmacia daoFarmacia = new DalFarmacia();
-            int idUsuario = int.Parse(HttpContext.Session.GetString("idusu"));
-            dataSet = await daoFarmacia.RequerimientoOrigenDestinoActualizarEstado(numeroRequerimiento, accion, detalleJson, idUsuario);
-            return Json(new { lstData = dataSet, session = true });
-        }
-
-        [HttpPost]
         public async Task<ActionResult> AtencionesSelecionarPorCuenta(int idCuentaAtencion)
         {
             DataSet dataSet;
